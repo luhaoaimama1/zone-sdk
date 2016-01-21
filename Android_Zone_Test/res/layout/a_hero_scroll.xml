@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view.testIng.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:src="@drawable/akb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:src="@drawable/abcd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:src="@drawable/amb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:src="@drawable/avatar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</view.testIng.MyScrollView>

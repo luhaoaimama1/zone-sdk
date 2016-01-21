@@ -1,0 +1,52 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.recyclertry.MainActivity" >
+
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/ic_menu_add"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/ic_menu_delete"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="移除"/>
+    <item
+        android:id="@+id/all"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="notifyAll"/>
+    <item
+        android:id="@+id/action_GirdView"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="GirdView"/>
+    <item
+        android:id="@+id/action_ListView"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="ListView"/>
+    <item
+        android:id="@+id/action_H_GirdView"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="横向GirdView"/>
+    <item
+        android:id="@+id/action_pull"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="瀑布流"/>
+    <item
+        android:id="@+id/baseAdapter"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="adapter封装测试"/>
+    <item
+        android:id="@+id/multiples"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="多布局测试"/>
+
+</menu>

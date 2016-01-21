@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+  >
+
+   <EditText 
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@drawable/login_edit_normal"
+       android:hint="请输入关键字"
+       android:singleLine="true"
+       android:layout_margin="2dp"
+       android:textSize="14sp"
+       />
+   <FrameLayout 
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       >
+       <ListView 
+           android:id="@+id/main_lv"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_gravity="center"
+           android:divider="@null"
+           />
+       <TextView 
+           android:id="@+id/dialog"
+           android:layout_width="80dp"
+           android:layout_height="80dp"
+           android:layout_gravity="center"
+           android:background="#496491"
+           android:gravity="center"
+           android:textSize="20sp"
+           android:textColor="@android:color/white"
+           android:visibility="invisible"
+           />
+       <!-- 自定义字母导航栏 -->
+       <other_project.pinyin_sidebar.SideBar
+           android:id="@+id/side_bar"
+           android:layout_width="30dp"
+           android:layout_height="match_parent"
+           android:layout_gravity="right|center"
+           />
+   </FrameLayout>
+
+</LinearLayout>

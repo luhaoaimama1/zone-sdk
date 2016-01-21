@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view.FlowLayout_Zone xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flowLayoutZone1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="handler测试" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#00ff00"
+        android:gravity="center"
+        android:text="client" />
+
+    <Button
+        android:id="@+id/client_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="Get" />
+
+    <Button
+        android:id="@+id/client_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="Post" />
+
+    <Button
+        android:id="@+id/client_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="上传文件" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#00ff00"
+        android:gravity="center"
+        android:text="Connection" />
+
+    <Button
+        android:id="@+id/con_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="Get" />
+
+    <Button
+        android:id="@+id/con_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="Post" />
+
+    <Button
+        android:id="@+id/con_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="Down" />
+
+    <Button
+        android:id="@+id/con_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="上传文件" />
+
+    <Button
+        android:id="@+id/con_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#ff0000"
+        android:onClick="onClick"
+        android:text="服务器端在测试一遍" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#00ff00"
+        android:gravity="center"
+        android:text="Thread测试" />
+
+    <Button
+        android:id="@+id/asyncTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="AsyncTask测试" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#00ff00"
+        android:gravity="center"
+        android:text="封装NetworkPull测试" />
+
+    <Button
+        android:id="@+id/noPullTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="noPull测试" />
+    <Button
+        android:id="@+id/noPull_GloboTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="noPull_Globlo测试" />
+
+    <Button
+        android:id="@+id/pullGet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="havePull_Get测试" />
+
+</view.FlowLayout_Zone>

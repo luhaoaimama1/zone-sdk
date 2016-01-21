@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.mylib_test.activity.animal.viewa.PorterDuffXfermode1 xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00ff00"
+    android:orientation="vertical" >
+    
+
+</com.example.mylib_test.activity.animal.viewa.PorterDuffXfermode1>

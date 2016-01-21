@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <view.SquareImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00ff00"
+            android:src="@drawable/ic_launcher" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:background="#eee" />
+
+        <view.SquareImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00ff00"
+            android:src="@drawable/ic_launcher" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:background="#eee" />
+
+        <view.SquareImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00ff00"
+            android:src="@drawable/ic_launcher" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用weight的时候的技巧：中间可以用dp的控件  通过父控件减去这些DP  剩下的在等分 "
+        android:textColor="#0000ff" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注意：中间view的高可以是0dp这都是技巧~"
+        android:textColor="#ff0000" />
+
+</LinearLayout>

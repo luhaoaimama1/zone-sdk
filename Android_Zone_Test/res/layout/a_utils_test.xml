@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flowLayoutZone1"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <view.FlowLayout_Zone
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/keyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="键盘测量" />
+
+        <Button
+            android:id="@+id/openKeyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="打开键盘"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/closeKeyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="关闭键盘"
+            android:onClick="onClick" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="#ff0000"
+            android:text="键盘测试~" />
+        
+        <Button
+            android:id="@+id/frammentSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="frammentSwitch测试"
+            android:onClick="onClick" />
+        <Button
+            android:id="@+id/bitmapTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="位图软缓存工具类测试"
+            android:onClick="onClick" />
+        <Button
+            android:id="@+id/getPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="正则提取手机号"
+            android:onClick="onClick" />
+
+    </view.FlowLayout_Zone>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="#00ff00" />
+
+</RelativeLayout>

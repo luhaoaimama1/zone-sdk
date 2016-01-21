@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view.FlowLayout_Zone xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flowLayoutZone1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/veclocityTracker"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VeclocityTracker学习" />
+    <Button
+        android:id="@+id/gestureDetectorActivity"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GestureDetector学习" />
+    <Button
+        android:id="@+id/scrollerView"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ScrollerView学习" />
+    <Button
+        android:id="@+id/outConflict1"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="横竖滑动冲突(外部拦截法)" />
+    <Button
+        android:id="@+id/innerConflict1"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="横竖滑动冲突(内部拦截法)" />
+    <Button
+        android:id="@+id/onTouchConflict1"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="横竖滑动冲突(内部onTouch false尝试)" />
+    <Button
+        android:id="@+id/frameConflict1"
+        android:onClick="onClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="并列冲突解决不了 把并列冲突布局改成 嵌套冲突 在解决(点进去可看失败成果)" />
+
+
+</view.FlowLayout_Zone>

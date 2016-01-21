@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view.FlowLayout_Zone xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flowLayoutZone1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/imageLoader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="imageLoader" />
+
+    <Button
+        android:id="@+id/imageLoaderGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="imageLoaderGird" />
+    <Button
+        android:id="@+id/sideBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="通讯录字母导航" />
+    <Button
+        android:id="@+id/pull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="下拉刷新" />
+    <Button
+        android:id="@+id/google_pull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="google下拉刷新" />
+    <Button
+        android:id="@+id/bt_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="recycler测试" />
+    <Button
+        android:id="@+id/bt_pull2recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="googlepull2recycler测试" />
+
+</view.FlowLayout_Zone>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view.FlowLayout_Zone xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flowLayoutZone1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#00ff00"
+        android:text="字段" />
+    <Button
+        android:id="@+id/db_addColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db添加字段" />
+
+    <Button
+        android:id="@+id/db_update_Column"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db修改字段" />
+
+    <Button
+        android:id="@+id/db_queryColumn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db查询字段" />
+    
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#00ff00"
+        android:text="创建修改数据库" />
+
+    <Button
+        android:id="@+id/db_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db创建" />
+
+    <Button
+        android:id="@+id/db_Tabledelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db表删除" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#00ff00"
+        android:text="增加系列" />
+
+    <Button
+        android:id="@+id/db_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="addEntity" />
+    <Button
+        android:id="@+id/db_addOrUpdateEntity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="addOrUpdateEntity" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#00ff00"
+        android:text="修改系列" />
+
+    <Button
+        android:id="@+id/db_updateByC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db修改_条件" />
+    <Button
+        android:id="@+id/db_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db修改" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#00ff00"
+        android:text="删除系列" />
+
+    <Button
+        android:id="@+id/db_deleteAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="清空表但是表存在(但是 id没从1开始)" />
+    <Button
+        android:id="@+id/db_deleteByC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="通过条件删除" />
+    <Button
+        android:id="@+id/db_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="删除实体" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#00ff00"
+        android:text="查询系列" />
+
+    <Button
+        android:id="@+id/db_query"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db查询" />
+    <Button
+        android:id="@+id/db_queryInner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db查询内部表" />
+    <Button
+        android:id="@+id/db_queryByC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db查询通过条件" />
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="#00ff00"
+        android:text="分割线" />
+    
+    <Button
+        android:id="@+id/tran_add_fail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db事物增加_失败" />
+      <Button
+        android:id="@+id/tran_add_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="db事物增加_成功" />
+
+</view.FlowLayout_Zone>

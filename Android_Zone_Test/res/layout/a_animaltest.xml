@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <view.FlowLayout_Zone
+        android:id="@+id/flowLayoutZone1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#00ff00"
+            android:gravity="center"
+            android:text="动画研究" />
+
+        <Button
+            android:id="@+id/animal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="Property Animation" />
+
+        <Button
+            android:id="@+id/bt_customAni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="自定义动画的研究" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#00ff00"
+            android:gravity="center"
+            android:text="SurfaceView" />
+
+        <Button
+            android:id="@+id/bt_surfaceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="SurfaceView研究" />
+
+        <Button
+            android:id="@+id/bt_surface"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="SurfaceView_绘图版" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#00ff00"
+            android:gravity="center"
+            android:text="绘图技巧研究" />
+
+        <Button
+            android:id="@+id/color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="ColorMarix" />
+
+        <Button
+            android:id="@+id/bt_Pixels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="Pixels" />
+
+        <Button
+            android:id="@+id/bt_shader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="shader" />
+
+        <Button
+            android:id="@+id/bt_MatrixPre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="Matrix(MapPoint 、逆向矩阵invert)" />
+
+        <Button
+            android:id="@+id/bt_canvas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="图层" />
+
+        <Button
+            android:id="@+id/bt_PorterDuff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="PorterDuffXfermode1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#00ff00"
+            android:gravity="center"
+            android:text="BitmapUtils的测试" />
+
+        <Button
+            android:id="@+id/bt_bitmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="位图深拷贝" />
+
+        <Button
+            android:id="@+id/bt_bitmaptoRound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="位图toRound" />
+        <Button
+            android:id="@+id/bt_bitmaptoScale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="位图toScale" />
+        <Button
+            android:id="@+id/bt_bitmaptoRorate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="位图toRorate" />
+        <Button
+            android:id="@+id/bt_bitmapRecyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="位图方法内回收测试" />
+        
+        <ImageView
+            android:id="@+id/iv_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#00ff00"
+            android:layout_margin="4dp"/>
+        
+    </view.FlowLayout_Zone>
+
+</ScrollView>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+<view.FlowLayout_Zone
+  android:layout_width="fill_parent"
+    android:layout_height="wrap_content"  >
+    <view.SquareImageView
+        android:id="@+id/iv_uri"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="uri" />
+
+    <view.SquareImageView
+        android:id="@+id/iv_url"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="url" />
+
+    <view.SquareImageView
+        android:id="@+id/iv_provider"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="from content provider  " />
+
+    <view.SquareImageView
+        android:id="@+id/iv_assets"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="from assets   " />
+
+    <view.SquareImageView
+        android:id="@+id/iv_drawables"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=" from drawables   " />
+</view.FlowLayout_Zone>
+</ScrollView>

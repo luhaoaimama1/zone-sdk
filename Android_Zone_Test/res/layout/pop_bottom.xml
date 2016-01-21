@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_main"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#00ff00"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/bt_how"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="how" />
+
+    <Button
+        android:id="@+id/bt_are"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="are" />
+
+    <Button
+        android:id="@+id/bt_you"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="you" />
+
+</LinearLayout>

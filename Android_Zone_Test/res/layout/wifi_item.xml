@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/Wifi_item_ssid"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="SSid" />
+
+    <Button
+        android:id="@+id/Wifi_item_con"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="连接" />
+
+    <Button
+        android:id="@+id/Wifi_item_NotCon"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="取消连接" />
+
+    <Button
+        android:id="@+id/Wifi_item_ToString"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="toString" />
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="position">
+        <enum name="left_top" value="0" />
+        <enum name="right_top" value="1" />
+        <enum name="right_bottom" value="2" />
+        <enum name="left_bottom" value="3" />
+    </attr>
+    <attr name="radius" format="dimension"></attr>
+    <attr name="startAngel" format="float"></attr>
+    <attr name="spreadAngel" format="float"></attr>
+
+    <declare-styleable name="ArcMenu">
+        <attr name="position" />
+        <attr name="radius" />
+    </declare-styleable>
+
+    <declare-styleable name="ArcMenu_Zone">
+        <attr name="position" />
+        <attr name="radius" />
+        <attr name="startAngel" />
+        <attr name="spreadAngel" />
+    </declare-styleable>
+
+</resources>

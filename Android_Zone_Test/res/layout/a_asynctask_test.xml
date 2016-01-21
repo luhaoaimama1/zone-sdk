@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:orientation="vertical"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent">  
+    <Button  
+        android:id="@+id/execute"  
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:text="execute"/>  
+    <Button  
+        android:id="@+id/cancel"  
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:enabled="false"  
+        android:text="cancel"/>  
+    <ProgressBar   
+        android:id="@+id/progress_bar"   
+        android:layout_width="fill_parent"   
+        android:layout_height="wrap_content"   
+        android:progress="0"  
+        android:max="100"  
+        style="?android:attr/progressBarStyleHorizontal"/>  
+    <ScrollView  
+        android:layout_width="fill_parent"   
+        android:layout_height="wrap_content">  
+        <TextView  
+            android:id="@+id/text_view"  
+            android:layout_width="fill_parent"   
+            android:layout_height="wrap_content"/>  
+    </ScrollView>  
+</LinearLayout>  

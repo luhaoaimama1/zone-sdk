@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="data">
+        <item>阿里巴巴</item>
+        <item>婉婷</item>
+        <item>幽兰</item>
+        <item>凌薇</item>
+        <item>晴霎</item>
+        <item>佑怡</item>
+        <item>夏岚</item>
+        <item>璟雯</item>
+        <item>雨薇</item>
+        <item>韵寒</item>
+        <item>钰彤</item>
+        <item>语嫣</item>
+        <item>尔柏</item>
+        <item>安茂观</item>
+        <item>安珈栋</item>
+        <item>柏雪</item>
+        <item>柏文婷</item>
+        <item>陈思洁</item>
+        <item>陈建宏</item>
+        <item>窦浩哲</item>
+        <item>窦程</item>
+        <item>冯祈淙</item>
+        <item>冯启</item>
+        <item>冯枷</item>
+        <item>李梓牧</item>
+        <item>李果果</item>
+        <item>倪豪</item>
+        <item>倪鹏斐</item>
+        <item>倪瑞宸</item>
+    </string-array>
+</resources>

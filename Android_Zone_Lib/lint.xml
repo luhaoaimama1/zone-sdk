@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="DefaultLocale">
+        <ignore path="src/Android/Zone/Http/UrlConnection/MyConnection_FilePostRunnable.java" />
+        <ignore path="src/Android/Zone/Sqlite/dao/Sqlite_Helper.java" />
+    </issue>
+</lint>
