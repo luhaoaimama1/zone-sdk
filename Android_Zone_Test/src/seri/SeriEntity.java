@@ -22,6 +22,8 @@ public class SeriEntity implements Serializable{
 		ObjectInputStream in = new ObjectInputStream(new FileInputStream("cache.txt"));
 		SeriEntity temp2=(SeriEntity)in.readObject();
 		in.close();
+
 	}
+
 
 }
