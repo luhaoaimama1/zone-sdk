@@ -2,8 +2,8 @@ package com.example.mylib_test.activity.frag_viewpager_expand;
 
 import com.example.mylib_test.R;
 
-import and.utlis.FragmentSwitchUtils;
-import and.utlis.FragmentSwitchUtils.BackStatue;
+import and.utlis.FragmentSwitcher;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -11,30 +11,35 @@ import android.view.View.OnClickListener;
 
 public class FramentSwitchAcitiviy extends FragmentActivity implements OnClickListener{
 
-	private FragmentSwitchUtils fragmentSwitch;
 
+	private FragmentSwitcher fragmentSwitcher;
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.a_frament_switch_test);
-		 fragmentSwitch = new FragmentSwitchUtils(this, R.id.framelayout);
-		 fragmentSwitch.switchPage(Tab1.class);
+
+		fragmentSwitcher=new FragmentSwitcher(this, R.id.framelayout);
+		fragmentSwitcher.setPriDefaultAnimal(android.R.anim.fade_in,android.R.anim.fade_out);
+//		fragmentSwitcher.initFragment(Tab1.class, Tab2.class, Tab3.class);
+		fragmentSwitcher.initFragment(new Tab1(),new Tab2(), new Tab3());
+		fragmentSwitcher.switchToNull();
+//		fragmentSwitcher.switchPage(0);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.open1:
-			fragmentSwitch.switchPage(Tab1.class);
+			fragmentSwitcher.switchPage(0);
 			break;
 		case R.id.open2:
-			fragmentSwitch.switchPage(Tab2.class,android.R.anim.fade_in,android.R.anim.fade_out);
+			fragmentSwitcher.switchPage(1);
 			break;
 		case R.id.open3:
-			fragmentSwitch.switchPage(Tab3.class);
+			fragmentSwitcher.switchPage(2);
 			break;
 		case R.id.open4:
-			fragmentSwitch.switchToNull();
+			fragmentSwitcher.switchToNull();
 			break;
 
 		default:
