@@ -24,6 +24,9 @@ public class NetStatusReceiverUtils {
 
 	public static void unRegister(Context context) {
 		context.unregisterReceiver(map.get(context));
-		map.remove(context);
+		try {
+			map.remove(context);
+		} catch (Exception e) {
+		}
 	}
 }

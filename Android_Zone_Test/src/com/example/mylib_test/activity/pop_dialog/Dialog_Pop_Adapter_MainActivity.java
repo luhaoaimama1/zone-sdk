@@ -1,5 +1,6 @@
 package com.example.mylib_test.activity.pop_dialog;
 
+import and.log.ToastUtils;
 import view.DialogCustemZone;
 
 import com.example.mylib_test.R;
@@ -64,10 +65,6 @@ public class Dialog_Pop_Adapter_MainActivity extends Activity implements OnClick
 				
 			};
 			break;
-		case R.id.adapter:
-			//myAdatper测试
-			startActivity(new Intent(this, AdapterActivity.class));
-			break;
 		case R.id.textGaoLiang:
 			//点击文字高粱等效果
 			Button bt = (Button) findViewById(R.id.textGaoLiang);
@@ -85,6 +82,6 @@ public class Dialog_Pop_Adapter_MainActivity extends Activity implements OnClick
 		}
 	}
 	public void toToast(String str) {
-		Toast.makeText(this, str, 1).show();
+		ToastUtils.showShort(this, str);
 	}
 }

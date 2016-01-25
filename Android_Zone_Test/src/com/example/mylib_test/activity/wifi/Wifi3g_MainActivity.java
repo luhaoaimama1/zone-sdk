@@ -26,11 +26,9 @@ public class Wifi3g_MainActivity extends Activity implements OnClickListener {
 		MyWifiAnd3G mwa = new MyWifiAnd3G(this);
 		switch (v.getId()) {
 		case R.id.openWifi:
-			// ´ò¿ªwifi
 			mwa.openWifi();
 			break;
 		case R.id.closeWifi:
-			// ¹Ø±Õwifi
 			mwa.closeWifi();
 			break;
 		case R.id.connWifi:
@@ -38,7 +36,6 @@ public class Wifi3g_MainActivity extends Activity implements OnClickListener {
 			startActivity(intent2);
 			break;
 		case R.id.conn3G:
-			// Á¬½Ó3gÊÖ»ú
 			mwa.openOrClose3GNet(true);
 			break;
 		case R.id.getNetStatue:

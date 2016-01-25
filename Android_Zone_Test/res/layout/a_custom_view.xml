@@ -74,14 +74,14 @@
         android:gravity="center"
         android:text="下面是安卓群英传中的控件" />
 
-    <view.testIng.MyTextView
+    <view.testing.MyTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:onClick="onClick"
         android:text="我了擦 gaga" />
 
-    <view.testIng.ShineTextView
+    <view.testing.ShineTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"

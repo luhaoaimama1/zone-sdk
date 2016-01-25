@@ -90,18 +90,18 @@ public class Animal_MainActivity extends Activity implements OnClickListener{
 	private void bitmapRecyleTest() {
 	if (bt!=null) {
 		//		ImageLoader.getInstance().loadImageSync(ImageLoaderURIUtils.transformURI(R.drawable.abcd+"", Type.Drawable));
-		Log.i("hei", "bitmapRecyleTest" +(bt.isRecycled()==true ? "掩隙彶賸" : "羶衄掩隙彶"));
+		Log.i("hei", "bitmapRecyleTest" +(bt.isRecycled()==true ? "回收成功" : "回收失败"));
 		iv_iv.setImageBitmap(bt);
 		rec(bt);
 		System.gc();
-		Log.i("hei", "bitmapRecyleTest" + (bt.isRecycled()==true ? "掩隙彶賸" : "羶衄掩隙彶"));
+		Log.i("hei", "bitmapRecyleTest" + (bt.isRecycled()==true ? "回收成功" : "回收失败"));
 		}
 	
 	}
 
 	private void rec(Bitmap bt1) {
 		bt1.recycle();
-		Log.i("hei", "rec"+(bt1.isRecycled()==true ? "掩隙彶賸" : "羶衄掩隙彶"));
+		Log.i("hei", "rec"+(bt1.isRecycled()==true ? "回收成功" : "回收失败"));
 	}
 	
 

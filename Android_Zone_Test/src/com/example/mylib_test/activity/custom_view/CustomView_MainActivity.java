@@ -41,6 +41,7 @@ public class CustomView_MainActivity  extends Activity implements OnClickListene
 			break;
 		case R.id.bt_hero2:
 			startActivity(new Intent(this,AndroidHeroActivity.class).putExtra("type", "circle2"));
+			break;
 		case R.id.bt_scroll:
 			startActivity(new Intent(this,AndroidHeroActivity.class).putExtra("type", "scroll"));
 			break;

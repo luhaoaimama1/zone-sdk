@@ -24,7 +24,7 @@ public class Pop_Photo extends Pop_Zone implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_call:
-			ToastUtils.showLong(activity, "hahaºÃÊ¹²»");
+			ToastUtils.showLong(activity, "哈哈");
 			break;
 		case R.id.tv_cancel:
 			dismiss();
