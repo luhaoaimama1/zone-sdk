@@ -1,36 +1,23 @@
-# Android generated
-bin/
-gen/
+#Android generated
+bin
+gen
 
-# Ant
-build.xml
-local.properties
-
-# Maven
-target/
-pom.xml.*
-release.properties
-
-# Eclipse
-.classpath
+#Eclipse
 .project
-.externalToolBuilders/
+.classpath
+.settings
 
-# IntelliJ
-*.iml
-*.ipr
-*.iws
+#IntelliJ IDEA
 .idea
-.metadata
-out
-build
+*.iml
+classes
 
-# Mac 
-.DS_Store
+#Maven
+target
+release.properties
+pom.xml.*
 
-# Ignore gradle files
-.gradle/
-build/
-
-# Private
-signing.properties
+#Command line
+local.properties
+build.xml
+proguard-project.txt

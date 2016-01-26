@@ -19,6 +19,21 @@
         android:layout_margin="4dp"
         android:onClick="onClick"
         android:text="轮播的滑动禁止和允许" />
+    <Button
+        android:id="@+id/bt_viewPagerIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="viewPagerIndicator测试" />
+
+    <Button
+        android:id="@+id/bt_SampleTabsDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="SampleTabsDefault" />
 
     <Button
         android:id="@+id/label_test"

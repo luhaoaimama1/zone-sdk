@@ -6,7 +6,6 @@ import java.util.Map;
 
 import and.abstractclass.BaseActvity;
 import and.network.core.NetworkEngine;
-import and.network.engine.XutilsEngine;
 import and.sd.FileUtils_SD;
 import android.os.Message;
 import android.view.View;

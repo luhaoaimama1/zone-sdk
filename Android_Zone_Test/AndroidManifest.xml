@@ -179,6 +179,12 @@
             android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
+            android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewpagerIndicatorActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+        <activity
+            android:name="com.example.mylib_test.activity.frag_viewpager_expand.SampleTabsDefault"
+            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+        <activity
             android:name="com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity

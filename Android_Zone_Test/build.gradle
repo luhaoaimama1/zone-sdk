@@ -1,12 +1,12 @@
 apply plugin: 'android'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
     compile project(':Android_Zone_Lib')
+    compile project(':pulltorefresh_library')
 }
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 22
     buildToolsVersion "23.0.2"
 
     sourceSets {
