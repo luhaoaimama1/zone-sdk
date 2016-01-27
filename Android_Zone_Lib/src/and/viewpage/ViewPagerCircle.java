@@ -1,14 +1,16 @@
 package and.viewpage;
-import and.viewpage.ViewPager_CycleAdapter_Zone;
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
 public class ViewPagerCircle extends ViewPager {
+	private long delayMillis=3000;
+	private boolean isTimeDelay=false;
+	private int initCircle=200;
 	private Handler handler;
-	private long delayMillis=5000;
+	private PagerAdapterCycle adapter;
+	private OnPageChangeListener mListener;
 	public ViewPagerCircle(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		handler=new Handler();
@@ -18,39 +20,72 @@ public class ViewPagerCircle extends ViewPager {
 		this(context, null);
 	}
 	/**
-	 * 
 	 * @param adapter
-	 * @param delayMillis  轮播 的切换时间
 	 */
-	public void setAdapter(PagerAdapter adapter,long delayMillis) {
+	public void setAdapter(PagerAdapterCycle adapter) {
+		setAdapter(adapter, 0);
+	}
+	/**
+	 * @param adapter
+	 */
+	public void setAdapter(PagerAdapterCycle adapter,int offset) {
 		super.setAdapter(adapter);
-		
-		this.delayMillis=delayMillis;
-		againTiming();
-		if(ViewPager_CycleAdapter_Zone.class.isInstance(adapter)){
-			ViewPager_CycleAdapter_Zone lin = (ViewPager_CycleAdapter_Zone)adapter;
-			int listSize=lin.getSize();
-			this.setCurrentItem(listSize*400);
+		this.adapter=adapter;
+		setCurrentItem(adapter.getSize() * initCircle + offset);
+		setOnPageChangeListener(null);
+	}
+
+	public void nextPage() {
+		setCurrentItem(getCurrentItem() + 1);
+	}
+
+	public void previousPage() {
+		setCurrentItem(getCurrentItem() - 1);
+	}
+	/**
+	 * 在adapter中调用
+	 */
+	private void againTiming(){
+		if (isTimeDelay) {
+			handler.removeCallbacks(run);
+			handler.postDelayed(run, delayMillis);
 		}
 	}
 	private Runnable run=new Runnable() {
 		@Override
 		public void run() {
-				nextPage();
-			}
+			nextPage();
+		}
+	};
+
+	@Override
+	public void setOnPageChangeListener(final OnPageChangeListener listener) {
+		mListener=listener;
+		if (adapter==null)
+			throw new IllegalStateException("setadapter must be use before setOnPageChangeListener!");
+			OnPageChangeListener listenerSet = new OnPageChangeListener() {
+				@Override
+				public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+					int reallyPosition = position % adapter.getSize();
+					if (mListener!=null)
+						mListener.onPageScrolled(reallyPosition, positionOffset, positionOffsetPixels);
+				}
+
+				@Override
+				public void onPageSelected(int position) {
+					againTiming();
+					int reallyPosition = position % adapter.getSize();
+					if (mListener!=null)
+						mListener.onPageSelected(reallyPosition);
+				}
+
+				@Override
+				public void onPageScrollStateChanged(int state) {
+					if (mListener!=null)
+						mListener.onPageScrollStateChanged(state);
+				}
 		};
-	public void nextPage(){
-		setCurrentItem(getCurrentItem()+1);
-	}
-	public void previousPage(){
-		setCurrentItem(getCurrentItem()-1);
-	}
-	/**
-	 * 在adapter中调用
-	 */
-	public void againTiming(){
-		handler.removeCallbacks(run);
-		handler.postDelayed(run,delayMillis);
+		super.setOnPageChangeListener(listenerSet);
 	}
 
 	public long getDelayMillis() {
@@ -59,6 +94,23 @@ public class ViewPagerCircle extends ViewPager {
 
 	public void setDelayMillis(long delayMillis) {
 		this.delayMillis = delayMillis;
+	}
+
+	/**
+	 * 开启轮播  并设置轮播时间
+	 * @param delayMillis
+	 */
+	public void openTimeCircle(long delayMillis) {
+		if (-1!=delayMillis)
+			this.delayMillis = delayMillis;
+		isTimeDelay=true;
+		againTiming();
+	}
+	/**
+	 * 开启轮播  轮播时间为默认时间
+	 */
+	public void openTimeCircle() {
+		openTimeCircle(-1);
 	}
 
 }

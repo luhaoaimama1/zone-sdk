@@ -161,6 +161,9 @@
             android:name="com.example.mylib_test.activity.custom_view.ViewPagerActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
+            android:name="com.example.mylib_test.activity.custom_view.ViewPagerRepeatWriteActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+        <activity
             android:name="com.example.mylib_test.activity.file.FileTestActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity

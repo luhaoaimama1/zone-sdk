@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import com.example.mylib_test.R;
 
 import and.viewpage.ViewPagerCircle;
-import and.viewpage.ViewPager_CycleAdapter_Zone;
-import and.viewpage.ViewPager_CycleAdapter_Zone.OnPageChangeListener_Zone;
+import and.viewpage.PagerAdapterCycle;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
-public class ViewPagerActivity extends Activity implements OnPageChangeListener_Zone {
+public class ViewPagerActivity extends Activity implements ViewPager.OnPageChangeListener {
 	private int[] imageResIDs;
 	private String[] imageTextArray;
 	private ArrayList<ImageView> imageViewList;
@@ -33,14 +34,15 @@ public class ViewPagerActivity extends Activity implements OnPageChangeListener_
 		tvImageDescription = (TextView) findViewById(R.id.tv_image_description);
 		llPointGroup = (LinearLayout) findViewById(R.id.ll_point_group);
 		initData();
-		mViewPager.setAdapter(new ViewPager_CycleAdapter_Zone<ImageView>(imageViewList,mViewPager,this) {
+		mViewPager.setAdapter(new PagerAdapterCycle<ImageView>(this,imageViewList) {
 
 			@Override
-			public View getViewByList(int position) {
+			public View getView(Context context,int position) {
 				return imageViewList.get(position);
 			}
 
-		},1000);
+		}, 1000);
+		mViewPager.setOnPageChangeListener(this);
 		// 初始化一下, 图片的描述, 和点的选中状态
 		tvImageDescription.setText(imageTextArray[0]);
 

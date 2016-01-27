@@ -1,14 +1,11 @@
 package com.example.mylib_test.activity.frag_viewpager_expand;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
-
 import com.example.mylib_test.R;
 import com.viewpagerindicator.CirclePageIndicator;
-
 import and.abstractclass.BaseActvity;
 
 /**

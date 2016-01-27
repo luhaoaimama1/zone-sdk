@@ -23,6 +23,9 @@ public class CustomView_MainActivity  extends Activity implements OnClickListene
 		case R.id.frg_adapter_circle:
 			startActivity(new Intent(this,ViewPagerActivity.class));
 			break;
+		case R.id.frg_adapter_circle233:
+			startActivity(new Intent(this,ViewPagerRepeatWriteActivity.class));
+			break;
 		case R.id.frg_disable_scroll:
 			startActivity(new Intent(this,ViewPagerDisableScrollActivity.class));
 			break;
