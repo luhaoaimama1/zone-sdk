@@ -5,22 +5,9 @@
     android:layout_height="fill_parent"
     android:background="#fff827">
 
-    <and.viewpage.ViewPagerCircle
+    <com.zone.banner_zonelib.ViewPagerCircle
         android:id="@+id/pager"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 
-    <com.viewpagerindicator.CirclePageIndicator
-        android:id="@+id/indicator"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:orientation="vertical"
-        android:padding="20dp"
-        app:pageColor="@color/abc_search_url_text"
-        app:radiusCircle="5dp"
-        app:snap="true"
-        app:strokeColor="@color/red"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="62dp" />
 </RelativeLayout>

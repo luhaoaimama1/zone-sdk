@@ -3,6 +3,7 @@ apply plugin: 'android'
 dependencies {
     compile project(':Android_Zone_Lib')
     compile project(':pulltorefresh_library')
+    compile project(':banner_zonelib')
 }
 
 android {

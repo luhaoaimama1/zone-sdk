@@ -1,5 +1,3 @@
-include ':Android_Zone_Lib'
+include ':Android_Zone_Lib', ':banner_zonelib'
 include ':pulltorefresh_library'
 include ':Android_Zone_Test'
-include ':ViewPagerIndicatorlibrary'
-include ':ViewPagerIndicatorlibrary'

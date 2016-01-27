@@ -1,8 +1,6 @@
 package com.example.mylib_test.activity.custom_view;
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.frag_viewpager_expand.SampleTabsDefault;
 import com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity;
-import com.example.mylib_test.activity.frag_viewpager_expand.ViewpagerIndicatorActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,9 +18,6 @@ public class CustomView_MainActivity  extends Activity implements OnClickListene
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.frg_adapter_circle:
-			startActivity(new Intent(this,ViewPagerActivity.class));
-			break;
 		case R.id.frg_adapter_circle233:
 			startActivity(new Intent(this,ViewPagerRepeatWriteActivity.class));
 			break;
@@ -30,10 +25,7 @@ public class CustomView_MainActivity  extends Activity implements OnClickListene
 			startActivity(new Intent(this,ViewPagerDisableScrollActivity.class));
 			break;
 		case R.id.bt_viewPagerIndicator:
-			startActivity(new Intent(this,ViewpagerIndicatorActivity.class));
-			break;
-		case R.id.bt_SampleTabsDefault:
-			startActivity(new Intent(this,SampleTabsDefault.class));
+//			startActivity(new Intent(this,ViewpagerIndicatorActivity.class));
 			break;
 		case R.id.label_test:
 			startActivity(new Intent(this,LabelTestActivity.class));

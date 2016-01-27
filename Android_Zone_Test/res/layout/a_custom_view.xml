@@ -4,13 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/frg_adapter_circle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="轮播的无限循环" />
 
     <Button
         android:id="@+id/frg_adapter_circle233"
@@ -35,13 +28,6 @@
         android:onClick="onClick"
         android:text="viewPagerIndicator测试" />
 
-    <Button
-        android:id="@+id/bt_SampleTabsDefault"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="SampleTabsDefault" />
 
     <Button
         android:id="@+id/label_test"

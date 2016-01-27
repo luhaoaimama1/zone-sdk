@@ -5,25 +5,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.frag_viewpager_expand.ImageFragment;
-import com.viewpagerindicator.CirclePageIndicator;
+import com.zone.banner_zonelib.ViewPagerCircle;
+import com.zone.banner_zonelib.simpleadapter.PagerAdapterCircle_Image;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import and.abstractclass.BaseActvity;
-import and.viewpage.ViewPagerCircle;
-import and.viewpage.simpleadapter.PagerAdapterCircle_Image;
 
 /**
  * Created by Zone on 2016/1/27.
  */
 public class ViewPagerRepeatWriteActivity extends BaseActvity {
-    private CirclePageIndicator indicator;
     private ViewPagerCircle pager;
     private int[] imageResIDs = new int[] { R.drawable.akb, R.drawable.b, R.drawable.c,
             R.drawable.d, R.drawable.e };
@@ -35,7 +29,6 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
 
     @Override
     public void findIDs() {
-        indicator=(CirclePageIndicator)findViewById(R.id.indicator);
         pager = (ViewPagerCircle)findViewById(R.id.pager);
     }
 
@@ -48,19 +41,17 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
         pager.setAdapter(new PagerAdapterCircle_Image(this, list) {
             @Override
             public void setImage(ImageView iv, int position) {
+                iv.setScaleType(ImageView.ScaleType.FIT_XY);
                 iv.setImageResource(imageResIDs[position]);
             }
         });
 
-        indicator.setViewPager(pager);
-        indicator.setOrientation(LinearLayout.HORIZONTAL);
-        indicator.setSnap(false);
     }
 
     @Override
     public void setListener() {
         //如果我们要对ViewPager设置监听，用indicator设置就行了
-        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
