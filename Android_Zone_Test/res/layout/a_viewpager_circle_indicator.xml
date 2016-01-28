@@ -8,6 +8,14 @@
     <com.zone.banner_zonelib.ViewPagerCircle
         android:id="@+id/pager"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="300dp" />
+
+    <com.zone.banner_zonelib.indicator.IndicatorView
+        android:id="@+id/indicatorView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="86dp"
+        android:background="#60ffec" />
 
 </RelativeLayout>

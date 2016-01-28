@@ -3,15 +3,18 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+
+import com.zone.banner_zonelib.viewpager.ViewPagerCompat;
+
 //TODO 可以切换成没有 循环那种
 //TODO 与不可滑动的那种
-public class ViewPagerCircle extends ViewPager {
+public class ViewPagerCircle extends ViewPagerCompat {
 	private long delayMillis=3000;
 	private boolean isTimeDelay=false;
 	private int initCircle=200;
 	private Handler handler;
 	private PagerAdapterCycle adapter;
-	private OnPageChangeListener mListener;
+	private ViewPager.OnPageChangeListener mListener;
 	public ViewPagerCircle(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		handler=new Handler();
@@ -60,11 +63,11 @@ public class ViewPagerCircle extends ViewPager {
 	};
 
 	@Override
-	public void setOnPageChangeListener(final OnPageChangeListener listener) {
+	public void setOnPageChangeListener(final ViewPager.OnPageChangeListener listener) {
 		mListener=listener;
 		if (adapter==null)
 			throw new IllegalStateException("setadapter must be use before setOnPageChangeListener!");
-			OnPageChangeListener listenerSet = new OnPageChangeListener() {
+			ViewPager.OnPageChangeListener listenerSet = new ViewPager.OnPageChangeListener() {
 				@Override
 				public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 					int reallyPosition = position % adapter.getSize();
