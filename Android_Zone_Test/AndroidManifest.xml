@@ -14,7 +14,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
     <supports-screens
@@ -147,6 +147,9 @@
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.ColorMarixTry"
+            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+        <activity
+            android:name="com.example.mylib_test.activity.animal.ViewHelperTestActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.CustomAniActivity"

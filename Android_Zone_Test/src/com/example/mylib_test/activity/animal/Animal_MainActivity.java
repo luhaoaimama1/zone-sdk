@@ -2,18 +2,12 @@ package com.example.mylib_test.activity.animal;
 import view.FlowLayout_Zone;
 
 import com.example.mylib_test.R;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
-import and.image.BitmapUtils;
-import and.image.imageloader.ImageLoaderURIUtils;
-import and.image.imageloader.ImageLoaderURIUtils.Type;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,6 +32,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.animal:
 			startActivity(new Intent(this,AniPro.class));
+			break;
+		case R.id.viewHelperTest:
+			startActivity(new Intent(this,ViewHelperTestActivity.class));
 			break;
 		case R.id.color:
 			startActivity(new Intent(this,ColorMarixTry.class));
