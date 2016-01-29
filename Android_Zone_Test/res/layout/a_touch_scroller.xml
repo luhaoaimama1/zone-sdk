@@ -3,15 +3,60 @@
     android:id="@+id/custom_view"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#fff"
-    android:orientation="vertical" >
+    android:background="#fff">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#aaa"
-        android:gravity="center_horizontal"
-        android:text="下拉"
-        android:textSize="32sp" />
+    <LinearLayout
+        android:id="@+id/ll_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/offleftandRight"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="offleftandRight测试100" />
+
+        <Button
+            android:id="@+id/offtopandBottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="offtopandBottom测试100" />
+
+        <Button
+            android:id="@+id/setMarginToP"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="tvsetMarginToP100" />
+
+        <Button
+            android:id="@+id/setViewHelperX"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="setY200" />
+
+        <Button
+            android:id="@+id/requestLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="requestLayout" />
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#aaa"
+            android:gravity="center_horizontal"
+            android:text="下拉"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+
 
 </com.example.mylib_test.activity.touch.view.ScrollerView>

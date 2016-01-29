@@ -24,6 +24,9 @@ public class TouchMainActivity extends Activity implements OnClickListener{
 		case R.id.veclocityTracker:
 			startActivity(new Intent(this,VeclocityTrackerActivity.class));
 			break;
+		case R.id.viewDrag:
+			startActivity(new Intent(this,ViewDragStudyActivity.class));
+			break;
 		case R.id.gestureDetectorActivity:
 			startActivity(new Intent(this,GestureDetectorActivity.class));
 			break;
