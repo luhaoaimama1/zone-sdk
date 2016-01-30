@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.mylib_test.activity.touch.view.ViewDragStudyFrame xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/viewDragStudyFrame"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tv_mMenuView"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#ce4d4d"
+        android:gravity="center"
+        android:text="mMenuView" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#55d2ff"
+        android:gravity="center|top"
+        android:text="mMainView" />
+
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:background="#ce4d4d"
+        android:gravity="center"
+        android:text="move back 向下未拦截 向左右拦截 点击开/关 " />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="200dp"
+        android:background="#ce4d4d"
+        android:gravity="center"
+        android:text=" use edge drag me" />
+
+
+</com.example.mylib_test.activity.touch.view.ViewDragStudyFrame>
