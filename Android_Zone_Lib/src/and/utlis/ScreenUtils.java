@@ -21,7 +21,7 @@ public class ScreenUtils {
 		screen[1]=screenH;
 		return screen;
 	}
-	public static int[] getScreenPixByContext(Context context) {
+	public static int[] getScreenPixByResources(Context context) {
 		DisplayMetrics dm2 =context.getResources().getDisplayMetrics();
 		int[] screen=new int[2];
 		screenW=dm2.widthPixels;

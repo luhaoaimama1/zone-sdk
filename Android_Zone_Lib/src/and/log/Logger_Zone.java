@@ -121,8 +121,6 @@ public class Logger_Zone {
 		default:
 			break;
 		}
-		logOut(str,logType);
-		
 	}
 	private void logOut(String str, int logType) {
 		String name=null;

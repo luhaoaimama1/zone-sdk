@@ -19,6 +19,13 @@
         android:layout_height="wrap_content"
         android:text="GestureDetector学习" />
     <Button
+        android:id="@+id/scaleGestureDetector"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ScaleGestureDetector学习" />
+    <Button
         android:id="@+id/scrollerView"
         android:onClick="onClick"
         android:layout_margin="4dp"
@@ -46,6 +53,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="横竖滑动冲突(内部拦截法)" />
+    <TextView
+        android:layout_margin="4dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="失败测试"
+        android:gravity="center"
+        android:textColor="#fc4848" />
     <Button
         android:id="@+id/onTouchConflict1"
         android:onClick="onClick"

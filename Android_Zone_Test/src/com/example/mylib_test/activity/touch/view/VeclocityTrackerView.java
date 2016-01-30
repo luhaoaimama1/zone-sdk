@@ -44,7 +44,7 @@ public class VeclocityTrackerView extends View {
 			break;
 		case MotionEvent.ACTION_UP:
 		case MotionEvent.ACTION_CANCEL:
-			if (null != mVelocityTracker) {
+			if ( mVelocityTracker !=null) {
 				mVelocityTracker.clear();
 				mVelocityTracker.recycle();
 				mVelocityTracker = null;

@@ -53,7 +53,7 @@ public class ImageLoaderConfigUtils {
 		// 设定只保存同一尺寸的图片在内存
 		config.denyCacheImageMultipleSizesInMemory();
 		/** ==========================文件缓存  =========================*/
-		int[] screenParams=ScreenUtils.getScreenPixByContext(context);
+		int[] screenParams=ScreenUtils.getScreenPixByResources(context);
 		//下载图片后 compress保存到文件中的 宽高
 		config.diskCacheExtraOptions(screenParams[0], screenParams[1], null);
 		/**

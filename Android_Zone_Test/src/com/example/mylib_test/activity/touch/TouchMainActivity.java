@@ -30,6 +30,9 @@ public class TouchMainActivity extends Activity implements OnClickListener{
 		case R.id.gestureDetectorActivity:
 			startActivity(new Intent(this,GestureDetectorActivity.class));
 			break;
+		case R.id.scaleGestureDetector:
+			startActivity(new Intent(this,MyScaleActivity.class));
+			break;
 		case R.id.scrollerView:
 			startActivity(new Intent(this,ScrollerActivity.class));
 			break;

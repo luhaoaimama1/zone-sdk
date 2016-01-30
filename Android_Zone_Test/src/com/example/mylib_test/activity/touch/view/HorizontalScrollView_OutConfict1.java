@@ -26,8 +26,10 @@ public class HorizontalScrollView_OutConfict1 extends LinearLayout{
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
+		Log.i(TAG, " dispatchTouchEvent");
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN :
+			resetGesture();
 			Log.i(TAG, "dispatchTouchEvent ACTION_DOWN");
 			break;
 		case MotionEvent.ACTION_MOVE:
@@ -46,6 +48,7 @@ public class HorizontalScrollView_OutConfict1 extends LinearLayout{
 	private boolean first;
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
+		Log.i(TAG, " onInterceptTouchEvent");
 		boolean intercepter=false;
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN :
@@ -56,11 +59,15 @@ public class HorizontalScrollView_OutConfict1 extends LinearLayout{
 		case MotionEvent.ACTION_MOVE:
 			int deltaX=(int)ev.getX()-downx;
 			int deltaY=(int)ev.getY()-downy;
-			if(Math.abs(deltaX)>Math.abs(deltaY)){
+			if(Math.abs(deltaX)>Math.abs(deltaY)+50&&Math.abs(deltaX)<Math.abs(deltaY)+100){
 				Log.i(TAG, "ACTION_MOVE intercepter   true \tX:"+ev.getX()+"  \ty:"+ev.getY());
 				intercepter=true;
-				initGesture();
-			}else{
+			}else if(Math.abs(deltaX)>Math.abs(deltaY)+100){
+				//TODO  此方法不会再走  因为一旦返回true  onInterceptTouchEvent就不会走了  直接走其对应的onTouch
+				intercepter=false;
+				Log.i(TAG, "Math.abs(deltaY)+200 不拦截  false");
+			}
+			else{
 				intercepter=false;
 				Log.i(TAG, " ACTION_MOVE intercepter   false");
 			}
@@ -74,10 +81,10 @@ public class HorizontalScrollView_OutConfict1 extends LinearLayout{
 		}
 		return intercepter;
 	}
-	private void initGesture() {
+	private void resetGesture() {
 		mGestureDetector = new GestureDetector(context, new CustomGestureListener());
-		first=true;
-		
+		first = true;
+
 	}
 	public HorizontalScrollView_OutConfict1(Context context, AttributeSet attrs) {
 		this(context, attrs,0);
@@ -114,15 +121,17 @@ public class HorizontalScrollView_OutConfict1 extends LinearLayout{
 		
 		@Override
 		public boolean onTouchEvent(MotionEvent event) {
+			Log.i(TAG, " onTouchEvent");
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
-				Log.i(TAG, "ACTION_DOWN  mGestureDetector\tX:"+event.getX()+"  \ty:"+event.getY());
+				Log.i(TAG, "onTouchEvent ACTION_DOWN  mGestureDetector\tX:"+event.getX()+"  \ty:"+event.getY());
 				return mGestureDetector.onTouchEvent(event);
 			case MotionEvent.ACTION_UP :
-//				Log.i(TAG, "get Sy" + getScrollY());
+				Log.i(TAG, " onTouchEvent ACTION_UP");
+				Log.i(TAG, "get Sy" + getScrollY());
 				break;
 			default:
-				Log.i(TAG, "ACTION_Move mGestureDetector\tX:"+event.getX()+"  \ty:"+event.getY());
+				Log.i(TAG, "onTouchEvent ACTION_Move mGestureDetector\tX:"+event.getX()+"  \ty:"+event.getY());
 				return mGestureDetector.onTouchEvent(event);
 			}
 			return super.onTouchEvent(event);
@@ -148,10 +157,10 @@ public class HorizontalScrollView_OutConfict1 extends LinearLayout{
 				int dis = (int) distanceX;
 				Log.i(TAG,"dis"+ dis );
 				if(e1!=null){
-					System.err.println("e1X:"+e1.getX());
+//					System.err.println("e1X:"+e1.getX());
 				}
 				if(e2!=null){
-					System.err.println("e2X:"+e2.getX()+"\te2History"+e2.getSize());
+//					System.err.println("e2X:"+e2.getX()+"\te2History"+e2.getSize());
 				}
 				if (first&&e1==null) {
 					first=false;

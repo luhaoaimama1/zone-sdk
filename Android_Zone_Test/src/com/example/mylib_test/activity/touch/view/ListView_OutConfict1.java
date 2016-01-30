@@ -22,6 +22,7 @@ public class ListView_OutConfict1 extends ListView{
 	}
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
+		Log.i(TAG, "dispatchTouchEvent");
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN :
 			Log.i(TAG, "dispatchTouchEvent ACTION_DOWN");
@@ -30,6 +31,7 @@ public class ListView_OutConfict1 extends ListView{
 			Log.i(TAG, "dispatchTouchEvent ACTION_MOVE");
 			break;
 		case MotionEvent.ACTION_UP:
+			Log.i(TAG, "dispatchTouchEvent ACTION_UP");
 			break;
 
 		default:
@@ -39,6 +41,7 @@ public class ListView_OutConfict1 extends ListView{
 	}
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
+		Log.i(TAG, "onInterceptTouchEvent");
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN :
 			Log.i(TAG, "onInterceptTouchEvent ACTION_DOWN");
@@ -47,6 +50,7 @@ public class ListView_OutConfict1 extends ListView{
 			Log.i(TAG, "onInterceptTouchEvent ACTION_MOVE");
 			break;
 		case MotionEvent.ACTION_UP:
+			Log.i(TAG, "onInterceptTouchEvent ACTION_UP");
 			break;
 
 		default:
@@ -56,6 +60,7 @@ public class ListView_OutConfict1 extends ListView{
 	}
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
+		Log.i(TAG, "onTouchEvent");
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN :
 			Log.i(TAG, "onTouchEvent ACTION_DOWN");
@@ -64,6 +69,7 @@ public class ListView_OutConfict1 extends ListView{
 			Log.i(TAG, "onTouchEvent ACTION_MOVE");
 			break;
 		case MotionEvent.ACTION_UP:
+			Log.i(TAG, "onTouchEvent ACTION_UP");
 			break;
 
 		default:

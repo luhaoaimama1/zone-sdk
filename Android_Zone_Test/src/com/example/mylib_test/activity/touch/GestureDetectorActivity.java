@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 
 public class GestureDetectorActivity extends Activity {
 	protected static final String DEBUG_TAG = "GestureDetectorActivity";
@@ -19,6 +20,8 @@ public class GestureDetectorActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.a_gesturedetector);
+
+
 		mGestureDetector = new GestureDetectorCompat(this,
 				new GestureDetector.SimpleOnGestureListener() {
 					@Override
@@ -61,6 +64,31 @@ public class GestureDetectorActivity extends Activity {
 						showMessage("onDoubleTap");
 						Log.d(DEBUG_TAG, "onDoubleTap: ");
 						return super.onDoubleTap(e);
+					}
+
+					@Override
+					public boolean onSingleTapConfirmed(MotionEvent e) {
+						//这才是click 点击
+						Log.d(DEBUG_TAG, "onSingleTapConfirmed: ");
+						return super.onSingleTapConfirmed(e);
+					}
+
+					@Override
+					public boolean onDoubleTapEvent(MotionEvent e) {
+						Log.d(DEBUG_TAG, "onDoubleTapEvent: ");
+						return super.onDoubleTapEvent(e);
+					}
+
+					@Override
+					public void onShowPress(MotionEvent e) {
+						Log.d(DEBUG_TAG, "onShowPress: ");
+						super.onShowPress(e);
+					}
+
+					@Override
+					public boolean onDown(MotionEvent e) {
+						Log.d(DEBUG_TAG, "onDown: ");
+						return super.onDown(e);
 					}
 				});
 	}

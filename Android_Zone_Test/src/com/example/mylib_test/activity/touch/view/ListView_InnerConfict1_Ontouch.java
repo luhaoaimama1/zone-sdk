@@ -23,32 +23,50 @@ public class ListView_InnerConfict1_Ontouch extends ListView{
 	private int downx,downy;
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
+		Log.i(TAG, "dispatchTouchEvent ");
 		switch (ev.getAction()) {
-		case MotionEvent.ACTION_DOWN :
-			getParent().requestDisallowInterceptTouchEvent(true);
-			Log.i(TAG, "dispatchTouchEvent ACTION_DOWN");
-			downx=(int) ev.getX();
-			downy=(int) ev.getY();
-			break;
-		case MotionEvent.ACTION_MOVE:
-			Log.i(TAG, "dispatchTouchEvent ACTION_MOVE");
-			int deltaX=(int)ev.getX()-downx;
-			int deltaY=(int)ev.getY()-downy;
-			if(Math.abs(deltaX)>Math.abs(deltaY)){
-//				getParent().requestDisallowInterceptTouchEvent(false);
-				return false;
-			}
-			break;
-		case MotionEvent.ACTION_UP:
-			break;
+			case MotionEvent.ACTION_DOWN :
+				Log.i(TAG, "dispatchTouchEvent ACTION_DOWN");
+				break;
+			case MotionEvent.ACTION_MOVE:
+				Log.i(TAG, "dispatchTouchEvent ACTION_MOVE");
+				break;
+			case MotionEvent.ACTION_UP:
+				Log.i(TAG, "dispatchTouchEvent ACTION_UP");
+				break;
 
-		default:
-			break;
-		}
+			default:
+				break;
+			}
+//		switch (ev.getAction()) {
+//		case MotionEvent.ACTION_DOWN :
+//			getParent().requestDisallowInterceptTouchEvent(true);
+//			Log.i(TAG, "dispatchTouchEvent ACTION_DOWN true");
+//			downx=(int) ev.getX();
+//			downy=(int) ev.getY();
+//			break;
+//		case MotionEvent.ACTION_MOVE:
+//			Log.i(TAG, "dispatchTouchEvent ACTION_MOVE");
+//			int deltaX=(int)ev.getX()-downx;
+//			int deltaY=(int)ev.getY()-downy;
+//			if(Math.abs(deltaX)>Math.abs(deltaY)){
+////			getParent().requestDisallowInterceptTouchEvent(false);
+//				Log.i(TAG, "dispatchTouchEvent ACTION_MOVE false");
+//				return false;
+//			}
+//			break;
+//		case MotionEvent.ACTION_UP:
+//			Log.i(TAG, "dispatchTouchEvent ACTION_UP");
+//			break;
+//
+//		default:
+//			break;
+//		}
 		return super.dispatchTouchEvent(ev);
 	}
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
+		Log.i(TAG, "onInterceptTouchEvent ");
 		switch (ev.getAction()) {
 		case MotionEvent.ACTION_DOWN :
 			Log.i(TAG, "onInterceptTouchEvent ACTION_DOWN");
@@ -57,6 +75,7 @@ public class ListView_InnerConfict1_Ontouch extends ListView{
 			Log.i(TAG, "onInterceptTouchEvent ACTION_MOVE");
 			break;
 		case MotionEvent.ACTION_UP:
+			Log.i(TAG, "onInterceptTouchEvent ACTION_UP");
 			break;
 
 		default:
@@ -66,19 +85,46 @@ public class ListView_InnerConfict1_Ontouch extends ListView{
 	}
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
+		Log.i(TAG, " onTouchEvent");
+//		switch (ev.getAction()) {
+//		case MotionEvent.ACTION_DOWN :
+//			Log.i(TAG, "onTouchEvent ACTION_DOWN");
+//			break;
+//		case MotionEvent.ACTION_MOVE:
+//			Log.i(TAG, "onTouchEvent ACTION_MOVE");
+//			break;
+//		case MotionEvent.ACTION_UP:
+//			Log.i(TAG, "onTouchEvent ACTION_UP");
+//			break;
+//
+//		default:
+//			break;
+//		}
 		switch (ev.getAction()) {
-		case MotionEvent.ACTION_DOWN :
-			Log.i(TAG, "onTouchEvent ACTION_DOWN");
-			break;
-		case MotionEvent.ACTION_MOVE:
-			Log.i(TAG, "onTouchEvent ACTION_MOVE");
-			break;
-		case MotionEvent.ACTION_UP:
-			break;
+			case MotionEvent.ACTION_DOWN :
+				getParent().requestDisallowInterceptTouchEvent(true);
+				Log.i(TAG, "onTouchEvent ACTION_DOWN true");
+				downx=(int) ev.getX();
+				downy=(int) ev.getY();
+				break;
+			case MotionEvent.ACTION_MOVE:
+				Log.i(TAG, "onTouchEvent ACTION_MOVE");
+				int deltaX=(int)ev.getX()-downx;
+				int deltaY=(int)ev.getY()-downy;
+				if(Math.abs(deltaX)>Math.abs(deltaY)){
+				//getParent().requestDisallowInterceptTouchEvent(false);
+					Log.i(TAG, "onTouchEvent ACTION_MOVE false");
+					return false;
+				}
+				break;
+			case MotionEvent.ACTION_UP:
+				Log.i(TAG, "onTouchEvent ACTION_UP");
+				break;
 
-		default:
-			break;
+			default:
+				break;
 		}
+
 		return super.onTouchEvent(ev);
 	}
 	
