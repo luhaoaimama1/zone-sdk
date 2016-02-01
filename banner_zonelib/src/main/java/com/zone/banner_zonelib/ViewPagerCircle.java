@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import com.zone.banner_zonelib.viewpager.ViewPagerCompat;
 
 //TODO 可以切换成没有 循环那种
-//TODO 与不可滑动的那种
 public class ViewPagerCircle extends ViewPagerCompat {
 	private long delayMillis=3000;
 	private boolean isTimeDelay=false;
@@ -40,11 +39,11 @@ public class ViewPagerCircle extends ViewPagerCompat {
 	}
 
 	public void nextPage() {
-		setCurrentItem(getCurrentItem() + 1);
+        setCurrentItem(getCurrentItemZone() + 1, true);
 	}
 
 	public void previousPage() {
-		setCurrentItem(getCurrentItem() - 1);
+		setCurrentItem(getCurrentItemZone() - 1,true);
 	}
 	/**
 	 * 在adapter中调用
@@ -55,6 +54,7 @@ public class ViewPagerCircle extends ViewPagerCompat {
 			handler.postDelayed(run, delayMillis);
 		}
 	}
+
 	private Runnable run=new Runnable() {
 		@Override
 		public void run() {
@@ -110,6 +110,9 @@ public class ViewPagerCircle extends ViewPagerCompat {
 		isTimeDelay=true;
 		againTiming();
 	}
+    public void closeTimeCircle(){
+        isTimeDelay=false;
+    }
 	/**
 	 * 开启轮播  轮播时间为默认时间
 	 */
@@ -117,4 +120,11 @@ public class ViewPagerCircle extends ViewPagerCompat {
 		openTimeCircle(-1);
 	}
 
+    @Override
+    public int getCurrentItem() {
+        return super.getCurrentItem()%adapter.getSize();
+    }
+    private int getCurrentItemZone() {
+        return super.getCurrentItem();
+    }
 }

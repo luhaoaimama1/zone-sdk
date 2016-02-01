@@ -1,4 +1,4 @@
-package com.zone.banner_zonelib.viewpage_ani;
+package com.zone.banner_zonelib.viewpage_anime;
 
 import com.nineoldandroids.view.ViewHelper;
 import android.support.v4.view.ViewPager;

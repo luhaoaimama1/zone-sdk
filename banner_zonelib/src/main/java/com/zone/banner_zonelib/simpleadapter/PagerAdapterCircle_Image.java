@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.zone.banner_zonelib.PagerAdapterCycle;
-import com.zone.banner_zonelib.simpleadapter.inter.SimpleAdapterSetImage;
 
 import java.util.List;
 

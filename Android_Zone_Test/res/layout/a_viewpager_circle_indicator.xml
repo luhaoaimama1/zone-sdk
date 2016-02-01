@@ -12,10 +12,11 @@
 
     <com.zone.banner_zonelib.indicator.IndicatorView
         android:id="@+id/indicatorView"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="86dp"
-        android:background="#60ffec" />
+        android:background="#60ffec"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

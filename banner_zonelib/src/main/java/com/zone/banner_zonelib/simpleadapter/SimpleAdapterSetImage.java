@@ -1,4 +1,4 @@
-package com.zone.banner_zonelib.simpleadapter.inter;
+package com.zone.banner_zonelib.simpleadapter;
 
 import android.widget.ImageView;
 

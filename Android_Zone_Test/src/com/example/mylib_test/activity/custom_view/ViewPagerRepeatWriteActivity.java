@@ -1,20 +1,14 @@
 package com.example.mylib_test.activity.custom_view;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.frag_viewpager_expand.ImageFragment;
 import com.example.mylib_test.activity.three_place.Images;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.banner_zonelib.ViewPagerCircle;
 import com.zone.banner_zonelib.indicator.IndicatorView;
-import com.zone.banner_zonelib.indicator.ani.MoveAni;
+import com.zone.banner_zonelib.indicator.animation.MoveAnimation;
 import com.zone.banner_zonelib.indicator.type.CircleIndicator;
 import com.zone.banner_zonelib.simpleadapter.PagerAdapterCircle_Image;
-import com.zone.banner_zonelib.viewpage_ani.Testani;
+import com.zone.banner_zonelib.viewpage_anime.TestAnime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +46,18 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
                 ImageLoader.getInstance().displayImage(list.get(position), iv);
             }
         };
-        pager.setAdapter(mviewPager);
-        pager.setPageTransformer(true,new Testani());
+        pager.setAdapter(mviewPager,2);
+        pager.setPageTransformer(true, new TestAnime());
         indicatorView.setViewPager(pager);
-        indicatorView.setIndicator(new CircleIndicator(50));
-        indicatorView.setAni(MoveAni.class);
+        indicatorView.setIndicator(new CircleIndicator(20), 20);
+        pager.openTimeCircle();
+//        indicatorView.setAni(MoveAnimation.class);
+    }
+
+    @Override
+    protected void onDestroy() {
+        pager.closeTimeCircle();
+        super.onDestroy();
     }
 
     @Override

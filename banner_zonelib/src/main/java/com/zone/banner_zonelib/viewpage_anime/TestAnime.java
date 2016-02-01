@@ -1,4 +1,4 @@
-package com.zone.banner_zonelib.viewpage_ani;
+package com.zone.banner_zonelib.viewpage_anime;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -10,7 +10,7 @@ import com.nineoldandroids.view.ViewHelper;
  * //TODO 首先了解 nineoldandroids 他 看demo  自己做个小范例
  * //TODO 其次setTranslationX 这个的时候  是会在linearLayout里进行移动 与margin 等没关系？
  */
-public class Testani  implements ViewPager.PageTransformer   {
+public class TestAnime implements ViewPager.PageTransformer   {
     @Override
     public void transformPage(View page, float position) {
         //简单的透明度把
