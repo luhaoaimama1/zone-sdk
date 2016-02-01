@@ -22,6 +22,7 @@ public class CircleIndicator extends AbstractIndicator {
         paint = new Paint();
         createDefalutBitmap();
         createSelectedBitmap();
+        setBetweenMargin(width);
     }
 
     private void initPaint() {

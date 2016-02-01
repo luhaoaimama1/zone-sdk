@@ -16,9 +16,13 @@ public class DefaultAnimation extends AbstractAnimation {
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        if (positionOffset == 0) {
-            ViewHelper.setX(iv, itemLength * (position + positionOffset));
-        }
+        String s = String.format("onPageScrolled====position:%d /tpositionOffset:%f /tpositionOffsetPixels:%d /t", position, positionOffset, positionOffsetPixels);
+        System.out.println(s);
     }
 
+    @Override
+    public void onPageSelected(int position) {
+        super.onPageSelected(position);
+        ViewHelper.setX(iv, itemLength * position);
+    }
 }

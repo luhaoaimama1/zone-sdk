@@ -10,12 +10,13 @@ public abstract class AbstractIndicator  implements ViewPager.OnPageChangeListen
     protected int width,height;
     protected ImageView iv_Top;
 
+
+    protected int betweenMargin;
+
     public AbstractIndicator(int width, int height) {
         this.width = width;
         this.height = height;
     }
-    public abstract Bitmap getDefaultBitmap(int position);
-
     public void setIv_Top(ImageView iv_Top){
         this.iv_Top= iv_Top;
     }
@@ -35,6 +36,17 @@ public abstract class AbstractIndicator  implements ViewPager.OnPageChangeListen
     public void setWidth(int width) {
         this.width = width;
     }
+    public int getBetweenMargin() {
+        return betweenMargin;
+    }
+
+    public abstract Bitmap getDefaultBitmap(int position);
+
+    public AbstractIndicator setBetweenMargin(int betweenMargin) {
+        this.betweenMargin = betweenMargin;
+        return this;
+    }
+
 
     @Override
     public void onPageSelected(int position) {

@@ -70,6 +70,10 @@ public class ViewPagerCircle extends ViewPagerCompat {
 			ViewPager.OnPageChangeListener listenerSet = new ViewPager.OnPageChangeListener() {
 				@Override
 				public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+					if(positionOffsetPixels!=0)
+						pauseCircle();
+					else
+						againTiming();
 					int reallyPosition = position % adapter.getSize();
 					if (mListener!=null)
 						mListener.onPageScrolled(reallyPosition, positionOffset, positionOffsetPixels);
@@ -77,7 +81,6 @@ public class ViewPagerCircle extends ViewPagerCompat {
 
 				@Override
 				public void onPageSelected(int position) {
-					againTiming();
 					int reallyPosition = position % adapter.getSize();
 					if (mListener!=null)
 						mListener.onPageSelected(reallyPosition);
@@ -99,7 +102,12 @@ public class ViewPagerCircle extends ViewPagerCompat {
 	public void setDelayMillis(long delayMillis) {
 		this.delayMillis = delayMillis;
 	}
-
+	/**
+	 * 开启轮播  轮播时间为默认时间
+	 */
+	public void openTimeCircle() {
+		openTimeCircle(-1);
+	}
 	/**
 	 * 开启轮播  并设置轮播时间
 	 * @param delayMillis
@@ -111,14 +119,17 @@ public class ViewPagerCircle extends ViewPagerCompat {
 		againTiming();
 	}
     public void closeTimeCircle(){
-        isTimeDelay=false;
+		if (isTimeDelay) {
+			handler.removeCallbacks(run);
+			isTimeDelay=false;
+		}
     }
-	/**
-	 * 开启轮播  轮播时间为默认时间
-	 */
-	public void openTimeCircle() {
-		openTimeCircle(-1);
+	private void pauseCircle(){
+		if (isTimeDelay) {
+			handler.removeCallbacks(run);
+		}
 	}
+
 
     @Override
     public int getCurrentItem() {

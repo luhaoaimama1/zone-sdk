@@ -19,4 +19,24 @@
         android:background="#60ffec"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="toggle移动动画"
+        android:onClick="onClick"
+        android:id="@+id/bt_toggle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开启和关闭定时轮播"
+        android:onClick="onClick"
+        android:id="@+id/bt_toggleTime"
+        android:layout_alignTop="@+id/bt_toggle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
