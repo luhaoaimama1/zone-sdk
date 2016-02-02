@@ -64,6 +64,7 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
         initView();
     }
 
+
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener pageChangeListener) {
         this.pageChangeListener = pageChangeListener;
     }

@@ -34,16 +34,33 @@ public class ViewPagerCircle extends ViewPagerCompat {
 	public void setAdapter(PagerAdapterCycle adapter,int offset) {
 		super.setAdapter(adapter);
 		this.adapter=adapter;
-		setCurrentItem(adapter.getSize() * initCircle + offset);
+		if(offset>=adapter.getSize())
+			throw new IllegalArgumentException("offset must be < adapter.getSize()!");
+		if (adapter.isCircle())
+			setCurrentItem(adapter.getSize() * initCircle + offset);
+		else
+			setCurrentItem(offset);
 		setOnPageChangeListener(null);
 	}
 
 	public void nextPage() {
-        setCurrentItem(getCurrentItemZone() + 1, true);
+		if (adapter.isCircle())
+			setCurrentItem(getCurrentItemZone() + 1, true);
+		else{
+			if(getCurrentItem()!=adapter.getSize()-1)
+				setCurrentItem(getCurrentItemZone() + 1, true);
+			else
+				pauseCircle();
+		}
 	}
 
 	public void previousPage() {
-		setCurrentItem(getCurrentItemZone() - 1,true);
+		if (adapter.isCircle())
+			setCurrentItem(getCurrentItemZone() - 1,true);
+		else{
+			if(getCurrentItem()!=0)
+				setCurrentItem(getCurrentItemZone() - 1, true);
+		}
 	}
 	/**
 	 * 在adapter中调用

@@ -8,12 +8,16 @@ import android.view.ViewGroup;
 import java.util.List;
 
 public abstract class PagerAdapterCycle<T> extends PagerAdapter {
+
+    private  boolean isCircle;
     private  Context context;
     private List<T> data = null;
 
-    public PagerAdapterCycle(Context context,List<T> data) {
+
+    public PagerAdapterCycle(Context context,List<T> data,boolean isCircle) {
         this.data = data;
         this.context=context;
+        this.isCircle=isCircle;
     }
 
     /**
@@ -21,7 +25,10 @@ public abstract class PagerAdapterCycle<T> extends PagerAdapter {
      */
     @Override
     public int getCount() {
-        return Integer.MAX_VALUE;
+        if (isCircle)
+            return Integer.MAX_VALUE;
+        else
+            return data.size();
     }
 
     /**
@@ -55,6 +62,9 @@ public abstract class PagerAdapterCycle<T> extends PagerAdapter {
 
     public int getSize() {
         return data.size();
+    }
+    public boolean isCircle() {
+        return isCircle;
     }
 
     /**

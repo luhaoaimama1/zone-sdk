@@ -28,6 +28,7 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
     private ViewPagerCircle pager;
     private IndicatorView indicatorView;
     PagerAdapterCircle_Image mviewPager;
+    PagerAdapterCircle_Image mviewPagerNoCircle;
 
     @Override
     public void setContentView() {
@@ -47,18 +48,27 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
         for (int i = 0; i < 5; i++) {
             list.add(Images.imageThumbUrls[i]);
         }
-        mviewPager = new PagerAdapterCircle_Image(this, list) {
+        mviewPager = new PagerAdapterCircle_Image(this, list,true) {
             @Override
             public void setImage(ImageView iv, int position) {
                 iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 ImageLoader.getInstance().displayImage(list.get(position), iv);
             }
         };
+        mviewPagerNoCircle = new PagerAdapterCircle_Image(this, list,false) {
+            @Override
+            public void setImage(ImageView iv, int position) {
+                iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                ImageLoader.getInstance().displayImage(list.get(position), iv);
+            }
+        };
+
         pager.setAdapter(mviewPager, 2);
         pager.setPageTransformer(true, new TestAnime());
+        new FixedSpeedScroller(this).setViewPager(pager);
         indicatorView.setViewPager(pager);
         indicatorView.setIndicator(new CircleIndicator(20));
-        new FixedSpeedScroller(this).setViewPager(pager);
+
     }
 
     @Override
@@ -93,6 +103,7 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
 
     boolean isDefault=true;
     boolean isOpenTime =false;
+    boolean isCircle=true;
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -118,6 +129,29 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
                     isOpenTime =true;
                     ToastUtils.showLong(ViewPagerRepeatWriteActivity.this,"定时轮播");
                 }
+                break;
+            case R.id.togCircle:
+                if (isCircle) {
+                    pager.setAdapter(mviewPagerNoCircle, 2);
+                    isCircle =false;
+                    indicatorView.setViewPager(pager);
+                    indicatorView.setIndicator(new CircleIndicator(20));
+                    ToastUtils.showLong(ViewPagerRepeatWriteActivity.this, "关闭循环");
+                }else{
+                    pager.setAdapter(mviewPager, 2);
+                    isCircle =true;
+                    indicatorView.setViewPager(pager);
+                    indicatorView.setIndicator(new CircleIndicator(20));
+                    ToastUtils.showLong(ViewPagerRepeatWriteActivity.this,"开启循环");
+                }
+                if (isDefault)
+                    indicatorView.setSnap(false);
+                else
+                     indicatorView.setSnap(true);
+                if (isOpenTime)
+                    pager.openTimeCircle();
+                else
+                    pager.closeTimeCircle();
                 break;
         }
     }

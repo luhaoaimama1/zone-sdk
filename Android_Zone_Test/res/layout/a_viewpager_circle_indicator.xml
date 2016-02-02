@@ -22,7 +22,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="toggle移动动画"
+        android:text="tog_indcator"
         android:onClick="onClick"
         android:id="@+id/bt_toggle"
         android:layout_alignParentBottom="true"
@@ -32,11 +32,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开启和关闭定时轮播"
+        android:text="togCircle"
         android:onClick="onClick"
-        android:id="@+id/bt_toggleTime"
+        android:id="@+id/togCircle"
         android:layout_alignTop="@+id/bt_toggle"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tog定时轮播"
+        android:onClick="onClick"
+        android:id="@+id/bt_toggleTime"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
