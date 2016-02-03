@@ -3,10 +3,9 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-
 import com.zone.banner_zonelib.viewpager.ViewPagerCompat;
 
-//TODO 可以切换成没有 循环那种
+// 主要用于 banner页 和 开机引导页
 public class ViewPagerCircle extends ViewPagerCompat {
 	private long delayMillis=3000;
 	private boolean isTimeDelay=false;

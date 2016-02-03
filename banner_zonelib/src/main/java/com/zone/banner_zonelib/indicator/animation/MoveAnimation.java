@@ -4,6 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 
 import com.nineoldandroids.view.ViewHelper;
+import com.zone.banner_zonelib.indicator.IndicatorView;
 import com.zone.banner_zonelib.indicator.animation.abstarct.AbstractAnimation;
 
 /**
@@ -12,8 +13,9 @@ import com.zone.banner_zonelib.indicator.animation.abstarct.AbstractAnimation;
 public class MoveAnimation extends AbstractAnimation {
 
     private int scrolledPosition=-1;
-    public MoveAnimation(ImageView iv, int itemLength, int childCount) {
-        super(iv, itemLength, childCount);
+
+    public MoveAnimation(ImageView iv_top, int itemLength, int childCount) {
+        super(iv_top, itemLength, childCount);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class MoveAnimation extends AbstractAnimation {
         scrolledPosition=position;
         if(position!=childCount-1){
             //最后一个之前的操作
-            ViewHelper.setX(iv,itemLength * (position + positionOffset));
+            ViewHelper.setX(iv_top,itemLength * (position + positionOffset));
         }
     }
 
@@ -33,7 +35,7 @@ public class MoveAnimation extends AbstractAnimation {
         if (!((scrolledPosition==0&&position==0)||(scrolledPosition==childCount-2&&position==childCount-1))) {
             if(position==0||position==childCount-1){
                 //当0 last-1 的时候才设置select 因为这个时候没有move
-                ViewHelper.setX(iv,itemLength * position);
+                ViewHelper.setX(iv_top,itemLength * position);
             }
         }
     }

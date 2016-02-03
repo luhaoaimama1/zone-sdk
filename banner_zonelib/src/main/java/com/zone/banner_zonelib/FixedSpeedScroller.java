@@ -37,24 +37,10 @@ public class FixedSpeedScroller extends Scroller {
     public int getmDuration() {
         return mDuration;
     }
-    public void setViewPager(ViewPagerCompat viewPager){
-
-        Field mField = null;
-        try {
-            mField = ViewPagerCompat.class.getDeclaredField("mScroller");
-            mField.setAccessible(true);
-            mField.set(viewPager, this);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
     public void setViewPager(ViewPager viewPager){
-
         Field mField = null;
         try {
-            mField = ViewPagerCompat.class.getDeclaredField("mScroller");
+            mField = ViewPager.class.getDeclaredField("mScroller");
             mField.setAccessible(true);
             mField.set(viewPager, this);
         } catch (NoSuchFieldException e) {
@@ -63,5 +49,4 @@ public class FixedSpeedScroller extends Scroller {
             e.printStackTrace();
         }
     }
-
 }
