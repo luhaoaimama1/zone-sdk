@@ -23,7 +23,7 @@ public class CircleIndicator extends ShapeIndicator {
 
     @Override
     protected void getBitmap(Bitmap bitmap, ShapeEntity circleStyle) {
-        float radius = width / 2;
+        float radius = (int)(width / 2)*1F;
         Canvas canvas = new Canvas(bitmap);
         //画fill
         initPaint();

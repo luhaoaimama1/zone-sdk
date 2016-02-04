@@ -15,8 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="86dp"
-        android:background="#61e7ff" />
+        android:layout_marginBottom="86dp"/>
+
+    <!--android:background="#61e7ff"-->
 
     <Button
         android:id="@+id/bt_toggle"
