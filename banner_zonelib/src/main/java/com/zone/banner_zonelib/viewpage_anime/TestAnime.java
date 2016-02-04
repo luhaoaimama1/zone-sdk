@@ -2,13 +2,10 @@ package com.zone.banner_zonelib.viewpage_anime;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
-
 import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by Zone on 2016/1/28.
- * //TODO 首先了解 nineoldandroids 他 看demo  自己做个小范例
- * //TODO 其次setTranslationX 这个的时候  是会在linearLayout里进行移动 与margin 等没关系？
  */
 public class TestAnime implements ViewPager.PageTransformer   {
     @Override

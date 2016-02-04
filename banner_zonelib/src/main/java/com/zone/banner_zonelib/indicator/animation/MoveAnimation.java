@@ -1,30 +1,28 @@
 package com.zone.banner_zonelib.indicator.animation;
 
-import android.support.v4.view.ViewPager;
-import android.widget.ImageView;
-
 import com.nineoldandroids.view.ViewHelper;
 import com.zone.banner_zonelib.indicator.IndicatorView;
-import com.zone.banner_zonelib.indicator.animation.abstarct.AbstractAnimation;
+import com.zone.banner_zonelib.indicator.animation.abstarct.BaseAnimation;
 
 /**
  * Created by Zone on 2016/1/28.
  */
-public class MoveAnimation extends AbstractAnimation {
+public class MoveAnimation extends BaseAnimation {
 
     private int scrolledPosition=-1;
 
-    public MoveAnimation(ImageView iv_top, int itemLength, int childCount) {
-        super(iv_top, itemLength, childCount);
+    public MoveAnimation(IndicatorView indicatorView, int itemLength) {
+        super(indicatorView, itemLength);
     }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         super.onPageScrolled(position,positionOffset,positionOffsetPixels);
         scrolledPosition=position;
-        if(position!=childCount-1){
+        if(position!=indicatorView.getIndeciatorCount()-1){
             //最后一个之前的操作
-            ViewHelper.setX(iv_top,itemLength * (position + positionOffset));
+            ViewHelper.setX(indicatorView.getIv_Top(),itemLength * (position + positionOffset));
         }
     }
 
@@ -32,10 +30,10 @@ public class MoveAnimation extends AbstractAnimation {
     public void onPageSelected(int position) {
         super.onPageSelected(position);
         //1->0  last-2->last-1的时候 不需要设置因为设置了话会和onPageScrolled 相互影响而造成闪烁的可能
-        if (!((scrolledPosition==0&&position==0)||(scrolledPosition==childCount-2&&position==childCount-1))) {
-            if(position==0||position==childCount-1){
+        if (!((scrolledPosition==0&&position==0)||(scrolledPosition==indicatorView.getIndeciatorCount()-2&&position==indicatorView.getIndeciatorCount()-1))) {
+            if(position==0||position==indicatorView.getIndeciatorCount()-1){
                 //当0 last-1 的时候才设置select 因为这个时候没有move
-                ViewHelper.setX(iv_top,itemLength * position);
+                ViewHelper.setX(indicatorView.getIv_Top(),itemLength * position);
             }
         }
     }

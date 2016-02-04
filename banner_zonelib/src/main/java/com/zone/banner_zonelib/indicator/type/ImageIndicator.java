@@ -1,13 +1,13 @@
 package com.zone.banner_zonelib.indicator.type;
 import android.graphics.Bitmap;
-import com.zone.banner_zonelib.indicator.type.abstarct.AbstractIndicator;
+import com.zone.banner_zonelib.indicator.type.abstarct.BaseIndicator;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Zone on 2016/2/3.
  */
-public class ImageIndicator extends AbstractIndicator {
+public class ImageIndicator extends BaseIndicator {
     private List<Bitmap> defaultBitmaps= new  ArrayList<Bitmap>();
     private List<Bitmap> selectBitmaps= new  ArrayList<Bitmap>();
 
@@ -21,11 +21,15 @@ public class ImageIndicator extends AbstractIndicator {
     }
 
     @Override
-    public void onPageSelected(int position) {
-        super.onPageSelected(position);
-        ivTop.setImageBitmap(selectBitmaps.get(position));
+    public Bitmap getSelectedBitmap(int position) {
+        return selectBitmaps.get(position);
     }
 
+    @Override
+    public void onPageSelected(int position) {
+        super.onPageSelected(position);
+        indicatorView.getIv_Top().setImageBitmap(getSelectedBitmap(position));
+    }
     public List<Bitmap> getDefaultBitmaps() {
         return defaultBitmaps;
     }

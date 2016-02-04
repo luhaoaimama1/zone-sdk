@@ -16,8 +16,8 @@ import com.zone.banner_zonelib.R;
 import com.zone.banner_zonelib.ViewPagerCircle;
 import com.zone.banner_zonelib.indicator.animation.DefaultAnimation;
 import com.zone.banner_zonelib.indicator.animation.MoveAnimation;
-import com.zone.banner_zonelib.indicator.animation.abstarct.AbstractAnimation;
-import com.zone.banner_zonelib.indicator.type.abstarct.AbstractIndicator;
+import com.zone.banner_zonelib.indicator.animation.abstarct.BaseAnimation;
+import com.zone.banner_zonelib.indicator.type.abstarct.BaseIndicator;
 import com.zone.banner_zonelib.viewpager.ViewPagerCompat;
 
 /**
@@ -30,8 +30,8 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
     private LinearLayout ll_bottom;
     private FrameLayout fl_top;
     private ViewPager.OnPageChangeListener pageChangeListener;
-    private int childCount, startIndex = 0, betweenMargin = 0;
-    private AbstractAnimation animation;
+    private int indeciatorCount, betweenMargin = 0;
+    private BaseAnimation animation;
     private boolean snap = false;
 
     public IndicatorView(Context context) {
@@ -49,11 +49,9 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
 
     public void setViewPager(ViewPagerCompat mViewPager) {
         if (mViewPager.getAdapter() instanceof PagerAdapterCycle) {
-            childCount = ((PagerAdapterCycle) mViewPager.getAdapter()).getSize();
-            startIndex = ((ViewPagerCircle) mViewPager).getCurrentItem();
+            indeciatorCount = ((PagerAdapterCycle) mViewPager.getAdapter()).getSize();
         } else {
-            childCount = mViewPager.getAdapter().getCount();
-            startIndex = mViewPager.getCurrentItem();
+            indeciatorCount = mViewPager.getAdapter().getCount();
         }
         mViewPager.setOnPageChangeListener(this);
         this.mViewPager = mViewPager;
@@ -75,9 +73,11 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
         addView(fl_top);
     }
 
-    private AbstractIndicator indicator;
+    private BaseIndicator indicator;
     private ImageView iv_Top;
-    public void setIndicator(AbstractIndicator indicator) {
+
+    public void setIndicator(BaseIndicator indicator) {
+        indicator.setIndicatorView(this);
         this.indicator = indicator;
         this.betweenMargin = indicator.getBetweenMargin();
         ll_bottom.removeAllViews();
@@ -87,17 +87,16 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
         //初始化 fl_top
         initFl_top(ll_bottom_sumWidth);
         //设置动画
-        animation = new DefaultAnimation(iv_Top, betweenMargin + indicator.getWidth(), childCount);
-        indicator.setIvTop(iv_Top);
+        animation = new DefaultAnimation(this, betweenMargin + indicator.getWidth());
     }
 
     private int initLl_bottom() {
         int ll_bottom_sumWidth = 0;
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 0; i < indeciatorCount; i++) {
             ImageView iv = new ImageView(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(indicator.getWidth(), indicator.getHeight());
             ll_bottom_sumWidth += indicator.getWidth();
-            if (i != childCount - 1) {
+            if (i != indeciatorCount - 1) {
                 params.rightMargin = betweenMargin;
                 ll_bottom_sumWidth += betweenMargin;
             }
@@ -117,7 +116,9 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
         params_ll_2.width = ll_bottom_sumWidth;
         fl_top.setLayoutParams(params_ll_2);
         //iv_Top把位置初始化 好
-        ViewHelper.setX(iv_Top, startIndex * (betweenMargin + indicator.getWidth()));
+        iv_Top.setImageBitmap(indicator.getSelectedBitmap(mViewPager.getCurrentItem()));
+        ViewHelper.setX(iv_Top, mViewPager.getCurrentItem() * (betweenMargin + indicator.getWidth()));
+
     }
 
     @Override
@@ -153,28 +154,27 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
     public void setSnap(boolean snap) {
         this.snap = snap;
         if (snap)
-            animation = new MoveAnimation(iv_Top, betweenMargin + indicator.getWidth(), childCount);
+            animation = new MoveAnimation(this, betweenMargin + indicator.getWidth());
         else
-            animation = new DefaultAnimation(iv_Top, betweenMargin + indicator.getWidth(), childCount);
+            animation = new DefaultAnimation(this, betweenMargin + indicator.getWidth());
     }
 
     public boolean getSnap() {
         return snap;
     }
 
-//    public ImageView getIv_Top() {
-//        return iv_Top;
-//    }
-//
-//    @Override
-//    public int getChildCount() {
-//        return childCount;
-//    }
+    public ImageView getIv_Top() {
+        return iv_Top;
+    }
+
+    public int getIndeciatorCount() {
+        return indeciatorCount;
+    }
     //TODO 如果多动画了会 把这个方法在启用的
 //    public void setAnimation(Class<? extends AbstractAnimation> aniClass) {
 //        try {
 //            Constructor<? extends AbstractAnimation> method = aniClass.getDeclaredConstructor(ImageView.class, int.class, int.class);
-//            animation = method.newInstance(iv_Top, betweenMargin + indicator.getWidth(), childCount);
+//            animation = method.newInstance(iv_Top, betweenMargin + indicator.getWidth(), indeciatorCount);
 //        } catch (NoSuchMethodException e) {
 //            e.printStackTrace();
 //        } catch (InvocationTargetException e) {

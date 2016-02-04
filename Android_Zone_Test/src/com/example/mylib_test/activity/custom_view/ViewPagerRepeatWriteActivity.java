@@ -3,7 +3,6 @@ package com.example.mylib_test.activity.custom_view;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,7 +15,8 @@ import com.zone.banner_zonelib.indicator.IndicatorView;
 import com.zone.banner_zonelib.indicator.type.CircleIndicator;
 import com.zone.banner_zonelib.indicator.type.ImageIndicator;
 import com.zone.banner_zonelib.indicator.type.LineIndicator;
-import com.zone.banner_zonelib.indicator.type.abstarct.AbstractIndicator;
+import com.zone.banner_zonelib.indicator.type.abstarct.BaseIndicator;
+import com.zone.banner_zonelib.indicator.type.abstarct.ShapeIndicator;
 import com.zone.banner_zonelib.simpleadapter.PagerAdapterCircle_Image;
 import com.zone.banner_zonelib.viewpage_anime.TestAnime;
 
@@ -34,8 +34,8 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
     private IndicatorView indicatorView;
     PagerAdapterCircle_Image mviewPager;
     PagerAdapterCircle_Image mviewPagerNoCircle;
-    private CircleIndicator circleIndicator;
-    private LineIndicator lineIndicator;
+    private ShapeIndicator circleIndicator;
+    private ShapeIndicator lineIndicator;
     private ImageIndicator imageIndicator;
 
     @Override
@@ -79,12 +79,12 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
         indicatorView.setIndicator(circleIndicator);
 
 
-        circleIndicator = new CircleIndicator(20).setCircleEntity
-                (new AbstractIndicator.ShapeEntity().setStrokeWidthHalf(5).setStrokeColor(Color.WHITE).setHaveFillColor(false),
-                        new AbstractIndicator.ShapeEntity().setStrokeWidthHalf(5).setFillColor(Color.RED).setHaveStrokeColor(false));
+        circleIndicator = new CircleIndicator(20).setShapeEntity
+                (new ShapeIndicator.ShapeEntity().setStrokeWidthHalf(5).setStrokeColor(Color.WHITE).setHaveFillColor(false),
+                        new ShapeIndicator.ShapeEntity().setStrokeWidthHalf(5).setFillColor(Color.RED).setHaveStrokeColor(false));
         lineIndicator=new LineIndicator(50,30).setShapeEntity
-                (new AbstractIndicator.ShapeEntity().setStrokeWidthHalf(2.5F).setStrokeColor(Color.BLACK).setHaveFillColor(false),
-                        new AbstractIndicator.ShapeEntity().setStrokeWidthHalf(2.5F).setFillColor(Color.RED).setHaveStrokeColor(false));
+                (new ShapeIndicator.ShapeEntity().setStrokeWidthHalf(2.5F).setStrokeColor(Color.BLACK).setHaveFillColor(false),
+                        new ShapeIndicator.ShapeEntity().setStrokeWidthHalf(2.5F).setFillColor(Color.RED).setHaveStrokeColor(false));
 
 
         imageIndicator=new ImageIndicator(100,100);

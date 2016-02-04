@@ -7,7 +7,7 @@ import com.zone.banner_zonelib.indicator.IndicatorView;
 /**
  * Created by Zone on 2016/1/28.
  */
-public abstract class AbstractAnimation implements ViewPager.OnPageChangeListener{
+public abstract class BaseAnimation implements ViewPager.OnPageChangeListener{
 
     protected  IndicatorView indicatorView;
     protected int itemLength;
@@ -15,15 +15,15 @@ public abstract class AbstractAnimation implements ViewPager.OnPageChangeListene
     protected  ImageView iv_top;
     protected  int childCount;
 
-//    public AbstractAnimation(IndicatorView indicatorView, int itemLength){
-//        this.itemLength=itemLength;
-//        this.indicatorView=indicatorView;
-//    }
-    public AbstractAnimation(ImageView iv_top, int itemLength, int childCount) {
-        this.iv_top=iv_top;
+    public BaseAnimation(IndicatorView indicatorView, int itemLength){
         this.itemLength=itemLength;
-        this.childCount=childCount;
+        this.indicatorView=indicatorView;
     }
+//    public AbstractAnimation(ImageView iv_top, int itemLength, int childCount) {
+//        this.iv_top=iv_top;
+//        this.itemLength=itemLength;
+//        this.childCount=childCount;
+//    }
 
 
     protected boolean writeLog=false;

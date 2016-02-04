@@ -1,21 +1,18 @@
 package com.zone.banner_zonelib.indicator.animation;
 
-import android.widget.ImageView;
-
 import com.nineoldandroids.view.ViewHelper;
 import com.zone.banner_zonelib.indicator.IndicatorView;
-import com.zone.banner_zonelib.indicator.animation.abstarct.AbstractAnimation;
+import com.zone.banner_zonelib.indicator.animation.abstarct.BaseAnimation;
 
 /**
  * Created by Zone on 2016/1/28.
  */
-public class DefaultAnimation extends AbstractAnimation {
+public class DefaultAnimation extends BaseAnimation {
 
 
-    public DefaultAnimation(ImageView iv_top, int itemLength, int childCount) {
-        super(iv_top, itemLength, childCount);
+    public DefaultAnimation(IndicatorView indicatorView, int itemLength) {
+        super(indicatorView, itemLength);
     }
-
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 //        String s = String.format("onPageScrolled====position:%d /tpositionOffset:%f /tpositionOffsetPixels:%d /t", position, positionOffset, positionOffsetPixels);
@@ -25,6 +22,6 @@ public class DefaultAnimation extends AbstractAnimation {
     @Override
     public void onPageSelected(int position) {
         super.onPageSelected(position);
-        ViewHelper.setX(iv_top, itemLength * position);
+        ViewHelper.setX(indicatorView.getIv_Top() , itemLength * position);
     }
 }
