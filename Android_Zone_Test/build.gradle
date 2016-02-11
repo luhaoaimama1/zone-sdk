@@ -4,6 +4,7 @@ dependencies {
     compile project(':Android_Zone_Lib')
     compile project(':pulltorefresh_library')
     compile project(':banner_zonelib')
+    compile 'com.jakewharton:butterknife:7.0.1'
 }
 
 android {
@@ -36,5 +37,8 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
     }
 }

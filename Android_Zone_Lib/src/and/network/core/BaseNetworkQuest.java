@@ -14,6 +14,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 //这个是处理    网络请求 dialog  与handler返回信息
+//TODO 暂时不支持多种请求因为 那些我没见过
+//TODO  缓存暂时没有
+//TODO  cancel没有  因为貌似okhttp有多种  了解之后才可以写
+
+//TODO  大文件下载 应该是独立的一部分 不属于这里 所以就不封装了
 public abstract class BaseNetworkQuest {
 	public Handler handler;
 	private NetworkListener listener;

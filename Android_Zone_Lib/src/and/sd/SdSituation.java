@@ -100,7 +100,6 @@ public class SdSituation {
 	{
 		return Environment.getRootDirectory().getAbsolutePath();
 	}
-	
 
 	/**
 	 * SdSituation.IsSDspaceEnough(MainActivity.this, null);会打印 剩余内存 <br>
@@ -129,6 +128,7 @@ public class SdSituation {
 			if (need == null) {
 				return true;
 			}
+
 			// float b=(left*kuai)/(float)(1024*1024*1024);
 			// Myshare.MyLog(SdSituation.class,"剩余空间："+String.valueOf(b));
 			// 可表示为1KB 0 ,1MB 1,或1GB 2

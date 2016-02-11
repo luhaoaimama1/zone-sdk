@@ -3,7 +3,7 @@ package com.example.mylib_test.activity.utils;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy;
 
-import and.utlis.KeyBoardUtils;
+import and.utils.KeyBoardUtils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 
 public class Utils_MainActivity extends Activity implements OnClickListener{
 	private EditText keyboard;

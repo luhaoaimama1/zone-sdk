@@ -1,8 +1,8 @@
 package com.example.mylib_test.activity.utils;
 
 import and.log.ToastUtils;
-import and.utlis.SpannableUtils;
-import and.utlis.SpannableUtils.onClickSpannableListener;
+import and.utils.SpannableUtils;
+import and.utils.SpannableUtils.onClickSpannableListener;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;

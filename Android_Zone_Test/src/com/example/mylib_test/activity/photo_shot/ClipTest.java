@@ -1,34 +1,12 @@
 package com.example.mylib_test.activity.photo_shot;
 
-import java.io.File;
 //import com.edmodo.cropper.CropImageView;
 //import com.edmodo.cropper.cropwindow.CropOverlayView;
-import com.example.mylib_test.R;
 
 import and.features.FeaturesActivity;
-import and.features.extra.Feature_SystemClip;
-import and.image.Compress_Sample_Utils;
-import and.utlis.MeasureUtils;
-import and.utlis.ScreenUtils;
-import and.utlis.MeasureUtils.GlobalState;
-import and.utlis.MeasureUtils.OnMeasureListener;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Handler.Callback;
-import android.os.Message;
-import android.provider.MediaStore;
-import android.util.Log;
-import android.view.View;
+
+		import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 
 public class ClipTest extends FeaturesActivity implements OnClickListener{
 

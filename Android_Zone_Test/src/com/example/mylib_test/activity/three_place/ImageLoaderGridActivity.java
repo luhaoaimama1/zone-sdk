@@ -1,29 +1,21 @@
 package com.example.mylib_test.activity.three_place;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+
 import com.example.mylib_test.R;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.ImageSize;
-import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
 import and.abstractclass.adapter.Adapter_Zone;
 import and.abstractclass.adapter.core.ViewHolder_Zone;
 import and.image.lruutils.DiskLruUtils;
 import and.log.ToastUtils;
-import and.utlis.MeasureUtils;
-import and.utlis.MeasureUtils.GlobalState;
-import and.utlis.MeasureUtils.OnMeasureListener;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.LruCache;
 import android.view.View;
 import android.view.View.OnClickListener;

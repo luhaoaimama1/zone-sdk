@@ -13,8 +13,8 @@ import com.lidroid.xutils.http.client.HttpRequest;
 
 import and.image.lruutils.DiskLruUtils;
 import and.log.ToastUtils;
-import and.network.RefreshUtils;
-import and.network.RefreshUtils.PullToRefreshListener;
+import and.network.pullview.utils.RefreshUtils;
+import and.network.pullview.utils.RefreshUtils.PullToRefreshListener;
 import and.wifi.NetManager;
 import android.app.Activity;
 import android.os.AsyncTask;
