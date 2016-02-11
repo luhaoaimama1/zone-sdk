@@ -152,7 +152,6 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 map.put("String_uid", "love");
                 OkHttpUtils.post(UrlPath, new RequestParams().put("String_uid", "love")
                         .put("mFile", "bug.png", f).put("subject", "1327.jpg", f2), true).executeAsy(okListener);
-
                 break;
             default:
                 break;
