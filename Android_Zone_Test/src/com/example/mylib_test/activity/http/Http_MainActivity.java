@@ -111,13 +111,14 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         @Override
         public void onFailure(Call call, IOException e) {
             super.onFailure(call, e);
+            System.err.println("IOException"+e.getMessage());
         }
 
         @Override
         public void onLoading(LoadingParams mLoadingParams) {
             super.onLoading(mLoadingParams);
             System.out.println(mLoadingParams.toString());
-            tvOkHttp.setText("progress:"+mLoadingParams.progress);
+//            tvOkHttp.setText("progress:"+mLoadingParams.progress);
         }
 
         @Override
@@ -125,7 +126,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
             super.onResponse(call, response);
             String htmlStr = response.body().string();
             System.out.println(htmlStr);
-            tvOkHttp.setText("onResponse");
+//            tvOkHttp.setText("onResponse");
         }
 
         @Override
@@ -140,18 +141,21 @@ public class Http_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_okGet:
                 //创建okHttpClient对象
 //				OkHttpUtils.get(UrlPath + "?un=8&kb=ga").executeAsy(okListener);
-                OkHttpUtils.get("http://www.baidu.com ").executeAsy(okListener);
+                OkHttpUtils.get("http://www.baidu.com").tag(this).executeAsy(okListener);
+                break;
+            case R.id.bt_Https:
+                OkHttpUtils.get("https://kyfw.12306.cn/otn/").tag(this).executeAsy(okListener);
                 break;
             case R.id.bt_okPost:
                 OkHttpUtils.post(UrlPath, new RequestParams().put("platform", "android")
-                        .put("name", "bug").put("subject", 123)).executeAsy(okListener);
+                        .put("name", "bug").put("subject", 123)).tag(this).executeAsy(okListener);
                 break;
             case R.id.bt_okUpload:
                 File f = new File(FileUtils_SD.getFile(""), "高达 - 00.mp3");
                 File f2 = new File(FileUtils_SD.getFile("DCIM", "Camera"), "20150621_121327.jpg");
                 map.put("String_uid", "love");
                 OkHttpUtils.post(UrlPath, new RequestParams().put("String_uid", "love")
-                        .put("mFile", "bug.png", f).put("subject", "1327.jpg", f2), true).executeAsy(okListener);
+                        .put("mFile", "bug.png", f).put("subject", "1327.jpg", f2), true).tag(this).executeAsy(okListener);
                 break;
             default:
                 break;
@@ -296,5 +300,9 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        OkHttpUtils.cancelTag(this);
+    }
 }

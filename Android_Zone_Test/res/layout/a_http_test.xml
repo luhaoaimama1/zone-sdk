@@ -125,6 +125,13 @@
             android:layout_margin="4dp"
             android:onClick="onClick"
             android:text="文件上传" />
+        <Button
+            android:id="@+id/bt_Https"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="12306Https" />
 
         <TextView
             android:layout_width="match_parent"

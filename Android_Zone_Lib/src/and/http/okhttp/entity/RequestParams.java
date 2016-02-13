@@ -1,16 +1,13 @@
 package and.http.okhttp.entity;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import and.http.okhttp.OkHttpUtils;
 import and.http.okhttp.callback.OkHttpListener;
 import and.http.okhttp.callback.ProgressListener;
-import and.http.okhttp.wrapper.RequestBuilder;
-import okhttp3.Call;
-import okhttp3.Response;
+import and.http.okhttp.wrapper.RequestBuilderProxy;
 
 /**
  * Created by Zone on 2016/2/10.
@@ -24,41 +21,36 @@ public class RequestParams {
     private boolean openProgress = false;
     private HttpType mHttpType = HttpType.GET;
     private ProgressListener mProgressListener;
-    private RequestBuilder mRequestBuilder;
+    private RequestBuilderProxy mRequestBuilder;
 
     public static enum HttpType {
         GET, POST
     }
 
     public RequestParams() {
-//        init();
+        initCommon();
     }
 
     //TODO 可以初始化头部
-    private void init() {
-        headerParamsReplace.put("charset", "UTF-8");
-//        //添加公共参数
-//        Map<String, String> commonParams = OkHttpFinal.getOkHttpFinal().getCommonParams();
-//        if ( commonParams != null && commonParams.size() > 0 ) {
-//            urlParams.putAll(commonParams);
-//        }
-//
-//        //添加公共header
-//        Map<String, String> commonHeader = OkHttpFinal.getOkHttpFinal().getCommonHeaderMap();
-//        if ( commonHeader != null && commonHeader.size() > 0 ) {
-//            headerParamsAdd.putAll(commonHeader);
-//        }
-//
-//        if ( httpCycleContext != null ) {
-//            httpTaskKey = httpCycleContext.getHttpTaskKey();
-//        }
+    private void initCommon() {
+        //添加公共参数
+        if (urlParams == null)
+            urlParams = new ConcurrentHashMap<>();
+        urlParams.putAll(OkHttpUtils.getCommonParamsMap());
+        //添加公共header
+        if (headerParamsAdd == null)
+            headerParamsAdd = new ConcurrentHashMap<>();
+        headerParamsAdd.putAll(OkHttpUtils.getCommonHeaderMap());
+        //最后放头部
+        if (headerParamsReplace == null)
+            headerParamsReplace = new ConcurrentHashMap<>();
+        headerParamsReplace.put("charset", OkHttpUtils.getEncoding());
     }
 
 
     public RequestParams put(String key, Object value, File file) {
         if (file == null || key == null || "".equals(key))
             return this;
-
         if (fileParams == null)
             fileParams = new ConcurrentHashMap<>();
         if (fileNameParams == null)
@@ -71,8 +63,6 @@ public class RequestParams {
     public RequestParams putHeadsReplace(String key, String value) {
         if (value == null || key == null || "".equals(key))
             return this;
-        if (headerParamsReplace == null)
-            headerParamsReplace = new ConcurrentHashMap<>();
         urlParams.put(key, String.valueOf(value));
         return this;
     }
@@ -80,8 +70,6 @@ public class RequestParams {
     public RequestParams putHeadsAdd(String key, String value) {
         if (value == null || key == null || "".equals(key))
             return this;
-        if (headerParamsAdd == null)
-            headerParamsAdd = new ConcurrentHashMap<>();
         urlParams.put(key, String.valueOf(value));
         return this;
     }
@@ -89,8 +77,6 @@ public class RequestParams {
     public RequestParams put(String key, Object value) {
         if (value == null || key == null || "".equals(key))
             return this;
-        if (urlParams == null)
-            urlParams = new ConcurrentHashMap<>();
         urlParams.put(key, String.valueOf(value));
         return this;
     }
@@ -164,23 +150,23 @@ public class RequestParams {
         return mProgressListener;
     }
     private void onLoadingMainCall(final OkHttpListener listener, final LoadingParams mLoadingParams){
-        OkHttpUtils.mHandler.post(new Runnable() {
-            @Override
-            public void run() {
+//        OkHttpUtils.getmHandler().post(new Runnable() {
+//            @Override
+//            public void run() {
                     listener.onLoading(mLoadingParams);
-            }
-        });
+//            }
+//        });
     }
 
     public void setmProgressListener(ProgressListener mProgressListener) {
         this.mProgressListener = mProgressListener;
     }
 
-    public RequestBuilder getmRequestBuilder() {
+    public RequestBuilderProxy getmRequestBuilder() {
         return mRequestBuilder;
     }
 
-    public void setmRequestBuilder(RequestBuilder mRequestBuilder) {
+    public void setmRequestBuilder(RequestBuilderProxy mRequestBuilder) {
         this.mRequestBuilder = mRequestBuilder;
     }
 }

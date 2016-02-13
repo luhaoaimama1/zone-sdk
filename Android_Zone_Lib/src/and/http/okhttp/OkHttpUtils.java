@@ -1,77 +1,100 @@
 package and.http.okhttp;
+
 import android.os.Handler;
 import android.os.Looper;
 import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import and.http.okhttp.entity.RequestParams;
+import and.http.okhttp.https.ClientHttpsWrapper;
 import and.http.okhttp.utils.MediaTypeUtils;
+import and.http.okhttp.utils.StringUtils;
 import and.http.okhttp.wrapper.ProgressRequestBody;
-import and.http.okhttp.wrapper.RequestBuilder;
+import and.http.okhttp.wrapper.RequestBuilderProxy;
 import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
+import okio.Buffer;
+
 import static and.http.okhttp.entity.RequestParams.HttpType.*;
 
 /**
- * TODO json  全局配置 cook  https  下载   错误400-599问题应该如何返回？  正确返回是否应该返回response?
+ * TODO json cook 下载   错误400-599问题应该如何返回？  正确返回是否应该返回response?
  * TODO  返回值是否应该为主线程呢？
  * 继续参考那两个OKhttp  GitHub
  * Created by Zone on 2016/2/10.
  */
 public class OkHttpUtils {
-    public static OkHttpClient client = new OkHttpClient();
-    public static String encoding = "utf-8";
-    public static Handler mHandler=new Handler(Looper.getMainLooper());
+    private static OkHttpClient client = new OkHttpClient();
+    private static String encoding = "utf-8";
+    private static Handler mHandler = new Handler(Looper.getMainLooper());
+    private static Map<String, String> commonParamsMap = new HashMap<String, String>();
+    private static Map<String, String> commonHeaderMap = new HashMap<String, String>();
 
-    private Map<Object, Call> callMap = new ConcurrentHashMap<Object, Call>();
 
-//    public OkHttpUtils() {
-//        mHandler = new Handler(Looper.getMainLooper());
-//    }
-//private static OkHttpUtils mInstance;
-    //    public static OkHttpUtils getInstance()
-//    {
-//        if (mInstance == null)
-//        {
-//            synchronized (OkHttpUtils.class)
-//            {
-//                if (mInstance == null)
-//                {
-//                    mInstance = new OkHttpUtils();
-//                }
-//            }
-//        }
-//        return mInstance;
-//    }
-    public static RequestBuilder get(String urlString, RequestParams requestParams) {
+    public static RequestBuilderProxy get(String urlString, RequestParams requestParams) {
         requestParams.setmHttpType(GET);
         return requestCon(urlString, requestParams);
     }
 
-    public static RequestBuilder get(String urlString) {
+    public static RequestBuilderProxy get(String urlString) {
         RequestParams requestParams = new RequestParams();
         requestParams.setmHttpType(GET);
         return requestCon(urlString, requestParams);
     }
 
-    public static RequestBuilder post(String urlString, RequestParams requestParams) {
+    public static RequestBuilderProxy post(String urlString, RequestParams requestParams) {
         return post(urlString, requestParams, false);
     }
 
-    public static RequestBuilder post(String urlString, RequestParams requestParams, boolean openProgress) {
+    public static RequestBuilderProxy post(String urlString, RequestParams requestParams, boolean openProgress) {
         requestParams.setmHttpType(POST);
         requestParams.setOpenProgress(openProgress);
         return requestCon(urlString, requestParams);
     }
 
-    private static RequestBuilder requestCon(String urlString, RequestParams requestParams) {
-        RequestBuilder request = new RequestBuilder();
+    //TODO  RequestParams 这个东西应该拿到 RequestBuilderProxy这里 这样就可以直接用而不用new了
+    public static RequestBuilderProxy postString(String urlString,String json) {
+        return postString(urlString,json,encoding);
+    }
+    public static RequestBuilderProxy postString(String urlString,String json, String encode) {
+        Charset charset = Charset.forName(encode);
+        if (charset!=null) {
+            RequestBuilderProxy request = new RequestBuilderProxy();
+            RequestParams requestParams=new RequestParams();
+            requestParams.setmHttpType(POST);
+            request=initHeader(request, requestParams);
+
+            MediaType MEDIA_TYPE_PLAIN = MediaType.parse("text/plain;charset="+encode);
+            request.url(urlString).post(RequestBody.create(MEDIA_TYPE_PLAIN,json));
+            return request;
+        }else
+            return null;
+    }
+    //初始化 头部
+    private static RequestBuilderProxy initHeader(RequestBuilderProxy request, RequestParams requestParams) {
+
+        if (requestParams.getHeaderParamsAdd() != null)
+            for (Map.Entry<String, String> entry : requestParams.getHeaderParamsAdd().entrySet())
+                request.addHeader(entry.getKey(), entry.getValue());
+        if (requestParams.getHeaderParamsReplace() != null)
+            for (Map.Entry<String, String> entry : requestParams.getHeaderParamsReplace().entrySet())
+                request.header(entry.getKey(), entry.getValue());
+        return request;
+    }
+
+    private static RequestBuilderProxy requestCon(String urlString, RequestParams requestParams) {
+        RequestBuilderProxy request = new RequestBuilderProxy();
         request.setRequestParams(requestParams);
+        initHeader(request, requestParams);
+
         switch (requestParams.getmHttpType()) {
             case GET:
                 request.url(getUrlCon(urlString, requestParams));
@@ -83,13 +106,6 @@ public class OkHttpUtils {
             default:
                 break;
         }
-        //初始化 头部
-        if (requestParams.getHeaderParamsAdd() != null)
-            for (Map.Entry<String, String> entry : requestParams.getHeaderParamsAdd().entrySet())
-                request.addHeader(entry.getKey(), entry.getValue());
-        if (requestParams.getHeaderParamsReplace() != null)
-            for (Map.Entry<String, String> entry : requestParams.getHeaderParamsReplace().entrySet())
-                request.header(entry.getKey(), entry.getValue());
         return request;
 
     }
@@ -122,7 +138,7 @@ public class OkHttpUtils {
 
 
     private static String getUrlCon(String urlString, RequestParams requestParams) {
-        if (requestParams.getUrlParams()!=null) {
+        if (requestParams.getUrlParams() != null) {
             String get = "";
             for (Map.Entry<String, String> entry : requestParams.getUrlParams().entrySet()) {
                 get += entry.getKey() + "=" + entry.getValue() + "&";
@@ -138,9 +154,106 @@ public class OkHttpUtils {
             if (tag.equals(call.request().tag()))
                 call.cancel();
         }
-        for (Call call : client.dispatcher().runningCalls()){
+        for (Call call : client.dispatcher().runningCalls()) {
             if (tag.equals(call.request().tag()))
                 call.cancel();
         }
+        System.out.println("走了");
+    }
+
+
+//--------------------------------------------https 开始------------------------------------------------------
+    /**
+     * 这里是支持https的
+     */
+    private static List<InputStream> mCertificateList;
+
+    public static OkHttpClient.Builder getBuilderWithCertificates(InputStream... certificates) {
+        if (certificates.length != 0) {
+            checkCertificateList_Init();
+            for (InputStream inputStream : certificates) {
+                if (inputStream != null)
+                    mCertificateList.add(inputStream);
+            }
+        }
+        return initCertificates();
+    }
+
+    public static OkHttpClient.Builder getBuilderWithCertificates(String... certificates) {
+        if (certificates.length != 0) {
+            checkCertificateList_Init();
+            for (String certificate : certificates) {
+                if (!StringUtils.isEmpty(certificate))
+                    mCertificateList.add(new Buffer().writeUtf8(certificate).inputStream());
+            }
+        }
+        return initCertificates();
+    }
+
+    private static void checkCertificateList_Init() {
+        if (mCertificateList == null)
+            mCertificateList = new ArrayList<InputStream>();
+    }
+
+    private static OkHttpClient.Builder initCertificates() {
+        if (mCertificateList != null) {
+            OkHttpClient.Builder clientBuilder = new OkHttpClient().newBuilder();
+            new ClientHttpsWrapper(clientBuilder).setCertificates(mCertificateList);
+            return clientBuilder;
+        } else
+            return null;
+    }
+//--------------------------------------------https结束------------------------------------------------------
+
+
+    public static OkHttpClient getClient() {
+        return client;
+    }
+
+    public static void setClient(OkHttpClient client) {
+        OkHttpUtils.client = client;
+    }
+
+    public static Map<String, String> getCommonParamsMap() {
+        return commonParamsMap;
+    }
+
+    public static void setCommonParamsMap(Map<String, String> commonParamsMap) {
+        OkHttpUtils.commonParamsMap = commonParamsMap;
+    }
+
+    public static Map<String, String> getCommonHeaderMap() {
+        return commonHeaderMap;
+    }
+
+    public static void setCommonHeaderMap(Map<String, String> commonHeaderMap) {
+        OkHttpUtils.commonHeaderMap = commonHeaderMap;
+    }
+
+    public static List<InputStream> getmCertificateList() {
+        return mCertificateList;
+    }
+
+    public static void setmCertificateList(List<InputStream> mCertificateList) {
+        OkHttpUtils.mCertificateList = mCertificateList;
+    }
+
+    public static String getEncoding() {
+        return encoding;
+    }
+
+    public static void setEncoding(String encoding) {
+        Charset charset = Charset.forName(encoding);
+        if (charset!=null) {
+            OkHttpUtils.encoding = encoding;
+        }
+    }
+
+    public static Handler getmHandler() {
+        return mHandler;
+    }
+
+    public static void setmHandler(Handler mHandler) {
+        OkHttpUtils.mHandler = mHandler;
     }
 }

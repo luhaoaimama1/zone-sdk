@@ -14,6 +14,7 @@ package com.example.mylib_test.app;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
+import and.http.okhttp.OkHttpUtils;
 import and.image.imageloader.ImageLoaderConfigUtils;
 import and.image.imageloader.ImageLoaderOptionsUtils;
 import and.log.Logger_Zone;
@@ -27,10 +28,28 @@ import android.os.StrictMode;
 
 import com.example.mylib_test.R;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
 public class Apps extends Application {
+	private String CER_12306 = "-----BEGIN CERTIFICATE-----\n" +
+			"MIICmjCCAgOgAwIBAgIIbyZr5/jKH6QwDQYJKoZIhvcNAQEFBQAwRzELMAkGA1UEBhMCQ04xKTAn\n" +
+			"BgNVBAoTIFNpbm9yYWlsIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MQ0wCwYDVQQDEwRTUkNBMB4X\n" +
+			"DTA5MDUyNTA2NTYwMFoXDTI5MDUyMDA2NTYwMFowRzELMAkGA1UEBhMCQ04xKTAnBgNVBAoTIFNp\n" +
+			"bm9yYWlsIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MQ0wCwYDVQQDEwRTUkNBMIGfMA0GCSqGSIb3\n" +
+			"DQEBAQUAA4GNADCBiQKBgQDMpbNeb34p0GvLkZ6t72/OOba4mX2K/eZRWFfnuk8e5jKDH+9BgCb2\n" +
+			"9bSotqPqTbxXWPxIOz8EjyUO3bfR5pQ8ovNTOlks2rS5BdMhoi4sUjCKi5ELiqtyww/XgY5iFqv6\n" +
+			"D4Pw9QvOUcdRVSbPWo1DwMmH75It6pk/rARIFHEjWwIDAQABo4GOMIGLMB8GA1UdIwQYMBaAFHle\n" +
+			"tne34lKDQ+3HUYhMY4UsAENYMAwGA1UdEwQFMAMBAf8wLgYDVR0fBCcwJTAjoCGgH4YdaHR0cDov\n" +
+			"LzE5Mi4xNjguOS4xNDkvY3JsMS5jcmwwCwYDVR0PBAQDAgH+MB0GA1UdDgQWBBR5XrZ3t+JSg0Pt\n" +
+			"x1GITGOFLABDWDANBgkqhkiG9w0BAQUFAAOBgQDGrAm2U/of1LbOnG2bnnQtgcVaBXiVJF8LKPaV\n" +
+			"23XQ96HU8xfgSZMJS6U00WHAI7zp0q208RSUft9wDq9ee///VOhzR6Tebg9QfyPSohkBrhXQenvQ\n" +
+			"og555S+C3eJAAVeNCTeMS3N/M5hzBRJAoffn3qoYdAO1Q8bTguOi+2849A==\n" +
+			"-----END CERTIFICATE-----";
 
 	// SDCard路径
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
@@ -42,7 +61,20 @@ public class Apps extends Application {
 			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
 			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
 		}
-		
+
+//		try {
+			Map<String, String> commonParamMap = new HashMap<>();
+			commonParamMap.put("commonParamMap","param_Common");
+			Map<String, String> commonHeaderMap = new HashMap<>();
+			commonHeaderMap.put("commonHeaderMap", "header_Common");
+//			OkHttpUtils.setClient(OkHttpUtils.getBuilderWithCertificates(getAssets().open("srca.cer")).build());
+			OkHttpUtils.setClient(OkHttpUtils.getBuilderWithCertificates(CER_12306).build());
+			OkHttpUtils.setCommonHeaderMap(commonHeaderMap);
+			OkHttpUtils.setCommonParamsMap(commonParamMap);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+
 		NetworkEngine.setGlobalEngine(XutilsEngine.class);
 		//全局控制　打印日志
 		Logger_Zone.setAllLogStatue(LogStatue.Close,false);
