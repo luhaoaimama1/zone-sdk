@@ -10,6 +10,7 @@ import and.http.okhttp.callback.ProgressListener;
 import and.http.okhttp.wrapper.RequestBuilderProxy;
 
 /**
+ * TODO  既然那头已经可以随便设置了 这个还有什么用啊
  * Created by Zone on 2016/2/10.
  */
 public class RequestParams {
