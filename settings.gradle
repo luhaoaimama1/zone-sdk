@@ -1,3 +1,2 @@
-include ':Android_Zone_Lib', ':banner_zonelib'
-include ':pulltorefresh_library'
+include ':Android_Zone_Lib', ':banner_zonelib', ':okhttp_zonelib'
 include ':Android_Zone_Test'

@@ -13,17 +13,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.mylib_test.R;
 import com.example.mylib_test.handler.HandlerTest;
+import com.example.zone.okhttp_zonelib.okhttp.OkHttpUtils;
+import com.example.zone.okhttp_zonelib.okhttp.callback.OkHttpSimpleListener;
+import com.example.zone.okhttp_zonelib.okhttp.entity.LoadingParams;
+import com.example.zone.okhttp_zonelib.okhttp.entity.RequestParams;
 
 import org.apache.http.HttpResponse;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import and.http.MyConn_Utils;
 import and.http.MyConn_Utils.CallBack;
 import and.http.MyConn_Utils.FileUpLoad_CallBack;
@@ -32,10 +33,6 @@ import and.http.client.MyHttpGetThread;
 import and.http.client.MyHttpPostThread;
 import and.http.downfile.DownLoader;
 import and.http.downfile.DownLoader.ProgressListener;
-import and.http.okhttp.OkHttpUtils;
-import and.http.okhttp.callback.OkHttpSimpleListener;
-import and.http.okhttp.entity.LoadingParams;
-import and.http.okhttp.entity.RequestParams;
 import and.sd.FileUtils_SD;
 import butterknife.Bind;
 import butterknife.ButterKnife;

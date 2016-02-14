@@ -197,9 +197,6 @@
             android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
-            android:name="com.example.mylib_test.activity.three_place.PullToRefreshTestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
-        <activity
             android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity

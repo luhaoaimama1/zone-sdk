@@ -2,8 +2,7 @@ apply plugin: 'android'
 
 dependencies {
     compile project(':Android_Zone_Lib')
-    compile project(':pulltorefresh_library')
-    compile project(':banner_zonelib')
+    compile project(':okhttp_zonelib')
     compile 'com.jakewharton:butterknife:7.0.1'
 }
 
@@ -38,7 +37,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-    packagingOptions {
-        exclude 'META-INF/LICENSE.txt'
-    }
+//    packagingOptions {
+//        exclude 'META-INF/LICENSE.txt'
+//    }
 }

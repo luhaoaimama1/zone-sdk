@@ -14,7 +14,6 @@ package com.example.mylib_test.app;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-import and.http.okhttp.OkHttpUtils;
 import and.image.imageloader.ImageLoaderConfigUtils;
 import and.image.imageloader.ImageLoaderOptionsUtils;
 import and.log.Logger_Zone;
@@ -27,6 +26,7 @@ import android.os.Build;
 import android.os.StrictMode;
 
 import com.example.mylib_test.R;
+import com.example.zone.okhttp_zonelib.okhttp.OkHttpUtils;
 
 import java.io.IOException;
 import java.util.HashMap;

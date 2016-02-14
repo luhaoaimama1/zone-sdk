@@ -9,10 +9,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
+//import org.apache.http.entity.mime.HttpMultipartMode;
+//import org.apache.http.entity.mime.MultipartEntity;
+//import org.apache.http.entity.mime.content.FileBody;
+//import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
@@ -79,57 +79,57 @@ public abstract class MyHttpFilePostThread extends Thread {
 		@Override
 		public void run() {
 			/* 上传文件至Server，uploadUrl：接收文件的处理页面 */
-			try {
-				HttpParams httpParams = new BasicHttpParams();
-				// 设置超时
-				HttpConnectionParams.setConnectionTimeout(httpParams, 10 * 1000);
-				HttpClient httpclient = new DefaultHttpClient(httpParams);
-				HttpPost httppost = new HttpPost(url);
-				//防止乱码  文件传输  就是服务器端 判断的是不是复合表单 
-				MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE,  null, Charset.forName(encoding));
-				if(map_str!=null&&map_file!=null)
-				{//当这两map都不为null 
-					
-					//先填装String的map
-					for ( Entry<String, String> item : map_str.entrySet()) {
-						entity.addPart(item.getKey(), new StringBody(item.getValue()));
-						log("String 装填的："+"key:"+item.getKey()+"\t value:"+item.getValue());	
-					}
-					//再填装File的map
-					for ( Entry<String, File> item : map_file.entrySet()) {
-						if(item.getValue().exists()){
-							//验证有没有这个文件 。。。。
-							entity.addPart(item.getKey(), new FileBody(item.getValue()));
-							log("File 装填的："+"key:"+item.getKey()+"\t  File存在:OK! \tvalue的路径:"+item.getValue().getPath());
-						}else{
-							throw new IllegalStateException(item.getValue().getPath()+"路径下的文件  不存在啊！！！ 此文件未 装填！！！   ");
-						}
-					}
-				}
-				
-				Log.e("params",httppost.getURI().toString()+ entity.getContentLength());
-				//把entity 装填到 HttpPost
-				httppost.setEntity(entity);
-				Log.e("params222", httppost.getEntity().getContentLength() + "");
-				//提交表单
-				HttpResponse response = httpclient.execute(httppost);
-
-				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-					log("---连接---url---------------success---------------------------------------");
-					//response.getEntity() 为null也不怕
-					 String responseStr=EntityUtils.toString(response.getEntity(),encoding);
-					// mHandler.obtainMessage(0, zifu).sendToTarget();
-					//打印回来的值
-//					System.out.println(sysoOp+"回来的值:" + responseStr);
-					success(response,responseStr);
-				} else {
-					log("---连接---url---------------failed---------------------------------------");
-				}
-				  // 释放资源  
-				httpclient.getConnectionManager().shutdown();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} 
+//			try {
+//				HttpParams httpParams = new BasicHttpParams();
+//				// 设置超时
+//				HttpConnectionParams.setConnectionTimeout(httpParams, 10 * 1000);
+//				HttpClient httpclient = new DefaultHttpClient(httpParams);
+//				HttpPost httppost = new HttpPost(url);
+//				//防止乱码  文件传输  就是服务器端 判断的是不是复合表单
+//				MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE,  null, Charset.forName(encoding));
+//				if(map_str!=null&&map_file!=null)
+//				{//当这两map都不为null
+//
+//					//先填装String的map
+//					for ( Entry<String, String> item : map_str.entrySet()) {
+//						entity.addPart(item.getKey(), new StringBody(item.getValue()));
+//						log("String 装填的："+"key:"+item.getKey()+"\t value:"+item.getValue());
+//					}
+//					//再填装File的map
+//					for ( Entry<String, File> item : map_file.entrySet()) {
+//						if(item.getValue().exists()){
+//							//验证有没有这个文件 。。。。
+//							entity.addPart(item.getKey(), new FileBody(item.getValue()));
+//							log("File 装填的："+"key:"+item.getKey()+"\t  File存在:OK! \tvalue的路径:"+item.getValue().getPath());
+//						}else{
+//							throw new IllegalStateException(item.getValue().getPath()+"路径下的文件  不存在啊！！！ 此文件未 装填！！！   ");
+//						}
+//					}
+//				}
+//
+//				Log.e("params",httppost.getURI().toString()+ entity.getContentLength());
+//				//把entity 装填到 HttpPost
+//				httppost.setEntity(entity);
+//				Log.e("params222", httppost.getEntity().getContentLength() + "");
+//				//提交表单
+//				HttpResponse response = httpclient.execute(httppost);
+//
+//				if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+//					log("---连接---url---------------success---------------------------------------");
+//					//response.getEntity() 为null也不怕
+//					 String responseStr=EntityUtils.toString(response.getEntity(),encoding);
+//					// mHandler.obtainMessage(0, zifu).sendToTarget();
+//					//打印回来的值
+////					System.out.println(sysoOp+"回来的值:" + responseStr);
+//					success(response,responseStr);
+//				} else {
+//					log("---连接---url---------------failed---------------------------------------");
+//				}
+//				  // 释放资源
+//				httpclient.getConnectionManager().shutdown();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 
 		}
 		/**

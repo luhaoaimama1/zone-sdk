@@ -6,17 +6,22 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.three_place.adapter.PullToAdapter;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-public class GooglePullActvity extends Activity implements OnRefreshListener{
+import and.wifi.NetManager;
+
+public class GooglePullActvity extends Activity implements OnRefreshListener,Handler.Callback {
 	private ListView lv;
 	private SwipeRefreshLayout swipe_container;
+	private Handler handler=new Handler(this);
 	private PullToAdapter adapter;
 	private static LinkedList<String> data=new LinkedList<String>();
 	static{
@@ -61,6 +66,8 @@ public class GooglePullActvity extends Activity implements OnRefreshListener{
 			private void loadMore(int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				System.out.println("loadMore_______:firstVisibleItem"+firstVisibleItem+"\t visibleItemCount"+visibleItemCount
 						+"\t totalItemCount"+totalItemCount);
+				data.addLast("上拉加载了~");
+				adapter.notifyDataSetChanged();
 				//相当于告诉他加载完成了
 				new Handler().postDelayed(new Runnable() {
 			        public void run() {
@@ -72,10 +79,49 @@ public class GooglePullActvity extends Activity implements OnRefreshListener{
 	}
 	@Override
 	public void onRefresh() {
+		if (!NetManager.haveNetWork(this)) {
+			handler.sendEmptyMessage(1);
+			return ;
+		}
 		new Handler().postDelayed(new Runnable() {
 	        public void run() {
-	        	swipe_container.setRefreshing(false);
+				// Do work to refresh the list here.
+				new GetDataTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 	        }
 	    }, 3000);
+	}
+
+	@Override
+	public boolean handleMessage(Message msg) {
+		swipe_container.setRefreshing(false);
+		return false;
+	}
+
+
+	private class GetDataTask extends AsyncTask<Void, Void, String> {
+		// 后台处理部分
+		@Override
+		protected String doInBackground(Void... params) {
+			// Simulates a background job.
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			}
+			String str="Added after refresh...I add";
+			return str;
+		}
+
+		//这里是对刷新的响应，可以利用addFirst（）和addLast()函数将新加的内容加到LISTView中
+		//根据AsyncTask的原理，onPostExecute里的result的值就是doInBackground()的返回值
+		@Override
+		protected void onPostExecute(String result) {
+			//在头部增加新添内容
+			data.addFirst(result);
+			//通知程序数据集已经改变，如果不做通知，那么将不会刷新mListItems的集合
+			adapter.notifyDataSetChanged();
+			// Call onRefreshComplete when the list has been refreshed.
+			swipe_container.setRefreshing(false);
+			super.onPostExecute(result);//这句是必有的，AsyncTask规定的格式
+		}
 	}
 }
