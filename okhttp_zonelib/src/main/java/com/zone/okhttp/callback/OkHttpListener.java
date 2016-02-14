@@ -1,4 +1,4 @@
-package com.example.zone.okhttp_zonelib.okhttp.callback;
+package com.zone.okhttp.callback;
 
 import okhttp3.Callback;
 

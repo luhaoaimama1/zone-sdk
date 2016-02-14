@@ -1,4 +1,4 @@
-package com.example.zone.okhttp_zonelib.okhttp.download;
+package com.zone.okhttp.download;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

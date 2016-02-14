@@ -14,9 +14,9 @@
  *  limitations under the License.
  */
 
-package com.example.zone.okhttp_zonelib.okhttp.wrapper;
-import com.example.zone.okhttp_zonelib.okhttp.callback.ProgressListener;
-import com.example.zone.okhttp_zonelib.okhttp.entity.LoadingParams;
+package com.zone.okhttp.wrapper;
+import com.zone.okhttp.callback.ProgressListener;
+import com.zone.okhttp.entity.LoadingParams;
 
 import java.io.IOException;
 import okhttp3.MediaType;

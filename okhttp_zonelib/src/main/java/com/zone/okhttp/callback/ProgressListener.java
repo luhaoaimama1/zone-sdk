@@ -1,7 +1,7 @@
-package com.example.zone.okhttp_zonelib.okhttp.callback;
+package com.zone.okhttp.callback;
 
 
-import com.example.zone.okhttp_zonelib.okhttp.entity.LoadingParams;
+import com.zone.okhttp.entity.LoadingParams;
 
 /**
  * Created by Zone on 2016/2/10.

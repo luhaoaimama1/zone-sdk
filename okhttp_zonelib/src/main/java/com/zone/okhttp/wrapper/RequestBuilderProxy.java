@@ -1,7 +1,7 @@
-package com.example.zone.okhttp_zonelib.okhttp.wrapper;
-import com.example.zone.okhttp_zonelib.okhttp.OkHttpUtils;
-import com.example.zone.okhttp_zonelib.okhttp.callback.OkHttpListener;
-import com.example.zone.okhttp_zonelib.okhttp.entity.RequestParams;
+package com.zone.okhttp.wrapper;
+import com.zone.okhttp.OkHttpUtils;
+import com.zone.okhttp.callback.OkHttpListener;
+import com.zone.okhttp.entity.RequestParams;
 import java.io.IOException;
 import java.net.URL;
 import okhttp3.CacheControl;

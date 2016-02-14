@@ -1,9 +1,9 @@
-package com.example.zone.okhttp_zonelib.okhttp.entity;
+package com.zone.okhttp.entity;
 
-import com.example.zone.okhttp_zonelib.okhttp.OkHttpUtils;
-import com.example.zone.okhttp_zonelib.okhttp.callback.OkHttpListener;
-import com.example.zone.okhttp_zonelib.okhttp.callback.ProgressListener;
-import com.example.zone.okhttp_zonelib.okhttp.wrapper.RequestBuilderProxy;
+import com.zone.okhttp.OkHttpUtils;
+import com.zone.okhttp.callback.OkHttpListener;
+import com.zone.okhttp.callback.ProgressListener;
+import com.zone.okhttp.wrapper.RequestBuilderProxy;
 import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

@@ -15,10 +15,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.example.mylib_test.R;
 import com.example.mylib_test.handler.HandlerTest;
-import com.example.zone.okhttp_zonelib.okhttp.OkHttpUtils;
-import com.example.zone.okhttp_zonelib.okhttp.callback.OkHttpSimpleListener;
-import com.example.zone.okhttp_zonelib.okhttp.entity.LoadingParams;
-import com.example.zone.okhttp_zonelib.okhttp.entity.RequestParams;
+import com.zone.okhttp.OkHttpUtils;
+import com.zone.okhttp.callback.OkHttpSimpleListener;
+import com.zone.okhttp.entity.LoadingParams;
+import com.zone.okhttp.entity.RequestParams;
 
 import org.apache.http.HttpResponse;
 import java.io.File;
@@ -37,7 +37,6 @@ import and.sd.FileUtils_SD;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Call;
-import okhttp3.MediaType;
 import okhttp3.Response;
 
 public class Http_MainActivity extends Activity implements OnClickListener {

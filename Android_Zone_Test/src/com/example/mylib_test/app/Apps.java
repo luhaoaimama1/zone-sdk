@@ -26,9 +26,8 @@ import android.os.Build;
 import android.os.StrictMode;
 
 import com.example.mylib_test.R;
-import com.example.zone.okhttp_zonelib.okhttp.OkHttpUtils;
+import com.zone.okhttp.OkHttpUtils;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 

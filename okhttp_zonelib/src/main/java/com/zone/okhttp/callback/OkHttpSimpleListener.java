@@ -1,5 +1,5 @@
-package com.example.zone.okhttp_zonelib.okhttp.callback;
-import com.example.zone.okhttp_zonelib.okhttp.entity.LoadingParams;
+package com.zone.okhttp.callback;
+import com.zone.okhttp.entity.LoadingParams;
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Response;

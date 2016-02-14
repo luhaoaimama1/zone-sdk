@@ -1,4 +1,4 @@
-package com.example.zone.okhttp_zonelib.okhttp.utils;
+package com.zone.okhttp.utils;
 
 /**
  * Created by Administrator on 2016/2/13.

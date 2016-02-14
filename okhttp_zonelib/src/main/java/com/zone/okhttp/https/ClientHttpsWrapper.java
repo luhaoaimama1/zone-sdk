@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.example.zone.okhttp_zonelib.okhttp.https;
+package com.zone.okhttp.https;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,4 +1,4 @@
-package com.example.zone.okhttp_zonelib.okhttp.entity;
+package com.zone.okhttp.entity;
 
 /**
  * Created by Zone on 2016/2/10.
