@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import and.http.downfile.DownLoader.ProgressListener;
 import and.http.downfile.entity.ProgressEntity;
 import android.os.Handler;

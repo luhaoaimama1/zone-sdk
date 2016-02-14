@@ -13,51 +13,54 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.zone.okhttp.download;
+package download.zone.okhttp.entity;
 import android.text.TextUtils;
+import com.litesuits.orm.db.annotation.Column;
+import com.litesuits.orm.db.annotation.Default;
+import com.litesuits.orm.db.annotation.Ignore;
+import com.litesuits.orm.db.annotation.Mapping;
+import com.litesuits.orm.db.annotation.Table;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Desction:文件下载数据模型
- * Author:pengjianbo
+ * Author:pengjianbo  借鉴此人的~
  * Date:15/8/22 下午5:11
  */
-//@Table(name = "DownloadInfo")
-public class DownloadInfo implements Comparable<DownloadInfo>{
-
+@Table("DownloadInfo")
+public class DownloadInfo extends  BaseEntity implements Comparable<DownloadInfo>{
     //==============State=================
     public static final int WAIT = 0;//等待
     public static final int DOWNLOADING = 1;//下载中
     public static final int PAUSE = 2;//暂停
     public static final int COMPLETE = 3;//完成
-
-//    @Id
-//    @Column(column = "id")
-    private int id;
-//    @Column(column = "url")
+    @Column("url")
     private String url;//文件URL
-//    @Column(column = "targetPath")
-    private String targetPath;//保存文件地址
-//    @Column(column = "targetFolder")
+    @Column( "targetName")
+    private String targetName;//保存文件地址
+    @Column("targetFolder")
     private String targetFolder;//保存文件夹
-//    @Column(column = "progress")
-    private int progress;//下载进度
-//    @Column(column = "totalLength")
+    @Column( "isRange")
+    private boolean isRange;//是否支持 range
+    @Column("totalLength")
     private long totalLength;//总大小
-//    @Column(column = "downloadLength")
+    @Mapping(Mapping.Relation.OneToMany)
+    private List<ThreadInfo> threadInfo;
+
+    @Default("0")
+    @Column( "progress")
+    private int progress;//下载进度
+    @Default("0")
+    @Column( "downloadLength")
     private long downloadLength;//已下载大小
 
-//    @Transient
+    @Ignore
     private long networkSpeed;//下载速度
-//    @Transient
+    @Ignore
     private int state = PAUSE;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUrl() {
         return url;
@@ -67,12 +70,12 @@ public class DownloadInfo implements Comparable<DownloadInfo>{
         this.url = url;
     }
 
-    public String getTargetPath() {
-        return targetPath;
+    public String getTargetName() {
+        return targetName;
     }
 
-    public void setTargetPath(String targetPath) {
-        this.targetPath = targetPath;
+    public void setTargetName(String targetName) {
+        this.targetName = targetName;
     }
 
     public String getTargetFolder() {
@@ -121,6 +124,24 @@ public class DownloadInfo implements Comparable<DownloadInfo>{
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public List<ThreadInfo> getThreadInfo() {
+        if(threadInfo==null)
+            threadInfo=new ArrayList<ThreadInfo>();
+        return threadInfo;
+    }
+
+    public void setThreadInfo(List<ThreadInfo> threadInfo) {
+        this.threadInfo = threadInfo;
+    }
+
+    public boolean isRange() {
+        return isRange;
+    }
+
+    public void setRange(boolean range) {
+        this.isRange = range;
     }
 
     @Override
