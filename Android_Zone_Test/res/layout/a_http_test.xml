@@ -133,6 +133,28 @@
             android:onClick="onClick"
             android:text="12306Https" />
 
+        <Button
+            android:id="@+id/bt_downLoader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="ok下载" />
+        <Button
+            android:id="@+id/bt_downLoaderpause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="ok下载 pause" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:progress="0"
+            android:max="100"
+            style="?android:attr/progressBarStyleHorizontal" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="30dp"

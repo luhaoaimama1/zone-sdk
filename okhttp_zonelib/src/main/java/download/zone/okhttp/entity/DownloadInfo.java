@@ -20,9 +20,7 @@ import com.litesuits.orm.db.annotation.Default;
 import com.litesuits.orm.db.annotation.Ignore;
 import com.litesuits.orm.db.annotation.Mapping;
 import com.litesuits.orm.db.annotation.Table;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Desction:文件下载数据模型
@@ -30,9 +28,8 @@ import java.util.List;
  * Date:15/8/22 下午5:11
  */
 @Table("DownloadInfo")
-public class DownloadInfo extends  BaseEntity implements Comparable<DownloadInfo>{
+public class DownloadInfo extends  BaseEntity{
     //==============State=================
-    public static final int WAIT = 0;//等待
     public static final int DOWNLOADING = 1;//下载中
     public static final int PAUSE = 2;//暂停
     public static final int COMPLETE = 3;//完成
@@ -47,122 +44,101 @@ public class DownloadInfo extends  BaseEntity implements Comparable<DownloadInfo
     @Column("totalLength")
     private long totalLength;//总大小
     @Mapping(Mapping.Relation.OneToMany)
-    private List<ThreadInfo> threadInfo;
+    private ArrayList<ThreadInfo> threadInfo;
 
     @Default("0")
     @Column( "progress")
-    private int progress;//下载进度
+    private float progress;//下载进度
     @Default("0")
     @Column( "downloadLength")
     private long downloadLength;//已下载大小
-
     @Ignore
-    private long networkSpeed;//下载速度
-    @Ignore
+    private long networkSpeed;//下载速度  k/s
+    @Column( "state")
     private int state = PAUSE;
 
 
-    public String getUrl() {
+    public synchronized String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public synchronized void setUrl(String url) {
         this.url = url;
     }
 
-    public String getTargetName() {
+    public synchronized String getTargetName() {
         return targetName;
     }
 
-    public void setTargetName(String targetName) {
+    public synchronized void setTargetName(String targetName) {
         this.targetName = targetName;
     }
 
-    public String getTargetFolder() {
+    public synchronized String getTargetFolder() {
         return targetFolder;
     }
 
-    public void setTargetFolder(String targetFolder) {
+    public synchronized void setTargetFolder(String targetFolder) {
         this.targetFolder = targetFolder;
     }
 
-    public int getProgress() {
+    public synchronized float getProgress() {
         return progress;
     }
 
-    public void setProgress(int progress) {
+    public synchronized void setProgress(float progress) {
         this.progress = progress;
     }
 
-    public long getTotalLength() {
+    public synchronized long getTotalLength() {
         return totalLength;
     }
 
-    public void setTotalLength(long totalLength) {
+    public synchronized void setTotalLength(long totalLength) {
         this.totalLength = totalLength;
     }
 
-    public long getDownloadLength() {
+    public synchronized long getDownloadLength() {
         return downloadLength;
     }
 
-    public void setDownloadLength(long downloadLength) {
+    public synchronized void setDownloadLength(long downloadLength) {
         this.downloadLength = downloadLength;
     }
 
-    public long getNetworkSpeed() {
+    public synchronized long getNetworkSpeed() {
         return networkSpeed;
     }
 
-    public void setNetworkSpeed(long networkSpeed) {
+    public synchronized void setNetworkSpeed(long networkSpeed) {
         this.networkSpeed = networkSpeed;
     }
 
-    public int getState() {
+    public synchronized int getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public synchronized void setState(int state) {
         this.state = state;
     }
 
-    public List<ThreadInfo> getThreadInfo() {
+    public synchronized ArrayList<ThreadInfo> getThreadInfo() {
         if(threadInfo==null)
             threadInfo=new ArrayList<ThreadInfo>();
         return threadInfo;
     }
 
-    public void setThreadInfo(List<ThreadInfo> threadInfo) {
+    public synchronized void setThreadInfo(ArrayList<ThreadInfo> threadInfo) {
         this.threadInfo = threadInfo;
     }
 
-    public boolean isRange() {
+    public synchronized boolean isRange() {
         return isRange;
     }
 
-    public void setRange(boolean range) {
+    public synchronized void setRange(boolean range) {
         this.isRange = range;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if ( o instanceof DownloadInfo ) {
-            DownloadInfo info = (DownloadInfo) o;
-            if ( info != null && TextUtils.equals(info.getUrl(), url)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    @Override
-    public int compareTo(DownloadInfo another) {
-        if ( another == null ) {
-            return 0;
-        }
-
-        int lhs = getId();
-        int rhs = another.getId();
-        return lhs < rhs ? -1 : (lhs == rhs ? 0 : 1);
-    }
 }

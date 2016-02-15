@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.mylib_test.R;
 import com.example.mylib_test.handler.HandlerTest;
@@ -36,6 +37,8 @@ import and.http.downfile.DownLoader.ProgressListener;
 import and.sd.FileUtils_SD;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import download.zone.okhttp.callback.DownloadListener;
+import download.zone.okhttp.entity.DownloadInfo;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -45,6 +48,8 @@ public class Http_MainActivity extends Activity implements OnClickListener {
     Map<String, String> params = new HashMap<String, String>();
     @Bind(R.id.tv_okHttp)
     TextView tvOkHttp;
+    @Bind(R.id.progressBar)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +138,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
     };
 
     private void okHttp(View v) {
+        String urlPath = "http://down.360safe.com/360/inst.exe";
         switch (v.getId()) {
             case R.id.bt_okGet:
                 //创建okHttpClient对象
@@ -145,6 +151,30 @@ public class Http_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_okPost:
                 OkHttpUtils.post(UrlPath, new RequestParams().put("platform", "android")
                         .put("name", "bug").put("subject", 123)).tag(this).executeAsy(okListener);
+                break;
+            case R.id.bt_downLoader:
+                download.zone.okhttp.DownLoader.getInstance(this).startTask(urlPath, FileUtils_SD.getFile(""), new DownloadListener() {
+                    @Override
+                    public void onProgress(DownloadInfo downloadInfo) {
+                        System.out.println("页面进度:" + downloadInfo.getProgress() + " \t 网速：" + downloadInfo.getNetworkSpeed() + "k/s");
+                        progressBar.setProgress((int)( downloadInfo.getProgress()*100));
+                        if (downloadInfo.getState() == DownloadInfo.COMPLETE) {
+                            System.out.println("------------------------COMPLETE------------------------");
+                        }
+                        if (downloadInfo.getState() == DownloadInfo.PAUSE) {
+                            System.out.println("------------------------PAUSE------------------------");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Response response) {
+                        System.out.println("onError");
+                    }
+                });
+                break;
+            case R.id.bt_downLoaderpause:
+                download.zone.okhttp.DownLoader.getInstance(this).stopTask(urlPath);//;urlPath, FileUtils_SD.getFile(""),
+                System.out.println("停止任务 url："+urlPath);
                 break;
             case R.id.bt_okUpload:
                 File f = new File(FileUtils_SD.getFile(""), "高达 - 00.mp3");

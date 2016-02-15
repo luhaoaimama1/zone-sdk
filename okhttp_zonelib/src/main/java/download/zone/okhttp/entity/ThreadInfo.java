@@ -1,4 +1,5 @@
 package download.zone.okhttp.entity;
+
 import com.litesuits.orm.db.annotation.Column;
 import com.litesuits.orm.db.annotation.Mapping;
 
@@ -13,58 +14,58 @@ public class ThreadInfo extends BaseEntity {
     private long startIndex;
     @Column("endIndex")
     private long endIndex;
-    @Column( "downloadLength")
+    @Column("downloadLength")
     private long downloadLength;//已下载大小
     @Mapping(Mapping.Relation.ManyToOne)
     private DownloadInfo downloadInfo;
-    @Column( "complete")
+    @Column("complete")
     private boolean complete;
 
-    public boolean isComplete() {
+    public synchronized boolean isComplete() {
         return complete;
     }
 
-    public void setComplete(boolean complete) {
+    public synchronized void setComplete(boolean complete) {
         this.complete = complete;
     }
 
-    public long getDownloadLength() {
+    public synchronized long getDownloadLength() {
         return downloadLength;
     }
 
-    public void setDownloadLength(long downloadLength) {
+    public synchronized void setDownloadLength(long downloadLength) {
         this.downloadLength = downloadLength;
     }
 
-    public DownloadInfo getDownloadInfo() {
+    public synchronized DownloadInfo getDownloadInfo() {
         return downloadInfo;
     }
 
-    public void setDownloadInfo(DownloadInfo downloadInfo) {
+    public synchronized void setDownloadInfo(DownloadInfo downloadInfo) {
         this.downloadInfo = downloadInfo;
     }
 
-    public long getEndIndex() {
+    public synchronized long getEndIndex() {
         return endIndex;
     }
 
-    public void setEndIndex(long endIndex) {
+    public synchronized void setEndIndex(long endIndex) {
         this.endIndex = endIndex;
     }
 
-    public long getStartIndex() {
+    public synchronized long getStartIndex() {
         return startIndex;
     }
 
-    public void setStartIndex(long startIndex) {
+    public synchronized void setStartIndex(long startIndex) {
         this.startIndex = startIndex;
     }
 
-    public int getThreadId() {
+    public synchronized int getThreadId() {
         return threadId;
     }
 
-    public void setThreadId(int threadId) {
+    public synchronized void setThreadId(int threadId) {
         this.threadId = threadId;
     }
 }

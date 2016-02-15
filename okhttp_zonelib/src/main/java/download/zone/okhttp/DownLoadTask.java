@@ -4,8 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
-
-import download.zone.okhttp.UIhelper.UIhelper;
+import download.zone.okhttp.entity.DownloadInfo;
+import download.zone.okhttp.helper.Dbhelper;
+import download.zone.okhttp.helper.UIhelper;
 import download.zone.okhttp.entity.ThreadInfo;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -16,36 +17,37 @@ import okhttp3.Response;
 public class DownLoadTask implements Runnable {
     private UIhelper uiHelper;
     private ThreadInfo threadInfo;
-    private long startIndex;
-    private long endIndex;
     private String urlString;
     private File saveOutFile;
-    private int threadId;
-    private int overLength;
+    private DownLoader ourInstance;
+    private Dbhelper dbhelper;
+    private long dowloadLength;
 
-    public DownLoadTask(long startIndex, long endIndex, String urlString, File saveOutFile, int threadId, ThreadInfo threadInfo, UIhelper uiHelper) {
-        this.startIndex = startIndex;
-        this.endIndex = endIndex;
-        this.urlString = urlString;
+    public DownLoadTask(File saveOutFile, ThreadInfo threadInfo, UIhelper uiHelper, DownLoader ourInstance, Dbhelper dbhelper) {
         this.saveOutFile = saveOutFile;
-        this.threadId = threadId;
         this.threadInfo=threadInfo;
         this.uiHelper=uiHelper;
+        this.ourInstance=ourInstance;
+        this.dbhelper=dbhelper;
+        this.urlString=threadInfo.getDownloadInfo().getUrl();
+        this.dowloadLength =threadInfo.getDownloadLength();
     }
+
 
     @Override
     public void run() {
-        Request request =new Request.Builder().url(urlString).header("RANGE", "bytes=" + startIndex + "-"
-                + endIndex).build();
+        long startIndex=threadInfo.getStartIndex()+threadInfo.getDownloadLength();
+        Request request =new Request.Builder().url(urlString).tag(urlString).header("RANGE", "bytes=" +startIndex + "-"
+                + threadInfo.getEndIndex()).build();
         Response response = null;
         try {
-            response = DownLoader.INSTANCE.mOkHttpClient.newCall(request).execute();
+            response = ourInstance.mOkHttpClient.newCall(request).execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
         if(response == null || !response.isSuccessful()){
-            if (response != null )
-                System.err.println("下载文件失败了~ code=" + response.code() + "url=" + urlString);
+            uiHelper.onError(response);
+            DownLoader.writeLog("threadId:"+threadInfo.getThreadId()+"下载文件失败了~" + "url=" + urlString);
         }else{
             try {
                 InputStream inputStream = response.body().byteStream();
@@ -55,28 +57,30 @@ public class DownLoadTask implements Runnable {
                 int len = 0;
                 byte[] buffer = new byte[1024];
                 int count=0;
-                while ((len = inputStream.read(buffer)) != -1) {//!=-1这里也好错
+                while ((len = inputStream.read(buffer)) != -1&& threadInfo.getDownloadInfo().getState()== DownloadInfo.DOWNLOADING) {
+                    //!=-1这里也好错
                     count++;
-                    overLength+=len;
-                    threadInfo.setDownloadLength(overLength);
-                    uiHelper.onProgress(threadInfo);
-                    System.out.println("threadId："+threadId+"  overLength:"+overLength);
+                    dowloadLength +=len;
+                    threadInfo.setDownloadLength(dowloadLength);
+                    uiHelper.onProgress(threadInfo,dbhelper);
+                    System.out.println("threadId："+threadInfo.getThreadId()+"  dowloadLength:"+ dowloadLength);
                     raf.write(buffer, 0, len);
                 }
-                System.out.println("线程" + threadId + "   startIndex "+startIndex+"  endIndex   "+endIndex+"下载字数："+overLength);
-                System.out.println("线程" + threadId + "循环次数："+count);
-                inputStream.close();
-                raf.close();
-//                pe.set_complete(threadId);
-                System.out.println("线程" + threadId + ":下载完毕了！");
-                threadInfo.setComplete(true);
-                uiHelper.onFinish(threadInfo);
+                if (threadInfo.getDownloadInfo().getState()== DownloadInfo.DOWNLOADING) {
+                    DownLoader.writeLog("线程" + threadInfo.getThreadId() + "   startIndex " + threadInfo.getStartIndex()+
+                            "   开始的地方："+ startIndex+ "  endIndex   " + threadInfo.getEndIndex() + "此线程下载字数：" + dowloadLength);
+                    DownLoader.writeLog("线程" + threadInfo.getThreadId() + "循环次数：" + count);
+                    inputStream.close();
+                    raf.close();
+                    DownLoader.writeLog("线程" + threadInfo.getThreadId() + ":下载完毕了！");
+                    threadInfo.setComplete(true);
+                }
+                uiHelper.onFinish(threadInfo,dbhelper);
             } catch (FileNotFoundException e) {
+                //异常的时候不保存信息  因为要是保存了 就和显示的进度不一样了
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            }finally {
-
             }
         }
     }
