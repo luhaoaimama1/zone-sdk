@@ -2,8 +2,6 @@ package download.zone.okhttp;
 
 import android.content.Context;
 
-import download.zone.okhttp.helper.Dbhelper;
-import download.zone.okhttp.helper.UIhelper;
 import download.zone.okhttp.callback.DownloadListener;
 import download.zone.okhttp.entity.DownloadInfo;
 
@@ -22,8 +20,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * TODO 重命名文件
- * TODO   暂停开始  来回弄会有bug  同步不是很懂
  * Created by Zone on 2016/2/14.
  */
 public class DownLoader {
@@ -31,17 +27,31 @@ public class DownLoader {
     private static Dbhelper dbhelper= new Dbhelper(ourInstance);
     private static final int CONTAIN_THREAD_COUNT = 3;
     private static boolean debug = true;
-    public ExecutorService executorService;
-    public OkHttpClient mOkHttpClient = new OkHttpClient();
-    private Map<String,Integer> taskRunning;//下载中的 downloadInfo
-    private Map<String,Integer> taskStatuMap;//下载中的 downloadInfo
-    private Map<String,Boolean> makesureRunningTaskMap;//下载中的 downloadInfo
+    private ExecutorService executorService;
+    protected OkHttpClient mOkHttpClient = new OkHttpClient();
+    /**
+     *  为了一个url只有一个task运行
+     */
+    private Map<String,Integer> taskRunning;
+    /**
+     * 保存任务的状态
+     */
+    private Map<String,Integer> taskStatuMap;
+    /**
+     * 确定 task走了循环 既是运行状态
+     */
+    private Map<String,Boolean> makesureRunningTaskMap;
+    /**
+     * 内存中的任务  暂停状态也算  只有完成的时候才需要清除
+     */
+    private Map<String,UIhelper> taskUIhelperMap;
 
     private DownLoader() {
         executorService = Executors.newCachedThreadPool();
         taskStatuMap = new ConcurrentHashMap<>();
         taskRunning = new ConcurrentHashMap<>();
         makesureRunningTaskMap = new ConcurrentHashMap<>();
+        taskUIhelperMap = new ConcurrentHashMap<>();
     }
 
     public static DownLoader getInstance(Context context) {
@@ -104,7 +114,7 @@ public class DownLoader {
             boolean isRange = false;
             String fileName = "";
             DownloadInfo downloadInfo;
-            UIhelper uiHelper = new UIhelper(ourInstance, downloadListener);
+            UIhelper uiHelper;
 
             @Override
             public void run() {
@@ -113,7 +123,8 @@ public class DownLoader {
                     fileName = rename;
                 else
                     fileName = getFileNameByUrl(urlString);
-                File saveOutFile = new File(targetFolder, fileName);
+                getTempFileName(fileName);
+                File saveOutFile = new File(targetFolder, getTempFileName(fileName));
                 //如果在内存中就发现了任务  就不要在下载了
                 synchronized (DownLoader.class) {
                     if (taskRunning.get(urlString) != null)//确定只有一个线程
@@ -129,11 +140,14 @@ public class DownLoader {
                     } else
                         //没有下载过 就直接下载好了
                         firstTask2InitInfo(saveOutFile);
+                    downloadInfo.setDownloadListener(downloadListener);
                     taskRunning.put(urlString, downloadInfo.getThreadInfo().size());
+                    uiHelper = new UIhelper(ourInstance, downloadListener, downloadInfo);
+                    taskUIhelperMap.put(urlString, uiHelper);
                     //开启线程 跑任务
+                    uiHelper.onStart();
                     for (ThreadInfo threadInfo : downloadInfo.getThreadInfo())
-                        executorService.execute(new DownLoadTask(new File(downloadInfo.getTargetFolder(), downloadInfo.getTargetName())
-                                , threadInfo, uiHelper, ourInstance, dbhelper));
+                        executorService.execute(new DownLoadTask(saveOutFile, threadInfo, uiHelper, ourInstance, dbhelper));
                 }
             }
 
@@ -213,9 +227,66 @@ public class DownLoader {
                 throw new IllegalStateException("not found  file name!");
             }
 
+
         });
     }
 
+
+    public boolean stopTask(String urlString) {
+        if (taskStatuMap.get(urlString) == null) {
+            writeLog("任务未开始");
+        } else {
+            if (taskStatuMap.get(urlString) == DownloadInfo.DOWNLOADING) {
+                //下载中 并且状态是可以暂停的时候才能暂停
+                if(makesureRunningTaskMap.get(urlString)!=null&&makesureRunningTaskMap.get(urlString)){
+                    //真正跑起来才可以  停止
+                    taskStatuMap.put(urlString, DownloadInfo.PAUSE);
+                    writeLog("停止任务 url：" + urlString);
+                    return true;
+                }
+            } else if (taskStatuMap.get(urlString) == DownloadInfo.PAUSE) {
+                writeLog("任务已经暂停");
+            } else {
+                writeLog("任务已经完成");
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * 删除数据库数据 既是下载未完成的 因为完成的db都不存在了  并删除本地文件
+     * @param urlString
+     */
+    public synchronized void deleteTask(final String urlString) {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                taskStatuMap.put(urlString, DownloadInfo.DELETE);
+                while (taskRunning.get(urlString) != null) {
+                    //知道完成 urlString 任务停止的时候才
+                }
+                DownloadInfo downloadInfo = dbhelper.queryTask(urlString);
+                if (downloadInfo != null) {
+                    //既然是未完成的 都是临时文件
+                    File saveOutFile = new File(downloadInfo.getTargetFolder(), getTempFileName(downloadInfo.getTargetName()));
+                    if (saveOutFile != null && saveOutFile.exists())
+                        saveOutFile.delete();
+                    dbhelper.deleteTask(downloadInfo);
+                }
+                if (taskUIhelperMap.get(urlString) != null)
+                    taskUIhelperMap.get(urlString).onDelete();
+                //先清内存
+                clearUrlMemory(urlString);
+            }
+        });
+    }
+
+
+    /**
+     * 为了一个url只有一个task运行
+     * @param urlString
+     */
     protected synchronized  void tryRemoveTask(String urlString){
         if (taskRunning.get(urlString)!=null) {
             int result = taskRunning.get(urlString) - 1;
@@ -229,67 +300,36 @@ public class DownLoader {
 
     }
     protected synchronized  void makesureRunningTask(String urlString){
-        makesureRunningTaskMap.put(urlString,true);
+        makesureRunningTaskMap.put(urlString, true);
 
     }
-    //todo 暂停的时候没保存数据库   即没有那层循环
-    public void stopTask(String urlString) {
-        if (taskStatuMap.get(urlString) == null) {
-            writeLog("任务未开始");
-        } else {
-            if (taskStatuMap.get(urlString) == DownloadInfo.DOWNLOADING) {
-                //下载中 并且状态是可以暂停的时候才能暂停
-                if(makesureRunningTaskMap.get(urlString)!=null&&makesureRunningTaskMap.get(urlString)){
-                    //真正跑起来才可以  停止
-                    taskStatuMap.put(urlString, DownloadInfo.PAUSE);
-                    writeLog("停止任务 url：" + urlString);
-                }
-            } else if (taskStatuMap.get(urlString) == DownloadInfo.PAUSE) {
-                writeLog("任务已经暂停");
-            } else {
-                writeLog("任务已经完成");
-            }
-        }
-    }
-
 
     /**
-     * 删除数据库数据  并删除本地文件
-     *
      * @param urlString
      */
-    public void deleteTask(String urlString) {
-        DownloadInfo downloadInfo = getTaskInfo(urlString);
-        if (downloadInfo!=null) {
-            if(taskStatuMap.get(urlString)!=null)
-                taskStatuMap.remove(urlString);
-            File saveOutFile = new File(downloadInfo.getTargetFolder(), downloadInfo.getTargetName());
-            if (saveOutFile != null && saveOutFile.exists())
-                saveOutFile.delete();
-            dbhelper.deleteTask(downloadInfo);
-        }
-
+    protected void clearUrlMemory(String urlString){
+        if(taskStatuMap.get(urlString)!=null)
+            taskStatuMap.remove(urlString);
+        if(taskUIhelperMap.get(urlString)!=null)
+            taskUIhelperMap.remove(urlString);
+        if( UIhelper.getTaskPauseProgressMap().get(urlString)!=null)
+            UIhelper.getTaskPauseProgressMap().remove(urlString);
+        if( dbhelper.getSaveStateMap().get(urlString)!=null)
+            dbhelper.getSaveStateMap().remove(urlString);
     }
 
-    //TODO 这个是否应该用handler去异步请求呢 毕竟查询数据库了。。。
-    public DownloadInfo getTaskInfo(String urlString) {
-        return dbhelper.queryTask(urlString);
-    }
 
-    public static void writeLog(String str) {
+    protected static void writeLog(String str) {
         if (debug) {
             System.out.println(str);
         }
     }
 
-
-
-    public Map<String, Integer> getTaskStatuMap() {
+    protected Map<String, Integer> getTaskStatuMap() {
         return taskStatuMap;
     }
-
-    public void setTaskStatuMap(Map<String, Integer> taskStatuMap) {
-        this.taskStatuMap = taskStatuMap;
+    private String getTempFileName(String mfileName) {
+        String[] names = mfileName.split("[.]");
+        return names[0]+".temp";
     }
-
 }

@@ -1,4 +1,4 @@
-package download.zone.okhttp.helper;
+package download.zone.okhttp;
 import android.content.Context;
 import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
+ * todo 有时间在优化吧  暂时没时间了
  * Created by Zone on 2016/2/14.
  */
 public class Dbhelper {
@@ -87,13 +88,9 @@ public class Dbhelper {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                for (ThreadInfo info : downloadInfo.getThreadInfo()) {
-                    if (!info.isComplete())
-                        return;
-                }
+                ourInstance.clearUrlMemory(downloadInfo.getUrl());
                 liteOrm.delete(DownloadInfo.class, new WhereBuilder().where("url = ?", new String[]{downloadInfo.getUrl()}));
-                ourInstance.getTaskStatuMap().remove(downloadInfo.getUrl());
-                saveStateMap.remove(downloadInfo.getUrl());//移除信息
+//                saveStateMap.remove(downloadInfo.getUrl());//移除信息
             }
         });
 

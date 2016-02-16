@@ -154,13 +154,29 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.bt_downLoader:
                 download.zone.okhttp.DownLoader.getInstance(this).startTask(urlPath, FileUtils_SD.getFile(""), new DownloadListener() {
+
                     @Override
-                    public void onProgress(DownloadInfo downloadInfo) {
-                        System.out.println("页面进度:" + downloadInfo.getProgress() + " \t 网速：" + downloadInfo.getNetworkSpeed() + "k/s");
-                        progressBar.setProgress((int)( downloadInfo.getProgress()*100));
-                        if (downloadInfo.isDone() ) {
+                    public void onStart() {
+                        System.out.println("------------------------onStart!!!------------------------");
+                    }
+
+                    @Override
+                    public void onProgress(int progress, boolean isDone, long networkSpeed) {
+                        System.out.println("页面进度:" + progress + " \t 网速：" + networkSpeed + "k/s");
+                        progressBar.setProgress(progress);
+                        if (isDone) {
                             System.out.println("------------------------COMPLETE------------------------");
                         }
+                    }
+
+                    @Override
+                    public void onStop() {
+                        System.out.println("------------------------onStop!!!------------------------");
+                    }
+
+                    @Override
+                    public void onDelete() {
+                        System.out.println("------------------------onDelete!!!------------------------");
                     }
 
                     @Override
@@ -171,6 +187,9 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.bt_downLoaderpause:
                 download.zone.okhttp.DownLoader.getInstance(this).stopTask(urlPath);//;urlPath, FileUtils_SD.getFile(""),
+                break;
+            case R.id.bt_downLoaderDelete:
+                download.zone.okhttp.DownLoader.getInstance(this).deleteTask(urlPath);//;urlPath, FileUtils_SD.getFile(""),
                 break;
             case R.id.bt_okUpload:
                 File f = new File(FileUtils_SD.getFile(""), "高达 - 00.mp3");

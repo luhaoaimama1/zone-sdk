@@ -22,6 +22,8 @@ import com.litesuits.orm.db.annotation.Mapping;
 import com.litesuits.orm.db.annotation.Table;
 import java.util.ArrayList;
 
+import download.zone.okhttp.callback.DownloadListener;
+
 /**
  * Desction:文件下载数据模型
  * Author:pengjianbo  借鉴此人的~
@@ -33,6 +35,7 @@ public class DownloadInfo extends  BaseEntity{
     public static final int DOWNLOADING = 1;//下载中
     public static final int PAUSE = 2;//暂停
     public static final int COMPLETE = 3;//完成
+    public static final int DELETE = 4;//完成
     @Column("url")
     private String url;//文件URL
     @Column( "targetName")
@@ -56,7 +59,16 @@ public class DownloadInfo extends  BaseEntity{
     private long networkSpeed;//下载速度  k/s
     @Ignore
     private boolean isDone = false;
+    @Ignore
+    private DownloadListener downloadListener ;
 
+    public synchronized DownloadListener getDownloadListener() {
+        return downloadListener;
+    }
+
+    public synchronized void setDownloadListener(DownloadListener downloadListener) {
+        this.downloadListener = downloadListener;
+    }
 
     public synchronized String getUrl() {
         return url;

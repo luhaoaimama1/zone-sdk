@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import download.zone.okhttp.entity.DownloadInfo;
-import download.zone.okhttp.helper.Dbhelper;
-import download.zone.okhttp.helper.UIhelper;
 import download.zone.okhttp.entity.ThreadInfo;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -47,9 +45,12 @@ public class DownLoadTask implements Runnable {
         }
         if(response == null || !response.isSuccessful()){
             uiHelper.onError(response);
-            ourInstance.tryRemoveTask(urlString);
             DownLoader.writeLog("threadId:" + threadInfo.getThreadId() + "下载文件失败了~" + "url=" + urlString);
             //todo 出现异常的时候 db有问题还没保存  所以继续不了
+            if(ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())!=null
+                    &&ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())== DownloadInfo.PAUSE)
+                uiHelper.onPause(threadInfo, dbhelper);
+            ourInstance.tryRemoveTask(urlString);
         }else{
             try {
                 InputStream inputStream = response.body().byteStream();
@@ -66,12 +67,12 @@ public class DownLoadTask implements Runnable {
                     count++;
                     dowloadLength +=len;
                     threadInfo.setDownloadLength(dowloadLength);
-                    uiHelper.onProgress(threadInfo,dbhelper);
+                    uiHelper.onProgress(threadInfo);
                     DownLoader.writeLog("threadId：" + threadInfo.getThreadId() + "  dowloadLength:" + dowloadLength);
                     raf.write(buffer, 0, len);
                 }
                 if(ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())== DownloadInfo.PAUSE)
-                    uiHelper.onProgress(threadInfo, dbhelper);
+                    uiHelper.onPause(threadInfo, dbhelper);
                 if (ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())== DownloadInfo.DOWNLOADING) {
                     DownLoader.writeLog("线程" + threadInfo.getThreadId() + "   startIndex " + threadInfo.getStartIndex()+
                             "   开始的地方："+ startIndex+ "  endIndex   " + threadInfo.getEndIndex() + "此线程下载字数：" + dowloadLength);
@@ -81,7 +82,7 @@ public class DownLoadTask implements Runnable {
                     DownLoader.writeLog("线程" + threadInfo.getThreadId() + ":下载完毕了！");
                     threadInfo.setComplete(true);
                 }
-                uiHelper.onFinish(threadInfo,dbhelper);
+                uiHelper.onFinish(threadInfo,dbhelper,saveOutFile);
             } catch (FileNotFoundException e) {
                 //异常的时候不保存信息  因为要是保存了 就和显示的进度不一样了
                 e.printStackTrace();

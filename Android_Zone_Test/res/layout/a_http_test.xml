@@ -147,6 +147,13 @@
             android:layout_margin="4dp"
             android:onClick="onClick"
             android:text="ok下载 pause" />
+        <Button
+            android:id="@+id/bt_downLoaderDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="删除下载" />
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
