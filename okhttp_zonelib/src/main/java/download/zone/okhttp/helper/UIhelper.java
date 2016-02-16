@@ -1,9 +1,9 @@
 package download.zone.okhttp.helper;
-
 import android.os.Handler;
 import android.os.Looper;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import download.zone.okhttp.DownLoader;
 import download.zone.okhttp.callback.DownloadListener;
 import download.zone.okhttp.entity.DownloadInfo;
 import download.zone.okhttp.entity.ThreadInfo;
@@ -14,30 +14,31 @@ import okhttp3.Response;
  */
 public class UIhelper {
     private static Handler mHandler = new Handler(Looper.getMainLooper());
-    private DownloadListener downloadListener;
-    private Map<String, OnProgressRunnable> map;
-    private Map<String, Float> mapProPause;
 
-    public UIhelper(DownloadListener downloadListener) {
-        this.downloadListener = downloadListener;
-        map = new ConcurrentHashMap<>();
-        mapProPause = new ConcurrentHashMap<>();
+    private  DownloadListener downloadListener;
+    private  DownLoader ourInstance;
+    private static Map<String,Float> taskPauseProgressMap=new ConcurrentHashMap<>();;//下载中的 downloadInfo
+
+    public UIhelper( DownLoader ourInstance,DownloadListener downloadListener) {
+        this.ourInstance = ourInstance;
+        this.downloadListener=downloadListener;
     }
 
     public void onError(final Response response) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                downloadListener.onError(response);
+                if (downloadListener!=null)
+                    downloadListener.onError(response);
             }
         });
     }
 
     public void onProgress(ThreadInfo threadInfo, Dbhelper dbhelper) {
-        if (map.get(threadInfo.getDownloadInfo().getUrl()) == null)
-            map.put(threadInfo.getDownloadInfo().getUrl(), new OnProgressRunnable(threadInfo, dbhelper));
-        mHandler.post(map.get(threadInfo.getDownloadInfo().getUrl()));
+        mHandler.post(new OnProgressRunnable(threadInfo, dbhelper));
     }
+
+
 
     public class OnProgressRunnable implements Runnable {
         private Dbhelper dbhelper;
@@ -45,8 +46,7 @@ public class UIhelper {
         private long lastDownLoadTotalLength;
         private long lastRefreshUiTime;
         //暂停的时候保存信息 然后的都不走了
-        private boolean pause =false;
-
+        private boolean pause=false;
         public OnProgressRunnable(ThreadInfo threadInfo, Dbhelper dbhelper) {
             this.threadInfo = threadInfo;
             lastDownLoadTotalLength = 0;
@@ -76,16 +76,18 @@ public class UIhelper {
                         lastRefreshUiTime = refreshUiTime;
                         lastDownLoadTotalLength = downLoadTotalLength;
                     }
-                    Float lastPauseProgress = mapProPause.get(downloadInfo.getUrl());
-                    if (lastPauseProgress==null||(lastPauseProgress!=null&&lastPauseProgress<=downloadInfo.getProgress())) {
-                        if (downloadInfo.getState() == DownloadInfo.DOWNLOADING)
+                    Map<String, Integer> statuMap = ourInstance.getTaskStatuMap();
+                    if (statuMap.get(downloadInfo.getUrl()) == DownloadInfo.DOWNLOADING){
+                        if (downloadListener != null)
+                            if(taskPauseProgressMap.get(downloadInfo.getUrl())==null||downloadInfo.getProgress()>=taskPauseProgressMap.get(downloadInfo.getUrl()))
+                                downloadListener.onProgress(downloadInfo);//发布进度信息
+
+                    }else{
+                        if (downloadListener != null)
                             downloadListener.onProgress(downloadInfo);//发布进度信息
-                        if(downloadInfo.getState() == DownloadInfo.PAUSE){
-                            downloadListener.onProgress(downloadInfo);//发布进度信息
-                            mapProPause.put(downloadInfo.getUrl(),downloadInfo.getProgress());
-                            dbhelper.saveTask(downloadInfo);//db保存信息
-                            pause =true;
-                        }
+                        dbhelper.saveTask(downloadInfo);//db保存信息
+                        taskPauseProgressMap.put(downloadInfo.getUrl(), downloadInfo.getProgress());
+                        pause=true;
                     }
                 }
             }
@@ -108,9 +110,11 @@ public class UIhelper {
                         return;
                 }
                 //完成以后
-                downloadInfo.setState(DownloadInfo.COMPLETE);
+                downloadInfo.setIsDone(true);
+                taskPauseProgressMap.remove(threadInfo.getDownloadInfo().getUrl());//移除key
                 dbhelper.deleteTask(threadInfo.getDownloadInfo());//db移除信息
-                downloadListener.onProgress(downloadInfo);//ui通知完成
+                if (downloadListener!=null)
+                    downloadListener.onProgress(downloadInfo);//ui通知完成
             }
         });
     }

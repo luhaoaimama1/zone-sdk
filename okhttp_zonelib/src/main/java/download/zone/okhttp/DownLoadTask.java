@@ -47,7 +47,9 @@ public class DownLoadTask implements Runnable {
         }
         if(response == null || !response.isSuccessful()){
             uiHelper.onError(response);
-            DownLoader.writeLog("threadId:"+threadInfo.getThreadId()+"下载文件失败了~" + "url=" + urlString);
+            ourInstance.tryRemoveTask(urlString);
+            DownLoader.writeLog("threadId:" + threadInfo.getThreadId() + "下载文件失败了~" + "url=" + urlString);
+            //todo 出现异常的时候 db有问题还没保存  所以继续不了
         }else{
             try {
                 InputStream inputStream = response.body().byteStream();
@@ -57,16 +59,20 @@ public class DownLoadTask implements Runnable {
                 int len = 0;
                 byte[] buffer = new byte[1024];
                 int count=0;
-                while ((len = inputStream.read(buffer)) != -1&& threadInfo.getDownloadInfo().getState()== DownloadInfo.DOWNLOADING) {
+                while ((len = inputStream.read(buffer)) != -1&&
+                        ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())== DownloadInfo.DOWNLOADING) {
+                    ourInstance.makesureRunningTask(urlString);
                     //!=-1这里也好错
                     count++;
                     dowloadLength +=len;
                     threadInfo.setDownloadLength(dowloadLength);
                     uiHelper.onProgress(threadInfo,dbhelper);
-                    System.out.println("threadId："+threadInfo.getThreadId()+"  dowloadLength:"+ dowloadLength);
+                    DownLoader.writeLog("threadId：" + threadInfo.getThreadId() + "  dowloadLength:" + dowloadLength);
                     raf.write(buffer, 0, len);
                 }
-                if (threadInfo.getDownloadInfo().getState()== DownloadInfo.DOWNLOADING) {
+                if(ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())== DownloadInfo.PAUSE)
+                    uiHelper.onProgress(threadInfo, dbhelper);
+                if (ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())== DownloadInfo.DOWNLOADING) {
                     DownLoader.writeLog("线程" + threadInfo.getThreadId() + "   startIndex " + threadInfo.getStartIndex()+
                             "   开始的地方："+ startIndex+ "  endIndex   " + threadInfo.getEndIndex() + "此线程下载字数：" + dowloadLength);
                     DownLoader.writeLog("线程" + threadInfo.getThreadId() + "循环次数：" + count);
@@ -81,6 +87,8 @@ public class DownLoadTask implements Runnable {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            }finally {
+                ourInstance.tryRemoveTask(urlString);
             }
         }
     }

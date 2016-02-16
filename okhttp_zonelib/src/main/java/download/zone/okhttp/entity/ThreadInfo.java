@@ -1,6 +1,7 @@
 package download.zone.okhttp.entity;
 
 import com.litesuits.orm.db.annotation.Column;
+import com.litesuits.orm.db.annotation.Ignore;
 import com.litesuits.orm.db.annotation.Mapping;
 
 /**

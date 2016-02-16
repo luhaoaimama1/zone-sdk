@@ -158,11 +158,8 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                     public void onProgress(DownloadInfo downloadInfo) {
                         System.out.println("页面进度:" + downloadInfo.getProgress() + " \t 网速：" + downloadInfo.getNetworkSpeed() + "k/s");
                         progressBar.setProgress((int)( downloadInfo.getProgress()*100));
-                        if (downloadInfo.getState() == DownloadInfo.COMPLETE) {
+                        if (downloadInfo.isDone() ) {
                             System.out.println("------------------------COMPLETE------------------------");
-                        }
-                        if (downloadInfo.getState() == DownloadInfo.PAUSE) {
-                            System.out.println("------------------------PAUSE------------------------");
                         }
                     }
 
@@ -174,7 +171,6 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.bt_downLoaderpause:
                 download.zone.okhttp.DownLoader.getInstance(this).stopTask(urlPath);//;urlPath, FileUtils_SD.getFile(""),
-                System.out.println("停止任务 url："+urlPath);
                 break;
             case R.id.bt_okUpload:
                 File f = new File(FileUtils_SD.getFile(""), "高达 - 00.mp3");

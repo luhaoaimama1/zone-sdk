@@ -54,8 +54,8 @@ public class DownloadInfo extends  BaseEntity{
     private long downloadLength;//已下载大小
     @Ignore
     private long networkSpeed;//下载速度  k/s
-    @Column( "state")
-    private int state = PAUSE;
+    @Ignore
+    private boolean isDone = false;
 
 
     public synchronized String getUrl() {
@@ -114,12 +114,12 @@ public class DownloadInfo extends  BaseEntity{
         this.networkSpeed = networkSpeed;
     }
 
-    public synchronized int getState() {
-        return state;
+    public synchronized boolean isDone() {
+        return isDone;
     }
 
-    public synchronized void setState(int state) {
-        this.state = state;
+    public synchronized void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public synchronized ArrayList<ThreadInfo> getThreadInfo() {
