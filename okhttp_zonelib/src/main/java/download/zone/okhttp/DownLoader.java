@@ -38,10 +38,6 @@ public class DownLoader {
      */
     private Map<String,Integer> taskStatuMap;
     /**
-     * 确定 task走了循环 既是运行状态
-     */
-    private Map<String,Boolean> makesureRunningTaskMap;
-    /**
      * 内存中的任务  暂停状态也算  只有完成的时候才需要清除
      */
     private Map<String,UIhelper> taskUIhelperMap;
@@ -50,7 +46,6 @@ public class DownLoader {
         executorService = Executors.newCachedThreadPool();
         taskStatuMap = new ConcurrentHashMap<>();
         taskRunning = new ConcurrentHashMap<>();
-        makesureRunningTaskMap = new ConcurrentHashMap<>();
         taskUIhelperMap = new ConcurrentHashMap<>();
     }
 
@@ -86,28 +81,28 @@ public class DownLoader {
         //开始有两种  一个是pause  一个是第一次开始任务（包括第一续传）
             if (taskStatuMap.get(urlString) == null) {
                 //第一次开始任务（包括第一续传）
-                setStartTag(urlString);
                 runTask(urlString, targetFolder, rename, downloadListener);
             } else if (taskStatuMap.get(urlString) != null && taskStatuMap.get(urlString) == DownloadInfo.PAUSE) {
                 if (dbhelper.getSaveStateMap().get(urlString) != null && dbhelper.getSaveStateMap().get(urlString)) {
                     //                暂停的时候 db保存完毕才可以继续
-                    setStartTag(urlString);
                     runTask(urlString, targetFolder, rename, downloadListener);
                 } else {
                     writeLog("数据库保存完毕才可以 继续任务");
                 }
 
-            } else {
+            } else if(taskStatuMap.get(urlString) != null && taskStatuMap.get(urlString) == DownloadInfo.DELETE) {
+                writeLog("任务正在删除中---------------------------------------");
+            }else {
                 writeLog("任务正在下载中---------------------------------------");
             }
     }
 
-    private void setStartTag(String urlString) {
-        taskStatuMap.put(urlString, DownloadInfo.DOWNLOADING);//设置url这个标志 正在下载中
-        dbhelper.getSaveStateMap().put(urlString, false);//设置横没保存
-    }
 
     private void runTask(final String urlString, final File targetFolder, final String rename, final DownloadListener downloadListener) {
+        //todo 这个tag的时机
+        taskStatuMap.put(urlString, DownloadInfo.DOWNLOADING);//设置url这个标志 正在下载中
+        dbhelper.getSaveStateMap().put(urlString, false);//设置db没保存  除非异常 不然就算出现 error自己定义的也会走保存
+        //除非一种情况就是  这个url的任务已经运行的时候 那么 设置上面的tag也是没事  数据库也不会保存
         executorService.execute(new Runnable() {
             long totalLength = 0;
             int threadCount = CONTAIN_THREAD_COUNT;
@@ -136,7 +131,11 @@ public class DownLoader {
                         //TODO 如果是 非断点的那种呢 没做
                         //有了就直接下被
                         downloadInfo = task;
-                        //没有 在就改成下载中
+                        if(downloadInfo.getThreadInfo().size()==0){
+                            dbhelper.deleteTaskOnly(downloadInfo);
+                            //没有下载过 就直接下载好了
+                            firstTask2InitInfo(saveOutFile);
+                        }
                     } else
                         //没有下载过 就直接下载好了
                         firstTask2InitInfo(saveOutFile);
@@ -145,6 +144,7 @@ public class DownLoader {
                     uiHelper = new UIhelper(ourInstance, downloadListener, downloadInfo);
                     taskUIhelperMap.put(urlString, uiHelper);
                     //开启线程 跑任务
+
                     uiHelper.onStart();
                     for (ThreadInfo threadInfo : downloadInfo.getThreadInfo())
                         executorService.execute(new DownLoadTask(saveOutFile, threadInfo, uiHelper, ourInstance, dbhelper));
@@ -232,20 +232,23 @@ public class DownLoader {
     }
 
 
+    // 暂停的时候直接保存数据  更新进度 不再循环中更新了
     public boolean stopTask(String urlString) {
         if (taskStatuMap.get(urlString) == null) {
             writeLog("任务未开始");
         } else {
             if (taskStatuMap.get(urlString) == DownloadInfo.DOWNLOADING) {
                 //下载中 并且状态是可以暂停的时候才能暂停
-                if(makesureRunningTaskMap.get(urlString)!=null&&makesureRunningTaskMap.get(urlString)){
                     //真正跑起来才可以  停止
-                    taskStatuMap.put(urlString, DownloadInfo.PAUSE);
+                    taskStatuMap.put(urlString, DownloadInfo.PAUSE);//只是为了让流停止 节省流浪
+                    if(taskUIhelperMap.get(urlString)!=null)
+                        taskUIhelperMap.get(urlString).onPause(dbhelper);//这个则是保存数据 和前台显示的一样 但是和内容真正的不一样但是不影响
                     writeLog("停止任务 url：" + urlString);
                     return true;
-                }
             } else if (taskStatuMap.get(urlString) == DownloadInfo.PAUSE) {
                 writeLog("任务已经暂停");
+            } else  if (taskStatuMap.get(urlString) == DownloadInfo.DELETE) {
+                writeLog("任务已经删除");
             } else {
                 writeLog("任务已经完成");
             }
@@ -272,11 +275,10 @@ public class DownLoader {
                     File saveOutFile = new File(downloadInfo.getTargetFolder(), getTempFileName(downloadInfo.getTargetName()));
                     if (saveOutFile != null && saveOutFile.exists())
                         saveOutFile.delete();
-                    dbhelper.deleteTask(downloadInfo);
+                    dbhelper.deleteTaskOnly(downloadInfo);
                 }
                 if (taskUIhelperMap.get(urlString) != null)
                     taskUIhelperMap.get(urlString).onDelete();
-                //先清内存
                 clearUrlMemory(urlString);
             }
         });
@@ -292,15 +294,10 @@ public class DownLoader {
             int result = taskRunning.get(urlString) - 1;
             if(result==0){
                 taskRunning.remove(urlString);
-                makesureRunningTaskMap.remove(urlString);
             }else{
                 taskRunning.put(urlString,result);
             }
         }
-
-    }
-    protected synchronized  void makesureRunningTask(String urlString){
-        makesureRunningTaskMap.put(urlString, true);
 
     }
 

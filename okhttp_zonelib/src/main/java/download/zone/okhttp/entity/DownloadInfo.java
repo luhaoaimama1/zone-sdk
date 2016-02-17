@@ -35,7 +35,7 @@ public class DownloadInfo extends  BaseEntity{
     public static final int DOWNLOADING = 1;//下载中
     public static final int PAUSE = 2;//暂停
     public static final int COMPLETE = 3;//完成
-    public static final int DELETE = 4;//完成
+    public static final int DELETE = 4;//删除
     @Column("url")
     private String url;//文件URL
     @Column( "targetName")

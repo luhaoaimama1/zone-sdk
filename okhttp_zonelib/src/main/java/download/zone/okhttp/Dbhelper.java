@@ -90,10 +90,12 @@ public class Dbhelper {
             public void run() {
                 ourInstance.clearUrlMemory(downloadInfo.getUrl());
                 liteOrm.delete(DownloadInfo.class, new WhereBuilder().where("url = ?", new String[]{downloadInfo.getUrl()}));
-//                saveStateMap.remove(downloadInfo.getUrl());//移除信息
             }
         });
-
+    }
+    //完成的时候删除信息
+    public void deleteTaskOnly(final DownloadInfo downloadInfo){
+          liteOrm.delete(DownloadInfo.class, new WhereBuilder().where("url = ?", new String[]{downloadInfo.getUrl()}));
     }
 
     public Context getContext() {

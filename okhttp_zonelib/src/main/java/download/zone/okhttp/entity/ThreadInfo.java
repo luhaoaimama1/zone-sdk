@@ -22,6 +22,7 @@ public class ThreadInfo extends BaseEntity {
     @Column("complete")
     private boolean complete;
 
+
     public synchronized boolean isComplete() {
         return complete;
     }

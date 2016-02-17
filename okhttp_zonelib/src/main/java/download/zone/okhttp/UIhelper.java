@@ -34,6 +34,8 @@ public class UIhelper {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
+                ourInstance.stopTask(downloadInfo.getUrl());//遇到错误就暂停
+                //发生错误就暂停把
                 if (downloadListener!=null)
                     downloadListener.onError(response);
             }
@@ -59,18 +61,18 @@ public class UIhelper {
         });
     }
 
-    public  void onProgress(ThreadInfo threadInfo) {
+    public  void onProgress() {
         synchronized (UIhelper.class) {
             if (onProgressRunnable==null)
-                onProgressRunnable=new OnProgressRunnable(threadInfo);
+                onProgressRunnable=new OnProgressRunnable();
         }
         mHandler.post(onProgressRunnable);
     }
 
-    public void onPause(ThreadInfo threadInfo, Dbhelper dbhelper) {
+    public void onPause( Dbhelper dbhelper) {
         synchronized (UIhelper.class) {
             if (onPauseRunnable==null)
-                onPauseRunnable=new OnPauseRunnable(threadInfo, dbhelper);
+                onPauseRunnable=new OnPauseRunnable(dbhelper);
         }
         mHandler.post(onPauseRunnable);
     }
@@ -78,12 +80,10 @@ public class UIhelper {
 
 
     public class OnProgressRunnable implements Runnable {
-//        private ThreadInfo threadInfo;
         private long lastDownLoadTotalLength;
         private long lastRefreshUiTime;
         //暂停的时候保存信息 然后的都不走了
-        public OnProgressRunnable(ThreadInfo threadInfo) {
-//            this.threadInfo = threadInfo;
+        public OnProgressRunnable() {
             lastDownLoadTotalLength = 0;
             lastRefreshUiTime = System.currentTimeMillis();
         }
@@ -91,7 +91,6 @@ public class UIhelper {
         @Override
         public void run() {
                 Map<String, Integer> statuMap = ourInstance.getTaskStatuMap();
-//                DownloadInfo downloadInfo = threadInfo.getDownloadInfo();
                 if (statuMap.get(downloadInfo.getUrl()) == DownloadInfo.DOWNLOADING) {
                     //这里计算进度 ，下载长度
                     long downLoadTotalLength = 0;
@@ -124,18 +123,15 @@ public class UIhelper {
     //暂停 一个任务几个线程就可能走几次 但是 db只会存最后一次
     public class OnPauseRunnable implements Runnable {
         private Dbhelper dbhelper;
-//        private ThreadInfo threadInfo;
 
         //暂停的时候保存信息 然后的都不走了
-        public OnPauseRunnable(ThreadInfo threadInfo, Dbhelper dbhelper) {
-//            this.threadInfo = threadInfo;
+        public OnPauseRunnable( Dbhelper dbhelper) {
             this.dbhelper = dbhelper;
         }
 
         @Override
         public void run() {
             synchronized (UIhelper.this) {
-//                DownloadInfo downloadInfo = threadInfo.getDownloadInfo();
                 //这里计算进度 ，下载长度
                 long downLoadTotalLength = 0;
                 for (ThreadInfo info : downloadInfo.getThreadInfo()) {
@@ -161,15 +157,13 @@ public class UIhelper {
 
     /**
      * pause的时候也会走此方法
-     * @param threadInfo
      * @param dbhelper
      * @param saveOutFile
      */
-    public void onFinish(final ThreadInfo threadInfo, final Dbhelper dbhelper, final File saveOutFile) {
+    public void onFinish(final Dbhelper dbhelper, final File saveOutFile) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-//                DownloadInfo downloadInfo = threadInfo.getDownloadInfo();
                 for (ThreadInfo info : downloadInfo.getThreadInfo()) {
                     if (!info.isComplete())
                         return;
@@ -188,9 +182,5 @@ public class UIhelper {
 
     public static Map<String, Float> getTaskPauseProgressMap() {
         return taskPauseProgressMap;
-    }
-
-    public static void setTaskPauseProgressMap(Map<String, Float> taskPauseProgressMap) {
-        UIhelper.taskPauseProgressMap = taskPauseProgressMap;
     }
 }
