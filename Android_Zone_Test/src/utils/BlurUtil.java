@@ -14,6 +14,7 @@ import android.util.Log;
  * 챘깼젝뇹잿잚
  */
 public class BlurUtil {
+	// yezhidong pull request test
 	@SuppressLint("NewApi")
 	public static Bitmap fastblur(Context context, Bitmap sentBitmap, int radius) {
 		if (VERSION.SDK_INT > 16) // 털뙤SDK돨경굶，옵鹿뫘뻣
