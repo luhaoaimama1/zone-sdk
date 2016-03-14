@@ -131,6 +131,8 @@ public class ViewPagerCircle extends ViewPagerCompat {
 	public void openTimeCircle(long delayMillis) {
 		if (-1!=delayMillis)
 			this.delayMillis = delayMillis;
+		if(adapter.getSize()==1)
+			return;
 		isTimeDelay=true;
 		againTiming();
 	}

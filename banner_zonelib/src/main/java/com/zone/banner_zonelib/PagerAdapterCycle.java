@@ -17,7 +17,10 @@ public abstract class PagerAdapterCycle<T> extends PagerAdapter {
     public PagerAdapterCycle(Context context,List<T> data,boolean isCircle) {
         this.data = data;
         this.context=context;
-        this.isCircle=isCircle;
+        if(data.size()==1)
+            this.isCircle=false;
+        else
+            this.isCircle=isCircle;
     }
 
     /**
