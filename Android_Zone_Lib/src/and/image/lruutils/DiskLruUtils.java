@@ -20,19 +20,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class DiskLruUtils {
+	private static final String DirName = "bitmap";
+	private static final long CacheMax=10 * 1024 * 1024;
+	private static final String TAG="DiskLruUtils";
+	private static final String encoded="utf-8";
 	private static DiskLruUtils diskLru = new DiskLruUtils();
 	private static DiskLruCache mDiskLruCache = null;
-
 	/**
 	 * 因为一个应用应该就用一个而不是多个 所以我就final了 想改自己改就ok了
 	 */
-	private static final String DirName = "bitmap";
-	private static final long CacheMax=10 * 1024 * 1024;
-	
-	private static final String TAG="DiskLruUtils";
 	private static boolean writeLog=true;
 	private static Logger_Zone logger;
-	private static final String encoded="utf-8";
 	static{
 		logger= new  Logger_Zone(Adapter_MultiLayout_Zone.class,Constant.Logger_Config);
 		logger.closeLog();
@@ -103,7 +101,7 @@ public class DiskLruUtils {
 	 * 
 	 * @param url
 	 */
-	public void addUrl_String(String url,String gsonStr) {
+	public void addUrl_String(String url,String contentStr) {
 		// if (downloadUrlToStream(imageUrl, outputStream)) {
 		// editor.commit();
 		// } else {
@@ -113,7 +111,7 @@ public class DiskLruUtils {
 		try {
 			DiskLruCache.Editor editor = mDiskLruCache.edit(key);
 			OutputStream outputStream = editor.newOutputStream(0);  
-			if(readToOutStream(gsonStr, outputStream)){
+			if(readToOutStream(contentStr, outputStream)){
 				editor.commit();
 				logger.log("addUrl:"+url);
 			}else {  
@@ -153,17 +151,17 @@ public class DiskLruUtils {
 	
 	public String getStringByUrl(String url) {
 		String key = MD5Utils.hashKeyForDisk(url);
-		String gsonStr = "";
+		String contentStr = "";
 		try {
 			DiskLruCache.Snapshot snapShot = mDiskLruCache.get(key);
 			if(snapShot != null){
-				gsonStr=IOUtils.read(snapShot.getInputStream(0), encoded);
+				contentStr =IOUtils.read(snapShot.getInputStream(0), encoded);
 				logger.log("getBitmapByUrl:"+url);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return gsonStr;
+		return contentStr;
 	}
 
 	/**

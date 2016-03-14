@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -48,6 +49,8 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
     }
 
     public void setViewPager(ViewPagerCompat mViewPager) {
+        if(mViewPager.getAdapter()==null)
+            throw new IllegalStateException("must be use setAdapter!");
         if (mViewPager.getAdapter() instanceof PagerAdapterCycle) {
             indeciatorCount = ((PagerAdapterCycle) mViewPager.getAdapter()).getSize();
         } else {
@@ -55,6 +58,10 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
         }
         mViewPager.setOnPageChangeListener(this);
         this.mViewPager = mViewPager;
+        if(indeciatorCount==1)
+            setVisibility(View.INVISIBLE);
+        else
+            setVisibility(View.VISIBLE);
         removeAllViews();
         initView();
     }

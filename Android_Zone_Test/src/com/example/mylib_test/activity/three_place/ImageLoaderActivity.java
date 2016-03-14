@@ -1,9 +1,6 @@
 package com.example.mylib_test.activity.three_place;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.R.drawable;
-import com.example.mylib_test.R.id;
-import com.example.mylib_test.R.layout;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
@@ -17,7 +14,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,14 +23,15 @@ import android.widget.ListView;
 
 public class ImageLoaderActivity extends Activity{
 	private ListView lv;
-	private String[] imageThumbUrls;
+	private String[] imageThumbUrls=new String[]{};
 	private DisplayImageOptions options;
 	private DiskLruUtils diskLru;
 	protected void onCreate(android.os.Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.imageloader);
 		lv=(ListView) findViewById(R.id.listView);
-		imageThumbUrls=Images.imageThumbUrls;
+//		imageThumbUrls=Images.imageThumbUrls;
+		lv.addFooterView(LayoutInflater.from(this).inflate(R.layout.footer,null));
 		lv.setAdapter(new ImageBaseAdapter());
 		// 使用DisplayImageOptions.Builder()创建DisplayImageOptions
 		
