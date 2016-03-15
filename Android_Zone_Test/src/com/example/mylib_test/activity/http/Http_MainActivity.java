@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example.mylib_test.R;
+import com.example.mylib_test.app.Constant;
 import com.example.mylib_test.handler.HandlerTest;
 import com.zone.okhttp.OkHttpUtils;
 import com.zone.okhttp.callback.OkHttpSimpleListener;
@@ -43,7 +44,7 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 public class Http_MainActivity extends Activity implements OnClickListener {
-    final String UrlPath = "http://182.254.243.254:8080/Test/log";
+    final String UrlPath = Constant.ADDRESS;
     Map<String, Object> map = new HashMap<String, Object>();
     Map<String, String> params = new HashMap<String, String>();
     @Bind(R.id.tv_okHttp)
@@ -196,7 +197,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 File f2 = new File(FileUtils_SD.getFile("DCIM", "Camera"), "20150621_121327.jpg");
                 map.put("String_uid", "love");
                 OkHttpUtils.post(UrlPath, new RequestParams().put("String_uid", "love")
-                        .put("mFile", "bug.png", f).put("subject", "1327.jpg", f2), true).tag(this).executeAsy(okListener);
+                        .put("mFile", f).put("subject", "1327.jpg", f2), true).tag(this).executeAsy(okListener);
                 break;
             default:
                 break;

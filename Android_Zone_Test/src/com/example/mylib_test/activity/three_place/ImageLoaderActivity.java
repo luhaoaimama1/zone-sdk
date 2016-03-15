@@ -31,7 +31,7 @@ public class ImageLoaderActivity extends Activity{
 		setContentView(R.layout.imageloader);
 		lv=(ListView) findViewById(R.id.listView);
 //		imageThumbUrls=Images.imageThumbUrls;
-		lv.addFooterView(LayoutInflater.from(this).inflate(R.layout.footer,null));
+//		lv.addFooterView(LayoutInflater.from(this).inflate(R.layout.footer,null));
 		lv.setAdapter(new ImageBaseAdapter());
 		// 使用DisplayImageOptions.Builder()创建DisplayImageOptions
 		

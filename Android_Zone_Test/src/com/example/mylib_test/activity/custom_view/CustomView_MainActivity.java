@@ -55,7 +55,7 @@ public class CustomView_MainActivity  extends Activity implements OnClickListene
 			startActivity(new Intent(this,ImageGroupRecyclerTestActvitity.class));
 			break;
 		case R.id.imageDecoration:
-			startActivity(new Intent(this,ImageDecorationActivity.class));
+//			startActivity(new Intent(this,ImageDecorationActivity.class));
 			break;
 
 		default:
