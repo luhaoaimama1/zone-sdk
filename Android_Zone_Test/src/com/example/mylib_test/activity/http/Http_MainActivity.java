@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,20 +20,10 @@ import com.zone.okhttp.OkHttpUtils;
 import com.zone.okhttp.callback.OkHttpSimpleListener;
 import com.zone.okhttp.entity.LoadingParams;
 import com.zone.okhttp.entity.RequestParams;
-
-import org.apache.http.HttpResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import and.http.MyConn_Utils;
-import and.http.MyConn_Utils.CallBack;
-import and.http.MyConn_Utils.FileUpLoad_CallBack;
-import and.http.client.MyHttpFilePostThread;
-import and.http.client.MyHttpGetThread;
-import and.http.client.MyHttpPostThread;
-import and.http.downfile.DownLoader;
-import and.http.downfile.DownLoader.ProgressListener;
 import and.sd.FileUtils_SD;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -59,6 +48,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         ButterKnife.bind(this);
         //这段　只是学习下handler～　
         new Thread() {
+            @Override
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
             public void run() {
                 Looper.prepare();
@@ -83,8 +73,6 @@ public class Http_MainActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
         map.clear();
         params.clear();
-        client(v);
-        conn(v);
         tread(v);
         okHttp(v);
         switch (v.getId()) {
@@ -215,132 +203,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         }
     }
 
-    private void client(View v) {
-        switch (v.getId()) {
-            case R.id.client_get:
-                new MyHttpGetThread(UrlPath + "?un=8&kb=ga", "UTF-8") {
 
-                    @Override
-                    public void onSuccess(HttpResponse response, String responseStr) {
-                        System.out.println(responseStr);
-                    }
-                }.start();
-                break;
-            case R.id.client_post:
-                params.put("userName", "唉");
-                params.put("passWord", "123");
-                new MyHttpPostThread(UrlPath, params, "UTF-8") {
-                    @Override
-                    public void success(HttpResponse response, String responseStr) {
-                        Log.i("MyHttpPostThread", responseStr);
-//					System.out.println("回来的值:" + responseStr);
-                    }
-                }.start();
-                break;
-            case R.id.client_upload:
-                //测试 封装的 文件提交表单
-                File f = new File(FileUtils_SD.getFile(""), "高达 - 00.mp3");
-//			DCIM\Camera
-                File f2 = new File(FileUtils_SD.getFile("DCIM", "Camera"), "20150621_121327.jpg");
-                map.put("String_uid", "love");
-                map.put("File_upload", f);
-                map.put("File_upload2", f2);
-                new MyHttpFilePostThread(UrlPath, map, "utf-8") {
-                    @Override
-                    public void success(HttpResponse response, String responseStr) {
-                        Log.e("result嘎嘎", "response的值:" + responseStr);
-                    }
-                }.start();
-
-            default:
-                break;
-        }
-    }
-
-    private void conn(View v) {
-        switch (v.getId()) {
-            case R.id.con_get:
-                MyConn_Utils.getInstance().executeHttpGet(UrlPath + "?un=8&kb=ga", "utf-8", new CallBack() {
-
-                    @Override
-                    public void onSuccess(String msg) {
-                        System.out.println(msg);
-                    }
-
-                    @Override
-                    public void onFailure(String msg) {
-                        System.err.println(msg);
-                    }
-                });
-                break;
-            case R.id.con_post:
-                params.put("un", "luhaoaimama7");
-                params.put("fr", "index");
-                MyConn_Utils.getInstance().setNotPrintHeaders(true);
-                MyConn_Utils.getInstance().executeHttpPost(UrlPath, params, "utf-8", new CallBack() {
-
-                    @Override
-                    public void onSuccess(String msg) {
-                        System.out.println(msg);
-                    }
-
-                    @Override
-                    public void onFailure(String msg) {
-
-                    }
-                });
-                break;
-            case R.id.con_down:
-//			String urlPath="http://img4.freemerce.com/ci49h5p.jpg";
-                String urlPath = "http://down.360safe.com/360/inst.exe";
-                DownLoader b = DownLoader.INSTANCE;
-                final Button connectionDown = (Button) findViewById(R.id.con_down);
-                b.downLoader(urlPath, FileUtils_SD.getFile(""), 4, new ProgressListener() {
-
-                    @Override
-                    public void onProgressUpdate(int current, int total,
-                                                 float progress) {
-                        connectionDown.setText(progress + "");
-                        System.out.println("current:" + current + "  total:" + total + "  progress:" + progress);
-                    }
-
-                });
-                break;
-            case R.id.con_upload:
-                //测试 封装的 文件提交表单
-                File f = new File(FileUtils_SD.getFile(""), "高达 - 00.mp3");
-//			DCIM\Camera
-                File f2 = new File(FileUtils_SD.getFile("DCIM", "Camera"), "20150621_121327.jpg");
-                map.put("String_uid", "love");
-                map.put("File_upload", f);
-                map.put("File_upload2", f2);
-                MyConn_Utils.getInstance().executeHttpFile(UrlPath, map, "utf-8", new FileUpLoad_CallBack() {
-
-                    @Override
-                    public void onSuccess(String msg) {
-                        System.out.println(msg);
-                    }
-
-                    @Override
-                    public void onStart() {
-
-                    }
-
-                    @Override
-                    public void onLoading(Long total, Long current) {
-                        System.out.println("total:" + total + "/tcurrent" + current + "\t百分比：" + (float) current / total);
-                    }
-
-                    @Override
-                    public void onFailure(String msg) {
-
-                    }
-                });
-
-            default:
-                break;
-        }
-    }
 
     @Override
     protected void onDestroy() {
