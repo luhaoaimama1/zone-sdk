@@ -33,7 +33,6 @@ public class MainMenu {
 		menu.add(new MenuEntity("wifi 3g 监听网络情况测试", Wifi3g_MainActivity.class)) ;
 		menu.add(new MenuEntity("照片和拍摄(图片裁剪等辅助测试)", Photo_Shot_MainActivity.class)) ;
 		menu.add(new MenuEntity("系统控件等的研究", SystemMainActivity.class)) ;
-
 	}
 
 }
