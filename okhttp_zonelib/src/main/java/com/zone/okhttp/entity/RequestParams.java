@@ -1,12 +1,10 @@
 package com.zone.okhttp.entity;
-
 import com.zone.okhttp.OkHttpUtils;
-import com.zone.okhttp.callback.OkHttpListener;
-import com.zone.okhttp.callback.ProgressListener;
 import com.zone.okhttp.wrapper.RequestBuilderProxy;
 import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import zone.Callback;
 
 
 /**
@@ -19,12 +17,10 @@ public class RequestParams {
     private Map<String, String> urlParams;
     private Map<String, File> fileParams;
     private Map<String, String> fileNameParams;
-    private boolean openProgress = false;
     private HttpType mHttpType = HttpType.GET;
-    private ProgressListener mProgressListener;
     private RequestBuilderProxy mRequestBuilder;
 
-    public static enum HttpType {
+    public  enum HttpType {
         GET, POST
     }
 
@@ -48,40 +44,38 @@ public class RequestParams {
         headerParamsReplace.put("charset", OkHttpUtils.getEncoding());
     }
 
+    public RequestParams put(String key, File file) {
+        return  put(key,null,file);
+    }
 
-    public RequestParams put(String key, Object value, File file) {
-        if (file == null || key == null || "".equals(key))
-            return this;
+    public RequestParams put(String key, String value, File file) {
         if (fileParams == null)
             fileParams = new ConcurrentHashMap<>();
         if (fileNameParams == null)
             fileNameParams = new ConcurrentHashMap<>();
         fileParams.put(key, file);
-        fileNameParams.put(key, value == null ? "" : String.valueOf(value));
+        fileNameParams.put(key, value == null ? file.getName() : value);
         return this;
     }
 
-    public RequestParams putHeadsReplace(String key, String value) {
+    public RequestParams put(String key, String value) {
+        urlParams.put(key, value);
+        return this;
+    }
+
+    public RequestParams headsReplace(String key, String value) {
         if (value == null || key == null || "".equals(key))
             return this;
-        urlParams.put(key, String.valueOf(value));
+        headerParamsReplace.put(key, String.valueOf(value));
         return this;
     }
 
-    public RequestParams putHeadsAdd(String key, String value) {
+    public RequestParams headsAdd(String key, String value) {
         if (value == null || key == null || "".equals(key))
             return this;
-        urlParams.put(key, String.valueOf(value));
+        headerParamsAdd.put(key, String.valueOf(value));
         return this;
     }
-
-    public RequestParams put(String key, Object value) {
-        if (value == null || key == null || "".equals(key))
-            return this;
-        urlParams.put(key, String.valueOf(value));
-        return this;
-    }
-
 
     public Map<String, String> getFileNameParams() {
         return fileNameParams;
@@ -131,37 +125,7 @@ public class RequestParams {
         this.mHttpType = mHttpType;
     }
 
-    public boolean isOpenProgress() {
-        return openProgress;
-    }
 
-    public void setOpenProgress(boolean openProgress) {
-        this.openProgress = openProgress;
-    }
-
-    public ProgressListener getmProgressListener() {
-        if(mProgressListener==null&&openProgress)
-            mProgressListener=new ProgressListener() {
-                @Override
-                public void onLoading(LoadingParams mLoadingParams) {
-                        if(mRequestBuilder!=null&&mRequestBuilder.getmOkHttpListener()!=null)
-                            onLoadingMainCall(mRequestBuilder.getmOkHttpListener(),mLoadingParams);
-                }
-            };
-        return mProgressListener;
-    }
-    private void onLoadingMainCall(final OkHttpListener listener, final LoadingParams mLoadingParams){
-//        OkHttpUtils.getmHandler().post(new Runnable() {
-//            @Override
-//            public void run() {
-                    listener.onLoading(mLoadingParams);
-//            }
-//        });
-    }
-
-    public void setmProgressListener(ProgressListener mProgressListener) {
-        this.mProgressListener = mProgressListener;
-    }
 
     public RequestBuilderProxy getmRequestBuilder() {
         return mRequestBuilder;

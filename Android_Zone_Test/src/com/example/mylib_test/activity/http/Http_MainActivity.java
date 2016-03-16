@@ -31,6 +31,7 @@ import download.zone.okhttp.callback.DownloadListener;
 import download.zone.okhttp.entity.DownloadInfo;
 import okhttp3.Call;
 import okhttp3.Response;
+import zone.SimpleProgressCallback;
 
 public class Http_MainActivity extends Activity implements OnClickListener {
     final String UrlPath = Constant.ADDRESS;
@@ -62,9 +63,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 });
                 Looper.loop();
                 Looper.myLooper().quitSafely();
-            }
-
-            ;
+            };
         }.start();
 
     }
@@ -97,26 +96,26 @@ public class Http_MainActivity extends Activity implements OnClickListener {
     }
 
 
-    OkHttpSimpleListener okListener = new OkHttpSimpleListener() {
+    SimpleProgressCallback okListener = new SimpleProgressCallback() {
+
         @Override
-        public void onFailure(Call call, IOException e) {
-            super.onFailure(call, e);
-            System.err.println("IOException"+e.getMessage());
+        public void  onError(Call call, IOException e) {
+            super.onError(call, e);
+            System.err.println("IOException >>"+e.getMessage());
         }
 
         @Override
-        public void onLoading(LoadingParams mLoadingParams) {
-            super.onLoading(mLoadingParams);
-            System.out.println(mLoadingParams.toString());
+        public  void onLoading(long total, long current, long networkSpeed,boolean isDownloading){
+            super.onLoading(total,current,networkSpeed,isDownloading);
+            System.out.println(" progress"+((int)(current * 100 / total))+"  \t networkSpeed:"+networkSpeed+
+                    "  \t total:"+total+" \t current:"+current+" \t isDownloading:"+isDownloading+"");
 //            tvOkHttp.setText("progress:"+mLoadingParams.progress);
         }
 
         @Override
-        public void onResponse(Call call, Response response) throws IOException {
-            super.onResponse(call, response);
-            String htmlStr = response.body().string();
-            System.out.println(htmlStr);
-//            tvOkHttp.setText("onResponse");
+        public void onSuccess(String result, Call call, Response response) {
+            super.onSuccess(result, call, response);
+            System.out.println("onSuccess result>>"+result);
         }
 
         @Override
@@ -132,14 +131,14 @@ public class Http_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_okGet:
                 //创建okHttpClient对象
 //				OkHttpUtils.get(UrlPath + "?un=8&kb=ga").executeAsy(okListener);
-                OkHttpUtils.get("http://www.baidu.com").tag(this).executeAsy(okListener);
+                OkHttpUtils.get("http://www.baidu.com",okListener).tag(this).executeAsy();
                 break;
             case R.id.bt_Https:
-                OkHttpUtils.get("https://kyfw.12306.cn/otn/").tag(this).executeAsy(okListener);
+                OkHttpUtils.get("https://kyfw.12306.cn/otn/",okListener).tag(this).executeAsy();
                 break;
             case R.id.bt_okPost:
                 OkHttpUtils.post(UrlPath, new RequestParams().put("platform", "android")
-                        .put("name", "bug").put("subject", 123)).tag(this).executeAsy(okListener);
+                        .put("name", "bug").put("subject", 123+""),okListener).tag(this).executeAsy();
                 break;
             case R.id.bt_downLoader:
                 download.zone.okhttp.DownLoader.getInstance(this).startTask(urlPath, FileUtils_SD.getFile(""), new DownloadListener() {
@@ -185,7 +184,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 File f2 = new File(FileUtils_SD.getFile("DCIM", "Camera"), "20150621_121327.jpg");
                 map.put("String_uid", "love");
                 OkHttpUtils.post(UrlPath, new RequestParams().put("String_uid", "love")
-                        .put("mFile", f).put("subject", "1327.jpg", f2), true).tag(this).executeAsy(okListener);
+                        .put("mFile", f).put("subject", "1327.jpg", f2),okListener).tag(this).executeAsy();
                 break;
             default:
                 break;

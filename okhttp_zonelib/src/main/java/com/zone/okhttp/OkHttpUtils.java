@@ -21,6 +21,7 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okio.Buffer;
+import zone.Callback;
 
 /**
  * TODO json cook 下载   错误400-599问题应该如何返回？  正确返回是否应该返回response?
@@ -35,26 +36,32 @@ public class OkHttpUtils {
     private static Map<String, String> commonParamsMap = new HashMap<String, String>();
     private static Map<String, String> commonHeaderMap = new HashMap<String, String>();
 
-
-    public static RequestBuilderProxy get(String urlString, RequestParams requestParams) {
-        requestParams.setmHttpType(RequestParams.HttpType.GET);
-        return requestCon(urlString, requestParams);
+    public static RequestBuilderProxy get(String urlString) {
+        return get(urlString, null, null);
+    }
+    public static RequestBuilderProxy get(String urlString,zone.Callback.CommonCallback listener) {
+        return get(urlString, null,listener);
     }
 
-    public static RequestBuilderProxy get(String urlString) {
-        RequestParams requestParams = new RequestParams();
+    public static RequestBuilderProxy get(String urlString, RequestParams requestParams) {
+        return get(urlString, requestParams,null);
+    }
+
+    public static RequestBuilderProxy get(String urlString, RequestParams requestParams,zone.Callback.CommonCallback listener) {
+        if(requestParams==null)
+            requestParams=new RequestParams();
         requestParams.setmHttpType(RequestParams.HttpType.GET);
-        return requestCon(urlString, requestParams);
+        return requestCon(urlString, requestParams,listener);
     }
 
     public static RequestBuilderProxy post(String urlString, RequestParams requestParams) {
-        return post(urlString, requestParams, false);
+        return post(urlString, requestParams,null);
     }
-
-    public static RequestBuilderProxy post(String urlString, RequestParams requestParams, boolean openProgress) {
+    public static RequestBuilderProxy post(String urlString, RequestParams requestParams,zone.Callback.CommonCallback listener) {
+        if(requestParams==null)
+            requestParams=new RequestParams();
         requestParams.setmHttpType(RequestParams.HttpType.POST);
-        requestParams.setOpenProgress(openProgress);
-        return requestCon(urlString, requestParams);
+        return requestCon(urlString, requestParams,listener);
     }
 
     //TODO  RequestParams 这个东西应该拿到 RequestBuilderProxy这里 这样就可以直接用而不用new了
@@ -87,17 +94,17 @@ public class OkHttpUtils {
         return request;
     }
 
-    private static RequestBuilderProxy requestCon(String urlString, RequestParams requestParams) {
+    private static RequestBuilderProxy requestCon(String urlString, RequestParams requestParams,zone.Callback.CommonCallback listener) {
         RequestBuilderProxy request = new RequestBuilderProxy();
+        request.setmOkHttpListener(listener);
         request.setRequestParams(requestParams);
         initHeader(request, requestParams);
-
         switch (requestParams.getmHttpType()) {
             case GET:
                 request.url(getUrlCon(urlString, requestParams));
                 break;
             case POST:
-                RequestBody requestBody = createRequestBody(requestParams);
+                RequestBody requestBody = createRequestBody(requestParams,listener);
                 request.url(urlString).post(requestBody);
                 break;
             default:
@@ -107,7 +114,7 @@ public class OkHttpUtils {
 
     }
 
-    private static RequestBody createRequestBody(RequestParams requestParams) {
+    private static RequestBody createRequestBody(RequestParams requestParams,zone.Callback.CommonCallback listener) {
         RequestBody formBody = null;
         if (requestParams.getFileParams() == null && requestParams.getFileNameParams() == null) {
             //无文件 post
@@ -127,8 +134,11 @@ public class OkHttpUtils {
             }
 
             //requestParams.getmProgressListener()  这个方法已经经过处理了 判断是否开了
-            formBody = new ProgressRequestBody(form.build(), requestParams.getmProgressListener());
 
+            if ( Callback.ProgressCallback.class.isAssignableFrom(listener.getClass()))
+                formBody = new ProgressRequestBody(form.build(),(Callback.ProgressCallback)listener);
+            else
+                formBody = new ProgressRequestBody(form.build(),null);
         }
         return formBody;
     }
@@ -155,7 +165,6 @@ public class OkHttpUtils {
             if (tag.equals(call.request().tag()))
                 call.cancel();
         }
-        System.out.println("走了");
     }
 
 
