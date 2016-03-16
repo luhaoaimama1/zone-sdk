@@ -105,7 +105,7 @@ public class Compress_Sample_Utils {
 	 * @return  返回 原图到目标宽高 等比缩放后的 采样位图
 	 */
 	public static Bitmap getSampleBitmap(String filePath,Integer targetWidth, Integer targetHeight) {
-		return getSampleBitmap(filePath, targetWidth, targetHeight,Bitmap.Config.ARGB_8888);
+		return getSampleBitmap(filePath, targetWidth, targetHeight, Bitmap.Config.ARGB_8888);
 	}
 	public static Bitmap getRawBitmap(String filePath){
 		return BitmapFactory.decodeFile(filePath);
@@ -121,7 +121,7 @@ public class Compress_Sample_Utils {
 	public static Bitmap compressBitmap(Bitmap bt,int targetSize,int qualityMin) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		bt.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
-		logger.log("压缩的时候_开始_大小："+baos.toByteArray().length / 1024*4+"kb");
+		logger.log("压缩的时候_开始_大小：" + baos.toByteArray().length / 1024 * 4 + "kb");
 		int options = 100;
 		int step = 10;
 		while (baos.toByteArray().length / 1024 * 4 > targetSize) {
@@ -138,7 +138,7 @@ public class Compress_Sample_Utils {
 				break;
 			}
 		}
-		logger.log("压缩的时候_完成后_大小："+baos.toByteArray().length / 1024*4+"kb");
+		logger.log("压缩的时候_完成后_大小：" + baos.toByteArray().length / 1024 * 4 + "kb");
 		ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());// 把压缩后的数据baos存放到ByteArrayInputStream中
 		Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
 		return bitmap;
