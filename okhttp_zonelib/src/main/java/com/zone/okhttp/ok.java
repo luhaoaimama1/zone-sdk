@@ -18,8 +18,12 @@ import okhttp3.RequestBody;
 import com.zone.okhttp.callback.Callback;
 
 /**
- * TODO json cook 下载   错误400-599问题应该如何返回？  正确返回是否应该返回response?
- * TODO  返回值是否应该为主线程呢？
+ * TODO ing的: 全局未测试  https未测试
+ *
+ * TODO 不着急的: 1.,PUT,DELETE,HEAD,PATCH谓词 2. cook session的保持  3.  错误400-599问题应该如何返回？
+ *
+ * TODO 疑惑的: 1.缓存我打算在那个框架里弄  如果换框架 不至于换缓存学习方法  2. 返回的不用解析  我在那个框架里面弄了
+ * TODO 疑惑的: 3.Activity和Fragment生命周期结束后终止请求  在框架里弄不是这里
  * 继续参考那两个OKhttp  GitHub
  * Created by Zone on 2016/2/10.
  */
