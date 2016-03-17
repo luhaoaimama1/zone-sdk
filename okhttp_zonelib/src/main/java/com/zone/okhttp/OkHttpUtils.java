@@ -1,6 +1,7 @@
 package com.zone.okhttp;
 import android.os.Handler;
 import android.os.Looper;
+import com.zone.okhttp.entity.HttpType;
 import com.zone.okhttp.entity.RequestParams;
 import com.zone.okhttp.https.ClientHttpsWrapper;
 import com.zone.okhttp.utils.MediaTypeUtils;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -31,6 +34,11 @@ import zone.Callback;
  */
 public class OkHttpUtils {
     private static OkHttpClient client = new OkHttpClient();
+//    static {
+//        client.ConnectTimeout(10, TimeUnit.SECONDS);
+//        client.setWriteTimeout(10, TimeUnit.SECONDS);
+//        client.setReadTimeout(30, TimeUnit.SECONDS);
+//    }
     private static String encoding = "utf-8";
     private static Handler mHandler = new Handler(Looper.getMainLooper());
     private static Map<String, String> commonParamsMap = new HashMap<String, String>();
@@ -50,7 +58,7 @@ public class OkHttpUtils {
     public static RequestBuilderProxy get(String urlString, RequestParams requestParams,zone.Callback.CommonCallback listener) {
         if(requestParams==null)
             requestParams=new RequestParams();
-        requestParams.setmHttpType(RequestParams.HttpType.GET);
+        requestParams.setmHttpType(HttpType.GET);
         return requestCon(urlString, requestParams,listener);
     }
 
@@ -60,45 +68,39 @@ public class OkHttpUtils {
     public static RequestBuilderProxy post(String urlString, RequestParams requestParams,zone.Callback.CommonCallback listener) {
         if(requestParams==null)
             requestParams=new RequestParams();
-        requestParams.setmHttpType(RequestParams.HttpType.POST);
+        requestParams.setmHttpType(HttpType.POST);
         return requestCon(urlString, requestParams,listener);
     }
 
-    //TODO  RequestParams 这个东西应该拿到 RequestBuilderProxy这里 这样就可以直接用而不用new了
     public static RequestBuilderProxy postString(String urlString,String json) {
         return postString(urlString,json,encoding);
     }
     public static RequestBuilderProxy postString(String urlString,String json, String encode) {
-        Charset charset = Charset.forName(encode);
-        if (charset!=null) {
-            RequestBuilderProxy request = new RequestBuilderProxy();
-            RequestParams requestParams=new RequestParams();
-            requestParams.setmHttpType(RequestParams.HttpType.POST);
-            request=initHeader(request, requestParams);
+        RequestBuilderProxy request = new RequestBuilderProxy();
+        RequestParams requestParams=new RequestParams();
+        requestParams.setmHttpType(HttpType.POST);
+        request= initCommonHeader(request, requestParams);
 
-            MediaType MEDIA_TYPE_PLAIN = MediaType.parse("text/plain;charset="+encode);
-            request.url(urlString).post(RequestBody.create(MEDIA_TYPE_PLAIN,json));
-            return request;
-        }else
-            return null;
+        MediaType MEDIA_TYPE_PLAIN = MediaType.parse("text/plain;charset="+encode);
+        request.url(urlString).post(RequestBody.create(MEDIA_TYPE_PLAIN,json));
+        return request;
     }
     //初始化 头部
-    private static RequestBuilderProxy initHeader(RequestBuilderProxy request, RequestParams requestParams) {
+    private static RequestBuilderProxy initCommonHeader(RequestBuilderProxy request, RequestParams requestParams) {
 
-        if (requestParams.getHeaderParamsAdd() != null)
-            for (Map.Entry<String, String> entry : requestParams.getHeaderParamsAdd().entrySet())
+        if (requestParams.getHeaderAddMap() != null)
+            for (Map.Entry<String, String> entry : requestParams.getHeaderAddMap().entrySet())
                 request.addHeader(entry.getKey(), entry.getValue());
-        if (requestParams.getHeaderParamsReplace() != null)
-            for (Map.Entry<String, String> entry : requestParams.getHeaderParamsReplace().entrySet())
+        if (requestParams.getHeaderReplaceMap() != null)
+            for (Map.Entry<String, String> entry : requestParams.getHeaderReplaceMap().entrySet())
                 request.header(entry.getKey(), entry.getValue());
         return request;
     }
 
-    private static RequestBuilderProxy requestCon(String urlString, RequestParams requestParams,zone.Callback.CommonCallback listener) {
+    private static RequestBuilderProxy requestCon(String urlString, RequestParams requestParams, zone.Callback.CommonCallback listener) {
         RequestBuilderProxy request = new RequestBuilderProxy();
         request.setmOkHttpListener(listener);
-        request.setRequestParams(requestParams);
-        initHeader(request, requestParams);
+        initCommonHeader(request, requestParams);
         switch (requestParams.getmHttpType()) {
             case GET:
                 request.url(getUrlCon(urlString, requestParams));
@@ -116,20 +118,20 @@ public class OkHttpUtils {
 
     private static RequestBody createRequestBody(RequestParams requestParams,zone.Callback.CommonCallback listener) {
         RequestBody formBody = null;
-        if (requestParams.getFileParams() == null && requestParams.getFileNameParams() == null) {
+        if (requestParams.getFileMap() == null && requestParams.getFileNameMap() == null) {
             //无文件 post
             FormBody.Builder form = new FormBody.Builder();
-            for (Map.Entry<String, String> item : requestParams.getUrlParams().entrySet())
+            for (Map.Entry<String, String> item : requestParams.getParamsMap().entrySet())
                 form.add(item.getKey(), item.getValue());
             formBody = form.build();
         } else {
             //有文件 post
             MultipartBody.Builder form = new MultipartBody.Builder();
             form.setType(MultipartBody.FORM);
-            for (Map.Entry<String, String> item : requestParams.getUrlParams().entrySet())
+            for (Map.Entry<String, String> item : requestParams.getParamsMap().entrySet())
                 form.addFormDataPart(item.getKey(), item.getValue());
-            for (Map.Entry<String, File> item : requestParams.getFileParams().entrySet()) {
-                form.addFormDataPart(item.getKey(), requestParams.getFileNameParams().get(item.getKey()),
+            for (Map.Entry<String, File> item : requestParams.getFileMap().entrySet()) {
+                form.addFormDataPart(item.getKey(), requestParams.getFileNameMap().get(item.getKey()),
                         RequestBody.create(MediaType.parse(MediaTypeUtils.getFileType(item.getValue())), item.getValue()));
             }
 
@@ -145,9 +147,9 @@ public class OkHttpUtils {
 
 
     private static String getUrlCon(String urlString, RequestParams requestParams) {
-        if (requestParams.getUrlParams() != null) {
+        if (requestParams.getParamsMap() != null) {
             String get = "";
-            for (Map.Entry<String, String> entry : requestParams.getUrlParams().entrySet()) {
+            for (Map.Entry<String, String> entry : requestParams.getParamsMap().entrySet()) {
                 get += entry.getKey() + "=" + entry.getValue() + "&";
             }
             urlString += "?" + get;
@@ -189,7 +191,7 @@ public class OkHttpUtils {
         if (certificates.length != 0) {
             checkCertificateList_Init();
             for (String certificate : certificates) {
-                if (!StringUtils.isEmpty(certificate))
+                if (!StringUtils.isEmptyTrim(certificate))
                     mCertificateList.add(new Buffer().writeUtf8(certificate).inputStream());
             }
         }

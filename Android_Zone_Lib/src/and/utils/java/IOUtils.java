@@ -1,9 +1,12 @@
 package and.utils.java;
 
+import android.database.Cursor;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +16,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+
+import and.utils.xutils.LogUtil;
+
 /**
  * @version 2015.7.15
  * @author Zone
@@ -33,6 +39,26 @@ public class IOUtils {
 			Runtime.getRuntime().exec("cmd /c start "+folderPath);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	// -----------------------------------------------------------closeQuietly------------------------------------
+	public static void closeQuietly(Closeable closeable) {
+		if (closeable != null) {
+			try {
+				closeable.close();
+			} catch (Throwable ignored) {
+				LogUtil.d(ignored.getMessage(), ignored);
+			}
+		}
+	}
+
+	public static void closeQuietly(Cursor cursor) {
+		if (cursor != null) {
+			try {
+				cursor.close();
+			} catch (Throwable ignored) {
+				LogUtil.d(ignored.getMessage(), ignored);
+			}
 		}
 	}
 	// -----------------------------------------------------------InputStream---------------------------------------------------------------

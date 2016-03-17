@@ -1,10 +1,11 @@
 package com.zone.okhttp.entity;
 import com.zone.okhttp.OkHttpUtils;
-import com.zone.okhttp.wrapper.RequestBuilderProxy;
+import com.zone.okhttp.utils.StringUtils;
+
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import zone.Callback;
 
 
 /**
@@ -12,17 +13,13 @@ import zone.Callback;
  * Created by Zone on 2016/2/10.
  */
 public class RequestParams {
-    private Map<String, String> headerParamsAdd;
-    private Map<String, String> headerParamsReplace;
-    private Map<String, String> urlParams;
-    private Map<String, File> fileParams;
-    private Map<String, String> fileNameParams;
+    private Map<String, String> headerAddMap;
+    private Map<String, String> headerReplaceMap;
+    private Map<String, String> paramsMap;
+    private Map<String, File> fileMap;
+    private Map<String, String> fileNameMap;
     private HttpType mHttpType = HttpType.GET;
-    private RequestBuilderProxy mRequestBuilder;
-
-    public  enum HttpType {
-        GET, POST
-    }
+    private String encoding ;
 
     public RequestParams() {
         initCommon();
@@ -31,17 +28,20 @@ public class RequestParams {
     //TODO 可以初始化头部
     private void initCommon() {
         //添加公共参数
-        if (urlParams == null)
-            urlParams = new ConcurrentHashMap<>();
-        urlParams.putAll(OkHttpUtils.getCommonParamsMap());
+        if (paramsMap == null)
+            paramsMap = new ConcurrentHashMap<>();
+        paramsMap.putAll(OkHttpUtils.getCommonParamsMap());
         //添加公共header
-        if (headerParamsAdd == null)
-            headerParamsAdd = new ConcurrentHashMap<>();
-        headerParamsAdd.putAll(OkHttpUtils.getCommonHeaderMap());
+        if (headerAddMap == null)
+            headerAddMap = new ConcurrentHashMap<>();
+        headerAddMap.putAll(OkHttpUtils.getCommonHeaderMap());
         //最后放头部
-        if (headerParamsReplace == null)
-            headerParamsReplace = new ConcurrentHashMap<>();
-        headerParamsReplace.put("charset", OkHttpUtils.getEncoding());
+        if (headerReplaceMap == null)
+            headerReplaceMap = new ConcurrentHashMap<>();
+        if(StringUtils.isEmptyTrim(encoding))
+            headerReplaceMap.put("charset", OkHttpUtils.getEncoding());
+        else
+            headerReplaceMap.put("charset", encoding);
     }
 
     public RequestParams put(String key, File file) {
@@ -49,72 +49,63 @@ public class RequestParams {
     }
 
     public RequestParams put(String key, String value, File file) {
-        if (fileParams == null)
-            fileParams = new ConcurrentHashMap<>();
-        if (fileNameParams == null)
-            fileNameParams = new ConcurrentHashMap<>();
-        fileParams.put(key, file);
-        fileNameParams.put(key, value == null ? file.getName() : value);
+        if (fileMap == null)
+            fileMap = new ConcurrentHashMap<>();
+        if (fileNameMap == null)
+            fileNameMap = new ConcurrentHashMap<>();
+        fileMap.put(key, file);
+        fileNameMap.put(key, value == null ? file.getName() : value);
         return this;
     }
 
     public RequestParams put(String key, String value) {
-        urlParams.put(key, value);
+        paramsMap.put(key, value);
         return this;
     }
 
     public RequestParams headsReplace(String key, String value) {
-        if (value == null || key == null || "".equals(key))
-            return this;
-        headerParamsReplace.put(key, String.valueOf(value));
+        headerReplaceMap.put(key, String.valueOf(value));
         return this;
     }
 
     public RequestParams headsAdd(String key, String value) {
-        if (value == null || key == null || "".equals(key))
-            return this;
-        headerParamsAdd.put(key, String.valueOf(value));
+        headerAddMap.put(key, String.valueOf(value));
         return this;
     }
 
-    public Map<String, String> getFileNameParams() {
-        return fileNameParams;
+
+    public Map<String, File> getFileMap() {
+        return fileMap;
     }
 
-    public void setFileNameParams(Map<String, String> fileNameParams) {
-        this.fileNameParams = fileNameParams;
+    public void setFileMap(Map<String, File> fileMap) {
+        this.fileMap.putAll(fileMap);
+        for (Map.Entry<String, File> stringFileEntry : fileMap.entrySet())
+            fileNameMap.put(stringFileEntry.getKey(),stringFileEntry.getValue().getName());
     }
 
-    public Map<String, File> getFileParams() {
-        return fileParams;
+    public Map<String, String> getHeaderAddMap() {
+        return headerAddMap;
     }
 
-    public void setFileParams(Map<String, File> fileParams) {
-        this.fileParams = fileParams;
+    public void setHeaderAddMap(Map<String, String> headerAddMap) {
+        this.headerAddMap.putAll(headerAddMap);
     }
 
-    public Map<String, String> getHeaderParamsAdd() {
-        return headerParamsAdd;
+    public Map<String, String> getHeaderReplaceMap() {
+        return headerReplaceMap;
     }
 
-    public void setHeaderParamsAdd(Map<String, String> headerParamsAdd) {
-        this.headerParamsAdd = headerParamsAdd;
+    public void setHeaderReplaceMap(Map<String, String> headerReplaceMap) {
+        this.headerReplaceMap.putAll(headerReplaceMap);
     }
 
-    public Map<String, String> getHeaderParamsReplace() {
-        return headerParamsReplace;
+    public Map<String, String> getParamsMap() {
+        return paramsMap;
     }
 
-    public void setHeaderParamsReplace(Map<String, String> headerParamsReplace) {
-        this.headerParamsReplace = headerParamsReplace;
-    }
-
-    public Map<String, String> getUrlParams() {
-        return urlParams;
-    }
-
-    public void setUrlParams(Map<String, String> urlParams) {
-        this.urlParams = urlParams;
+    public void setParamsMap(Map<String, String> paramsMap) {
+        this.paramsMap.putAll(paramsMap);
     }
 
     public HttpType getmHttpType() {
@@ -125,13 +116,18 @@ public class RequestParams {
         this.mHttpType = mHttpType;
     }
 
-
-
-    public RequestBuilderProxy getmRequestBuilder() {
-        return mRequestBuilder;
+    public  String getEncoding() {
+        return encoding;
     }
 
-    public void setmRequestBuilder(RequestBuilderProxy mRequestBuilder) {
-        this.mRequestBuilder = mRequestBuilder;
+    public  void setEncoding(String encoding) {
+        Charset charset = Charset.forName(encoding);
+        if (charset!=null) {
+            this.encoding = encoding;
+        }
+    }
+
+    public Map<String, String> getFileNameMap() {
+        return fileNameMap;
     }
 }

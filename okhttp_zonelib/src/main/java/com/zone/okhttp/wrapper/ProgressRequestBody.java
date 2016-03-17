@@ -17,6 +17,7 @@
 package com.zone.okhttp.wrapper;
 import com.zone.okhttp.OkHttpUtils;
 import com.zone.okhttp.entity.LoadingParams;
+import com.zone.okhttp.utils.MainHandlerUtils;
 
 import java.io.IOException;
 
@@ -124,17 +125,12 @@ public class ProgressRequestBody extends RequestBody{
                     mLoadingParams.networkSpeed =  mLoadingParams.current / totalTime;
                     mLoadingParams.progress = (int)( mLoadingParams.current * 100 /  mLoadingParams.total);
                     mLoadingParams.isUploading=mLoadingParams.current != mLoadingParams.total;
-                    OkHttpUtils.getmHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (!upLoadingOver) {
-                                if(mLoadingParams.progress==100&&!mLoadingParams.isUploading)
-                                    upLoadingOver=true;
-                                mProgressCallback.onLoading(mLoadingParams.total,mLoadingParams.current,
-                                        mLoadingParams.networkSpeed, mLoadingParams.isUploading);
-                            }
-                        }
-                    });
+                    if (!upLoadingOver) {
+                        if (mLoadingParams.progress == 100 && !mLoadingParams.isUploading)
+                            upLoadingOver = true;
+                        MainHandlerUtils.onLoading(mProgressCallback, mLoadingParams.total, mLoadingParams.current,
+                                mLoadingParams.networkSpeed, mLoadingParams.isUploading);
+                    }
                 }
             }
         };

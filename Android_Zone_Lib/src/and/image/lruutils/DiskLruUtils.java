@@ -11,7 +11,7 @@ import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
 import and.image.Compress_Sample_Utils;
 import and.image.lruutils.official.DiskLruCache;
 import and.log.Logger_Zone;
-import and.sd.FileUtils_SD;
+import and.sd.FileUtils;
 import and.utils.AppUtils;
 import and.utils.java.IOUtils;
 import and.utils.MD5Utils;
@@ -52,7 +52,7 @@ public class DiskLruUtils {
 			 * 第三个参数指定同一个key可以对应多少个缓存文件，基本都是传1，第四个参数指定最多可以缓存多少字节的数据。
 			 */
 //			File cacheDir = SdSituation.getDiskCacheDir(context, DirName);
-			File cacheDir = FileUtils_SD.getFile("Love",DirName);
+			File cacheDir = FileUtils.getFile("Love", DirName);
 			if (!cacheDir.exists()) {
 				cacheDir.mkdirs();
 			}

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import and.abstractclass.BaseActvity;
 import and.network.core.NetworkEngine;
-import and.sd.FileUtils_SD;
+import and.sd.FileUtils;
 import android.os.Message;
 import android.view.View;
 
@@ -33,8 +33,8 @@ public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
 		enginePost.sendPost(UrlPath, params, POST_TAG,null);
 		
 		
-		File f = new File(FileUtils_SD.getFile(""), "高达 - 00.mp3");
-		File f2 = new File(FileUtils_SD.getFile("DCIM","Camera"), "20150621_121327.jpg");
+		File f = new File(FileUtils.getFile(""), "高达 - 00.mp3");
+		File f2 = new File(FileUtils.getFile("DCIM", "Camera"), "20150621_121327.jpg");
 		fileMap.put("upload", f);
 		fileMap.put("upload2", f2);
 		engineFile=new NetworkEngine(this, handler);

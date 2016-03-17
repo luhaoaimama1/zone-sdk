@@ -1,5 +1,4 @@
 package com.example.mylib_test.activity.http;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -17,18 +16,15 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.app.Constant;
 import com.example.mylib_test.handler.HandlerTest;
 import com.zone.okhttp.OkHttpUtils;
-import com.zone.okhttp.callback.OkHttpSimpleListener;
-import com.zone.okhttp.entity.LoadingParams;
 import com.zone.okhttp.entity.RequestParams;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import and.sd.FileUtils_SD;
+import and.sd.FileUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import download.zone.okhttp.callback.DownloadListener;
-import download.zone.okhttp.entity.DownloadInfo;
 import okhttp3.Call;
 import okhttp3.Response;
 import zone.SimpleProgressCallback;
@@ -130,18 +126,18 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         switch (v.getId()) {
             case R.id.bt_okGet:
                 //创建okHttpClient对象
-//				OkHttpUtils.get(UrlPath + "?un=8&kb=ga").executeAsy(okListener);
-                OkHttpUtils.get("http://www.baidu.com",okListener).tag(this).executeAsy();
+//				OkHttpUtils.get(UrlPath + "?un=8&kb=ga").executeSync(okListener);
+                OkHttpUtils.get("http://www.baidu.com",okListener).tag(this).executeSync();
                 break;
             case R.id.bt_Https:
-                OkHttpUtils.get("https://kyfw.12306.cn/otn/",okListener).tag(this).executeAsy();
+                OkHttpUtils.get("https://kyfw.12306.cn/otn/",okListener).tag(this).executeSync();
                 break;
             case R.id.bt_okPost:
                 OkHttpUtils.post(UrlPath, new RequestParams().put("platform", "android")
-                        .put("name", "bug").put("subject", 123+""),okListener).tag(this).executeAsy();
+                        .put("name", "bug").put("subject", 123+""),okListener).tag(this).executeSync();
                 break;
             case R.id.bt_downLoader:
-                download.zone.okhttp.DownLoader.getInstance(this).startTask(urlPath, FileUtils_SD.getFile(""), new DownloadListener() {
+                download.zone.okhttp.DownLoader.getInstance(this).startTask(urlPath, FileUtils.getFile(""), new DownloadListener() {
 
                     @Override
                     public void onStart() {
@@ -180,11 +176,11 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 download.zone.okhttp.DownLoader.getInstance(this).deleteTask(urlPath);//;urlPath, FileUtils_SD.getFile(""),
                 break;
             case R.id.bt_okUpload:
-                File f = new File(FileUtils_SD.getFile(""), "高达 - 00.mp3");
-                File f2 = new File(FileUtils_SD.getFile("DCIM", "Camera"), "20150621_121327.jpg");
+                File f = new File(FileUtils.getFile(""), "高达 - 00.mp3");
+                File f2 = new File(FileUtils.getFile("DCIM", "Camera"), "20150621_121327.jpg");
                 map.put("String_uid", "love");
                 OkHttpUtils.post(UrlPath, new RequestParams().put("String_uid", "love")
-                        .put("mFile", f).put("subject", "1327.jpg", f2),okListener).tag(this).executeAsy();
+                        .put("mFile", f).put("subject", "1327.jpg", f2),okListener).tag(this).executeSync();
                 break;
             default:
                 break;

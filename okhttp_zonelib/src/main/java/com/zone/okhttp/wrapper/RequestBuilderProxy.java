@@ -1,6 +1,8 @@
 package com.zone.okhttp.wrapper;
 import com.zone.okhttp.OkHttpUtils;
 import com.zone.okhttp.entity.RequestParams;
+import com.zone.okhttp.utils.MainHandlerUtils;
+
 import java.io.IOException;
 import java.net.URL;
 import okhttp3.CacheControl;
@@ -15,9 +17,7 @@ import okhttp3.Response;
  * Created by Zone on 2016/2/10.
  */
 public class RequestBuilderProxy extends Request.Builder {
-    private RequestParams requestParams;
     private zone.Callback.CommonCallback mOkHttpListener;
-
     public RequestBuilderProxy() {
         super();
     }
@@ -143,39 +143,29 @@ public class RequestBuilderProxy extends Request.Builder {
         return temp;
     };
 
-    public Call executeAsy() {
+    public Call executeSync() {
         Call call = OkHttpUtils.getClient().newCall(this.build());
         if(mOkHttpListener!=null)
-            onStartMainCall(mOkHttpListener);
+            MainHandlerUtils.onStart(mOkHttpListener);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                if (mOkHttpListener != null){
-                    onFailureMainCall(mOkHttpListener, call, e);
-                    onFinishedMainCall(mOkHttpListener);
+                if (mOkHttpListener != null) {
+                    MainHandlerUtils.onFailure(mOkHttpListener, call, e);
+                    MainHandlerUtils.onFinished(mOkHttpListener);
                 }
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (mOkHttpListener != null){
-                    onResponseMainCall(mOkHttpListener, call, response, response.body().string());
-                    onFinishedMainCall(mOkHttpListener);
+                if (mOkHttpListener != null) {
+                    MainHandlerUtils.onResponse(mOkHttpListener, call, response, response.body().string());
+                    MainHandlerUtils.onFinished(mOkHttpListener);
                 }
             }
         });
         return call;
     };
-
-
-    public RequestParams getRequestParams() {
-        return requestParams;
-    }
-
-    public void setRequestParams(RequestParams requestParams) {
-        this.requestParams = requestParams;
-        this.requestParams.setmRequestBuilder(this);
-    }
 
 
 
@@ -185,39 +175,5 @@ public class RequestBuilderProxy extends Request.Builder {
 
     public void setmOkHttpListener(zone.Callback.CommonCallback mOkHttpListener) {
         this.mOkHttpListener = mOkHttpListener;
-    }
-
-
-    private void onStartMainCall(zone.Callback.CommonCallback listener){
-        OkHttpUtils.getmHandler().post(new Runnable() {
-            @Override
-            public void run() {
-                 mOkHttpListener.onStart();
-            }
-        });
-    }
-    private void onFailureMainCall(zone.Callback.CommonCallback listener, final Call call, final IOException e){
-        OkHttpUtils.getmHandler().post(new Runnable() {
-            @Override
-            public void run() {
-                mOkHttpListener.onError(call, e);
-            }
-        });
-    }
-    private void onFinishedMainCall(zone.Callback.CommonCallback listener){
-        OkHttpUtils.getmHandler().post(new Runnable() {
-            @Override
-            public void run() {
-                mOkHttpListener.onFinished();
-            }
-        });
-    }
-    private void onResponseMainCall(zone.Callback.CommonCallback listener, final Call call, final  Response response, final String result){
-        OkHttpUtils.getmHandler().post(new Runnable() {
-            @Override
-            public void run() {
-                mOkHttpListener.onSuccess(result,call, response);
-            }
-        });
     }
 }

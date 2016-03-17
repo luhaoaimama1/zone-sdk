@@ -9,16 +9,14 @@ import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
 import and.features.ExtraFeature;
 import and.features.RequestCodeConfig;
 import and.log.Logger_Zone;
-import and.sd.FileUtils_SD;
+import and.sd.FileUtils;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
-import android.view.View;
 
 /**
  * 可以调用 系统照相和 系统相册的 activity
@@ -29,7 +27,7 @@ import android.view.View;
 public abstract  class Feature_Pic extends ExtraFeature{
 	private Logger_Zone logger;
 	private static String path;
-	private static File outFile = FileUtils_SD.getFile("Zone", "picSave");
+	private static File outFile = FileUtils.getFile("Zone", "picSave");
 
 	public Feature_Pic(Activity activity) {
 		super(activity);
