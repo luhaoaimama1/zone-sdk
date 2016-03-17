@@ -1,6 +1,5 @@
 package com.zone.okhttp.wrapper;
 import com.zone.okhttp.OkHttpUtils;
-import com.zone.okhttp.callback.OkHttpListener;
 import com.zone.okhttp.entity.RequestParams;
 import java.io.IOException;
 import java.net.URL;
@@ -12,13 +11,12 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-
 /**
  * Created by Zone on 2016/2/10.
  */
 public class RequestBuilderProxy extends Request.Builder {
     private RequestParams requestParams;
-    private OkHttpListener mOkHttpListener;
+    private zone.Callback.CommonCallback mOkHttpListener;
 
     public RequestBuilderProxy() {
         super();
@@ -145,22 +143,25 @@ public class RequestBuilderProxy extends Request.Builder {
         return temp;
     };
 
-    public Call executeAsy(OkHttpListener listener) {
-        this.mOkHttpListener=listener;
+    public Call executeAsy() {
         Call call = OkHttpUtils.getClient().newCall(this.build());
         if(mOkHttpListener!=null)
             onStartMainCall(mOkHttpListener);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                if(mOkHttpListener!=null)
-                    onFailureMainCall(mOkHttpListener,call,e);
+                if (mOkHttpListener != null){
+                    onFailureMainCall(mOkHttpListener, call, e);
+                    onFinishedMainCall(mOkHttpListener);
+                }
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if(mOkHttpListener!=null)
-                    onResponseMainCall(mOkHttpListener,call,response);
+                if (mOkHttpListener != null){
+                    onResponseMainCall(mOkHttpListener, call, response, response.body().string());
+                    onFinishedMainCall(mOkHttpListener);
+                }
             }
         });
         return call;
@@ -176,39 +177,47 @@ public class RequestBuilderProxy extends Request.Builder {
         this.requestParams.setmRequestBuilder(this);
     }
 
-    public OkHttpListener getmOkHttpListener() {
+
+
+    public zone.Callback.CommonCallback getmOkHttpListener() {
         return mOkHttpListener;
     }
 
-    public void setmOkHttpListener(OkHttpListener mOkHttpListener) {
+    public void setmOkHttpListener(zone.Callback.CommonCallback mOkHttpListener) {
         this.mOkHttpListener = mOkHttpListener;
     }
-    private void onStartMainCall(OkHttpListener listener){
-//        OkHttpUtils.getmHandler().post(new Runnable() {
-//            @Override
-//            public void run() {
-                mOkHttpListener.onStart();
-//            }
-//        });
+
+
+    private void onStartMainCall(zone.Callback.CommonCallback listener){
+        OkHttpUtils.getmHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                 mOkHttpListener.onStart();
+            }
+        });
     }
-    private void onFailureMainCall(OkHttpListener listener, final Call call, final IOException e){
-//        OkHttpUtils.getmHandler().post(new Runnable() {
-//            @Override
-//            public void run() {
-                mOkHttpListener.onFailure(call, e);
-//            }
-//        });
+    private void onFailureMainCall(zone.Callback.CommonCallback listener, final Call call, final IOException e){
+        OkHttpUtils.getmHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                mOkHttpListener.onError(call, e);
+            }
+        });
     }
-    private void onResponseMainCall(OkHttpListener listener, final Call call, final  Response response){
-//        OkHttpUtils.getmHandler().post(new Runnable() {
-//            @Override
-//            public void run() {
-                try {
-                    mOkHttpListener.onResponse(call, response);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-//            }
-//        });
+    private void onFinishedMainCall(zone.Callback.CommonCallback listener){
+        OkHttpUtils.getmHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                mOkHttpListener.onFinished();
+            }
+        });
+    }
+    private void onResponseMainCall(zone.Callback.CommonCallback listener, final Call call, final  Response response, final String result){
+        OkHttpUtils.getmHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                mOkHttpListener.onSuccess(result,call, response);
+            }
+        });
     }
 }

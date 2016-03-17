@@ -15,10 +15,12 @@
  */
 
 package com.zone.okhttp.wrapper;
-import com.zone.okhttp.callback.ProgressListener;
+import com.zone.okhttp.OkHttpUtils;
 import com.zone.okhttp.entity.LoadingParams;
 
 import java.io.IOException;
+
+import zone.Callback;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okio.Buffer;
@@ -36,21 +38,23 @@ public class ProgressRequestBody extends RequestBody{
     //实际的待包装请求体
     private final RequestBody requestBody;
     //进度回调接口
-    private final ProgressListener progressListener;
+    private final Callback.ProgressCallback mProgressCallback;
     //包装完成的BufferedSink
     private BufferedSink bufferedSink;
     //开始下载时间，用户计算加载速度
     private long mPreviousTime;
 
     private LoadingParams mLoadingParams;
+    private boolean upLoadingOver;
+
     /**
      * 构造函数，赋值
      * @param requestBody 待包装的请求体
-     * @param progressListener 回调接口
      */
-    public ProgressRequestBody(RequestBody requestBody, ProgressListener progressListener) {
+    public ProgressRequestBody(RequestBody requestBody, Callback.ProgressCallback mProgressCallback) {
         this.requestBody = requestBody;
-        this.progressListener = progressListener;
+        this.mProgressCallback=mProgressCallback;
+//        this.progressListener = progressListener;
         mLoadingParams=new LoadingParams();
     }
 
@@ -104,7 +108,7 @@ public class ProgressRequestBody extends RequestBody{
             public void write(Buffer source, long byteCount) throws IOException {
                 super.write(source, byteCount);
                 //回调
-                if (progressListener!=null) {
+                if (mProgressCallback!=null) {
                     if ( mLoadingParams.total == 0) {
                         //获得contentLength的值，后续不再调用
                         mLoadingParams.total= contentLength();
@@ -120,7 +124,17 @@ public class ProgressRequestBody extends RequestBody{
                     mLoadingParams.networkSpeed =  mLoadingParams.current / totalTime;
                     mLoadingParams.progress = (int)( mLoadingParams.current * 100 /  mLoadingParams.total);
                     mLoadingParams.isUploading=mLoadingParams.current != mLoadingParams.total;
-                    progressListener.onLoading(mLoadingParams);
+                    OkHttpUtils.getmHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!upLoadingOver) {
+                                if(mLoadingParams.progress==100&&!mLoadingParams.isUploading)
+                                    upLoadingOver=true;
+                                mProgressCallback.onLoading(mLoadingParams.total,mLoadingParams.current,
+                                        mLoadingParams.networkSpeed, mLoadingParams.isUploading);
+                            }
+                        }
+                    });
                 }
             }
         };
