@@ -1,21 +1,13 @@
 package com.zone.okhttp;
 import android.os.Handler;
 import android.os.Looper;
+
 import com.zone.okhttp.entity.HttpType;
-import com.zone.okhttp.entity.RequestParams;
-import com.zone.okhttp.https.ClientHttpsWrapper;
 import com.zone.okhttp.utils.MediaTypeUtils;
-import com.zone.okhttp.utils.StringUtils;
 import com.zone.okhttp.wrapper.ProgressRequestBody;
 import com.zone.okhttp.wrapper.RequestBuilderProxy;
 import java.io.File;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
@@ -23,8 +15,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
-import okio.Buffer;
-import zone.Callback;
+import com.zone.okhttp.callback.Callback;
 
 /**
  * TODO json cook 下载   错误400-599问题应该如何返回？  正确返回是否应该返回response?
@@ -32,48 +23,41 @@ import zone.Callback;
  * 继续参考那两个OKhttp  GitHub
  * Created by Zone on 2016/2/10.
  */
-public class OkHttpUtils {
-    private static OkHttpClient client = new OkHttpClient();
-//    static {
-//        client.ConnectTimeout(10, TimeUnit.SECONDS);
-//        client.setWriteTimeout(10, TimeUnit.SECONDS);
-//        client.setReadTimeout(30, TimeUnit.SECONDS);
-//    }
-    private static String encoding = "utf-8";
-    private static Handler mHandler = new Handler(Looper.getMainLooper());
-    private static Map<String, String> commonParamsMap = new HashMap<String, String>();
-    private static Map<String, String> commonHeaderMap = new HashMap<String, String>();
+public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该叫Zutils
+    private static final Handler mHandler = new Handler(Looper.getMainLooper());
+    private static HttpConfig httpConfig=new HttpConfig();
+    private static OkHttpClient client =httpConfig.build();
 
     public static RequestBuilderProxy get(String urlString) {
         return get(urlString, null, null);
     }
-    public static RequestBuilderProxy get(String urlString,zone.Callback.CommonCallback listener) {
-        return get(urlString, null,listener);
+    public static RequestBuilderProxy get(String urlString,Callback.CommonCallback listener) {
+        return get(urlString, null, listener);
     }
 
     public static RequestBuilderProxy get(String urlString, RequestParams requestParams) {
-        return get(urlString, requestParams,null);
+        return get(urlString, requestParams, null);
     }
 
-    public static RequestBuilderProxy get(String urlString, RequestParams requestParams,zone.Callback.CommonCallback listener) {
+    public static RequestBuilderProxy get(String urlString, RequestParams requestParams,Callback.CommonCallback listener) {
         if(requestParams==null)
             requestParams=new RequestParams();
         requestParams.setmHttpType(HttpType.GET);
-        return requestCon(urlString, requestParams,listener);
+        return requestCon(urlString, requestParams, listener);
     }
 
     public static RequestBuilderProxy post(String urlString, RequestParams requestParams) {
-        return post(urlString, requestParams,null);
+        return post(urlString, requestParams, null);
     }
-    public static RequestBuilderProxy post(String urlString, RequestParams requestParams,zone.Callback.CommonCallback listener) {
+    public static RequestBuilderProxy post(String urlString, RequestParams requestParams,Callback.CommonCallback listener) {
         if(requestParams==null)
             requestParams=new RequestParams();
         requestParams.setmHttpType(HttpType.POST);
-        return requestCon(urlString, requestParams,listener);
+        return requestCon(urlString, requestParams, listener);
     }
 
     public static RequestBuilderProxy postString(String urlString,String json) {
-        return postString(urlString,json,encoding);
+        return postString(urlString, json, httpConfig.getEncoding());
     }
     public static RequestBuilderProxy postString(String urlString,String json, String encode) {
         RequestBuilderProxy request = new RequestBuilderProxy();
@@ -82,7 +66,7 @@ public class OkHttpUtils {
         request= initCommonHeader(request, requestParams);
 
         MediaType MEDIA_TYPE_PLAIN = MediaType.parse("text/plain;charset="+encode);
-        request.url(urlString).post(RequestBody.create(MEDIA_TYPE_PLAIN,json));
+        request.url(urlString).post(RequestBody.create(MEDIA_TYPE_PLAIN, json));
         return request;
     }
     //初始化 头部
@@ -97,7 +81,7 @@ public class OkHttpUtils {
         return request;
     }
 
-    private static RequestBuilderProxy requestCon(String urlString, RequestParams requestParams, zone.Callback.CommonCallback listener) {
+    private static RequestBuilderProxy requestCon(String urlString, RequestParams requestParams, Callback.CommonCallback listener) {
         RequestBuilderProxy request = new RequestBuilderProxy();
         request.setmOkHttpListener(listener);
         initCommonHeader(request, requestParams);
@@ -116,7 +100,7 @@ public class OkHttpUtils {
 
     }
 
-    private static RequestBody createRequestBody(RequestParams requestParams,zone.Callback.CommonCallback listener) {
+    private static RequestBody createRequestBody(RequestParams requestParams,Callback.CommonCallback listener) {
         RequestBody formBody = null;
         if (requestParams.getFileMap() == null && requestParams.getFileNameMap() == null) {
             //无文件 post
@@ -169,99 +153,20 @@ public class OkHttpUtils {
         }
     }
 
-
-//--------------------------------------------https 开始------------------------------------------------------
-    /**
-     * 这里是支持https的
-     */
-    private static List<InputStream> mCertificateList;
-
-    public static OkHttpClient.Builder getBuilderWithCertificates(InputStream... certificates) {
-        if (certificates.length != 0) {
-            checkCertificateList_Init();
-            for (InputStream inputStream : certificates) {
-                if (inputStream != null)
-                    mCertificateList.add(inputStream);
-            }
-        }
-        return initCertificates();
-    }
-
-    public static OkHttpClient.Builder getBuilderWithCertificates(String... certificates) {
-        if (certificates.length != 0) {
-            checkCertificateList_Init();
-            for (String certificate : certificates) {
-                if (!StringUtils.isEmptyTrim(certificate))
-                    mCertificateList.add(new Buffer().writeUtf8(certificate).inputStream());
-            }
-        }
-        return initCertificates();
-    }
-
-    private static void checkCertificateList_Init() {
-        if (mCertificateList == null)
-            mCertificateList = new ArrayList<InputStream>();
-    }
-
-    private static OkHttpClient.Builder initCertificates() {
-        if (mCertificateList != null) {
-            OkHttpClient.Builder clientBuilder = new OkHttpClient().newBuilder();
-            new ClientHttpsWrapper(clientBuilder).setCertificates(mCertificateList);
-            return clientBuilder;
-        } else
-            return null;
-    }
-//--------------------------------------------https结束------------------------------------------------------
-
-
     public static OkHttpClient getClient() {
         return client;
-    }
-
-    public static void setClient(OkHttpClient client) {
-        OkHttpUtils.client = client;
-    }
-
-    public static Map<String, String> getCommonParamsMap() {
-        return commonParamsMap;
-    }
-
-    public static void setCommonParamsMap(Map<String, String> commonParamsMap) {
-        OkHttpUtils.commonParamsMap = commonParamsMap;
-    }
-
-    public static Map<String, String> getCommonHeaderMap() {
-        return commonHeaderMap;
-    }
-
-    public static void setCommonHeaderMap(Map<String, String> commonHeaderMap) {
-        OkHttpUtils.commonHeaderMap = commonHeaderMap;
-    }
-
-    public static List<InputStream> getmCertificateList() {
-        return mCertificateList;
-    }
-
-    public static void setmCertificateList(List<InputStream> mCertificateList) {
-        OkHttpUtils.mCertificateList = mCertificateList;
-    }
-
-    public static String getEncoding() {
-        return encoding;
-    }
-
-    public static void setEncoding(String encoding) {
-        Charset charset = Charset.forName(encoding);
-        if (charset!=null) {
-            OkHttpUtils.encoding = encoding;
-        }
     }
 
     public static Handler getmHandler() {
         return mHandler;
     }
 
-    public static void setmHandler(Handler mHandler) {
-        OkHttpUtils.mHandler = mHandler;
+    public static HttpConfig getHttpConfig() {
+        return httpConfig;
+    }
+
+    public static void initConfig(HttpConfig config){
+        httpConfig=config;
+        client=config.build();
     }
 }

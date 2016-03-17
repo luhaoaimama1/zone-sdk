@@ -15,13 +15,12 @@
  */
 
 package com.zone.okhttp.wrapper;
-import com.zone.okhttp.OkHttpUtils;
 import com.zone.okhttp.entity.LoadingParams;
 import com.zone.okhttp.utils.MainHandlerUtils;
 
 import java.io.IOException;
 
-import zone.Callback;
+import com.zone.okhttp.callback.Callback;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okio.Buffer;

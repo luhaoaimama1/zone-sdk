@@ -1,6 +1,5 @@
 package com.zone.okhttp.wrapper;
-import com.zone.okhttp.OkHttpUtils;
-import com.zone.okhttp.entity.RequestParams;
+import com.zone.okhttp.ok;
 import com.zone.okhttp.utils.MainHandlerUtils;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ import okhttp3.Response;
  * Created by Zone on 2016/2/10.
  */
 public class RequestBuilderProxy extends Request.Builder {
-    private zone.Callback.CommonCallback mOkHttpListener;
+    private com.zone.okhttp.callback.Callback.CommonCallback mOkHttpListener;
     public RequestBuilderProxy() {
         super();
     }
@@ -132,7 +131,7 @@ public class RequestBuilderProxy extends Request.Builder {
 
     //这个不怎么用。。。   不是异步
     public Response execute() {
-        Call call = OkHttpUtils.getClient().newCall(this.build());
+        Call call = ok.getClient().newCall(this.build());
         Response temp = null;
         try {
             temp = call.execute();
@@ -144,7 +143,7 @@ public class RequestBuilderProxy extends Request.Builder {
     };
 
     public Call executeSync() {
-        Call call = OkHttpUtils.getClient().newCall(this.build());
+        Call call = ok.getClient().newCall(this.build());
         if(mOkHttpListener!=null)
             MainHandlerUtils.onStart(mOkHttpListener);
         call.enqueue(new Callback() {
@@ -169,11 +168,11 @@ public class RequestBuilderProxy extends Request.Builder {
 
 
 
-    public zone.Callback.CommonCallback getmOkHttpListener() {
+    public com.zone.okhttp.callback.Callback.CommonCallback getmOkHttpListener() {
         return mOkHttpListener;
     }
 
-    public void setmOkHttpListener(zone.Callback.CommonCallback mOkHttpListener) {
+    public void setmOkHttpListener(com.zone.okhttp.callback.Callback.CommonCallback mOkHttpListener) {
         this.mOkHttpListener = mOkHttpListener;
     }
 }

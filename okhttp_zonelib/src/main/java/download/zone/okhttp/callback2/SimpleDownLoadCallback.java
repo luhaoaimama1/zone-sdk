@@ -1,4 +1,4 @@
-package zone;
+package download.zone.okhttp.callback2;
 
 /**
  * Created by Administrator on 2016/3/16.

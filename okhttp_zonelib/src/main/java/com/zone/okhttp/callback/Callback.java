@@ -1,4 +1,4 @@
-package zone;
+package com.zone.okhttp.callback;
 
 import java.io.IOException;
 
@@ -21,9 +21,5 @@ public interface Callback {
         //todo 进度条怎么办
         void onLoading(long total, long current, long networkSpeed,boolean isDownloading);
 //        void onProgress(int progress, boolean isDone, long networkSpeed);
-    }
-    public interface DownLoadCallback extends ProgressCallback {
-        void onStop() ;
-        void onDelete();
     }
 }

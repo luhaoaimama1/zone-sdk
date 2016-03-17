@@ -26,7 +26,8 @@ import android.os.Build;
 import android.os.StrictMode;
 
 import com.example.mylib_test.R;
-import com.zone.okhttp.OkHttpUtils;
+import com.zone.okhttp.HttpConfig;
+import com.zone.okhttp.ok;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,13 +64,11 @@ public class Apps extends Application {
 
 //		try {
 			Map<String, String> commonParamMap = new HashMap<>();
-			commonParamMap.put("commonParamMap","param_Common");
+			commonParamMap.put("commonParamMap", "param_Common");
 			Map<String, String> commonHeaderMap = new HashMap<>();
 			commonHeaderMap.put("commonHeaderMap", "header_Common");
-//			OkHttpUtils.setClient(OkHttpUtils.getBuilderWithCertificates(getAssets().open("srca.cer")).build());
-			OkHttpUtils.setClient(OkHttpUtils.getBuilderWithCertificates(CER_12306).build());
-			OkHttpUtils.setCommonHeaderMap(commonHeaderMap);
-			OkHttpUtils.setCommonParamsMap(commonParamMap);
+//			OkHttpUtils.setClient(OkHttpUtils.Certificates(getAssets().open("srca.cer")).build());
+			ok.initConfig(new HttpConfig().Certificates(CER_12306).setCommonHeaderMap(commonHeaderMap).setCommonParamsMap(commonParamMap));
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}

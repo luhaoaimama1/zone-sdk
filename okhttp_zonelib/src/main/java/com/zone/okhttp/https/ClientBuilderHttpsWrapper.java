@@ -43,11 +43,11 @@ import okhttp3.OkHttpClient;
  * Author:pengjianbo
  * Date:15/12/10 下午2:44
  */
-public class ClientHttpsWrapper {
+public class ClientBuilderHttpsWrapper {
 
     private  OkHttpClient.Builder okHttpClient;
 
-    public ClientHttpsWrapper(OkHttpClient.Builder okHttpClient) {
+    public ClientBuilderHttpsWrapper(OkHttpClient.Builder okHttpClient) {
         this.okHttpClient =okHttpClient;
     }
 
@@ -57,6 +57,23 @@ public class ClientHttpsWrapper {
 
     public void setCertificates(InputStream... certificates) {
         setCertificates(certificates, null, null);
+    }
+
+    private void setCertificates(InputStream[] certificates, InputStream bksFile, String password) {
+        try {
+            TrustManager[] trustManagers = prepareTrustManager(certificates);
+            KeyManager[] keyManagers = prepareKeyManager(bksFile, password);
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+
+            sslContext.init(keyManagers, new TrustManager[] { new OkHttpTrustManager(chooseTrustManager(trustManagers)) }, new SecureRandom());
+            okHttpClient.sslSocketFactory(sslContext.getSocketFactory());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        }
     }
 
     private TrustManager[] prepareTrustManager(InputStream... certificates) {
@@ -123,22 +140,6 @@ public class ClientHttpsWrapper {
         return null;
     }
 
-    private void setCertificates(InputStream[] certificates, InputStream bksFile, String password) {
-        try {
-            TrustManager[] trustManagers = prepareTrustManager(certificates);
-            KeyManager[] keyManagers = prepareKeyManager(bksFile, password);
-            SSLContext sslContext = SSLContext.getInstance("TLS");
-
-            sslContext.init(keyManagers, new TrustManager[] { new OkHttpTrustManager(chooseTrustManager(trustManagers)) }, new SecureRandom());
-            okHttpClient.sslSocketFactory(sslContext.getSocketFactory());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        } catch (KeyStoreException e) {
-            e.printStackTrace();
-        }
-    }
 
     private X509TrustManager chooseTrustManager(TrustManager[] trustManagers) {
         for (TrustManager trustManager : trustManagers) {

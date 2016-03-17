@@ -1,5 +1,5 @@
-package com.zone.okhttp.entity;
-import com.zone.okhttp.OkHttpUtils;
+package com.zone.okhttp;
+import com.zone.okhttp.entity.HttpType;
 import com.zone.okhttp.utils.StringUtils;
 
 import java.io.File;
@@ -30,16 +30,16 @@ public class RequestParams {
         //添加公共参数
         if (paramsMap == null)
             paramsMap = new ConcurrentHashMap<>();
-        paramsMap.putAll(OkHttpUtils.getCommonParamsMap());
+        paramsMap.putAll(ok.getHttpConfig().getCommonParamsMap());
         //添加公共header
         if (headerAddMap == null)
             headerAddMap = new ConcurrentHashMap<>();
-        headerAddMap.putAll(OkHttpUtils.getCommonHeaderMap());
+        headerAddMap.putAll(ok.getHttpConfig().getCommonHeaderMap());
         //最后放头部
         if (headerReplaceMap == null)
             headerReplaceMap = new ConcurrentHashMap<>();
         if(StringUtils.isEmptyTrim(encoding))
-            headerReplaceMap.put("charset", OkHttpUtils.getEncoding());
+            headerReplaceMap.put("charset", ok.getHttpConfig().getEncoding());
         else
             headerReplaceMap.put("charset", encoding);
     }
