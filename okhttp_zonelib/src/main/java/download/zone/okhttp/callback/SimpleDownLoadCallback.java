@@ -5,7 +5,7 @@ import okhttp3.Response;
 /**
  * Created by Administrator on 2016/2/16.
  */
-public abstract class DownLoadListnerAdapter implements DownloadListener {
+public abstract class SimpleDownLoadCallback implements DownloadCallback {
     @Override
     public void onStart() {
 

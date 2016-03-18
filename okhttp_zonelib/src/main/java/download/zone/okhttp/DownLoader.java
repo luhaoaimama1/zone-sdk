@@ -2,7 +2,7 @@ package download.zone.okhttp;
 
 import android.content.Context;
 
-import download.zone.okhttp.callback.DownloadListener;
+import download.zone.okhttp.callback.DownloadCallback;
 import download.zone.okhttp.entity.DownloadInfo;
 
 import java.io.File;
@@ -59,7 +59,7 @@ public class DownLoader {
         startTask(url, targetFolder, null, null);
     }
 
-    public void startTask(String url, File targetFolder, DownloadListener downloadListener) {
+    public void startTask(String url, File targetFolder, DownloadCallback downloadListener) {
         startTask(url, targetFolder, null, downloadListener);
     }
 
@@ -76,14 +76,14 @@ public class DownLoader {
      * @param rename
      * @param downloadListener
      */
-    public void startTask(final String urlString, final File targetFolder, final String rename, final DownloadListener downloadListener) {
+    public void startTask(final String urlString, final File targetFolder, final String rename, final DownloadCallback downloadListener) {
         //TODO 在这里 主线程中 维护个 start  pause的map
         //开始有两种  一个是pause  一个是第一次开始任务（包括第一续传）
             if (taskStatuMap.get(urlString) == null) {
                 //第一次开始任务（包括第一续传）
                 runTask(urlString, targetFolder, rename, downloadListener);
             } else if (taskStatuMap.get(urlString) != null && taskStatuMap.get(urlString) == DownloadInfo.PAUSE) {
-                if (dbhelper.getSaveStateMap().get(urlString) != null && dbhelper.getSaveStateMap().get(urlString)) {
+                if (dbhelper.getUrlDbState_IsOpenMap().get(urlString) != null && dbhelper.getUrlDbState_IsOpenMap().get(urlString)) {
                     //                暂停的时候 db保存完毕才可以继续
                     runTask(urlString, targetFolder, rename, downloadListener);
                 } else {
@@ -98,10 +98,10 @@ public class DownLoader {
     }
 
 
-    private void runTask(final String urlString, final File targetFolder, final String rename, final DownloadListener downloadListener) {
+    private void runTask(final String urlString, final File targetFolder, final String rename, final DownloadCallback downloadListener) {
         //todo 这个tag的时机
         taskStatuMap.put(urlString, DownloadInfo.DOWNLOADING);//设置url这个标志 正在下载中
-        dbhelper.getSaveStateMap().put(urlString, false);//设置db没保存  除非异常 不然就算出现 error自己定义的也会走保存
+        dbhelper.getUrlDbState_IsOpenMap().put(urlString, false);//设置db没保存  除非异常 不然就算出现 error自己定义的也会走保存
         //除非一种情况就是  这个url的任务已经运行的时候 那么 设置上面的tag也是没事  数据库也不会保存
         executorService.execute(new Runnable() {
             long totalLength = 0;
@@ -311,8 +311,8 @@ public class DownLoader {
             taskUIhelperMap.remove(urlString);
         if( UIhelper.getTaskPauseProgressMap().get(urlString)!=null)
             UIhelper.getTaskPauseProgressMap().remove(urlString);
-        if( dbhelper.getSaveStateMap().get(urlString)!=null)
-            dbhelper.getSaveStateMap().remove(urlString);
+        if( dbhelper.getUrlDbState_IsOpenMap().get(urlString)!=null)
+            dbhelper.getUrlDbState_IsOpenMap().remove(urlString);
     }
 
 

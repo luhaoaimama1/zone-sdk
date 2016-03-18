@@ -4,9 +4,7 @@ import com.litesuits.orm.LiteOrm;
 import com.litesuits.orm.db.assit.QueryBuilder;
 import com.litesuits.orm.db.assit.WhereBuilder;
 
-import download.zone.okhttp.DownLoader;
 import download.zone.okhttp.entity.DownloadInfo;
-import download.zone.okhttp.entity.ThreadInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +24,12 @@ public class Dbhelper {
     private  DownLoader ourInstance;
     private  Context context;
     public ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private Map<String, Boolean> saveStateMap;
+    private Map<String, Boolean> urlDbState_IsOpenMap;
     private  LiteOrm liteOrm;
 
     public Dbhelper( DownLoader ourInstance) {
         this.ourInstance=ourInstance;
-        saveStateMap = new ConcurrentHashMap<>();
+        urlDbState_IsOpenMap = new ConcurrentHashMap<>();
 
     }
     public void initDb(Context context){
@@ -70,13 +68,13 @@ public class Dbhelper {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                if(saveStateMap.get(downloadInfo.getUrl())==null){
+                if(urlDbState_IsOpenMap.get(downloadInfo.getUrl())==null){
                     if(liteOrm.save(downloadInfo)!=-1){
-                        saveStateMap.put(downloadInfo.getUrl(),true);
+                        urlDbState_IsOpenMap.put(downloadInfo.getUrl(),true);
                     }
                 }else{
-                    if(!saveStateMap.get(downloadInfo.getUrl())&&liteOrm.save(downloadInfo)!=-1){
-                        saveStateMap.put(downloadInfo.getUrl(),true);
+                    if(!urlDbState_IsOpenMap.get(downloadInfo.getUrl())&&liteOrm.save(downloadInfo)!=-1){
+                        urlDbState_IsOpenMap.put(downloadInfo.getUrl(),true);
                     }
                 }
             }
@@ -106,11 +104,15 @@ public class Dbhelper {
         this.context = context;
     }
 
-    public Map<String, Boolean> getSaveStateMap() {
-        return saveStateMap;
+    public Map<String, Boolean> getUrlDbState_IsOpenMap() {
+        return urlDbState_IsOpenMap;
     }
 
-    public void setSaveStateMap(Map<String, Boolean> saveStateMap) {
-        this.saveStateMap = saveStateMap;
+    public void setUrlDbState_IsOpenMap(Map<String, Boolean> urlDbState_IsOpenMap) {
+        this.urlDbState_IsOpenMap = urlDbState_IsOpenMap;
+    }
+    public interface DbCallBack{
+        void saveTask(boolean isFinish);
+        void deleteTask(boolean isFinish);
     }
 }

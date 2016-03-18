@@ -24,7 +24,7 @@ import java.util.Map;
 import and.sd.FileUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import download.zone.okhttp.callback.DownloadListener;
+import download.zone.okhttp.callback.DownloadCallback;
 import okhttp3.Call;
 import okhttp3.Response;
 import com.zone.okhttp.callback.SimpleProgressCallback;
@@ -137,7 +137,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                         .put("name", "bug").put("subject", 123 + ""), okListener).tag(this).executeSync();
                 break;
             case R.id.bt_downLoader:
-                download.zone.okhttp.DownLoader.getInstance(this).startTask(urlPath, FileUtils.getFile(""), new DownloadListener() {
+                download.zone.okhttp.DownLoader.getInstance(this).startTask(urlPath, FileUtils.getFile(""), new DownloadCallback() {
 
                     @Override
                     public void onStart() {

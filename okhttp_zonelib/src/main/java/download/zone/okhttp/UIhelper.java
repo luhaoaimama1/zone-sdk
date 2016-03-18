@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import download.zone.okhttp.callback.DownloadListener;
+import download.zone.okhttp.callback.DownloadCallback;
 import download.zone.okhttp.entity.DownloadInfo;
 import download.zone.okhttp.entity.ThreadInfo;
 import okhttp3.Response;
@@ -18,12 +18,12 @@ public class UIhelper {
     private static Handler mHandler = new Handler(Looper.getMainLooper());
     private static Map<String,Float> taskPauseProgressMap=new ConcurrentHashMap<>();;//下载中的 downloadInfo
     private  DownloadInfo downloadInfo;
-    private  DownloadListener downloadListener;
+    private DownloadCallback downloadListener;
     private  DownLoader ourInstance;
     private OnProgressRunnable onProgressRunnable;
     private OnPauseRunnable onPauseRunnable;
 
-    public UIhelper( DownLoader ourInstance,DownloadListener downloadListener, DownloadInfo downloadInfo) {
+    public UIhelper( DownLoader ourInstance,DownloadCallback downloadListener, DownloadInfo downloadInfo) {
         this.ourInstance = ourInstance;
         this.downloadListener=downloadListener;
         this.downloadInfo=downloadInfo;

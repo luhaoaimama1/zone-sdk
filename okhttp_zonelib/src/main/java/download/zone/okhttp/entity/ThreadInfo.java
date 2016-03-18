@@ -8,7 +8,6 @@ import com.litesuits.orm.db.annotation.Mapping;
  * Created by Zone on 2016/2/14.
  */
 public class ThreadInfo extends BaseEntity {
-
     @Column("threadId")
     private int threadId;//线程id
     @Column("startIndex")
@@ -21,6 +20,9 @@ public class ThreadInfo extends BaseEntity {
     private DownloadInfo downloadInfo;
     @Column("complete")
     private boolean complete;
+    //todo
+    @Ignore
+    private boolean isStop;
 
 
     public synchronized boolean isComplete() {

@@ -14,7 +14,6 @@
  *  limitations under the License.
  */
 package download.zone.okhttp.entity;
-import android.text.TextUtils;
 import com.litesuits.orm.db.annotation.Column;
 import com.litesuits.orm.db.annotation.Default;
 import com.litesuits.orm.db.annotation.Ignore;
@@ -22,7 +21,7 @@ import com.litesuits.orm.db.annotation.Mapping;
 import com.litesuits.orm.db.annotation.Table;
 import java.util.ArrayList;
 
-import download.zone.okhttp.callback.DownloadListener;
+import download.zone.okhttp.callback.DownloadCallback;
 
 /**
  * Desction:文件下载数据模型
@@ -60,13 +59,19 @@ public class DownloadInfo extends  BaseEntity{
     @Ignore
     private boolean isDone = false;
     @Ignore
-    private DownloadListener downloadListener ;
+    private DownloadCallback downloadListener ;
 
-    public synchronized DownloadListener getDownloadListener() {
+    //todo   接口回调处理这个
+    @Ignore
+    private boolean saving = false;
+    @Ignore
+    private boolean deleteing = false;
+
+    public synchronized DownloadCallback getDownloadListener() {
         return downloadListener;
     }
 
-    public synchronized void setDownloadListener(DownloadListener downloadListener) {
+    public synchronized void setDownloadListener(DownloadCallback downloadListener) {
         this.downloadListener = downloadListener;
     }
 
