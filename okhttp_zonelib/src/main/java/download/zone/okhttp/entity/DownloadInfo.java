@@ -21,6 +21,7 @@ import com.litesuits.orm.db.annotation.Mapping;
 import com.litesuits.orm.db.annotation.Table;
 import java.util.ArrayList;
 
+import download.zone.okhttp.UIhelper;
 import download.zone.okhttp.callback.DownloadCallback;
 
 /**
@@ -31,10 +32,9 @@ import download.zone.okhttp.callback.DownloadCallback;
 @Table("DownloadInfo")
 public class DownloadInfo extends  BaseEntity{
     //==============State=================
-    public static final int DOWNLOADING = 1;//下载中
-    public static final int PAUSE = 2;//暂停
-    public static final int COMPLETE = 3;//完成
-    public static final int DELETE = 4;//删除
+    public static final int DOWNLOADING = 1; //下载中  至少有一个子线程没停止
+    public static final int PAUSE = 2;//都停止了 但是至少有一个子线程未完成
+    public static final int COMPLETE = 3; //子线程都停止了 全完成了
     @Column("url")
     private String url;//文件URL
     @Column( "targetName")
@@ -61,11 +61,69 @@ public class DownloadInfo extends  BaseEntity{
     @Ignore
     private DownloadCallback downloadListener ;
 
-    //todo   接口回调处理这个
+    @Ignore
+    private boolean threadWork = true;
+    //todo   未弄这个
     @Ignore
     private boolean saving = false;
     @Ignore
     private boolean deleteing = false;
+    @Ignore
+    private UIhelper uihelper;
+
+    public synchronized UIhelper getUihelper() {
+        return uihelper;
+    }
+
+    public synchronized void setUihelper(UIhelper uihelper) {
+        uihelper.downloadInfo=this;
+        this.uihelper = uihelper;
+    }
+
+    public synchronized boolean isSaving() {
+        return saving;
+    }
+
+    public synchronized void setSaving(boolean saving) {
+        this.saving = saving;
+    }
+
+    public synchronized boolean isDeleteing() {
+        return deleteing;
+    }
+
+    public synchronized void setDeleteing(boolean deleteing) {
+        this.deleteing = deleteing;
+    }
+
+    public synchronized boolean isThreadWork() {
+        return threadWork;
+    }
+
+    public synchronized void setThreadWork(boolean threadWork) {
+        this.threadWork = threadWork;
+    }
+
+    //暂时 因为没有 暂停 删除 异常的时候 就会清除内存所以  如果此实体出现既是正在下载中
+    public synchronized int getTaskState(){
+        int stopCount = 0,completeCount = 0;
+        for (ThreadInfo info : threadInfo) {
+            if(info.isComplete())
+                completeCount++;
+            if(info.isStoping())
+                stopCount++;
+        }
+        //下载中  至少有一个没停止
+        if(stopCount<threadInfo.size())
+          return   DOWNLOADING;
+        else
+            //都停止了 但是至少有一个未完成
+            if(completeCount<threadInfo.size())
+                return   PAUSE;
+                //都停止了 全完成了
+            else
+                return   COMPLETE;
+    }
 
     public synchronized DownloadCallback getDownloadListener() {
         return downloadListener;

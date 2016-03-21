@@ -20,10 +20,16 @@ public class ThreadInfo extends BaseEntity {
     private DownloadInfo downloadInfo;
     @Column("complete")
     private boolean complete;
-    //todo
-    @Ignore
-    private boolean isStop;
+    @Column("stoping")
+    private boolean stoping;
 
+    public synchronized boolean isStoping() {
+        return stoping;
+    }
+
+    public synchronized void setStoping(boolean isStop) {
+        this.stoping = isStop;
+    }
 
     public synchronized boolean isComplete() {
         return complete;

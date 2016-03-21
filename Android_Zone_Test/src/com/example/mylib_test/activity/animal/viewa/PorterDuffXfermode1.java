@@ -66,11 +66,12 @@ public class PorterDuffXfermode1 extends View{
 		canvas.saveLayerAlpha(0, 0, getWidth(), getHeight(), 255,
 				Canvas.ALL_SAVE_FLAG);
 		paint.setColor(Color.BLUE);
-		canvas.drawCircle(getWidth()/2, getHeight()/2, 200, paint);
+		canvas.drawCircle(getWidth() / 2, getHeight() / 2, 200, paint);
 		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-		canvas.drawBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher), getWidth()/2, getHeight()/2, paint);
+		Bitmap icBit = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher);
+		canvas.drawBitmap(icBit, getWidth()/2, getHeight()/2-(200+icBit.getWidth()/2), paint);
 		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
-		
+
 		canvas.saveLayer(0, 0, getWidth(), getHeight(), paint,
                 Canvas.ALL_SAVE_FLAG);
 		canvas.translate(200, 200);

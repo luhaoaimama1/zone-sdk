@@ -21,16 +21,11 @@ import java.util.concurrent.Future;
  * Created by Zone on 2016/2/14.
  */
 public class Dbhelper {
-    private  DownLoader ourInstance;
     private  Context context;
-    public ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private Map<String, Boolean> urlDbState_IsOpenMap;
+    public ExecutorService serialExecutor = Executors.newSingleThreadExecutor();
     private  LiteOrm liteOrm;
 
-    public Dbhelper( DownLoader ourInstance) {
-        this.ourInstance=ourInstance;
-        urlDbState_IsOpenMap = new ConcurrentHashMap<>();
-
+    public Dbhelper() {
     }
     public void initDb(Context context){
         this.context=context;
@@ -41,7 +36,7 @@ public class Dbhelper {
 
     //开始任务的时候 查信息  有下载中的 就从中开始
     public DownloadInfo queryTask(final String url){
-        Future<DownloadInfo> temp = executorService.submit(new Callable<DownloadInfo>() {
+        Future<DownloadInfo> temp = serialExecutor.submit(new Callable<DownloadInfo>() {
             @Override
             public DownloadInfo call() throws Exception {
                 QueryBuilder qb = new QueryBuilder(DownloadInfo.class).whereEquals("url", url);
@@ -63,35 +58,47 @@ public class Dbhelper {
             return null;
         }
     }
-    //暂停 存信息   突然断网就是异常 存信息
-    public void saveTask(final DownloadInfo downloadInfo){
-        executorService.execute(new Runnable() {
+    //暂停 存信息
+    public void pauseSaveTaskSync(final DownloadInfo downloadInfo){
+        serialExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                if(urlDbState_IsOpenMap.get(downloadInfo.getUrl())==null){
-                    if(liteOrm.save(downloadInfo)!=-1){
-                        urlDbState_IsOpenMap.put(downloadInfo.getUrl(),true);
-                    }
-                }else{
-                    if(!urlDbState_IsOpenMap.get(downloadInfo.getUrl())&&liteOrm.save(downloadInfo)!=-1){
-                        urlDbState_IsOpenMap.put(downloadInfo.getUrl(),true);
-                    }
+                downloadInfo.setSaving(true);
+                liteOrm.save(downloadInfo);
+                downloadInfo.setSaving(false);
+            }
+        });
+    }
+    //暂停 存信息   突然断网就是异常 存信息
+    public void exceptionSaveTaskSync(final DownloadInfo downloadInfo){
+        serialExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                //不是正常的暂停的 保存任务
+                if (downloadInfo.isThreadWork() &&downloadInfo.getTaskState()==DownloadInfo.PAUSE){
+                    downloadInfo.setSaving(true);
+                    liteOrm.save(downloadInfo);
+                    downloadInfo.setSaving(false);
+                }
+                //所有子线程都走完 就清除内存  不管是否完成
+                if(downloadInfo.getTaskState()==DownloadInfo.PAUSE||downloadInfo.getTaskState()==DownloadInfo.COMPLETE){
+                    downloadInfo.getUihelper().onFinish();
+                    CleanMemoryUtils.clear(downloadInfo.getUrl());
                 }
             }
         });
-
     }
-    //完成的时候删除信息
-    public void deleteTask(final DownloadInfo downloadInfo){
-        executorService.execute(new Runnable() {
+    //完成的时候  删除信息
+    public void completeDeleteTaskSync(final DownloadInfo downloadInfo){
+        serialExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                ourInstance.clearUrlMemory(downloadInfo.getUrl());
                 liteOrm.delete(DownloadInfo.class, new WhereBuilder().where("url = ?", new String[]{downloadInfo.getUrl()}));
+                downloadInfo.setDeleteing(false);
             }
         });
     }
-    //完成的时候删除信息
+    //点删除的时候  删除信息
     public void deleteTaskOnly(final DownloadInfo downloadInfo){
           liteOrm.delete(DownloadInfo.class, new WhereBuilder().where("url = ?", new String[]{downloadInfo.getUrl()}));
     }
@@ -104,13 +111,7 @@ public class Dbhelper {
         this.context = context;
     }
 
-    public Map<String, Boolean> getUrlDbState_IsOpenMap() {
-        return urlDbState_IsOpenMap;
-    }
-
-    public void setUrlDbState_IsOpenMap(Map<String, Boolean> urlDbState_IsOpenMap) {
-        this.urlDbState_IsOpenMap = urlDbState_IsOpenMap;
-    }
+    //todo  这种应该是  点击暂停 删除的时候 弹pop 防止数据库未保存完成继续点
     public interface DbCallBack{
         void saveTask(boolean isFinish);
         void deleteTask(boolean isFinish);

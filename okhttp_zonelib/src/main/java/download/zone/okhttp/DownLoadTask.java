@@ -4,13 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
-import download.zone.okhttp.entity.DownloadInfo;
+
 import download.zone.okhttp.entity.ThreadInfo;
 import okhttp3.Request;
 import okhttp3.Response;
 
 /**
  * Created by Zone on 2016/2/14.
+ * 暂停 异常   完成保存数据库   删除也是  不过不是这个类实现的
  */
 public class DownLoadTask implements Runnable {
     private UIhelper uiHelper;
@@ -32,6 +33,7 @@ public class DownLoadTask implements Runnable {
     }
 
 
+    //内存中已经又downloaderinfo信息了  出错就保存就好了  但是必须是所有线程都出错才能保存   还有就是保存的时候暂停
     @Override
     public void run() {
         long startIndex=threadInfo.getStartIndex()+threadInfo.getDownloadLength();
@@ -41,13 +43,11 @@ public class DownLoadTask implements Runnable {
         try {
             response = ourInstance.mOkHttpClient.newCall(request).execute();
         } catch (IOException e) {
-            e.printStackTrace();
+            ExceptionHelper.quiet(e);
         }
         if(response == null || !response.isSuccessful()){
+            DownLoader.writeLog("threadId:" + threadInfo.getThreadId() + "下载文件失败了");
             uiHelper.onError(response);
-            DownLoader.writeLog("threadId:" + threadInfo.getThreadId() + "下载文件失败了~" + "url=" + urlString);
-//            todo 出现异常的时候 db有问题还没保存  所以继续不了  貌似没事了
-            ourInstance.tryRemoveTask(urlString);
         }else{
             try {
                 InputStream inputStream = response.body().byteStream();
@@ -57,8 +57,7 @@ public class DownLoadTask implements Runnable {
                 int len = 0;
                 byte[] buffer = new byte[1024];
                 int count=0;
-                while ((len = inputStream.read(buffer)) != -1&&
-                        ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())== DownloadInfo.DOWNLOADING) {
+                while ((len = inputStream.read(buffer)) != -1&&threadInfo.getDownloadInfo().isThreadWork()) {
                     //!=-1这里也好错
                     count++;
                     dowloadLength +=len;
@@ -67,24 +66,21 @@ public class DownLoadTask implements Runnable {
                     DownLoader.writeLog("threadId：" + threadInfo.getThreadId() + "  dowloadLength:" + dowloadLength);
                     raf.write(buffer, 0, len);
                 }
-                if (ourInstance.getTaskStatuMap().get(threadInfo.getDownloadInfo().getUrl())== DownloadInfo.DOWNLOADING) {
-                    DownLoader.writeLog("线程" + threadInfo.getThreadId() + "   startIndex " + threadInfo.getStartIndex()+
-                            "   开始的地方："+ startIndex+ "  endIndex   " + threadInfo.getEndIndex() + "此线程下载字数：" + dowloadLength);
-                    DownLoader.writeLog("线程" + threadInfo.getThreadId() + "循环次数：" + count);
-                    inputStream.close();
-                    raf.close();
-                    DownLoader.writeLog("线程" + threadInfo.getThreadId() + ":下载完毕了！");
-                    threadInfo.setComplete(true);
-                }
-                uiHelper.onFinish(dbhelper,saveOutFile);
+                DownLoader.writeLog("线程" + threadInfo.getThreadId() + ":下载完毕了！   startIndex " + threadInfo.getStartIndex() +
+                        "   开始的地方：" + startIndex + "  endIndex   " + threadInfo.getEndIndex() + "此线程下载字数：" + dowloadLength + " \t 循环次数：" + count);
+                threadInfo.setComplete(true);
+                uiHelper.onSuccess(dbhelper, saveOutFile);
+                inputStream.close();
+                raf.close();
             } catch (FileNotFoundException e) {
                 //异常的时候不保存信息  因为要是保存了 就和显示的进度不一样了
-                e.printStackTrace();
+                ExceptionHelper.quiet(e);
             } catch (IOException e) {
-                e.printStackTrace();
-            }finally {
-                ourInstance.tryRemoveTask(urlString);
+                ExceptionHelper.quiet(e);
             }
         }
+        threadInfo.setStoping(true);
+        //异常的时候保存数据库
+        dbhelper.exceptionSaveTaskSync(threadInfo.getDownloadInfo());
     }
 }

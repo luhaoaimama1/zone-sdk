@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_main"
+   android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#77fb9286">
+    <com.example.mylib_test.activity.animal.viewa.XfermodeView
+        android:id="@+id/xfermodeView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择Mode"
+        android:onClick="onClick"
+        android:id="@+id/bt_pop"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

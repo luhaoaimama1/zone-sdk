@@ -167,6 +167,11 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                     public void onError(Response response) {
                         System.out.println("onError");
                     }
+
+                    @Override
+                    public void onfinished() {
+
+                    }
                 });
                 break;
             case R.id.bt_downLoaderpause:

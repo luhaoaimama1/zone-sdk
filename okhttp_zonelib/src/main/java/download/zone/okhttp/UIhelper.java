@@ -13,29 +13,27 @@ import okhttp3.Response;
 
 /**
  * Created by Zone on 2016/2/14.
+ * todo 完成后 pause 删除  清除  内存中的信息
  */
 public class UIhelper {
     private static Handler mHandler = new Handler(Looper.getMainLooper());
-    private static Map<String,Float> taskPauseProgressMap=new ConcurrentHashMap<>();;//下载中的 downloadInfo
-    private  DownloadInfo downloadInfo;
+    //todo 到时候弄完试试 把这个去掉
+    private static Map<String,Float> taskPauseProgressMap=new ConcurrentHashMap<>();//下载中的 downloadInfo
+    public   DownloadInfo downloadInfo;
     private DownloadCallback downloadListener;
-    private  DownLoader ourInstance;
     private OnProgressRunnable onProgressRunnable;
     private OnPauseRunnable onPauseRunnable;
 
-    public UIhelper( DownLoader ourInstance,DownloadCallback downloadListener, DownloadInfo downloadInfo) {
-        this.ourInstance = ourInstance;
+    public UIhelper(DownloadCallback downloadListener) {
         this.downloadListener=downloadListener;
-        this.downloadInfo=downloadInfo;
     }
 
 
     public void onError(final Response response) {
+        DownLoader.writeLog("下载文件失败了~ code=" + response.code() + "url=" + downloadInfo.getUrl());
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                ourInstance.stopTask(downloadInfo.getUrl());//遇到错误就暂停
-                //发生错误就暂停把
                 if (downloadListener!=null)
                     downloadListener.onError(response);
             }
@@ -60,6 +58,15 @@ public class UIhelper {
             }
         });
     }
+    public void onFinish() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (downloadListener!=null)
+                    downloadListener.onfinished();
+            }
+        });
+    }
 
     public  void onProgress() {
         synchronized (UIhelper.class) {
@@ -79,6 +86,7 @@ public class UIhelper {
 
 
 
+    //不用加同步 因為 handler就是 一个个按顺序执行的
     public class OnProgressRunnable implements Runnable {
         private long lastDownLoadTotalLength;
         private long lastRefreshUiTime;
@@ -90,13 +98,11 @@ public class UIhelper {
 
         @Override
         public void run() {
-                Map<String, Integer> statuMap = ourInstance.getTaskStatuMap();
-                if (statuMap.get(downloadInfo.getUrl()) == DownloadInfo.DOWNLOADING) {
+                if (downloadInfo.isThreadWork()&&downloadListener != null) {
                     //这里计算进度 ，下载长度
                     long downLoadTotalLength = 0;
-                    for (ThreadInfo info : downloadInfo.getThreadInfo()) {
+                    for (ThreadInfo info : downloadInfo.getThreadInfo())
                         downLoadTotalLength += info.getDownloadLength();
-                    }
                     float progress = downLoadTotalLength * 1F / downloadInfo.getTotalLength();
                     downloadInfo.setProgress(progress);
                     downloadInfo.setDownloadLength(downLoadTotalLength);
@@ -110,16 +116,14 @@ public class UIhelper {
                         lastRefreshUiTime = refreshUiTime;
                         lastDownLoadTotalLength = downLoadTotalLength;
                     }
-                    if (statuMap.get(downloadInfo.getUrl()) == DownloadInfo.DOWNLOADING){
-                        if (downloadListener != null)
-                            if(taskPauseProgressMap.get(downloadInfo.getUrl())==null||downloadInfo.getProgress()>=taskPauseProgressMap.get(downloadInfo.getUrl()))
-                                downloadListener.onProgress((int)(downloadInfo.getProgress()*100),downloadInfo.isDone(),downloadInfo.getNetworkSpeed());//发布进度信息
+                    if(taskPauseProgressMap.get(downloadInfo.getUrl())==null||downloadInfo.getProgress()>=taskPauseProgressMap.get(downloadInfo.getUrl()))
+                        downloadListener.onProgress((int)(downloadInfo.getProgress()*100),downloadInfo.isDone(),downloadInfo.getNetworkSpeed());//发布进度信息
 
-                    }
             }
 
         }
     };
+    //不用加同步 因為 handler就是 一个个按顺序执行的
     //暂停 一个任务几个线程就可能走几次 但是 db只会存最后一次
     public class OnPauseRunnable implements Runnable {
         private Dbhelper dbhelper;
@@ -131,7 +135,7 @@ public class UIhelper {
 
         @Override
         public void run() {
-            synchronized (UIhelper.this) {
+            if (!downloadInfo.isThreadWork()) {
                 //这里计算进度 ，下载长度
                 long downLoadTotalLength = 0;
                 for (ThreadInfo info : downloadInfo.getThreadInfo()) {
@@ -142,25 +146,21 @@ public class UIhelper {
                 downloadInfo.setDownloadLength(downLoadTotalLength);
                 //暂停的时候 速度归零
                 downloadInfo.setNetworkSpeed(0);
-                Map<String, Integer> statuMap = ourInstance.getTaskStatuMap();
-                if (statuMap.get(downloadInfo.getUrl()) == DownloadInfo.PAUSE) {
-                    if (downloadListener != null)
-                        downloadListener.onProgress((int)(downloadInfo.getProgress()*100),downloadInfo.isDone(),downloadInfo.getNetworkSpeed());//发布进度信息
-                    dbhelper.saveTask(downloadInfo);//db保存信息
-                    taskPauseProgressMap.put(downloadInfo.getUrl(), downloadInfo.getProgress());//暂停进度信息保存
+                if (downloadListener != null)
+                    downloadListener.onProgress((int)(downloadInfo.getProgress()*100),downloadInfo.isDone(),downloadInfo.getNetworkSpeed());//发布进度信息
+                dbhelper.pauseSaveTaskSync(downloadInfo);//db保存信息
+                taskPauseProgressMap.put(downloadInfo.getUrl(), downloadInfo.getProgress());//暂停进度信息保存
+                if (downloadListener != null)
                     downloadListener.onStop();
-                }
-
-            }
+             }
         }
     };
 
     /**
-     * pause的时候也会走此方法
      * @param dbhelper
      * @param saveOutFile
      */
-    public void onFinish(final Dbhelper dbhelper, final File saveOutFile) {
+    public void onSuccess(final Dbhelper dbhelper, final File saveOutFile) {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -168,14 +168,15 @@ public class UIhelper {
                     if (!info.isComplete())
                         return;
                 }
+                downloadInfo.setDeleteing(true);
                 //完成以后
                 downloadInfo.setIsDone(true);
                 //从命名
                 saveOutFile.renameTo(new File(downloadInfo.getTargetFolder(),downloadInfo.getTargetName()));
                 taskPauseProgressMap.remove(downloadInfo.getUrl());//移除key
-                dbhelper.deleteTask(downloadInfo);//db移除信息
+                dbhelper.completeDeleteTaskSync(downloadInfo);//db移除信息
                 if (downloadListener!=null)
-                    downloadListener.onProgress((int)(downloadInfo.getProgress()*100),downloadInfo.isDone(),downloadInfo.getNetworkSpeed());//发布进度信息
+                    downloadListener.onProgress(100,downloadInfo.isDone(),downloadInfo.getNetworkSpeed());//发布进度信息
             }
         });
     }
