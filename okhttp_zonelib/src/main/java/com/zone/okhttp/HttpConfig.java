@@ -21,7 +21,8 @@ public class HttpConfig {
     private OkHttpClient.Builder clientBuilder;
     private  String encoding = "utf-8";
     private  Map<String, String> commonParamsMap = new HashMap<String, String>();
-    private  Map<String, String> commonHeaderMap = new HashMap<String, String>();
+    private  Map<String, String> commonHeaderAddMap = new HashMap<String, String>();
+    private  Map<String, String> commonHeaderReplaceMap = new HashMap<String, String>();
 
     public HttpConfig() {
         clientBuilder = new OkHttpClient().newBuilder();
@@ -122,13 +123,21 @@ public class HttpConfig {
         return this;
     }
 
-    public  Map<String, String> getCommonHeaderMap() {
-        return commonHeaderMap;
+    public  Map<String, String> getCommonHeaderAddMap() {
+        return commonHeaderAddMap;
     }
 
-    public  HttpConfig setCommonHeaderMap(Map<String, String> commonHeaderMap) {
-        this.commonHeaderMap = commonHeaderMap;
+    public  HttpConfig setCommonHeaderAddMap(Map<String, String> commonHeaderAddMap) {
+        this.commonHeaderAddMap = commonHeaderAddMap;
         return this;
     }
 
+    public Map<String, String> getCommonHeaderReplaceMap() {
+        return commonHeaderReplaceMap;
+    }
+
+    public HttpConfig setCommonHeaderReplaceMap(Map<String, String> commonHeaderReplaceMap) {
+        this.commonHeaderReplaceMap = commonHeaderReplaceMap;
+        return this;
+    }
 }

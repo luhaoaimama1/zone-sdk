@@ -34,10 +34,11 @@ public class RequestParams {
         //添加公共header
         if (headerAddMap == null)
             headerAddMap = new ConcurrentHashMap<>();
-        headerAddMap.putAll(ok.getHttpConfig().getCommonHeaderMap());
+        headerAddMap.putAll(ok.getHttpConfig().getCommonHeaderAddMap());
         //最后放头部
         if (headerReplaceMap == null)
             headerReplaceMap = new ConcurrentHashMap<>();
+        headerAddMap.putAll(ok.getHttpConfig().getCommonHeaderReplaceMap());
         if(StringUtils.isEmptyTrim(encoding))
             headerReplaceMap.put("charset", ok.getHttpConfig().getEncoding());
         else

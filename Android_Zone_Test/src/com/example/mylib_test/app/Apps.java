@@ -29,6 +29,7 @@ import com.example.mylib_test.R;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,8 +68,16 @@ public class Apps extends Application {
 			commonParamMap.put("commonParamMap", "param_Common");
 			Map<String, String> commonHeaderMap = new HashMap<>();
 			commonHeaderMap.put("commonHeaderMap", "header_Common");
+			Map<String, String> commonHeaderReMap = new HashMap<>();
+			commonHeaderReMap.put("commonHeaderMap", "header_CommonReplace");
 //			OkHttpUtils.setClient(OkHttpUtils.Certificates(getAssets().open("srca.cer")).build());
-			ok.initConfig(new HttpConfig().Certificates(CER_12306).setCommonHeaderMap(commonHeaderMap).setCommonParamsMap(commonParamMap));
+		try {
+			ok.initConfig(new HttpConfig().setCommonHeaderAddMap(commonHeaderMap).setCommonHeaderReplaceMap(commonHeaderReMap).setCommonParamsMap(commonParamMap)
+//					.Certificates(CER_12306)
+					.Certificates(getAssets().open("srca.cer")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}

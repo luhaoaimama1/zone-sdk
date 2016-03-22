@@ -40,8 +40,8 @@ public class XfermodeView extends View{
     private void onDrawFinal(Canvas canvas) {
         if (mode!=null) {
             paint.reset();
-//            bitmapXfermodeExample1(canvas);
-            graphXfermodeExample2(canvas);
+            bitmapXfermodeExample1(canvas);
+//            graphXfermodeExample2(canvas);
         }
     }
 

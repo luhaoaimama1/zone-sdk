@@ -19,11 +19,12 @@ import android.widget.TextView;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.entity.Data;
+import com.example.mylib_test.app.Constant;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 
 public class NetworkPull_TestActivity extends BaseActvity implements OnRefresh2LoadMoreListener{
-	final	String UrlPath = "http://182.254.243.254:8080/Test/log";
+	final	String UrlPath = Constant.ADDRESS;
 	private SwipeRefreshLayout swipe_container;
 	private ListView rv;
 	private XutilsEngine engineGet;
