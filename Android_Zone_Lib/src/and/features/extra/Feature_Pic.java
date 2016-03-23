@@ -41,12 +41,12 @@ public abstract  class Feature_Pic extends ExtraFeature{
 		path = outFile.getPath();
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile));
-		activity.startActivityForResult(intent, RequestCodeConfig.Feature_Pic__REQUESTCODE_CAMERA);
+		activity.startActivityForResult(intent, RequestCodeConfig.getRequestCode(RequestCodeConfig.Feature_Pic__REQUESTCODE_CAMERA));
 	}
 	public  void openPhotos() {
 		Intent intent = new Intent(Intent.ACTION_PICK, null);
 		intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-		activity.startActivityForResult(intent,RequestCodeConfig.Feature_Pic__REQUESTCODE_PHOTOS);
+		activity.startActivityForResult(intent,RequestCodeConfig.getRequestCode(RequestCodeConfig.Feature_Pic__REQUESTCODE_PHOTOS));
 	}
 
 	/**
@@ -75,7 +75,7 @@ public abstract  class Feature_Pic extends ExtraFeature{
 	public void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		if (resultCode == -1) {
-			switch (requestCode) {
+			switch (RequestCodeConfig.getSwitchRequestCode(requestCode)) {
 			case RequestCodeConfig.Feature_Pic__REQUESTCODE_CAMERA:
 				if (isFileExist()) {
 					getReturnedPicPath(path);

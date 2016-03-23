@@ -56,7 +56,7 @@ public abstract class Feature_SystemClip extends ExtraFeature{
 		 savePath=Uri.fromFile(saveFile);
 		 logger.log("savePath Uri:"+savePath);
 		 intent.putExtra(MediaStore.EXTRA_OUTPUT,savePath );//输出地址  
-		 activity.startActivityForResult(intent, RequestCodeConfig.Feature_SystemClip__REQUESTCODE_Clip);
+		 activity.startActivityForResult(intent, RequestCodeConfig.getRequestCode(RequestCodeConfig.Feature_SystemClip__REQUESTCODE_Clip));
 		}
 	
 	@Override
@@ -66,7 +66,7 @@ public abstract class Feature_SystemClip extends ExtraFeature{
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-			switch (requestCode) {
+			switch (RequestCodeConfig.getSwitchRequestCode(requestCode)) {
 			case RequestCodeConfig.Feature_SystemClip__REQUESTCODE_Clip:
 				if (intent != null) {
 					logger.log("onActivityResult  savePath:"+savePath);

@@ -4,7 +4,14 @@ package and.features;
 public class RequestCodeConfig {
     //可以通过设置他  防止和别的库 请求码相同
     public static int START_CODE = 1000;
-    public static int Feature_Pic__REQUESTCODE_CAMERA = START_CODE ;
-    public static int Feature_Pic__REQUESTCODE_PHOTOS = START_CODE + 1;
-    public static int Feature_SystemClip__REQUESTCODE_Clip = START_CODE+2;
+    public static final int Feature_Pic__REQUESTCODE_CAMERA = 0 ;
+    public static final int Feature_Pic__REQUESTCODE_PHOTOS =  1;
+    public static final int Feature_SystemClip__REQUESTCODE_Clip = 2;
+
+    public static int getRequestCode(int requestCodeConfig_Code){
+        return requestCodeConfig_Code+START_CODE;
+    }
+    public static int getSwitchRequestCode(int requestCodeConfig_Code){
+        return requestCodeConfig_Code-requestCodeConfig_Code;
+    }
 }
