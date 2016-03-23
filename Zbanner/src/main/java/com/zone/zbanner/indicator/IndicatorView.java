@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.nineoldandroids.view.ViewHelper;
+import com.zone.banner.R;
 import com.zone.zbanner.PagerAdapterCycle;
 import com.zone.zbanner.indicator.animation.DefaultAnimation;
 import com.zone.zbanner.indicator.animation.MoveAnimation;
@@ -69,8 +70,8 @@ public class IndicatorView extends RelativeLayout implements ViewPager.OnPageCha
 
     private void initView() {
         LayoutInflater inflater = LayoutInflater.from(context);
-//        ll_bottom = (LinearLayout) inflater.inflate(R.layout.core2_linear, null, false);
-//        fl_top = (FrameLayout) inflater.inflate(R.layout.core2_frame, null, false);
+        ll_bottom = (LinearLayout) inflater.inflate(R.layout.core2_linear, null, false);
+        fl_top = (FrameLayout) inflater.inflate(R.layout.core2_frame, null, false);
         addView(ll_bottom);
         addView(fl_top);
     }
