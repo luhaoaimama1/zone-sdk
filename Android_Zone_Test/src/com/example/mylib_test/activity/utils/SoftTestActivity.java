@@ -2,17 +2,14 @@ package com.example.mylib_test.activity.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import com.example.mylib_test.R;
+import com.zone.adapter.adapter.Adapter_Zone;
+import com.zone.adapter.adapter.core.ViewHolder_Zone;
 
-import and.abstractclass.adapter.Adapter_Zone;
-import and.abstractclass.adapter.core.ViewHolder_Zone;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 

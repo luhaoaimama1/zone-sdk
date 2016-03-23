@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import and.Constant;
-import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
 import and.features.core.ExtraFeature;
 import and.features.RequestCodeConfig;
 import and.log.Logger_Zone;
@@ -22,7 +21,7 @@ public abstract class Feature_SystemClip extends ExtraFeature{
 	public Feature_SystemClip(Activity activity,String saveFolder) {
 		super(activity);
 		this.saveFolder=saveFolder;
-		logger= new  Logger_Zone(Adapter_MultiLayout_Zone.class,Constant.Logger_Config);
+		logger= new  Logger_Zone(Feature_SystemClip.class,Constant.Logger_Config);
 		logger.closeLog();
 	}
 	

@@ -11,13 +11,13 @@ import android.widget.TextView;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.XfermodeActivity;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView;
+import com.zone.adapter.adapter.Adapter_Zone;
+import com.zone.adapter.adapter.core.ViewHolder_Zone;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import and.abstractclass.Pop_Zone;
-import and.abstractclass.adapter.Adapter_Zone;
-import and.abstractclass.adapter.core.ViewHolder_Zone;
 
 /**
  * Created by Administrator on 2016/3/21.

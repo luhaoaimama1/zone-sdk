@@ -1,11 +1,8 @@
 package and.abstractclass;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.nostra13.universalimageloader.core.ImageLoader;
-
 import and.Constant;
-import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
 import and.log.Logger_Zone;
 import android.app.Activity;
 import android.content.Intent;
@@ -27,7 +24,7 @@ public abstract class BaseActvity extends FragmentActivity implements Callback,O
 	@Override
 	protected void onCreate(Bundle arg0) {
 		activitys.add(this);
-		logger= new  Logger_Zone(Adapter_MultiLayout_Zone.class,Constant.Logger_Config);
+		logger= new  Logger_Zone(BaseActvity.class,Constant.Logger_Config);
 		logger.closeLog();
 		logger.log("BaseActvity  onCreate");
 		super.onCreate(arg0);

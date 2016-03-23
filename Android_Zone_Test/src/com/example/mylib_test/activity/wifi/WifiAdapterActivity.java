@@ -8,9 +8,9 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.R.id;
 import com.example.mylib_test.R.layout;
 import com.example.mylib_test.activity.wifi.entity.WifiItem;
+import com.zone.adapter.adapter.Adapter_Zone;
+import com.zone.adapter.adapter.core.ViewHolder_Zone;
 
-import and.abstractclass.adapter.Adapter_Zone;
-import and.abstractclass.adapter.core.ViewHolder_Zone;
 import and.wifi.MyWifiAnd3G;
 import android.app.Activity;
 import android.net.wifi.WifiConfiguration;

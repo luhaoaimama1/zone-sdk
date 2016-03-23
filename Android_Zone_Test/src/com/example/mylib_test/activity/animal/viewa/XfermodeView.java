@@ -99,7 +99,6 @@ public class XfermodeView extends View{
 //--------可用2 结束------------------------------------------------------------------------------------------------
 
 //--------可用3  第二图层layer 叠加
-
 //        paint.setXfermode(null);//此行要注意 super.draw也会话的 如果用叠加模式 会混乱的 当然默认模式是null 如果没写过 可以不写此行
 //        canvas.saveLayer(0, 0, getWidth(), getHeight(), paint,
 //                Canvas.ALL_SAVE_FLAG);

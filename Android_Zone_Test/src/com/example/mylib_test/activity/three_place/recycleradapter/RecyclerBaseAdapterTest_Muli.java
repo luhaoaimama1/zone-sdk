@@ -1,12 +1,9 @@
 package com.example.mylib_test.activity.three_place.recycleradapter;
-
 import java.util.List;
-import java.util.Map;
-
 import com.example.mylib_test.R;
+import com.zone.adapter.recycler.AdapterRecycler_MuliLayout_Zone;
+import com.zone.adapter.recycler.core.RecyclerHolder_Zone;
 
-import and.abstractclass.recycler.AdapterRecycler_MuliLayout_Zone;
-import and.abstractclass.recycler.core.RecyclerHolder_Zone;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;

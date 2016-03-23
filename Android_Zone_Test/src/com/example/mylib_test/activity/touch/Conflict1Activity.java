@@ -6,15 +6,12 @@ import java.util.Map;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.three_place.Images;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zone.adapter.adapter.Adapter_Zone;
+import com.zone.adapter.adapter.core.ViewHolder_Zone;
 
-import and.abstractclass.adapter.Adapter_Zone;
-import and.abstractclass.adapter.core.ViewHolder_Zone;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,7 +34,7 @@ public class Conflict1Activity extends Activity{
 		List<String> temp = Arrays.asList(Images.imageThumbUrls);
 		lv.setAdapter(new Adapter(this, temp));
 	}
-	public class Adapter extends Adapter_Zone<String>{
+	public class Adapter extends Adapter_Zone<String> {
 
 		public Adapter(Context context, List<String> data) {
 			super(context, data);

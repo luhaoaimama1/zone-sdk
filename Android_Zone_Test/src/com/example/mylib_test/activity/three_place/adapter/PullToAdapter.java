@@ -1,14 +1,13 @@
 package com.example.mylib_test.activity.three_place.adapter;
 
 import java.util.List;
-
 import com.example.mylib_test.R;
+import com.zone.adapter.adapter.Adapter_Zone;
+import com.zone.adapter.adapter.core.ViewHolder_Zone;
 
-import and.abstractclass.adapter.Adapter_Zone;
-import and.abstractclass.adapter.core.ViewHolder_Zone;
 import android.content.Context;
 import android.widget.TextView;
-public class PullToAdapter extends Adapter_Zone<String>{
+public class PullToAdapter extends Adapter_Zone<String> {
 
 	private TextView tv;
 

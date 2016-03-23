@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import and.Constant;
-import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
 import and.image.Compress_Sample_Utils;
 import and.image.lruutils.official.DiskLruCache;
 import and.log.Logger_Zone;
@@ -32,7 +31,7 @@ public class DiskLruUtils {
 	private static boolean writeLog=true;
 	private static Logger_Zone logger;
 	static{
-		logger= new  Logger_Zone(Adapter_MultiLayout_Zone.class,Constant.Logger_Config);
+		logger= new  Logger_Zone(DiskLruUtils.class,Constant.Logger_Config);
 		logger.closeLog();
 	}
 

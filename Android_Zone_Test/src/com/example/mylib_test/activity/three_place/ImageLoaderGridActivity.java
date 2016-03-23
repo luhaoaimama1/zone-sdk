@@ -5,12 +5,11 @@ import java.util.List;
 
 import com.example.mylib_test.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zone.adapter.adapter.Adapter_Zone;
+import com.zone.adapter.adapter.core.ViewHolder_Zone;
 
-import and.abstractclass.adapter.Adapter_Zone;
-import and.abstractclass.adapter.core.ViewHolder_Zone;
 import and.image.lruutils.DiskLruUtils;
 import and.log.ToastUtils;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -66,7 +65,7 @@ public class ImageLoaderGridActivity extends Activity implements OnClickListener
 //		.bitmapConfig(Bitmap.Config.RGB_565)	 //设置图片的解码类型
 //		.build();
 	}
-	public class Adapter extends Adapter_Zone<String>{
+	public class Adapter extends Adapter_Zone<String> {
 
 		public Adapter(Context context, List<String> data) {
 			super(context, data);

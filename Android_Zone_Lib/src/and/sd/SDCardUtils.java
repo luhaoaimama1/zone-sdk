@@ -3,7 +3,6 @@ package and.sd;
 import java.io.File;
 
 import and.Constant;
-import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
 import and.log.Logger_Zone;
 
 import android.content.Context;
@@ -16,7 +15,7 @@ public class SDCardUtils {
 
 
     static {
-        logger = new Logger_Zone(Adapter_MultiLayout_Zone.class, Constant.Logger_Config);
+        logger = new Logger_Zone(SDCardUtils.class, Constant.Logger_Config);
         logger.closeLog();
     }
 

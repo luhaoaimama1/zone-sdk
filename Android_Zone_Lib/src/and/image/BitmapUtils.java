@@ -1,7 +1,5 @@
 package and.image;
-
 import and.Constant;
-import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
 import and.log.Logger_Zone;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,16 +7,12 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Bitmap.Config;
-import android.graphics.PorterDuff.Mode;
 
 public class BitmapUtils {
 	private static Logger_Zone logger;
 
 	static{
-		logger= new  Logger_Zone(Adapter_MultiLayout_Zone.class,Constant.Logger_Config);
+		logger= new  Logger_Zone(BitmapUtils.class,Constant.Logger_Config);
 		logger.closeLog();
 	}
 	/**

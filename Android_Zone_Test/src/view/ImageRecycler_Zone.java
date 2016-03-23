@@ -2,9 +2,6 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
-import and.abstractclass.adapter.core.BaseAdapter_Zone;
-import and.abstractclass.adapter.core.ViewHolder_Zone;
-import and.abstractclass.recycler.core.BaseRecyclerAdapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +12,11 @@ import android.widget.AbsListView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.zone.adapter.adapter.core.BaseAdapter_Zone;
+import com.zone.adapter.adapter.core.ViewHolder_Zone;
+import com.zone.adapter.recycler.core.BaseRecyclerAdapter;
+
 //TODO 单行无限  未做
 //itemMargin的话 继承GirdView你懂的 	iz.setHorizontalSpacing(100);setVerticalSpacing(100);
 //android:horizontalSpacing   android:verticalSpacing

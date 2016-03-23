@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import and.Constant;
-import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
 import and.log.Logger_Zone;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -21,7 +20,7 @@ public class Compress_Sample_Utils {
 	private static Logger_Zone logger;
 
 	static{
-		logger= new  Logger_Zone(Adapter_MultiLayout_Zone.class,Constant.Logger_Config);
+		logger= new  Logger_Zone(Compress_Sample_Utils.class,Constant.Logger_Config);
 		logger.closeLog();
 	}
 	/**

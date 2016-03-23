@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import and.abstractclass.BaseActvity;
-import and.abstractclass.adapter.Adapter_Zone;
-import and.abstractclass.adapter.core.ViewHolder_Zone;
 import network.engine.XutilsEngine;
 import network.pullview.GooglePullView;
 
@@ -21,6 +19,8 @@ import com.example.mylib_test.activity.http.entity.Data;
 import com.example.mylib_test.app.Constant;
 import com.example.zone.http2rflist_zonelib.BasePullView;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zone.adapter.adapter.Adapter_Zone;
+import com.zone.adapter.adapter.core.ViewHolder_Zone;
 
 
 public class NetworkPull_TestActivity extends BaseActvity implements BasePullView.OnRefresh2LoadMoreListener {
