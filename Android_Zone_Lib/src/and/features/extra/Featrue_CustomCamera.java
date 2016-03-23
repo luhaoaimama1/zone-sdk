@@ -2,7 +2,7 @@ package and.features.extra;
 
 import java.io.IOException;
 
-import and.features.ExtraFeature;
+import and.features.core.ExtraFeature;
 import and.log.ToastUtils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,13 +13,10 @@ import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
-import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.Surface;
 import android.view.SurfaceView;
-import android.view.View;
-import android.view.View.OnClickListener;
 
 /**
  * 需要的服务如下： <br>

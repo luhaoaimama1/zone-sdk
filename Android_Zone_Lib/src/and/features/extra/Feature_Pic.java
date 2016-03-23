@@ -6,7 +6,7 @@ import java.util.Locale;
 
 import and.Constant;
 import and.abstractclass.adapter.Adapter_MultiLayout_Zone;
-import and.features.ExtraFeature;
+import and.features.core.ExtraFeature;
 import and.features.RequestCodeConfig;
 import and.log.Logger_Zone;
 import and.sd.FileUtils;

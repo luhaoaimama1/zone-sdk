@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import and.abstractclass.BaseActvity;
+import and.features.core.ExtraFeature;
+
 import android.content.Intent;
 import android.os.Bundle;
 /**

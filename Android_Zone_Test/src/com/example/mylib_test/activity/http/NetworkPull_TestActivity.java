@@ -8,22 +8,22 @@ import java.util.Map;
 import and.abstractclass.BaseActvity;
 import and.abstractclass.adapter.Adapter_Zone;
 import and.abstractclass.adapter.core.ViewHolder_Zone;
-import and.network.core.BasePullView.OnRefresh2LoadMoreListener;
-import and.network.engine.XutilsEngine;
-import and.network.pullview.GooglePullView;
+import network.engine.XutilsEngine;
+import network.pullview.GooglePullView;
+
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.entity.Data;
 import com.example.mylib_test.app.Constant;
+import com.example.zone.http2rflist_zonelib.BasePullView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 
-public class NetworkPull_TestActivity extends BaseActvity implements OnRefresh2LoadMoreListener{
+public class NetworkPull_TestActivity extends BaseActvity implements BasePullView.OnRefresh2LoadMoreListener {
 	final	String UrlPath = Constant.ADDRESS;
 	private SwipeRefreshLayout swipe_container;
 	private ListView rv;
