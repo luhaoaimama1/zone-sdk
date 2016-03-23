@@ -1,0 +1,24 @@
+http框架做的:异常检查    全局配置
+-------------------------------我需要做的是中间层-------------------------------
+1.tag  与 tag的退出方法
+2.public class RequestParams {  是不是应该摘过来呢
+      private Map<String, String> headerAddMap;
+      private Map<String, String> headerReplaceMap;
+      private Map<String, String> paramsMap;
+      private Map<String, File> fileMap;
+      private Map<String, String> fileNameMap;
+      private String encoding ;
+3.请求方式太少
+
+
+
+
+
+
+
+
+
+
+
+
+

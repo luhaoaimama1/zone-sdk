@@ -79,53 +79,59 @@ public class RequestParams {
         return fileMap;
     }
 
-    public void setFileMap(Map<String, File> fileMap) {
+    public RequestParams setFileMap(Map<String, File> fileMap) {
         this.fileMap.putAll(fileMap);
         for (Map.Entry<String, File> stringFileEntry : fileMap.entrySet())
             fileNameMap.put(stringFileEntry.getKey(),stringFileEntry.getValue().getName());
+        return this;
     }
 
     public Map<String, String> getHeaderAddMap() {
         return headerAddMap;
     }
 
-    public void setHeaderAddMap(Map<String, String> headerAddMap) {
+    public RequestParams setHeaderAddMap(Map<String, String> headerAddMap) {
         this.headerAddMap.putAll(headerAddMap);
+        return this;
     }
 
     public Map<String, String> getHeaderReplaceMap() {
         return headerReplaceMap;
     }
 
-    public void setHeaderReplaceMap(Map<String, String> headerReplaceMap) {
+    public RequestParams setHeaderReplaceMap(Map<String, String> headerReplaceMap) {
         this.headerReplaceMap.putAll(headerReplaceMap);
+        return this;
     }
 
     public Map<String, String> getParamsMap() {
         return paramsMap;
     }
 
-    public void setParamsMap(Map<String, String> paramsMap) {
+    public RequestParams setParamsMap(Map<String, String> paramsMap) {
         this.paramsMap.putAll(paramsMap);
+        return this;
     }
 
     public HttpType getmHttpType() {
         return mHttpType;
     }
 
-    public void setmHttpType(HttpType mHttpType) {
+    public RequestParams setmHttpType(HttpType mHttpType) {
         this.mHttpType = mHttpType;
+        return this;
     }
 
     public  String getEncoding() {
         return encoding;
     }
 
-    public  void setEncoding(String encoding) {
+    public  RequestParams setEncoding(String encoding) {
         Charset charset = Charset.forName(encoding);
         if (charset!=null) {
             this.encoding = encoding;
         }
+        return this;
     }
 
     public Map<String, String> getFileNameMap() {

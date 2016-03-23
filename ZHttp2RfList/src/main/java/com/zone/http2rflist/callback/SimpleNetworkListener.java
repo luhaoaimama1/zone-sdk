@@ -13,7 +13,7 @@ public  class SimpleNetworkListener implements NetworkListener{
 	}
 
 	@Override
-	public void onLoading(long total, long current, boolean isUploading) {
+	public void onLoading(long total, long current,long networkSpeed, boolean isUploading) {
 		
 	}
 
@@ -24,7 +24,6 @@ public  class SimpleNetworkListener implements NetworkListener{
 
 	@Override
 	public void onFailure(String msg) {
-		// TODO Auto-generated method stub
-		
 	}
+
 }

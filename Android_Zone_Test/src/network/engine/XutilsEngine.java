@@ -101,7 +101,7 @@ public class XutilsEngine extends BaseNetworkQuest {
 						boolean isUploading) {
 					super.onLoading(total, current, isUploading);
 					if(listener!=null)
-						listener.onLoading(total, current, isUploading);
+						listener.onLoading(total, current,-1,isUploading);
 				}
 
 				@Override
