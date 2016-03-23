@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.mylib_test.R;
-import com.zone.banner_zonelib.ViewPaperDisableScroll;
+import com.zone.zbanner.ViewPaperDisableScroll;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

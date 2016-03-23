@@ -26,7 +26,7 @@ import android.os.Build;
 import android.os.StrictMode;
 
 import com.example.mylib_test.R;
-import com.example.zone.http2rflist_zonelib.NetworkGlobalEngine;
+import com.zone.http2rflist.NetworkGlobalEngine;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 

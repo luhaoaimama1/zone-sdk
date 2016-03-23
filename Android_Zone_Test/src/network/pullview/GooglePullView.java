@@ -7,7 +7,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.example.zone.http2rflist_zonelib.BasePullView;
+import com.zone.http2rflist.BasePullView;
 
 import java.util.List;
 

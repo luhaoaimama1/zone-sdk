@@ -17,7 +17,7 @@ import android.widget.ListView;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.entity.Data;
 import com.example.mylib_test.app.Constant;
-import com.example.zone.http2rflist_zonelib.BasePullView;
+import com.zone.http2rflist.BasePullView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.adapter.adapter.Adapter_Zone;
 import com.zone.adapter.adapter.core.ViewHolder_Zone;
