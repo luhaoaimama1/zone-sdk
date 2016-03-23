@@ -1,2 +1,2 @@
-include ':Android_Zone_Lib', ':ZBanner', ':ZOkHttp', ':ZHttp2RfList', ':ZAdapter', ':ZRFList'
+include ':Android_Zone_Lib', ':ZBanner', ':ZOkHttp', ':ZHttp2RfList', ':ZAdapter', ':ZRFList', ':ZZBanner'
 include ':Android_Zone_Test'
