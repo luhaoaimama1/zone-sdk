@@ -1,10 +1,10 @@
-package com.example.zone.http2rflist_zonelib;
+package com.zone.http2rflist;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 
-import com.example.zone.http2rflist_zonelib.callback.NetworkListener;
+import com.zone.http2rflist.callback.NetworkListener;
 
 import java.io.File;
 import java.lang.reflect.Constructor;

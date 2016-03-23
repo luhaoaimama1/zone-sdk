@@ -1,4 +1,4 @@
-package com.example.zone.http2rflist_zonelib.callback;
+package com.zone.http2rflist.callback;
 
 public interface NetworkListener {
     public abstract void onStart();

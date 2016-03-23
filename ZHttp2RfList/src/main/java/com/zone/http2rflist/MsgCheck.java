@@ -1,4 +1,4 @@
-package com.example.zone.http2rflist_zonelib;
+package com.zone.http2rflist;
 
 public  class MsgCheck {
 	//TODO 检测 网络上回来的数据是否 是正确的格式  如果不是 弹出Toast

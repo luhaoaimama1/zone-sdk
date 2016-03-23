@@ -1,4 +1,4 @@
-package com.example.zone.http2rflist_zonelib;
+package com.zone.http2rflist;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
