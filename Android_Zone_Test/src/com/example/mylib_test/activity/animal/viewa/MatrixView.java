@@ -28,17 +28,17 @@ public class MatrixView extends View {
 //		super.onDraw(canvas);
 		Matrix matrix=new Matrix();
 		matrix.postTranslate(100, 200);
-		//矩阵映射： 即把此矩阵 未作用的点  映射到   到调用此方法之前的矩阵作用 的点
 		matrix.mapPoints(dst, src);
-		System.out.println("mapPoints_____dst first Point X:"+ dst[0]+"\t  Y:"+dst[1]);
-		
+		System.out.println("mapPoints_____src first Point X:" + src[0] + "\t  Y:" + src[1]);//src是记录的原点  [0,0]点
+		System.out.println("mapPoints_____dst first Point X:"+ dst[0]+"\t  Y:"+dst[1]);//dst是 src通过矩阵变换的点 [0,0]点对应到 [100,200]
+
 		canvas.drawBitmap(bt, matrix, paint);
-		
-		//矩阵反转 后映射：  即把 矩阵现在的点   通过反转矩阵 返回到此矩阵作用之前对应的点
-		Matrix invertMatrix=new Matrix();
+
+		//通过下边的三个方法  可以通过  dst矩阵变化后的点  通过矩阵 逆向方法 转换到 invertDst  即是src原点位置   所以dst中[100,200]的点 即是inverDst[0,0]这个点即 src[0,0]点
+		Matrix invertMatrix = new Matrix();
 		matrix.invert(invertMatrix);
 		invertMatrix.mapPoints(invertDst, dst);
-		System.out.println("invertMatrix_____ mapPoints  invertDst first Point X:"+ invertDst[0]+"\t  Y:"+invertDst[1]);
+		System.out.println("invertMatrix_____ mapPoints  invertDst first Point X:" + invertDst[0] + "\t  Y:" + invertDst[1]);
 	}
 
 }

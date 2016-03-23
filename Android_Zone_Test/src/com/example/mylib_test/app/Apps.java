@@ -18,7 +18,7 @@ import and.image.imageloader.ImageLoaderConfigUtils;
 import and.image.imageloader.ImageLoaderOptionsUtils;
 import and.log.Logger_Zone;
 import and.log.Logger_Zone.LogStatue;
-import and.network.core.NetworkEngine;
+import and.network.core.NetworkGlobalEngine;
 import and.network.engine.XutilsEngine;
 import android.annotation.TargetApi;
 import android.app.Application;
@@ -29,7 +29,6 @@ import com.example.mylib_test.R;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,18 +70,16 @@ public class Apps extends Application {
 			Map<String, String> commonHeaderReMap = new HashMap<>();
 			commonHeaderReMap.put("commonHeaderMap", "header_CommonReplace");
 //			OkHttpUtils.setClient(OkHttpUtils.Certificates(getAssets().open("srca.cer")).build());
-		try {
+//		try {
 			ok.initConfig(new HttpConfig().setCommonHeaderAddMap(commonHeaderMap).setCommonHeaderReplaceMap(commonHeaderReMap).setCommonParamsMap(commonParamMap)
 //					.Certificates(CER_12306)
-					.Certificates(getAssets().open("srca.cer")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//					.Certificates(getAssets().open("srca.cer")
+			);
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
 
-		NetworkEngine.setGlobalEngine(XutilsEngine.class);
+		NetworkGlobalEngine.setGlobalEngine(XutilsEngine.class);
 		//全局控制　打印日志
 		Logger_Zone.setAllLogStatue(LogStatue.Close,false);
 		

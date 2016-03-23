@@ -4,15 +4,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import com.google.gson.Gson;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
-import android.os.Message;
-import android.view.View;
+
+import and.network.callback.NetworkListener;
 //这个是处理    网络请求 dialog  与handler返回信息
 //TODO 暂时不支持多种请求因为 那些我没见过
 //TODO  缓存暂时没有

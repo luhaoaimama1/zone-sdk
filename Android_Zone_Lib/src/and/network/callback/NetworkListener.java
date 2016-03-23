@@ -1,4 +1,4 @@
-package and.network.core;
+package and.network.callback;
 
 public interface NetworkListener {
     public abstract void onStart();

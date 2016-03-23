@@ -8,14 +8,16 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 
-public class NetworkEngine extends BaseNetworkQuest{
+import and.network.callback.NetworkListener;
+
+public class NetworkGlobalEngine extends BaseNetworkQuest{
 	private  static Class<? extends BaseNetworkQuest> engineClass;
 	private BaseNetworkQuest engine;
-	public NetworkEngine(Context context, Handler handler) {
+	public NetworkGlobalEngine(Context context, Handler handler) {
 		this(context, handler,false);
 	
 	}
-	public NetworkEngine(Context context, Handler handler,boolean showDialog) {
+	public NetworkGlobalEngine(Context context, Handler handler, boolean showDialog) {
 		super(context, handler,showDialog);
 		try {
 			Constructor<? extends BaseNetworkQuest> con = engineClass.getDeclaredConstructor(Context.class, Handler.class,boolean.class);
@@ -49,6 +51,6 @@ public class NetworkEngine extends BaseNetworkQuest{
 	}
 	
 	public static void setGlobalEngine(Class<? extends BaseNetworkQuest>  engineClass){
-		NetworkEngine.engineClass=engineClass;
+		NetworkGlobalEngine.engineClass=engineClass;
 	}
 }

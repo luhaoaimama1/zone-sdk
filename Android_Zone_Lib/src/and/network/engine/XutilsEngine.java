@@ -12,7 +12,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
 import and.network.core.BaseNetworkQuest;
-import and.network.core.NetworkListener;
+import and.network.callback.NetworkListener;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;

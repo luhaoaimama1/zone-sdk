@@ -182,7 +182,8 @@ public class LabelView extends View {
 	private MoveAttri tempTouch=null ;
 	private MoveAttri showHelper=null ;
 	private boolean quitDown=false;//触发事件  判断消耗用的
-	
+
+	//通过逆向矩阵  找到图形最开始 不变点的位置
 	private float[] getInvertEventPoint(MoveAttri moveAttri,MotionEvent event,Type type){
 		float[] src=new float[]{event.getX(),event.getY()};
 		float[] dst=new float[src.length];

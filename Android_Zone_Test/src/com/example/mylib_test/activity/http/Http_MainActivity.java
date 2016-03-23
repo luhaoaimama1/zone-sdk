@@ -1,4 +1,5 @@
 package com.example.mylib_test.activity.http;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,21 +13,25 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.example.mylib_test.R;
 import com.example.mylib_test.app.Constant;
 import com.example.mylib_test.handler.HandlerTest;
 import com.zone.okhttp.ok;
 import com.zone.okhttp.RequestParams;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import and.sd.FileUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import download.zone.okhttp.callback.DownloadCallback;
 import okhttp3.Call;
 import okhttp3.Response;
+
 import com.zone.okhttp.callback.SimpleProgressCallback;
 
 public class Http_MainActivity extends Activity implements OnClickListener {
@@ -59,7 +64,9 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 });
                 Looper.loop();
                 Looper.myLooper().quitSafely();
-            };
+            }
+
+            ;
         }.start();
 
     }
@@ -95,23 +102,23 @@ public class Http_MainActivity extends Activity implements OnClickListener {
     SimpleProgressCallback okListener = new SimpleProgressCallback() {
 
         @Override
-        public void  onError(Call call, IOException e) {
+        public void onError(Call call, IOException e) {
             super.onError(call, e);
-            System.err.println("IOException >>"+e.getMessage());
+            System.err.println("IOException >>" + e.getMessage());
         }
 
         @Override
-        public  void onLoading(long total, long current, long networkSpeed,boolean isDownloading){
-            super.onLoading(total,current,networkSpeed,isDownloading);
-            System.out.println(" progress"+((int)(current * 100 / total))+"  \t networkSpeed:"+networkSpeed+
-                    "  \t total:"+total+" \t current:"+current+" \t isDownloading:"+isDownloading+"");
+        public void onLoading(long total, long current, long networkSpeed, boolean isDownloading) {
+            super.onLoading(total, current, networkSpeed, isDownloading);
+            System.out.println(" progress" + ((int) (current * 100 / total)) + "  \t networkSpeed:" + networkSpeed +
+                    "  \t total:" + total + " \t current:" + current + " \t isDownloading:" + isDownloading + "");
 //            tvOkHttp.setText("progress:"+mLoadingParams.progress);
         }
 
         @Override
         public void onSuccess(String result, Call call, Response response) {
             super.onSuccess(result, call, response);
-            System.out.println("onSuccess result>>"+result);
+            System.out.println("onSuccess result>>" + result);
         }
 
         @Override
@@ -129,13 +136,14 @@ public class Http_MainActivity extends Activity implements OnClickListener {
 //				OkHttpUtils.get(UrlPath + "?un=8&kb=ga").executeSync(okListener);
                 ok.get("http://www.baidu.com", okListener).tag(this).executeSync();
                 break;
-            case R.id.bt_Https:
-                ok.get("https://kyfw.12306.cn/otn/", okListener).tag(this).executeSync();
-                break;
             case R.id.bt_okPost:
                 ok.post(UrlPath, new RequestParams().put("platform", "android")
                         .put("name", "bug").put("subject", 123 + ""), okListener).tag(this).executeSync();
                 break;
+            case R.id.bt_Https:
+                ok.get("https://kyfw.12306.cn/otn/", okListener).tag(this).executeSync();
+                break;
+
             case R.id.bt_downLoader:
                 download.zone.okhttp.DownLoader.getInstance(this).startTask(urlPath, FileUtils.getFile(""), new DownloadCallback() {
 
@@ -202,7 +210,6 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 break;
         }
     }
-
 
 
     @Override
