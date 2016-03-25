@@ -12,7 +12,9 @@ import android.view.View;
 import com.example.mylib_test.R;
 import com.example.mylib_test.app.Constant;
 import com.zone.http2rflist.NetworkGlobalEngine;
+import com.zone.http2rflist.Request;
 import com.zone.http2rflist.RequestParamsNet;
+import com.zone.http2rflist.RequestUtils;
 
 //TODO  listener有问题  null或者 有的时候不应该会有消息
 public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
@@ -28,19 +30,23 @@ public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
 
 		
 		engineGet=new NetworkGlobalEngine(this, handler);
-		engineGet.send(UrlPath, new RequestParamsNet().setParamsMap(params), GET_TAG,null);
-		
+		engineGet.newCall(new Request.Builder().get().url(UrlPath)
+				.params(new RequestParamsNet().setParamsMap(params)).handlerTag(GET_TAG).build());
 		
 		enginePost=new NetworkGlobalEngine(this, handler);
-		enginePost.sendPost(UrlPath, new RequestParamsNet().setParamsMap(params), POST_TAG,null);
-		
+//		enginePost.sendPost(UrlPath, new RequestParamsNet().setParamsMap(params), POST_TAG,null);
+		enginePost.newCall(new Request.Builder().get().url(UrlPath)
+				.params(new RequestParamsNet().setParamsMap(params)).handlerTag(POST_TAG).build());
+
 		
 		File f = new File(FileUtils.getFile(""), "高达 - 00.mp3");
 		File f2 = new File(FileUtils.getFile("DCIM", "Camera"), "20150621_121327.jpg");
 		fileMap.put("upload", f);
 		fileMap.put("upload2", f2);
 		engineFile=new NetworkGlobalEngine(this, handler);
-		engineFile.sendFile(UrlPath,new RequestParamsNet().setParamsMap(params).setFileMap(fileMap), FILE_TAG,null);
+		//留作对比
+//		engineFile.sendFile(UrlPath,new RequestParamsNet().setParamsMap(params).setFileMap(fileMap), FILE_TAG,null);
+		engineFile.newCall(RequestUtils.post(UrlPath,new RequestParamsNet().setParamsMap(params).setFileMap(fileMap)).handlerTag(FILE_TAG).build());
 	}
 
 	@Override
@@ -62,13 +68,13 @@ public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.client_get:
-			engineGet.startTask();
+			engineGet.start();
 			break;
 		case R.id.client_post:
-			enginePost.startTask();
+			enginePost.start();
 			break;
 		case R.id.client_upload:
-			engineFile.startTask();
+			engineFile.start();
 			break;
 
 		default:

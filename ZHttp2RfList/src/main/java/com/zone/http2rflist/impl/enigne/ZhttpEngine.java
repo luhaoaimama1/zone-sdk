@@ -3,13 +3,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import com.zone.http2rflist.BaseNetworkQuest;
-import com.zone.http2rflist.RequestParamsNet;
+import com.zone.http2rflist.Request;
 import com.zone.http2rflist.callback.NetworkListener;
 import com.zone.http2rflist.entity.HttpTypeNet;
 import com.zone.http2rflist.entity.SuccessType;
 import com.zone.http2rflist.impl.enigne.helper.ParamsHelper;
 import com.zone.okhttp.callback.SimpleProgressCallback;
 import com.zone.okhttp.ok;
+import com.zone.okhttp.wrapper.RequestBuilderProxy;
+
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Response;
@@ -20,7 +22,7 @@ import okhttp3.Response;
 public class ZhttpEngine extends BaseNetworkQuest {
 
     private  NetworkListener listener;
-    private  int tag;
+    private  int handlerTag;
     public ZhttpEngine(Context context, Handler handler) {
         super(context, handler);
     }
@@ -30,40 +32,51 @@ public class ZhttpEngine extends BaseNetworkQuest {
     }
 
     @Override
-    protected void ab_Send(String urlString, RequestParamsNet params, final int tag, final NetworkListener listener) {
-        this.listener=listener;
-        this.tag=tag;
-        switch (params.getHttpTypeNet()){
+    protected void ab_Send(Request request) {
+        this.listener=request.listener;
+        this.handlerTag =request.handlerTag;
+        RequestBuilderProxy requestBuilderProxy = null;
+        switch (request.params.getHttpTypeNet()){
             case GET:
-                ok.get(urlString, ParamsHelper.setParamsNet(params),callBack).tag(context).executeSync();
+                requestBuilderProxy= ok.get(request.urlString, ParamsHelper.setParamsNet(request.params),callBack);
                 break;
             case HEAD:
-                ok.head(urlString, ParamsHelper.setParamsNet(params), callBack).tag(context).executeSync();
+                ok.head(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             case DELETE:
-                ok.delete(urlString, ParamsHelper.setParamsNet(params), callBack).tag(context).executeSync();
+                ok.delete(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             case POST:
-                if(params.getHttpTypeNet().postType== HttpTypeNet.PostType.JSON)
-                    ok.postJson(urlString, ParamsHelper.setParamsNet(params), callBack).tag(context).executeSync();
+                if(request.params.getHttpTypeNet().postType== HttpTypeNet.PostType.JSON)
+                    ok.postJson(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 else
-                    ok.post(urlString, ParamsHelper.setParamsNet(params), callBack).tag(context).executeSync();
+                    ok.post(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             case PUT:
-                ok.put(urlString, ParamsHelper.setParamsNet(params), callBack).tag(context).executeSync();
+                ok.put(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             case PATCH:
-                ok.patch(urlString, ParamsHelper.setParamsNet(params), callBack).tag(context).executeSync();
+                ok.patch(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             default:
                 break;
         }
+        if (requestBuilderProxy!=null)
+            requestBuilderProxy.tag(request.cancelTag==null?context:request.cancelTag).executeSync();
 
+    }
+    private Object getTag(Object tag){
+        return tag==null?context:tag;
     }
 
     @Override
     protected void cancelAllRequest() {
         ok.cancelTag(context);
+    }
+
+    @Override
+    protected void cancelAllRequest(Object cancelTag) {
+        ok.cancelTag(cancelTag);
     }
 
 
@@ -81,7 +94,7 @@ public class ZhttpEngine extends BaseNetworkQuest {
 
         @Override
         public void onSuccess(String result, Call call, Response response) {
-            sendhandlerMsg(result, tag);
+            sendhandlerMsg(result, handlerTag);
             if (listener != null) {
                 listener.onSuccess(result, SuccessType.HTTP);
                 listener.onCancelled();
@@ -91,7 +104,7 @@ public class ZhttpEngine extends BaseNetworkQuest {
 
         @Override
         public void onError(Call call, IOException e) {
-            sendhandlerMsg(e.getMessage(), tag);
+            sendhandlerMsg(e.getMessage(), handlerTag);
             if (listener != null) {
                 listener.onFailure(e.getMessage());
                 listener.onCancelled();

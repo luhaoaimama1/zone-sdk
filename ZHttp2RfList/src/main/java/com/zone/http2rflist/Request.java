@@ -7,39 +7,22 @@ import com.zone.http2rflist.entity.HttpTypeNet;
  * Created by Administrator on 2016/3/25.
  */
 public class Request {
-  private  final  RequestParamsNet params;
-  private final NetworkListener listener;
-  private  final  String urlString;
-  private final int handlerTag;
-  private final HttpTypeNet httpTypeNet;
+  public  final  RequestParamsNet params;
+  public final NetworkListener listener;
+  public  final  String urlString;
+  public final int handlerTag;
+  public final Object cancelTag;
+  public final HttpTypeNet httpTypeNet;
 
     private Request(Builder builder) {
         this.params = builder.params;
         this.listener = builder.listener;
         this.urlString = builder.urlString;
         this.handlerTag = builder.handlerTag;
+        this.cancelTag = builder.cancelTag;
         this.httpTypeNet = builder.httpTypeNet;
     }
 
-    public RequestParamsNet params() {
-        return params;
-    }
-
-    public NetworkListener networkListener() {
-        return listener;
-    }
-
-    public String url() {
-        return urlString;
-    }
-
-    public int handlerTag() {
-        return handlerTag;
-    }
-
-    public HttpTypeNet httpTypeNet() {
-        return httpTypeNet;
-    }
 
     public static class Builder {
 
@@ -48,6 +31,8 @@ public class Request {
         private String urlString;
         private int handlerTag=-1;
         private HttpTypeNet httpTypeNet=HttpTypeNet.GET;
+        private Object cancelTag;
+
         public Builder() {
         }
 
@@ -63,6 +48,10 @@ public class Request {
 
         public Builder handlerTag(int handlerTag) {
             this.handlerTag = handlerTag;
+            return this;
+        }
+        public Builder cancelTag(Object cancelTag) {
+            this.cancelTag = cancelTag;
             return this;
         }
 

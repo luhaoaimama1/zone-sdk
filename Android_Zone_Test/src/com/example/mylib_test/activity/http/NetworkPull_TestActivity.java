@@ -15,6 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.adapter.adapter.Adapter_Zone;
 import com.zone.adapter.adapter.core.ViewHolder_Zone;
 import com.zone.http2rflist.RequestParamsNet;
+import com.zone.http2rflist.RequestUtils;
 import com.zone.http2rflist.impl.enigne.ZhttpEngine;
 import com.zone.http2rflist.impl.rflist.GooglePullView;
 
@@ -35,8 +36,9 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 		params.put("name", "xoxoxxoo");
 		setContentView(R.layout.a_network_pull);
 		engineGet=new ZhttpEngine(this, handler);
-		engineGet.send(UrlPath,new RequestParamsNet().setParamsMap(params), GET_TAG);
-		
+//		engineGet.newCall(UrlPath,new RequestParamsNet().setParamsMap(params), GET_TAG);
+		engineGet.newCall(RequestUtils.post(UrlPath, new RequestParamsNet().setParamsMap(params)).handlerTag(GET_TAG).build());
+
 	}
 
 	@Override

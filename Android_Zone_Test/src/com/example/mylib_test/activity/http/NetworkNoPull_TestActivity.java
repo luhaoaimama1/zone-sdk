@@ -13,6 +13,7 @@ import android.view.View;
 import com.example.mylib_test.R;
 import com.example.mylib_test.app.Constant;
 import com.zone.http2rflist.RequestParamsNet;
+import com.zone.http2rflist.RequestUtils;
 import com.zone.http2rflist.impl.enigne.ZhttpEngine;
 
 //TODO  listener有问题  null或者 有的时候不应该会有消息
@@ -29,19 +30,22 @@ public class NetworkNoPull_TestActivity extends BaseActvity{
 
 		
 		engineGet=new ZhttpEngine(this, handler);
-		engineGet.send(UrlPath, new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), GET_TAG,null);
-		
+//		engineGet.send(UrlPath, new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), GET_TAG,null);
+		engineGet.newCall(RequestUtils.post(UrlPath, new RequestParamsNet().setParamsMap(params)).handlerTag(GET_TAG).build());
+
 		
 		enginePost=new ZhttpEngine(this, handler);
-		enginePost.sendPost(UrlPath,  new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), POST_TAG,null);
-		
-		
+//		enginePost.sendPost(UrlPath,  new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), POST_TAG,null);
+		enginePost.newCall(RequestUtils.post(UrlPath, new RequestParamsNet().setParamsMap(params).setFileMap(fileMap)).handlerTag(POST_TAG).build());
+
+
 		File f = new File(FileUtils.getFile(""), "高达 - 00.mp3");
 		File f2 = new File(FileUtils.getFile("DCIM", "Camera"), "20150621_121327.jpg");
 		fileMap.put("upload", f);
 		fileMap.put("upload2", f2);
 		engineFile=new ZhttpEngine(this, handler);
-		engineFile.sendFile(UrlPath,  new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), FILE_TAG,null);
+//		engineFile.sendFile(UrlPath,  new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), FILE_TAG,null);
+		engineFile.newCall(RequestUtils.post(UrlPath, new RequestParamsNet().setParamsMap(params).setFileMap(fileMap)).handlerTag(FILE_TAG).build());
 	}
 
 	@Override
@@ -63,13 +67,13 @@ public class NetworkNoPull_TestActivity extends BaseActvity{
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.client_get:
-			engineGet.startTask();
+			engineGet.start();
 			break;
 		case R.id.client_post:
-			enginePost.startTask();
+			enginePost.start();
 			break;
 		case R.id.client_upload:
-			engineFile.startTask();
+			engineFile.start();
 			break;
 
 		default:

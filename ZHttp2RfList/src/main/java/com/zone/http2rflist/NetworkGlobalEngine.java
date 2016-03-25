@@ -26,8 +26,8 @@ public class NetworkGlobalEngine extends BaseNetworkQuest{
 	}
 
 	@Override
-	protected void ab_Send(String urlString, RequestParamsNet params, int tag, NetworkListener listener) {
-		engine.ab_Send(urlString, params, tag, listener);
+	protected void ab_Send(Request request) {
+		engine.ab_Send(request);
 	}
 
 	@Override
@@ -35,6 +35,10 @@ public class NetworkGlobalEngine extends BaseNetworkQuest{
 		engine.cancelAllRequest();
 	}
 
+	@Override
+	protected void cancelAllRequest(Object cancelTag) {
+		engine.cancelAllRequest(cancelTag);
+	}
 
 	@Override
 	protected Dialog createDefaultDialog(Context context) {

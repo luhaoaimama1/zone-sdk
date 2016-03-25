@@ -3,11 +3,7 @@ package com.zone.http2rflist;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
-
-import com.zone.http2rflist.callback.NetworkListener;
 import com.google.gson.Gson;
-import com.zone.http2rflist.entity.HttpTypeNet;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +15,12 @@ public abstract class BaseNetworkQuest {
 	private int limit=10, pageNumber=0;
 	private Dialog dialog;
 	private BasePullView listView;
-	private RequestParamsNet params;
-	private NetworkListener listener;
-	private  String urlString;
-	private int tag;
 	//不暴漏的 外部的类还用到的
 	protected Context context;
 	protected boolean  lastPage=false;
 	//防止当前页面正处理的时候  又翻页了 这时候翻页参数会错乱
 	private List<Integer> pageNumberhistory=new ArrayList<>();
+	private Request request;
 
 	public BaseNetworkQuest(Context context,Handler handler) {
 		this(context,handler,false);
@@ -42,13 +35,13 @@ public abstract class BaseNetworkQuest {
 	public  void firstPage(){
 		turnPageExceptionChecked();
 		pageNumber=0;
-		startTask();
+		start();
 	};
 	public  void nextPage(){
 		if (!lastPage) {
 			turnPageExceptionChecked();
 			pageNumber++;
-			startTask();
+			start();
 		}else{
 
 		}
@@ -56,7 +49,7 @@ public abstract class BaseNetworkQuest {
 	public  void turnPage(int number){
 		turnPageExceptionChecked();
 		pageNumber=number;
-		startTask();
+		start();
 	};
 	private void turnPageExceptionChecked(){
 		if(listView==null)
@@ -64,95 +57,23 @@ public abstract class BaseNetworkQuest {
 	}
 
 	//开始任务
-	public void startTask(){
-		sendFileFinal(true);
+	public void start(){
+		execute(true);
 	}
-	//map type  post 默认 get
-	//-----------------------------get------------------------
-	public  void send(String urlString,int tag){
-		send(urlString, null, tag, null);
-	};
-	public  void send(String urlString,RequestParamsNet params,int tag){
-		send(urlString, params, tag, null);
-	};
-	public  void send(String urlString,RequestParamsNet params,int tag,NetworkListener listener){
-		sendFile(urlString, params, tag, listener);
-	};
-	//-----------------------------head-------------------------
-	public void sendHead(String urlString,int tag){
-		sendHead(urlString, null, tag, null);
-	};
-	public  void sendHead(String urlString,RequestParamsNet params,int tag){
-		sendHead(urlString, params, tag, null);
-	};
-	public  void sendHead(String urlString,RequestParamsNet params,int tag,NetworkListener listener){
-		params.setHttpTypeNet(HttpTypeNet.HEAD);
-		sendFile(urlString, params, tag, listener);
-	};
-	//-----------------------------delete-------------------------
-	public void sendDelete(String urlString,int tag){
-		sendDelete(urlString, null, tag, null);
-	};
-	public  void sendDelete(String urlString,RequestParamsNet params,int tag){
-		sendDelete(urlString, params, tag, null);
-	};
-	public  void sendDelete(String urlString,RequestParamsNet params,int tag,NetworkListener listener){
-		params.setHttpTypeNet(HttpTypeNet.DELETE);
-		sendFile(urlString, params, tag, listener);
-	};
-	//-----------------------------post-------------------------
-	public  void sendPost(String urlString,RequestParamsNet params,int tag){
-		sendPost(urlString, params, tag, listener);
-	};
-	public  void sendPost(String urlString,RequestParamsNet params,int tag,NetworkListener listener){
-		params.setHttpTypeNet(HttpTypeNet.POST);
-		sendFile(urlString, params, tag, listener);
-	};
-	//-----------------------------jsonStr-------------------------
-	public  void sendPostJson(String urlString, RequestParamsNet params,int tag){
-		sendPostJson(urlString, params, tag, listener);
-	};
-	public  void sendPostJson(String urlString,RequestParamsNet params,int tag,NetworkListener listener){
-		params.setHttpTypeNet(HttpTypeNet.POST.postJson());
-		sendFile(urlString, params, tag, listener);
-	};
-	//-----------------------------put-------------------------
-	public  void sendPut(String urlString,RequestParamsNet params,int tag){
-		sendPut(urlString, params, tag, listener);
-	};
-	public  void sendPut(String urlString,RequestParamsNet params,int tag,NetworkListener listener){
-		params.setHttpTypeNet(HttpTypeNet.PUT);
-		sendFile(urlString, params, tag, listener);
-	};
-	//-----------------------------patch-------------------------
-	public  void sendPatch(String urlString,RequestParamsNet params,int tag){
-		sendPatch(urlString, params, tag, listener);
-	};
-	public  void sendPatch(String urlString,RequestParamsNet params,int tag,NetworkListener listener){
-		params.setHttpTypeNet(HttpTypeNet.PATCH);
-		sendFile(urlString, params, tag, listener);
-	};
-
-	public  void sendFile(String urlString,RequestParamsNet params,int tag){
-		sendFile(urlString, params, tag, null);
+	public  void newCall(Request request){
+		this.request=request;
+		execute(false);
 	}
-	public  void sendFile(String urlString,RequestParamsNet params,int tag,NetworkListener listener){
-		this.params=params;
-		this.urlString=urlString;
-		this.tag=tag;
-		this.listener=listener;
-		sendFileFinal(false);
-	}
-	private  void sendFileFinal(boolean run){
-		if (run&&params!=null) {
+	private  void execute(boolean run){
+		if (run&&request!=null) {
 			showDialog();
 			relateAddTurnPage();
 			//TODO 仅仅get的时候有缓存好了  内存缓存   本地缓存 然后http
-			ab_Send(urlString, params, tag, listener);
-			}
+			ab_Send(request);
+		}
 	}
 	// error  与  success都需要 发送消息  但是记住必须只有一个发出来
-	public void sendhandlerMsg(final String msg,final int tag){
+	public void sendhandlerMsg(final String msg,final int handlerTag){
 		//把dialog弄掉
 		handler.post(new Runnable() {
 			
@@ -184,7 +105,8 @@ public abstract class BaseNetworkQuest {
 					//把nubmerHistory处理过的 移除
 					pageNumberhistory.remove(0);
 					//arg1  是页数  ar2不知道 那就-1被~
-					handler.obtainMessage(tag,number,-1,msg).sendToTarget();
+					if (handlerTag !=-1)
+						handler.obtainMessage(handlerTag,number,-1,msg).sendToTarget();
 				}
 				//动画弄掉
 				private void removeListAnimal(int number, BasePullView listView) {
@@ -196,7 +118,9 @@ public abstract class BaseNetworkQuest {
 			});
 		}else{
 			//未联动 发送信息 到handler
-			handler.obtainMessage(tag,msg).sendToTarget();
+			if (handlerTag ==-1)
+				throw new IllegalStateException("handlerTag must be set!");
+			handler.obtainMessage(handlerTag,msg).sendToTarget();
 		}
 	}
 	//建立list联动后 会添加翻页功能
@@ -206,14 +130,15 @@ public abstract class BaseNetworkQuest {
 	}
 	public void relateAddTurnPage(){
 		if(listView!=null){
-			params.put(limitColumn, limit + "");
+			request.params.put(limitColumn, limit + "");
 			pageNumberhistory.add(pageNumber);
 	        int offest = limit* pageNumber;
-			params.put(offsetColumn, offest + "");
+			request.params.put(offsetColumn, offest + "");
 		}
 	}
-	protected abstract void ab_Send(String urlString, RequestParamsNet params ,int tag, NetworkListener listener);
+	protected abstract void ab_Send(Request request);
 	protected  abstract void cancelAllRequest();
+	protected  abstract void cancelAllRequest(Object cancelTag);
 	//设置 默认的dialog
 	protected  abstract Dialog createDefaultDialog(Context context);
 	//设置dialog
