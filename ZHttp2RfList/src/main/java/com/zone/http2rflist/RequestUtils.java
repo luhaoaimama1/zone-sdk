@@ -7,11 +7,20 @@ public class RequestUtils {
     public static Request.Builder get(String url, RequestParamsNet requestParamsNet){
         return new Request.Builder().get().url(url).params(requestParamsNet);
     }
+    public static Request.Builder get(String url){
+        return new Request.Builder().get().url(url);
+    }
     public static Request.Builder head(String url, RequestParamsNet requestParamsNet){
         return new Request.Builder().head().url(url).params(requestParamsNet);
     }
+    public static Request.Builder head(String url){
+        return new Request.Builder().head().url(url);
+    }
     public static Request.Builder delete(String url, RequestParamsNet requestParamsNet){
         return new Request.Builder().delete().url(url).params(requestParamsNet);
+    }
+    public static Request.Builder delete(String url){
+        return new Request.Builder().delete().url(url);
     }
     public static Request.Builder post(String url, RequestParamsNet requestParamsNet){
         return new Request.Builder().post().url(url).params(requestParamsNet);
