@@ -5,17 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 import and.abstractclass.BaseActvity;
 import and.sd.FileUtils;
-import network.engine.XutilsEngine;
+//import network.engine.XutilsEngine;
 
 import android.os.Message;
 import android.view.View;
 
 import com.example.mylib_test.R;
+import com.example.mylib_test.app.Constant;
+import com.zone.http2rflist.RequestParamsNet;
+import com.zone.http2rflist.impl.enigne.ZHttpEngine;
 
 //TODO  listener有问题  null或者 有的时候不应该会有消息
 public class NetworkNoPull_TestActivity extends BaseActvity{
-	final	String UrlPath = "http://182.254.243.254:8080/Test/log";
-	private XutilsEngine engineGet,enginePost,engineFile;
+	final	String UrlPath = Constant.ADDRESS;
+	private ZHttpEngine engineGet,enginePost,engineFile;
 	private static final int GET_TAG=1,POST_TAG=2,FILE_TAG=3;
 	Map<String,String> params=new HashMap<String,String>();
 	Map<String,File> fileMap=new HashMap<String,File>();
@@ -25,20 +28,20 @@ public class NetworkNoPull_TestActivity extends BaseActvity{
 		params.put("name", "疯子");
 
 		
-		engineGet=new XutilsEngine(this, handler);
-		engineGet.send(UrlPath, params, GET_TAG,null);
+		engineGet=new ZHttpEngine(this, handler);
+		engineGet.send(UrlPath, new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), GET_TAG,null);
 		
 		
-		enginePost=new XutilsEngine(this, handler);
-		enginePost.sendPost(UrlPath, params, POST_TAG,null);
+		enginePost=new ZHttpEngine(this, handler);
+		enginePost.sendPost(UrlPath,  new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), POST_TAG,null);
 		
 		
 		File f = new File(FileUtils.getFile(""), "高达 - 00.mp3");
 		File f2 = new File(FileUtils.getFile("DCIM", "Camera"), "20150621_121327.jpg");
 		fileMap.put("upload", f);
 		fileMap.put("upload2", f2);
-		engineFile=new XutilsEngine(this, handler);
-		engineFile.sendFile(UrlPath, params,fileMap, FILE_TAG,null);
+		engineFile=new ZHttpEngine(this, handler);
+		engineFile.sendFile(UrlPath,  new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), FILE_TAG,null);
 	}
 
 	@Override

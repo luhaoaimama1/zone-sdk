@@ -33,6 +33,7 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
     private static HttpConfig httpConfig = new HttpConfig();
     private static OkHttpClient client = httpConfig.build();
 
+    //-----------------------------get------------------------
     public static RequestBuilderProxy get(String urlString) {
         return get(urlString, null, null);
     }
@@ -49,6 +50,7 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
         return Helper.setHttpType(HttpType.GET, urlString, requestParams, listener);
     }
 
+    //-----------------------------head------------------------
     public static RequestBuilderProxy head(String urlString) {
         return head(urlString, null, null);
     }
@@ -61,6 +63,7 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
         return Helper.setHttpType(HttpType.HEAD, urlString, requestParams, listener);
     }
 
+    //-----------------------------delete------------------------
     public static RequestBuilderProxy delete(String urlString) {
         return delete(urlString, null, null);
     }
@@ -73,6 +76,7 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
         return Helper.setHttpType(HttpType.DELETE, urlString, requestParams, listener);
     }
 
+    //-----------------------------post------------------------
     public static RequestBuilderProxy post(String urlString, RequestParams requestParams) {
         return post(urlString, requestParams, null);
     }
@@ -81,6 +85,7 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
         return Helper.setHttpType(HttpType.POST, urlString, requestParams, listener);
     }
 
+    //-----------------------------put------------------------
     public static RequestBuilderProxy put(String urlString, RequestParams requestParams) {
         return put(urlString, requestParams, null);
     }
@@ -89,6 +94,7 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
         return Helper.setHttpType(HttpType.PUT, urlString, requestParams, listener);
     }
 
+    //-----------------------------patch------------------------
     public static RequestBuilderProxy patch(String urlString, RequestParams requestParams) {
         return patch(urlString, requestParams, null);
     }
@@ -97,19 +103,28 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
         return Helper.setHttpType(HttpType.PATCH, urlString, requestParams, listener);
     }
 
-    public static RequestBuilderProxy postString(String urlString, String json) {
-        return postString(urlString, json, httpConfig.getEncoding());
+    //-----------------------------jsonStr------------------------
+    //todo  通过那个框架的 postJson封到参数类里就好了
+//    public static RequestBuilderProxy jsonStr(String urlString, String json) {
+//        return jsonStr(urlString, json, httpConfig.getEncoding());
+//    }
+//
+//    public static RequestBuilderProxy jsonStr(String urlString, String json, String encode) {
+//        RequestBuilderProxy request = new RequestBuilderProxy();
+//        RequestParams requestParams = new RequestParams();
+//        requestParams.setmHttpType(HttpType.POST);
+//        request = Helper.initCommonHeader(request, requestParams);
+//
+//        MediaType MEDIA_TYPE_PLAIN = MediaType.parse("text/plain;charset=" + encode);
+//        request.url(urlString).post(RequestBody.create(MEDIA_TYPE_PLAIN, json));
+//        return request;
+//    }
+    public static RequestBuilderProxy postJson(String urlString, RequestParams requestParams) {
+        return postJson(urlString, requestParams, null);
     }
 
-    public static RequestBuilderProxy postString(String urlString, String json, String encode) {
-        RequestBuilderProxy request = new RequestBuilderProxy();
-        RequestParams requestParams = new RequestParams();
-        requestParams.setmHttpType(HttpType.POST);
-        request = Helper.initCommonHeader(request, requestParams);
-
-        MediaType MEDIA_TYPE_PLAIN = MediaType.parse("text/plain;charset=" + encode);
-        request.url(urlString).post(RequestBody.create(MEDIA_TYPE_PLAIN, json));
-        return request;
+    public static RequestBuilderProxy postJson(String urlString, RequestParams requestParams, Callback.CommonCallback listener) {
+        return Helper.setHttpType(HttpType.POST.postJson(), urlString, requestParams, listener);
     }
 
 
@@ -154,13 +169,12 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
 
         //初始化 头部
         private static RequestBuilderProxy initCommonHeader(RequestBuilderProxy request, RequestParams requestParams) {
-
-            if (requestParams.getHeaderAddMap() != null)
-                for (Map.Entry<String, String> entry : requestParams.getHeaderAddMap().entrySet())
-                    request.addHeader(entry.getKey(), entry.getValue());
             if (requestParams.getHeaderReplaceMap() != null)
                 for (Map.Entry<String, String> entry : requestParams.getHeaderReplaceMap().entrySet())
                     request.header(entry.getKey(), entry.getValue());
+            if (requestParams.getHeaderAddMap() != null)
+                for (Map.Entry<String, String> entry : requestParams.getHeaderAddMap().entrySet())
+                    request.addHeader(entry.getKey(), entry.getValue());
             return request;
         }
 
@@ -180,7 +194,14 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
                     request.url(getUrlCon(urlString, requestParams)).delete();
                     break;
                 case POST:
-                    request.url(urlString).post(createRequestBody(requestParams, listener));
+                    if (requestParams.getmHttpType().postType!= HttpType.PostType.JSON)
+                        //normal
+                        request.url(urlString).post(createRequestBody(requestParams, listener));
+                    else{
+                        //json
+                        MediaType MEDIA_TYPE_PLAIN = MediaType.parse("text/plain;charset=" + requestParams.getEncoding());
+                        request.url(urlString).post(RequestBody.create(MEDIA_TYPE_PLAIN, requestParams.getJsonStr()));
+                    }
                     break;
                 case PUT:
                     request.url(urlString).put(createRequestBody(requestParams, listener));
@@ -194,7 +215,6 @@ public class ok {//到时候z.ok()就是网络~学学Xutils 我感觉我应该�
             return request;
 
         }
-
         private static RequestBody createRequestBody(RequestParams requestParams, Callback.CommonCallback listener) {
             RequestBody formBody = null;
             if (requestParams.getFileMap() == null && requestParams.getFileNameMap() == null) {

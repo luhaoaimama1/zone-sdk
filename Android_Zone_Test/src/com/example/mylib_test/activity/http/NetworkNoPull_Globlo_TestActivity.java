@@ -12,6 +12,7 @@ import android.view.View;
 import com.example.mylib_test.R;
 import com.example.mylib_test.app.Constant;
 import com.zone.http2rflist.NetworkGlobalEngine;
+import com.zone.http2rflist.RequestParamsNet;
 
 //TODO  listener有问题  null或者 有的时候不应该会有消息
 public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
@@ -27,11 +28,11 @@ public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
 
 		
 		engineGet=new NetworkGlobalEngine(this, handler);
-		engineGet.send(UrlPath, params, GET_TAG,null);
+		engineGet.send(UrlPath, new RequestParamsNet().setParamsMap(params), GET_TAG,null);
 		
 		
 		enginePost=new NetworkGlobalEngine(this, handler);
-		enginePost.sendPost(UrlPath, params, POST_TAG,null);
+		enginePost.sendPost(UrlPath, new RequestParamsNet().setParamsMap(params), POST_TAG,null);
 		
 		
 		File f = new File(FileUtils.getFile(""), "高达 - 00.mp3");
@@ -39,7 +40,7 @@ public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
 		fileMap.put("upload", f);
 		fileMap.put("upload2", f2);
 		engineFile=new NetworkGlobalEngine(this, handler);
-		engineFile.sendFile(UrlPath, params,fileMap, FILE_TAG,null);
+		engineFile.sendFile(UrlPath,new RequestParamsNet().setParamsMap(params).setFileMap(fileMap), FILE_TAG,null);
 	}
 
 	@Override

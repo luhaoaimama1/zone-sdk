@@ -18,7 +18,6 @@ import and.image.imageloader.ImageLoaderConfigUtils;
 import and.image.imageloader.ImageLoaderOptionsUtils;
 import and.log.Logger_Zone;
 import and.log.Logger_Zone.LogStatue;
-import network.engine.XutilsEngine;
 
 import android.annotation.TargetApi;
 import android.app.Application;
@@ -27,6 +26,7 @@ import android.os.StrictMode;
 
 import com.example.mylib_test.R;
 import com.zone.http2rflist.NetworkGlobalEngine;
+import com.zone.http2rflist.impl.enigne.ZHttpEngine;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 
@@ -80,7 +80,7 @@ public class Apps extends Application {
 //			e.printStackTrace();
 //		}
 
-		NetworkGlobalEngine.setGlobalEngine(XutilsEngine.class);
+		NetworkGlobalEngine.setGlobalEngine(ZHttpEngine.class);
 		//全局控制　打印日志
 		Logger_Zone.setAllLogStatue(LogStatue.Close,false);
 		
