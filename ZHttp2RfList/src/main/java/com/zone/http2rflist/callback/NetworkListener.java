@@ -1,13 +1,16 @@
 package com.zone.http2rflist.callback;
 
+import com.zone.http2rflist.entity.SuccessType;
+
 public interface NetworkListener {
     void onStart();
 
+    //成功和失败 最后都走这个
     void onCancelled();
 
     void onLoading(long total, long current,long networkSpeed,boolean isUploading);
-    //TODO  加个tag  分  内存缓存  磁盘缓存  http
-    void onSuccess(String msg);
+
+    void onSuccess(String msg,SuccessType type);
 
     void onFailure(String msg);
 

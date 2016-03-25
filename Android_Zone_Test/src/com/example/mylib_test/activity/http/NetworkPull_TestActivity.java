@@ -15,7 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.adapter.adapter.Adapter_Zone;
 import com.zone.adapter.adapter.core.ViewHolder_Zone;
 import com.zone.http2rflist.RequestParamsNet;
-import com.zone.http2rflist.impl.enigne.ZHttpEngine;
+import com.zone.http2rflist.impl.enigne.ZhttpEngine;
 import com.zone.http2rflist.impl.rflist.GooglePullView;
 
 
@@ -23,7 +23,7 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 	final	String UrlPath = Constant.ADDRESS;
 	private SwipeRefreshLayout swipe_container;
 	private ListView rv;
-	private ZHttpEngine engineGet;
+	private ZhttpEngine engineGet;
 	private static final int GET_TAG=1;
 	Map<String,String> params=new HashMap<String,String>();
 	private List<String> dataImg=new ArrayList<String>();
@@ -34,7 +34,7 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 	public void setContentView() {
 		params.put("name", "xoxoxxoo");
 		setContentView(R.layout.a_network_pull);
-		engineGet=new ZHttpEngine(this, handler);
+		engineGet=new ZhttpEngine(this, handler);
 		engineGet.send(UrlPath,new RequestParamsNet().setParamsMap(params), GET_TAG);
 		
 	}

@@ -2,6 +2,7 @@ package com.zone.http2rflist;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.zone.http2rflist.utils.ExceptionUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -13,9 +14,11 @@ public abstract class BasePullView<T,K,M,E,A> {
 	public  M adapter;
 	public  List<E> data;
 	public  Class<A> clazz;
+	//这里是gson转换过来的
 	private  A entity;
 	public K listView;
 	public BaseNetworkQuest baseNetworkQuest;
+//	public  OnRefresh2LoadMoreListener listener;
 	public  BasePullView(T pullView,K listView,M adapter,List<E> data) {
 		this.pullView=pullView;
 		this.listView=listView;
@@ -25,7 +28,6 @@ public abstract class BasePullView<T,K,M,E,A> {
 	}
 	
 	public  void relateBaseNetworkQuest(BaseNetworkQuest baseNetworkQuest){
-	
 		this.baseNetworkQuest=baseNetworkQuest;
 	}
 	//通过泛型得到类
@@ -35,39 +37,49 @@ public abstract class BasePullView<T,K,M,E,A> {
 		Type[] types = ((ParameterizedType)superClass).getActualTypeArguments();
 		this.clazz = (Class<A>)types[types.length-1]; 
 	}
-	public  void gsonParse(String msg){
-		boolean resultIsRight=MsgCheck.errorChecked(msg);
+	public  boolean gsonParse(String msg){
+		boolean resultIsRight= MsgErrorCheck.errorChecked(msg);
 		if(!resultIsRight)
-			return ;
+			return false;
 		Gson g=new Gson();
 		try {
 			entity=g.fromJson(msg, clazz);
 		} catch (JsonSyntaxException e) {
-//			e.printStackTrace();
-			return ;
+			ExceptionUtils.quiet(e);
+			return false;
 		}
+		return true;
 	};
 	public void clearData(){
-		if (entity != null&&getData(entity).size()!= 0) 
+		if (entity != null&& getAdapterData(entity).size()!= 0)
 				data.clear();
 	}
 	public void addAllData2Notify(){
 		if (entity!=null) {
-			if(getData(entity).size()==0)
+			if(getAdapterData(entity).size()==0)
 				baseNetworkQuest.relateReturnEmptyData();
-			data.addAll(getData(entity));
-			notifyDataSetChanged();
+			else {
+				if(getAdapterData(entity).size()<baseNetworkQuest.getLimit())
+					//不能上拉操作
+					baseNetworkQuest.lastPage=true;
+				data.addAll(getAdapterData(entity));
+				notifyDataSetChanged();
+			}
 		}
 	}
 	
-	public abstract void init2Listener(OnRefresh2LoadMoreListener listener);
+
 	public abstract void onRefreshComplete();
 	public abstract void onloadMoreComplete();
 	public abstract void notifyDataSetChanged();
-	public abstract List<E> getData(A entity);
-	
-	public interface OnRefresh2LoadMoreListener{
-		public void loadMore(int firstVisibleItem, int visibleItemCount, int totalItemCount) ;
-		public void onRefresh() ;
-	}
+	public abstract List<E> getAdapterData(A entity);
+
+//	public  void setOnRefresh2LoadMoreListener(OnRefresh2LoadMoreListener listener){
+//		this.listener=listener;
+//	};
+//	public interface OnRefresh2LoadMoreListener{
+//		//if pageNumber==-1 说明你内嵌的框架 不支持此功能
+//		 void loadMore(int pageNumber) ;
+//		 void onRefresh() ;
+//	}
 }

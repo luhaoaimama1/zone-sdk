@@ -1,5 +1,7 @@
 package com.zone.http2rflist.callback;
 
+import com.zone.http2rflist.entity.SuccessType;
+
 public  class SimpleNetworkListener implements NetworkListener{
 
 	@Override
@@ -18,7 +20,7 @@ public  class SimpleNetworkListener implements NetworkListener{
 	}
 
 	@Override
-	public void onSuccess(String msg) {
+	public void onSuccess(String msg,SuccessType type) {
 		
 	}
 
