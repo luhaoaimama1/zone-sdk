@@ -1,4 +1,4 @@
-package and.abstractclass;
+package and.base;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
@@ -8,8 +8,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
+
+import and.utils.UiUtils;
 
 public abstract class Pop_Zone extends PopupWindow {
 	protected Activity activity;
@@ -36,6 +39,15 @@ public abstract class Pop_Zone extends PopupWindow {
 	}
 	/**
 	 * 仅仅调用show()即可  
+	 * <br>默认颜色　　是浅黑色</br>
+	 * <br>没有showAtLocationViewId setLocation的view就是传入布局的</br>
+	 * @param activity  在那个activity 弹出pop
+	 */
+	public Pop_Zone(Activity activity) {
+		this(activity,-1);
+	}
+	/**
+	 * 仅仅调用show()即可
 	 * <br>默认颜色　　是浅黑色
 	 * @param activity  在那个activity 弹出pop
 	 * @param showAtLocationViewId
@@ -117,11 +129,15 @@ public abstract class Pop_Zone extends PopupWindow {
 	 * 这样就制定规范了
 	 */
 	public void show(){
-		initPop(layoutid,dismissViewId);
+		initPop(layoutid, dismissViewId);
 		findView(mMenuView);
 		initData();
 		setListener();
-		View view = activity.findViewById(showAtLocationViewId);
+		View view = null;
+		if(showAtLocationViewId!=-1)
+			view = activity.findViewById(showAtLocationViewId);
+		else
+			view= UiUtils.getRootView(activity);
 		setLocation(view);
 	}
 	/**

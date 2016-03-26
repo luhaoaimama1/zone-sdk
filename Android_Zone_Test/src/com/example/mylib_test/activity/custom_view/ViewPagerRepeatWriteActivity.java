@@ -22,7 +22,7 @@ import com.zone.zbanner.viewpage_anime.TestAnime;
 import java.util.ArrayList;
 import java.util.List;
 
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import and.log.ToastUtils;
 
 /**

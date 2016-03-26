@@ -12,6 +12,7 @@ dependencies {
     //    compile 'com.android.support:support-v4:22.1.1'
     //    compile 'com.nineoldandroids:library:2.4.0'
     //    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
 }
 
 android {

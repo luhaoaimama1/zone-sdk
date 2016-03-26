@@ -1,6 +1,6 @@
 package com.example.mylib_test.activity.three_place;
 import java.util.LinkedList;
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import network.engine.utils.XutilsHttpUtils;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;

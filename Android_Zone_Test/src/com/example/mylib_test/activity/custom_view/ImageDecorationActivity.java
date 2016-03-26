@@ -1,9 +1,7 @@
 package com.example.mylib_test.activity.custom_view;
 
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.example.mylib_test.R;
@@ -15,7 +13,7 @@ import com.zone.adapter.recycler.core.RecyclerHolder_Zone;
 import java.util.ArrayList;
 import java.util.List;
 
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

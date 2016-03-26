@@ -1,36 +1,33 @@
-package and.abstractclass;
+package and.base.activity;
 import java.util.ArrayList;
 import java.util.List;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import and.Constant;
-import and.log.Logger_Zone;
+import and.base.activity.decorater.ZFinalDecorater;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Handler.Callback;
-import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public abstract class BaseActvity extends FragmentActivity implements Callback,OnClickListener{
+public abstract class BaseActvity extends ZFinalDecorater implements Callback,OnClickListener{
 	public static int Default_RequestCode=9999;
 	public static int Reresh_Response=9998;
 	protected ImageLoader imageLoader;
-	private Logger_Zone logger;
 	protected Handler handler;
 	public static List<Activity> activitys=new ArrayList<Activity>();
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		activitys.add(this);
-		logger= new  Logger_Zone(BaseActvity.class,Constant.Logger_Config);
-		logger.closeLog();
-		logger.log("BaseActvity  onCreate");
+		Log.d("BaseActvity", "onCreate");
 		super.onCreate(arg0);
 		imageLoader = ImageLoader.getInstance();
 		handler=new Handler(this);
-		logger.log("BaseActvity  setContentView");
+		Log.d("BaseActvity","setContentView");
 		setContentView();
 		findIDs();
 		initData();
@@ -106,4 +103,6 @@ public abstract class BaseActvity extends FragmentActivity implements Callback,O
 	public void  backRefresh(){
 		
 	};
+
+
 }

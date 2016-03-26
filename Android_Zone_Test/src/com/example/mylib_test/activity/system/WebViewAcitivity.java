@@ -1,6 +1,6 @@
 package com.example.mylib_test.activity.system;
 
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import android.net.http.SslError;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;

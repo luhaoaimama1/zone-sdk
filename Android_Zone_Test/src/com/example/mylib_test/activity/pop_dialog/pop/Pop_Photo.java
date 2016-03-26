@@ -2,10 +2,9 @@ package com.example.mylib_test.activity.pop_dialog.pop;
 
 import com.example.mylib_test.R;
 
-import and.abstractclass.Pop_Zone;
+import and.base.Pop_Zone;
 import and.log.ToastUtils;
 import android.app.Activity;
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;

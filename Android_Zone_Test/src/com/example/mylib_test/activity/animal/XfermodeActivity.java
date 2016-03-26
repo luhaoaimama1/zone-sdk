@@ -7,7 +7,7 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.helper.PopXfermode;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView;
 
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 
 /**
  * Created by Administrator on 2016/3/21.
@@ -32,7 +32,7 @@ public class XfermodeActivity extends BaseActvity {
 
     @Override
     public void initData() {
-        popXfermode=new PopXfermode(this,R.id.rl_main,xfermodeView,bt_pop);
+        popXfermode=new PopXfermode(this,xfermodeView,bt_pop);
     }
 
     @Override

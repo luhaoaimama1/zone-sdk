@@ -1,18 +1,14 @@
 package com.example.mylib_test.activity.photo_shot;
 import com.example.mylib_test.R;
 
-import and.features.FeaturesActivity;
-import and.features.extra.Feature_Pic;
+import and.base.activity.decorater.FeaturesDecorater;
+import and.base.activity.decorater.features.extra.Feature_Pic;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
-public class Photo_Shot_MainActivity extends FeaturesActivity implements OnClickListener{
+
+public class Photo_Shot_MainActivity extends FeaturesDecorater implements OnClickListener{
 	private Feature_Pic feature_Pic;
 	@Override
 	public void setContentView() {
@@ -50,7 +46,7 @@ public class Photo_Shot_MainActivity extends FeaturesActivity implements OnClick
 	}
 
 	@Override
-	protected void init2AddFeature() {
+	protected void initFeature() {
 		feature_Pic = new Feature_Pic(this) {
 			@Override
 			protected void getReturnedPicPath(String path) {

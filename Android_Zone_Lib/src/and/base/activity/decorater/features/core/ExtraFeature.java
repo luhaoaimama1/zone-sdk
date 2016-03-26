@@ -1,9 +1,8 @@
-package and.features.core;
+package and.base.activity.decorater.features.core;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.View.OnClickListener;
+
 /**
  * 这套　主要为了　
  * 针对生命周期的onActivityResult 当然　例如照相机的onResume初始化　onPause摧毁

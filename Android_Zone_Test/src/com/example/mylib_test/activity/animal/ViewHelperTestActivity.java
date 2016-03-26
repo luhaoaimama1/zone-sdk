@@ -5,11 +5,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.mylib_test.R;
-import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.view.ViewHelper;
-import com.nineoldandroids.view.ViewPropertyAnimator;
 
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 
 /**
  * Created by Administrator on 2016/1/28.

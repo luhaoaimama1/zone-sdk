@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ImageView;

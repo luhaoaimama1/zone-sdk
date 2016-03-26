@@ -1,10 +1,9 @@
-package and.features;
+package and.base.activity.decorater;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import and.abstractclass.BaseActvity;
-import and.features.core.ExtraFeature;
+import and.base.activity.decorater.features.core.ExtraFeature;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +14,7 @@ import android.os.Bundle;
  * @author 123
  *
  */
-public abstract class FeaturesActivity extends BaseActvity {
+public abstract class FeaturesDecorater extends BaseDecorater {
 	public List<ExtraFeature> featureList= new ArrayList<ExtraFeature>();
 	@Override
 	protected void onCreate(Bundle bundle) {
@@ -26,7 +25,7 @@ public abstract class FeaturesActivity extends BaseActvity {
 	protected void onResume() {
 		super.onResume();
 		
-		init2AddFeature();
+		initFeature();
 		for (ExtraFeature item : featureList) {
 			item.init();
 		}
@@ -51,9 +50,11 @@ public abstract class FeaturesActivity extends BaseActvity {
 	protected void onDestroy() {
 		super.onDestroy();
 	}
-	protected FeaturesActivity addFeature(ExtraFeature feature) {
+	protected FeaturesDecorater addFeature(ExtraFeature feature) {
 		featureList.add(feature);
 		return this;
 	}
-	protected abstract void init2AddFeature() ;
+	protected  void initFeature(){
+
+	} ;
 }

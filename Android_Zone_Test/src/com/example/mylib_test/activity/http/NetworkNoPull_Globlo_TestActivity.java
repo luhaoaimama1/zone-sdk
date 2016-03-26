@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import and.sd.FileUtils;
 import android.os.Message;
 import android.view.View;

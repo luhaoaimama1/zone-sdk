@@ -5,7 +5,7 @@ import android.view.View;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.touch.view.ViewDragStudyFrame;
 
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import and.log.ToastUtils;
 
 /**

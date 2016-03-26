@@ -6,7 +6,7 @@ import java.util.List;
 import view.ImageRecycler_Zone;
 import view.ImageRecycler_Zone.AddType;
 import view.ImageRecycler_Zone.OnImageGroupClickListener;
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import android.view.View;
 import android.widget.ImageView;
 

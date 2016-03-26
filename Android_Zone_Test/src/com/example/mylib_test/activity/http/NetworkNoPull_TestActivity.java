@@ -3,7 +3,7 @@ package com.example.mylib_test.activity.http;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import and.abstractclass.BaseActvity;
+import and.base.activity.BaseActvity;
 import and.sd.FileUtils;
 //import network.engine.XutilsEngine;
 

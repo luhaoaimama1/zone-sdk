@@ -9,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.animal.XfermodeActivity;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView;
 import com.zone.adapter.adapter.Adapter_Zone;
 import com.zone.adapter.adapter.core.ViewHolder_Zone;
@@ -17,7 +16,7 @@ import com.zone.adapter.adapter.core.ViewHolder_Zone;
 import java.util.ArrayList;
 import java.util.List;
 
-import and.abstractclass.Pop_Zone;
+import and.base.Pop_Zone;
 
 /**
  * Created by Administrator on 2016/3/21.
@@ -32,10 +31,9 @@ public class PopXfermode extends Pop_Zone {
      * <br>默认颜色　　是浅黑色
      *
      * @param activity             在那个activity 弹出pop
-     * @param showAtLocationViewId
      */
-    public PopXfermode(Activity activity, int showAtLocationViewId, XfermodeView xfermodeView, Button bt_pop) {
-        super(activity, showAtLocationViewId);
+    public PopXfermode(Activity activity,  XfermodeView xfermodeView, Button bt_pop) {
+        super(activity);
         this.xfermodeView=xfermodeView;
         this.bt_pop=bt_pop;
         setPopContentView(R.layout.pop_list, Mode.Fill, -1);
