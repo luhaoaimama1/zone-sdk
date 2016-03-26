@@ -1,5 +1,6 @@
 <resources>
 
+
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -13,8 +14,21 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="AnimalSetAppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <!--这两个主题所设置的属性是指是否把window变成透明的  就是解决：swipeBack 滑动背景是黑色-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--设置全局动画 并且需要继承Animation.Translucent，一般情况是继承的Animation.Activity，-->
+        <item name="android:windowAnimationStyle">@style/Animation.Activity.Translucent.Style</item>
+        <!--这个是 把一个activity背景色设置透明-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+    </style>
+
+    <!--设置全局动画 并且需要继承Animation.Translucent，一般情况是继承的Animation.Activity 这样才能与windowIsTranslucent：true同时好使-->
+    <style name="Animation.Activity.Translucent.Style" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@anim/anim_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_exit</item>
     </style>
 
 </resources>

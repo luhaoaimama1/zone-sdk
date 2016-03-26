@@ -14,7 +14,7 @@ import android.os.Bundle;
  * @author 123
  *
  */
-public abstract class FeaturesDecorater extends BaseDecorater {
+public  class FeaturesDecorater extends BackRefreshDecorator {
 	public List<ExtraFeature> featureList= new ArrayList<ExtraFeature>();
 	@Override
 	protected void onCreate(Bundle bundle) {

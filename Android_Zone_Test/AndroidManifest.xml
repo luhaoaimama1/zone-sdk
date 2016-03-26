@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -29,11 +30,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AnimalSetAppTheme">
         <activity
             android:name=".MainActivity2"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Light.NoTitleBar">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,179 +43,179 @@
         </activity>
         <activity
             android:name="com.example.mylib_test.activity.system.SystemMainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.system.WebViewAcitivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.system.ResultBase1"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.system.ResultBase2"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.system.ResultActivity2"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.system.ResultActivity3"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.wifi.WifiAdapterActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.photo_shot.ShowPicActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.ImageLoaderActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.GetPhoneTest"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.CustomView_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.ImageGroupRecyclerTestActvitity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.ImageDecorationActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.db.Db_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.http.Http_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.http.NetworkNoPull_TestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.http.NetworkNoPull_Globlo_TestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.http.NetworkPull_TestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.touch.Conflict1Activity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.touch.GestureDetectorActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.touch.MyScaleActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.touch.ScrollerActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.http.AsyncTask_TestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.AndroidHeroActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.RefreshListViewActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.photo_shot.ClipTest"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.ThirdParty_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.RecyclerActivity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AnimalSetAppTheme"></activity>
         <activity
             android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.SoftTestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.CanvasTest"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.XfermodeActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.wifi.Wifi3g_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.AniPro"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.ColorMarixTry"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.ViewHelperTestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.CustomAniActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.animal.PixelsAcitivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.ImageLoaderGridActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.ViewPagerRepeatWriteActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.file.FileTestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.file.Activity1"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.file.Activity2"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.LabelTestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.ArcMenuTestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.ImageGroupTestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="com.example.mylib_test.activity.touch.TouchMainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
+            ></activity>
         <activity
             android:name="other_project.pinyin_sidebar.SideBarActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
+            
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
-            android:theme="@android:style/Theme.Light.NoTitleBar"
+            
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
     </application>
 

@@ -3,12 +3,14 @@ package com.example.mylib_test.activity.photo_shot;
 //import com.edmodo.cropper.CropImageView;
 //import com.edmodo.cropper.cropwindow.CropOverlayView;
 
+import and.base.activity.BaseActvity;
+import and.base.activity.decorater.BaseDecorater;
 import and.base.activity.decorater.FeaturesDecorater;
 
 		import android.view.View;
 import android.view.View.OnClickListener;
 
-public class ClipTest extends FeaturesDecorater implements OnClickListener{
+public class ClipTest extends BaseActvity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {

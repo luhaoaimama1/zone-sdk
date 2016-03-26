@@ -1,11 +1,11 @@
-package and.base.activity.decorater.features.extra;
+package and.base.activity.decorater.features;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
 
 import and.Constant;
 import and.base.activity.decorater.features.core.ExtraFeature;
-import and.base.activity.decorater.features.RequestCodeConfig;
+import and.base.activity.RequestCodeConfig;
 import and.log.Logger_Zone;
 import android.app.Activity;
 import android.content.Intent;

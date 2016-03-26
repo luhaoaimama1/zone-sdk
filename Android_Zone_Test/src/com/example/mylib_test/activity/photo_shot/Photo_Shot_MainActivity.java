@@ -1,14 +1,13 @@
 package com.example.mylib_test.activity.photo_shot;
 import com.example.mylib_test.R;
-
-import and.base.activity.decorater.FeaturesDecorater;
-import and.base.activity.decorater.features.extra.Feature_Pic;
+import and.base.activity.BaseActvity;
+import and.base.activity.decorater.features.Feature_Pic;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class Photo_Shot_MainActivity extends FeaturesDecorater implements OnClickListener{
+public class Photo_Shot_MainActivity extends BaseActvity implements OnClickListener{
 	private Feature_Pic feature_Pic;
 	@Override
 	public void setContentView() {
@@ -59,11 +58,4 @@ public class Photo_Shot_MainActivity extends FeaturesDecorater implements OnClic
 		};
 		addFeature(feature_Pic);
 	}
-	@Override
-	public void backRefresh() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }

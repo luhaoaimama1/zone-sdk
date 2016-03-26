@@ -13,10 +13,10 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 /**
  * Created by Administrator on 2016/3/26.
  * 直接把 SwipeBackActivity 拿过来 这样就导致保持继承一个基类
- *
+ *因为我吧 震动也集成了所以  需要加上此权限
  *<uses-permission android:name="android.permission.VIBRATE"/>
  */
-public abstract class SwipeBackDecorater extends FeaturesDecorater implements SwipeBackActivityBase,SwipeBackLayout.SwipeListener {
+public  class SwipeBackDecorater extends FeaturesDecorater implements SwipeBackActivityBase,SwipeBackLayout.SwipeListener {
     private SwipeBackActivityHelper mHelper;
     private static final int VIBRATE_DURATION = 20;
     protected SwipeBackLayout mSwipeBackLayout;
