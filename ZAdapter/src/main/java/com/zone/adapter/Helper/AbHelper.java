@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.IdRes;
+import android.text.Html;
 import android.text.util.Linkify;
 import android.util.SparseArray;
 import android.view.View;
@@ -524,6 +526,11 @@ public class AbHelper implements Helper {
         return this;
     }
 
+    public Helper setHtml(@IdRes int viewId, String source) {
+        TextView view = getView(viewId);
+        view.setText(Html.fromHtml(source));
+        return this;
+    }
     /**
      * Sets the adapter of a adapter view.
      * @param viewId  The view id.

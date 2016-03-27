@@ -3,6 +3,7 @@ package com.zone.adapter.callback;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.IdRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -82,6 +83,8 @@ public interface Helper {
     Helper setTag(int viewId, int key, Object tag);
 
     Helper setChecked(int viewId, boolean checked);
+
+    Helper setHtml(@IdRes int viewId, String source);
 
     //todo  这个有点问题貌似
     Helper setAdapter(int viewId, Adapter adapter);
