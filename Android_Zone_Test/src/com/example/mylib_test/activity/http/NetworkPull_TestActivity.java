@@ -52,7 +52,7 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 
 		adapter=new QuickAdapter<String>(this, dataImg) {
 			@Override
-			public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+			public void fillData(Helper helper, String item, boolean itemChanged, int layoutId) {
 				ImageView id_num=(ImageView) helper.getView(R.id.id_num);
 				ImageLoader.getInstance().displayImage(item, id_num);
 			}

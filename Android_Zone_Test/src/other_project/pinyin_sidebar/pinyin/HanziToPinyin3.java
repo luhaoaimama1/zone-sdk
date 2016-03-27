@@ -24,7 +24,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /**
- * An object to convert Chinese character to its corresponding pinyin string. For characters with
+ * An object to fillData Chinese character to its corresponding pinyin string. For characters with
  * multiple possible pinyin string, only one is selected according to collator. Polyphone is not
  * supported in this implementation. This class is implemented to achieve the best runtime
  * performance and minimum runtime resources with tolerable sacrifice of accuracy. This

@@ -19,7 +19,7 @@ public interface IAdapter<T> {
      * @param itemChanged Whether or not the helper was bound to another object before.
      * @param layoutId 布局的id可以switch  0是默认值 单布局的可以不考虑
      */
-     void convert(Helper helper, T item, boolean itemChanged, int layoutId);
+     void fillData(Helper helper, T item, boolean itemChanged, int layoutId);
 
     /**
      * @param t list中的一条数据

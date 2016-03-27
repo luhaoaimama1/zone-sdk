@@ -96,7 +96,7 @@ public class ArcMenu extends ViewGroup implements OnClickListener
 	{
 
 		super(context, attrs, defStyle);
-		// dp convert to px
+		// dp fillData to px
 		mRadius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 				mRadius, getResources().getDisplayMetrics());
 		TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
@@ -127,7 +127,7 @@ public class ArcMenu extends ViewGroup implements OnClickListener
 				}
 				break;
 			case R.styleable.ArcMenu_radius:
-				// dp convert to px
+				// dp fillData to px
 				mRadius = a.getDimensionPixelSize(attr, (int) TypedValue
 						.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100f,
 								getResources().getDisplayMetrics()));

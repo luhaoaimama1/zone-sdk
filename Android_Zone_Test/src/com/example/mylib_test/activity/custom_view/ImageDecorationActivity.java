@@ -44,7 +44,7 @@ public class ImageDecorationActivity extends BaseActvity {
         view.setLayoutManager(new GridLayoutManager(this,3));
         view.setAdapter(new QuickRcvAdapter<String>(this,data) {
             @Override
-            public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+            public void fillData(Helper helper, String item, boolean itemChanged, int layoutId) {
                 ImageView image =(ImageView) helper.getView(R.id.tv);
                 ImageLoader.getInstance().displayImage(item, image);
             }

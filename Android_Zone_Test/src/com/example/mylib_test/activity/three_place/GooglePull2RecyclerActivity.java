@@ -40,7 +40,7 @@ public class GooglePull2RecyclerActivity extends BaseActvity implements OnRefres
 		rv.setLayoutManager(new LinearLayoutManager(this));
 		adapter2=new QuickRcvAdapter<String>(this,data) {
 			@Override
-			public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+			public void fillData(Helper helper, String item, boolean itemChanged, int layoutId) {
 				helper.setText(R.id.id_num,item);
 			}
 

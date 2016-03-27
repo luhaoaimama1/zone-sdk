@@ -72,7 +72,7 @@ public class ImageLoaderGridActivity extends Activity implements OnClickListener
 		}
 
 		@Override
-		public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+		public void fillData(Helper helper, String item, boolean itemChanged, int layoutId) {
 			ImageView iv=(ImageView) helper.getView(R.id.iv);
 //				ImageLoader.getInstance().displayImage(data, iv,options);
 			ImageLoader.getInstance().displayImage(item, iv);

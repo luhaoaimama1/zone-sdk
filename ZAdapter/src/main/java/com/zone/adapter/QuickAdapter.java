@@ -10,7 +10,7 @@ import com.zone.adapter.callback.IAdapter;
 import java.util.List;
 /**
  * Abstraction class of a BaseAdapter in which you only need
- * to provide the convert() implementation.<br/>
+ * to provide the fillData() implementation.<br/>
  * Using the provided BaseAdapterHelper, your code is minimalist.
  * @param <T> The type of the items in the list.
  */
@@ -64,7 +64,7 @@ public abstract class QuickAdapter<T> extends BaseAdapter implements IAdapter<T>
         //用之前关联 position object  保持数据的准确性
         helper.setAssociatedObject(item,position);
         //多布局怎么办
-        convert(helper, item,itemChanged,getItemViewType(position));
+        fillData(helper, item, itemChanged, getItemViewType(position));
         return helper.getView();
     }
 

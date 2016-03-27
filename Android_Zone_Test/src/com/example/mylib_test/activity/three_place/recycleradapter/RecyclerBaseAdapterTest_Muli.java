@@ -26,7 +26,7 @@ public class RecyclerBaseAdapterTest_Muli extends QuickRcvAdapter<String> {
 		this.isRandom=isRandom;
 	}
 	@Override
-	public void convert(final Helper helper, String item, boolean itemChanged, int layoutId) {
+	public void fillData(final Helper helper, String item, boolean itemChanged, int layoutId) {
 		helper.setText(R.id.id_num,item).setOnClickListener(R.id.ll_item,new OnClickListener() {
 
 			@Override

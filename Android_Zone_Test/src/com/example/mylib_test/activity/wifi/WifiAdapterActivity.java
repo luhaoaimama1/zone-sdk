@@ -56,7 +56,7 @@ public class WifiAdapterActivity extends Activity {
 		QuickAdapter<WifiItem> adpt=new QuickAdapter<WifiItem>(this, data) {
 
 			@Override
-			public void convert(Helper helper, final WifiItem item, boolean itemChanged, int layoutId) {
+			public void fillData(Helper helper, final WifiItem item, boolean itemChanged, int layoutId) {
 				// TODO Auto-generated method stub
 				// TODO Auto-generated method stub
 				//能得到View就能设置 事件了

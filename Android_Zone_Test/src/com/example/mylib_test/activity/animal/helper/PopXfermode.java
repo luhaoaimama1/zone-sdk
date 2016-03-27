@@ -54,7 +54,7 @@ public class PopXfermode extends Pop_Zone {
     protected void initData() {
         lv.setAdapter(new QuickAdapter<String>(activity,listData) {
             @Override
-            public void convert(Helper helper, final String item, boolean itemChanged, int layoutId) {
+            public void fillData(Helper helper, final String item, boolean itemChanged, int layoutId) {
                 helper.setText(R.id.tv,item).setOnClickListener(R.id.rl_main,new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

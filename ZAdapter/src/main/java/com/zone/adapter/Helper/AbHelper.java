@@ -570,7 +570,7 @@ public class AbHelper implements Helper {
      * Retrieve the overall position of the data in the list.
      * @throws IllegalArgumentException If the position hasn't been set at the construction of the this helper.
      */
-    /** Should be called during convert */
+    /** Should be called during fillData */
     public void setAssociatedObject(Object associatedObject,int position) {
         this.associatedObject = associatedObject;
         this.position=position;

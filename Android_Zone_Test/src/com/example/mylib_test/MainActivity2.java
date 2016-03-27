@@ -29,7 +29,7 @@ public class MainActivity2 extends Activity{
 		final int[] colorArry={Color.WHITE,Color.GREEN,Color.YELLOW,Color.CYAN};
 		adapter2=new QuickAdapter<MenuEntity>(this,MainMenu.menu) {
 			@Override
-			public void convert(final Helper helper, final MenuEntity item, boolean itemChanged, int layoutId) {
+			public void fillData(final Helper helper, final MenuEntity item, boolean itemChanged, int layoutId) {
 				helper.setText(R.id.tv,item.info).setBackgroundColor(R.id.tv,colorArry[helper.getPosition()%colorArry.length])
 						.setOnClickListener(R.id.tv,new OnClickListener() {
 							@Override

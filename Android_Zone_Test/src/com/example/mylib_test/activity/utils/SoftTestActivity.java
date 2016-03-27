@@ -39,7 +39,7 @@ public class SoftTestActivity extends Activity{
 
 
 		@Override
-		public void convert(Helper helper, Integer item, boolean itemChanged, int layoutId) {
+		public void fillData(Helper helper, Integer item, boolean itemChanged, int layoutId) {
 			ImageView ivD=(ImageView) helper.getView(R.id.iv);
 			ivD.setImageBitmap(BitmapFactory.decodeResource(getResources(),item));
 		}

@@ -23,7 +23,7 @@ public class RefreshListViewActivity extends Activity{
 
 
 			@Override
-			public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+			public void fillData(Helper helper, String item, boolean itemChanged, int layoutId) {
 				helper.setText(R.id.tv,item);
 			}
 

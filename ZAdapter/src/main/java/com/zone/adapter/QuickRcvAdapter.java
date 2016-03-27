@@ -40,7 +40,7 @@ public abstract class QuickRcvAdapter<T> extends RecyclerView.Adapter<ViewHolder
         boolean itemChanged =(holder.baseAdapterHelperRcv.getAssociatedObject() == null || !holder.baseAdapterHelperRcv.getAssociatedObject().equals(item));
         //用之前关联 position object  保持数据的准确性
         holder.baseAdapterHelperRcv.setAssociatedObject(item,position);
-        convert(holder.baseAdapterHelperRcv,item,itemChanged,getItemViewType(position));
+        fillData(holder.baseAdapterHelperRcv, item, itemChanged, getItemViewType(position));
     }
 
     @Override
