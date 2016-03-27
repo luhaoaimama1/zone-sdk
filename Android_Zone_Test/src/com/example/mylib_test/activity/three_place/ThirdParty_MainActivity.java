@@ -32,8 +32,14 @@ public class ThirdParty_MainActivity extends Activity implements OnClickListener
 		case R.id.google_pull:
 			startActivity(new Intent(this, GooglePullActvity.class));
 			break;
-		case R.id.bt_recycler:
-			startActivity(new Intent(this, RecyclerActivity.class));
+		case R.id.bt_recycler_Linear:
+			startActivity(new Intent(this, RecyclerActivity.class).putExtra("type","Linear"));
+			break;
+		case R.id.bt_recycler_Grid:
+			startActivity(new Intent(this, RecyclerActivity.class).putExtra("type","Grid"));
+			break;
+		case R.id.bt_recycler_StaggeredGrid:
+			startActivity(new Intent(this, RecyclerActivity.class).putExtra("type","StaggeredGrid"));
 			break;
 		case R.id.bt_pull2recycler:
 			startActivity(new Intent(this, GooglePull2RecyclerActivity.class));

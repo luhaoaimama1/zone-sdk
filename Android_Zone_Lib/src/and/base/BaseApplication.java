@@ -1,4 +1,4 @@
-package and.abstractclass;
+package and.base;
 
 import and.log.ToastUtils;
 import and.wifi.NetStatusReceiverUtils;

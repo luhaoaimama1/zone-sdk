@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.example.mylib_test.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zone.adapter.adapter.Adapter_Zone;
-import com.zone.adapter.adapter.core.ViewHolder_Zone;
+import com.zone.adapter.QuickAdapter;
+import com.zone.adapter.callback.Helper;
 
 import and.image.lruutils.DiskLruUtils;
 import and.log.ToastUtils;
@@ -65,46 +65,32 @@ public class ImageLoaderGridActivity extends Activity implements OnClickListener
 //		.bitmapConfig(Bitmap.Config.RGB_565)	 //设置图片的解码类型
 //		.build();
 	}
-	public class Adapter extends Adapter_Zone<String> {
+	public class Adapter extends QuickAdapter<String> {
 
 		public Adapter(Context context, List<String> data) {
 			super(context, data);
 		}
 
 		@Override
-		public int setLayoutID() {
-			// TODO Auto-generated method stub
-			return  R.layout.imageitem;
+		public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+			ImageView iv=(ImageView) helper.getView(R.id.iv);
+//				ImageLoader.getInstance().displayImage(data, iv,options);
+			ImageLoader.getInstance().displayImage(item, iv);
+			iv.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					ToastUtils.showLong(ImageLoaderGridActivity.this, "你干啥");
+				}
+			});
 		}
 
 		@Override
-		public void setData(ViewHolder_Zone holder, String data, int position) {
-			 ImageView iv=(ImageView) holder.findViewById(R.id.iv);
-//				ImageLoader.getInstance().displayImage(data, iv,options);
-				ImageLoader.getInstance().displayImage(data, iv);
-				iv.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						ToastUtils.showLong(ImageLoaderGridActivity.this, "你干啥");
-					}
-				});
-//				Bitmap bm = diskLru.getBitmapByUrl(data);
-//				if (bm==null) {
-//					ImageLoader.getInstance().displayImage(data, iv,new SimpleImageLoadingListener(){
-//						@Override
-//						public void onLoadingComplete(String imageUri, View view,
-//								Bitmap loadedImage) {
-//							super.onLoadingComplete(imageUri, view, loadedImage);
-//							diskLru.addUrl(imageUri, loadedImage);
-//						}
-//					});
-//				} else
-//					iv.setImageBitmap(bm);
+		public int getItemLayoutId(String s, int position) {
+			return R.layout.imageitem;
 		}
-		
-	} 
+	}
 	@Override
 	protected void onDestroy() {
 		diskLru.flush();

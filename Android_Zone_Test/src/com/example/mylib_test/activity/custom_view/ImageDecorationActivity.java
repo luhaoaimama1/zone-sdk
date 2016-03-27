@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.three_place.Images;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zone.adapter.recycler.AdapterRecycler_Zone;
-import com.zone.adapter.recycler.core.RecyclerHolder_Zone;
+import com.zone.adapter.QuickRcvAdapter;
+import com.zone.adapter.callback.Helper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,15 +42,15 @@ public class ImageDecorationActivity extends BaseActvity {
             data.add(Images.imageThumbUrls[i]);
         }
         view.setLayoutManager(new GridLayoutManager(this,3));
-        view.setAdapter(new AdapterRecycler_Zone<String>(this,data) {
+        view.setAdapter(new QuickRcvAdapter<String>(this,data) {
             @Override
-            public void setData(RecyclerHolder_Zone holder, String data, int position) {
-                ImageView image =(ImageView) holder.findViewById(R.id.tv);
-                ImageLoader.getInstance().displayImage(data, image);
+            public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+                ImageView image =(ImageView) helper.getView(R.id.tv);
+                ImageLoader.getInstance().displayImage(item, image);
             }
 
             @Override
-            public int setLayoutID() {
+            public int getItemLayoutId(String s, int position) {
                 return R.layout.item_imageview;
             }
         });

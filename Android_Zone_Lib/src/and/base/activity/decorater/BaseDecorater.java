@@ -6,6 +6,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +34,24 @@ public class BaseDecorater extends FragmentActivity implements Handler.Callback,
     @Override
     public boolean handleMessage(Message msg) {
         return false;
+    }
+
+    /**
+     * 必须在 setContentView 之前用 否则无效！
+     */
+    public BaseDecorater setNoTitle(){
+        //设置无标题
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        return this;
+    }
+    /**
+     * 必须在 setContentView 之前用 否则无效!
+     */
+    public BaseDecorater setFullScreen(){
+        //设置全屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        return this;
     }
 
     @Override

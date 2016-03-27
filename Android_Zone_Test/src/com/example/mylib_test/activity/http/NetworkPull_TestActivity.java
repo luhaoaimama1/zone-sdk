@@ -12,8 +12,8 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.entity.Data;
 import com.example.mylib_test.app.Constant;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zone.adapter.adapter.Adapter_Zone;
-import com.zone.adapter.adapter.core.ViewHolder_Zone;
+import com.zone.adapter.QuickAdapter;
+import com.zone.adapter.callback.Helper;
 import com.zone.http2rflist.RequestParamsNet;
 import com.zone.http2rflist.RequestUtils;
 import com.zone.http2rflist.impl.enigne.ZhttpEngine;
@@ -28,7 +28,7 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 	private static final int GET_TAG=1;
 	Map<String,String> params=new HashMap<String,String>();
 	private List<String> dataImg=new ArrayList<String>();
-	private Adapter_Zone<String> adapter;
+	private QuickAdapter<String> adapter;
 	private GooglePullView<String, Data> googlePullView;
 
 	@Override
@@ -50,25 +50,21 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 	@Override
 	public void initData() {
 
-		adapter=new Adapter_Zone<String>(this, dataImg) {
+		adapter=new QuickAdapter<String>(this, dataImg) {
+			@Override
+			public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+				ImageView id_num=(ImageView) helper.getView(R.id.id_num);
+				ImageLoader.getInstance().displayImage(item, id_num);
+			}
 
 			@Override
-			public int setLayoutID() {
+			public int getItemLayoutId(String s, int position) {
 				return  R.layout.item_network_pull;
 			}
-
-			@Override
-			public void setData(ViewHolder_Zone holder, String data,
-					int position) {
-				ImageView id_num=(ImageView) holder.findViewById(R.id.id_num);
-				ImageLoader.getInstance().displayImage(data, id_num);
-//				id_num.setText(data);
-				
-			}
-
 		};
+		adapter.relatedList(rv);
 		rv.setAdapter(adapter);
-		
+
 		googlePullView=new GooglePullView<String, Data>(swipe_container, rv, adapter, dataImg) {
 			@Override
 			public List<String> getAdapterData(Data entity) {

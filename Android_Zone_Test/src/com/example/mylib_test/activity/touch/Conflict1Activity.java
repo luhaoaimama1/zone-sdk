@@ -2,18 +2,16 @@ package com.example.mylib_test.activity.touch;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.three_place.Images;
-import com.zone.adapter.adapter.Adapter_Zone;
-import com.zone.adapter.adapter.core.ViewHolder_Zone;
+import com.zone.adapter.QuickAdapter;
+import com.zone.adapter.callback.Helper;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class Conflict1Activity extends Activity{
 	@Override
@@ -34,21 +32,20 @@ public class Conflict1Activity extends Activity{
 		List<String> temp = Arrays.asList(Images.imageThumbUrls);
 		lv.setAdapter(new Adapter(this, temp));
 	}
-	public class Adapter extends Adapter_Zone<String> {
+	public class Adapter extends QuickAdapter<String> {
 
 		public Adapter(Context context, List<String> data) {
 			super(context, data);
 		}
+
 		@Override
-		public int setLayoutID() {
-			return  R.layout.item_textview;
+		public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+			helper.setText(R.id.tv,item);
 		}
 
 		@Override
-		public void setData(ViewHolder_Zone holder, String data, int position) {
-			TextView tv=(TextView) holder.findViewById(R.id.tv);
-			tv.setText(data);
+		public int getItemLayoutId(String s, int position) {
+			return R.layout.item_textview;
 		}
-		
-	} 
+	}
 }

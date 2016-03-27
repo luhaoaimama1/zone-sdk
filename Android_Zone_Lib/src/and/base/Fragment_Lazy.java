@@ -1,4 +1,4 @@
-package and.abstractclass;
+package and.base;
 
 import android.support.v4.app.Fragment;  
 

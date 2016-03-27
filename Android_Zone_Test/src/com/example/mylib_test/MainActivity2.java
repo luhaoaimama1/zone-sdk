@@ -1,15 +1,10 @@
 package com.example.mylib_test;
-
-import java.util.Map;
-
 import com.example.mylib_test.activity.db.entity.MenuEntity;
-import com.zone.adapter.adapter.Adapter_Zone;
-import com.zone.adapter.adapter.core.ViewHolder_Zone;
-
-import and.log.ToastUtils;
+import com.zone.adapter.QuickAdapter;
+import com.zone.adapter.callback.Helper;
+import com.zone.adapter.callback.IAdapter;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,13 +13,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class MainActivity2 extends Activity{
 	private ListView listView1;
 	private int positonId=-1;
 	private AlertDialog alert;
-	private Adapter_Zone<MenuEntity> adapter;
+	private IAdapter<MenuEntity> adapter2;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,42 +27,34 @@ public class MainActivity2 extends Activity{
 		createDialog();
 		listView1=(ListView) findViewById(R.id.listView1);
 		final int[] colorArry={Color.WHITE,Color.GREEN,Color.YELLOW,Color.CYAN};
-		adapter=new Adapter_Zone<MenuEntity>(this,MainMenu.menu) {
-
+		adapter2=new QuickAdapter<MenuEntity>(this,MainMenu.menu) {
+			@Override
+			public void convert(final Helper helper, final MenuEntity item, boolean itemChanged, int layoutId) {
+				helper.setText(R.id.tv,item.info).setBackgroundColor(R.id.tv,colorArry[helper.getPosition()%colorArry.length])
+						.setOnClickListener(R.id.tv,new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+//								ToastUtils.showLong(getApplication(), "真的好使吗");//真的好使
+								startActivity(new Intent(MainActivity2.this,item.goClass));
+							}
+						})
+						.setOnLongClickListener(R.id.tv, new OnLongClickListener() {
+							@Override
+							public boolean onLongClick(View v) {
+								positonId = helper.getPosition();
+								alert.show();
+								return false;
+							}
+						});
+			}
 
 			@Override
-			public int setLayoutID() {
+			public int getItemLayoutId(MenuEntity menuEntity, int position) {
 				return R.layout.item_menu;
 			}
 
-			@Override
-			public void setData(ViewHolder_Zone holder, MenuEntity data,
-					final int position) {
-				TextView tv=(TextView) holder.findViewById(R.id.tv);
-				tv.setText(MainMenu.menu.get(position).info);
-				tv.setBackgroundColor(colorArry[position%colorArry.length]);
-				tv.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-//						ToastUtils.showLong(getApplication(), "真的好使吗");//真的好使
-						startActivity(new Intent(MainActivity2.this, MainMenu.menu.get(position).goClass));
-					}
-				});
-				tv.setLongClickable(true);
-				tv.setOnLongClickListener(new OnLongClickListener() {
-					
-					@Override
-					public boolean onLongClick(View v) {
-						positonId=position;
-						alert.show();
-						return false;
-					}
-				});
-				
-			}
 		};
-		listView1.setAdapter(adapter);
+		adapter2.relatedList(listView1);
 	}
 	private void createDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -78,8 +64,8 @@ public class MainActivity2 extends Activity{
 		           public void onClick(DialogInterface dialog, int id) {
 		        	   if(positonId!=-1){
 		        		   MainMenu.menu.remove(positonId);
-			        	   positonId=-1; 
-			        	   adapter.notifyDataSetChanged();
+			        	   positonId=-1;
+						   adapter2.notifyDataSetChanged();
 		        	   }
 		           }
 		       })

@@ -7,17 +7,17 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 import com.example.mylib_test.R;
-import com.zone.adapter.recycler.AdapterRecycler_Zone;
-import com.zone.adapter.recycler.core.RecyclerHolder_Zone;
+import com.zone.adapter.QuickRcvAdapter;
+import com.zone.adapter.callback.Helper;
+import com.zone.adapter.callback.IAdapter;
 
 
 public class GooglePull2RecyclerActivity extends BaseActvity implements OnRefreshListener{
 
 	private SwipeRefreshLayout swipe_container;
 	private RecyclerView rv;
-	private AdapterRecycler_Zone<String> adapter;
+	private IAdapter<String> adapter2;
 	private static final int tag=1111;
 	private  LinkedList<String> data=new LinkedList<String>();
 	@Override
@@ -38,20 +38,18 @@ public class GooglePull2RecyclerActivity extends BaseActvity implements OnRefres
 		
 		rv=(RecyclerView)findViewById(R.id.rv);
 		rv.setLayoutManager(new LinearLayoutManager(this));
-		rv.setAdapter(adapter=new AdapterRecycler_Zone<String>(this, data) {
+		adapter2=new QuickRcvAdapter<String>(this,data) {
+			@Override
+			public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+				helper.setText(R.id.id_num,item);
+			}
 
 			@Override
-			public int setLayoutID() {
+			public int getItemLayoutId(String s, int position) {
 				return  R.layout.item_recycler;
 			}
-
-			@Override
-			public void setData(RecyclerHolder_Zone holder, String data,
-					int position) {
-				TextView id_num=(TextView) holder.findViewById(R.id.id_num);
-				id_num.setText(data);
-			}
-		});
+		};
+		adapter2.relatedList(rv);
 	}
 
 	@Override
@@ -67,7 +65,7 @@ public class GooglePull2RecyclerActivity extends BaseActvity implements OnRefres
 		switch (msg.what) {
 		case tag:
 		  	swipe_container.setRefreshing(false);
-		  	adapter.add(1,"baidu返回结果");
+		  	adapter2.ani().add(1, "baidu返回结果");
 			System.out.println("输出结果是："+msg.obj);
 			break;
 
@@ -79,7 +77,7 @@ public class GooglePull2RecyclerActivity extends BaseActvity implements OnRefres
 
 	@Override
 	public void onRefresh() {
-		adapter.add(1,"baidu刷新");
+		adapter2.add(1,"baidu刷新");
 		XutilsHttpUtils.getHandler_Json(this, "https://www.baidu.com/", handler, tag);
 	}
 

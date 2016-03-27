@@ -1,62 +1,54 @@
 package com.example.mylib_test.activity.three_place.recycleradapter;
+import java.util.ArrayList;
 import java.util.List;
 import com.example.mylib_test.R;
-import com.zone.adapter.recycler.AdapterRecycler_MuliLayout_Zone;
-import com.zone.adapter.recycler.core.RecyclerHolder_Zone;
-
+import com.zone.adapter.QuickRcvAdapter;
+import com.zone.adapter.callback.Helper;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-public class RecyclerBaseAdapterTest_Muli extends AdapterRecycler_MuliLayout_Zone<String> {
-	List<String> datas;
-
+import android.view.ViewGroup.LayoutParams;
+public class RecyclerBaseAdapterTest_Muli extends QuickRcvAdapter<String> {
+	private List<Integer> datasHeight;
 	public RecyclerBaseAdapterTest_Muli(Context context, List<String> data) {
 		super(context, data);
-		datas = data;
+	}
+	boolean isRandom=false;
+	public void openHeightRanmdom(boolean isRandom){
+		if (isRandom) {
+			datasHeight=new ArrayList<>();
+			for (String item : data) {
+                datasHeight.add((int) (100+Math.random()*300));
+            }
+			notifyDataSetChanged();
+		}
+		this.isRandom=isRandom;
 	}
 	@Override
-	public int[] setLayoutIDs() {
-		return  new int[]{R.layout.item_recycler,R.layout.item_recycler_muptli};
-	}
-	@Override
-	public void setData(final RecyclerHolder_Zone holder,String data, final int position) {
-		TextView tem = (TextView) holder.findViewById(R.id.id_num);
-		LinearLayout ll = (LinearLayout) holder.findViewById(R.id.ll_item);
-		ll.setOnClickListener(new OnClickListener() {
-			
+	public void convert(final Helper helper, String item, boolean itemChanged, int layoutId) {
+		helper.setText(R.id.id_num,item).setOnClickListener(R.id.ll_item,new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				System.out.println("haha position:" + holder.getPosition());
+				System.out.println("haha position:" + helper.getPosition());
 			}
 		});
-		tem.setText(data);
-	}
-
-	public void addData(String str) {
-		datas.add(1, str);
-		notifyItemInserted(1);
-	}
-
-	public void addAllData(String str) {
-		datas.add(1, str);
-		notifyDataSetChanged();
-	}
-
-	public void deleteData() {
-		datas.remove(1);
-		notifyItemRemoved(1);
+		if (isRandom) {
+			TextView tv_id_num=helper.getView(R.id.id_num);
+			LayoutParams lp = tv_id_num.getLayoutParams();
+			lp.height=datasHeight.get(helper.getPosition());
+			tv_id_num.setLayoutParams(lp);
+			tv_id_num.setText(item);
+		}
 	}
 
 	@Override
-	public int getItemViewType_Zone(int position, int[] layoutArr) {
-		if(position%2==0){
+	public int getItemLayoutId(String s, int position) {
+//		if(position%2==0)
 			return  R.layout.item_recycler;
-		}else{
-			return  R.layout.item_recycler_muptli;	
-		}
+//		else
+//			return  R.layout.item_recycler_muptli;
 	}
 
 	

@@ -12,8 +12,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import and.wifi.NetManager;
@@ -41,7 +43,7 @@ public class GooglePullActvity extends Activity implements OnRefreshListener,Han
 		swipe_container.setColorScheme(android.R.color.holo_red_light);
 		lv=(ListView) findViewById(R.id.lv);
 		adapter=new PullToAdapter(this, data);
-		lv.setAdapter(adapter);
+		adapter.relatedList(lv);
 		lv.setOnScrollListener(new OnScrollListener() {
 			int scrollState;
 			boolean loadMoreOk=true;

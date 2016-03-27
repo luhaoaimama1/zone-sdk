@@ -1,4 +1,4 @@
-package com.zone.adapter.adapter;
+package com.zone.zrflist;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.example.mylib_test.R;
-import and.abstractclass.Fragment_Lazy;
+import and.base.Fragment_Lazy;
 
 /**
  * Created by Zone on 2016/1/27.

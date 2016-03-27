@@ -2,11 +2,9 @@ package com.example.mylib_test.activity.frag_viewpager_expand;
 
 import com.example.mylib_test.R;
 
-import and.abstractclass.Fragment_Lazy;
-import android.app.Activity;
+import and.base.Fragment_Lazy;
+
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

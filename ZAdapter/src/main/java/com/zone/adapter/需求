@@ -1,0 +1,103 @@
+加载动画等listView做完再说 不然可能白做了
+
+todo　我不习惯用pissco 用gilde到时候
+
+todo  现在测试
+多布局的时候 通知动画会 出现异常
+
+----------------------------完成的------------------------------
+调用方法的时候 用接口  但是 setadapter的时候缺需要转换
+item自身的setListener应仅设置一次，不用在getView时重复建立
+通过 两个参数的那种 强制 设置  不然就设置一次号了~
+
+viewTypeCount  检测
+
+associatedObject  需要弄
+
+ //todo 最后
+ 判断item已有的数据和新数据是否不同
+ 如果是加载图片，我还是希望你去看看你用的图片框架有没有做这样的优化，如果有就请放心，如果没有，那么请自己在框架中配置或者写工具类。
+ 这里的情况不仅仅适用于图片也适用于其他的数据，如果你的item中文字很多，经常有几百个文字。
+ 那么也可以先判断要显示的文字和textview中已经有的文字是否一致，如果不一致再调用setText方法。下面是一个例子：
+
+ 3. Adapter能支持多种item类型   设置数据的方法有多布局id当参数
+
+设置  onitemClick  和onitemlongclick
+
+    //把这个移除以后  不用移除 因为系统都没给移除方法  怎么移除那个呢   for循环会不会好呢？我觉得不错！！！！
+    void removeOnItemClickListener();
+
+    void removeOnItemLongClickListener();
+
+
+
+gone  hide show（他有）  helper getposision 需要
+吧viewHolder当属性 继承一个helper 公共方法的提出
+
+支持快速将listview的适配器切换为recyclerView的适配器
+
+9. Listview的adapter应该在稍微修改后支持recyclerView
+
+如今recyclerView大有接替listview的趋势，我们自然要关心如何从的listview的适配器切到recyclerView的适配器。要知道listview的适配器和recyclerView的适配器的写法是不同的。
+上面给出的例子都是listview的写法，我在这里在引用一下：
+
+listView.setAdapter(new CommonAdapter<DemoModel>(data) {
+
+    @Override
+    public AdapterItem<DemoModel> getItemView(Object type) {
+        return new TextItem();
+    }
+});
+换成recyclerView的适配器应该需要改很多步吧？
+不！不要998，不要98，改一行代码早回家~
+
+recyclerView.setAdapter(new CommonRcvAdapter<DemoModel>(data) {
+
+    public AdapterItem<DemoModel> getItemView(Object type) {
+        return new TextItem();
+    }
+});
+注意到了么，就换了一个适配器的类名和容器名，其余的都没变，这才是我们想要的！
+
+--------------------最后研究-----------------
+linkify() Calls Linkify.addLinks(view, ALL) on any TextView.
+
+-----------------------这个时候 RecyclerView.LayoutManager  所以不用管是解耦的-------------------------------------
+有点懵逼  暂时不管
+android-parallax-recyclerview
+
+
+-------------------学到了-----------------------
+读取的时候可以用静态    毕竟不改变值
+
+属性 设置 final   在后来的关联数据的时候就不用每次都考虑了 不然每次看到可能还的考虑   当然这个属性的值设置之后都不变的所以用的时候要注意
+
+有的时候可以用newInstance 的静态方法  去new类 不然  final类型的 有的时候 初始化不了  太恶心了
+
+
+
+－－－－－－－－－－－－－－不好使－－－－－－－－－－－－－－－－－－
+
+8. Adapter应该提供item的局部刷新功能
+
+这个功能在recyclerView中就已经提供了，我就不废话了。推荐直接使用recyclerView来做列表。在react-native的源码中我也看到了对recyclerView的支持。网上流传比较多的是用下面的代码做listview的单条刷新：
+
+private void updateSingleRow(ListView listView, long id) {
+
+        if (listView != null) {
+            int start = listView.getFirstVisiblePosition();
+            for (int i = start, j = listView.getLastVisiblePosition(); i <= j; i++)
+                if (id == ((Messages) listView.getItemAtPosition(i)).getId()) {
+                    View view = listView.getChildAt(i - start);
+                    getView(i, view, listView);
+                    break;
+                }
+        }
+    }
+其实就是手动调用了对应position的item的getView方法，个人觉得不是很好，为何不直接使用recyclerView呢？
+--------------------------------------抛弃的想法-------------------------------------------
+
+现在参数  布局个数  context  data  就三个   用工厂的话 不行为啥呢 抽象方法谁实现啊
+可以考虑接口分离 这样就能 通过传入callback来实现了  这样 所有的东西都没暴漏出去
+暴漏出去的仅仅是接口   并且参数也都控制住了通过build  .build方法最后传入 接口方法
+举例：new AdapterBuild<T>().data(data).contenxt(context).., 这个用建造者模式  太繁琐了 抛弃

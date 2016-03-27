@@ -2,27 +2,23 @@ package com.example.mylib_test.activity.three_place.adapter;
 
 import java.util.List;
 import com.example.mylib_test.R;
-import com.zone.adapter.adapter.Adapter_Zone;
-import com.zone.adapter.adapter.core.ViewHolder_Zone;
-
+import com.zone.adapter.QuickAdapter;
+import com.zone.adapter.callback.Helper;
 import android.content.Context;
-import android.widget.TextView;
-public class PullToAdapter extends Adapter_Zone<String> {
+public class PullToAdapter extends QuickAdapter<String> {
 
-	private TextView tv;
 
 	public PullToAdapter(Context context, List<String> data) {
 		super(context, data);
 	}
+
 	@Override
-	public int setLayoutID() {
-		return  R.layout.item_threethird_pull;
+	public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+		helper.setText(R.id.tv,item);
 	}
 
 	@Override
-	public void setData(ViewHolder_Zone holder, String data, int position) {
-		tv=(TextView)holder.findViewById(R.id.tv);
-		tv.setText(data);
+	public int getItemLayoutId(String s, int position) {
+		return R.layout.item_threethird_pull;
 	}
-
 }

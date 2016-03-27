@@ -129,7 +129,9 @@ public abstract class Pop_Zone extends PopupWindow {
 	 * 这样就制定规范了
 	 */
 	public void show(){
-		initPop(layoutid, dismissViewId);
+		//防止每次都初始化   提升性能相对于我
+		if (mMenuView==null)
+			initPop(layoutid, dismissViewId);
 		findView(mMenuView);
 		initData();
 		setListener();

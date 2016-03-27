@@ -6,12 +6,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView;
-import com.zone.adapter.adapter.Adapter_Zone;
-import com.zone.adapter.adapter.core.ViewHolder_Zone;
+import com.zone.adapter.QuickAdapter;
+import com.zone.adapter.callback.Helper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,26 +52,23 @@ public class PopXfermode extends Pop_Zone {
 
     @Override
     protected void initData() {
-        lv.setAdapter(new Adapter_Zone<String>(activity,listData) {
+        lv.setAdapter(new QuickAdapter<String>(activity,listData) {
             @Override
-            public void setData(ViewHolder_Zone holder, final String data, int position) {
-                TextView tv = (TextView) holder.findViewById(R.id.tv);
-                tv.setText(data);
-                holder.findViewById(R.id.rl_main).setOnClickListener(new View.OnClickListener() {
+            public void convert(Helper helper, final String item, boolean itemChanged, int layoutId) {
+                helper.setText(R.id.tv,item).setOnClickListener(R.id.rl_main,new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        bt_pop.setText(data);
-                        xfermodeView.setXferMode(PorterDuff.Mode.valueOf(data));
+                        bt_pop.setText(item);
+                        xfermodeView.setXferMode(PorterDuff.Mode.valueOf(item));
                         xfermodeView.postInvalidate();
                         dismiss();
                     }
                 });
-
             }
 
             @Override
-            public int setLayoutID() {
-                return R.layout.item_textview_only;
+            public int getItemLayoutId(String s, int position) {
+                return  R.layout.item_textview_only;
             }
         });
     }

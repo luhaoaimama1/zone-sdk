@@ -2,17 +2,13 @@ package com.example.mylib_test.activity.custom_view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import com.example.mylib_test.R;
-import com.zone.adapter.adapter.Adapter_Zone;
-import com.zone.adapter.adapter.core.ViewHolder_Zone;
+import com.zone.adapter.QuickAdapter;
+import com.zone.adapter.callback.Helper;
 import com.zone.zrflist.RefreshZone;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 public class RefreshListViewActivity extends Activity{
 	RefreshZone rf_list;
@@ -23,19 +19,17 @@ public class RefreshListViewActivity extends Activity{
 		setContentView(R.layout.a_customview_refreshlist);
 		rf_list=(RefreshZone) findViewById(R.id.rf_list);
 		addData();
-		rf_list.setAdapter(new Adapter_Zone<String>(this, data) {
+		rf_list.setAdapter(new QuickAdapter<String>(this, data) {
 
 
 			@Override
-			public int setLayoutID() {
-				return R.layout.item_textview;
+			public void convert(Helper helper, String item, boolean itemChanged, int layoutId) {
+				helper.setText(R.id.tv,item);
 			}
 
 			@Override
-			public void setData(ViewHolder_Zone holder, String data,
-					int position) {
-				TextView tv=(TextView) holder.findViewById(R.id.tv);
-				tv.setText(data);
+			public int getItemLayoutId(String o, int position) {
+				return R.layout.item_textview;
 			}
 
 		});

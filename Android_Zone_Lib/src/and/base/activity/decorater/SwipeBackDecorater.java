@@ -17,8 +17,8 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
  *<uses-permission android:name="android.permission.VIBRATE"/>
  */
 public  class SwipeBackDecorater extends FeaturesDecorater implements SwipeBackActivityBase,SwipeBackLayout.SwipeListener {
-    private SwipeBackActivityHelper mHelper;
     private static final int VIBRATE_DURATION = 20;
+    private SwipeBackActivityHelper mHelper;
     protected SwipeBackLayout mSwipeBackLayout;
     protected SwipeBack swipeBack;
 
@@ -63,15 +63,19 @@ public  class SwipeBackDecorater extends FeaturesDecorater implements SwipeBackA
     }
 
     public enum SwipeBack{
-        LEFT,RIGHT,ALL,BOTTOM;
+        NONE,LEFT,RIGHT,ALL,BOTTOM;
 
     }
     public void setSwipeBackFlag(SwipeBack swipeBack){
         this.swipeBack=swipeBack;
-        int edgeFlag = SwipeBackLayout.EDGE_LEFT;
+        int edgeFlag = -1;
         switch (swipeBack) {
+            case NONE:
+                //默认就是左边
+                break;
             case LEFT:
                 //默认就是左边
+                edgeFlag = SwipeBackLayout.EDGE_LEFT;
                 break;
             case RIGHT:
                 edgeFlag= SwipeBackLayout.EDGE_RIGHT;
@@ -83,7 +87,8 @@ public  class SwipeBackDecorater extends FeaturesDecorater implements SwipeBackA
                 edgeFlag= SwipeBackLayout.EDGE_BOTTOM;
                 break;
         }
-        mSwipeBackLayout.setEdgeTrackingEnabled(edgeFlag);
+        if (edgeFlag != -1)
+            mSwipeBackLayout.setEdgeTrackingEnabled(edgeFlag);
     }
     @Override
     public void onScrollStateChange(int state, float scrollPercent) {

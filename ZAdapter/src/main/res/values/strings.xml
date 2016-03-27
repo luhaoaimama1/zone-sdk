@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ZAdapter</string>
+    <item type="id" name="OnClickListener_KEY">OnClickListener_KEY</item>
+    <item type="id" name="OnTouchListener_KEY">OnTouchListener_KEY</item>
+    <item type="id" name="OnLongClickListener_KEY">OnLongClickListener_KEY</item>
+    <item type="id" name="OnItemClickListener_KEY">OnItemClickListener_KEY</item>
+    <item type="id" name="OnItemLongClickListener_KEY">OnItemLongClickListener_KEY</item>
+    <item type="id" name="OnItemSelectedClickListener_KEY">OnItemSelectedClickListener_KEY</item>
 </resources>
