@@ -16,7 +16,7 @@ public abstract class BaseNetworkQuest {
 	private Dialog dialog;
 	private BasePullView listView;
 	//不暴漏的 外部的类还用到的
-	protected Context context;
+	public final Context context;
 	protected boolean  lastPage=false;
 	//防止当前页面正处理的时候  又翻页了 这时候翻页参数会错乱
 	private List<Integer> pageNumberhistory=new ArrayList<>();

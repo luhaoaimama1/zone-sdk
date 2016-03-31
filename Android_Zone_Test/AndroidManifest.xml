@@ -123,13 +123,13 @@
             android:name="com.example.mylib_test.activity.custom_view.AndroidHeroActivity"
             ></activity>
         <activity
-            android:name="com.example.mylib_test.activity.custom_view.RefreshListViewActivity"
-            ></activity>
-        <activity
             android:name="com.example.mylib_test.activity.photo_shot.ClipTest"
             ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.ThirdParty_MainActivity"
+            ></activity>
+        <activity
+            android:name="com.example.mylib_test.activity.three_place.UltraRefresh"
             ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"

@@ -73,4 +73,11 @@ public interface IAdapter<T> {
         boolean onItemLongClick(ViewGroup parent, View view, int position, long id);
     }
 
+
+    //todo
+    void addHeaderView(View v);
+    void addFooterView(View v);
+
+    boolean removeHeaderView(View v);
+    boolean removeFooterView(View v);
 }

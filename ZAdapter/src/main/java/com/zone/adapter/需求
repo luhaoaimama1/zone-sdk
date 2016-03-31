@@ -1,5 +1,27 @@
 加载动画等listView做完再说 不然可能白做了
 
+holder.getLayoutPosition();
+
+
+addHeaderView(View v)
+removeHeaderView(View v)
+
+addFooterView(View v)
+removeFooterView(View v)
+
+
+
+2.加载更多问题   内部实现应该 是切换 footview  这个是最后一个  并且 不会暴漏 仅仅会添加一个方法
+setLoadMore(ILoadMoreFooterView)//切换  加载底部view的ui
+setLoadMore(listenter);//设置加载更多监听  这个会自己动添加 支持更多view的功能  不设置则不会
+
+
+是adapter 来实现  并且加载 头 底view也是adapter
+
+如果做的话也要能全局切换 兼容性
+
+
+
 todo　我不习惯用pissco 用gilde到时候
 
 todo  现在测试

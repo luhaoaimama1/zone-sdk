@@ -5,7 +5,6 @@ dependencies {
     compile project(':Android_Zone_Lib')
     compile project(':ZOkHttp')
     compile project(':ZHttp2RfList')
-    compile project(':ZRFList')
     compile project(':ZAdapter')
     compile 'com.jakewharton:butterknife:7.0.1'
 }
