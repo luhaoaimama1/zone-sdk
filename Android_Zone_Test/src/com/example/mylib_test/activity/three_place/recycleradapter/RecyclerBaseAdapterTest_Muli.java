@@ -18,9 +18,9 @@ public class RecyclerBaseAdapterTest_Muli extends QuickRcvAdapter<String> {
 	public void openHeightRanmdom(boolean isRandom){
 		if (isRandom) {
 			datasHeight=new ArrayList<>();
-			for (String item : data) {
-                datasHeight.add((int) (100+Math.random()*300));
-            }
+			for (int i = 0; i <10000 ; i++) {
+				datasHeight.add((int) (100+Math.random()*300));
+			}
 			notifyDataSetChanged();
 		}
 		this.isRandom=isRandom;

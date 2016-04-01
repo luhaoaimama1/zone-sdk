@@ -1,13 +1,18 @@
 package com.zone.adapter;
-
 import android.util.Log;
+import com.zone.adapter.loadmore.LoadMoreFrameLayout;
 
 /**
  * Created by Administrator on 2016/3/24.
  */
-public class LogConfig {
+public class QuickConfig {
+    public  static Class iLoadMoreFrameLayoutClass = LoadMoreFrameLayout.class;
+    //全局切换 loadMore footerView
+    public static void setLoadMoreView(Class iLoadMoreFrameLayout){
+        QuickConfig.iLoadMoreFrameLayoutClass =iLoadMoreFrameLayout;
+    }
     private static final String TAG="ZHttp2RfList";
-    public static  boolean  writeLog=false;
+    public static  boolean  writeLog=true;
     public static void d(String str){
         if (writeLog )
             Log.d(TAG,str);

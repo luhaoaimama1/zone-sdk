@@ -59,7 +59,7 @@
 //		notifyChanged=true;
 //		setData(data);
 //		setBackgroundColor(Color.DKGRAY);
-//		setAdapter(bAdapter=new BaseAdapter_Zone<String>(context, realUseData) {
+//		associatedAdapter(bAdapter=new BaseAdapter_Zone<String>(context, realUseData) {
 //			private static final int LL_ID=111;
 //			private static final int LABEL_ID=123;
 //			private static final int IV_ID=234;

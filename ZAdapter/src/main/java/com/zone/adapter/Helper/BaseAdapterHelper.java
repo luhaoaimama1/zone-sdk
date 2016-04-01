@@ -4,7 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zone.adapter.LogConfig;
+import com.zone.adapter.QuickConfig;
 import com.zone.adapter.QuickAdapter;
 
 public class BaseAdapterHelper extends AbHelper {
@@ -18,7 +18,7 @@ public class BaseAdapterHelper extends AbHelper {
                 @Override
                 public void onClick(View v) {
                     if (adapter.getOnItemClickListener() != null){
-                        LogConfig.d("OnItemClick: position" + position);
+                        QuickConfig.d("OnItemClick: position" + position);
                         adapter.getOnItemClickListener().onItemClick(parent, v, position, -1);
                     }
 
@@ -29,7 +29,7 @@ public class BaseAdapterHelper extends AbHelper {
                 @Override
                 public boolean onLongClick(View v) {
                     if ( adapter.getOnItemLongClickListener() != null) {
-                        LogConfig.d("OnItemLongClick: position" + position);
+                        QuickConfig.d("OnItemLongClick: position" + position);
                         return adapter.getOnItemLongClickListener().onItemLongClick(parent, v, position, -1);
                     }
                     return false;

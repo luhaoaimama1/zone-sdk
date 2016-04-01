@@ -12,7 +12,7 @@ import com.zone.adapter.QuickRcvAdapter;
  */
 public class ViewHolderWithRecHelper extends  android.support.v7.widget.RecyclerView.ViewHolder {
     public BaseAdapterHelperRcv baseAdapterHelperRcv;
-    private ViewHolderWithRecHelper(View convertView) {
+    public ViewHolderWithRecHelper(View convertView) {
         super(convertView);
     }
 

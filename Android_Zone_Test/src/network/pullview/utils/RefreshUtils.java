@@ -22,7 +22,7 @@ package network.pullview.utils;//package and.network.pullview.utils;
 //	 * @param loadMoreListener
 //	 */
 //	public static  void initPullToRefreshListView(final PullToRefreshListView listView, BaseAdapter adapter,final PullToRefreshListener listener) {
-//		listView.setAdapter(adapter);
+//		listView.associatedAdapter(adapter);
 //		listView.setMode(Mode.PULL_FROM_START);
 //		if(listener==null)
 //			throw new IllegalArgumentException("arg:PullToRefreshListener maybe　null!");

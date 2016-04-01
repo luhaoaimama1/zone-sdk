@@ -1,7 +1,7 @@
 加载动画等listView做完再说 不然可能白做了
 
 holder.getLayoutPosition();
-
+//改完了  但是 添加 addview后 位置需要改变下
 
 addHeaderView(View v)
 removeHeaderView(View v)
@@ -9,9 +9,16 @@ removeHeaderView(View v)
 addFooterView(View v)
 removeFooterView(View v)
 
+//todo 对于考虑顺序的问题  仅仅在bind第一次的时候 把所有传入的参数处理下就好了 这样就没有顺序也可以了
+build模式怎么样呢  addheadview addFooterView relatedList setOnLoadMoreListener setOnItemClickListener OnItemClickListener
+setOnLoadMoreListener 必须最后。。。
 
 
+
+刷新中  刷新完成  刷新失败
 2.加载更多问题   内部实现应该 是切换 footview  这个是最后一个  并且 不会暴漏 仅仅会添加一个方法
+
+//todo    全局切换 loadmoreViwe放 config里会不会很好？
 setLoadMore(ILoadMoreFooterView)//切换  加载底部view的ui
 setLoadMore(listenter);//设置加载更多监听  这个会自己动添加 支持更多view的功能  不设置则不会
 

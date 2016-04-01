@@ -75,9 +75,9 @@ public interface IAdapter<T> {
 
 
     //todo
-    void addHeaderView(View v);
-    void addFooterView(View v);
+    void addHeaderView(View header);
+    void addFooterView(View footer);
 
-    boolean removeHeaderView(View v);
-    boolean removeFooterView(View v);
+    void removeHeaderView(View header);
+    void removeFooterView(View footer);
 }

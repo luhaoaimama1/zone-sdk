@@ -197,4 +197,27 @@ public abstract class QuickAdapter<T> extends BaseAdapter implements IAdapter<T>
     public OnItemLongClickListener getOnItemLongClickListener() {
         return onItemLongClickListener;
     }
+
+
+
+
+    @Override
+    public void addHeaderView(View header) {
+
+    }
+
+    @Override
+    public void addFooterView(View footer) {
+
+    }
+
+    @Override
+    public void removeHeaderView(View header) {
+
+    }
+
+    @Override
+    public void removeFooterView(View footer) {
+
+    }
 }
