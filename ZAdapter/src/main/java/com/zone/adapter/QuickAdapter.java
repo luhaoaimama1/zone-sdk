@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
-
 import com.zone.adapter.Helper.BaseAdapterHelper;
 import com.zone.adapter.callback.IAdapter;
 import com.zone.adapter.loadmore.ListOnLoadMoreListener;
