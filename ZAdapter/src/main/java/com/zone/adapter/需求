@@ -1,40 +1,56 @@
-加载动画等listView做完再说 不然可能白做了
+最后
+代码重构  分三层？  因为AndroidRecyclerViewDemo 不错 分了两层 但是我还有一层是  addAll动画那个
 
-holder.getLayoutPosition();
-//改完了  但是 添加 addview后 位置需要改变下
+todo　我不习惯用pissco 用gilde到时候
 
-addHeaderView(View v)
-removeHeaderView(View v)
+todo  现在测试   暂时没法解决
+多布局的时候 通知动画会 出现异常
 
-addFooterView(View v)
-removeFooterView(View v)
+----------------------------完成的------------------------------
+
+兼容性 仅仅考虑adapter：所有暴漏的方法都是一样的  (list  grid)adapter。。。。  header footerVIew 做不做呢？ list  可以做  grid就算了。。。 实现空方法好了
+    //暴漏的方法
+    void addHeaderView(View header);
+    void addFooterView(View footer);
+
+    void removeHeaderView(View header);
+    void removeFooterView(View footer);
+setOnLoadMoreListener(会添加一个footerview)//todo  因为需要兼容所以 是object吧 或者是接口
+
 
 //todo 对于考虑顺序的问题  仅仅在bind第一次的时候 把所有传入的参数处理下就好了 这样就没有顺序也可以了
 build模式怎么样呢  addheadview addFooterView relatedList setOnLoadMoreListener setOnItemClickListener OnItemClickListener
-setOnLoadMoreListener 必须最后。。。
+setOnLoadMoreListener(会添加一个footerview) 必须最后。。。还是怎么办呢？
+
+//不考虑LayoutManager
+RecyclerViewManager.with(myAdapter
+        .addHeaderView(header)
+        .addHeaderView(header2)
+        .addFooterView(footer)
+        .setOnBothRefreshListener().build()
+然后我在build里重新排序？不错  但是考虑兼容性 我list也这样。。。
 
 
 
-刷新中  刷新完成  刷新失败
-2.加载更多问题   内部实现应该 是切换 footview  这个是最后一个  并且 不会暴漏 仅仅会添加一个方法
 
-//todo    全局切换 loadmoreViwe放 config里会不会很好？
+
+1.先吧 list做吧  原生的addHeadView addFooterView 支持的不好 滚动的时候底部也滚动？
+
+是adapter 来实现  并且加载 头 底view也是adapter
+
+//全局切换 loadmoreViwe放 config里会不会很好？
 setLoadMore(ILoadMoreFooterView)//切换  加载底部view的ui
 setLoadMore(listenter);//设置加载更多监听  这个会自己动添加 支持更多view的功能  不设置则不会
 
 
-是adapter 来实现  并且加载 头 底view也是adapter
+holder.getLayoutPosition();
+//改完了
+addHeaderView(View v)  removeHeaderView(View v)
 
-如果做的话也要能全局切换 兼容性
+addFooterView(View v)  removeFooterView(View v)
 
 
 
-todo　我不习惯用pissco 用gilde到时候
-
-todo  现在测试
-多布局的时候 通知动画会 出现异常
-
-----------------------------完成的------------------------------
 调用方法的时候 用接口  但是 setadapter的时候缺需要转换
 item自身的setListener应仅设置一次，不用在getView时重复建立
 通过 两个参数的那种 强制 设置  不然就设置一次号了~

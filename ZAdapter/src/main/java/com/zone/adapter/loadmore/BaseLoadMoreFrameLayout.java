@@ -12,12 +12,15 @@ import com.zone.adapter.loadmore.callback.ILoadMoreFrameLayout;
  */
 public abstract class BaseLoadMoreFrameLayout extends FrameLayout implements ILoadMoreFrameLayout {
     public final LayoutInflater inflater;
-    public final RecyclerOnLoadMoreListener listener;
+    public final Object listener;
 
-    public BaseLoadMoreFrameLayout(Context context, RecyclerOnLoadMoreListener listener) {
+    public BaseLoadMoreFrameLayout(Context context, Object listener) {
         super(context);
         inflater=LayoutInflater.from(context);
-        this.listener=listener;
+        if(listener instanceof ListOnLoadMoreListener ||listener instanceof  RecyclerOnLoadMoreListener)
+            this.listener=listener;
+        else
+            throw new IllegalArgumentException("listener must be ListOnLoadMoreListener or RecyclerOnLoadMoreListener");
     }
 
     @Override
@@ -37,7 +40,10 @@ public abstract class BaseLoadMoreFrameLayout extends FrameLayout implements ILo
             setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onLoadMore();
+                    if(listener instanceof ListOnLoadMoreListener )
+                        ((ListOnLoadMoreListener)listener).onLoadMore();
+                    if(listener instanceof RecyclerOnLoadMoreListener )
+                        ((RecyclerOnLoadMoreListener)listener).onLoadMore();
                 }
             });
         }

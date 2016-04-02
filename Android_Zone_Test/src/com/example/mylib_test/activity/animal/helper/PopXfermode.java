@@ -54,12 +54,12 @@ public class PopXfermode extends Pop_Zone {
     protected void initData() {
         lv.setAdapter(new QuickAdapter<String>(activity,listData) {
             @Override
-            public void fillData(Helper helper, final String item, boolean itemChanged, int layoutId) {
+            public void fillData(final Helper<String> helper, final String item, boolean itemChanged, int layoutId) {
                 helper.setText(R.id.tv,item).setOnClickListener(R.id.rl_main,new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        bt_pop.setText(item);
-                        xfermodeView.setXferMode(PorterDuff.Mode.valueOf(item));
+                        bt_pop.setText(helper.getData());
+                        xfermodeView.setXferMode(PorterDuff.Mode.valueOf(helper.getData()));
                         xfermodeView.postInvalidate();
                         dismiss();
                     }

@@ -56,7 +56,7 @@
 //	}
 //
 //	@Override
-//	public void onloadMoreComplete() {
+//	public void onLoadMoreComplete() {
 //		loadMoreOk=true;
 //	}
 //

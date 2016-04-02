@@ -6,14 +6,8 @@ import com.zone.adapter.R;
  */
 public class LoadMoreFrameLayout extends BaseLoadMoreFrameLayout  {
 
-    public LoadMoreFrameLayout(Context context, RecyclerOnLoadMoreListener listener) {
+    public LoadMoreFrameLayout(Context context, Object listener) {
         super(context, listener);
-    }
-
-    @Override
-    public void loading() {
-        removeAllViews();
-        inflater.inflate(R.layout.sample_common_list_footer_loading,this);
     }
 
     @Override

@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import com.zone.adapter.QuickConfig;
 import com.zone.adapter.QuickAdapter;
 
-public class BaseAdapterHelper extends AbHelper {
+public class BaseAdapterHelper<T> extends AbHelper<T> {
 
-    protected BaseAdapterHelper(Context context, View convertView, final ViewGroup parent, int layoutId, final QuickAdapter adapter) {
+    public BaseAdapterHelper(Context context, View convertView, final ViewGroup parent, int layoutId, final QuickAdapter adapter) {
         super(context, convertView,parent, layoutId);
         convertView.setTag(this);
         //todo　position假的  这回貌似是真的了 到时候测验就好了

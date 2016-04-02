@@ -35,7 +35,7 @@ public class RecyclerBaseAdapterTest_Muli extends QuickRcvAdapter<String> {
 			}
 		});
 		if (isRandom) {
-			TextView tv_id_num=helper.getView(R.id.id_num);
+			TextView tv_id_num=(TextView)helper.getView(R.id.id_num);
 			LayoutParams lp = tv_id_num.getLayoutParams();
 			lp.height=datasHeight.get(helper.getPosition());
 			tv_id_num.setLayoutParams(lp);

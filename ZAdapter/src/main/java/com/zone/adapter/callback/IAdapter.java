@@ -1,7 +1,10 @@
 package com.zone.adapter.callback;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.zone.adapter.loadmore.callback.OnLoadMoreListener;
 
 import java.util.List;
 
@@ -19,7 +22,7 @@ public interface IAdapter<T> {
      * @param itemChanged Whether or not the helper was bound to another object before.
      * @param layoutId 布局的id可以switch  0是默认值 单布局的可以不考虑
      */
-     void fillData(Helper helper, T item, boolean itemChanged, int layoutId);
+     void fillData(Helper<T>  helper, T item, boolean itemChanged, int layoutId);
 
     /**
      * @param t list中的一条数据
@@ -80,4 +83,12 @@ public interface IAdapter<T> {
 
     void removeHeaderView(View header);
     void removeFooterView(View footer);
+
+    int getHeaderViewsCount();
+    int getFooterViewsCount();
+
+    void setOnLoadMoreListener(OnLoadMoreListener listener);
+    void onLoadMoreComplete();
+    void onLoadMoreFail();
+    Context getContext();
 }

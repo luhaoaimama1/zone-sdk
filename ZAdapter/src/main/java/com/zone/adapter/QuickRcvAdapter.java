@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.zone.adapter.Helper.ViewHolderWithRecHelper;
 import com.zone.adapter.callback.IAdapter;
 import com.zone.adapter.loadmore.RecyclerOnLoadMoreListener;
+import com.zone.adapter.loadmore.callback.OnLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public abstract class QuickRcvAdapter<T> extends RecyclerView.Adapter<ViewHolder
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager manager;
-
+    private RecyclerOnLoadMoreListener mRecyclerOnLoadMoreListener;
 
 
     public QuickRcvAdapter(Context context, List<T> data) {
@@ -86,9 +87,9 @@ public abstract class QuickRcvAdapter<T> extends RecyclerView.Adapter<ViewHolder
     public void onBindViewHolder(ViewHolderWithRecHelper holder, int position) {
         if (position >= mHeaderViews.size() && position < mHeaderViews.size() + data.size()) {
             T item = data.get(getDataPosition(position));
-            boolean itemChanged = (holder.baseAdapterHelperRcv.getAssociatedObject() == null || !holder.baseAdapterHelperRcv.getAssociatedObject().equals(item));
+            boolean itemChanged = (holder.baseAdapterHelperRcv.getData() == null || !holder.baseAdapterHelperRcv.getData().equals(item));
             //用之前关联 position object  保持数据的准确性
-            holder.baseAdapterHelperRcv.setAssociatedObject(item, getDataPosition(position));
+            holder.baseAdapterHelperRcv.setData(item, getDataPosition(position));
             fillData(holder.baseAdapterHelperRcv, item, itemChanged, getItemViewType(getDataPosition(position)));
         }
     }
@@ -152,16 +153,153 @@ public abstract class QuickRcvAdapter<T> extends RecyclerView.Adapter<ViewHolder
         }
     }
 
-    public int getHeaderViewsCount() {
-        return mHeaderViews.size();
+
+    @Override
+    public void setOnLoadMoreListener(OnLoadMoreListener listener) {
+        if (listener!=null)
+            if(mRecyclerView!=null){
+                mRecyclerView.addOnScrollListener(mRecyclerOnLoadMoreListener=new RecyclerOnLoadMoreListener(listener));
+                mRecyclerOnLoadMoreListener.associatedAdapter(this);
+            }else
+                throw new IllegalStateException(" must  use method :relatedList before this method ");
+    }
+    @Override
+    public void onLoadMoreComplete() {
+        if (mRecyclerOnLoadMoreListener!=null)
+            mRecyclerOnLoadMoreListener.onLoadMoreComplete();
     }
 
-    public int getFooterViewsCount() {
-        return mFooterViews.size();
+    @Override
+    public void onLoadMoreFail() {
+        if (mRecyclerOnLoadMoreListener!=null)
+            mRecyclerOnLoadMoreListener.onLoadMoreFail();
+    }
+    @Override
+    public IAdapter ani() {
+        ani = true;
+        return this;
     }
 
-    public Context getContext() {
-        return context;
+    private void closeAni() {
+        ani = false;
+    }
+    @Override
+    public void add(T elem) {
+        data.add(elem);
+        if (ani)
+            notifyItemInserted(data.size());
+        else
+            notifyDataSetChanged();
+        closeAni();
+    }
+    @Override
+    public void add(int index, T elem) {
+        data.add(index, elem);
+        if (ani)
+            notifyItemInserted(index);
+        else
+            notifyDataSetChanged();
+        closeAni();
+    }
+    @Override
+    public void addAll(List<T> elem) {
+        int index = data.size();
+        data.addAll(elem);
+        if (ani)
+            notifyItemRangeInserted(index, elem.size());
+        else
+            notifyDataSetChanged();
+        closeAni();
+    }
+    @Override
+    public void reverse(int fromPosition, int toPosition) {
+        T temp = data.get(fromPosition);
+        data.remove(fromPosition);
+        data.set(toPosition, temp);
+        if (ani)
+            notifyItemMoved(fromPosition, toPosition);
+        else
+            notifyDataSetChanged();
+        closeAni();
+    }
+    @Override
+    public void set(int index, T elem) {
+        data.set(index, elem);
+        if (ani)
+            notifyItemChanged(index);
+        else
+            notifyDataSetChanged();
+        closeAni();
+    }
+    @Override
+    public void set(T oldElem, T newElem) {
+        int index = data.indexOf(oldElem);
+        set(index, newElem);
+        closeAni();
+    }
+    @Override
+    public void remove(T elem) {
+        int index = data.indexOf(elem);
+        data.remove(elem);
+        if (ani)
+            notifyItemRemoved(index);
+        else
+            notifyDataSetChanged();
+        closeAni();
+    }
+    @Override
+    public void remove(int index) {
+        data.remove(index);
+        if (ani)
+            notifyItemRemoved(index);
+        else
+            notifyDataSetChanged();
+        closeAni();
+    }
+    @Override
+    public void replaceAll(List<T> elem) {
+        data.clear();
+        data.addAll(elem);
+        notifyDataSetChanged();
+        closeAni();
+    }
+    @Override
+    public boolean contains(T elem) {
+        return data.contains(elem);
+    }
+
+    /**
+     * Clear data list
+     */
+    @Override
+    public void clear() {
+        int count = data.size();
+        data.clear();
+        if (ani)
+            notifyItemRangeRemoved(0, count);
+        else
+            notifyDataSetChanged();
+        closeAni();
+    }
+
+    @Override
+    public void setOnItemClickListener(IAdapter.OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    @Override
+    public void setOnItemLongClickListener(IAdapter.OnItemLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
+
+    @Override
+    public OnItemClickListener getOnItemClickListener() {
+        return onItemClickListener;
+    }
+
+    @Override
+    public OnItemLongClickListener getOnItemLongClickListener() {
+        return onItemLongClickListener;
     }
 
     @Override
@@ -196,135 +334,18 @@ public abstract class QuickRcvAdapter<T> extends RecyclerView.Adapter<ViewHolder
         this.notifyDataSetChanged();
     }
 
-    public void setOnLoadMoreListener(RecyclerOnLoadMoreListener mRecyclerOnScrollListener){
-        mRecyclerView.addOnScrollListener(mRecyclerOnScrollListener);
-        mRecyclerOnScrollListener.associatedAdapter(this);
-    }
-
-
-    public IAdapter ani() {
-        ani = true;
-        return this;
-    }
-
-    private void closeAni() {
-        ani = false;
-    }
-
-    public void add(T elem) {
-        data.add(elem);
-        if (ani)
-            notifyItemInserted(data.size());
-        else
-            notifyDataSetChanged();
-        closeAni();
-    }
-
-    public void add(int index, T elem) {
-        data.add(index, elem);
-        if (ani)
-            notifyItemInserted(index);
-        else
-            notifyDataSetChanged();
-        closeAni();
-    }
-
-    public void addAll(List<T> elem) {
-        int index = data.size();
-        data.addAll(elem);
-        if (ani)
-            notifyItemRangeInserted(index, elem.size());
-        else
-            notifyDataSetChanged();
-        closeAni();
-    }
-
-    public void reverse(int fromPosition, int toPosition) {
-        T temp = data.get(fromPosition);
-        data.remove(fromPosition);
-        data.set(toPosition, temp);
-        if (ani)
-            notifyItemMoved(fromPosition, toPosition);
-        else
-            notifyDataSetChanged();
-        closeAni();
-    }
-
-    public void set(int index, T elem) {
-        data.set(index, elem);
-        if (ani)
-            notifyItemChanged(index);
-        else
-            notifyDataSetChanged();
-        closeAni();
-    }
-
-    public void set(T oldElem, T newElem) {
-        int index = data.indexOf(oldElem);
-        set(index, newElem);
-        closeAni();
-    }
-
-    public void remove(T elem) {
-        int index = data.indexOf(elem);
-        data.remove(elem);
-        if (ani)
-            notifyItemRemoved(index);
-        else
-            notifyDataSetChanged();
-        closeAni();
-    }
-
-    public void remove(int index) {
-        data.remove(index);
-        if (ani)
-            notifyItemRemoved(index);
-        else
-            notifyDataSetChanged();
-        closeAni();
-    }
-
-    public void replaceAll(List<T> elem) {
-        data.clear();
-        data.addAll(elem);
-        notifyDataSetChanged();
-        closeAni();
-    }
-
-    public boolean contains(T elem) {
-        return data.contains(elem);
-    }
-
-    /**
-     * Clear data list
-     */
-    public void clear() {
-        int count = data.size();
-        data.clear();
-        if (ani)
-            notifyItemRangeRemoved(0, count);
-        else
-            notifyDataSetChanged();
-        closeAni();
-    }
-
     @Override
-    public void setOnItemClickListener(IAdapter.OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    public int getHeaderViewsCount() {
+        return mHeaderViews.size();
+    }
+    @Override
+    public int getFooterViewsCount() {
+        return mFooterViews.size();
+    }
+    @Override
+    public Context getContext() {
+        return context;
     }
 
-    @Override
-    public void setOnItemLongClickListener(IAdapter.OnItemLongClickListener onItemLongClickListener) {
-        this.onItemLongClickListener = onItemLongClickListener;
-    }
 
-    @Override
-    public OnItemClickListener getOnItemClickListener() {
-        return onItemClickListener;
-    }
-
-    @Override
-    public OnItemLongClickListener getOnItemLongClickListener() {
-        return onItemLongClickListener;
-    }
 }

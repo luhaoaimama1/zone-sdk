@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 /**
  * Created by Administrator on 2016/3/26.
  */
-public interface Helper {
+public interface Helper<T> {
     <V extends View> V getView(int viewId);
 
     Helper setText(int viewId, String value);
@@ -97,7 +97,7 @@ public interface Helper {
 
     ViewGroup getParent();
     //todo   这个需要 T比较好
-   Object getAssociatedObject();
+    T getData();
 
-    void setAssociatedObject(Object associatedObject,int position);
+    void setData(T associatedObject, int position);
 }

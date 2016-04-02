@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import com.zone.adapter.QuickConfig;
 import com.zone.adapter.QuickRcvAdapter;
 
-public class BaseAdapterHelperRcv extends AbHelper  {
+public class BaseAdapterHelperRcv<T> extends AbHelper<T>  {
     //获取位置有用
     private final ViewHolderWithRecHelper viewHolderWithRecHelper;
 

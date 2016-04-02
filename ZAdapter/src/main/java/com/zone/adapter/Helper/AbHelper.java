@@ -39,7 +39,7 @@ import com.zone.adapter.callback.Helper;
  * </pre>
  * Created by Administrator on 2016/3/27.
  */
-public class AbHelper implements Helper {
+public class AbHelper<T> implements Helper<T> {
     /** Views indexed with their IDs */
     protected final SparseArray<View> views;
 
@@ -54,10 +54,10 @@ public class AbHelper implements Helper {
     protected int position;
 
     /** Package private field to retain the associated user object and detect a change */
-    protected Object associatedObject;
+    protected T data;
 
 
-    public AbHelper( Context context,View convertView, ViewGroup parent, int layoutId) {
+    public AbHelper(Context context,View convertView, ViewGroup parent, int layoutId) {
         this.views = new SparseArray<>();
         this.context = context;
         this.layoutId=layoutId;
@@ -72,7 +72,7 @@ public class AbHelper implements Helper {
      * a new issue at https://github.com/JoanZapata/base-adapter-helper/issues.
      * @param viewId The id of the view you want to retrieve.
      */
-    public <T extends View> T getView(int viewId) {
+    public <V extends View> V getView(int viewId) {
         return retrieveView(viewId);
     }
 
@@ -560,26 +560,26 @@ public class AbHelper implements Helper {
     }
 
     @SuppressWarnings("unchecked")
-    protected <T extends View> T retrieveView(int viewId) {
+    protected <V extends View> V retrieveView(int viewId) {
         View view = views.get(viewId);
         if (view == null) {
             view = convertView.findViewById(viewId);
             views.put(viewId, view);
         }
-        return (T) view;
+        return (V) view;
     }
 
     /** Retrieves the last converted object on this view. */
-    public Object getAssociatedObject() {
-        return associatedObject;
+    public T getData() {
+        return data;
     }
     /**
      * Retrieve the overall position of the data in the list.
      * @throws IllegalArgumentException If the position hasn't been set at the construction of the this helper.
      */
     /** Should be called during fillData */
-    public void setAssociatedObject(Object associatedObject,int position) {
-        this.associatedObject = associatedObject;
+    public void setData(T associatedObject, int position) {
+        this.data = associatedObject;
         this.position=position;
     }
 

@@ -56,7 +56,7 @@ public class WifiAdapterActivity extends Activity {
 		QuickAdapter<WifiItem> adpt=new QuickAdapter<WifiItem>(this, data) {
 
 			@Override
-			public void fillData(Helper helper, final WifiItem item, boolean itemChanged, int layoutId) {
+			public void fillData(final Helper<WifiItem> helper, final WifiItem item, boolean itemChanged, int layoutId) {
 				// TODO Auto-generated method stub
 				// TODO Auto-generated method stub
 				//能得到View就能设置 事件了
@@ -70,17 +70,17 @@ public class WifiAdapterActivity extends Activity {
 						// TODO Auto-generated method stub
 						switch (v.getId()) {
 							case R.id.Wifi_item_con:
-								System.out.println("连接=========="+item.getSSID());
+								System.out.println("连接==========" + helper.getData().getSSID());
 								System.out.println("ssid"+item.getSSID());
 //							System.out.println("cfg"+it.getCfg());
-								mWifiAnd3G.connectConfiguration(item.getCfg(), 10, 300);
+								mWifiAnd3G.connectConfiguration(helper.getData().getCfg(), 10, 300);
 								break;
 							case R.id.Wifi_item_NotCon:
-								System.out.println("断开=========="+item.getSSID());
+								System.out.println("断开=========="+helper.getData().getSSID());
 								mWifiAnd3G.disconnectWifi();
 								break;
 							case R.id.Wifi_item_ToString:
-								System.out.println("toString=========="+item.getWifiToString());
+								System.out.println("toString=========="+helper.getData().getWifiToString());
 								break;
 
 							default:

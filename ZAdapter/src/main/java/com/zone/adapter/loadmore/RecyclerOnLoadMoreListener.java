@@ -9,7 +9,6 @@ import com.zone.adapter.QuickConfig;
 import com.zone.adapter.QuickRcvAdapter;
 import com.zone.adapter.loadmore.callback.ILoadMoreFrameLayout;
 import com.zone.adapter.loadmore.callback.OnLoadMoreListener;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
@@ -122,14 +121,14 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
                 mQuickRcvAdapter.addFooterView(iLoadFooterView);
                 recyclerView.scrollToPosition(recyclerView.getLayoutManager().getItemCount() - 1);
             }
-            listener.onLoadMoreListener();
+            listener.onLoadMore();
         }
     }
-    public void onloadMoreComplete(){
+    public void onLoadMoreComplete(){
         mLoadingType=LoadingType.COMPLETE;
         iLoadFooterView.setVisibility(View.GONE);
     }
-    public void onloadMoreFail(){
+    public void onLoadMoreFail(){
         mLoadingType=LoadingType.FAIL;
         iLoadFooterView.setVisibility(View.VISIBLE);
         ((ILoadMoreFrameLayout)iLoadFooterView).fail();
@@ -162,7 +161,7 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
         this.mQuickRcvAdapter=mQuickRcvAdapter;
         //有参数构造器的初始化
         try {
-            Constructor<?> conSun = QuickConfig.iLoadMoreFrameLayoutClass.getDeclaredConstructor(Context.class,RecyclerOnLoadMoreListener.class);
+            Constructor<?> conSun = QuickConfig.iLoadMoreFrameLayoutClass.getDeclaredConstructor(Context.class,Object.class);
             Object temp = conSun.newInstance(mQuickRcvAdapter.getContext(),this);
             if(temp instanceof View &&ILoadMoreFrameLayout.class.isAssignableFrom(temp.getClass())){
                 iLoadFooterView =(View)temp;
