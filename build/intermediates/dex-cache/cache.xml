@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\UltraRefresh\unspecified\jars\classes.jar"
+        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\ZHttp2RfList\unspecified\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="8fde72b36fd9886b0e282ffdc0761ff7d3199855">
-        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-eecacd651d966cc1a30239a736a7c1961671cbde.jar" />
+        sha1="b3d1f17f116ad0ce2e04a5a4f90b202e7003b3e9">
+        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-2322c81683668f8c380048fdbf4b9ce9d068191b.jar" />
     </item>
 
 </items>

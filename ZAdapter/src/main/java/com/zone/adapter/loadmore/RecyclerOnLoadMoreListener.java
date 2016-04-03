@@ -13,6 +13,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
+
     public  enum LayoutManagerType {
         LinearLayout,StaggeredGridLayout,GridLayout;
     }
@@ -53,6 +54,7 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
     private Header2FooterRcvAdapter mQuickRcvAdapter;
     private View iLoadFooterView;
     private RecyclerView recyclerView;
+    private boolean isReady=false;
 
     public RecyclerOnLoadMoreListener(OnLoadMoreListener listener) {
         this.listener = listener;
@@ -62,10 +64,7 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
         this.dy=dy;
-        if(dy!=0)
-            fullScreen=true;
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-
         if (layoutManagerType == null) {
             if (layoutManager instanceof LinearLayoutManager) {
                 layoutManagerType = LayoutManagerType.LinearLayout;
@@ -95,22 +94,52 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
                 lastVisibleItemPosition = findMax(lastPositions);
                 break;
         }
+
+        int visibleItemCount = layoutManager.getChildCount();
+        int totalItemCount = layoutManager.getItemCount();
+        QuickConfig.eLoad("onScrolled=================isReady:" + isReady + "\t fullScreen:" + fullScreen + "\t mLoadingType:" + mLoadingType + "\t visibleItemCount != totalItemCount：" + (visibleItemCount != totalItemCount)
+                + "\t dy:" + dy + "\t visibleItemCount:" + visibleItemCount + "\t (lastVisibleItemPosition) >= totalItemCount - 1:"
+                + ((lastVisibleItemPosition) >= totalItemCount - 1) + "\t lastVisibleItemPosition:" + lastVisibleItemPosition + "\t totalItemCount:" + totalItemCount);
+        if (!QuickConfig.SCROLL_STATE_IDLE_OnloadMore_Mode) {
+            if (mLoadingType!=LoadingType.LOADING
+                    &&fullScreen&&dy>=0 &&visibleItemCount > 0
+                    && (lastVisibleItemPosition) >= totalItemCount - 1){
+                //如果不是加载中   滑动停止   占满一屏幕  滑动方向向下 可见的数量大于0  最后可见的位置是最后一个
+                onLoadMore();
+            }
+        }
     }
 
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
+        QuickConfig.eLoad("newState:" + newState);
+        if (newState==RecyclerView.SCROLL_STATE_DRAGGING)
+            isReady=true;
         this.recyclerView=recyclerView;
         currentScrollState = newState;
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         int visibleItemCount = layoutManager.getChildCount();
         int totalItemCount = layoutManager.getItemCount();
-        if (mLoadingType!=LoadingType.LOADING
-                && currentScrollState == RecyclerView.SCROLL_STATE_IDLE
-                &&fullScreen&&dy>=0 &&visibleItemCount > 0
-                && (lastVisibleItemPosition) >= totalItemCount - 1){
-            //如果不是加载中   滑动停止   占满一屏幕  滑动方向向下 可见的数量大于0  最后可见的位置是最后一个
-            onLoadMore();
+        fullScreen=visibleItemCount!=totalItemCount?true:false;
+        QuickConfig.eLoad("onScrollStateChanged================= isReady:" + isReady + "\t fullScreen:" + fullScreen + "\t mLoadingType:" + mLoadingType + "\t visibleItemCount != totalItemCount：" + (visibleItemCount != totalItemCount)
+                + "\t dy:" + dy + "\t visibleItemCount:" + visibleItemCount + "\t (lastVisibleItemPosition) >= totalItemCount - 1:"
+                + ((lastVisibleItemPosition) >= totalItemCount - 1) + "\t lastVisibleItemPosition:" + lastVisibleItemPosition + "\t totalItemCount:" + totalItemCount);
+        if (QuickConfig.SCROLL_STATE_IDLE_OnloadMore_Mode) {
+            if (isReady&mLoadingType!=LoadingType.LOADING
+                    && currentScrollState == RecyclerView.SCROLL_STATE_IDLE
+                    &&fullScreen&&dy>=0 &&visibleItemCount > 0
+                    && (lastVisibleItemPosition) >= totalItemCount - 1){
+                //如果不是加载中   滑动停止   占满一屏幕  滑动方向向下 可见的数量大于0  最后可见的位置是最后一个
+                onLoadMore();
+            }
+        }else{
+            if (isReady&mLoadingType==LoadingType.FAIL
+                    &&fullScreen&&dy>=0 &&visibleItemCount > 0
+                    && (lastVisibleItemPosition) >= totalItemCount - 1){
+                //如果不是加载中   滑动停止   占满一屏幕  滑动方向向下 可见的数量大于0  最后可见的位置是最后一个
+                onLoadMore();
+            }
         }
     }
 
@@ -118,7 +147,9 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
      * 加载失败的时候重新加载的时候会调用
      */
     public void onLoadMore(){
+        isReady=false;
         mLoadingType=LoadingType.LOADING;
+        QuickConfig.eLoad("onLoadMore");
         if (listener!=null) {
             if (iLoadFooterView !=null) {
                 iLoadFooterView.setVisibility(View.VISIBLE);
@@ -132,6 +163,10 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
     public void onLoadMoreComplete(){
         mLoadingType=LoadingType.COMPLETE;
         iLoadFooterView.setVisibility(View.GONE);
+    }
+    public void onLoadMoreComplete2RemoveFooterView(){
+        mLoadingType=LoadingType.COMPLETE;
+        mQuickRcvAdapter.removeFooterView(iLoadFooterView);
     }
     public void onLoadMoreFail(){
         mLoadingType=LoadingType.FAIL;

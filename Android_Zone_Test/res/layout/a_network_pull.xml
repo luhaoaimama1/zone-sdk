@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <android.support.v4.widget.SwipeRefreshLayout
+    <in.srain.cube.views.ptr.PtrFrameLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -14,6 +13,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </in.srain.cube.views.ptr.PtrFrameLayout>
 
 </LinearLayout>

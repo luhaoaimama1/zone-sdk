@@ -1,5 +1,7 @@
 package com.zone.http2rflist;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.zone.http2rflist.utils.ExceptionUtils;
@@ -10,6 +12,7 @@ import java.util.List;
 
 //一个listView即封装一个T
 public abstract class BasePullView<T,K,M,E,A> {
+	protected final Context context;
 	public  T pullView;
 	public  M adapter;
 	public  List<E> data;
@@ -19,7 +22,8 @@ public abstract class BasePullView<T,K,M,E,A> {
 	public K listView;
 	public BaseNetworkQuest baseNetworkQuest;
 //	public  OnRefresh2LoadMoreListener listener;
-	public  BasePullView(T pullView,K listView,M adapter,List<E> data) {
+	public  BasePullView(Context context,T pullView,K listView,M adapter,List<E> data) {
+		this.context=context;
 		this.pullView=pullView;
 		this.listView=listView;
 		this.adapter=adapter;
@@ -56,12 +60,19 @@ public abstract class BasePullView<T,K,M,E,A> {
 	}
 	public void addAllData2Notify(){
 		if (entity!=null) {
-			if(getAdapterData(entity).size()==0)
-				baseNetworkQuest.relateReturnEmptyData();
-			else {
-				if(getAdapterData(entity).size()<baseNetworkQuest.getLimit())
+			if(getAdapterData(entity).size()==0){
+				//todo 又问题
+//				baseNetworkQuest.relateReturnEmptyData();
+				baseNetworkQuest.isLastPage =true;
+				lastPageRemoveOnLoadListener();
+			}else {
+				baseNetworkQuest.isLastPage =false;
+				if(getAdapterData(entity).size()<baseNetworkQuest.getLimit()){
 					//不能上拉操作
-					baseNetworkQuest.lastPage=true;
+					baseNetworkQuest.isLastPage =true;
+					lastPageRemoveOnLoadListener();
+				}
+
 				data.addAll(getAdapterData(entity));
 				notifyDataSetChanged();
 			}
@@ -70,7 +81,9 @@ public abstract class BasePullView<T,K,M,E,A> {
 	
 
 	public abstract void onRefreshComplete();
-	public abstract void onloadMoreComplete();
+	public abstract void onLoadMoreComplete();
+	public abstract void lastPageRemoveOnLoadListener();
+	public abstract void onLoadMoreFail();
 	public abstract void notifyDataSetChanged();
 	public abstract List<E> getAdapterData(A entity);
 

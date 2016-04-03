@@ -89,6 +89,7 @@ public interface IAdapter<T> {
 
     void setOnLoadMoreListener(OnLoadMoreListener listener);
     void onLoadMoreComplete();
+    void removeOnLoadMoreListener();
     void onLoadMoreFail();
     Context getContext();
 }

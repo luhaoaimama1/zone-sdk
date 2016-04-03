@@ -150,6 +150,13 @@ public abstract class Header2FooterRcvAdapter<T> extends  BaseQuickRcvAdapter<T>
             mRecyclerOnLoadMoreListener.onLoadMoreComplete();
     }
 
+
+    @Override
+    public void removeOnLoadMoreListener() {
+        if(mRecyclerOnLoadMoreListener!=null)
+            mRecyclerOnLoadMoreListener.onLoadMoreComplete2RemoveFooterView();
+        mRecyclerView.removeOnScrollListener(mRecyclerOnLoadMoreListener);
+    }
     @Override
     public void onLoadMoreFail() {
         if (mRecyclerOnLoadMoreListener!=null)

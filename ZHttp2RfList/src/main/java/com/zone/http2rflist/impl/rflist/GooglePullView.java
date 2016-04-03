@@ -1,4 +1,5 @@
 package com.zone.http2rflist.impl.rflist;
+import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.widget.AbsListView;
@@ -8,10 +9,13 @@ import android.widget.ListView;
 import com.zone.http2rflist.BasePullView;
 import java.util.List;
 
+/**
+ * todo 上啦加载有问题 就当模板放着吧~
+ */
 public abstract class GooglePullView<E, A> extends BasePullView<SwipeRefreshLayout,ListView, BaseAdapter,E, A> {
 	boolean loadMoreOk=true;
-	public GooglePullView(SwipeRefreshLayout pullView, ListView listView, BaseAdapter adapter, List<E> data) {
-		super(pullView, listView,adapter, data);
+	public GooglePullView(Context context,SwipeRefreshLayout pullView, ListView listView, BaseAdapter adapter, List<E> data) {
+		super(context,pullView, listView,adapter, data);
 		pullViewSetListener();
 	}
 
@@ -53,7 +57,7 @@ public abstract class GooglePullView<E, A> extends BasePullView<SwipeRefreshLayo
 	}
 
 	@Override
-	public void onloadMoreComplete() {
+	public void onLoadMoreComplete() {
 		loadMoreOk=true;
 	}
 
@@ -62,4 +66,10 @@ public abstract class GooglePullView<E, A> extends BasePullView<SwipeRefreshLayo
 		adapter.notifyDataSetChanged();
 	}
 
+	@Override
+	public void onLoadMoreFail() {
+	}
+	@Override
+	public void lastPageRemoveOnLoadListener() {
+	}
 }

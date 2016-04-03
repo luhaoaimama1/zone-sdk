@@ -10,14 +10,14 @@ import java.util.List;
 //这个是处理    网络请求 dialog  与handler返回信息
 public abstract class BaseNetworkQuest {
 	private static  String limitColumn ="limit", offsetColumn ="offset";
-	private Handler handler;
+	protected Handler handler;
 	private boolean showDialog=false;
-	private int limit=10, pageNumber=0;
+	protected int limit=10, pageNumber=0;
 	private Dialog dialog;
 	private BasePullView listView;
 	//不暴漏的 外部的类还用到的
 	public final Context context;
-	protected boolean  lastPage=false;
+	protected boolean isLastPage =false;
 	//防止当前页面正处理的时候  又翻页了 这时候翻页参数会错乱
 	private List<Integer> pageNumberhistory=new ArrayList<>();
 	private Request request;
@@ -38,12 +38,13 @@ public abstract class BaseNetworkQuest {
 		start();
 	};
 	public  void nextPage(){
-		if (!lastPage) {
+		if (!isLastPage) {
 			turnPageExceptionChecked();
 			pageNumber++;
 			start();
 		}else{
-
+			//是最后一页的时候
+			listView.onLoadMoreComplete();
 		}
 	};
 	public  void turnPage(int number){
@@ -96,12 +97,12 @@ public abstract class BaseNetworkQuest {
 						if(number==0){
 							listView.clearData();
 							//当第一页 数据处理成功  可以翻页
-							lastPage=false;
+							isLastPage =false;
 						}
 						listView.addAllData2Notify();
 					}
 					//动画弄掉
-					removeListAnimal(number, listView);
+					removeListAnimal(number, listView,parseOK);
 					//把nubmerHistory处理过的 移除
 					pageNumberhistory.remove(0);
 					//arg1  是页数  ar2不知道 那就-1被~
@@ -109,11 +110,15 @@ public abstract class BaseNetworkQuest {
 						handler.obtainMessage(handlerTag,number,-1,msg).sendToTarget();
 				}
 				//动画弄掉
-				private void removeListAnimal(int number, BasePullView listView) {
+				private void removeListAnimal(int number, BasePullView listView,boolean parseOK) {
 					if(number==0)
 						listView.onRefreshComplete();
-					else
-						listView.onloadMoreComplete();
+					else{
+						if (parseOK)
+							listView.onLoadMoreComplete();
+						else
+							listView.onLoadMoreFail();
+					}
 				}
 			});
 		}else{
@@ -176,7 +181,7 @@ public abstract class BaseNetworkQuest {
 		Gson g=new Gson();
 		return 	g.fromJson(msg, clazz);
 	};
-	//如果得到的数据是0既刚刚翻得那一页 是错误的 所以需要减回来
+	//todo  如果得到的数据是0既刚刚翻得那一页 是错误的 所以需要减回来
 	void relateReturnEmptyData(){
 		if(pageNumber>0)
 			pageNumber--;

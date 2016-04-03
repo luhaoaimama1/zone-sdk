@@ -166,6 +166,13 @@ public abstract class BaseQuickAdapter<T>  extends BaseAdapter implements IAdapt
     }
 
     @Override
+    public void removeOnLoadMoreListener() {
+        if(mListOnLoadMoreListener!=null)
+            mListOnLoadMoreListener.onLoadMoreComplete2RemoveFooterView();
+        listView.setOnScrollListener(null);
+    }
+
+    @Override
     public void onLoadMoreFail() {
         if(mListOnLoadMoreListener!=null)
             mListOnLoadMoreListener.onLoadMoreFail();

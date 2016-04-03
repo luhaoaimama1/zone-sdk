@@ -93,7 +93,15 @@ public class ZhttpEngine extends BaseNetworkQuest {
         }
 
         @Override
-        public void onSuccess(String result, Call call, Response response) {
+        public void onSuccess(final String result, Call call, Response response) {
+//            System.err.println("pagenumber:"+pageNumber);
+            //延迟 测试下  上啦 加载又没~
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    sendhandlerMsg(result, handlerTag);
+//                }
+//            },2000);
             sendhandlerMsg(result, handlerTag);
             if (listener != null) {
                 listener.onSuccess(result, SuccessType.HTTP);
@@ -104,6 +112,7 @@ public class ZhttpEngine extends BaseNetworkQuest {
 
         @Override
         public void onError(Call call, IOException e) {
+//            System.err.println("message:"+e.getMessage());
             sendhandlerMsg(e.getMessage(), handlerTag);
             if (listener != null) {
                 listener.onFailure(e.getMessage());

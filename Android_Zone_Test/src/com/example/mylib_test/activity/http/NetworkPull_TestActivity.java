@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import and.base.activity.BaseActvity;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ImageView;
@@ -18,18 +20,19 @@ import com.zone.http2rflist.RequestParamsNet;
 import com.zone.http2rflist.RequestUtils;
 import com.zone.http2rflist.impl.enigne.ZhttpEngine;
 import com.zone.http2rflist.impl.rflist.GooglePullView;
+import com.zone.http2rflist.impl.rflist.UltraPullView;
 
 
 public class NetworkPull_TestActivity extends BaseActvity  {
 	final	String UrlPath = Constant.ADDRESS;
-	private SwipeRefreshLayout swipe_container;
+	private PtrFrameLayout swipe_container;
 	private ListView rv;
 	private ZhttpEngine engineGet;
 	private static final int GET_TAG=1;
 	Map<String,String> params=new HashMap<String,String>();
 	private List<String> dataImg=new ArrayList<String>();
 	private QuickAdapter<String> adapter;
-	private GooglePullView<String, Data> googlePullView;
+	private UltraPullView<String, Data> googlePullView;
 
 	@Override
 	public void setContentView() {
@@ -43,7 +46,7 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 
 	@Override
 	public void findIDs() {
-		swipe_container=(SwipeRefreshLayout)findViewById(R.id.swipe_container);
+		swipe_container=(PtrFrameLayout)findViewById(R.id.swipe_container);
 		rv=(ListView)findViewById(R.id.rv);
 	}
 
@@ -63,9 +66,7 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 			}
 		};
 		adapter.relatedList(rv);
-		rv.setAdapter(adapter);
-
-		googlePullView=new GooglePullView<String, Data>(swipe_container, rv, adapter, dataImg) {
+		googlePullView=new UltraPullView<String, Data>(this,swipe_container, rv, adapter, dataImg) {
 			@Override
 			public List<String> getAdapterData(Data entity) {
 				return entity.getImgEntity().getImg();
