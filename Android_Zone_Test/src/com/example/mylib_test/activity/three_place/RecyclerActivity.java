@@ -76,7 +76,8 @@ public class RecyclerActivity extends Activity implements Handler.Callback{
 					}
 				}, 1000);
 			}
-		}).setOnItemClickListener(new IAdapter.OnItemClickListener() {
+		})
+		.setOnItemClickListener(new IAdapter.OnItemClickListener() {
 			@Override
 			public void onItemClick(ViewGroup parent, View view, int position, long id) {
 				System.out.println("onItemClick position:" + position);
@@ -119,6 +120,9 @@ public class RecyclerActivity extends Activity implements Handler.Callback{
 			break;
 		case  R.id.delete:
 			muliAdapter.ani().remove(1);
+			break;
+		case  R.id.removeAll:
+			muliAdapter.clear();
 			break;
 		default:
 			break;

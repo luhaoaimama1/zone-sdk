@@ -50,6 +50,7 @@ public interface IAdapter<T> {
 
     void remove(int index);
 
+
     void replaceAll(List<T> elem);
 
     boolean contains(T elem);

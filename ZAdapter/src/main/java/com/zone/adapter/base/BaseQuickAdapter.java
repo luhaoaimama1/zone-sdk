@@ -93,6 +93,8 @@ public abstract class BaseQuickAdapter<T>  extends BaseAdapter implements IAdapt
         data.remove(index);
         notifyDataSetChanged();
     }
+
+
     @Override
     public void replaceAll(List<T> elem) {
         data.clear();

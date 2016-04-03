@@ -111,6 +111,8 @@ public abstract class BaseQuickRcvAdapter<T>   extends RecyclerView.Adapter<View
             notifyDataSetChanged();
         closeAni();
     }
+
+
     @Override
     public void replaceAll(List<T> elem) {
         data.clear();

@@ -2,11 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\ZHttp2RfList\unspecified\jars\classes.jar"
+        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\ZAdapter\unspecified\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="b3d1f17f116ad0ce2e04a5a4f90b202e7003b3e9">
-        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-2322c81683668f8c380048fdbf4b9ce9d068191b.jar" />
+        sha1="a08c15e9c51bbbfe50a0a705b5ce4203f40f5959">
+        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-95ff516f57a59a6ef7129c26e71888b79fb8943c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\Android_Zone_Lib\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9d426158a256e84c15dab74fcbba7dda8d29b9ea">
+        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-be2b164af37cdb7045dd11b68f82654f8ce88f58.jar" />
     </item>
 
 </items>
