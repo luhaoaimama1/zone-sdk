@@ -6,6 +6,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.QuickConfig;
+import com.zone.adapter.base.BaseQuickAdapter;
 import com.zone.adapter.loadmore.callback.ILoadMoreFrameLayout;
 import com.zone.adapter.loadmore.callback.OnLoadMoreListener;
 import java.lang.reflect.Constructor;
@@ -15,6 +16,9 @@ import java.lang.reflect.InvocationTargetException;
  * Created by Administrator on 2016/4/2.
  */
 public class ListOnLoadMoreListener implements AbsListView.OnScrollListener {
+    public  enum LoadingType {
+        LOADING,COMPLETE,FAIL;
+    }
     public final OnLoadMoreListener listener;
     /**
      * 三种状态： 刷新中，完成，失败
@@ -22,13 +26,14 @@ public class ListOnLoadMoreListener implements AbsListView.OnScrollListener {
     private LoadingType mLoadingType=LoadingType.COMPLETE;//默认完成的
     private int touchItem;
     private boolean moveDown;
-    private QuickAdapter mQuickAdapter;
+    private BaseQuickAdapter mQuickAdapter;
     private View iLoadFooterView;
     private ListView listView;
 
     private  int firstVisibleItem;
     private  int visibleItemCount;
     private  int totalItemCount;
+
     public ListOnLoadMoreListener(OnLoadMoreListener listener) {
         this.listener = listener;
     }
@@ -70,7 +75,7 @@ public class ListOnLoadMoreListener implements AbsListView.OnScrollListener {
     /**
      * 加载失败的时候重新加载的时候会调用
      */
-    protected void onLoadMore(){
+    public void onLoadMore(){
         mLoadingType=LoadingType.LOADING;
         if (listener!=null) {
             if (iLoadFooterView !=null) {
@@ -91,10 +96,8 @@ public class ListOnLoadMoreListener implements AbsListView.OnScrollListener {
         iLoadFooterView.setVisibility(View.VISIBLE);
         ((ILoadMoreFrameLayout)iLoadFooterView).fail();
     }
-    public  enum LoadingType {
-        LOADING,COMPLETE,FAIL;
-    }
-    public void associatedAdapter(QuickAdapter mQuickAdapter){
+
+    public void associatedAdapter(BaseQuickAdapter mQuickAdapter){
         this.mQuickAdapter=mQuickAdapter;
         //有参数构造器的初始化
         try {
@@ -113,4 +116,6 @@ public class ListOnLoadMoreListener implements AbsListView.OnScrollListener {
             e.printStackTrace();
         }
     }
+
+
 }

@@ -6,7 +6,6 @@ import com.example.mylib_test.activity.three_place.recycleradapter.RecyclerBaseA
 import com.zone.adapter.QuickManager;
 import com.zone.adapter.callback.IAdapter;
 import com.zone.adapter.loadmore.callback.OnLoadMoreListener;
-import com.zone.adapter.loadmore.RecyclerOnLoadMoreListener;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -88,53 +87,8 @@ public class RecyclerActivity extends Activity implements Handler.Callback{
 				System.out.println("onItemLongClick position:" + position);
 				return true;
 			}
-		}).build();
+		}).perform();
 
-//		muliAdapter.addHeaderView(LayoutInflater.from(this).inflate(R.layout.header_simple, null));
-//		muliAdapter.addHeaderView(LayoutInflater.from(this).inflate(R.layout.header_simple,null));
-//		muliAdapter.addFooterView(LayoutInflater.from(this).inflate(R.layout.footer_simple, null));
-//		muliAdapter.relatedList(rv);
-//		muliAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
-//			boolean refesh=true;
-//			@Override
-//			public void onLoadMore() {
-//				final List<String> mDatasa=new ArrayList<String>();
-//				for (int i = 0; i <5 ; i++) {
-//					mDatasa.add("insert " + i);
-//				}
-//				handler.postDelayed(new Runnable() {
-//					@Override
-//					public void run() {
-//						if (refesh) {
-//							muliAdapter.onLoadMoreComplete();
-//							muliAdapter.addAll(mDatasa);
-//						}else{
-//							muliAdapter.onLoadMoreFail();
-//						}
-//						refesh=!refesh;
-//					}
-//				},1000);
-//			}
-//		});
-//
-//		// 设置item动画　　　此动画不设置默认也有
-////		pullAni=new DefaultItemAnimator();
-////		rv.setItemAnimator(pullAni);
-//
-//		//设置监听--------------------------------------------------------
-//		muliAdapter.setOnItemClickListener(new IAdapter.OnItemClickListener() {
-//			@Override
-//			public void onItemClick(ViewGroup parent, View view, int position, long id) {
-//				System.out.println("onItemClick position:" + position);
-//			}
-//		});
-//		muliAdapter.setOnItemLongClickListener(new IAdapter.OnItemLongClickListener() {
-//			@Override
-//			public boolean onItemLongClick(ViewGroup parent, View view, int position, long id) {
-//				System.out.println("onItemLongClick position:" + position);
-//				return true;
-//			}
-//		});
 		View tv_change = findViewById(R.id.tv_change);
 		tv_change.setOnClickListener(new View.OnClickListener() {
 			@Override

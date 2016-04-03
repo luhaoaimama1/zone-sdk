@@ -1,10 +1,12 @@
-package com.zone.adapter.loadmore;
+package com.zone.adapter.loadmore.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.zone.adapter.loadmore.ListOnLoadMoreListener;
+import com.zone.adapter.loadmore.RecyclerOnLoadMoreListener;
 import com.zone.adapter.loadmore.callback.ILoadMoreFrameLayout;
 
 /**
@@ -14,10 +16,15 @@ public abstract class BaseLoadMoreFrameLayout extends FrameLayout implements ILo
     public final LayoutInflater inflater;
     public final Object listener;
 
+    /**
+     * 构造器必须两个参数 因为我通过反射来完成的
+     * @param context
+     * @param listener
+     */
     public BaseLoadMoreFrameLayout(Context context, Object listener) {
         super(context);
         inflater=LayoutInflater.from(context);
-        if(listener instanceof ListOnLoadMoreListener ||listener instanceof  RecyclerOnLoadMoreListener)
+        if(listener instanceof ListOnLoadMoreListener ||listener instanceof RecyclerOnLoadMoreListener)
             this.listener=listener;
         else
             throw new IllegalArgumentException("listener must be ListOnLoadMoreListener or RecyclerOnLoadMoreListener");

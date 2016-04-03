@@ -35,7 +35,7 @@ public class ImageLoaderActivity extends Activity{
 		lv.setAdapter(new ImageBaseAdapter());
 		// 使用DisplayImageOptions.Builder()创建DisplayImageOptions
 		
-//		options = new DisplayImageOptions.Builder().build();
+//		options = new DisplayImageOptions.Builder().perform();
 		diskLru=DiskLruUtils.openLru(this);
 		options = new DisplayImageOptions.Builder()
 				// 设置图片下载期间显示的图片  可以不设置就是空白被

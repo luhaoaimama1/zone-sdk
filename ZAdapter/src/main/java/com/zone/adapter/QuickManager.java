@@ -56,7 +56,7 @@ public class QuickManager {
         return this;
     }
     //书写顺序
-    public QuickManager build(){
+    public QuickManager perform(){
         mIAdapter.relatedList(listView);
 
         for (View mHeaderView : mHeaderViews)

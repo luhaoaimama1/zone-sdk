@@ -1,4 +1,4 @@
-package com.zone.adapter.loadmore;
+package com.zone.adapter.loadmore.view;
 import android.content.Context;
 import com.zone.adapter.R;
 /**

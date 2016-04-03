@@ -63,7 +63,7 @@ public class ImageLoaderGridActivity extends Activity implements OnClickListener
 //		.cacheInMemory(true)
 //		.cacheOnDisk(true)
 //		.bitmapConfig(Bitmap.Config.RGB_565)	 //设置图片的解码类型
-//		.build();
+//		.perform();
 	}
 	public class Adapter extends QuickAdapter<String> {
 

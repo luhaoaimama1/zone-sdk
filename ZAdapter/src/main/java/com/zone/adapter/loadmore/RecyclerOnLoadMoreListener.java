@@ -6,14 +6,19 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import com.zone.adapter.QuickConfig;
-import com.zone.adapter.QuickRcvAdapter;
+import com.zone.adapter.base.Header2FooterRcvAdapter;
 import com.zone.adapter.loadmore.callback.ILoadMoreFrameLayout;
 import com.zone.adapter.loadmore.callback.OnLoadMoreListener;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
-
+    public  enum LayoutManagerType {
+        LinearLayout,StaggeredGridLayout,GridLayout;
+    }
+    public  enum LoadingType {
+        LOADING,COMPLETE,FAIL;
+    }
     private final OnLoadMoreListener listener;
     /**
      * 当前RecyclerView类型
@@ -45,7 +50,7 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
      * 三种状态： 刷新中，完成，失败
      */
     private LoadingType mLoadingType=LoadingType.COMPLETE;//默认完成的
-    private QuickRcvAdapter mQuickRcvAdapter;
+    private Header2FooterRcvAdapter mQuickRcvAdapter;
     private View iLoadFooterView;
     private RecyclerView recyclerView;
 
@@ -112,7 +117,7 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
     /**
      * 加载失败的时候重新加载的时候会调用
      */
-    protected void onLoadMore(){
+    public void onLoadMore(){
         mLoadingType=LoadingType.LOADING;
         if (listener!=null) {
             if (iLoadFooterView !=null) {
@@ -151,13 +156,8 @@ public class RecyclerOnLoadMoreListener extends RecyclerView.OnScrollListener  {
     }
 
 
-    public  enum LayoutManagerType {
-        LinearLayout,StaggeredGridLayout,GridLayout;
-    }
-    public  enum LoadingType {
-        LOADING,COMPLETE,FAIL;
-    }
-    public void associatedAdapter(QuickRcvAdapter mQuickRcvAdapter){
+
+    public void associatedAdapter(Header2FooterRcvAdapter mQuickRcvAdapter){
         this.mQuickRcvAdapter=mQuickRcvAdapter;
         //有参数构造器的初始化
         try {

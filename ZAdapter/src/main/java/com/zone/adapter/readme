@@ -3,7 +3,6 @@
  如果在
  helper.setOnClickListener    不会重复  setonclick    这里不要用item   而是 helper.getData
   因为item是final类型 控件复用后  onclick也会复用 final类不会变 而helper不会变  但是里面的data确实我每次都设置好了的 所以你用这个就行
-    .setOnClickListenerForce   会重复  setonclick
 
 
 参考：

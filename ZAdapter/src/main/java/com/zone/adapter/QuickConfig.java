@@ -1,6 +1,6 @@
 package com.zone.adapter;
 import android.util.Log;
-import com.zone.adapter.loadmore.LoadMoreFrameLayout;
+import com.zone.adapter.loadmore.view.LoadMoreFrameLayout;
 
 /**
  * Created by Administrator on 2016/3/24.

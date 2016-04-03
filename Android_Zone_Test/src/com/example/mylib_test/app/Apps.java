@@ -70,7 +70,7 @@ public class Apps extends Application {
 			commonHeaderMap.put("commonHeaderMap", "header_Common");
 			Map<String, String> commonHeaderReMap = new HashMap<>();
 			commonHeaderReMap.put("commonHeaderMap", "header_CommonReplace");
-//			OkHttpUtils.setClient(OkHttpUtils.Certificates(getAssets().open("srca.cer")).build());
+//			OkHttpUtils.setClient(OkHttpUtils.Certificates(getAssets().open("srca.cer")).perform());
 //		try {
 			ok.initConfig(new HttpConfig().setCommonHeaderAddMap(commonHeaderMap).setCommonHeaderReplaceMap(commonHeaderReMap).setCommonParamsMap(commonParamMap)
 //					.Certificates(CER_12306)
