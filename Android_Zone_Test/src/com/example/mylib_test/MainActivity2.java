@@ -72,28 +72,28 @@ public class MainActivity2 extends Activity implements Handler.Callback{
 				.addHeaderView(LayoutInflater.from(this).inflate(R.layout.header_simple, null))
 				.addHeaderView(LayoutInflater.from(this).inflate(R.layout.header_simple, null))
 				.addFooterView(LayoutInflater.from(this).inflate(R.layout.footer_simple, null))
-				.setOnLoadMoreListener(new OnLoadMoreListener() {
-					boolean refesh=true;
-					@Override
-					public void onLoadMore() {
-						final List<MenuEntity> mDatasa=new ArrayList<>();
-						for (int i = 0; i <5 ; i++) {
-							mDatasa.add(new MenuEntity("insert " + i,null));
-						}
-						handler.postDelayed(new Runnable() {
-							@Override
-							public void run() {
-								if (refesh) {
-									adapter2.onLoadMoreComplete();
-									adapter2.addAll(mDatasa);
-								}else{
-									adapter2.onLoadMoreFail();
-								}
-								refesh=!refesh;
-							}
-						},1000);
-					}
-				})
+//				.setOnLoadMoreListener(new OnLoadMoreListener() {
+//					boolean refesh=true;
+//					@Override
+//					public void onLoadMore() {
+//						final List<MenuEntity> mDatasa=new ArrayList<>();
+//						for (int i = 0; i <5 ; i++) {
+//							mDatasa.add(new MenuEntity("insert " + i,null));
+//						}
+//						handler.postDelayed(new Runnable() {
+//							@Override
+//							public void run() {
+//								if (refesh) {
+//									adapter2.onLoadMoreComplete();
+//									adapter2.addAll(mDatasa);
+//								}else{
+//									adapter2.onLoadMoreFail();
+//								}
+//								refesh=!refesh;
+//							}
+//						},1000);
+//					}
+//				})
 				.perform();
 	}
 	private void createDialog() {

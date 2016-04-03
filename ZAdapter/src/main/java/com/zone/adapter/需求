@@ -1,12 +1,12 @@
-最后
-代码重构  分三层？  因为AndroidRecyclerViewDemo 不错 分了两层 但是我还有一层是  addAll动画那个
-
 todo　我不习惯用pissco 用gilde到时候
 
 todo  现在测试   暂时没法解决
 多布局的时候 通知动画会 出现异常
 
 ----------------------------完成的------------------------------
+最后
+代码重构  分三层？  因为AndroidRecyclerViewDemo 不错 分了两层 但是我还有一层是  addAll动画那个
+
 
 兼容性 仅仅考虑adapter：所有暴漏的方法都是一样的  (list  grid)adapter。。。。  header footerVIew 做不做呢？ list  可以做  grid就算了。。。 实现空方法好了
     //暴漏的方法
