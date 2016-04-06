@@ -96,5 +96,26 @@
             android:text="UltraRefresh" />
 
     </view.FlowLayout_Zone>
+    <view.FlowLayout_Zone
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f9ffac">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="下面的是Glide测试"
+            android:padding="10dp"
+            android:gravity="center_horizontal"
+            android:textColor="#ff4e4e" />
+        <Button
+            android:id="@+id/bt_glide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="Glide学习" />
+
+    </view.FlowLayout_Zone>
+
 
 </view.FlowLayout_Zone>

@@ -12,13 +12,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
-import and.wifi.NetManager;
+import and.utils.wifi.NetManager;
 
 public class GooglePullActvity extends Activity implements OnRefreshListener,Handler.Callback {
 	private ListView lv;

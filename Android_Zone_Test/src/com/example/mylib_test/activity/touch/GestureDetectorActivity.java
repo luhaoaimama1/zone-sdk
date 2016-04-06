@@ -2,15 +2,13 @@ package com.example.mylib_test.activity.touch;
 
 import com.example.mylib_test.R;
 
-import and.log.ToastUtils;
+import and.utils.ToastUtils;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 
 public class GestureDetectorActivity extends Activity {
 	protected static final String DEBUG_TAG = "GestureDetectorActivity";

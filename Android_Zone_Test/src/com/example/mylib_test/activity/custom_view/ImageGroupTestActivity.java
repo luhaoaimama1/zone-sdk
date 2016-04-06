@@ -6,10 +6,10 @@ import view.ImageGroup_Zone.ShowStatue;
 
 import com.example.mylib_test.R;
 
-import and.log.ToastUtils;
-import and.utils.MeasureUtils;
-import and.utils.MeasureUtils.GlobalState;
-import and.utils.MeasureUtils.OnMeasureListener;
+import and.utils.ToastUtils;
+import and.utils.measure.MeasureUtils;
+import and.utils.measure.MeasureUtils.ListenerState;
+import and.utils.measure.MeasureUtils.OnMeasureListener;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -34,15 +34,15 @@ public class ImageGroupTestActivity extends Activity implements OnClickListener 
 		flowLayoutZone1 = (FlowLayout_Zone) findViewById(R.id.flowLayoutZone1);
 		num = (EditText) findViewById(R.id.num);
 		imageGroup_zone.updateProperty(20, 1, 4, ShowStatue.ALL_VISIBLE);
-		MeasureUtils.measureView_addGlobal(imageGroup_zone,
-				GlobalState.MEASURE_REMOVE_LISNTER, new OnMeasureListener() {
+		MeasureUtils.measure(imageGroup_zone,
+				ListenerState.MEASURE_REMOVE, new OnMeasureListener() {
 
 					@Override
-					public void measureResult(View v, int view_width,
-							int view_height) {
+					public void measureResult(View v, int viewWidth,
+											  int viewHeight) {
 						imageGroup_zone.setBackgroundColor(Color.WHITE);
 						for (int i = 0; i < imageGroup_zone.getChildCount(); i++) {
-							imageGroup_zone.getChild_ChildPro(i).iv.setBackgroundColor(colorArray[i%4]);
+							imageGroup_zone.getChild_ChildPro(i).iv.setBackgroundColor(colorArray[i % 4]);
 						}
 					}
 				});

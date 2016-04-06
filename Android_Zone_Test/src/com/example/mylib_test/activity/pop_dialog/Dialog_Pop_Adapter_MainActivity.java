@@ -1,6 +1,6 @@
 package com.example.mylib_test.activity.pop_dialog;
 
-import and.log.ToastUtils;
+import and.utils.ToastUtils;
 import view.DialogCustemZone;
 
 import com.example.mylib_test.R;
@@ -9,7 +9,6 @@ import com.example.mylib_test.activity.pop_dialog.pop.Pop_Photo;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -20,7 +19,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class Dialog_Pop_Adapter_MainActivity extends Activity implements OnClickListener{
 

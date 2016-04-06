@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.system;
 
 import com.example.mylib_test.R;
 
-import and.log.ToastUtils;
+import and.utils.ToastUtils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

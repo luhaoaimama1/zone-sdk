@@ -2,11 +2,9 @@ package and.base.activity.decorater.features;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
-
-import and.Constant;
 import and.base.activity.decorater.features.core.ExtraFeature;
 import and.base.activity.RequestCodeConfig;
-import and.log.Logger_Zone;
+import and.LogUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,12 +15,9 @@ import android.text.format.DateFormat;
 public abstract class Feature_SystemClip extends ExtraFeature{
 	private  String saveFolder="";
 	private Uri savePath=null;
-	private Logger_Zone logger;
 	public Feature_SystemClip(Activity activity,String saveFolder) {
 		super(activity);
 		this.saveFolder=saveFolder;
-		logger= new  Logger_Zone(Feature_SystemClip.class,Constant.Logger_Config);
-		logger.closeLog();
 	}
 	
 	public void cropImageUri(String path){
@@ -54,7 +49,7 @@ public abstract class Feature_SystemClip extends ExtraFeature{
 		 String picName = DateFormat.format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA))+ ".jpg";
 		 File saveFile = new File(saveFolder, picName);
 		 savePath=Uri.fromFile(saveFile);
-		 logger.log("savePath Uri:"+savePath);
+		LogUtil.d("savePath Uri:" + savePath);
 		 intent.putExtra(MediaStore.EXTRA_OUTPUT,savePath );//输出地址  
 		 activity.startActivityForResult(intent, RequestCodeConfig.getRequestCode(RequestCodeConfig.Feature_SystemClip__REQUESTCODE_Clip));
 		}
@@ -69,7 +64,7 @@ public abstract class Feature_SystemClip extends ExtraFeature{
 			switch (RequestCodeConfig.getSwitchRequestCode(requestCode)) {
 			case RequestCodeConfig.Feature_SystemClip__REQUESTCODE_Clip:
 				if (intent != null) {
-					logger.log("onActivityResult  savePath:"+savePath);
+					LogUtil.d("onActivityResult  savePath:" + savePath);
 					getReturnedClipPath(savePath);
 				}
 				break;

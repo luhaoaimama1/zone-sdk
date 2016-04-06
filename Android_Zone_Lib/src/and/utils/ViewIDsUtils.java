@@ -1,12 +1,11 @@
 package and.utils;
 import java.util.ArrayList;
 import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+//todo 我可以放到uiUtils里面
 public class ViewIDsUtils {
 	public static List<Integer> getIDsByView(View convertView) {
 		List<Integer> idList = new ArrayList<Integer>();

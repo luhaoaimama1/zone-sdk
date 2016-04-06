@@ -1,6 +1,6 @@
 package com.example.mylib_test.activity.utils;
 
-import and.log.ToastUtils;
+import and.utils.ToastUtils;
 import and.utils.SpannableUtils;
 import and.utils.SpannableUtils.onClickSpannableListener;
 import android.app.Activity;

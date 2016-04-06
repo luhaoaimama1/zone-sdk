@@ -2,9 +2,11 @@
 
 toolbar的方法  等方法的封装 因为我没怎么用过所以暂时不封装!
 
-adapter
 
-listView  封装
+图片 裁剪 库
+
+剩下再说
+
 ------------完事------------------------------
 pop:当不传入id的时候 atlocation里的view是 activity根布局
 

@@ -10,6 +10,8 @@ import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.bumptech.glide.Glide;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.entity.Data;
 import com.example.mylib_test.app.Constant;
@@ -57,7 +59,11 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 			@Override
 			public void fillData(Helper helper, String item, boolean itemChanged, int layoutId) {
 				ImageView id_num=(ImageView) helper.getView(R.id.id_num);
-				ImageLoader.getInstance().displayImage(item, id_num);
+//				ImageLoader.getInstance().displayImage(item, id_num);
+				Glide.with(NetworkPull_TestActivity.this).load(item)
+						.placeholder(R.drawable.ic_stub).dontAnimate()
+						.error(R.drawable.ic_error)
+						.into(id_num);
 			}
 
 			@Override

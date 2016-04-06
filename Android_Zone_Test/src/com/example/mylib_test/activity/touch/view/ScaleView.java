@@ -15,7 +15,7 @@ import android.view.View;
 import com.example.mylib_test.R;
 
 import and.image.Compress_Sample_Utils;
-import and.utils.ScreenUtils;
+import and.utils.measure.ScreenUtils;
 
 /**
  * //TODO 用这两种手势做个缩放 空间

@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="15"
         android:targetSdkVersion="19" />
 
     <supports-screens
@@ -130,6 +130,9 @@
             ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.UltraRefresh"
+            ></activity>
+        <activity
+            android:name="com.example.mylib_test.activity.three_place.GildeActivity"
             ></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"

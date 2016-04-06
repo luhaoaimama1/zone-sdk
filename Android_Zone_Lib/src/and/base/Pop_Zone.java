@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 
@@ -139,7 +138,7 @@ public abstract class Pop_Zone extends PopupWindow {
 		if(showAtLocationViewId!=-1)
 			view = activity.findViewById(showAtLocationViewId);
 		else
-			view= UiUtils.getRootView(activity);
+			view= UiUtils.getActivityRootView(activity);
 		setLocation(view);
 	}
 	/**

@@ -49,6 +49,10 @@ public class ThirdParty_MainActivity extends Activity implements OnClickListener
 			startActivity(new Intent(this, UltraRefresh.class));
 			break;
 
+		case R.id.bt_glide:
+			startActivity(new Intent(this, GildeActivity.class));
+			break;
+
 		default:
 			break;
 		}

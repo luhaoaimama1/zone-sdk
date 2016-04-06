@@ -6,7 +6,7 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.wifi.entity.WifiItem;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.callback.Helper;
-import and.wifi.MyWifiAnd3G;
+import and.utils.wifi.MyWifiAnd3G;
 import android.app.Activity;
 import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;

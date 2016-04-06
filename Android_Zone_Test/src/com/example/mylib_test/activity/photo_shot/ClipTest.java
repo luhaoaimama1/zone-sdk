@@ -61,7 +61,7 @@ public class ClipTest extends BaseActvity implements OnClickListener{
 //		imageView = (CropImageView) findViewById(R.id.iv);
 //		//显示线   0不显示线　　1点的时候显示线  2不点也显示线
 //		imageView.setGuidelines(0);
-//		MeasureUtils.measureView_addGlobal(imageView, GlobalState.MEASURE_REMOVE_LISNTER, new OnMeasureListener() {
+//		MeasureUtils.measure(imageView, GlobalState.MEASURE_REMOVE, new OnMeasureListener() {
 //			
 //			@Override
 //			public void measureResult(View v, int view_width, int view_height) {

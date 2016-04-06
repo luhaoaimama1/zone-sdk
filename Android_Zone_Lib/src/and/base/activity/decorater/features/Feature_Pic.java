@@ -1,14 +1,11 @@
 package and.base.activity.decorater.features;
-
 import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
-
-import and.Constant;
 import and.base.activity.decorater.features.core.ExtraFeature;
 import and.base.activity.RequestCodeConfig;
-import and.log.Logger_Zone;
-import and.sd.FileUtils;
+import and.LogUtil;
+import and.utils.file2io2data.FileUtils;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -24,19 +21,16 @@ import android.text.format.DateFormat;
  *
  */
 public abstract  class Feature_Pic extends ExtraFeature{
-	private Logger_Zone logger;
 	private static String path;
 	private static File outFile = FileUtils.getFile("Zone", "picSave");
 
 	public Feature_Pic(Activity activity) {
 		super(activity);
-		logger= new  Logger_Zone(Feature_Pic.class,Constant.Logger_Config);
-		logger.closeLog();
 	}
-	
+
 	public  void openCamera() {
 		String picName = DateFormat.format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA))+ ".jpg";
-		logger.log("照片名格式：yyyyMMdd_hhmmss.jpg");
+		LogUtil.d("照片名格式：yyyyMMdd_hhmmss.jpg");
 		outFile = new File(outFile, picName);
 		path = outFile.getPath();
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -94,7 +88,7 @@ public abstract  class Feature_Pic extends ExtraFeature{
 					}
 					cursor.moveToFirst();
 					for (int i = 0; i < cursor.getColumnCount(); i++) {
-						logger.log(i + "-----------------"+cursor.getString(i)+"----"+cursor.getColumnName(i));
+						LogUtil.d(i + "-----------------" + cursor.getString(i) + "----" + cursor.getColumnName(i));
 						if (cursor.getColumnName(i).contains("data")) {
 							path = cursor.getString(i);
 						}

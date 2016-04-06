@@ -3,7 +3,7 @@ package com.example.mylib_test.activity.utils;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy;
 
-import and.utils.KeyBoardUtils;
+import and.utils.text_edit2input.KeyBoardUtils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

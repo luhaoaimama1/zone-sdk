@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.orhanobut.logger">
+
+
+    <uses-sdk android:minSdkVersion="15" />
+
+</manifest>
