@@ -1,13 +1,11 @@
 package com.zone.http2rflist.impl.rflist;
 
 import android.content.Context;
-import android.widget.AbsListView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.zone.adapter.QuickRcvAdapter;
 import com.zone.adapter.loadmore.callback.OnLoadMoreListener;
-import com.zone.http2rflist.BasePullView;
+import com.zone.http2rflist.base.BasePullView;
 import com.zone.zrflist.UltraControl;
 
 import java.util.List;

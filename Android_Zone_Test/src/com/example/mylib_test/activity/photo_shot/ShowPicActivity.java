@@ -1,16 +1,13 @@
 package com.example.mylib_test.activity.photo_shot;
-
 import com.example.mylib_test.R;
-import com.example.mylib_test.R.id;
-import com.example.mylib_test.R.layout;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import and.image.Compress_Sample_Utils;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
+
+import and.utils.image.compress2sample.SampleUtils;
 
 public class ShowPicActivity extends Activity {
 	private ImageView iv_uri,iv_url,iv_provider,iv_assets,iv_drawables;
@@ -25,7 +22,8 @@ public class ShowPicActivity extends Activity {
 		iv_assets = (ImageView) findViewById(R.id.iv_assets);
 		iv_drawables = (ImageView) findViewById(R.id.iv_drawables);
 		Uri uri = getIntent().getData();
-		Bitmap bt = Compress_Sample_Utils.getSampleBitmap(uri.toString(), 600, null);
+//		Bitmap bt = Compress_Sample_Utils.getSampleBitmap(uri.toString(), 600, null);
+		Bitmap bt = SampleUtils.with(this).load(uri.toString()).overrideW(600).bitmap();
 		iv_provider.setImageBitmap(null);
 		if (uri != null) {
 			ImageLoader.getInstance().displayImage("file://"+uri.toString(), iv_uri);

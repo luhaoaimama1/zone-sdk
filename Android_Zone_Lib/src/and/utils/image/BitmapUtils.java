@@ -1,4 +1,4 @@
-package and.image;
+package and.utils.image;
 import and.LogUtil;
 
 import android.graphics.Bitmap;

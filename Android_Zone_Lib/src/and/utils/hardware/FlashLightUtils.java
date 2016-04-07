@@ -12,7 +12,7 @@ import android.os.Handler;
  * @author MaTianyu
  * @date 2014-11-04
  */
-public class FlashLight {
+public class FlashLightUtils {
 
     private Camera camera;
     private Handler handler = new Handler();

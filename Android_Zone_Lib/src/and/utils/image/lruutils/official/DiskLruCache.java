@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package and.image.lruutils.official;
+package and.utils.image.lruutils.official;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;

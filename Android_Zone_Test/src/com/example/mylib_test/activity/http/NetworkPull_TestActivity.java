@@ -7,7 +7,6 @@ import and.base.activity.BaseActvity;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 
 import android.os.Message;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -15,13 +14,11 @@ import com.bumptech.glide.Glide;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.entity.Data;
 import com.example.mylib_test.app.Constant;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.callback.Helper;
-import com.zone.http2rflist.RequestParamsNet;
-import com.zone.http2rflist.RequestUtils;
+import com.zone.http2rflist.NetworkParams;
+import com.zone.http2rflist.RequestParamsUtils;
 import com.zone.http2rflist.impl.enigne.ZhttpEngine;
-import com.zone.http2rflist.impl.rflist.GooglePullView;
 import com.zone.http2rflist.impl.rflist.UltraPullView;
 
 
@@ -42,7 +39,9 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 		setContentView(R.layout.a_network_pull);
 		engineGet=new ZhttpEngine(this, handler);
 //		engineGet.newCall(UrlPath,new RequestParamsNet().setParamsMap(params), GET_TAG);
-		engineGet.newCall(RequestUtils.post(UrlPath, new RequestParamsNet().setParamsMap(params)).handlerTag(GET_TAG).build());
+		engineGet.newCall(RequestParamsUtils.post(UrlPath, new NetworkParams().setParamsMap(params))
+				.handlerTag(GET_TAG)
+				.build());
 
 	}
 
@@ -90,7 +89,7 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 		switch (msg.what) {
 		case GET_TAG:
 //			System.out.println("GET_TAG:"+msg.obj);
-			System.err.println("size:"+dataImg.size());
+			System.err.println("handleMessage size:"+dataImg.size());
 //			adapter.notifyDataSetChanged();
 			break;
 

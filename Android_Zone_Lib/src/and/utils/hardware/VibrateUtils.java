@@ -10,7 +10,7 @@ import android.os.Vibrator;
  * @author MaTianyu
  * @date 2014-11-21
  */
-public class VibrateUtil {
+public class VibrateUtils {
 
     /**
      * Vibrate constantly for the specified period of time.

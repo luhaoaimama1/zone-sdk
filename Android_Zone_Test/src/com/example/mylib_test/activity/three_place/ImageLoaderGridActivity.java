@@ -8,7 +8,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.callback.Helper;
 
-import and.image.lruutils.DiskLruUtils;
+import and.utils.image.lruutils.DiskLruUtils;
 import and.utils.ToastUtils;
 import android.annotation.SuppressLint;
 import android.app.Activity;

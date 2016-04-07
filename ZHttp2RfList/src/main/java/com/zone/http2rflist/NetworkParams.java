@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by Administrator on 2016/3/24.
  * ok里面的RequestParams  去掉初始化公共参数 与 网络类型
  */
-public class RequestParamsNet  {
+public class NetworkParams {
     protected Map<String, String> headerAddMap;
     protected Map<String, String> headerReplaceMap;
     protected Map<String, String> paramsMap;
@@ -18,14 +18,14 @@ public class RequestParamsNet  {
     protected String jsonStr;
     protected HttpTypeNet httpTypeNet =HttpTypeNet.GET;
     protected String encoding;
-    public RequestParamsNet() {
+    public NetworkParams() {
     }
 
     public String getJsonStr() {
         return jsonStr;
     }
 
-    public RequestParamsNet setJsonStr(String jsonStr) {
+    public NetworkParams setJsonStr(String jsonStr) {
         this.jsonStr = jsonStr;
         return this;
     }
@@ -37,17 +37,17 @@ public class RequestParamsNet  {
             fileNameMap = new ConcurrentHashMap<>();
     }
 
-    public RequestParamsNet put(String key, File file) {
+    public NetworkParams put(String key, File file) {
         return  put(key,null,file);
     }
 
-    public RequestParamsNet put(String key, String value, File file) {
+    public NetworkParams put(String key, String value, File file) {
         file2NameMapChecked();
         fileMap.put(key, file);
         fileNameMap.put(key, value == null ? file.getName() : value);
         return this;
     }
-    public RequestParamsNet setFileMap(Map<String, File> fileMap) {
+    public NetworkParams setFileMap(Map<String, File> fileMap) {
         file2NameMapChecked();
         this.fileMap.putAll(fileMap);
         for (Map.Entry<String, File> stringFileEntry : fileMap.entrySet())
@@ -65,12 +65,12 @@ public class RequestParamsNet  {
         if (paramsMap == null)
             paramsMap = new ConcurrentHashMap<>();
     }
-    public RequestParamsNet put(String key, String value) {
+    public NetworkParams put(String key, String value) {
         paramsMapChecked();
         paramsMap.put(key, value);
         return this;
     }
-    public RequestParamsNet setParamsMap(Map<String, String> paramsMap) {
+    public NetworkParams setParamsMap(Map<String, String> paramsMap) {
         paramsMapChecked();
         this.paramsMap.putAll(paramsMap);
         return this;
@@ -85,13 +85,13 @@ public class RequestParamsNet  {
         if (headerReplaceMap == null)
             headerReplaceMap = new ConcurrentHashMap<>();
     }
-    public RequestParamsNet headsReplace(String key, String value) {
+    public NetworkParams headsReplace(String key, String value) {
         headerReplaceMapChecked();
         headerReplaceMap.put(key, String.valueOf(value));
         return this;
     }
 
-    public RequestParamsNet setHeaderReplaceMap(Map<String, String> headerReplaceMap) {
+    public NetworkParams setHeaderReplaceMap(Map<String, String> headerReplaceMap) {
         headerReplaceMapChecked();
         this.headerReplaceMap.putAll(headerReplaceMap);
         return this;
@@ -103,13 +103,13 @@ public class RequestParamsNet  {
         if (headerAddMap == null)
             headerAddMap = new ConcurrentHashMap<>();
     }
-    public RequestParamsNet headsAdd(String key, String value) {
+    public NetworkParams headsAdd(String key, String value) {
         headerAddMapChecked();
         headerAddMap.put(key, String.valueOf(value));
         return this;
     }
 
-    public RequestParamsNet setHeaderAddMap(Map<String, String> headerAddMap) {
+    public NetworkParams setHeaderAddMap(Map<String, String> headerAddMap) {
         headerAddMapChecked();
         this.headerAddMap.putAll(headerAddMap);
         return this;
@@ -122,7 +122,7 @@ public class RequestParamsNet  {
         return encoding;
     }
 
-    public RequestParamsNet setEncoding(String encoding) {
+    public NetworkParams setEncoding(String encoding) {
         if (!StringUtils.isEmptyTrim(encoding)) {
             Charset charset = Charset.forName(encoding);
             if (charset!=null) {
@@ -137,7 +137,7 @@ public class RequestParamsNet  {
         return httpTypeNet;
     }
 
-    protected void setHttpTypeNet(HttpTypeNet httpTypeNet) {
+     void setHttpTypeNet(HttpTypeNet httpTypeNet) {
         this.httpTypeNet = httpTypeNet;
     }
 }

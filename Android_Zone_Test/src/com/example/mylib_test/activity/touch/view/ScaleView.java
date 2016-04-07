@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.example.mylib_test.R;
 
-import and.image.Compress_Sample_Utils;
+import and.utils.image.compress2sample.SampleUtils;
 import and.utils.measure.ScreenUtils;
 
 /**
@@ -40,9 +40,10 @@ public class ScaleView extends View implements ScaleGestureDetector.OnScaleGestu
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         Bitmap size = BitmapFactory.decodeResource(getResources(), R.drawable.aaaaaaaaaaaab, options);
-
-        options.inSampleSize =  Compress_Sample_Utils.calculateInSampleSize(options,
-                ScreenUtils.getScreenPixByResources(context)[0], ScreenUtils.getScreenPixByResources(context)[1]);
+//        options.inSampleSize =  Compress_Sample_Utils.calculateInSampleSize(options,
+//                ScreenUtils.getScreenPixByResources(context)[0], ScreenUtils.getScreenPixByResources(context)[1]);
+        options.inSampleSize =  SampleUtils.with(context).override(ScreenUtils.getScreenPixByResources(context)[0]
+                , ScreenUtils.getScreenPixByResources(context)[1]).calculateInSampleSize();
         options.inJustDecodeBounds = false;
         //另外，为了节约内存我们还可以使用下面的几个字段：
         options.inPurgeable = true;//true 内存不足可收回 再次用的时候 重新解码   false则不可收回

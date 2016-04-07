@@ -15,6 +15,6 @@ public class RequestCodeConfig {
         return requestCodeConfig_Code+START_CODE;
     }
     public static int getSwitchRequestCode(int requestCodeConfig_Code){
-        return requestCodeConfig_Code-requestCodeConfig_Code;
+        return requestCodeConfig_Code-START_CODE;
     }
 }

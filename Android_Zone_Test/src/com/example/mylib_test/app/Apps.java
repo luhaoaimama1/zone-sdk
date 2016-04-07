@@ -14,8 +14,8 @@ package com.example.mylib_test.app;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-import and.image.imageloader.ImageLoaderConfigUtils;
-import and.image.imageloader.ImageLoaderOptionsUtils;
+import and.utils.image.imageloader.ImageLoaderConfigUtils;
+import and.utils.image.imageloader.ImageLoaderOptionsUtils;
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.os.Build;
@@ -24,7 +24,7 @@ import android.os.StrictMode;
 import com.example.mylib_test.R;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.Settings;
-import com.zone.http2rflist.NetworkGlobalEngine;
+import com.zone.http2rflist.NetworkEngine;
 import com.zone.http2rflist.impl.enigne.ZhttpEngine;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
@@ -71,7 +71,8 @@ public class Apps extends Application {
 			commonHeaderReMap.put("commonHeaderMap", "header_CommonReplace");
 //			OkHttpUtils.setClient(OkHttpUtils.Certificates(getAssets().open("srca.cer")).perform());
 //		try {
-			ok.initConfig(new HttpConfig().setCommonHeaderAddMap(commonHeaderMap).setCommonHeaderReplaceMap(commonHeaderReMap).setCommonParamsMap(commonParamMap)
+			ok.initConfig(new HttpConfig().setCommonHeaderAddMap(commonHeaderMap)
+							.setCommonHeaderReplaceMap(commonHeaderReMap).setCommonParamsMap(commonParamMap)
 //					.Certificates(CER_12306)
 //					.Certificates(getAssets().open("srca.cer")
 			);
@@ -79,7 +80,7 @@ public class Apps extends Application {
 //			e.printStackTrace();
 //		}
 
-		NetworkGlobalEngine.setGlobalEngine(ZhttpEngine.class);
+		NetworkEngine.setGlobalEngine(ZhttpEngine.class);
 		//记得设置加载中图片 不然下拉加载http的时候慢了 会显示复用之前的背景就会造成 从复用过来的图变成 加载后的图！！！
 		ImageLoaderOptionsUtils.initShowImage(R.drawable.ic_stub, R.drawable.ic_empty, R.drawable.ic_error);
 		//初始化ImageLoader

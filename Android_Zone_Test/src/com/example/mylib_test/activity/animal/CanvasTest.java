@@ -1,13 +1,12 @@
 package com.example.mylib_test.activity.animal;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.animal.viewa.BitmapTry;
 import com.example.mylib_test.activity.animal.viewa.Canvas1;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
 import com.example.mylib_test.activity.animal.viewa.SinView;
 
-import and.image.BitmapUtils;
+import and.utils.image.BitmapUtils;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;

@@ -1,32 +1,32 @@
 package com.zone.http2rflist;
-
 import com.zone.http2rflist.callback.NetworkListener;
 import com.zone.http2rflist.entity.HttpTypeNet;
 
 /**
  * Created by Administrator on 2016/3/25.
  */
-public class Request {
-  public  final  RequestParamsNet params;
+public class BaseRequestParams {
+  public  final NetworkParams params;
   public final NetworkListener listener;
   public  final  String urlString;
   public final int handlerTag;
   public final Object cancelTag;
   public final HttpTypeNet httpTypeNet;
 
-    private Request(Builder builder) {
+    private BaseRequestParams(Builder builder) {
         this.params = builder.params;
         this.listener = builder.listener;
         this.urlString = builder.urlString;
         this.handlerTag = builder.handlerTag;
         this.cancelTag = builder.cancelTag;
         this.httpTypeNet = builder.httpTypeNet;
+        this.params.setHttpTypeNet(httpTypeNet);
     }
 
 
     public static class Builder {
 
-        private RequestParamsNet params;
+        private NetworkParams params;
         private NetworkListener listener;
         private String urlString;
         private int handlerTag=-1;
@@ -55,7 +55,7 @@ public class Request {
             return this;
         }
 
-        public Builder params(RequestParamsNet params) {
+        public Builder params(NetworkParams params) {
             this.params = params;
             return this;
         }
@@ -89,8 +89,8 @@ public class Request {
             return this;
         }
 
-        public Request build() {
-            return new Request(this);
+        public BaseRequestParams build() {
+            return new BaseRequestParams(this);
         }
     }
 }

@@ -18,7 +18,6 @@ package and;
 import android.text.TextUtils;
 import android.util.Log;
 /**
- * todo  可以加点击
  * Log工具，类似android.util.Log。
  * tag自动产生，格式: customTagPrefix:className.methodName(L:lineNumber),
  * customTagPrefix为空时只输出：className.methodName(L:lineNumber)。
@@ -30,7 +29,7 @@ public class LogUtil {
 
     public static String customTagPrefix = "x_log";
 
-    public static boolean writeLog=false;
+    public static boolean writeLog=true;
 
     private LogUtil() {
     }

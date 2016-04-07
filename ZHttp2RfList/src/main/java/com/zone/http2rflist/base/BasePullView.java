@@ -1,9 +1,10 @@
-package com.zone.http2rflist;
+package com.zone.http2rflist.base;
 
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.zone.http2rflist.MsgErrorCheck;
 import com.zone.http2rflist.utils.ExceptionUtils;
 
 import java.lang.reflect.ParameterizedType;
@@ -20,7 +21,7 @@ public abstract class BasePullView<T,K,M,E,A> {
 	//这里是gson转换过来的
 	private  A entity;
 	public K listView;
-	public BaseNetworkQuest baseNetworkQuest;
+	public BaseNetworkEngine baseNetworkQuest;
 //	public  OnRefresh2LoadMoreListener listener;
 	public  BasePullView(Context context,T pullView,K listView,M adapter,List<E> data) {
 		this.context=context;
@@ -31,7 +32,7 @@ public abstract class BasePullView<T,K,M,E,A> {
 		setType();
 	}
 	
-	public  void relateBaseNetworkQuest(BaseNetworkQuest baseNetworkQuest){
+	public  void relateBaseNetworkQuest(BaseNetworkEngine baseNetworkQuest){
 		this.baseNetworkQuest=baseNetworkQuest;
 	}
 	//通过泛型得到类

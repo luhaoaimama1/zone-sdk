@@ -3,7 +3,7 @@ import android.content.Context;
 import android.widget.ListView;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.loadmore.callback.OnLoadMoreListener;
-import com.zone.http2rflist.BasePullView;
+import com.zone.http2rflist.base.BasePullView;
 import com.zone.zrflist.UltraControl;
 import java.util.List;
 import in.srain.cube.views.ptr.PtrFrameLayout;

@@ -1,4 +1,4 @@
-package and.image.lruutils;
+package and.utils.image.lruutils;
 
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;

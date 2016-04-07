@@ -13,11 +13,11 @@ import and.LogUtil;
  * @author MaTianyu
  * @date 2014-11-04
  */
-public class WakeLock {
+public class WakeLockUtils {
     PowerManager          powerManager;
     PowerManager.WakeLock wakeLock;
 
-    public WakeLock(Context context, String tag) {
+    public WakeLockUtils(Context context, String tag) {
         ////获取电源的服务 声明电源管理器
         powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.FULL_WAKE_LOCK, tag);

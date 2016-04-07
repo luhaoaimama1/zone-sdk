@@ -1,4 +1,4 @@
-package and.image.lruutils;
+package and.utils.image.lruutils;
 
 import java.lang.ref.SoftReference;
 import java.util.Collections;

@@ -7,7 +7,7 @@
 //import android.widget.BaseAdapter;
 //import android.widget.ListView;
 //
-//import com.zone.http2rflist.BasePullView;
+//import com.zone.http2rflist.base.BasePullView;
 //
 //import java.util.List;
 //

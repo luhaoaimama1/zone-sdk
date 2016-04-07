@@ -1,6 +1,6 @@
 package com.zone.http2rflist.impl.enigne.helper;
 
-import com.zone.http2rflist.RequestParamsNet;
+import com.zone.http2rflist.NetworkParams;
 import com.zone.okhttp.RequestParams;
 
 import java.io.File;
@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class ParamsHelper {
     //注意请求模式不要过去！！！！！！
-    public static RequestParams setParamsNet(RequestParamsNet params){
+    public static RequestParams setParamsNet(NetworkParams params){
         RequestParams rParams = new RequestParams();
         if (params.getHeaderReplaceMap()!=null)
             rParams.setHeaderReplaceMap(params.getHeaderReplaceMap());
@@ -23,7 +23,7 @@ public class ParamsHelper {
             rParams.setJsonStr(params.getJsonStr());
         if (params.getFileMap()!=null)
             for (Map.Entry<String, File> stringFileEntry : params.getFileMap().entrySet())
-                params.put(stringFileEntry.getKey(),
+                rParams.put(stringFileEntry.getKey(),
                         params.getFileNameMap().get(stringFileEntry.getKey()),
                         stringFileEntry.getValue());
         rParams.setEncoding(params.getEncoding());

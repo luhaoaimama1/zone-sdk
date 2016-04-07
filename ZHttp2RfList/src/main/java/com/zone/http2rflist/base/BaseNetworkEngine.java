@@ -1,42 +1,55 @@
-package com.zone.http2rflist;
-
+package com.zone.http2rflist.base;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import com.google.gson.Gson;
+import com.zone.http2rflist.BaseRequestParams;
+import com.zone.http2rflist.MsgErrorCheck;
+import com.zone.http2rflist.callback.IBaseNetworkEngine;
+import com.zone.http2rflist.utils.Pop_Zone;
 import java.util.ArrayList;
 import java.util.List;
 
 //这个是处理    网络请求 dialog  与handler返回信息
-public abstract class BaseNetworkQuest {
+public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
+	public enum DialogType{
+		pop,dialog;
+	}
+	//默认级别的
+	private DialogType  dialogType=DialogType.pop;
+
 	private static  String limitColumn ="limit", offsetColumn ="offset";
 	protected Handler handler;
-	private boolean showDialog=false;
+	private boolean isShowDialog =false;
 	protected int limit=10, pageNumber=0;
 	private Dialog dialog;
+	private Pop_Zone popWindow;
+
 	private BasePullView listView;
 	//不暴漏的 外部的类还用到的
 	public final Context context;
 	protected boolean isLastPage =false;
 	//防止当前页面正处理的时候  又翻页了 这时候翻页参数会错乱
 	private List<Integer> pageNumberhistory=new ArrayList<>();
-	private Request request;
+	private BaseRequestParams request;
 
-	public BaseNetworkQuest(Context context,Handler handler) {
+	public BaseNetworkEngine(Context context, Handler handler) {
 		this(context,handler,false);
 	}
-	public BaseNetworkQuest(Context context,Handler handler,boolean showDialog) {
+	public BaseNetworkEngine(Context context, Handler handler, boolean isShowDialog) {
 		this.context=context;
 		this.handler= handler;
-		this.showDialog= showDialog;
+		this.isShowDialog = isShowDialog;
 	}
-	
+
+	@Override
 	//这个是已经请求过  就用firstPage即可
 	public  void firstPage(){
 		turnPageExceptionChecked();
 		pageNumber=0;
 		start();
 	};
+	@Override
 	public  void nextPage(){
 		if (!isLastPage) {
 			turnPageExceptionChecked();
@@ -47,6 +60,7 @@ public abstract class BaseNetworkQuest {
 			listView.onLoadMoreComplete();
 		}
 	};
+	@Override
 	public  void turnPage(int number){
 		turnPageExceptionChecked();
 		pageNumber=number;
@@ -56,16 +70,17 @@ public abstract class BaseNetworkQuest {
 		if(listView==null)
 			throw new IllegalStateException("please must be use method:relateList!");
 	}
-
+	@Override
 	//开始任务
 	public void start(){
 		execute(true);
 	}
-	public  void newCall(Request request){
+	@Override
+	public  void newCall(BaseRequestParams request){
 		this.request=request;
 		execute(false);
 	}
-	private  void execute(boolean run){
+	private void execute(boolean run){
 		if (run&&request!=null) {
 			showDialog();
 			relateAddTurnPage();
@@ -73,11 +88,12 @@ public abstract class BaseNetworkQuest {
 			ab_Send(request);
 		}
 	}
+	@Override
 	// error  与  success都需要 发送消息  但是记住必须只有一个发出来
 	public void sendhandlerMsg(final String msg,final int handlerTag){
 		//把dialog弄掉
 		handler.post(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				hideDialog();
@@ -128,12 +144,13 @@ public abstract class BaseNetworkQuest {
 			handler.obtainMessage(handlerTag,msg).sendToTarget();
 		}
 	}
+	@Override
 	//建立list联动后 会添加翻页功能
 	public void relateList(BasePullView  listView ){
 		this.listView=listView;
 		listView.relateBaseNetworkQuest(this);
 	}
-	public void relateAddTurnPage(){
+	private void relateAddTurnPage(){
 		if(listView!=null){
 			request.params.put(limitColumn, limit + "");
 			pageNumberhistory.add(pageNumber);
@@ -141,39 +158,63 @@ public abstract class BaseNetworkQuest {
 			request.params.put(offsetColumn, offest + "");
 		}
 	}
-	protected abstract void ab_Send(Request request);
+	protected abstract void ab_Send(BaseRequestParams request);
 	protected  abstract void cancelAllRequest();
 	protected  abstract void cancelAllRequest(Object cancelTag);
 	//设置 默认的dialog
 	protected  abstract Dialog createDefaultDialog(Context context);
+	//设置 默认的popWindow
+	protected  abstract Pop_Zone createDefaultPopWindow(Context context);
+	@Override
 	//设置dialog
 	public  void setDialog(Dialog dialog){
 		this.dialog=dialog;
 	};
+	@Override
+	//设置popWindow
+	public  void setPopWindow(Pop_Zone popWindow){
+		this.popWindow=popWindow;
+	};
 
 	//listView请求的时候 不展示Dialog
-	protected void showDialog() {
+	private void showDialog() {
 		if (listView==null) {
-			if (dialog == null)
-                dialog = createDefaultDialog(context);
-			//这样没有dialog也不会爆空了
-			if (dialog != null)
-                dialog.show();
+			switch (dialogType) {
+				case pop:
+					if (popWindow == null&& isShowDialog){
+						popWindow = createDefaultPopWindow(context);
+					}
+					//这样没有dialog也不会爆空了
+					if (popWindow != null&&!popWindow.isShowing())
+						popWindow.show();
+					break;
+				case dialog:
+					if (dialog == null&& isShowDialog)
+						dialog = createDefaultDialog(context);
+					//这样没有dialog也不会爆空了
+					if (dialog != null&&dialog.isShowing())
+						dialog.show();
+					break;
+			}
 		}
 	}
-
-	protected void hideDialog() {
-		if (dialog != null&&dialog.isShowing())
-			dialog.dismiss();
+	private void hideDialog() {
+		if (isShowDialog) {
+			if (dialog != null&&dialog.isShowing())
+				dialog.dismiss();
+			if(popWindow!=null&&popWindow.isShowing())
+				popWindow.dismiss();
+		}
 	}
-	
+	@Override
 	public boolean isShowDialog() {
-		return showDialog;
+		return isShowDialog;
 	}
+	@Override
 	public void setShowDialog(boolean showDialog) {
-		this.showDialog = showDialog;
+		this.isShowDialog = showDialog;
 	}
-	
+	@Override
 	public  <A> A gsonParseNoRelateList(String msg, Class<A> clazz){
 		boolean resultIsRight= MsgErrorCheck.errorChecked(msg);
 		if(!resultIsRight)
@@ -181,16 +222,11 @@ public abstract class BaseNetworkQuest {
 		Gson g=new Gson();
 		return 	g.fromJson(msg, clazz);
 	};
-	//todo  如果得到的数据是0既刚刚翻得那一页 是错误的 所以需要减回来
-	void relateReturnEmptyData(){
-		if(pageNumber>0)
-			pageNumber--;
-	}
-
+	@Override
 	public int getLimit() {
 		return limit;
 	}
-
+	@Override
 	public void setLimit(int limit) {
 		this.limit = limit;
 	}
@@ -200,7 +236,7 @@ public abstract class BaseNetworkQuest {
 	}
 
 	public static void setLimitColumn(String limitColumn) {
-		BaseNetworkQuest.limitColumn = limitColumn;
+		BaseNetworkEngine.limitColumn = limitColumn;
 	}
 
 	public static String getOffsetColumn() {
@@ -208,6 +244,6 @@ public abstract class BaseNetworkQuest {
 	}
 
 	public static void setOffsetColumn(String offsetColumn) {
-		BaseNetworkQuest.offsetColumn = offsetColumn;
+		BaseNetworkEngine.offsetColumn = offsetColumn;
 	}
 }

@@ -3,7 +3,7 @@ package com.example.mylib_test.activity.animal.viewa;
 
 import com.example.notperfectlib.R;
 
-import and.image.BitmapUtils;
+import and.utils.image.BitmapUtils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;

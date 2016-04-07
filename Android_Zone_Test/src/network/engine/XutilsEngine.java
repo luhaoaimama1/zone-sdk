@@ -5,7 +5,7 @@
 //import android.os.Handler;
 //
 //import com.zone.http2rflist.callback.NetworkListener;
-//import com.zone.http2rflist.BaseNetworkQuest;
+//import com.zone.http2rflist.base.BaseNetworkQuest;
 //import com.lidroid.xutils.HttpUtils;
 //import com.lidroid.xutils.exception.HttpException;
 //import com.lidroid.xutils.http.RequestParams;

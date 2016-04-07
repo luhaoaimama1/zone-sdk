@@ -1,13 +1,12 @@
-package and.image.lruutils;
+package and.utils.image.lruutils;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import and.image.Compress_Sample_Utils;
-import and.image.lruutils.official.DiskLruCache;
+import and.utils.image.compress2sample.SampleUtils;
+import and.utils.image.lruutils.official.DiskLruCache;
 import and.LogUtil;
 import and.utils.file2io2data.FileUtils;
 import and.utils.info.AppUtils;
@@ -24,6 +23,7 @@ public class DiskLruUtils {
 	private static final String encoded="utf-8";
 	private static DiskLruUtils diskLru = new DiskLruUtils();
 	private static DiskLruCache mDiskLruCache = null;
+	private static Context context;
 	/**
 	 * 因为一个应用应该就用一个而不是多个 所以我就final了 想改自己改就ok了
 	 */
@@ -37,6 +37,7 @@ public class DiskLruUtils {
 	 * @return
 	 */
 	public  static   DiskLruUtils  openLru(Context context) {
+		DiskLruUtils.context=context;
 		try {
 			/**
 			 * open()方法接收四个参数，第一个参数指定的是数据的缓存地址，
@@ -62,7 +63,8 @@ public class DiskLruUtils {
 	 * @param url
 	 */
 	public void addUrl_Bitmap(String url,String path) {
-		addUrl_Bitmap(url, Compress_Sample_Utils.getRawBitmap(path));
+//		Compress_Sample_Utils.getRawBitmap(path)
+		addUrl_Bitmap(url, SampleUtils.with(context).load(path).bitmap());
 	}
 	/**
 	 * 所以只有成功才调用这个方法

@@ -1,4 +1,4 @@
-package and.image;
+package and.utils.image;
 
 import java.io.File;
 import java.io.FileInputStream;

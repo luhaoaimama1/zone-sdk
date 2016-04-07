@@ -1,13 +1,16 @@
 package com.zone.http2rflist.impl.enigne;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
-import com.zone.http2rflist.BaseNetworkQuest;
-import com.zone.http2rflist.Request;
+import com.zone.http2rflist.base.BaseNetworkEngine;
+import com.zone.http2rflist.BaseRequestParams;
 import com.zone.http2rflist.callback.NetworkListener;
 import com.zone.http2rflist.entity.HttpTypeNet;
 import com.zone.http2rflist.entity.SuccessType;
 import com.zone.http2rflist.impl.enigne.helper.ParamsHelper;
+import com.zone.http2rflist.impl.pop.NetPop;
+import com.zone.http2rflist.utils.Pop_Zone;
 import com.zone.okhttp.callback.SimpleProgressCallback;
 import com.zone.okhttp.ok;
 import com.zone.okhttp.wrapper.RequestBuilderProxy;
@@ -19,7 +22,7 @@ import okhttp3.Response;
 /**
  * Created by Administrator on 2016/3/23.
  */
-public class ZhttpEngine extends BaseNetworkQuest {
+public class ZhttpEngine extends BaseNetworkEngine {
 
     private  NetworkListener listener;
     private  int handlerTag;
@@ -32,7 +35,7 @@ public class ZhttpEngine extends BaseNetworkQuest {
     }
 
     @Override
-    protected void ab_Send(Request request) {
+    protected void ab_Send(BaseRequestParams request) {
         this.listener=request.listener;
         this.handlerTag =request.handlerTag;
         RequestBuilderProxy requestBuilderProxy = null;
@@ -41,22 +44,22 @@ public class ZhttpEngine extends BaseNetworkQuest {
                 requestBuilderProxy= ok.get(request.urlString, ParamsHelper.setParamsNet(request.params),callBack);
                 break;
             case HEAD:
-                ok.head(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
+                requestBuilderProxy= ok.head(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             case DELETE:
-                ok.delete(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
+                requestBuilderProxy= ok.delete(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             case POST:
                 if(request.params.getHttpTypeNet().postType== HttpTypeNet.PostType.JSON)
-                    ok.postJson(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
+                    requestBuilderProxy= ok.postJson(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 else
-                    ok.post(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
+                    requestBuilderProxy= ok.post(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             case PUT:
-                ok.put(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
+                requestBuilderProxy=  ok.put(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             case PATCH:
-                ok.patch(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
+                requestBuilderProxy= ok.patch(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
             default:
                 break;
@@ -85,6 +88,14 @@ public class ZhttpEngine extends BaseNetworkQuest {
         return null;
     }
 
+    @Override
+    protected Pop_Zone createDefaultPopWindow(Context context) {
+        if(context instanceof Activity)
+            return new NetPop((Activity) context);
+        else
+            return null;
+    }
+
     SimpleProgressCallback callBack=new SimpleProgressCallback() {
         @Override
         public void onStart() {
@@ -94,6 +105,7 @@ public class ZhttpEngine extends BaseNetworkQuest {
 
         @Override
         public void onSuccess(final String result, Call call, Response response) {
+//            System.out.println("onSuccess");
 //            System.err.println("pagenumber:"+pageNumber);
             //延迟 测试下  上啦 加载又没~
 //            handler.postDelayed(new Runnable() {
@@ -105,26 +117,26 @@ public class ZhttpEngine extends BaseNetworkQuest {
             sendhandlerMsg(result, handlerTag);
             if (listener != null) {
                 listener.onSuccess(result, SuccessType.HTTP);
-                listener.onCancelled();
 
             }
         }
 
         @Override
         public void onError(Call call, IOException e) {
+//            System.out.println("onError");
 //            System.err.println("message:"+e.getMessage());
             sendhandlerMsg(e.getMessage(), handlerTag);
             if (listener != null) {
                 listener.onFailure(e.getMessage());
-                listener.onCancelled();
             }
         }
 
         @Override
         public void onFinished() {
+//            System.out.println("onFinished");
             //因为 listener  网络请求类自带了  咱们在叼一次就出现重复
-//            if (listener != null)
-//                listener.onCancelled();
+            if (listener != null)
+                listener.onCancelled();
         }
 
         @Override
