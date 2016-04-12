@@ -55,6 +55,12 @@ public class CustomView_MainActivity  extends Activity implements OnClickListene
 		case R.id.imageDecoration:
 //			startActivity(new Intent(this,ImageDecorationActivity.class));
 			break;
+		case R.id.flowZone:
+			startActivity(new Intent(this,FlowZoneActivity.class));
+			break;
+		case R.id.gridZone:
+			startActivity(new Intent(this,GridZoneActivity.class));
+			break;
 
 		default:
 			break;

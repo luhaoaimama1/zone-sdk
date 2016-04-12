@@ -8,24 +8,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.google.gson.Gson;
+import and.utils.check.ClassCheck;
 
-public class ReflectUtils {
+public class ReflectCloneUtils {
+
+
     public static <T> T clone(T data) {
         return clone(data, false);
     }
 
     /**
-     * 暂时支持  基础类型 基础类型的封装类 list Map
-     * static 的不赋值
-     *
-     * TODO final 暂时不会管   异常再说
-     * 不支持枚丿 不过不会报错~ 剩下不支持的会报锿
+     * 支持 必须有默认构造器的类，
+     * field:实体类 基础类型 基础类型的封装类 list Map 枚举(可以吧枚举考虑成类,必须有默认构造器  当然复杂的方法可能会是坑)
+     * static,final 的不赋值
      * @param data
      * @return
      */
     public static <T> T clone(T data,boolean log) {
         //是基本类型与其封装类
-        if(data.getClass().isPrimitive()||isPrimitiveWrap(data.getClass()))
+        if(data.getClass().isPrimitive()||ClassCheck.isPrimitiveWrap(data.getClass()))
             return data;
         //是集合类型 list Map
         if (List.class.isAssignableFrom(data.getClass())) {
@@ -68,7 +69,7 @@ public class ReflectUtils {
                 if (!Modifier.isStatic(field.getModifiers())) {
                     field.setAccessible(true);
                     if (!fieldClass.isEnum()) {
-                        if (fieldClass.isPrimitive()|| isPrimitiveWrap(fieldClass)) {
+                        if (fieldClass.isPrimitive()|| ClassCheck.isPrimitiveWrap(fieldClass)) {
                             //判断是什么类垿  如果是基本类垿 就直接赋值
                             field.set(dataClone, field.get(data));
                         } else if (List.class.isAssignableFrom(fieldClass)) {
@@ -110,34 +111,4 @@ public class ReflectUtils {
         }
         return dataClone;
     }
-    public static <T> void toStringGson(T data) {
-        System.out.println(new Gson().toJson(data));
-    }
-
-
-    //int, double, float, long, short, boolean, byte, char＿ void.也是有这个的
-    public static boolean isPrimitiveWrap(Class clas){
-        if(Integer.class.isAssignableFrom(clas))
-            return true;
-        if(Double.class.isAssignableFrom(clas))
-            return true;
-        if(Float.class.isAssignableFrom(clas))
-            return true;
-        if(Long.class.isAssignableFrom(clas))
-            return true;
-        if(Short.class.isAssignableFrom(clas))
-            return true;
-        if(Boolean.class.isAssignableFrom(clas))
-            return true;
-        if(Byte.class.isAssignableFrom(clas))
-            return true;
-        if(Character.class.isAssignableFrom(clas))
-            return true;
-        if(Void.class.isAssignableFrom(clas))
-            return true;
-        if(String.class.isAssignableFrom(clas))
-            return true;
-        return false;
-    }
-
 }

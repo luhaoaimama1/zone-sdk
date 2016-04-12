@@ -23,6 +23,7 @@ public abstract class PagerAdapterCycle<T> extends PagerAdapter {
             this.isCircle=isCircle;
     }
 
+
     /**
      * 定义ViewPager的总长度的.
      */

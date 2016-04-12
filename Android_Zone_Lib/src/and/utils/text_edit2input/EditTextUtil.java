@@ -11,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import and.utils.check.CharacterUtil;
+import and.utils.check.CharacterCheck;
 
 /**
  * implements TextWatcher  完成对其内容的监听
@@ -47,7 +47,7 @@ public class EditTextUtil {
         filters[0] = new InputFilter.LengthFilter(length) {
             public CharSequence filter(@NonNull CharSequence source, int start, int end, @NonNull Spanned dest, int dstart, int dend) {
                 // 可以检查中文字符
-                boolean isChinese = CharacterUtil.checkNameChese(source.toString());
+                boolean isChinese = CharacterCheck.checkNameChese(source.toString());
                 if (!isChinese || dest.toString().length() >= length) {
                     return "";
                 }

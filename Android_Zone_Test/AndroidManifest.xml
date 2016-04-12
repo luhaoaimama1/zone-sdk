@@ -75,6 +75,12 @@
             android:name="com.example.mylib_test.activity.custom_view.CustomView_MainActivity"
             ></activity>
         <activity
+            android:name="com.example.mylib_test.activity.custom_view.FlowZoneActivity"
+            ></activity>
+        <activity
+            android:name="com.example.mylib_test.activity.custom_view.GridZoneActivity"
+            ></activity>
+        <activity
             android:name="com.example.mylib_test.activity.custom_view.ImageGroupRecyclerTestActvitity"
             ></activity>
         <activity

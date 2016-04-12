@@ -4,7 +4,7 @@ package and.utils.check;
  * @author Jack Tony
  * @date 2015/7/31
  */
-public class CharacterUtil {
+public class CharacterCheck {
 
     /**
      * 检测String是否全是中文

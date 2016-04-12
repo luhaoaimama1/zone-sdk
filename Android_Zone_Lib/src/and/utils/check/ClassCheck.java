@@ -10,7 +10,7 @@ import java.util.Date;
  * @author mty
  * @date 2013-6-10下午8:00:46
  */
-public class ClassUtil {
+public class ClassCheck {
 	/**
 	 * 判断类是否是基础数据类型
 	 * 目前支持11种
@@ -32,5 +32,29 @@ public class ClassUtil {
     public static boolean isArray(Class claxx) {
         return claxx.isArray();
     }
+	//int, double, float, long, short, boolean, byte, char＿ void.也是有这个的
+	public static boolean isPrimitiveWrap(Class<?> clas){
+		if(Integer.class.isAssignableFrom(clas))
+			return true;
+		if(Double.class.isAssignableFrom(clas))
+			return true;
+		if(Float.class.isAssignableFrom(clas))
+			return true;
+		if(Long.class.isAssignableFrom(clas))
+			return true;
+		if(Short.class.isAssignableFrom(clas))
+			return true;
+		if(Boolean.class.isAssignableFrom(clas))
+			return true;
+		if(Byte.class.isAssignableFrom(clas))
+			return true;
+		if(Character.class.isAssignableFrom(clas))
+			return true;
+		if(Void.class.isAssignableFrom(clas))
+			return true;
+		if(String.class.isAssignableFrom(clas))
+			return true;
+		return false;
+	}
 
 }

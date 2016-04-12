@@ -65,7 +65,6 @@ import java.util.Map;
  *
  * @author Lukas Eder
  * @author Irek Matysiewicz
- * @author 借用此人代码  tianzhijiexian
  */
 public class Reflect {
 
@@ -170,7 +169,7 @@ public class Reflect {
     /**
      * The wrapped object
      */
-    private final Object object;
+    private final Object  object;
 
     /**
      * A flag indicating whether the wrapped object is a {@link Class} (for
@@ -471,7 +470,7 @@ public class Reflect {
         }
         while (type != null);
 
-        throw new NoSuchMethodException("No similar method " + name + " with params " + Arrays.toString(types) + " could be found on type " + type() + ".");
+        throw new NoSuchMethodException("No similar method " + name + " with params " + Arrays.toString(types) + " could be found on type " + type() + "");
     }
 
     /**
@@ -589,7 +588,7 @@ public class Reflect {
             }
         };
 
-        return (P) Proxy.newProxyInstance(proxyType.getClassLoader(), new Class[]{proxyType}, handler);
+        return (P) Proxy.newProxyInstance(proxyType.getClassLoader(), new Class[] { proxyType }, handler);
     }
 
     /**
