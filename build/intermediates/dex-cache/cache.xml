@@ -5,8 +5,15 @@
         jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\customView\unspecified\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="ab0464c6e4ea07b1d8cb83583247a3c5216af953">
+        sha1="74649f5bb5a6fb4f19af51a8eea150faf6b9d530">
         <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-0728d0b58ae17300173a78eb374cb075053f3757.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\Android_Zone_Lib\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="699ca7f8ccf8e694a30e4c3978a6fc27af2b2992">
+        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-be2b164af37cdb7045dd11b68f82654f8ce88f58.jar" />
     </item>
 
 </items>

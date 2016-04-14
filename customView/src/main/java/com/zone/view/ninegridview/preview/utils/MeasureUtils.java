@@ -1,4 +1,4 @@
-package and.utils.measure;
+package com.zone.view.ninegridview.preview.utils;
 
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -73,31 +73,17 @@ public class MeasureUtils {
                 float[] values = new float[9];
                 mar.getValues(values);
 
-                int imageShowX = (int) ((bounds.right - bounds.left) * values[0]);
-                int imageShowY = (int) ((bounds.bottom - bounds.top) * values[4]);
-                mImageListener.imageShowProperty(iv, values[2] < 0 ? 0 : values[2]
-                        , values[5] < 0 ? 0 : values[5]
-                        , imageShowX > iv.getWidth() ? iv.getWidth() : imageShowX
-                        , imageShowY > iv.getHeight() ? iv.getHeight() : imageShowY);
+                int imageShowX= (int) ((bounds.right - bounds.left)*values[0]);
+                int imageShowY= (int) ((bounds.bottom - bounds.top)*values[4]);
+                mImageListener.imageShowProperty(iv,values[2] < 0 ? 0 : values[2]
+                        , values[5]< 0 ? 0 : values[5]
+                        , imageShowX>iv.getWidth()?iv.getWidth():imageShowX
+                        , imageShowY>iv.getHeight()?iv.getHeight():imageShowY);
             }
         });
     }
 
     public interface ImageListener {
         void imageShowProperty(ImageView iv, float left, float top, int imageShowX, int imageShowY);
-    }
-
-    /**
-     * 返回的 宽高数组 是图片 在当前分辨率手机的宽高
-     *
-     * @param imageView
-     * @return
-     */
-    public static float[] measureDrawableWH(final ImageView imageView) {
-        Drawable drawable = imageView.getDrawable();
-        Matrix mar = imageView.getImageMatrix();
-        int intrinsicHeight = drawable.getIntrinsicHeight();
-        int intrinsicWidth = drawable.getIntrinsicWidth();
-        return new float[]{intrinsicWidth, intrinsicHeight};
     }
 }

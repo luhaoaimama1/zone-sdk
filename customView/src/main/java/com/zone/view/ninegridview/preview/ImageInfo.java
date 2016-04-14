@@ -4,6 +4,14 @@ public class ImageInfo implements Serializable {
     public String thumbnailUrl;
     public String bigImageUrl;
 
+    public ImageInfo(String thumbnailUrl, String bigImageUrl) {
+        this.thumbnailUrl = thumbnailUrl;
+        this.bigImageUrl = bigImageUrl;
+    }
+
+    public ImageInfo() {
+    }
+
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }

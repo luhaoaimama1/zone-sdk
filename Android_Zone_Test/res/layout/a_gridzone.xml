@@ -6,7 +6,7 @@
 
     <com.zone.view.ninegridview.ZGridView
         android:id="@+id/gvz"
-        android:layout_width="550px"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:background="#00ff00" />

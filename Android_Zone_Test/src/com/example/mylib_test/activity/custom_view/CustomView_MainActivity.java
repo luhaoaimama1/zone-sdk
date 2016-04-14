@@ -1,6 +1,7 @@
 package com.example.mylib_test.activity.custom_view;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity;
+import com.zone.view.ninegridview.preview.ImagePreviewActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -60,6 +61,9 @@ public class CustomView_MainActivity  extends Activity implements OnClickListene
 			break;
 		case R.id.gridZone:
 			startActivity(new Intent(this,GridZoneActivity.class));
+			break;
+		case R.id.chengcheng:
+			startActivity(new Intent(this,ChengChengActivity.class));
 			break;
 
 		default:

@@ -33,199 +33,85 @@
         android:theme="@style/AnimalSetAppTheme">
         <activity
             android:name=".MainActivity2"
-            android:label="@string/app_name"
-            >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.mylib_test.activity.system.SystemMainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.system.WebViewAcitivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.system.ResultBase1"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.system.ResultBase2"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.system.ResultActivity2"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.system.ResultActivity3"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.wifi.WifiAdapterActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.photo_shot.ShowPicActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.ImageLoaderActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.utils.GetPhoneTest"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.CustomView_MainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.FlowZoneActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.GridZoneActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.ImageGroupRecyclerTestActvitity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.ImageDecorationActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.db.Db_MainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.http.Http_MainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.http.NetworkNoPull_TestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.http.NetworkNoPull_Globlo_TestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.http.NetworkPull_TestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.touch.Conflict1Activity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.touch.GestureDetectorActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.touch.MyScaleActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.touch.ScrollerActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.http.AsyncTask_TestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.AndroidHeroActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.photo_shot.ClipTest"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.ThirdParty_MainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.UltraRefresh"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.GildeActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"
-            ></activity>
+        <activity android:name="com.example.mylib_test.activity.system.SystemMainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.system.WebViewAcitivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.system.ResultBase1"></activity>
+        <activity android:name="com.example.mylib_test.activity.system.ResultBase2"></activity>
+        <activity android:name="com.example.mylib_test.activity.system.ResultActivity2"></activity>
+        <activity android:name="com.example.mylib_test.activity.system.ResultActivity3"></activity>
+        <activity android:name="com.example.mylib_test.activity.wifi.WifiAdapterActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.photo_shot.ShowPicActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.ImageLoaderActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.utils.GetPhoneTest"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.CustomView_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.FlowZoneActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.GridZoneActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.ChengChengActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.ImageDecorationActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.db.Db_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.http.Http_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.http.NetworkNoPull_TestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.http.NetworkNoPull_Globlo_TestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.http.NetworkPull_TestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.Conflict1Activity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.GestureDetectorActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.MyScaleActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.ScrollerActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.http.AsyncTask_TestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.AndroidHeroActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.photo_shot.ClipTest"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.ThirdParty_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.UltraRefresh"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.GildeActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"></activity>
         <activity
             android:name="com.example.mylib_test.activity.three_place.RecyclerActivity"
             android:theme="@style/AnimalSetAppTheme"></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.utils.SoftTestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.animal.CanvasTest"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.animal.XfermodeActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.wifi.Wifi3g_MainActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.animal.AniPro"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.animal.ColorMarixTry"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.animal.ViewHelperTestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.animal.CustomAniActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.animal.PixelsAcitivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.ImageLoaderGridActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.ViewPagerRepeatWriteActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.file.FileTestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.file.Activity1"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.file.Activity2"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.LabelTestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.ArcMenuTestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.ImageGroupTestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"
-            ></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.touch.TouchMainActivity"
-            ></activity>
+        <activity android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.utils.SoftTestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.CanvasTest"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.XfermodeActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.ImageShowBigActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.wifi.Wifi3g_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.AniPro"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.ColorMarixTry"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.ViewHelperTestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.CustomAniActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.PixelsAcitivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.ImageLoaderGridActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.ViewPagerRepeatWriteActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.file.FileTestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.file.Activity1"></activity>
+        <activity android:name="com.example.mylib_test.activity.file.Activity2"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.LabelTestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.ArcMenuTestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.ImageGroupTestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.TouchMainActivity"></activity>
         <activity
             android:name="other_project.pinyin_sidebar.SideBarActivity"
-            
+
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
-            
+
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+
+
     </application>
 
 </manifest>

@@ -126,6 +126,14 @@
             android:onClick="onClick"
             android:text="Xfermode" />
 
+        <Button
+            android:id="@+id/bt_imageBigTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="图片show的大小" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

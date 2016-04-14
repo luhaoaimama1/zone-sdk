@@ -27,7 +27,7 @@ public class ImagePreviewAdapter extends ZGridViewAdapter<ImageInfo> {
 
     @Override
     public View getView(Context context, int index) {
-        View item = LayoutInflater.from(context).inflate(R.layout.item_pic, null);
+        View item = LayoutInflater.from(context).inflate(R.layout.grid_item_pic, null);
         TouchGreyImageView tgiv = (TouchGreyImageView) item.findViewById(R.id.tgiv);
 
         Glide.with(context).load(list.get(index).getThumbnailUrl())//
@@ -42,14 +42,14 @@ public class ImagePreviewAdapter extends ZGridViewAdapter<ImageInfo> {
     @Override
     public void onItemImageClick(Context context, int index, ImageInfo data) {
         super.onItemImageClick(context, index, data);
-        if (statusHeight!=0)
+        if (statusHeight==0)
             statusHeight = getStatusHeight(context);
         List<ImageInfoInner> listImageInfo=new ArrayList<>();
         for (ImageInfo imageInfo : list) {
             ImageInfoInner imageInner=new ImageInfoInner();
             imageInner.setImageInfo(imageInfo);
 
-            View imageView = gvz.getChildAt(index);
+            View imageView = gvz.getChildAt(list.indexOf(imageInfo));
             imageInner.setImageViewWidth(imageView.getWidth());
             imageInner.setImageViewHeight(imageView.getHeight());
 
@@ -62,13 +62,13 @@ public class ImagePreviewAdapter extends ZGridViewAdapter<ImageInfo> {
             listImageInfo.add(imageInner);
         }
         Intent intent = new Intent(context, ImagePreviewActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle bundle = new Bundle();
         bundle.putSerializable(ImagePreviewActivity.IMAGE_INFO, (Serializable) listImageInfo);
         bundle.putInt(ImagePreviewActivity.INDEX, index);
         intent.putExtras(bundle);
         context.startActivity(intent);
         ((Activity) context).overridePendingTransition(0, 0);
-
     }
     /**
      * 获得状态栏的高度
