@@ -74,7 +74,7 @@ public class ClipTest extends BaseActvity implements OnClickListener{
 //	}
 //	@Override
 //	public void onClick(View v) {
-//		switch (v.getId()) {
+//		switchbutton (v.getId()) {
 //		case R.id.bt1:
 //			//小图
 //			saveSmall();
@@ -101,7 +101,7 @@ public class ClipTest extends BaseActvity implements OnClickListener{
 //	@Override
 //	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //		super.onActivityResult(requestCode, resultCode, data);
-//		switch (requestCode) {
+//		switchbutton (requestCode) {
 //		case CHOOSE_SMALL_PICTURE:
 //		    if(data != null){
 //		        Bitmap bitmap = data.getParcelableExtra("data");

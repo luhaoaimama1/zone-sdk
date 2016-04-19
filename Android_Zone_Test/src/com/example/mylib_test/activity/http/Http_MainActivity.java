@@ -15,6 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.mylib_test.R;
+import com.example.mylib_test.activity.http.retrofit.MyRetrofitTest;
+import com.example.mylib_test.activity.http.retrofit.RetrofitClient;
 import com.example.mylib_test.app.Constant;
 import com.example.mylib_test.handler.HandlerTest;
 import com.zone.okhttp.ok;
@@ -30,7 +32,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import download.zone.okhttp.callback.DownloadCallback;
 import okhttp3.Call;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import retrofit2.Callback;
 
 import com.zone.okhttp.callback.SimpleProgressCallback;
 
@@ -77,6 +83,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         params.clear();
         tread(v);
         okHttp(v);
+        retrofit(v);
         switch (v.getId()) {
             case R.id.handle:
                 Button hand = (Button) findViewById(R.id.handle);
@@ -96,6 +103,47 @@ public class Http_MainActivity extends Activity implements OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void retrofit(View v) {
+        switch (v.getId()) {
+            case R.id.retrofitGet:
+                retrofitGetTest();
+                break;
+            case R.id.retrofitPost:
+                break;
+            case R.id.retrofitFile:
+                retrofitFile();
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+    private void retrofitFile() {
+    }
+
+    private void retrofitGetTest() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("a", "1");
+        RetrofitClient.GitApiInterface b = RetrofitClient.getClient();
+        retrofit2.Call<String> call = b.getZone("log", map);
+        System.out.println();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(retrofit2.Call<String> call, retrofit2.Response<String> response) {
+                String htmlStr = response.body().toString();
+                System.out.println("retrofitGetTest:" + htmlStr);
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<String> call, Throwable t) {
+                System.out.println("onFailure:" );
+            }
+        });
+
     }
 
 

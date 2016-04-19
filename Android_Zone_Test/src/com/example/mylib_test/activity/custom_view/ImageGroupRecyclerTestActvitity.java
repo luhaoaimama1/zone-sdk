@@ -137,7 +137,7 @@
 //
 //	@Override
 //	public void onClick(View v) {
-//		switch (v.getId()) {
+//		switchbutton (v.getId()) {
 //		case R.id.noAdd:
 //			noAdd();
 //			break;

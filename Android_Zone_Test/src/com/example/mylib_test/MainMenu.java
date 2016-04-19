@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.mylib_test.activity.animal.Animal_MainActivity;
 import com.example.mylib_test.activity.custom_view.CustomView_MainActivity;
+import com.example.mylib_test.activity.databingstudy.DataBingMainActivity;
 import com.example.mylib_test.activity.db.Db_MainActivity;
 import com.example.mylib_test.activity.db.entity.MenuEntity;
 import com.example.mylib_test.activity.file.FileTestActivity;
@@ -26,6 +27,7 @@ public class MainMenu {
 		menu.add(new MenuEntity("动画、surfaceView、绘图方面的研究", Animal_MainActivity.class)) ;
 		menu.add(new MenuEntity("onTouch事件传递与其辅助类的研究", TouchMainActivity.class)) ;
 		menu.add(new MenuEntity("自定义控件", CustomView_MainActivity.class)) ;
+		menu.add(new MenuEntity("databing、lambda、rxjava的学习", DataBingMainActivity.class)) ;
 		menu.add(new MenuEntity("第三方 （ImageLoader等）", ThirdParty_MainActivity.class)) ;
 		menu.add(new MenuEntity("工具箱Utils的测试", Utils_MainActivity.class)) ;
 //		menu.add(new MenuEntity("db测试", Db_MainActivity.class)) ;

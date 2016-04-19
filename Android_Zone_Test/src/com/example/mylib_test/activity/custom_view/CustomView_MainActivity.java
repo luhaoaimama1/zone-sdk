@@ -65,6 +65,9 @@ public class CustomView_MainActivity  extends Activity implements OnClickListene
 		case R.id.chengcheng:
 			startActivity(new Intent(this,ChengChengActivity.class));
 			break;
+		case R.id.bt_swtichButton:
+			startActivity(new Intent(this,SwtichButtonActivity.class));
+			break;
 
 		default:
 			break;

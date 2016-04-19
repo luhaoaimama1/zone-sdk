@@ -38,7 +38,7 @@ public class ListView_InnerConfict1_Ontouch extends ListView{
 			default:
 				break;
 			}
-//		switch (ev.getAction()) {
+//		switchbutton (ev.getAction()) {
 //		case MotionEvent.ACTION_DOWN :
 //			getParent().requestDisallowInterceptTouchEvent(true);
 //			Log.i(TAG, "dispatchTouchEvent ACTION_DOWN true");
@@ -86,7 +86,7 @@ public class ListView_InnerConfict1_Ontouch extends ListView{
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
 		Log.i(TAG, " onTouchEvent");
-//		switch (ev.getAction()) {
+//		switchbutton (ev.getAction()) {
 //		case MotionEvent.ACTION_DOWN :
 //			Log.i(TAG, "onTouchEvent ACTION_DOWN");
 //			break;

@@ -54,6 +54,7 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.FlowZoneActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.GridZoneActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ChengChengActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.SwtichButtonActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ImageDecorationActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.db.Db_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.Http_MainActivity"></activity>
@@ -102,6 +103,10 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.TouchMainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.databingstudy.DataBingMainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.databingstudy.DataBingStartActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.databingstudy.LambdaStartActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.databingstudy.RxjavaActivity"></activity>
         <activity
             android:name="other_project.pinyin_sidebar.SideBarActivity"
 

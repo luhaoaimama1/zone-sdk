@@ -153,5 +153,12 @@
         android:layout_margin="4dp"
         android:onClick="onClick"
         android:text="成成" />
+    <Button
+        android:id="@+id/bt_swtichButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="swtichButton与水波纹测试" />
 
 </view.FlowLayout_Zone>

@@ -1,62 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zone.view.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<view.FlowLayout_Zone xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/flowLayoutZone1"
     android:layout_width="match_parent"
-    android:background="#a2dfff"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/create"
+        android:id="@+id/bt_run"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:background="#00f00f"
         android:onClick="onClick"
-        android:padding="5dp"
-        android:text="创建目录" />
-
+        android:padding="10dp"
+        android:text="点击执行Run" />
     <Button
-        android:id="@+id/readFile"
+        android:id="@+id/bt_sort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:background="#00f00f"
         android:onClick="onClick"
-        android:text="独立：创建文件写入bytes读取文件" />
-
+        android:padding="10dp"
+        android:text="数组排列" />
     <Button
-        android:id="@+id/delete"
+        android:id="@+id/bt_finalTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:background="#00f00f"
         android:onClick="onClick"
-        android:text="删除目录" />
-
+        android:padding="10dp"
+        android:text="finalTest" />
     <Button
-        android:id="@+id/writeFileByFile"
+        android:id="@+id/bt_quoteTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:background="#00f00f"
         android:onClick="onClick"
-        android:text="通过文件写入文件" />
-
+        android:padding="10dp"
+        android:text="匿名函数变引用" />
     <Button
-        android:id="@+id/sd"
+        android:id="@+id/bt_for"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:background="#00f00f"
         android:onClick="onClick"
-        android:text="sd剩余空间" />
-
-    <Button
-        android:id="@+id/self"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="声明周期测试" />
-
-</com.zone.view.FlowLayout>
+        android:padding="10dp"
+        android:text="过滤迭代" />
+</view.FlowLayout_Zone>

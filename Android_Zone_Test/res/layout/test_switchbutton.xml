@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.zone.view.switchbutton.SwitchButton
+        android:id="@+id/sb_custom_miui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:kswBackColor="#000000"
+        app:kswBackMeasureRatio="4"
+        app:kswThumbColor="#00fff0"
+        app:kswThumbHeight="30dp"
+        app:kswThumbWidth="30dp" />
+
+    <com.zone.view.switchbutton.SwitchButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:kswTintColor="#888800" />
+
+    <com.zone.view.switchbutton.SwitchButton
+        style="@style/SwitchButtonIOS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <com.zone.view.switchbutton.SwitchButton
+        style="@style/SwitchButtonMD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <com.andexert.library.RippleView
+        android:id="@+id/more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_toLeftOf="@+id/more2"
+        android:background="#ffa4a4">
+
+        <TextView
+            android:id="@+id/switch_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="rippleView  clickable enable false的时候父控件被点击也会有水波纹" />
+    </com.andexert.library.RippleView>
+
+    <com.andexert.library.RippleView
+        app:rv_zoom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_toLeftOf="@+id/more2"
+        android:background="#ffa4a4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="rippleView 缩放" />
+    </com.andexert.library.RippleView>
+
+
+    <com.andexert.library.RippleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_toLeftOf="@+id/more2"
+        android:background="#c8c0ff"
+        app:rv_type="doubleRipple">
+
+        <TextView
+            android:id="@+id/switch_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="doubleRipple  只能中心 双波纹" />
+    </com.andexert.library.RippleView>
+</LinearLayout>

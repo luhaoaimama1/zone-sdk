@@ -30,7 +30,7 @@ public class NetworkNoPull_TestActivity extends BaseActvity{
 		params.put("name", "干啥");
 		//get传不了汉字
 		engineGet=new ZhttpEngine(this, handler);
-//		engineGet.send(UrlPath, new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), GET_TAG,null);
+//		engineGet.sendFile(UrlPath, new RequestParamsNet().setFileMap(fileMap).setParamsMap(params), GET_TAG,null);
 		engineGet.newCall(RequestParamsUtils.get(UrlPath, new NetworkParams().setParamsMap(params)).handlerTag(GET_TAG).build());
 
 		
