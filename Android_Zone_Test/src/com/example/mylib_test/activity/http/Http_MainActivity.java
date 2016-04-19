@@ -107,13 +107,8 @@ public class Http_MainActivity extends Activity implements OnClickListener {
 
     private void retrofit(View v) {
         switch (v.getId()) {
-            case R.id.retrofitGet:
-                retrofitGetTest();
-                break;
-            case R.id.retrofitPost:
-                break;
-            case R.id.retrofitFile:
-                retrofitFile();
+            case R.id.eventBus:
+                startActivity(new Intent(this, EventBusActivity.class));
                 break;
 
             default:
@@ -122,29 +117,6 @@ public class Http_MainActivity extends Activity implements OnClickListener {
 
     }
 
-    private void retrofitFile() {
-    }
-
-    private void retrofitGetTest() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("a", "1");
-        RetrofitClient.GitApiInterface b = RetrofitClient.getClient();
-        retrofit2.Call<String> call = b.getZone("log", map);
-        System.out.println();
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(retrofit2.Call<String> call, retrofit2.Response<String> response) {
-                String htmlStr = response.body().toString();
-                System.out.println("retrofitGetTest:" + htmlStr);
-            }
-
-            @Override
-            public void onFailure(retrofit2.Call<String> call, Throwable t) {
-                System.out.println("onFailure:" );
-            }
-        });
-
-    }
 
 
     SimpleProgressCallback okListener = new SimpleProgressCallback() {

@@ -108,29 +108,15 @@
             android:layout_height="30dp"
             android:background="#00ff00"
             android:gravity="center"
-            android:text="Retrofit2.0Sample" />
+            android:text=" EventBus and Retrofit2.0Sample 在类里 不是android代码" />
 
         <Button
-            android:id="@+id/retrofitGet"
+            android:id="@+id/eventBus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:onClick="onClick"
-            android:text="retrofitGet" />
-        <Button
-            android:id="@+id/retrofitPost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
-            android:text="retrofitPost" />
-        <Button
-            android:id="@+id/retrofitFile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
-            android:text="retrofitFile" />
+            android:text="eventBus" />
 
         <TextView
             android:layout_width="match_parent"

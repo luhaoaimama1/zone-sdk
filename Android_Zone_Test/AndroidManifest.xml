@@ -58,6 +58,7 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.ImageDecorationActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.db.Db_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.Http_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.http.EventBusActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.NetworkNoPull_TestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.NetworkNoPull_Globlo_TestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.NetworkPull_TestActivity"></activity>

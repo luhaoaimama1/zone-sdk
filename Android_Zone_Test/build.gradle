@@ -17,6 +17,8 @@ dependencies {
     //    compile 'com.squareup.retrofit2:retrofit-converters:2.0.2'
     //    compile 'com.squareup.retrofit2:converter-gson'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
 
 android {
