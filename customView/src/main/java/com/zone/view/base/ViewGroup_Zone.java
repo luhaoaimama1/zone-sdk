@@ -41,16 +41,23 @@ public abstract class ViewGroup_Zone extends LinearLayout {
         public View view;// 收集view
         //location： view在布局中左上角的点
         //width2Height2Margin：view的宽高带margin的
-        public PointF location=new PointF(), width2Height2Margin=new PointF();
-
+        public PointF location = new PointF(), width2Height2Margin = new PointF();
+        //offsetExtra ：不带标padding 和margin  仅仅是给view加的偏移量
+        public PointF offsetExtra = new PointF();
+        //是否在布局里绘制 发现不好使 只能用invsibility  为了避免和别人已经invisbility重复 isLayout=false的时候我才恢复成visibility
+        public boolean isLayout=true;
+        //记录 第几行 第几行的第几个。可以用可以不用 从0,0开始
+        public int verticalNum=-1,horizontalNum=-1;
         //这里是对View显隐性  的support
         void layoutSupporVisibilty() {
             if (view.getVisibility() == View.VISIBLE) {
                 int realX = (int) (location.x + offsetX);
                 int realY = (int) (location.y + offsetY);
                 LayoutParams lp = (LayoutParams) view.getLayoutParams();
-                view.layout(realX + lp.leftMargin, realY + lp.topMargin, (int) (realX + width2Height2Margin.x - lp.rightMargin),
-                        (int) (realY + width2Height2Margin.y - lp.bottomMargin));
+                view.layout((int) (realX + lp.leftMargin + offsetExtra.x)
+                        , (int) (realY + lp.topMargin + offsetExtra.y)
+                        , (int) (realX + width2Height2Margin.x - lp.rightMargin+ offsetExtra.x),
+                        (int) (realY + width2Height2Margin.y - lp.bottomMargin+offsetExtra.y));
             }
         }
     }
@@ -93,7 +100,9 @@ public abstract class ViewGroup_Zone extends LinearLayout {
                 LayoutParams lp = (LayoutParams) view.getLayoutParams();
                 viewAttr.width2Height2Margin = new PointF(view.getMeasuredWidth() + lp.leftMargin + lp.rightMargin,
                         view.getMeasuredHeight() + lp.topMargin + lp.bottomMargin);
-                viewAttr.location = getViewLocation(childList, viewAttr, childList.indexOf(viewAttr), mMeasureSpecMy);
+                PointF temp = getViewLocation(childList, viewAttr, childList.indexOf(viewAttr), mMeasureSpecMy);
+                if(temp!=null)
+                    viewAttr.location=temp;
             }
         }
 
