@@ -2,7 +2,7 @@ apply plugin: 'android-library'
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
-//    testCompile 'junit:junit:4.8.2@jar'
+    //    testCompile 'junit:junit:4.8.2@jar'
     compile project(':Zbanner')
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.android.support:recyclerview-v7:22.1.1'
@@ -17,7 +17,7 @@ dependencies {
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '23.0.3'
 
     sourceSets {
         main {

@@ -2,18 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\customView\unspecified\jars\classes.jar"
+        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\com.github.traex.rippleeffect\library\1.3\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="74649f5bb5a6fb4f19af51a8eea150faf6b9d530">
-        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-0728d0b58ae17300173a78eb374cb075053f3757.jar" />
-    </item>
-    <item
-        jar="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\exploded-aar\ZoneStudio233\Android_Zone_Lib\unspecified\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="699ca7f8ccf8e694a30e4c3978a6fc27af2b2992">
-        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-be2b164af37cdb7045dd11b68f82654f8ce88f58.jar" />
+        sha1="ee17feb34ce104bc17d1a1e64346d7f779ebb066">
+        <dex dex="C:\Users\Administrator\AndroidStudioProjects\ZoneStudio233\Android_Zone_Test\build\intermediates\pre-dexed\debug\classes-0424ba3f3c6e12982ae54295d7d3684b4cd56cc4.jar" />
     </item>
 
 </items>

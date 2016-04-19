@@ -75,7 +75,7 @@ public class IOUtils {
 		try {
 			br = new BufferedReader(new InputStreamReader(in, encoded));
 		} catch (UnsupportedEncodingException e) {
-			throw new UnsupportedOperationException("encoded_Unsupported");
+			e.printStackTrace();
 		}
 		String line = null;
 		StringBuffer str = new StringBuffer("");
@@ -154,7 +154,6 @@ public class IOUtils {
 	}
 	/**
 	 * 
-	 * @param file
 	 *            存放的文件
 	 * @param in
 	 *            输入流
@@ -165,7 +164,7 @@ public class IOUtils {
 		try {
 			fos = new FileOutputStream(outFile);
 		} catch (FileNotFoundException e1) {
-			throw new NullPointerException("FileNotFound！");
+			e1.printStackTrace();
 		}
 		byte[] buffer = new byte[1024];
 		int len = 0;
@@ -196,7 +195,7 @@ public class IOUtils {
 		try {
 			in=new FileInputStream(inFile);
 		} catch (FileNotFoundException e1) {
-			throw new NullPointerException("FileNotFound！");
+			e1.printStackTrace();
 		}
 		//调用已写
 		write(outFile, in);
