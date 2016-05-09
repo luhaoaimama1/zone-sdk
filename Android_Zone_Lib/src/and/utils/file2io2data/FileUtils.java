@@ -39,6 +39,8 @@ public class FileUtils {
         }
         return new File(cachePath + File.separator + fileDirName);
     }
+
+
     /**
      * 关于SD卡下  多层文件的建立
      * 可以得到文件夹 ,文件 ,根目录
@@ -91,28 +93,22 @@ public class FileUtils {
         }
         return file;
     }
+
     /***
      * 获取文件扩展名
+     *
      * @param filename
      * @return 返回文件扩展名
      */
     public static String getExtensionName(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
             int dot = filename.lastIndexOf('.');
-            if ((dot >-1) && (dot < (filename.length() - 1))) {
+            if ((dot > -1) && (dot < (filename.length() - 1))) {
                 return filename.substring(dot + 1);
             }
         }
         return filename;
     }
-
-
-
-
-
-
-
-
 
 
     /**
@@ -163,11 +159,9 @@ public class FileUtils {
     }
 
 
-
-
     /**
      * Deletes a file. If file is a directory, delete it and all sub-directories.
-     * <p/>
+     * <p>
      * The difference between File.delete() and this method are:
      * <ul>
      * <li>A directory to be deleted does not have to be empty.</li>
@@ -195,6 +189,7 @@ public class FileUtils {
             }
         }
     }
+
     /**
      * Cleans a directory without deleting it.
      *
@@ -230,6 +225,7 @@ public class FileUtils {
             throw exception;
         }
     }
+
     /**
      * Deletes a directory recursively.
      *
@@ -271,4 +267,56 @@ public class FileUtils {
         return file.lastModified() > timeMillis;
     }
 
+
+    /**
+     * 获取文件类型 D:\psb.jpg->jpg 没有点
+     *
+     * @param file 文件
+     * @return 文件后缀名
+     */
+    public static String getFileSuffix(File file) {
+        String fileName = file.getName();
+        int typeIndex = fileName.lastIndexOf(".");
+        if (typeIndex != -1) {
+            return fileName.substring(typeIndex + 1).toLowerCase();
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * 根据后缀名判断是否是图片文件
+     *
+     * @param file 文件
+     * @return 是否是图片结果true or false
+     */
+    public static boolean isImage(File file) {
+        String fileName = file.getName();
+        int typeIndex = fileName.lastIndexOf(".");
+        if (typeIndex != -1) {
+            String fileType = fileName.substring(typeIndex + 1).toLowerCase();
+            if (fileType != null
+                    && (fileType.equals("jpg") || fileType.equals("gif")
+                    || fileType.equals("png")
+                    || fileType.equals("jpeg")
+                    || fileType.equals("bmp")
+                    || fileType.equals("wbmp")
+                    || fileType.equals("ico") || fileType.equals("jpe"))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 获取文件的上传类型
+     * @param file
+     * @return 图片格式为image/png,image/jpg等。非图片为application/octet-stream
+     */
+    public static String getContentType(File file) {
+        if (isImage(file)) {
+            return "image/" + getFileSuffix(file).toLowerCase();// 将FormatName返回的值转换成小写，默认为大写r
+        }
+        return "application/octet-stream";
+    }
 }

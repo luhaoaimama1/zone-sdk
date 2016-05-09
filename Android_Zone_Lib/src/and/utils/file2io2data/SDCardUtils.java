@@ -12,7 +12,6 @@ import android.os.StatFs;
 import android.text.format.Formatter;
 
 public class SDCardUtils {
-    private static final String TAG = SDCardUtils.class.getSimpleName();
     /**
      * 判断SDCard是否可用
      *

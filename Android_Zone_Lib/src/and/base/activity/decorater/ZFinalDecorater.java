@@ -1,6 +1,7 @@
 package and.base.activity.decorater;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
