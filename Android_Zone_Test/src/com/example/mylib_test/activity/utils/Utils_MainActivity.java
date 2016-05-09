@@ -1,8 +1,6 @@
 package com.example.mylib_test.activity.utils;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy;
-
 import and.utils.text_edit2input.KeyBoardUtils;
 import android.app.Activity;
 import android.content.Intent;
@@ -60,9 +58,6 @@ public class Utils_MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.closeKeyboard:
 			KeyBoardUtils.closeKeybord(keyboard, this);
-			break;
-		case R.id.frammentSwitch:
-			startActivity(new Intent(this,FramentSwitchAcitiviy.class));
 			break;
 		case R.id.bitmapTest:
 			startActivity(new Intent(this,SoftTestActivity.class));

@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 public class ViewPagerDisableScrollActivity extends FragmentActivity {
 	private ViewPaperDisableScroll vPager = null;
-	private static final int TAB_COUNT = 3;
+	private static final int TAB_COUNT = 4;
 	private TextView tv1;
 	private TextView tv2;
 	private TextView tv3;
@@ -74,7 +74,7 @@ public class ViewPagerDisableScrollActivity extends FragmentActivity {
 				int kuan = dm.widthPixels;// 宽度height = dm.heightPixels ;//高度
 
 				float a = (((float) (arg0)) + arg1) * kuan;
-				float b = (((float) (arg0)) + arg1) / 3 * kuan;
+				float b = (((float) (arg0)) + arg1) / 4 * kuan;
 				String str = "  1:" + String.valueOf(arg0) + "   2:"
 						+ String.valueOf(arg1) + "   3:" + String.valueOf(arg2)
 						+ "  宽:" + String.valueOf(kuan) + "  当前:"
@@ -108,6 +108,8 @@ public class ViewPagerDisableScrollActivity extends FragmentActivity {
 				return new Tab2();
 			case 2:
 				return new Tab3();
+			case 3:
+				return new Tab1();
 			}
 			return null;
 		}
@@ -124,14 +126,16 @@ public class ViewPagerDisableScrollActivity extends FragmentActivity {
 		tv1 = (TextView) findViewById(R.id.tv1);
 		tv2 = (TextView) findViewById(R.id.tv2);
 		tv3 = (TextView) findViewById(R.id.tv3);
+		tv4 = (TextView) findViewById(R.id.tv4);
 		tvlist.add(tv1);
 		tvlist.add(tv2);
 		tvlist.add(tv3);
+		tvlist.add(tv4);
 		tv1.setTextColor(Color.RED);
 		tv1.setOnClickListener(jt);
 		tv2.setOnClickListener(jt);
 		tv3.setOnClickListener(jt);
-		tv4 = (TextView) findViewById(R.id.tv4);
+		tv4.setOnClickListener(jt);
 		image1 = (MyImageView) findViewById(R.id.image_1);
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -170,6 +174,9 @@ public class ViewPagerDisableScrollActivity extends FragmentActivity {
 				break;
 			case R.id.tv3:
 				vPager.setCurrentItem(2);
+				break;
+			case R.id.tv4:
+				vPager.setCurrentItem(3);
 				break;
 			default:
 				break;

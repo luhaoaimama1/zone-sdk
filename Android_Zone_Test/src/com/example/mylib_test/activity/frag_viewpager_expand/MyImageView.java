@@ -40,7 +40,7 @@ public class MyImageView extends ImageView {
 		paint.setStyle(Style.FILL);
 		//canvas.drawRect(0, 0, 10, 10, paint);
 		canvas.drawRect(startpoint, 0, startpoint + kuand
-				/ 3, 20, paint);
+				/ 4, 20, paint);
 
 	}
 

@@ -43,10 +43,17 @@
             android:clickable="true"
             android:gravity="center"
             android:text="页面3" />
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="页面4" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 

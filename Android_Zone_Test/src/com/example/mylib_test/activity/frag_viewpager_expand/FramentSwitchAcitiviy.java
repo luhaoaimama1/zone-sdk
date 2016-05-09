@@ -21,7 +21,11 @@ public class FramentSwitchAcitiviy extends FragmentActivity implements OnClickLi
 		fragmentSwitcher=new FragmentSwitcher(this, R.id.framelayout);
 		fragmentSwitcher.setPriDefaultAnimal(android.R.anim.fade_in,android.R.anim.fade_out);
 //		fragmentSwitcher.initFragment(Tab1.class, Tab2.class, Tab3.class);
-		fragmentSwitcher.initFragment(new Tab1(),new Tab2(), new Tab3());
+		Tab2 tab2 = new Tab2();
+		Bundle bundle = new Bundle();
+		bundle.putString("mode", "normal");
+		tab2.setArguments(bundle);
+		fragmentSwitcher.initFragment(new Tab1(),tab2, new Tab3());
 		fragmentSwitcher.switchToNull();
 //		fragmentSwitcher.switchPage(0);
 	}

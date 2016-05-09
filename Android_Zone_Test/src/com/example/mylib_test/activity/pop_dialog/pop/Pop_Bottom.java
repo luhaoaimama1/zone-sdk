@@ -44,7 +44,7 @@ public class Pop_Bottom extends Pop_Zone implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		ToastUtils.showLong(context, "ºÙºÙ");
+		ToastUtils.showLong(context, "嘿嘿");
 		dismiss();
 	}
 

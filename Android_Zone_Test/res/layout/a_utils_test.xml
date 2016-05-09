@@ -38,13 +38,7 @@
             android:background="#ff0000"
             android:text="键盘测试~" />
         
-        <Button
-            android:id="@+id/frammentSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="frammentSwitch测试"
-            android:onClick="onClick" />
+
         <Button
             android:id="@+id/bitmapTest"
             android:layout_width="wrap_content"

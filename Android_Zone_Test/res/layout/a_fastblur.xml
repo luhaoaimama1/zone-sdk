@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zone.view.BlurLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#fbffbc">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/aaaaaaaaaaaab"/>
+
+    </com.zone.view.BlurLayout>
+
+    <com.zone.view.BlurLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/spacer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/right_top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/spacer"
+            android:layout_alignLeft="@id/spacer"
+            android:background="@drawable/demo"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/spacer"
+            android:layout_alignRight="@id/spacer"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/demo" />
+
+        <ImageView
+            android:id="@+id/right_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@id/spacer"
+            android:layout_below="@id/spacer"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/demo" />
+
+        <ImageView
+            android:id="@+id/left_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignRight="@id/spacer"
+            android:layout_below="@id/spacer"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/demo" />
+
+        <ImageView
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@null"
+            android:elevation="10dp"
+            android:text="@string/app_name"
+            android:textColor="@android:color/black"
+            android:textSize="88sp"
+            android:textStyle="bold" />
+
+    </com.zone.view.BlurLayout>
+</LinearLayout>

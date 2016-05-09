@@ -1,6 +1,9 @@
 package com.example.mylib_test.activity.databingstudy;
 
 import android.view.View;
+
+import com.example.mylib_test.activity.databingstudy.data.User;
+
 import and.base.activity.BaseActvity;
 
 /**
