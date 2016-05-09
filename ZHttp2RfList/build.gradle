@@ -20,9 +20,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':ZOkHttp')
+//    compile project(':ZOkHttp')
     compile project(':UltraRefresh')
-    compile project(':ZAdapter')
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.google.code.gson:gson:2.5'
+    compile 'com.zone:zadapter:1.0.0'
+    compile 'com.zone:zokhttp:1.0.0'
 }
