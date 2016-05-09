@@ -11,17 +11,16 @@ import android.view.View;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.app.Constant;
-import com.zone.http2rflist.NetworkEngine;
-import com.zone.http2rflist.BaseRequestParams;
+import com.zone.http2rflist.GlobalEngine;
+import com.zone.http2rflist.RequestParams;
 import com.zone.http2rflist.NetworkParams;
-import com.zone.http2rflist.RequestParamsUtils;
 import com.zone.http2rflist.callback.NetworkListener;
 import com.zone.http2rflist.entity.SuccessType;
 
 //TODO  listener有问题  null或者 有的时候不应该会有消息
 public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
 	final	String UrlPath = Constant.ADDRESS;
-	private NetworkEngine engineGet,enginePost,engineFile;
+	private GlobalEngine engineGet,enginePost,engineFile;
 	private static final int GET_TAG=1,POST_TAG=2,FILE_TAG=3;
 	Map<String,String> params=new HashMap<String,String>();
 	Map<String,File> fileMap=new HashMap<String,File>();
@@ -31,24 +30,25 @@ public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
 		params.put("name", "疯子");
 
 		
-		engineGet=new NetworkEngine(this, handler);
-		engineGet.newCall(new BaseRequestParams.Builder().get().url(UrlPath)
+		engineGet=new GlobalEngine(this, handler);
+		engineGet.setShowDialog(true);
+		engineGet.prepare(RequestParams.get(UrlPath)
 				.params(new NetworkParams().setParamsMap(params)).handlerTag(GET_TAG).build());
 		
-		enginePost=new NetworkEngine(this, handler);
-//		enginePost.sendPost(UrlPath, new RequestParamsNet().setParamsMap(params), POST_TAG,null);
-		enginePost.newCall(new BaseRequestParams.Builder().post().url(UrlPath)
-				.params(new NetworkParams().setParamsMap(params)).handlerTag(POST_TAG).build());
+		enginePost=new GlobalEngine(this, handler);
+//		enginePost.sendPost(UrlPath, new RequestParamsNet().setParamsMap(prepare), POST_TAG,null);
+		enginePost.prepare(RequestParams.post(UrlPath)
+				.params(new NetworkParams().setParamsMap(params)).handlerTag(POST_TAG));
 
 		
 		File f = new File(FileUtils.getFile(""), "高达 - 00.mp3");
-		File f2 = new File(FileUtils.getFile("DCIM", "Camera"), "20150621_121327.jpg");
+		File f2 = new File(FileUtils.getFile("DCIM", "Camera"), "20150619_091758.jpg");
 		fileMap.put("upload", f);
 		fileMap.put("upload2", f2);
-		engineFile=new NetworkEngine(this, handler,true);
+		engineFile=new GlobalEngine(this, handler,true);
 		//留作对比
-//		engineFile.sendFile(UrlPath,new RequestParamsNet().setParamsMap(params).setFileMap(fileMap), FILE_TAG,null);
-		engineFile.newCall(RequestParamsUtils.post(UrlPath, new NetworkParams().setParamsMap(params).setFileMap(fileMap)).networkListener(new NetworkListener() {
+//		engineFile.sendFile(UrlPath,new RequestParamsNet().setParamsMap(prepare).setFileMap(fileMap), FILE_TAG,null);
+		engineFile.prepare(RequestParams.post(UrlPath).params(new NetworkParams().setParamsMap(params).setFileMap(fileMap)).listener(new NetworkListener() {
 			@Override
 			public void onStart() {
 
@@ -74,7 +74,7 @@ public class NetworkNoPull_Globlo_TestActivity extends BaseActvity{
 			public void onFailure(String msg) {
 
 			}
-		}).handlerTag(FILE_TAG).build());
+		}).handlerTag(FILE_TAG));
 	}
 
 	@Override

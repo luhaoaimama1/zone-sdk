@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import com.zone.http2rflist.base.BaseNetworkEngine;
-import com.zone.http2rflist.BaseRequestParams;
+import com.zone.http2rflist.RequestParams;
 import com.zone.http2rflist.callback.NetworkListener;
 import com.zone.http2rflist.entity.HttpTypeNet;
 import com.zone.http2rflist.entity.SuccessType;
@@ -26,6 +26,9 @@ public class ZhttpEngine extends BaseNetworkEngine {
 
     private  NetworkListener listener;
     private  int handlerTag;
+    private Object tag;
+    private  Call call;
+
     public ZhttpEngine(Context context, Handler handler) {
         super(context, handler);
     }
@@ -35,14 +38,14 @@ public class ZhttpEngine extends BaseNetworkEngine {
     }
 
     @Override
-    protected void ab_Send(BaseRequestParams request) {
+    protected void ab_Send(RequestParams request) {
         this.listener=request.listener;
         this.handlerTag =request.handlerTag;
         RequestBuilderProxy requestBuilderProxy = null;
         switch (request.params.getHttpTypeNet()){
             case GET:
                 requestBuilderProxy= ok.get(request.urlString, ParamsHelper.setParamsNet(request.params),callBack);
-                break;
+                    break;
             case HEAD:
                 requestBuilderProxy= ok.head(request.urlString, ParamsHelper.setParamsNet(request.params), callBack);
                 break;
@@ -65,21 +68,20 @@ public class ZhttpEngine extends BaseNetworkEngine {
                 break;
         }
         if (requestBuilderProxy!=null)
-            requestBuilderProxy.tag(request.cancelTag==null?context:request.cancelTag).executeSync();
-
+            call=requestBuilderProxy.tag(tag=(request.cancelTag==null?context:request.cancelTag)).executeSync();
     }
-    private Object getTag(Object tag){
-        return tag==null?context:tag;
+    private Object getTag(){
+        return tag;
     }
 
     @Override
-    protected void cancelAllRequest() {
+    public void cancelByContext() {
         ok.cancelTag(context);
     }
 
     @Override
-    protected void cancelAllRequest(Object cancelTag) {
-        ok.cancelTag(cancelTag);
+    public void cancel() {
+        call.cancel();
     }
 
 

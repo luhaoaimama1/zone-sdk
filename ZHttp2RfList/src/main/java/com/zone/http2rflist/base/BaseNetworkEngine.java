@@ -3,8 +3,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import com.google.gson.Gson;
-import com.zone.http2rflist.BaseRequestParams;
-import com.zone.http2rflist.MsgErrorCheck;
+import com.zone.http2rflist.RequestParams;
 import com.zone.http2rflist.callback.IBaseNetworkEngine;
 import com.zone.http2rflist.utils.Pop_Zone;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.List;
 
 //这个是处理    网络请求 dialog  与handler返回信息
 public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
+
 	public enum DialogType{
 		pop,dialog;
 	}
@@ -21,7 +21,7 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 	private static  String limitColumn ="limit", offsetColumn ="offset";
 	protected Handler handler;
 	private boolean isShowDialog =false;
-	protected int limit=10, pageNumber=0;
+	protected int limit=10, pageNumber=0, startPage=0;
 	private Dialog dialog;
 	private Pop_Zone popWindow;
 
@@ -31,7 +31,7 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 	protected boolean isLastPage =false;
 	//防止当前页面正处理的时候  又翻页了 这时候翻页参数会错乱
 	private List<Integer> pageNumberhistory=new ArrayList<>();
-	private BaseRequestParams request;
+	private RequestParams request;
 
 	public BaseNetworkEngine(Context context, Handler handler) {
 		this(context,handler,false);
@@ -43,10 +43,16 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 	}
 
 	@Override
+	public void setStartPage(int startPage) {
+		this.startPage=startPage;
+		pageNumber+=startPage;
+	}
+
+	@Override
 	//这个是已经请求过  就用firstPage即可
 	public  void firstPage(){
 		turnPageExceptionChecked();
-		pageNumber=0;
+		pageNumber=startPage;
 		start();
 	};
 	@Override
@@ -68,7 +74,7 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 	};
 	private void turnPageExceptionChecked(){
 		if(listView==null)
-			throw new IllegalStateException("please must be use method:relateList!");
+			throw new IllegalStateException("please must be use method:relatePullView!");
 	}
 	@Override
 	//开始任务
@@ -76,10 +82,17 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 		execute(true);
 	}
 	@Override
-	public  void newCall(BaseRequestParams request){
+	public  void prepare(RequestParams request){
 		this.request=request;
 		execute(false);
 	}
+
+	@Override
+	public void prepare(RequestParams.Builder request) {
+		this.request=request.build();
+		execute(false);
+	}
+
 	private void execute(boolean run){
 		if (run&&request!=null) {
 			showDialog();
@@ -110,7 +123,7 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 					//数据处理
 					boolean parseOK=listView.gsonParse(msg);
 					if (parseOK) {
-						if(number==0){
+						if(number==startPage){
 							listView.clearData();
 							//当第一页 数据处理成功  可以翻页
 							isLastPage =false;
@@ -127,7 +140,7 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 				}
 				//动画弄掉
 				private void removeListAnimal(int number, BasePullView listView,boolean parseOK) {
-					if(number==0)
+					if(number==startPage)
 						listView.onRefreshComplete();
 					else{
 						if (parseOK)
@@ -146,7 +159,7 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 	}
 	@Override
 	//建立list联动后 会添加翻页功能
-	public void relateList(BasePullView  listView ){
+	public void relatePullView(BasePullView  listView ){
 		this.listView=listView;
 		listView.relateBaseNetworkQuest(this);
 	}
@@ -158,9 +171,8 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 			request.params.put(offsetColumn, offest + "");
 		}
 	}
-	protected abstract void ab_Send(BaseRequestParams request);
-	protected  abstract void cancelAllRequest();
-	protected  abstract void cancelAllRequest(Object cancelTag);
+	protected abstract void ab_Send(RequestParams request);
+
 	//设置 默认的dialog
 	protected  abstract Dialog createDefaultDialog(Context context);
 	//设置 默认的popWindow
@@ -181,9 +193,8 @@ public abstract class BaseNetworkEngine implements IBaseNetworkEngine {
 		if (listView==null) {
 			switch (dialogType) {
 				case pop:
-					if (popWindow == null&& isShowDialog){
+					if (popWindow == null&& isShowDialog)
 						popWindow = createDefaultPopWindow(context);
-					}
 					//这样没有dialog也不会爆空了
 					if (popWindow != null&&!popWindow.isShowing())
 						popWindow.show();

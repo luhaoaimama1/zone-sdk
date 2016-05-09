@@ -1,4 +1,4 @@
-package com.zone.http2rflist;
+package com.zone.http2rflist.base;
 
 public  class MsgErrorCheck {
 	private static MsgCheckCallBack msgCheckCallBack;

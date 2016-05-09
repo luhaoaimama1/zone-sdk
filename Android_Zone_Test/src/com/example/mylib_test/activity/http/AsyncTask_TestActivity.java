@@ -75,7 +75,7 @@ public class AsyncTask_TestActivity extends Activity {
         //doInBackground方法内部执行后台任务,不可在此方法内修改UI  
         @Override  
         protected String doInBackground(String... params) {  
-            Log.i(TAG, "doInBackground(Params... params) called");  
+            Log.i(TAG, "doInBackground(Params... prepare) called");
             try {  
                 HttpClient client = new DefaultHttpClient();  
                 HttpGet get = new HttpGet(params[0]);  

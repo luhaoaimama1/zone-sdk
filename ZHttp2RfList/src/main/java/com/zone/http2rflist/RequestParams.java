@@ -5,7 +5,7 @@ import com.zone.http2rflist.entity.HttpTypeNet;
 /**
  * Created by Administrator on 2016/3/25.
  */
-public class BaseRequestParams {
+public class RequestParams {
   public  final NetworkParams params;
   public final NetworkListener listener;
   public  final  String urlString;
@@ -13,7 +13,7 @@ public class BaseRequestParams {
   public final Object cancelTag;
   public final HttpTypeNet httpTypeNet;
 
-    private BaseRequestParams(Builder builder) {
+    private RequestParams(Builder builder) {
         this.params = builder.params;
         this.listener = builder.listener;
         this.urlString = builder.urlString;
@@ -22,7 +22,29 @@ public class BaseRequestParams {
         this.httpTypeNet = builder.httpTypeNet;
         this.params.setHttpTypeNet(httpTypeNet);
     }
+    public static Builder get(String url){
+        return  new RequestParams.Builder().get().url(url);
+    }
+    public static Builder head(String url){
+        return new RequestParams.Builder().head().url(url);
+    }
+    public static Builder delete(String url){
+        return new RequestParams.Builder().delete().url(url);
+    }
+    public static Builder post(String url){
+        return new RequestParams.Builder().post().url(url);
+    }
 
+    public static Builder postJson(String url){
+        return new RequestParams.Builder().postJson().url(url);
+    }
+
+    public static Builder put(String url){
+        return  new RequestParams.Builder().put().url(url);
+    }
+    public static Builder patch(String url){
+        return  new RequestParams.Builder().patch().url(url);
+    }
 
     public static class Builder {
 
@@ -41,7 +63,7 @@ public class BaseRequestParams {
             return this;
         }
 
-        public Builder networkListener(NetworkListener listener) {
+        public Builder listener(NetworkListener listener) {
             this.listener = listener;
             return this;
         }
@@ -59,38 +81,38 @@ public class BaseRequestParams {
             this.params = params;
             return this;
         }
-        public Builder get(){
+        public  Builder get(){
             return this;
         }
-        public Builder head(){
+        public  Builder head(){
             httpTypeNet=HttpTypeNet.HEAD;
             return this;
         }
-        public Builder delete(){
+        public  Builder delete(){
             httpTypeNet=HttpTypeNet.DELETE;
-            return this;
+            return new RequestParams.Builder();
         }
-        public Builder post(){
+        public  Builder post(){
             httpTypeNet=HttpTypeNet.POST;
             return this;
         }
 
-        public Builder postJson(){
+        public  Builder postJson(){
             httpTypeNet=HttpTypeNet.POST.postJson();
             return this;
         }
 
-        public Builder put(){
+        public  Builder put(){
             httpTypeNet=HttpTypeNet.PUT;
             return this;
         }
-        public Builder patch(){
+        public  Builder patch(){
             httpTypeNet=HttpTypeNet.PATCH;
             return this;
         }
 
-        public BaseRequestParams build() {
-            return new BaseRequestParams(this);
+        public RequestParams build() {
+            return new RequestParams(this);
         }
     }
 }

@@ -25,7 +25,7 @@
 //	private static final  String Response_Charset="utf-8";
 //
 //	private static final String Params_Charset="utf-8";
-//	private RequestParams params ;
+//	private RequestParams prepare ;
 //
 //	public XutilsEngine(Context context, Handler handler) {
 //		this(context, handler,false);
@@ -36,7 +36,7 @@
 //	}
 //
 //	public void getXutilsParams() {
-//		params = new RequestParams(Params_Charset);
+//		prepare = new RequestParams(Params_Charset);
 //	}
 //	@Override
 //	protected void ab_Send(String urlString, Map<String, String> map, final int tag,final NetworkListener listener) {
@@ -55,9 +55,9 @@
 //		HttpUtils http= InnerDispose.getXutils_HttpUtils();
 //		getXutilsParams();
 //		for (Entry<String, String> entry : map.entrySet()) {
-//			params.addBodyParameter(entry.getKey(), entry.getValue());
+//			prepare.addBodyParameter(entry.getKey(), entry.getValue());
 //		}
-//		http.send(HttpRequest.HttpMethod.POST,urlString,params, InnerDispose.getXutilsCallback(this, tag, listener));
+//		http.send(HttpRequest.HttpMethod.POST,urlString,prepare, InnerDispose.getXutilsCallback(this, tag, listener));
 //	}
 //
 //	@Override
@@ -67,13 +67,13 @@
 //		getXutilsParams();
 //		//添加字段
 //		for (Entry<String, String> entry : map.entrySet()) {
-//			params.addBodyParameter(entry.getKey(), entry.getValue());
+//			prepare.addBodyParameter(entry.getKey(), entry.getValue());
 //		}
 //		// 添加文件
 //		for (Entry<String, File> entry : fileMap.entrySet()) {
-//			params.addBodyParameter(entry.getKey(), entry.getValue());
+//			prepare.addBodyParameter(entry.getKey(), entry.getValue());
 //		}
-//		http.send(HttpRequest.HttpMethod.POST,urlString,params, InnerDispose.getXutilsCallback(this, tag, listener));
+//		http.send(HttpRequest.HttpMethod.POST,urlString,prepare, InnerDispose.getXutilsCallback(this, tag, listener));
 //	}
 //	@Override
 //	protected Dialog createDefaultDialog(Context context) {

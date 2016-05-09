@@ -5,19 +5,17 @@ import java.util.List;
 import java.util.Map;
 import and.base.activity.BaseActvity;
 import in.srain.cube.views.ptr.PtrFrameLayout;
-
 import android.os.Message;
 import android.widget.ImageView;
 import android.widget.ListView;
-
 import com.bumptech.glide.Glide;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.entity.Data;
 import com.example.mylib_test.app.Constant;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.callback.Helper;
+import com.zone.http2rflist.RequestParams;
 import com.zone.http2rflist.NetworkParams;
-import com.zone.http2rflist.RequestParamsUtils;
 import com.zone.http2rflist.impl.enigne.ZhttpEngine;
 import com.zone.http2rflist.impl.rflist.UltraPullView;
 
@@ -38,10 +36,8 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 		params.put("name", "xoxoxxoo");
 		setContentView(R.layout.a_network_pull);
 		engineGet=new ZhttpEngine(this, handler);
-//		engineGet.newCall(UrlPath,new RequestParamsNet().setParamsMap(params), GET_TAG);
-		engineGet.newCall(RequestParamsUtils.post(UrlPath, new NetworkParams().setParamsMap(params))
-				.handlerTag(GET_TAG)
-				.build());
+//		engineGet.setStartPage(1);
+		engineGet.prepare(RequestParams.post(UrlPath).params(new NetworkParams().setParamsMap(params)).handlerTag(GET_TAG));
 
 	}
 
@@ -71,13 +67,13 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 			}
 		};
 		adapter.relatedList(rv);
-		googlePullView=new UltraPullView<String, Data>(this,swipe_container, rv, adapter, dataImg) {
+		googlePullView=new UltraPullView<String, Data>(swipe_container, rv, adapter, dataImg) {
 			@Override
 			public List<String> getAdapterData(Data entity) {
 				return entity.getImgEntity().getImg();
 			}
 		};
-		engineGet.relateList(googlePullView);
+		engineGet.relatePullView(googlePullView);
 	}
 
 	@Override
@@ -90,7 +86,6 @@ public class NetworkPull_TestActivity extends BaseActvity  {
 		case GET_TAG:
 //			System.out.println("GET_TAG:"+msg.obj);
 			System.err.println("handleMessage size:"+dataImg.size());
-//			adapter.notifyDataSetChanged();
 			break;
 
 		default:

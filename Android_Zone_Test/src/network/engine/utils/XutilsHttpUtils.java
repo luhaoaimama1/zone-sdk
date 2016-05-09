@@ -11,19 +11,19 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 //TODO session cookie未做 下载未做
 //TODO dialog未做
-//RequestParams params = new RequestParams(); // 编码在这个类里声明了
+//RequestParams prepare = new RequestParams(); // 编码在这个类里声明了
 //查询参数　　为了更好
-//params.addQueryStringParameter("qmsg", "你好");
-//params.addBodyParameter("msg", "测试");
+//prepare.addQueryStringParameter("qmsg", "你好");
+//prepare.addBodyParameter("msg", "测试");
 // 添加文件
-//params.addBodyParameter("file", new File("/sdcard/test.zip"));
-//params.addBodyParameter("testfile", new File("/sdcard/test2.zip")); // 继续添加文件
+//prepare.addBodyParameter("file", new File("/sdcard/test.zip"));
+//prepare.addBodyParameter("testfile", new File("/sdcard/test2.zip")); // 继续添加文件
 
 // 用于非multipart表单的单文件上传
-//params.setBodyEntity(new FileUploadEntity(new File("/sdcard/test.zip"), "binary/octet-stream"));
+//prepare.setBodyEntity(new FileUploadEntity(new File("/sdcard/test.zip"), "binary/octet-stream"));
 
 // 用于非multipart表单的流上传
-//params.setBodyEntity(new InputStreamUploadEntity(stream ,length));
+//prepare.setBodyEntity(new InputStreamUploadEntity(stream ,length));
 public class XutilsHttpUtils {
 	private static long timeout=1000*10;
 	//请求编码

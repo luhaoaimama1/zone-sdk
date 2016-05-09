@@ -3,13 +3,15 @@ package com.zone.http2rflist.callback;
 import android.app.Dialog;
 
 import com.zone.http2rflist.base.BasePullView;
-import com.zone.http2rflist.BaseRequestParams;
+import com.zone.http2rflist.RequestParams;
 import com.zone.http2rflist.utils.Pop_Zone;
 
 /**
  * Created by Administrator on 2016/4/7.
  */
 public interface IBaseNetworkEngine {
+
+    void setStartPage(int startPage);
 
     void firstPage();
 
@@ -19,11 +21,13 @@ public interface IBaseNetworkEngine {
 
     void start();
 
-    void newCall(BaseRequestParams request);
+    void prepare(RequestParams request);
+
+    void prepare(RequestParams.Builder request);
 
     void sendhandlerMsg(String msg, int handlerTag);
 
-    void relateList(BasePullView listView);
+    void relatePullView(BasePullView listView);
 
 
     void setDialog(Dialog dialog);
@@ -39,4 +43,8 @@ public interface IBaseNetworkEngine {
     void setLimit(int limit);
 
     int getLimit();
+
+    void cancelByContext();
+
+    void cancel();
 }

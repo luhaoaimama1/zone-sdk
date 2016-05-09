@@ -10,15 +10,15 @@ import com.zone.http2rflist.utils.Pop_Zone;
 import java.lang.reflect.Constructor;
 
 //代理类
-public class NetworkEngine implements IBaseNetworkEngine {
+public class GlobalEngine implements IBaseNetworkEngine {
     private static Class<? extends BaseNetworkEngine> engineClass;
     private BaseNetworkEngine engine;
 
-    public NetworkEngine(Context context, Handler handler) {
+    public GlobalEngine(Context context, Handler handler) {
         this(context, handler, false);
 
     }
-    public NetworkEngine(Context context, Handler handler, boolean showDialog) {
+    public GlobalEngine(Context context, Handler handler, boolean showDialog) {
         try {
             Constructor<? extends BaseNetworkEngine> con = engineClass.getDeclaredConstructor(Context.class, Handler.class, boolean.class);
             engine = con.newInstance(context, handler, showDialog);
@@ -29,25 +29,21 @@ public class NetworkEngine implements IBaseNetworkEngine {
 
     //设置全局 网络请求类
     public static void setGlobalEngine(Class<? extends BaseNetworkEngine> engineClass) {
-        NetworkEngine.engineClass = engineClass;
+        GlobalEngine.engineClass = engineClass;
     }
 
     public static String getLimitColumn() {
         return BaseNetworkEngine.getLimitColumn();
     }
 
-    public static void setLimitColumn(String limitColumn) {
-        BaseNetworkEngine.setLimitColumn(limitColumn);
-    }
-
     public static String getOffsetColumn() {
         return BaseNetworkEngine.getOffsetColumn();
     }
 
-    public static void setOffsetColumn(String offsetColumn) {
-        BaseNetworkEngine.setOffsetColumn(offsetColumn);
+    @Override
+    public void setStartPage(int startPage) {
+        engine.setStartPage(startPage);
     }
-
 
     @Override
     public void firstPage() {
@@ -70,18 +66,22 @@ public class NetworkEngine implements IBaseNetworkEngine {
     }
 
     @Override
-    public void newCall(BaseRequestParams request) {
-        engine.newCall(request);
+    public void prepare(RequestParams request) {
+        engine.prepare(request);
     }
 
+    @Override
+    public void prepare(RequestParams.Builder request) {
+        engine.prepare(request);
+    }
     @Override
     public void sendhandlerMsg(String msg, int handlerTag) {
         engine.sendhandlerMsg(msg, handlerTag);
     }
 
     @Override
-    public void relateList(BasePullView listView) {
-        engine.relateList(listView);
+    public void relatePullView(BasePullView listView) {
+        engine.relatePullView(listView);
     }
 
     @Override
@@ -117,5 +117,15 @@ public class NetworkEngine implements IBaseNetworkEngine {
     @Override
     public int getLimit() {
         return engine.getLimit();
+    }
+
+    @Override
+    public void cancelByContext() {
+        engine.cancelByContext();
+    }
+
+    @Override
+    public void cancel() {
+        engine.cancel();
     }
 }

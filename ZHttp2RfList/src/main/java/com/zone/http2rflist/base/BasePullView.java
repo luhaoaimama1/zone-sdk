@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.zone.http2rflist.MsgErrorCheck;
 import com.zone.http2rflist.utils.ExceptionUtils;
 
 import java.lang.reflect.ParameterizedType;
