@@ -3,14 +3,11 @@ package com.example.mylib_test.activity.custom_view;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy;
 import com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity;
-import com.zone.view.ninegridview.preview.ImagePreviewActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ListView;
 
 public class CustomView_MainActivity extends Activity implements OnClickListener {
 
@@ -55,12 +52,6 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
                 break;
             case R.id.bt_scroll:
                 startActivity(new Intent(this, AndroidHeroActivity.class).putExtra("type", "scroll"));
-                break;
-            case R.id.imageGroupRecyclerTest:
-//			startActivity(new Intent(this,ImageGroupRecyclerTestActvitity.class));
-                break;
-            case R.id.imageDecoration:
-//			startActivity(new Intent(this,ImageDecorationActivity.class));
                 break;
             case R.id.flowZone:
                 startActivity(new Intent(this, FlowZoneActivity.class));

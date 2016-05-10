@@ -55,7 +55,6 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.GridZoneActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ChengChengActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.SwtichButtonActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.custom_view.ImageDecorationActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.db.Db_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.Http_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.EventBusActivity"></activity>

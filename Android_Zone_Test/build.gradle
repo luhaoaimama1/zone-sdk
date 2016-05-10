@@ -4,7 +4,7 @@ apply plugin: 'me.tatarka.retrolambda'
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile project(':Android_Zone_Lib')
-    compile project(':ZHttp2RfList')
+    compile project(':Http_Rflist_ZHelper')
     compile project(':log')
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'

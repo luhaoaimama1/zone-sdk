@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.mylib_test.R;
+import and.utils.draw.DrawUtils;
 
 import and.utils.image.compress2sample.SampleUtils;
 
@@ -31,8 +32,8 @@ public class ChengView extends View {
 
     public ChengView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-//        centerFrame = SampleUtils.with(context).load(R.drawable.aaaaaaaaaaaab).bitmap();
-        centerFrame = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_4444);
+        centerFrame = SampleUtils.with(context).load(R.drawable.aaaaaaaaaaaab).bitmap();
+//        centerFrame = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_4444);
         line = SampleUtils.with(context).load(R.drawable.ic_launcher).bitmap();
 
         paint.setDither(true);
@@ -44,7 +45,7 @@ public class ChengView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+//        onDrawTest(canvas);
         canvas.drawBitmap(centerFrame, (getWidth() - centerFrame.getWidth()) / 2, (getHeight() - centerFrame.getHeight()) / 2, paint);
         paint.setAlpha(100);
         canvas.drawRect(0, 0, getWidth(), (getHeight() - centerFrame.getHeight()) / 2, paint);//最上边的矩形
@@ -60,8 +61,14 @@ public class ChengView extends View {
         canvas.drawBitmap(line, (getWidth() - line.getWidth()) / 2, start + offset, paint);
         postInvalidateDelayed(10, (getWidth() - centerFrame.getWidth()) / 2, (getHeight() + centerFrame.getHeight()-line.getHeight()) / 2,
                 (getWidth() + centerFrame.getWidth()) / 2, (getHeight() + centerFrame.getHeight()+line.getHeight()) / 2);
+
+
 //只刷新扫描框的内容，其他地方不刷新  记住如果 二维码扫描的那个例子 又个位图 一半冒出了这个范围 这个位图也不刷新了吧
 //        postInvalidateDelayed(10, 100,100,getWidth()-100,getHeight()-100);
 //        postInvalidateDelayed(10);
+    }
+
+    private void onDrawTest(Canvas canvas) {
+        DrawUtils.drawBtAtCenter(this,canvas,centerFrame,paint);
     }
 }
