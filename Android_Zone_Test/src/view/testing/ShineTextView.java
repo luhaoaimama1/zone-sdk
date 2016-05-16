@@ -28,7 +28,7 @@ public class ShineTextView extends TextView {
         if (mViewWidth == 0) {
             mViewWidth = getMeasuredWidth();
             if (mViewWidth > 0) {
-                mPaint = getPaint();
+                mPaint = getPaint();//这个paint是get出来的  这是取巧啊  可以在Ondraw直接画一个的而不是用paint更改  并且 这个生命周期我怎么知道Paint已经被初始化了？
                 mLinearGradient = new LinearGradient(0,  0,  mViewWidth, 0, new int[]{ Color.BLUE, 0xffffffff, Color.BLUE}, null, Shader.TileMode.CLAMP);
                 mPaint.setShader(mLinearGradient);
                 mGradientMatrix = new Matrix();

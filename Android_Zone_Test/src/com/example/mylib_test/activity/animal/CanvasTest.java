@@ -1,6 +1,7 @@
 package com.example.mylib_test.activity.animal;
 
 import com.example.mylib_test.R;
+import com.example.mylib_test.activity.animal.viewa.BaseDraw;
 import com.example.mylib_test.activity.animal.viewa.Canvas1;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
@@ -42,6 +43,9 @@ public class CanvasTest extends Activity{
 			}
 		if("bt_bitmap".equals(type)){
 			setContentView(R.layout.a_btimap_copy);
+		}
+		if("bt_draw".equals(type)){
+			setContentView(new BaseDraw(this));
 		}
 		if("bt_bitmaptoRound".equals(type)){
 			ImageView iv = new ImageView(this);

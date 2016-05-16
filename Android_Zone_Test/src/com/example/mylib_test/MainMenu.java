@@ -12,6 +12,7 @@ import com.example.mylib_test.activity.file.FileTestActivity;
 import com.example.mylib_test.activity.http.Http_MainActivity;
 import com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity;
 import com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity;
+import com.example.mylib_test.activity.ress.ResMainActvitity;
 import com.example.mylib_test.activity.system.SystemMainActivity;
 import com.example.mylib_test.activity.three_place.ThirdParty_MainActivity;
 import com.example.mylib_test.activity.touch.TouchMainActivity;
@@ -25,6 +26,7 @@ public class MainMenu {
 		menu.add(new MenuEntity("http测试Thread测试(和handle的测试)", Http_MainActivity.class)) ;
 		menu.add(new MenuEntity("pop dialog测试(还有 文字高亮 链接等效果)", Dialog_Pop_Adapter_MainActivity.class)) ;
 		menu.add(new MenuEntity("动画、surfaceView、绘图方面的研究", Animal_MainActivity.class)) ;
+		menu.add(new MenuEntity("res shape selector等的研究", ResMainActvitity.class)) ;
 		menu.add(new MenuEntity("onTouch事件传递与其辅助类的研究", TouchMainActivity.class)) ;
 		menu.add(new MenuEntity("自定义控件", CustomView_MainActivity.class)) ;
 		menu.add(new MenuEntity("databing、lambda、rxjava的学习", DataBingMainActivity.class)) ;

@@ -5,6 +5,7 @@ import com.example.notperfectlib.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -29,16 +30,35 @@ public class MatrixView extends View {
 		Matrix matrix=new Matrix();
 		matrix.postTranslate(100, 200);
 		matrix.mapPoints(dst, src);
-		System.out.println("mapPoints_____src first Point X:" + src[0] + "\t  Y:" + src[1]);//src是记录的原点  [0,0]点
-		System.out.println("mapPoints_____dst first Point X:"+ dst[0]+"\t  Y:"+dst[1]);//dst是 src通过矩阵变换的点 [0,0]点对应到 [100,200]
-
+		System.out.println("mapPoints_____>>>src first Point X:" + src[0] + "\t  Y:" + src[1]);//src是记录的原点  [0,0]点
+		System.out.println("mapPoints_____>>>dst first Point X:"+ dst[0]+"\t  Y:"+dst[1]);//dst是 src通过矩阵变换的点 [0,0]点对应到 [100,200]
 		canvas.drawBitmap(bt, matrix, paint);
 
 		//通过下边的三个方法  可以通过  dst矩阵变化后的点  通过矩阵 逆向方法 转换到 invertDst  即是src原点位置   所以dst中[100,200]的点 即是inverDst[0,0]这个点即 src[0,0]点
 		Matrix invertMatrix = new Matrix();
 		matrix.invert(invertMatrix);
 		invertMatrix.mapPoints(invertDst, dst);
-		System.out.println("invertMatrix_____ mapPoints  invertDst first Point X:" + invertDst[0] + "\t  Y:" + invertDst[1]);
+		System.out.println("invertMatrix_____>>>mapPoints  invertDst first Point X:" + invertDst[0] + "\t  Y:" + invertDst[1]);
+
+		//测试postConcat
+		Matrix matrixCon =new Matrix();
+		matrixCon.postTranslate(100, 200);
+		matrix.postConcat(matrixCon);
+		matrix.mapPoints(dst, src);
+		System.out.println("matrixCon:  mapPoints_____>>>src first Point X:" + src[0] + "\t  Y:" + src[1]);//src是记录的原点  [0,0]点
+		System.out.println("matrixCon:  mapPoints_____>>>dst first Point X:"+ dst[0]+"\t  Y:"+dst[1]);
+
+
+		//测试Camera getMatrix
+		Camera camera=new Camera();
+		camera.save();
+		camera.translate(100,200,0);
+		camera.getMatrix(matrix);
+		camera.restore();
+		matrix.mapPoints(dst, src);
+		System.out.println("Camera:  mapPoints_____>>>src first Point X:" + src[0] + "\t  Y:" + src[1]);//src是记录的原点  [0,0]点
+		System.out.println("Camera:  mapPoints_____>>>dst first Point X:"+ dst[0]+"\t  Y:"+dst[1]);
+
 	}
 
 }

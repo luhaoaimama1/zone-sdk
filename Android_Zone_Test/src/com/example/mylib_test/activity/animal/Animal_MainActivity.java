@@ -97,6 +97,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_bitmapRecyle:
                 bitmapRecyleTest();
                 break;
+            case R.id.bt_draw:
+                startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_draw"));
+                break;
 
             default:
                 break;

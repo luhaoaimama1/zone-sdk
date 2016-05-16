@@ -1,6 +1,7 @@
 package com.example.mylib_test.activity.animal;
 
 import com.example.mylib_test.R;
+import com.nineoldandroids.view.ViewHelper;
 
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
@@ -28,11 +29,16 @@ public class AniPro extends Activity {
 	}
     public void rotateyAnimRun(View view)  
     {  
-         ObjectAnimator//  
-         .ofFloat(view, "rotationX", 0.0F, 360.0F)//  
-         .setDuration(500)//  
-         .start();  
-    }  
+//         ObjectAnimator//
+//         .ofFloat(view, "rotationX", 0.0F, 360.0F)//
+//         .setDuration(500)//
+//         .start();
+//        view.setCameraDistance(20000);
+//        ViewHelper.setPivotY(view,500);
+//        ViewHelper.setPivotX(view,500);
+        ViewHelper.setRotationX(view,40);
+
+    }
     
     public void togetherRun(View view)  
     {  

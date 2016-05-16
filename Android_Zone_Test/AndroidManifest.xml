@@ -82,6 +82,7 @@
         <activity android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.SoftTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.ress.ResMainActvitity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CanvasTest"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.XfermodeActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.ImageShowBigActivity"></activity>

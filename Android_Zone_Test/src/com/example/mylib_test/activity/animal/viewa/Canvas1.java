@@ -16,7 +16,7 @@ public class Canvas1 extends View {
 	}
 	@Override
 	protected void onDraw(Canvas canvas) {
-//		super.onDraw(canvas);
+		super.onDraw(canvas);
 		System.out.println("¿ªÊ¼£º"+canvas.getSaveCount());
 		paint.setColor(Color.RED);
 		paint.setDither(true);
