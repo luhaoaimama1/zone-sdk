@@ -113,8 +113,8 @@ public class FileUtils {
 
     /**
      * Decodes the specified URL as per RFC 3986, i.e. transforms
-     * percent-encoded octets to characters by decoding with the UTF-8 character
-     * set. This function is primarily intended for usage with
+     * percent-encoded octets to characters by decoding load the UTF-8 character
+     * set. This function is primarily intended for usage load
      * {@link java.net.URL} which unfortunately does not enforce proper URLs. As
      * such, this method will leniently accept invalid characters or malformed
      * percent-encoded octets and simply pass them literally through to the

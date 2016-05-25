@@ -42,7 +42,7 @@ public class ScaleView extends View implements ScaleGestureDetector.OnScaleGestu
         Bitmap size = BitmapFactory.decodeResource(getResources(), R.drawable.aaaaaaaaaaaab, options);
 //        options.inSampleSize =  Compress_Sample_Utils.calculateInSampleSize(options,
 //                ScreenUtils.getScreenPixByResources(context)[0], ScreenUtils.getScreenPixByResources(context)[1]);
-        options.inSampleSize =  SampleUtils.with(context).override(ScreenUtils.getScreenPixByResources(context)[0]
+        options.inSampleSize =  SampleUtils.load().override(ScreenUtils.getScreenPixByResources(context)[0]
                 , ScreenUtils.getScreenPixByResources(context)[1]).calculateInSampleSize();
         options.inJustDecodeBounds = false;
         //另外，为了节约内存我们还可以使用下面的几个字段：

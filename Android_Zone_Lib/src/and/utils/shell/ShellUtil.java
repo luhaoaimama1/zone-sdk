@@ -37,7 +37,7 @@ public class ShellUtil {
      * {@link CommandResult#result} is -1, there maybe some excepiton.
      *
      * @param commands     command array
-     * @param isRoot       whether need to run with root
+     * @param isRoot       whether need to run load root
      * @param needResponse whether need result msg
      */
     public static CommandResult execCommand(String[] commands, boolean isRoot, boolean needResponse) {

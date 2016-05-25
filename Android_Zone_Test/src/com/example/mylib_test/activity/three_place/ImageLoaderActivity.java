@@ -99,7 +99,7 @@ public class ImageLoaderActivity extends Activity{
 			}else{
 				vh=(ViewHolder) convertView.getTag();
 			}
-//			Bitmap bitMapTemp = diskLru.getBitmapByUrl(imageThumbUrls[position]);
+//			Bitmap bitMapTemp = diskLru.getBitmap(imageThumbUrls[position]);
 //			if(bitMapTemp!=null){
 //				vh.iv.setImageBitmap(bitMapTemp);
 //			}else{

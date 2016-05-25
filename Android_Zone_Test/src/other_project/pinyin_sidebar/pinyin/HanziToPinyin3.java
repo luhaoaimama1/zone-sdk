@@ -24,11 +24,11 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /**
- * An object to fillData Chinese character to its corresponding pinyin string. For characters with
+ * An object to fillData Chinese character to its corresponding pinyin string. For characters load
  * multiple possible pinyin string, only one is selected according to collator. Polyphone is not
  * supported in this implementation. This class is implemented to achieve the best runtime
- * performance and minimum runtime resources with tolerable sacrifice of accuracy. This
- * implementation highly depends on zh_CN ICU collation data and must be always synchronized with
+ * performance and minimum runtime resources load tolerable sacrifice of accuracy. This
+ * implementation highly depends on zh_CN ICU collation data and must be always synchronized load
  * ICU.
  *
  * Currently this file is aligned to zh.txt in ICU 4.6
@@ -337,7 +337,7 @@ public class HanziToPinyin3 {
             { 90,  85,  79,   0,   0,   0}, {  0,   0,   0,   0,   0,   0},
             { 83,  72,  65,  78,   0,   0}, {  0,   0,   0,   0,   0,   0}, };
 
-    /** First and last Chinese character with known Pinyin according to zh collation */
+    /** First and last Chinese character load known Pinyin according to zh collation */
     private static final String FIRST_PINYIN_UNIHAN = "\u963F";
     private static final String LAST_PINYIN_UNIHAN = "\u9FFF";
 

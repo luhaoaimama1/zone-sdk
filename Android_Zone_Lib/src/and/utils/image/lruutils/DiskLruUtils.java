@@ -9,7 +9,6 @@ import and.utils.image.compress2sample.SampleUtils;
 import and.utils.image.lruutils.official.DiskLruCache;
 import and.LogUtil;
 import and.utils.file2io2data.FileUtils;
-import and.utils.info.AppUtils;
 import and.utils.file2io2data.IOUtils;
 import and.utils.convert.de2encode.MD5Utils;
 import android.content.Context;
@@ -17,39 +16,57 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class DiskLruUtils {
-	private static final String DirName = "bitmap";
+	private static final String DirName = "DiskLruUtils";
 	private static final long CacheMax=10 * 1024 * 1024;
 	private static final String TAG="DiskLruUtils";
 	private static final String encoded="utf-8";
+	private static File saveFolder;
 	private static DiskLruUtils diskLru = new DiskLruUtils();
 	private static DiskLruCache mDiskLruCache = null;
-	private static Context context;
 	/**
 	 * 因为一个应用应该就用一个而不是多个 所以我就final了 想改自己改就ok了
 	 */
-	private static boolean writeLog=true;
+
 	private DiskLruUtils() {
 	}
-
+	public static void  setSaveFolder(File saveFolder){
+		DiskLruUtils.saveFolder=saveFolder;
+	}
+	public static File  getSaveFolder(){
+		return DiskLruUtils.saveFolder;
+	}
 	/**
 	 * 版本号改变 则自动清除
 	 * @param context
 	 * @return
 	 */
 	public  static   DiskLruUtils  openLru(Context context) {
-		DiskLruUtils.context=context;
 		try {
-			/**
-			 * open()方法接收四个参数，第一个参数指定的是数据的缓存地址，
-			 * 第二个参数指定当前应用程序的版本号，
-			 * 第三个参数指定同一个key可以对应多少个缓存文件，基本都是传1，第四个参数指定最多可以缓存多少字节的数据。
-			 */
-//			File cacheDir = SdSituation.getDiskCacheDir(context, DirName);
-			File cacheDir = FileUtils.getFile("Love", DirName);
+			File cacheDir = null;
+			if (saveFolder==null) {
+				String cachePath = context.getCacheDir().getPath();
+				cacheDir = new File(cachePath + File.separator + DirName);
+			}else{
+				cacheDir=saveFolder;
+			}
+			/*
+			 *context.getCacheDir().getPath()
+			 *但是通常情况下多数应用程序都会将缓存的位置选择为 /sdcard/Android/data/<application package>/cache 这个路径
+ 			 * 选择在这个位置有两点好处：第一，这是存储在SD卡上的，因此即使缓存再多的数据也不会对手机的内置存
+			 * 储空间有任何影响，只要SD卡空间足够就行。第二，这个路径被Android系统认定为应用程序的缓存路径，
+			 * 当程序被卸载的时候，这里的数据也会一起被清除掉，这样就不会出现删除程序之后手机上还有很多残留数据的问题。
+			 *
+ 			 */
 			if (!cacheDir.exists()) {
 				cacheDir.mkdirs();
 			}
-			mDiskLruCache = DiskLruCache.open(cacheDir,AppUtils.getAppVersion(context), 1, CacheMax);
+//			mDiskLruCache = DiskLruCache.open(cacheDir,AppUtils.getAppVersion(context), 1, CacheMax);
+			/**
+			 * open()方法接收四个参数，第一个参数指定的是数据的缓存地址，
+			 * 第二个参数指定当前应用程序的版本号， 考虑版本号改变 缓存文件也是有效的。。。
+			 * 第三个参数指定同一个key可以对应多少个缓存文件，基本都是传1，第四个参数指定最多可以缓存多少字节的数据。
+			 */
+			mDiskLruCache = DiskLruCache.open(cacheDir,1, 1, CacheMax);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -62,29 +79,24 @@ public class DiskLruUtils {
 	 * 所以只有成功才调用这个方法
 	 * @param url
 	 */
-	public void addUrl_Bitmap(String url,String path) {
-//		Compress_Sample_Utils.getRawBitmap(path)
-		addUrl_Bitmap(url, SampleUtils.with(context).load(path).bitmap());
+	public void addBitmap(String url, String path) {
+		addBitmap(url, SampleUtils.load(path).bitmap());
 	}
 	/**
 	 * 所以只有成功才调用这个方法
 	 * @param url
 	 */
-	public void addUrl_Bitmap(String url, Bitmap bm) {
-		// if (downloadUrlToStream(imageUrl, outputStream)) {
-		// editor.commit();
-		// } else {
-		// editor.abort(); //这个就是不提交了~
-		// }
+	public void addBitmap(String url, Bitmap bm) {
 		String key = MD5Utils.hashKeyForDisk(url);
 		try {
 			DiskLruCache.Editor editor = mDiskLruCache.edit(key);
 			OutputStream outputStream = editor.newOutputStream(0);  
 			if(readToOutStream(bm, outputStream)){
 				editor.commit();
-				LogUtil.d("addUrl:" + url);
+				LogUtil.d("addBitmap:" + url);
 			}else {  
-				editor.abort();  
+				editor.abort();
+				LogUtil.e("addBitmap Fail:" + url);
 			}  
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -95,28 +107,26 @@ public class DiskLruUtils {
 	 * 
 	 * @param url
 	 */
-	public void addUrl_String(String url,String contentStr) {
-		// if (downloadUrlToStream(imageUrl, outputStream)) {
-		// editor.commit();
-		// } else {
-		// editor.abort(); //这个就是不提交了~
-		// }
+	public void addString(String url, String contentStr) {
 		String key = MD5Utils.hashKeyForDisk(url);
 		try {
 			DiskLruCache.Editor editor = mDiskLruCache.edit(key);
-			OutputStream outputStream = editor.newOutputStream(0);  
-			if(readToOutStream(contentStr, outputStream)){
-				editor.commit();
-				LogUtil.d("addUrl:" + url);
-			}else {  
-				editor.abort();  
-			}  
+			if (editor!=null) {
+				OutputStream outputStream = editor.newOutputStream(0);
+				if(readToOutStream(contentStr, outputStream)){
+                    editor.commit();
+                    LogUtil.d("addString  :" + url);
+                }else {
+                    editor.abort();
+					LogUtil.e("addString Fail:" + url);
+                }
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public boolean removeUrl(String url) {
+	public boolean remove(String url) {
 		String key = MD5Utils.hashKeyForDisk(url);
 		try {
 			boolean temp= mDiskLruCache.remove(key);
@@ -128,14 +138,14 @@ public class DiskLruUtils {
 		return false;
 	}
 
-	public Bitmap getBitmapByUrl(String url) {
+	public Bitmap getBitmap(String url) {
 		String key = MD5Utils.hashKeyForDisk(url);
 		Bitmap bitmap = null;
 		try {
 			DiskLruCache.Snapshot snapShot = mDiskLruCache.get(key);
 			if(snapShot != null){
 				bitmap = BitmapFactory.decodeStream(snapShot.getInputStream(0));
-				LogUtil.d("getBitmapByUrl:" + url);
+				LogUtil.d("getBitmap:" + url);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -143,14 +153,14 @@ public class DiskLruUtils {
 		return bitmap;
 	}
 	
-	public String getStringByUrl(String url) {
+	public String getString(String url) {
 		String key = MD5Utils.hashKeyForDisk(url);
 		String contentStr = "";
 		try {
 			DiskLruCache.Snapshot snapShot = mDiskLruCache.get(key);
 			if(snapShot != null){
 				contentStr =IOUtils.read(snapShot.getInputStream(0), encoded);
-				LogUtil.d("getBitmapByUrl:" + url);
+				LogUtil.d("getString key:" + url);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -160,6 +170,13 @@ public class DiskLruUtils {
 
 	/**
 	 * 比较标准的做法就是在Activity的onPause()方法中去调用一次flush()方法就可以了。
+	 *
+	 * 解释：
+	 * 这个方法用于将内存中的操作记录同步到日志文件（也就是journal文件）当中。这个方法非常重要，
+	 * 因为DiskLruCache能够正常工作的前提就是要依赖于journal文件中的内容。前面在讲解写入缓存操作的时候我有调用过一次这个方法，
+	 * 但其实并不是每次写入缓存都要调用一次flush()方法的，频繁地调用并不会带来任何好处，
+	 * 只会额外增加同步journal文件的时间。比较标准的做法就是在Activity的onPause()方法中去调用一次flush()方法就可以了。
+	 *
 	 */
 	public void flush() {
 		try {
@@ -175,9 +192,8 @@ public class DiskLruUtils {
 	 */
 	public void close() {
 		try {
-			if (!mDiskLruCache.isClosed()) {
+			if (!mDiskLruCache.isClosed())
 				mDiskLruCache.close();
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -187,9 +203,8 @@ public class DiskLruUtils {
 	 */
 	public void delete() {
 		try {
-			if (!mDiskLruCache.isClosed()) {
+			if (!mDiskLruCache.isClosed())
 				mDiskLruCache.delete();
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -214,18 +229,17 @@ public class DiskLruUtils {
 	private static boolean readToOutStream(Bitmap bt,OutputStream os){
 		InputStream in=bitmapToOs(bt);
 		byte[] buffer = new byte[1024];
-		int len = 0;
+		int len;
 		try {
 			while ((len = in.read(buffer)) != -1) {
 				os.write(buffer, 0, len);
 			}
 		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			return false;
 		} finally {
-			try {
-				in.close();
-				os.close();
-			} catch (IOException e) {
-			}
+			IOUtils.closeQuietly(in);
+			IOUtils.closeQuietly(os);
 		}
 		return true;
 	}
@@ -240,13 +254,15 @@ public class DiskLruUtils {
 				os.write(buffer, 0, len);
 			}
 		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			return false;
 		} finally {
-			try {
-				in.close();
-				os.close();
-			} catch (IOException e) {
-			}
+			IOUtils.closeQuietly(in);
+			IOUtils.closeQuietly(os);
 		}
 		return true;
 	}
+
+
+
 }

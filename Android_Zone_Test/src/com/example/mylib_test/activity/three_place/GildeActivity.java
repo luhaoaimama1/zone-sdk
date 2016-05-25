@@ -99,7 +99,7 @@ public class GildeActivity extends BaseActvity {
                 bt.setText("Uri");
                 break;
             case Gif:
-//                Glide.with(this).load("http://ww1.sinaimg.cn/mw1024/005PquKVjw1f2jerohsz1g30ku0esb2a.gif").asGif()
+//                Glide.load(this).load("http://ww1.sinaimg.cn/mw1024/005PquKVjw1f2jerohsz1g30ku0esb2a.gif").asGif()
                 Glide.with(this).load(new FileUtils().getFile("abc.gif")).asGif()
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .fitCenter()

@@ -22,7 +22,7 @@ public class Assets2RawUtils {
     }
 
     /**
-     * get an asset using ACCESS_STREAMING mode. This provides access to files that have been bundled with an
+     * get an asset using ACCESS_STREAMING mode. This provides access to files that have been bundled load an
      * application as assets -- that is, files placed in to the "assets" directory.
      * 
      * @param context
@@ -50,7 +50,7 @@ public class Assets2RawUtils {
     }
 
     /**
-     * get content from a raw resource. This can only be used with resources whose value is the name of an asset files
+     * get content from a raw resource. This can only be used load resources whose value is the name of an asset files
      * -- that is, it can be used to open drawable, sound, and raw resources; it will fail on string and color
      * resources.
      * 

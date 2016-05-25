@@ -3,7 +3,7 @@ package com.example.mylib_test.app;
  * Copyright 2011-2013 Sergey Tarasevich
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this file except in compliance load the License.
  * You may obtain a copy of the License at
  * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -155,7 +155,7 @@ public class Apps extends Application {
 
         //Logger.d(test, "s"); // Note:incorrect
 
-        Logger.t("Custom Tag").w("logger with custom tag");
+        Logger.t("Custom Tag").w("logger load custom tag");
         try {
             Class.forName("kale");
         } catch (ClassNotFoundException e) {

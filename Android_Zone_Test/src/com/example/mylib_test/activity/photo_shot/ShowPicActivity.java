@@ -23,7 +23,7 @@ public class ShowPicActivity extends Activity {
 		iv_drawables = (ImageView) findViewById(R.id.iv_drawables);
 		Uri uri = getIntent().getData();
 //		Bitmap bt = Compress_Sample_Utils.getSampleBitmap(uri.toString(), 600, null);
-		Bitmap bt = SampleUtils.with(this).load(uri.toString()).overrideW(600).bitmap();
+		Bitmap bt = SampleUtils.load(uri.toString()).overrideW(600).bitmap();
 		iv_provider.setImageBitmap(null);
 		if (uri != null) {
 			ImageLoader.getInstance().displayImage("file://"+uri.toString(), iv_uri);

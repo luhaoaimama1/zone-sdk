@@ -32,9 +32,9 @@ public class ChengView extends View {
 
     public ChengView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        centerFrame = SampleUtils.with(context).load(R.drawable.aaaaaaaaaaaab).bitmap();
+        centerFrame = SampleUtils.load(context,R.drawable.aaaaaaaaaaaab).bitmap();
 //        centerFrame = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_4444);
-        line = SampleUtils.with(context).load(R.drawable.ic_launcher).bitmap();
+        line = SampleUtils.load(context,R.drawable.ic_launcher).bitmap();
 
         paint.setDither(true);
         paint.setAntiAlias(true);

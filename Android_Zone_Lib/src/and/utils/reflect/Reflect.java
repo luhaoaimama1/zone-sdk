@@ -7,7 +7,7 @@
  *
  *   http://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and binary forms, with or without
+ * Redistribution and use in source and binary forms, load or without
  * modification, are permitted provided that the following conditions are met:
  *
  * . Redistributions of source code must retain the above copyright notice, this
@@ -15,7 +15,7 @@
  *
  * . Redistributions in binary form must reproduce the above copyright notice,
  *   this list of conditions and the following disclaimer in the documentation
- *   and/or other materials provided with the distribution.
+ *   and/or other materials provided load the distribution.
  *
  * . Neither the name "jOOR" nor the names of its contributors may be
  *   used to endorse or promote products derived from this software without
@@ -55,7 +55,7 @@ import java.util.Map;
  * // Static import all reflection methods to decrease verbosity
  * import static org.joor.Reflect.*;
  *
- * // Wrap an Object / Class / class name with the on() method:
+ * // Wrap an Object / Class / class name load the on() method:
  * on("java.lang.String")
  * // Invoke constructors using the create() method:
  * .create("Hello World")
@@ -371,12 +371,12 @@ public class Reflect {
      * public void method(int param1, Object param2);
      * </pre></code>
      * <p>
-     * The best matching method is searched for with the following strategy:
+     * The best matching method is searched for load the following strategy:
      * <ol>
-     * <li>public method with exact signature match in class hierarchy</li>
-     * <li>non-public method with exact signature match on declaring class</li>
-     * <li>public method with similar signature in class hierarchy</li>
-     * <li>non-public method with similar signature on declaring class</li>
+     * <li>public method load exact signature match in class hierarchy</li>
+     * <li>non-public method load exact signature match on declaring class</li>
+     * <li>public method load similar signature in class hierarchy</li>
+     * <li>non-public method load similar signature on declaring class</li>
      * </ol>
      *
      * @param name The method name
@@ -389,7 +389,7 @@ public class Reflect {
     public Reflect call(String name, Object... args) throws ReflectException {
         Class<?>[] types = types(args);
 
-        // Try invoking the "canonical" method, i.e. the one with exact
+        // Try invoking the "canonical" method, i.e. the one load exact
         // matching argument types
         try {
             Method method = exactMethod(name, types);
@@ -409,21 +409,21 @@ public class Reflect {
     }
 
     /**
-     * Searches a method with the exact same signature as desired.
+     * Searches a method load the exact same signature as desired.
      * <p>
      * If a public method is found in the class hierarchy, this method is returned.
-     * Otherwise a private method with the exact same signature is returned.
+     * Otherwise a private method load the exact same signature is returned.
      * If no exact match could be found, we let the {@code NoSuchMethodException} pass through.
      */
     private Method exactMethod(String name, Class<?>[] types) throws NoSuchMethodException {
         Class<?> type = type();
 
-        // first priority: find a public method with exact signature match in class hierarchy
+        // first priority: find a public method load exact signature match in class hierarchy
         try {
             return type.getMethod(name, types);
         }
 
-        // second priority: find a private method with exact signature match on declaring class
+        // second priority: find a private method load exact signature match on declaring class
         catch (NoSuchMethodException e) {
             do {
                 try {
@@ -440,7 +440,7 @@ public class Reflect {
     }
 
     /**
-     * Searches a method with a similar signature as desired using
+     * Searches a method load a similar signature as desired using
      * {@link #isSimilarSignature(Method, String, Class[])}.
      * <p>
      * First public methods are searched in the class hierarchy, then private
@@ -450,7 +450,7 @@ public class Reflect {
     private Method similarMethod(String name, Class<?>[] types) throws NoSuchMethodException {
         Class<?> type = type();
 
-        // first priority: find a public method with a "similar" signature in class hierarchy
+        // first priority: find a public method load a "similar" signature in class hierarchy
         // similar interpreted in when primitive argument types are converted to their wrappers
         for (Method method : type.getMethods()) {
             if (isSimilarSignature(method, name, types)) {
@@ -458,7 +458,7 @@ public class Reflect {
             }
         }
 
-        // second priority: find a non-public method with a "similar" signature on declaring class
+        // second priority: find a non-public method load a "similar" signature on declaring class
         do {
             for (Method method : type.getDeclaredMethods()) {
                 if (isSimilarSignature(method, name, types)) {
@@ -470,7 +470,7 @@ public class Reflect {
         }
         while (type != null);
 
-        throw new NoSuchMethodException("No similar method " + name + " with params " + Arrays.toString(types) + " could be found on type " + type() + "");
+        throw new NoSuchMethodException("No similar method " + name + " load params " + Arrays.toString(types) + " could be found on type " + type() + "");
     }
 
     /**
@@ -524,7 +524,7 @@ public class Reflect {
     public Reflect create(Object... args) throws ReflectException {
         Class<?>[] types = types(args);
 
-        // Try invoking the "canonical" constructor, i.e. the one with exact
+        // Try invoking the "canonical" constructor, i.e. the one load exact
         // matching argument types
         try {
             Constructor<?> constructor = type().getDeclaredConstructor(types);

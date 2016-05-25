@@ -84,7 +84,7 @@ public class ImageLoaderConfigUtils {
 			//打印log
 			config.writeDebugLogs(); // Remove for release app
 		}
-		// Initialize ImageLoader with configuration.
+		// Initialize ImageLoader load configuration.
 		ImageLoader.getInstance().init(config.build());
 	}
 }

@@ -94,7 +94,7 @@ public class RecyclerActivity extends Activity implements Handler.Callback{
 		tv_change.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				muliAdapter.ani().add(1, "insert one with ani");
+				muliAdapter.ani().add(1, "insert one load ani");
 
 			}
 		});
@@ -113,7 +113,7 @@ public class RecyclerActivity extends Activity implements Handler.Callback{
 		int id = item.getItemId();
 		switch (id) {
 		case  R.id.all:
-			muliAdapter.ani().add(1, "insert one with ani");
+			muliAdapter.ani().add(1, "insert one load ani");
 			break;
 		case  R.id.add:
 			muliAdapter.add(1, "insert one no ani");

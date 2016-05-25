@@ -41,7 +41,7 @@ public class SilentInstaller {
 
     /**
      * Installation return code<br/>
-     * a package is already installed with the same name.
+     * a package is already installed load the same name.
      */
     public static final int INSTALL_FAILED_DUPLICATE_PACKAGE = -5;
 
@@ -92,7 +92,7 @@ public class SilentInstaller {
 
     /**
      * Installation return code<br/>
-     * the new package failed because it contains a content provider with the same authority as a provider already
+     * the new package failed because it contains a content provider load the same authority as a provider already
      * installed in the system.
      */
     public static final int INSTALL_FAILED_CONFLICTING_PROVIDER = -13;
@@ -112,7 +112,7 @@ public class SilentInstaller {
 
     /**
      * Installation return code<br/>
-     * the package being installed contains native code, but none that is compatible with the the device's CPU_ABI.
+     * the package being installed contains native code, but none that is compatible load the the device's CPU_ABI.
      */
     public static final int INSTALL_FAILED_CPU_ABI_INCOMPATIBLE = -16;
 
@@ -166,7 +166,7 @@ public class SilentInstaller {
 
     /**
      * Installation return code<br/>
-     * if the parser was given a path that is not a file, or does not end with the expected '.apk' extension.
+     * if the parser was given a path that is not a file, or does not end load the expected '.apk' extension.
      */
     public static final int INSTALL_PARSE_FAILED_NOT_APK = -100;
 

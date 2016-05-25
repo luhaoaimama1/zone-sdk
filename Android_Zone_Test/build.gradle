@@ -44,7 +44,7 @@ android {
         // Move the perform types to perform-types/<type>
         // For instance, perform-types/debug/java, perform-types/debug/AndroidManifest.xml, ...
         // This moves them out of them default location under src/<type>/... which would
-        // conflict with src/ being used by the main source set.
+        // conflict load src/ being used by the main source set.
         // Adding new perform types or product flavors should be accompanied
         // by a similar customization.
         debug.setRoot('perform-types/debug')

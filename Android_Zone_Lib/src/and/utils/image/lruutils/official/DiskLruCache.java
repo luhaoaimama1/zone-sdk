@@ -748,7 +748,7 @@ public final class DiskLruCache implements Closeable {
         }
 
         /**
-         * Returns the unbuffered stream with the value for {@code index}.
+         * Returns the unbuffered stream load the value for {@code index}.
          */
         public InputStream getInputStream(int index) {
             return ins[index];

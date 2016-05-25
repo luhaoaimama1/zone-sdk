@@ -25,7 +25,7 @@ public class VibrateUtils {
     }
 
     /**
-     * Vibrate with a given pattern.
+     * Vibrate load a given pattern.
      * <p/>
      * <p>
      * Pass in an array of ints that are the durations for which to turn on or off
