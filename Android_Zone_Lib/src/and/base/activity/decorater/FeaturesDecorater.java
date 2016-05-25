@@ -16,6 +16,7 @@ import android.os.Bundle;
  */
 public  class FeaturesDecorater extends BackRefreshDecorator {
 	public List<ExtraFeature> featureList= new ArrayList<ExtraFeature>();
+	private boolean isInit;
 	@Override
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
@@ -24,8 +25,10 @@ public  class FeaturesDecorater extends BackRefreshDecorator {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
-		initFeature();
+		if (!isInit) {
+			initFeature();
+			isInit=true;
+		}
 		for (ExtraFeature item : featureList) {
 			item.init();
 		}
