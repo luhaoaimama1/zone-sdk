@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.mylib_test.R;
+import com.example.mylib_test.activity.pop_dialog.pop.Pop_Photo;
 import com.example.mylib_test.activity.three_place.Images;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.zbanner.FixedSpeedScroller;
@@ -159,6 +160,10 @@ public class ViewPagerRepeatWriteActivity extends BaseActvity {
                 }else{
                     pager.openTimeCircle();
                     isOpenTime =true;
+ //验证pop阻塞线程  是否 对 主线程操作 有阻塞效果！
+//                    Pop_Photo pop=new Pop_Photo(this, R.id.flowLayoutZone1);
+//                    System.out.println("弹pop!!!!");
+//                    pop.show();
                     ToastUtils.showLong(ViewPagerRepeatWriteActivity.this,"定时轮播");
                 }
                 break;
