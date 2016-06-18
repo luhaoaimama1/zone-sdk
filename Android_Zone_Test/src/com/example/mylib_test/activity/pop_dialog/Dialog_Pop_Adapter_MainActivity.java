@@ -2,6 +2,7 @@ package com.example.mylib_test.activity.pop_dialog;
 
 import and.utils.ToastUtils;
 import view.DialogCustemZone;
+import view.FlowLayout_Zone;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.pop_dialog.pop.Pop_Bottom;
@@ -35,6 +36,11 @@ public class Dialog_Pop_Adapter_MainActivity extends Activity implements OnClick
 //			pc.showPop();
 			Pop_Photo pop=new Pop_Photo(this, R.id.flowLayoutZone1);
 			pop.show();
+			break;
+		case R.id.tag:
+			FlowLayout_Zone fz= (FlowLayout_Zone) findViewById(R.id.flowLayoutZone1);
+			Button bt2= (Button) fz.findViewWithTag("blue");
+			bt2.setBackgroundColor(Color.BLUE);
 			break;
 		case R.id.pop_bottom:
 //			PopCus pc=new PopCus(this, R.layout.poptest);
