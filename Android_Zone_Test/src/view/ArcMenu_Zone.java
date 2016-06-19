@@ -125,9 +125,9 @@ public class ArcMenu_Zone extends RelativeLayout implements OnClickListener{
 			RelativeLayout.LayoutParams st = (RelativeLayout.LayoutParams) centerView_Click.getLayoutParams();
 			centerView_Click.layout(st.leftMargin, st.topMargin, st.leftMargin+ centerView_Click.getMeasuredWidth(),
 					st.topMargin + centerView_Click.getMeasuredHeight());
-//			Log.d("centerPoint", "Pingmu:left_"+st.leftMargin+" \t right_"+
-//			st.leftMargin+ centerView.getMeasuredWidth()+" \t top_"+st.topMargin
-//					+"\t bottom"+st.topMargin + centerView.getMeasuredHeight());
+//			Log.d("centerPoint", "Pingmu:left_"+st.leftMargin+" \eventType right_"+
+//			st.leftMargin+ centerView.getMeasuredWidth()+" \eventType top_"+st.topMargin
+//					+"\eventType bottom"+st.topMargin + centerView.getMeasuredHeight());
 			centerPoint=new Point(st.leftMargin+centerView_Click.getMeasuredWidth()/2,st.topMargin + centerView_Click.getMeasuredHeight()/2);
 			//给其他的控件进行 布局  从1开始
 			if(getChildCount()>1){

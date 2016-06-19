@@ -3,6 +3,8 @@ package com.example.mylib_test.activity.custom_view;
 import com.example.mylib_test.R;
 
 import and.base.activity.BaseActvity;
+import view.GestureView;
+import view.GestureView2;
 
 /**
  * Created by Administrator on 2016/4/14.
@@ -10,7 +12,13 @@ import and.base.activity.BaseActvity;
 public class ChengChengActivity extends BaseActvity {
     @Override
     public void setContentView() {
-        setContentView(R.layout.a_cheng);
+        String type = getIntent().getStringExtra("type");
+        if("ges".equals(type)){
+            setContentView(new GestureView(this));
+        }else if("ges2".equals(type)){
+            setContentView(new GestureView2(this));
+        } else
+            setContentView(R.layout.a_cheng);
     }
 
     @Override

@@ -88,7 +88,7 @@
 //					final int position) {
 //				SquareImageView iv = (SquareImageView) holder
 //						.findViewById(IV_ID);
-//				System.out.println("日狗少年data:" + data + "\t position:"
+//				System.out.println("日狗少年data:" + data + "\eventType position:"
 //						+ position);
 //				if (!ADD_STRING.equals(data)) {
 //					if (onImageGroupClickListener != null) {

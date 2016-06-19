@@ -1,4 +1,4 @@
-package and.utils;
+package and.utils.gesture;
 
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
@@ -10,7 +10,10 @@ public class RotationGestureDetector {
     private float fX, fY, sX, sY;
 
     private int mPointerIndex1, mPointerIndex2;
-    private float mAngle;
+    private float MoveAngle;
+
+
+    private float mStartAngle;
     private boolean mIsFirstTouch;
 
     private OnRotationGestureListener mListener;
@@ -21,25 +24,31 @@ public class RotationGestureDetector {
         mPointerIndex2 = INVALID_POINTER_INDEX;
     }
 
-    public float getAngle() {
-        return mAngle;
+    public float getMoveAngle() {
+        return MoveAngle;
+    }
+    public float getmStartAngle() {
+        return mStartAngle;
     }
 
+
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        switch (event.getActionMasked()) {
+        switch (event.getAction()&MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
                 sX = event.getX();
                 sY = event.getY();
                 mPointerIndex1 = event.findPointerIndex(event.getPointerId(0));
-                mAngle = 0;
+                MoveAngle = 0;
                 mIsFirstTouch = true;
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
-                fX = event.getX();
-                fY = event.getY();
+                fX = event.getX(1);
+                fY = event.getY(1);
                 mPointerIndex2 = event.findPointerIndex(event.getPointerId(event.getActionIndex()));
-                mAngle = 0;
+                MoveAngle = 0;
                 mIsFirstTouch = true;
+                mStartAngle=(float) Math.toDegrees( Math.atan2(fY-sY, fX-sX));
+//                System.out.println("mlgb:"+mStartAngle);
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (mPointerIndex1 != INVALID_POINTER_INDEX && mPointerIndex2 != INVALID_POINTER_INDEX && event.getPointerCount() > mPointerIndex2) {
@@ -51,10 +60,10 @@ public class RotationGestureDetector {
                     nfY = event.getY(mPointerIndex2);
 
                     if (mIsFirstTouch) {
-                        mAngle = 0;
+                        MoveAngle = 0;
                         mIsFirstTouch = false;
                     } else {
-                        calculateAngleBetweenLines(fX, fY, sX, sY, nfX, nfY, nsX, nsY);
+                        calculateAngleBetweenLines( nfX, nfY, nsX, nsY);
                     }
 
                     if (mListener != null) {
@@ -76,23 +85,15 @@ public class RotationGestureDetector {
         return true;
     }
 
-    private float calculateAngleBetweenLines(float fx1, float fy1, float fx2, float fy2,
+    private float calculateAngleBetweenLines(
                                              float sx1, float sy1, float sx2, float sy2) {
-        return calculateAngleDelta(
-                (float) Math.toDegrees((float) Math.atan2((fy1 - fy2), (fx1 - fx2))),
-                (float) Math.toDegrees((float) Math.atan2((sy1 - sy2), (sx1 - sx2))));
+        return calculateAngleDelta((float) Math.toDegrees( Math.atan2((sy1 - sy2), (sx1 - sx2))));
     }
 
-    private float calculateAngleDelta(float angleFrom, float angleTo) {
-        mAngle = angleTo % 360.0f - angleFrom % 360.0f;
-
-        if (mAngle < -180.0f) {
-            mAngle += 360.0f;
-        } else if (mAngle > 180.0f) {
-            mAngle -= 360.0f;
-        }
-
-        return mAngle;
+    private float calculateAngleDelta(float angleTo) {
+        MoveAngle = angleTo - mStartAngle ;
+//        System.out.println("mlgb:"+MoveAngle+"__________angleTo  "+angleTo +"_______angleFrom"+ mStartAngle);
+        return MoveAngle;
     }
 
     public static class SimpleOnRotationGestureListener implements OnRotationGestureListener {

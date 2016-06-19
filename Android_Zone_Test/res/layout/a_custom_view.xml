@@ -153,6 +153,20 @@
         android:layout_margin="4dp"
         android:onClick="onClick"
         android:text="成成" />
+    <Button
+        android:id="@+id/ges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="手势View测试" />
+    <Button
+        android:id="@+id/ges2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="手势View测试2" />
 
     <view.testing.DrawView
         android:layout_width="100dp"

@@ -339,7 +339,7 @@ public class LabelView extends View {
 	protected void onDraw(Canvas canvas) {
 		for (MoveAttri item : moveAttri_list) {
 //			item.toString();
-//			System.out.println("位置："+moveAttri_list.indexOf(item)+"\tx:"+item.getReallyLocation_X()+"\t y:"+ item.getReallyLocation_Y());
+//			System.out.println("位置："+moveAttri_list.indexOf(item)+"\tx:"+item.getReallyLocation_X()+"\eventType y:"+ item.getReallyLocation_Y());
 			//原图的操作
 			canvas.drawBitmap(item.bitmap,getMainMaritx_withRorate(item), null);
 			if(showHelper!=null&&item==showHelper){
