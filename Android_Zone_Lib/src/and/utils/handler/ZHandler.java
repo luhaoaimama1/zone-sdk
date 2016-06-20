@@ -24,4 +24,8 @@ public  class ZHandler extends Handler {
     public interface ZCallback{
          void handleMessage(Message msg);
     }
+
+    public void removeAllMessage(){
+        removeCallbacksAndMessages(null);//remove全部任务！
+    }
 }
