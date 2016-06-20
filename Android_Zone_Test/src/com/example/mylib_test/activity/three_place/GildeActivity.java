@@ -73,6 +73,9 @@ public class GildeActivity extends BaseActvity {
     }
 
     private void setImageBitmap() {
+
+
+
         switch (type) {
             case HTTP:
                 Glide.with(this) .load("http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg")
