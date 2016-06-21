@@ -1,2 +1,2 @@
-include ':Android_Zone_Lib', ':Http_Rflist_ZHelper', ':UltraRefresh', ':log', ':customView'
+include ':Android_Zone_Lib', ':UltraRefresh', ':log', ':customView'
 include ':Android_Zone_Test'

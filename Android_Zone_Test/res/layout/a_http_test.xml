@@ -46,36 +46,6 @@
             android:onClick="onClick"
             android:text="eventBus" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#00ff00"
-            android:gravity="center"
-            android:text="封装NetworkPull测试" />
-
-        <Button
-            android:id="@+id/noPullTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
-            android:text="noPull测试" />
-
-        <Button
-            android:id="@+id/noPull_GloboTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
-            android:text="noPull_Globlo测试" />
-
-        <Button
-            android:id="@+id/pullGet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
-            android:text="havePull_Get测试" />
 
     </view.FlowLayout_Zone>
 </ScrollView>
