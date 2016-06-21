@@ -4,7 +4,6 @@ apply plugin: 'me.tatarka.retrolambda'
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile project(':Android_Zone_Lib')
-    compile 'com.zone:http-rflist-helper:1.0.2'
     compile project(':UltraRefresh')
     compile project(':log')
     compile 'com.jakewharton:butterknife:7.0.1'
@@ -20,6 +19,9 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'jp.wasabeef:blurry:2.0.0'
+
+    compile 'com.zone:zadapter:1.0.1'
+    compile 'com.zone:zokhttp:1.1.2'
 }
 
 android {
