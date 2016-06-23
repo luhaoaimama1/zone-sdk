@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import com.bumptech.glide.Glide;
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.three_place.Images;
+import com.example.mylib_test.Images;
 import com.zone.view.ninegridview.TouchGreyImageView;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +16,6 @@ import butterknife.ButterKnife;
 import com.zone.view.ninegridview.ZGridViewAdapter;
 import com.zone.view.ninegridview.ZGridView;
 import com.zone.view.ninegridview.preview.ImageInfo;
-import com.zone.view.ninegridview.preview.ImagePreviewActivity;
 import com.zone.view.ninegridview.preview.ImagePreviewAdapter;
 
 /**

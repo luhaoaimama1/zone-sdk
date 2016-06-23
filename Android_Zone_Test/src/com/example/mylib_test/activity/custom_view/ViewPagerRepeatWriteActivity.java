@@ -7,8 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.pop_dialog.pop.Pop_Photo;
-import com.example.mylib_test.activity.three_place.Images;
+import com.example.mylib_test.Images;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.zbanner.FixedSpeedScroller;
 import com.zone.zbanner.ViewPagerCircle;

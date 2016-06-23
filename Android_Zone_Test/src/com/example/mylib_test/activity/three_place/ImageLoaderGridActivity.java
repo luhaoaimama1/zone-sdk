@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.mylib_test.R;
+import com.example.mylib_test.Images;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.callback.Helper;
