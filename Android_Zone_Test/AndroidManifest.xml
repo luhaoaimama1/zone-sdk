@@ -73,9 +73,6 @@
         <activity android:name="com.example.mylib_test.activity.three_place.UltraRefresh"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GildeActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.RecyclerActivity"
-            android:theme="@style/AnimalSetAppTheme"></activity>
         <activity android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.SoftTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
@@ -89,8 +86,6 @@
         <activity android:name="com.example.mylib_test.activity.animal.ViewHelperTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CustomAniActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.PixelsAcitivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.three_place.ImageLoaderGridActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.custom_view.ViewPagerRepeatWriteActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.file.FileTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.file.Activity1"></activity>
         <activity android:name="com.example.mylib_test.activity.file.Activity2"></activity>

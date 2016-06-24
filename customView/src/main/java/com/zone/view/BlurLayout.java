@@ -44,8 +44,8 @@ public class BlurLayout extends RelativeLayout {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         //canvas get a bitmap  so I copy and  change to draw
-        paint.setColor(Color.CYAN);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, getMeasuredWidth() / 2, paint);
+//        paint.setColor(Color.CYAN);
+//        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, getMeasuredWidth() / 2, paint);
 
     }
 }
