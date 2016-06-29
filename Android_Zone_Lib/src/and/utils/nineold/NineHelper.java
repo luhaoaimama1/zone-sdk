@@ -1,11 +1,13 @@
 package and.utils.nineold;
 
 import android.view.View;
+
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.TypeEvaluator;
 import com.nineoldandroids.view.ViewHelper;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -17,40 +19,43 @@ public class NineHelper {
     public  static long DURATION = 500;
 
     private static AnimatorSet newInstance() {
-        AnimatorSet mAnimatorSet=newInstance();
+        AnimatorSet mAnimatorSet=new AnimatorSet();
         mAnimatorSet.setDuration(DURATION);
         return mAnimatorSet;
     }
 
-    public static AnimatorSet playSequentially(Animator... items){
+    public static AnimatorSetProxy playSequentially(Animator... items){
         AnimatorSet mAnimatorSet=newInstance();
         mAnimatorSet.playSequentially(items);
-        return mAnimatorSet;
+        return new AnimatorSetProxy(mAnimatorSet);
     }
-    public static AnimatorSet playSequentially(List<Animator> items){
+    public static AnimatorSetProxy playSequentially(List<Animator> items){
         AnimatorSet mAnimatorSet=newInstance();
         mAnimatorSet.playSequentially(items);
-        return mAnimatorSet;
+        return new AnimatorSetProxy(mAnimatorSet);
     }
-    public static AnimatorSet playTogether(Animator... items){
+    public static AnimatorSetProxy playTogether(Animator... items){
         AnimatorSet mAnimatorSet=newInstance();
         mAnimatorSet.playTogether(items);
-        return mAnimatorSet;
-    }
-    public static AnimatorSet playTogether(Collection<Animator> items){
-        AnimatorSet mAnimatorSet=newInstance();
-        mAnimatorSet.playTogether(items);
-        return mAnimatorSet;
+        return new AnimatorSetProxy(mAnimatorSet);
     }
 
-    public static  AnimatorSet play(BaseViewAnimator mBaseViewAnimator){
+
+    public static AnimatorSetProxy playTogether(Collection<Animator> items){
+        AnimatorSet mAnimatorSet=newInstance();
+        mAnimatorSet.playTogether(items);
+        return new AnimatorSetProxy(mAnimatorSet);
+    }
+
+
+    public static  AnimatorSetProxy play(BaseViewAnimator mBaseViewAnimator){
         AnimatorSet mAnimatorSet=newInstance();
         mBaseViewAnimator.prepare(mAnimatorSet);
-        return mAnimatorSet;
+        return new AnimatorSetProxy(mAnimatorSet);
     };
 
 
-    private static  AnimatorSet play(Class<? extends BaseViewAnimator> mBaseViewAnimator){
+    private static  AnimatorSetProxy play(Class<? extends BaseViewAnimator> mBaseViewAnimator){
         try {
             return play(mBaseViewAnimator.newInstance());
         } catch (InstantiationException e) {
@@ -86,6 +91,7 @@ public class NineHelper {
         ViewHelper.setPivotX(target, target.getMeasuredWidth() / 2.0f);
         ViewHelper.setPivotY(target, target.getMeasuredHeight() / 2.0f);
     }
+    //为了添加预设而用  //灵感来自 daimajia的AndroidViewAnimations
     public interface BaseViewAnimator{
          void prepare(AnimatorSet mAnimatorSet) ;
     }
