@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import and.utils.StringUtils;
+import and.utils.check.StringCheck;
 
 /**
  * ResourceUtils
@@ -30,7 +30,7 @@ public class Assets2RawUtils {
      * @return
      */
     public static String geFileFromAssets(Context context, String fileName) {
-        if (context == null || StringUtils.isEmptyTrim(fileName)) {
+        if (context == null || StringCheck.isEmptyTrim(fileName)) {
             return null;
         }
 
@@ -86,7 +86,7 @@ public class Assets2RawUtils {
      * @return
      */
     public static List<String> geFileToListFromAssets(Context context, String fileName) {
-        if (context == null || StringUtils.isEmptyTrim(fileName)) {
+        if (context == null || StringCheck.isEmptyTrim(fileName)) {
             return null;
         }
 

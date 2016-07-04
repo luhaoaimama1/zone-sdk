@@ -1,4 +1,4 @@
-package and.utils;
+package and.utils.check;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -8,9 +8,9 @@ import java.net.URLEncoder;
  * 
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2011-7-22
  */
-public class StringUtils {
+public class StringCheck {
 
-    private StringUtils() {
+    private StringCheck() {
         throw new AssertionError();
     }
 

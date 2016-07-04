@@ -7,6 +7,8 @@ import java.lang.ref.WeakReference;
 
 /**
  * Created by Administrator on 2016/5/10.
+ *
+ * get specially point from View or Bitmap;
  */
 public class DrawBind {
     private WeakReference <View> softView;

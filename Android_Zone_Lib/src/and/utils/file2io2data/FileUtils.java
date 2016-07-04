@@ -94,21 +94,7 @@ public class FileUtils {
         return file;
     }
 
-    /***
-     * 获取文件扩展名
-     *
-     * @param filename
-     * @return 返回文件扩展名
-     */
-    public static String getExtensionName(String filename) {
-        if ((filename != null) && (filename.length() > 0)) {
-            int dot = filename.lastIndexOf('.');
-            if ((dot > -1) && (dot < (filename.length() - 1))) {
-                return filename.substring(dot + 1);
-            }
-        }
-        return filename;
-    }
+
 
 
     /**
@@ -267,7 +253,21 @@ public class FileUtils {
         return file.lastModified() > timeMillis;
     }
 
-
+    /***
+     * 获取文件扩展名
+     *
+     * @param filename
+     * @return 返回文件扩展名
+     */
+    public static String getExtensionName(String filename) {
+        if ((filename != null) && (filename.length() > 0)) {
+            int dot = filename.lastIndexOf('.');
+            if ((dot > -1) && (dot < (filename.length() - 1))) {
+                return filename.substring(dot + 1);
+            }
+        }
+        return filename;
+    }
     /**
      * 获取文件类型 D:\psb.jpg->jpg 没有点
      *
