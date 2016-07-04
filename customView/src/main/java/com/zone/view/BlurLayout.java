@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 /**
  * Created by Administrator on 2016/4/20.
+ * todo  这个是测试用的...
  */
 public class BlurLayout extends RelativeLayout {
     private final Paint paint;

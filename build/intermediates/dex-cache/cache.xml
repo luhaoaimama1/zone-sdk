@@ -2,25 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/butterknife-7.0.1_b1042d5f5af56eaba5d6e1170a7b23d337a3e5a1.jar" />
-    </item>
-    <item
         jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
         <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/okhttp-3.2.0_5a7c204996448f685c1f68e1341b8a1c85698f1b.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/ZoneStudio/customView/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="46bb6275e5912edb2893dabb9096530f174fc71b">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/ZoneStudio-customView-unspecified_2ae85bca4b8df68ad0813ae81f2a0fd377ca1270.jar" />
     </item>
     <item
         jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/ZoneStudio/Android_Zone_Lib/unspecified/jars/classes.jar"
@@ -44,11 +30,11 @@
         <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/internal_impl-23.3.0_57858b8a559317cf543eb350084ee4ae5639e4fb.jar" />
     </item>
     <item
-        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.github.tianzhijiexian/logger/1.1.7/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
-        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/gson-2.6.1_4b6df969d1eb628cca99e0caf53427ffc2f51f6a.jar" />
+        sha1="0cd829f0a129e7592c46d171741958dd7d1905ba">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.github.tianzhijiexian-logger-1.1.7_b6658d15f10a93e95f641287edbe97055b125d90.jar" />
     </item>
     <item
         jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.2/43eeae0b9fb087bb3194ba59ab63a38a32fbf3e/retrofit-2.0.2.jar"
@@ -63,6 +49,90 @@
         revision="23.0.3"
         sha1="528f38233a6f9926573918cc238c06c8c7890ad5">
         <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/jp.wasabeef-blurry-2.0.0_4de3756724bba28b6c3be849f613da0edbfd4ce4.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.zone/zokhttp/1.1.2/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="71d09463e2ccf704a0add4167de6ce069bf62cd2">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.zone-zokhttp-1.1.2_405052cb52f4d473361084b788360d63f2002d63.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e0b0c35d02308b270015a74cada4887e2e49b889">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-22.1.1_32a660ebd8247a33c477f80e624d4c46d2b68c6d.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/ZoneStudio/UltraRefresh/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="90baa4d1e39e7001df27accca419dc4dfc9e6725">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/ZoneStudio-UltraRefresh-unspecified_2d36962b8c962e7153d9eeaaec505135a96b5d84.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.zone/zadapter/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="1c34d963dde528339ea98e32ac74bf651014fcc7">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.zone-zadapter-1.0.1_0d96daf1cbac72e71176f97d39bd0c93d1df4139.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.zone/zbanner/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="4af1e79e6aea84053d2a3da9f50e300bff734240">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.zone-zbanner-1.0.0_98fd89b33020e9c665e9a660a0441b49569b6b95.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.5/442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375/universal-image-loader-1.9.5.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.5_ce9d2b18d4821d4f0af6c446310d207fe7f8475b.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/okio-1.6.0_d88e3471fad881a68fac17c1cbda4e5e5e227915.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/library-2.4.0_1f0ef8d06d96527d88d33c0a35d2913aa751f6a7.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/eventbus-3.0.0_79284e682b10488910230d5467e16e9ff7ee8041.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/butterknife-7.0.1_b1042d5f5af56eaba5d6e1170a7b23d337a3e5a1.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/ZoneStudio/customView/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="0607c0040b610218ca7ad310dba2c99bab769801">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/ZoneStudio-customView-unspecified_2ae85bca4b8df68ad0813ae81f2a0fd377ca1270.jar" />
+    </item>
+    <item
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/gson-2.6.1_4b6df969d1eb628cca99e0caf53427ffc2f51f6a.jar" />
     </item>
     <item
         jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/me.imid.swipebacklayout.lib/library/1.0.0/jars/classes.jar"
@@ -114,13 +184,6 @@
         <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.github.traex.rippleeffect-library-1.3_f3284d8a4e0cdd9526dbdf2a2e8a2831fd9d0bca.jar" />
     </item>
     <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/ZoneStudio/log/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="5e4283a75e112b863c7bf73b01d81c767f5c69ce">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/ZoneStudio-log-unspecified_5cd65509f29f6d6b3eb1d0043846918b37976c6f.jar" />
-    </item>
-    <item
         jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.3"
@@ -128,53 +191,11 @@
         <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/io.reactivex-rxandroid-1.1.0_2d38371476af13d8f3c369bba30e3cb7f5d6b175.jar" />
     </item>
     <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.zone/zokhttp/1.1.2/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="71d09463e2ccf704a0add4167de6ce069bf62cd2">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.zone-zokhttp-1.1.2_405052cb52f4d473361084b788360d63f2002d63.jar" />
-    </item>
-    <item
         jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.3/5a1aef6a9d56efb473b8be6b66689077e7317c45/rxjava-1.1.3.jar"
         jumboMode="false"
         revision="23.0.3"
         sha1="5a1aef6a9d56efb473b8be6b66689077e7317c45">
         <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/rxjava-1.1.3_8466b1c45c8516485e16743c21d3517cfa73f22f.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/22.1.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="e0b0c35d02308b270015a74cada4887e2e49b889">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-22.1.1_32a660ebd8247a33c477f80e624d4c46d2b68c6d.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/ZoneStudio/UltraRefresh/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="90baa4d1e39e7001df27accca419dc4dfc9e6725">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/ZoneStudio-UltraRefresh-unspecified_2d36962b8c962e7153d9eeaaec505135a96b5d84.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.zone/zadapter/1.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="1c34d963dde528339ea98e32ac74bf651014fcc7">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.zone-zadapter-1.0.1_0d96daf1cbac72e71176f97d39bd0c93d1df4139.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.zone/zbanner/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="4af1e79e6aea84053d2a3da9f50e300bff734240">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.zone-zbanner-1.0.0_98fd89b33020e9c665e9a660a0441b49569b6b95.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.5/442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375/universal-image-loader-1.9.5.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/universal-image-loader-1.9.5_ce9d2b18d4821d4f0af6c446310d207fe7f8475b.jar" />
     </item>
     <item
         jar="/Users/fuzhipeng/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
@@ -189,27 +210,6 @@
         revision="23.0.3"
         sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
         <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/converter-gson-2.0.2_b556ed7e36eefee084e5b4862d7a3e5960119903.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/okio-1.6.0_d88e3471fad881a68fac17c1cbda4e5e5e227915.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/library-2.4.0_1f0ef8d06d96527d88d33c0a35d2913aa751f6a7.jar" />
-    </item>
-    <item
-        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/eventbus-3.0.0_79284e682b10488910230d5467e16e9ff7ee8041.jar" />
     </item>
     <item
         jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
