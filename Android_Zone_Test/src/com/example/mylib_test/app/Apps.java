@@ -129,8 +129,7 @@ public class Apps extends Application {
     }
 
     private void loggerTest() {
-        Logger.initialize(
-                Settings.getInstance()
+        Logger.initialize(new Settings()
                         .isShowMethodLink(true)
                         .isShowThreadInfo(false)
                         .setMethodOffset(0)
@@ -152,7 +151,7 @@ public class Apps extends Application {
 
         //Logger.d(test, "s"); // Note:incorrect
 
-        Logger.t("Custom Tag").w("logger load custom tag");
+        Logger.w("logger load custom tag");
         try {
             Class.forName("kale");
         } catch (ClassNotFoundException e) {
