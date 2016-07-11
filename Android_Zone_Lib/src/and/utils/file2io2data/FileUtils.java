@@ -28,7 +28,7 @@ public class FileUtils {
      * @return
      */
     public static File getFile(File dir, String... arg) {
-        if(!dir.exists()||!dir.isDirectory())
+        if (!dir.exists() || !dir.isDirectory())
             throw new IllegalStateException("dir must be exist and is folder!");
         String f = dir.getPath();
         String pathJoin = "";
@@ -40,12 +40,10 @@ public class FileUtils {
                 pathJoin += "/" + str;
         }
         File file = new File(f + pathJoin);
+        if (!file.exists())
+            file.mkdirs();
         if (fileEnd != null)
-            if (!file.exists())
-                file.mkdirs();
-        if (fileEnd != null) {
             file = new File(file, fileEnd);
-        }
         return file;
     }
 
@@ -123,7 +121,7 @@ public class FileUtils {
      * @param directory directory to delete
      * @throws java.io.IOException in case deletion is unsuccessful
      */
-    public static void deleteDirectory(File directory) throws IOException {
+    private static void deleteDirectory(File directory) throws IOException {
         if (!directory.exists()) {
             return;
         }
@@ -157,6 +155,7 @@ public class FileUtils {
         }
         return file.lastModified() > timeMillis;
     }
+
     /**
      * 获取文件类型 D:\psb.jpg->jpg 没有点
      *
@@ -199,6 +198,7 @@ public class FileUtils {
 
     /**
      * 获取文件的上传类型
+     *
      * @param file
      * @return 图片格式为image/png,image/jpg等。非图片为application/octet-stream
      */

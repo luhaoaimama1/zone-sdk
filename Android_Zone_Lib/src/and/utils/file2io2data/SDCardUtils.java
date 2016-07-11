@@ -27,15 +27,6 @@ public class SDCardUtils {
      *
      * @return
      */
-    public static String getSDCardPath() {
-        return Environment.getExternalStorageDirectory().getAbsolutePath()
-                + File.separator;
-    }
-    /**
-     * 获取SD卡路径
-     *
-     * @return
-     */
     public static File getSDCardDir() {
         return Environment.getExternalStorageDirectory();
     }
@@ -82,6 +73,15 @@ public class SDCardUtils {
         return stat.getBlockSize() * availableBlocks;
     }
 
+    /**
+     * 获取SD卡路径 带分隔符的
+     *
+     * @return
+     */
+    private static String getSDCardPath() {
+        return Environment.getExternalStorageDirectory().getAbsolutePath()
+                + File.separator;
+    }
 
     /**
      * SdSituation.IsSDspaceEnough(MainActivity.this, null);会打印 剩余内存 <br>
