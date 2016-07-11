@@ -14,6 +14,7 @@ import java.io.File;
 
 import and.base.activity.BaseActvity;
 import and.utils.file2io2data.FileUtils;
+import and.utils.file2io2data.SDCardUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -84,7 +85,7 @@ public class GildeActivity extends BaseActvity {
                 bt.setText("HTTP");
                 break;
             case File:
-                Glide.with(this).load(new FileUtils().getFile("1.jpg"))
+                Glide.with(this).load(new FileUtils().getFile(SDCardUtils.getSDCardDir(),"1.jpg"))
                         .placeholder(R.drawable.ic_stub).dontAnimate()
                         .into(iv);
                 bt.setText("File");
@@ -103,7 +104,7 @@ public class GildeActivity extends BaseActvity {
                 break;
             case Gif:
 //                Glide.load(this).load("http://ww1.sinaimg.cn/mw1024/005PquKVjw1f2jerohsz1g30ku0esb2a.gif").asGif()
-                Glide.with(this).load(new FileUtils().getFile("abc.gif")).asGif()
+                Glide.with(this).load(new FileUtils().getFile(SDCardUtils.getSDCardDir(),"abc.gif")).asGif()
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .fitCenter()
                         .placeholder(R.drawable.ic_stub).dontAnimate()
@@ -114,7 +115,7 @@ public class GildeActivity extends BaseActvity {
             case Mp4:
                 //todo 显示不了。。。 看到这页了 http://mrfu.me/2016/02/27/Glide_Displaying_Gifs_&_Videos/
 //                File file = new FileUtils().getFile("面具男鬼步舞教程6个基本动作鬼步舞音乐 高清.mp4");
-                File file2 = new FileUtils().getFile("DCIM","Camera","VID_20160306_125251.mp4");
+                File file2 = new FileUtils().getFile(SDCardUtils.getSDCardDir(),"DCIM","Camera","VID_20160306_125251.mp4");
                 Glide.with(this).load(Uri.fromFile(file2))
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .fitCenter()
@@ -124,7 +125,7 @@ public class GildeActivity extends BaseActvity {
                 bt.setText("Mp4");
                 break;
             case Error:
-                Glide.with(this).load(new FileUtils().getFile("1111.jpg"))
+                Glide.with(this).load(new FileUtils().getFile(SDCardUtils.getSDCardDir(),"1111.jpg"))
                         .placeholder(R.drawable.ic_stub).dontAnimate()
                         .error(R.drawable.ic_error)
                         .into(iv);

@@ -17,31 +17,6 @@ import android.os.Environment;
  */
 public class FileUtils {
     /**
-     * 获取系统存储路径
-     *
-     * @return
-     */
-    public static String getRootDirectoryPath() {
-        return Environment.getRootDirectory().getAbsolutePath();
-    }
-
-    public static File getCacheDir(Context context) {
-        return context.getCacheDir();
-    }
-
-    public static File getDiskCacheDir(Context context, String fileDirName) {
-        String cachePath;
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
-                || !Environment.isExternalStorageRemovable()) {
-            cachePath = context.getExternalCacheDir().getPath();
-        } else {
-            cachePath = context.getCacheDir().getPath();
-        }
-        return new File(cachePath + File.separator + fileDirName);
-    }
-
-
-    /**
      * 关于SD卡下  多层文件的建立
      * 可以得到文件夹 ,文件 ,根目录
      *
@@ -52,96 +27,26 @@ public class FileUtils {
      *            </strong>
      * @return
      */
-    public static File getFile(String... arg) {
-        return getFile(true, arg);
-    }
-
-    /**
-     * 关于SD卡下  多层文件的建立
-     *
-     * @param isNotCreate 当文件不存在的时候是否创建
-     *                    <br>如果创建的是文件 而不是文件夹  即使 isNotCreate false了也会自动修改成true
-     * @param arg         参数文件夹路径
-     * @return
-     */
-    private static File getFile(boolean isNotCreate, String... arg) {
-        String sdStatus = Environment.getExternalStorageState();
-        if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) { // 检测sd是否可用
-            throw new NullPointerException("sd卡存在否：false!");
-        }
+    public static File getFile(File dir, String... arg) {
+        if(!dir.exists()||!dir.isDirectory())
+            throw new IllegalStateException("dir must be exist and is folder!");
+        String f = dir.getPath();
         String pathJoin = "";
         String fileEnd = null;
         for (String str : arg) {
-            if (str.contains(".")) {
+            if (str.contains("."))
                 fileEnd = str;
-            } else {
+            else
                 pathJoin += "/" + str;
-            }
-
         }
-        String f = Environment.getExternalStorageDirectory().getPath();
         File file = new File(f + pathJoin);
         if (fileEnd != null)
-            isNotCreate = true;
-        if (isNotCreate && !file.exists()) {
-            boolean isOk = file.mkdirs();
-            if (!isOk) {
-            }
-        }
+            if (!file.exists())
+                file.mkdirs();
         if (fileEnd != null) {
             file = new File(file, fileEnd);
         }
         return file;
-    }
-
-
-
-
-    /**
-     * Decodes the specified URL as per RFC 3986, i.e. transforms
-     * percent-encoded octets to characters by decoding load the UTF-8 character
-     * set. This function is primarily intended for usage load
-     * {@link java.net.URL} which unfortunately does not enforce proper URLs. As
-     * such, this method will leniently accept invalid characters or malformed
-     * percent-encoded octets and simply pass them literally through to the
-     * result string. Except for rare edge cases, this will make unencoded URLs
-     * pass through unaltered.
-     *
-     * @param url The URL to decode, may be {@code null}.
-     * @return The decoded URL or {@code null} if the input was
-     * {@code null}.
-     */
-    static String decodeUrl(String url) {
-        String decoded = url;
-        if (url != null && url.indexOf('%') >= 0) {
-            int n = url.length();
-            StringBuffer buffer = new StringBuffer();
-            ByteBuffer bytes = ByteBuffer.allocate(n);
-            for (int i = 0; i < n; ) {
-                if (url.charAt(i) == '%') {
-                    try {
-                        do {
-                            byte octet = (byte) Integer.parseInt(url.substring(i + 1, i + 3), 16);
-                            bytes.put(octet);
-                            i += 3;
-                        } while (i < n && url.charAt(i) == '%');
-                        continue;
-                    } catch (RuntimeException e) {
-                        // malformed percent-encoded octet, fall through and
-                        // append characters literally
-                    } finally {
-                        if (bytes.position() > 0) {
-                            bytes.flip();
-                            buffer.append(Charset.forName("UTF-8").decode(bytes).toString());
-                            bytes.clear();
-                        }
-                    }
-                }
-                buffer.append(url.charAt(i++));
-            }
-            decoded = buffer.toString();
-        }
-        return decoded;
     }
 
 
@@ -252,22 +157,6 @@ public class FileUtils {
         }
         return file.lastModified() > timeMillis;
     }
-
-    /***
-     * 获取文件扩展名
-     *
-     * @param filename
-     * @return 返回文件扩展名
-     */
-    public static String getExtensionName(String filename) {
-        if ((filename != null) && (filename.length() > 0)) {
-            int dot = filename.lastIndexOf('.');
-            if ((dot > -1) && (dot < (filename.length() - 1))) {
-                return filename.substring(dot + 1);
-            }
-        }
-        return filename;
-    }
     /**
      * 获取文件类型 D:\psb.jpg->jpg 没有点
      *
@@ -278,7 +167,7 @@ public class FileUtils {
         String fileName = file.getName();
         int typeIndex = fileName.lastIndexOf(".");
         if (typeIndex != -1) {
-            return fileName.substring(typeIndex + 1).toLowerCase();
+            return fileName.substring(typeIndex + 1);
         } else {
             return "";
         }
@@ -314,9 +203,8 @@ public class FileUtils {
      * @return 图片格式为image/png,image/jpg等。非图片为application/octet-stream
      */
     public static String getContentType(File file) {
-        if (isImage(file)) {
+        if (isImage(file))
             return "image/" + getFileSuffix(file).toLowerCase();// 将FormatName返回的值转换成小写，默认为大写r
-        }
         return "application/octet-stream";
     }
 }

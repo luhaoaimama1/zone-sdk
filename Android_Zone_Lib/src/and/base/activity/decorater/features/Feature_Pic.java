@@ -6,6 +6,8 @@ import and.base.activity.decorater.features.core.ExtraFeature;
 import and.base.activity.RequestCodeConfig;
 import and.LogUtil;
 import and.utils.file2io2data.FileUtils;
+import and.utils.file2io2data.SDCardUtils;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -22,7 +24,7 @@ import android.text.format.DateFormat;
  */
 public abstract  class Feature_Pic extends ExtraFeature{
 	private static String path;
-	private static File outFile = FileUtils.getFile("Zone", "picSave");
+	private static File outFile = FileUtils.getFile(SDCardUtils.getSDCardDir(),"Zone", "picSave");
 
 	public Feature_Pic(Activity activity) {
 		super(activity);

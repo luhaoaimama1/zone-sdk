@@ -21,6 +21,7 @@ dependencies {
 
     compile 'com.zone:zadapter:1.0.1'
     compile 'com.zone:zokhttp:1.1.2'
+
     compile 'com.github.tianzhijiexian:logger:1.1.8'
 }
 

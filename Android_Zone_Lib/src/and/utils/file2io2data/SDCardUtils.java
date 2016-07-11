@@ -14,7 +14,6 @@ import android.text.format.Formatter;
 public class SDCardUtils {
     /**
      * 判断SDCard是否可用
-     *
      * @return
      */
     public static boolean isSDCardEnable() {
@@ -31,6 +30,14 @@ public class SDCardUtils {
     public static String getSDCardPath() {
         return Environment.getExternalStorageDirectory().getAbsolutePath()
                 + File.separator;
+    }
+    /**
+     * 获取SD卡路径
+     *
+     * @return
+     */
+    public static File getSDCardDir() {
+        return Environment.getExternalStorageDirectory();
     }
 
     /**
@@ -144,6 +151,7 @@ public class SDCardUtils {
             return false;
         }
     }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static SDCardInfo getSDCardInfo() {
         SDCardInfo sd = new SDCardInfo();
@@ -169,6 +177,7 @@ public class SDCardUtils {
         LogUtil.i(sd.toString());
         return sd;
     }
+
     /**
      * see more {@link StatFs}
      */

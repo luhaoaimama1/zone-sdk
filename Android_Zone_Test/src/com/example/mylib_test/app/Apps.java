@@ -97,7 +97,7 @@ public class Apps extends Application {
 //				this));
 
 
-        loggerTest();
+//        loggerTest();
         spUesrTest();
 
     }
