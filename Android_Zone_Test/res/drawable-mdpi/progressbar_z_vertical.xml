@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景  gradient是渐变,corners定义的是圆角 -->
+    <item
+        android:id="@android:id/background"
+        android:paddingBottom="3px"
+        android:paddingTop="3px">
+        <shape>
+            <corners android:radius="20dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#a0eeff" />
+            <solid android:color="#CCC" />
+
+        </shape>
+    </item>
+    <!-- 进度条   -->
+    <item
+        android:id="@android:id/progress"
+        android:paddingBottom="3px"
+        android:paddingTop="3px">
+        <!--进度条必须用clip 因为他是基于这个工作的-->
+        <clip
+            android:clipOrientation="vertical"
+            android:gravity="bottom">>
+            <shape>
+                <corners android:radius="20dp" />
+                <stroke
+                    android:width="2dp"
+                    android:color="#a0eeff" />
+                <solid android:color="#00ff00" />
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

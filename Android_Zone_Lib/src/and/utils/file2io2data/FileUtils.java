@@ -28,6 +28,8 @@ public class FileUtils {
      * @return
      */
     public static File getFile(File dir, String... arg) {
+        if(dir==null)
+            throw new NullPointerException("dir must be not null");
         if (!dir.exists() || !dir.isDirectory())
             throw new IllegalStateException("dir must be exist and is folder!");
         String f = dir.getPath();

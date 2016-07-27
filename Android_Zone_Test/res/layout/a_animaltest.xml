@@ -146,6 +146,52 @@
             android:layout_margin="4dp"
             android:onClick="onClick"
             android:text="各种基本图形" />
+        <view.testing.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="我了擦 gaga" />
+
+        <view.testing.ShineTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="我了擦 gaga " />
+        <view.testing.DrawView
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#00ff00"
+            android:gravity="center"
+            android:text="关于遮罩的几种方式(Xfermode就不用说了上边有)" />
+
+        <view.testing.MyClipTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="Canvas's clipRect " />
+        <Button
+            android:id="@+id/bt_clip_shader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="shader" />
+        <Button
+            android:id="@+id/bt_clip_drawable"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/clip_test"
+            android:text="Drawable clip" />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -190,7 +236,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:onClick="onClick"
-            android:text="位图方法内回收测试" />
+            android:text="回收使用的位图测试(点击崩溃)" />
         
         <ImageView
             android:id="@+id/iv_iv"

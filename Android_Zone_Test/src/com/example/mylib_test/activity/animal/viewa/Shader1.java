@@ -12,18 +12,20 @@ import android.graphics.Shader.TileMode;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class Shader1 extends View{
-	Paint  paint=new Paint();
-	private Context context;
-	public Shader1(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		this.context=context;
-	}
+public class Shader1 extends View {
+    Paint paint = new Paint();
+    private Context context;
 
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
-		paint.setShader(new BitmapShader(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher),TileMode.REPEAT,TileMode.REPEAT));
-		canvas.drawCircle(getWidth()/2, getHeight()/2, 200, paint);
-	}
+    public Shader1(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.context = context;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        paint.setShader(new BitmapShader(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher),
+                TileMode.REPEAT, TileMode.REPEAT));
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, 200, paint);
+    }
 }

@@ -1,28 +1,35 @@
 package com.example.mylib_test.activity.animal;
 
-import view.FlowLayout_Zone;
-
-import com.example.mylib_test.R;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ClipDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
+import com.example.mylib_test.R;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import view.FlowLayout_Zone;
+
 public class Animal_MainActivity extends Activity implements OnClickListener {
+    @Bind(R.id.bt_clip_drawable)
+    Button btClipDrawable;
     private FlowLayout_Zone flowLayoutZone1;
     private ImageView iv_iv;
     private Bitmap bt;
     private ScrollView sv;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -32,11 +39,15 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_animaltest);
+        ButterKnife.bind(this);
         flowLayoutZone1 = (FlowLayout_Zone) findViewById(R.id.flowLayoutZone1);
         iv_iv = (ImageView) findViewById(R.id.iv_iv);
         sv = (ScrollView) findViewById(R.id.sv);
         testViewTreeObserverListener();
         bt = BitmapFactory.decodeResource(getResources(), R.drawable.abcd);
+
+        ClipDrawable drawable = (ClipDrawable) btClipDrawable.getBackground();
+        drawable.setLevel(5000);//0-10000
     }
 
 
@@ -99,6 +110,10 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.bt_draw:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_draw"));
+                break;
+//            遮罩的几种方式
+            case R.id.bt_clip_shader:
+                startActivity(new Intent(this, CanvasTest.class).putExtra("type", "shader"));
                 break;
 
             default:

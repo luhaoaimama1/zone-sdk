@@ -38,16 +38,16 @@ public class EnvironmentUtils {
      * 这里的文件夹已经被创建过了
      *
      * @param context
-     * @param ignoreRemovable 可移除的sd是否无视
+     * @param ignoreSDRemovable 可移除的sd是否无视
      * @return
      */
-    public static File getSmartCacheDir(Context context, boolean ignoreRemovable) {
+    public static File getSmartCacheDir(Context context, boolean ignoreSDRemovable) {
         File fileResult=context.getCacheDir();
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
-                &&(ignoreRemovable || Environment.isExternalStorageRemovable())){
+                &&(ignoreSDRemovable || Environment.isExternalStorageRemovable())){
             File fileTemp= context.getExternalCacheDir();
             if(fileTemp!=null)
-                fileResult=fileTemp;
+                fileResult=fileTemp;//导致即使不为Null的可能
         }
         return fileResult;
     }
@@ -60,17 +60,17 @@ public class EnvironmentUtils {
      * 这里的文件夹已经被创建过了
      *
      * @param context
-     * @param ignoreRemovable 可移除的sd是否无视
+     * @param ignoreSDRemovable 可移除的sd是否无视
      * @return
      */
-    public static File getSmartFilesDir(Context context, boolean ignoreRemovable) {
+    public static File getSmartFilesDir(Context context, boolean ignoreSDRemovable) {
         //SD卡 存在 并且不是 拔插的
         File fileResult=context.getFilesDir();
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
-                &&(ignoreRemovable || Environment.isExternalStorageRemovable())){
+                &&(ignoreSDRemovable || Environment.isExternalStorageRemovable())){
                 File fileTemp= context.getExternalFilesDir(null);
                 if(fileTemp!=null)
-                     fileResult=fileTemp;
+                     fileResult=fileTemp;//导致即使不为Null的可能
             }
         return fileResult;
     }
