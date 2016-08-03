@@ -115,6 +115,10 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_clip_shader:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "shader"));
                 break;
+//            path
+            case R.id.bt_bezier:
+                startActivity(new Intent(this, PathActivity.class));
+                break;
 
             default:
                 break;

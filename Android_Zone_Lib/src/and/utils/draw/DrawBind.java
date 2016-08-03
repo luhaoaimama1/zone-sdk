@@ -1,6 +1,8 @@
 package and.utils.draw;
 
 import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
 
 import java.lang.ref.WeakReference;
@@ -53,6 +55,11 @@ public class DrawBind {
     }
     public float[] center(){
         return calculate(8);
+    }
+    public RectF getRect(){
+        float[] leftTop = leftTop();
+        float[] rightBottom=rightBottom();
+        return new RectF(leftTop[0],leftTop[1],rightBottom[0],rightBottom[1]);
     }
     /**
      * 0为00

@@ -163,6 +163,24 @@
             android:layout_width="100dp"
             android:layout_height="100dp"/>
 
+        <com.zone.view.WaveView2
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="#00ff00"
+            android:gravity="center"
+            android:text="Path的学习" />
+        <Button
+            android:id="@+id/bt_bezier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="path bezier(qq小红点)" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
