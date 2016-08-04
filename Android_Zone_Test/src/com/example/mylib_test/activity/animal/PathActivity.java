@@ -1,6 +1,8 @@
 package com.example.mylib_test.activity.animal;
 
 import com.example.mylib_test.R;
+import com.zone.view.FlexibleBall;
+import com.zone.view.QQBizierView;
 
 import and.base.activity.BaseActvity;
 
@@ -10,7 +12,11 @@ import and.base.activity.BaseActvity;
 public class PathActivity extends BaseActvity {
     @Override
     public void setContentView() {
-        setContentView(R.layout.a_path_bizier);
+        String type = getIntent().getStringExtra("type");
+        if ("QQBizierView".equals(type))
+            setContentView(new QQBizierView(this));
+        if ("FlexibleBall".equals(type))
+            setContentView(new FlexibleBall(this));
     }
 
     @Override

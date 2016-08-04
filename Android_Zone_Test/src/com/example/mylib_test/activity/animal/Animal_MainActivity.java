@@ -117,7 +117,10 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
                 break;
 //            path
             case R.id.bt_bezier:
-                startActivity(new Intent(this, PathActivity.class));
+                startActivity(new Intent(this, PathActivity.class).putExtra("type", "QQBizierView"));
+                break;
+            case R.id.bt_FlexibleBall:
+                startActivity(new Intent(this, PathActivity.class).putExtra("type", "FlexibleBall"));
                 break;
 
             default:
