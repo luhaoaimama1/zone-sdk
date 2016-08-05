@@ -1,16 +1,16 @@
 package com.zone.view;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-import and.utils.draw.DrawUtils;
+import and.utils.graphics.basic.Circle;
+import and.utils.graphics.DrawUtils;
+import and.utils.graphics.animation.FlexibleBallAnimation;
+import and.utils.graphics.basic.ZPath;
+import and.utils.graphics.basic.ZPointF;
 
 /**
  * Created by fuzhipeng on 16/8/4.
@@ -19,8 +19,10 @@ public class FlexibleBall extends View {
 
 
     private Paint paint;
-    private MathUtils.Circle circle;
-    private ZPath mPath;
+    private Circle circle;
+    private ZPath mPath, mPathProgress;
+    private FlexibleBallAnimation flexibleBallAnimation;
+    private FlexibleBallAnimation flexibleBallAnimationProgress;
 
     public FlexibleBall(Context context) {
         this(context,null);
@@ -48,26 +50,38 @@ public class FlexibleBall extends View {
             case MotionEvent.ACTION_DOWN:
                 ex=event.getX();
                 ey=event.getY();
+                stop();
                 start();
                 break;
         }
         return true;
     }
 
+    private void stop() {
+        if(flexibleBallAnimation!=null)
+            flexibleBallAnimation.stop();
+
+    }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
     }
 
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
+        if (mPathProgress!=null) {
+            paint.setStyle(Paint.Style.FILL);
+            paint.setColor(Color.CYAN);
+            canvas.drawPath(mPathProgress,paint);
+        }
         if (mPath!=null) {
             paint.setStyle(Paint.Style.FILL);
             paint.setColor(Color.RED);
             canvas.drawPath(mPath,paint);
         }
+
         paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(2);
@@ -75,14 +89,24 @@ public class FlexibleBall extends View {
         canvas.drawCircle(ex,ey,50,paint);
     }
     public void start(){
-        circle=new MathUtils.Circle(new ZPointF(getWidth()/2-100,getHeight()/2),50);
-        FlexibleBallAnimation flexibleBallAnimation=new FlexibleBallAnimation();
-        flexibleBallAnimation.start(circle, new ZPointF(ex,ey),new FlexibleBallAnimation.Listener() {
+        circle=new Circle(new ZPointF(getWidth()/2-100,getHeight()/2),50);
+        flexibleBallAnimation=new FlexibleBallAnimation(circle, new ZPointF(ex,ey),new FlexibleBallAnimation.Listener() {
             @Override
             public void update(ZPath path) {
                 mPath=path;
                 postInvalidate();
             }
         });
+        flexibleBallAnimation.start();
+        flexibleBallAnimationProgress=new FlexibleBallAnimation(circle, new ZPointF(ex,ey),new FlexibleBallAnimation.Listener() {
+
+
+            @Override
+            public void update(ZPath path) {
+                mPathProgress =path;
+                postInvalidate();
+            }
+        });
+        flexibleBallAnimationProgress.setProgress(0.5F);
     }
 }

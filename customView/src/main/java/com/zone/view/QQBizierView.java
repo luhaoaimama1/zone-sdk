@@ -7,8 +7,13 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import and.utils.draw.DrawBind;
-import and.utils.draw.DrawUtils;
+
+import and.utils.graphics.BizierUtils;
+import and.utils.graphics.basic.Circle;
+import and.utils.graphics.basic.DrawBind;
+import and.utils.graphics.DrawUtils;
+import and.utils.graphics.basic.ZPointF;
+
 /**
  * Created by fuzhipeng on 16/7/29.
  */
@@ -75,19 +80,19 @@ public class QQBizierView extends View {
 
         anotherCenter = new float[]{bCenter[0], bCenter[1]};
         canvas.drawCircle(anotherCenter[0], anotherCenter[1], br, paint);
-        MathUtils.Circle c1 = new MathUtils.Circle(new ZPointF(center[0], center[1]), sr);
-        MathUtils.Circle c2 = new MathUtils.Circle(new ZPointF(anotherCenter[0], anotherCenter[1]), br);
+        Circle c1 = new Circle(new ZPointF(center[0], center[1]), sr);
+        Circle c2 = new Circle(new ZPointF(anotherCenter[0], anotherCenter[1]), br);
         paint.setColor(Color.YELLOW);
         customCutLine(canvas,c1,c2);
 //        customSquare(canvas,c1,c2);
     }
 
-    private void customCutLine(Canvas canvas, MathUtils.Circle c1, MathUtils.Circle c2) {
-        Path resultPath = MathUtils.getTwoCircle_CutLineMergePath(c1, c2, 50);
+    private void customCutLine(Canvas canvas, Circle c1, Circle c2) {
+        Path resultPath = BizierUtils.getTwoCircle_CutLineMergePath(c1, c2, 50);
         canvas.drawPath(resultPath, paint);
     }
-    private void customSquare(Canvas canvas, MathUtils.Circle c1, MathUtils.Circle c2) {
-        Path resultPath = MathUtils.getTwoCircle_RectangleMergePath(c1, c2, 50);
+    private void customSquare(Canvas canvas,Circle c1, Circle c2) {
+        Path resultPath = BizierUtils.getTwoCircle_RectangleMergePath(c1, c2, 50);
         canvas.drawPath(resultPath, paint);
     }
 

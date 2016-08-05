@@ -12,8 +12,8 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
-import and.utils.draw.DrawBind;
-import and.utils.draw.DrawUtils;
+import and.utils.graphics.basic.DrawBind;
+import and.utils.graphics.DrawUtils;
 
 /**
  * Created by fuzhipeng on 16/7/28.

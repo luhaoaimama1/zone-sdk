@@ -70,35 +70,42 @@ public class ReflectCloneUtils {
                     field.setAccessible(true);
                     if (!fieldClass.isEnum()) {
                         if (fieldClass.isPrimitive()|| ClassCheck.isPrimitiveWrap(fieldClass)) {
-                            //判断是什么类垿  如果是基本类垿 就直接赋值
-                            field.set(dataClone, field.get(data));
+                            if(field.get(data)!=null)
+                                //判断是什么类垿  如果是基本类垿 就直接赋值
+                                field.set(dataClone, field.get(data));
                         } else if (List.class.isAssignableFrom(fieldClass)) {
                             List<Object> listClone = new ArrayList<Object>();
                             List<Object> list = (List<Object>) field
                                     .get(data);
-                            for (int i = 0; i < list.size(); i++) {
-                                listClone.add(clone(list.get(i)));
+                            if(list!=null&&list.size()>0){
+                                for (int i = 0; i < list.size(); i++) {
+                                    listClone.add(clone(list.get(i)));
+                                }
+                                field.set(dataClone, listClone);
                             }
-                            field.set(dataClone, listClone);
                         } else if (Map.class.isAssignableFrom(fieldClass)) {
                             ParameterizedType fieldClass2Params = ((ParameterizedType) fieldClass2);
                             Type[] types = fieldClass2Params
                                     .getActualTypeArguments();
                             Map<Object, Object> map = (Map<Object, Object>) field
                                     .get(data);
-                            Map<Object, Object> mapClone = new HashMap<Object, Object>();
-                            for (Map.Entry<Object, Object> item : map
-                                    .entrySet()) {
-                                mapClone.put(clone(item.getKey()),
-                                        clone(item.getValue()));
+                            if(map!=null&&map.size()>0){
+                                Map<Object, Object> mapClone = new HashMap<Object, Object>();
+                                for (Map.Entry<Object, Object> item : map
+                                        .entrySet()) {
+                                    mapClone.put(clone(item.getKey()),
+                                            clone(item.getValue()));
+                                }
+                                field.set(dataClone, mapClone);
                             }
-                            field.set(dataClone, mapClone);
                         } else {
-                            //不是  的话 就继续clone
-                            field.set(dataClone, clone(field.get(data)));
+                            if(field.get(data)!=null)
+                                //不是  的话 就继续clone
+                                field.set(dataClone, clone(field.get(data)));
                         }
                     } else {
-                        field.set(dataClone, field.get(data));
+                        if(field.get(data)!=null)
+                          field.set(dataClone, field.get(data));
                     }
                 }
             }
