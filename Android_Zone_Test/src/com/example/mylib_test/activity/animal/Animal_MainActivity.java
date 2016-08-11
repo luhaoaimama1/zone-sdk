@@ -72,6 +72,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_Xfermode:
                 startActivity(new Intent(this, XfermodeActivity.class));
                 break;
+            case R.id.bt_XfermodeUtils:
+                startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_XfermodeUtils"));
+                break;
             case R.id.bt_imageBigTest:
                 startActivity(new Intent(this, ImageShowBigActivity.class));
                 break;

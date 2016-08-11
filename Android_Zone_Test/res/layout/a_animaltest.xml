@@ -131,6 +131,13 @@
             android:layout_margin="4dp"
             android:onClick="onClick"
             android:text="Xfermode" />
+        <Button
+            android:id="@+id/bt_XfermodeUtils"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="XfermodeUtils测试" />
 
         <Button
             android:id="@+id/bt_imageBigTest"

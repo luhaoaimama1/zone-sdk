@@ -2,6 +2,7 @@ package and.utils.graphics.basic;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 public class Circle {
     /**
@@ -50,6 +51,13 @@ public class Circle {
         canvas.drawCircle(center.x, center.y, r, paint);
     }
 
+    /**
+     * 得到与此圆相切的矩形;
+     * @return
+     */
+    public RectF getIntersectRect(){
+        return new RectF(center.x-r, center.y-r,center.x+r, center.y+r);
+    }
     public ZPath getPath() {
         initControlPoint();
         //把控制点  和 都绘制起来;

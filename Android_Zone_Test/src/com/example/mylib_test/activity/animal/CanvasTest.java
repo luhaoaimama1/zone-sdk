@@ -6,6 +6,7 @@ import com.example.mylib_test.activity.animal.viewa.Canvas1;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
 import com.example.mylib_test.activity.animal.viewa.SinView;
+import com.example.mylib_test.activity.animal.viewa.XfermodeView2;
 
 import and.utils.image.BitmapUtils;
 import android.app.Activity;
@@ -66,7 +67,11 @@ public class CanvasTest extends Activity{
 			iv.setBackgroundColor(Color.YELLOW);
 			setContentView(iv);
 		}
-		
+		if("bt_XfermodeUtils".equals(type)){
+			XfermodeView2 iv = new XfermodeView2(this);
+			setContentView(iv);
+		}
+
 	
 	}
 }
