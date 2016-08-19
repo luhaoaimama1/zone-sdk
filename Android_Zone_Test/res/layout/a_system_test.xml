@@ -1,48 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<view.FlowLayout_Zone xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/flowLayoutZone1"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:background="#00f00f"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center"
-        android:text="这个页面有Menu" />
-    <Button
-        android:id="@+id/crash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:padding="10dp"
-        android:gravity="center"
-        android:text="crash 闪退测试" />
-    <Button
-        android:id="@+id/bt_activityResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:padding="10dp"
-        android:gravity="center"
-        android:text="activityResult研究" />
-    <Button
-        android:id="@+id/bt_baseResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:padding="10dp"
-        android:gravity="center"
-        android:text="activityResult封装测试" />
-    <Button
-        android:id="@+id/bt_webView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:padding="10dp"
-        android:gravity="center"
-        android:text="webView 学习" />
+    <view.FlowLayout_Zone
+        android:id="@+id/flowLayoutZone1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#00f00f"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="这个页面有Menu" />
 
-</view.FlowLayout_Zone>
+        <Button
+            android:id="@+id/crash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="crash 闪退测试" />
+
+        <Button
+            android:id="@+id/bt_activityResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="activityResult研究" />
+
+        <Button
+            android:id="@+id/bt_baseResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="activityResult封装测试" />
+
+        <Button
+            android:id="@+id/bt_webView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="webView 学习" />
+
+    </view.FlowLayout_Zone>
+</ScrollView>

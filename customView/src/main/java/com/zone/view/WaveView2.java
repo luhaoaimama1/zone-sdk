@@ -110,7 +110,7 @@ public class WaveView2 extends View {
                  ((float) ((DEFAULT_AMPLITUDE_RATIO+0.5) * getHeight())-((float)(i%100)/100)*(DEFAULT_AMPLITUDE_RATIO+1) * getHeight()));
         shader.setLocalMatrix(matrix);
         canvas.drawRect(bind.getRect(),shaderPaint);
-        postInvalidateDelayed(300);
+        postInvalidateDelayed(200);
         i++;
     }
 }
