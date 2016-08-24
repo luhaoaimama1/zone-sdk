@@ -169,6 +169,13 @@
         <view.testing.DrawView
             android:layout_width="100dp"
             android:layout_height="100dp"/>
+        <Button
+            android:id="@+id/bt_matrixMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="Matrix各种特殊方法" />
 
         <com.zone.view.WaveView2
             android:layout_width="match_parent"

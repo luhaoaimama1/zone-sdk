@@ -114,6 +114,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_draw:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_draw"));
                 break;
+            case R.id.bt_matrixMethod:
+                startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_matrixMethod"));
+                break;
 //            遮罩的几种方式
             case R.id.bt_clip_shader:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "shader"));

@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/ZoneStudio/customView/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="6323281dabe48358e88769cfcb1d7bffc1fa977d">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/ZoneStudio-customView-unspecified_2ae85bca4b8df68ad0813ae81f2a0fd377ca1270.jar" />
-    </item>
-
-</items>
+<items version="2" />
