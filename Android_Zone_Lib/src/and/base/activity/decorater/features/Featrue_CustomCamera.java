@@ -3,7 +3,7 @@ package and.base.activity.decorater.features;
 import java.io.IOException;
 
 import and.base.activity.decorater.features.core.ExtraFeature;
-import and.utils.ToastUtils;
+import and.utils.activity_fragment_ui.ToastUtils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
