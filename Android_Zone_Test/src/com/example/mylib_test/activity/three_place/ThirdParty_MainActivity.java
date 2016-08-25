@@ -35,9 +35,6 @@ public class ThirdParty_MainActivity extends Activity implements OnClickListener
                 startActivity(new Intent(this, GooglePull2RecyclerActivity.class));
                 break;
 
-            case R.id.bt_UltraRefresh:
-                startActivity(new Intent(this, UltraRefresh.class));
-                break;
 
             case R.id.bt_glide:
                 startActivity(new Intent(this, GildeActivity.class));

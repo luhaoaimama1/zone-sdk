@@ -4,7 +4,7 @@ apply plugin: 'me.tatarka.retrolambda'
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile project(':Android_Zone_Lib')
-    compile project(':UltraRefresh')
+//    compile project(':UltraRefresh')
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile project(':customView')
