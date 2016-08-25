@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.touch;
 
 import com.example.mylib_test.R;
 
-import and.utils.ToastUtils;
+import and.utils.activity_fragment_ui.ToastUtils;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.GestureDetectorCompat;

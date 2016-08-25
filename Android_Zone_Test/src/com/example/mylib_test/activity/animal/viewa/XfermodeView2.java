@@ -7,12 +7,10 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.util.AttributeSet;
 import android.view.View;
 
-import and.utils.graphics.MatteUtils;
-import and.utils.graphics.basic.Circle;
+import and.utils.view.graphics.MatteUtils;
+import and.utils.view.graphics.basic.Circle;
 
 /**
  * Created by Administrator on 2016/3/21.

@@ -15,8 +15,8 @@ package com.example.mylib_test.app;
  * limitations under the License.
  *******************************************************************************/
 
-import and.utils.convert.DateUtil;
-import and.utils.file2io2data.SharedUtils;
+import and.utils.data.convert.DateUtil;
+import and.utils.data.file2io2data.SharedUtils;
 import and.utils.image.imageloader.ImageLoaderConfigUtils;
 import and.utils.image.imageloader.ImageLoaderOptionsUtils;
 

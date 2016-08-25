@@ -33,7 +33,7 @@ public class LruCacheUtils {
 
     public final LruCacheWrapper<String, Bitmap> getInstance() {
         if (instance == null) {
-            synchronized (Singleton.class) {
+            synchronized (LruCacheUtils.class) {
                 if (instance == null)
                     instance = new LruCacheUtils();
             }

@@ -6,7 +6,7 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.touch.view.ViewDragStudyFrame;
 
 import and.base.activity.BaseActvity;
-import and.utils.ToastUtils;
+import and.utils.activity_fragment_ui.ToastUtils;
 
 /**
  * Created by Zone on 2016/1/29.

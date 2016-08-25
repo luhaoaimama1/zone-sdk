@@ -7,7 +7,7 @@ import com.example.mylib_test.activity.http.framgent.EventFragment;
 import org.greenrobot.eventbus.EventBus;
 
 import and.base.activity.BaseActvity;
-import and.utils.FragmentSwitcher;
+import and.utils.activity_fragment_ui.FragmentSwitcher;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
