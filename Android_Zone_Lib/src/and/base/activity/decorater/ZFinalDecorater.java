@@ -1,9 +1,6 @@
 package and.base.activity.decorater;
 
 import android.os.Bundle;
-import android.util.Log;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by Administrator on 2016/3/26.

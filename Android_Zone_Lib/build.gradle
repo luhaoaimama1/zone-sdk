@@ -1,16 +1,19 @@
 apply plugin: 'android-library'
+// JitPack Maven
+apply plugin: 'com.github.dcendents.android-maven'
+// Your Group
+group = 'com.github.luhaoaimama1'
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
-    //    testCompile 'junit:junit:4.8.2@jar'
-    compile 'com.android.support:appcompat-v7:22.1.1'
-    compile 'com.android.support:recyclerview-v7:22.1.1'
+    testCompile 'junit:junit:4.8.2@jar'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     compile 'com.google.code.gson:gson:2.5'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    //    compile 'com.android.support:support-v4:22.1.1'
     compile 'com.nineoldandroids:library:2.4.0'
+    //    compile 'com.android.support:appcompat-v7:22.1.1'
+//    compile 'com.android.support:recyclerview-v7:22.1.1'
     //    compile 'com.jakewharton:butterknife:7.0.1'
+    //    compile 'com.android.support:support-v4:22.1.1'
     //    compile 'org.apache.httpcomponents:httpmime:4.5.1'
 }
 
@@ -18,6 +21,12 @@ android {
     compileSdkVersion 22
     buildToolsVersion '23.0.3'
 
+    defaultConfig {
+        minSdkVersion 8
+//        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'

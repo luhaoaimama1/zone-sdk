@@ -1,4 +1,4 @@
-package and.utils.image.imageloader;
+package com.example.mylib_test.imageloader;
 
 public class ImageLoaderURIUtils {
 	/**

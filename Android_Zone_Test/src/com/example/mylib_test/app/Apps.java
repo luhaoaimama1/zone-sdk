@@ -17,8 +17,8 @@ package com.example.mylib_test.app;
 
 import and.utils.data.convert.DateUtil;
 import and.utils.data.file2io2data.SharedUtils;
-import and.utils.image.imageloader.ImageLoaderConfigUtils;
-import and.utils.image.imageloader.ImageLoaderOptionsUtils;
+import com.example.mylib_test.imageloader.ImageLoaderConfigUtils;
+import com.example.mylib_test.imageloader.ImageLoaderOptionsUtils;
 
 import android.annotation.TargetApi;
 import android.app.Application;
