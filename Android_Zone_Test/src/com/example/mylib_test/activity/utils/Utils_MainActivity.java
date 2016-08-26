@@ -47,7 +47,7 @@ public class Utils_MainActivity extends Activity implements OnClickListener{
 			public void closeState(int keyboardHeight) {
 				System.out.println("键盘：closeState 高度:"+keyboardHeight);
 			}
-		}.monitorKeybordState(findViewById(R.id.flowLayoutZone1));;	
+		}.monitorKeybordState(this);
 	}
 
 	@Override

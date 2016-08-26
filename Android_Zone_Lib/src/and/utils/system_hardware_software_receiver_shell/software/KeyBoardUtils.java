@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -114,16 +115,17 @@ public abstract class KeyBoardUtils {
 	 *  android:windowSoftInputMode="stateHidden|adjustResize"
 	 *  上句话的解释：该Activity总是<strong>调整屏幕</strong>的大小以便留出软键盘的空间 
 	 *  
-	 * @param mainLayoutView  整个布局的顶部
 	 */
-	public void monitorKeybordState(View mainLayoutView) {
-		MeasureUtils.measure(mainLayoutView,
+	public void monitorKeybordState(final Activity activity) {
+		MeasureUtils.measure(activity.getWindow().getDecorView().findViewById(android.R.id.content),
 				ListenerState.MEASURE_CONTINUE, new OnMeasureListener() {
 
 					@Override
 					public void measureResult(View v, int viewWidth,
 											  int viewHeight) {
-						int heightDiffTemp = v.getRootView().getHeight() - v.getHeight();
+						View rootView = activity.getWindow().getDecorView();
+						int heightDiffTemp =rootView.getHeight() -((ViewGroup)((ViewGroup)rootView).getChildAt(0)).getChildAt(1).getHeight();
+						//也可以用这个activity.getWindow().getDecorView().findViewById(R.id.content).getParent().getParent()
 						if (heightDiffTemp > 100) {
 							// 说明键盘是弹出状态
 							if (heightDiff < 100) {
