@@ -107,7 +107,6 @@
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
-
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
 
     </application>
