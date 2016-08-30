@@ -1,5 +1,6 @@
 /captures
 /build
+/.gradle
 #Android generated
 bin
 gen

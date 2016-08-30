@@ -5,13 +5,13 @@ import android.view.View;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.touch.view.ViewDragStudyFrame;
 
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseActivityZ;
 import and.utils.activity_fragment_ui.ToastUtils;
 
 /**
  * Created by Zone on 2016/1/29.
  */
-public class ViewDragStudyActivity extends BaseActvity  {
+public class ViewDragStudyActivity extends BaseActivityZ {
     @Override
     public void setContentView() {
         setContentView(R.layout.a_viewdragstudy);

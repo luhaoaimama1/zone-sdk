@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseActivityZ;
 import and.utils.activity_fragment_ui.MeasureUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2016/4/14.
  */
-public class ImageShowBigActivity extends BaseActvity {
+public class ImageShowBigActivity extends BaseActivityZ {
     @Bind(R.id.iv)
     ImageView iv;
     ImageView.ScaleType scaleType;

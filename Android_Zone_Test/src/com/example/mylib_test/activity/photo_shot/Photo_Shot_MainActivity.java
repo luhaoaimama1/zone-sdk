@@ -1,13 +1,15 @@
 package com.example.mylib_test.activity.photo_shot;
 import com.example.mylib_test.R;
-import and.base.activity.BaseActvity;
-import and.base.activity.decorater.features.Feature_Pic;
+import and.base.activity.kinds.features.Feature_Pic;
+import and.base.activity.BaseActivityZ;
+import and.base.activity.kinds.FeaturesKind;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class Photo_Shot_MainActivity extends BaseActvity implements OnClickListener{
+public class Photo_Shot_MainActivity extends BaseActivityZ implements OnClickListener{
 	private Feature_Pic feature_Pic;
 	@Override
 	public void setContentView() {
@@ -45,7 +47,9 @@ public class Photo_Shot_MainActivity extends BaseActvity implements OnClickListe
 	}
 
 	@Override
-	protected void initFeature() {
+	public void updateKinds() {
+		super.updateKinds();
+
 		feature_Pic = new Feature_Pic(this) {
 			@Override
 			protected void getReturnedPicPath(String path) {
@@ -56,6 +60,21 @@ public class Photo_Shot_MainActivity extends BaseActvity implements OnClickListe
 				startActivity(intent);
 			}
 		};
-		addFeature(feature_Pic);
+		mKindControl.get(FeaturesKind.class).addFeature(feature_Pic);
 	}
+//
+//	@Override
+//	protected void initFeature() {
+//		feature_Pic = new Feature_Pic(this) {
+//			@Override
+//			protected void getReturnedPicPath(String path) {
+//				System.out.println(path);
+//				Intent intent = new Intent(Photo_Shot_MainActivity.this,ShowPicActivity.class);
+//				Uri uri = Uri.parse(path);
+//				intent.setData(uri);
+//				startActivity(intent);
+//			}
+//		};
+//		addFeature(feature_Pic);
+//	}
 }

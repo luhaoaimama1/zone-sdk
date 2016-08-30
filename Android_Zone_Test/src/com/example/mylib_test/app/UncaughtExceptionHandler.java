@@ -38,7 +38,7 @@ public class UncaughtExceptionHandler implements
 		reportText.append("Version:").append(Build.VERSION.RELEASE)
 				.append("\n");
 		// 趣读版本
-//		String versionName = new ErrorUtil(context).getVersionName();
+//		String versionName = new ErrorUtil(activity).getVersionName();
 //		reportText.append("QureadVersion:").append(versionName).append("\n");
 		// 详细堆栈错误信息
 		reportText.append(stackInfo);

@@ -6,7 +6,7 @@ import com.example.mylib_test.activity.http.framgent.EventFragment;
 
 import org.greenrobot.eventbus.EventBus;
 
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseFragmentActivity;
 import and.utils.activity_fragment_ui.FragmentSwitcher;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -14,7 +14,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2016/4/19.
  */
-public class EventBusActivity extends BaseActvity {
+public class EventBusActivity extends BaseFragmentActivity {
 
     private FragmentSwitcher fragmentSwitcher;
 

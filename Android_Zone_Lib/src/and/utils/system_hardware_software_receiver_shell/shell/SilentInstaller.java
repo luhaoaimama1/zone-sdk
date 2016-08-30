@@ -310,7 +310,7 @@ public class SilentInstaller {
         }
 
         /**
-         * if context is system app, don't need root permission, but should add <uses-permission
+         * if activity is system app, don't need root permission, but should add <uses-permission
          * android:name="android.permission.DELETE_PACKAGES" /> in mainfest
          **/
         StringBuilder command = new StringBuilder().append("LD_LIBRARY_PATH=/vendor/lib:/system/lib pm uninstall")
@@ -370,7 +370,7 @@ public class SilentInstaller {
         }
 
         /**
-         * if context is system app, don't need root permission, but should add <uses-permission
+         * if activity is system app, don't need root permission, but should add <uses-permission
          * android:name="android.permission.INSTALL_PACKAGES" /> in mainfest
          **/
         StringBuilder command = new StringBuilder().append("LD_LIBRARY_PATH=/vendor/lib:/system/lib pm install ")

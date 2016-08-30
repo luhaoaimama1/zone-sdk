@@ -111,7 +111,7 @@ public class Un2Install_PackageUtil {
 
 
     /**
-     * whether context is system application
+     * whether activity is system application
      */
     public static boolean isSystemApplication(Context context) {
         if (context == null) {

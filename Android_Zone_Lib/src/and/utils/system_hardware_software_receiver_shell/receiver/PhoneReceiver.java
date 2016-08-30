@@ -96,10 +96,10 @@ public class PhoneReceiver extends BroadcastReceiver {
      * 已接：phone_state=OFFHOOK;
      * 挂断：phone_state=IDLE
      */
-    //public void registerCallStateListener(Context context, PhoneStateListener listener) {
+    //public void registerCallStateListener(Context activity, PhoneStateListener listener) {
     //    try {
     //        //获取电话通讯服务
-    //        TelephonyManager tpm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+    //        TelephonyManager tpm = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
     //        tpm.listen(listener, PhoneStateListener.LISTEN_CALL_STATE);
     //    } catch (Exception e) {
     //        e.printStackTrace();

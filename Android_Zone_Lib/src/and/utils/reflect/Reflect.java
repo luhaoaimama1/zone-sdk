@@ -93,7 +93,7 @@ public class Reflect {
      * <code>on(Class.forName(name, classLoader))</code>
      *
      * @param name A fully qualified class name.
-     * @param classLoader The class loader in whose context the class should be
+     * @param classLoader The class loader in whose activity the class should be
      *            loaded.
      * @return A wrapped class object, to be used for further reflection.
      * @throws ReflectException If any reflection exception occurred.

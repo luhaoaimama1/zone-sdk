@@ -1,8 +1,8 @@
-package and.base.activity.decorater.features;
+package and.base.activity.kinds.features;
 
 import java.io.IOException;
 
-import and.base.activity.decorater.features.core.ExtraFeature;
+import and.base.activity.kinds.features.core.ExtraFeature;
 import and.utils.activity_fragment_ui.ToastUtils;
 import android.annotation.SuppressLint;
 import android.app.Activity;

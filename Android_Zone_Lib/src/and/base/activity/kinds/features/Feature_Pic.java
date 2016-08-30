@@ -1,8 +1,8 @@
-package and.base.activity.decorater.features;
+package and.base.activity.kinds.features;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
-import and.base.activity.decorater.features.core.ExtraFeature;
+import and.base.activity.kinds.features.core.ExtraFeature;
 import and.base.activity.RequestCodeConfig;
 import and.LogUtil;
 import and.utils.data.file2io2data.FileUtils;

@@ -4,17 +4,15 @@ import android.view.View;
 
 import com.android.internal.util.Predicate;
 import com.example.mylib_test.R;
-
 import java.util.Arrays;
 import java.util.List;
-
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseActivityZ;
 
 
 /**
  * Created by Administrator on 2016/4/16.
  */
-public class LambdaStartActivity extends BaseActvity {
+public class LambdaStartActivity extends BaseActivityZ {
 
     @Override
     public void setContentView() {

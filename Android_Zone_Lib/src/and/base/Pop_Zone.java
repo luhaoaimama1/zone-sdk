@@ -151,7 +151,7 @@ public abstract class Pop_Zone extends PopupWindow {
 	protected abstract  void setListener() ;
 	/**
 	 * <br>也可以加动画 this.setAnimationStyle(R.style.PopSelectPicAnimation);
-	 * <br>例子：this.showAtLocation(context.findViewById(R.id.main), Gravity.BOTTOM	| Gravity.CENTER_HORIZONTAL, 0, 0);
+	 * <br>例子：this.showAtLocation(activity.findViewById(R.id.main), Gravity.BOTTOM	| Gravity.CENTER_HORIZONTAL, 0, 0);
 	 * <br>并可以更改pop的其他设置 
 	 * @param view 
 	 */

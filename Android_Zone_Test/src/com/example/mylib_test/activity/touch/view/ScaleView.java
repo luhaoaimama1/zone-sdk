@@ -41,7 +41,7 @@ public class ScaleView extends View implements ScaleGestureDetector.OnScaleGestu
         options.inJustDecodeBounds = true;
         Bitmap size = BitmapFactory.decodeResource(getResources(), R.drawable.aaaaaaaaaaaab, options);
 //        options.inSampleSize =  Compress_Sample_Utils.calculateInSampleSize(options,
-//                ScreenUtils.getScreenPixByResources(context)[0], ScreenUtils.getScreenPixByResources(context)[1]);
+//                ScreenUtils.getScreenPixByResources(activity)[0], ScreenUtils.getScreenPixByResources(activity)[1]);
         options.inSampleSize =  SampleUtils.load().override(ScreenUtils.getScreenPixByResources(context)[0]
                 , ScreenUtils.getScreenPixByResources(context)[1]).calculateInSampleSize();
         options.inJustDecodeBounds = false;

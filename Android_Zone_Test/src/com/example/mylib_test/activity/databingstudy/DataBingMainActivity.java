@@ -5,12 +5,12 @@ import android.view.View;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseActivityZ;
 
 /**
  * Created by Administrator on 2016/4/16.
  */
-public class DataBingMainActivity extends BaseActvity {
+public class DataBingMainActivity extends BaseActivityZ {
     @Override
     public void setContentView() {
         setContentView(R.layout.a_databingmain);

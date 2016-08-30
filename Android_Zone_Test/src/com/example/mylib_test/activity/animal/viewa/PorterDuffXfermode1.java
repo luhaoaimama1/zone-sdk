@@ -78,7 +78,7 @@ public class PorterDuffXfermode1 extends View{
 		paint.setColor(Color.RED);
 		canvas.drawCircle(getWidth()/2, getHeight()/2, 200, paint);
 //		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-//		canvas.drawBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.abcd), 0,0, paint);
+//		canvas.drawBitmap(BitmapFactory.decodeResource(activity.getResources(), R.drawable.abcd), 0,0, paint);
 		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
 		canvas.restore();
 		canvas.saveLayer(0, 0, getWidth(), getHeight(), paint,
@@ -87,7 +87,7 @@ public class PorterDuffXfermode1 extends View{
 		paint.setColor(Color.YELLOW);
 		canvas.drawCircle(getWidth()/2, getHeight()/2, 200, paint);
 //		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-//		canvas.drawBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.abcd), 0,0, paint);
+//		canvas.drawBitmap(BitmapFactory.decodeResource(activity.getResources(), R.drawable.abcd), 0,0, paint);
 		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
 		canvas.restoreToCount(1);
 //		paint.reset(); 

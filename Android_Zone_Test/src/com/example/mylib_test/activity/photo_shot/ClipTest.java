@@ -3,14 +3,12 @@ package com.example.mylib_test.activity.photo_shot;
 //import com.edmodo.cropper.CropImageView;
 //import com.edmodo.cropper.cropwindow.CropOverlayView;
 
-import and.base.activity.BaseActvity;
-import and.base.activity.decorater.BaseDecorater;
-import and.base.activity.decorater.FeaturesDecorater;
+import and.base.activity.BaseActivityZ;
 
-		import android.view.View;
+import android.view.View;
 import android.view.View.OnClickListener;
 
-public class ClipTest extends BaseActvity implements OnClickListener{
+public class ClipTest extends BaseActivityZ implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
@@ -18,11 +16,6 @@ public class ClipTest extends BaseActvity implements OnClickListener{
 		
 	}
 
-	@Override
-	protected void initFeature() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void setContentView() {
@@ -145,10 +138,5 @@ public class ClipTest extends BaseActvity implements OnClickListener{
 //		
 //	}
 
-	@Override
-	public void backRefresh() {
-		// TODO Auto-generated method stub
-		
-	}
-	
+
 }

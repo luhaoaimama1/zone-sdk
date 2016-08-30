@@ -1,4 +1,4 @@
-package and.base.activity.decorater.features.core;
+package and.base.activity.kinds.features.core;
 
 import android.app.Activity;
 import android.content.Intent;

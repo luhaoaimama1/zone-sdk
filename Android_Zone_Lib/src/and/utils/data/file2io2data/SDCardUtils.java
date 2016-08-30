@@ -102,7 +102,7 @@ public class SDCardUtils {
             Long kuai = (long) size.getBlockSize();// 从信息中得到每一块 的大小
             long sum = (long) size.getBlockCount();// 一共多少块
             long left = (long) size.getAvailableBlocks();// 还剩下多少块
-            // Formatter.formatFileSize(context, left*kuai) 把byte 转化成 GB,KB什么的
+            // Formatter.formatFileSize(activity, left*kuai) 把byte 转化成 GB,KB什么的
             String leftStr = Formatter.formatFileSize(context, left * kuai);
             LogUtil.d("剩余空间：" + leftStr);
             if (need == null) {

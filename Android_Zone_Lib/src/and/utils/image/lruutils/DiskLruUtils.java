@@ -49,7 +49,7 @@ public class DiskLruUtils {
 				cacheDir=saveFolder;
 			}
 			/*
-			 *context.getCacheDir().getPath()
+			 *activity.getCacheDir().getPath()
 			 *但是通常情况下多数应用程序都会将缓存的位置选择为 /sdcard/Android/data/<application package>/cache 这个路径
  			 * 选择在这个位置有两点好处：第一，这是存储在SD卡上的，因此即使缓存再多的数据也不会对手机的内置存
 			 * 储空间有任何影响，只要SD卡空间足够就行。第二，这个路径被Android系统认定为应用程序的缓存路径，
@@ -59,7 +59,7 @@ public class DiskLruUtils {
 			if (!cacheDir.exists()) {
 				cacheDir.mkdirs();
 			}
-//			mDiskLruCache = DiskLruCache.open(cacheDir,AppUtils.getAppVersion(context), 1, CacheMax);
+//			mDiskLruCache = DiskLruCache.open(cacheDir,AppUtils.getAppVersion(activity), 1, CacheMax);
 			/**
 			 * open()方法接收四个参数，第一个参数指定的是数据的缓存地址，
 			 * 第二个参数指定当前应用程序的版本号， 考虑版本号改变 缓存文件也是有效的。。。

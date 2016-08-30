@@ -1,6 +1,7 @@
 package com.example.mylib_test.activity.system;
 
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseActivityZ;
+
 import android.net.http.SslError;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
@@ -8,7 +9,7 @@ import android.webkit.WebViewClient;
 
 import com.example.mylib_test.R;
 
-public class WebViewAcitivity extends BaseActvity{
+public class WebViewAcitivity extends BaseActivityZ {
 
 	private WebView webview;
 
