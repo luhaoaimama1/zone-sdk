@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 /**
  * Created by fuzhipeng on 16/8/30.
  */
-public class ZActivityCallback {
+public class ActivityKinds {
 
     public Activity activity;
 

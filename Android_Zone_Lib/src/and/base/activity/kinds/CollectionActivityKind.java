@@ -9,14 +9,14 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import and.base.activity.kinds.callback.ZActivityCallback;
+import and.base.activity.kinds.callback.ActivityKinds;
 
 
 /**
  * TODO 在功能  在界面 最后一个装置者 制定顺序的人 才能  是抽象类 别的不要 不然方法都得实现太难看了
  * Created by Administrator on 2016/3/26.
  */
-public class CollectionActivityKind extends ZActivityCallback implements Handler.Callback, View.OnClickListener {
+public class CollectionActivityKind extends ActivityKinds implements Handler.Callback, View.OnClickListener {
 
     public static List<Activity> activitys = new ArrayList<Activity>();
 

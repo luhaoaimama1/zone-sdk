@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import and.base.activity.kinds.features.core.ExtraFeature;
-import and.base.activity.kinds.callback.ZActivityCallback;
+import and.base.activity.kinds.callback.ActivityKinds;
 
 /**
  * <br>故：onResume以后才能用ExtraFeature　onPause就不能用了
@@ -15,7 +15,7 @@ import and.base.activity.kinds.callback.ZActivityCallback;
  *
  * @author 123
  */
-public class FeaturesKind extends ZActivityCallback {
+public class FeaturesKind extends ActivityKinds {
     public List<ExtraFeature> featureList = new ArrayList<ExtraFeature>();
     private boolean isInit;
 

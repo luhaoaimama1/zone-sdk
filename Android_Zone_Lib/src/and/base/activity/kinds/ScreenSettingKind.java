@@ -4,12 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import and.base.activity.kinds.callback.ZActivityCallback;
+import and.base.activity.kinds.callback.ActivityKinds;
 
 /**
  * Created by fuzhipeng on 16/8/30.
  */
-public class ScreenSettingKind extends ZActivityCallback {
+public class ScreenSettingKind extends ActivityKinds {
     /**
      * 必须在 setContentView 之前用 否则无效！
      */

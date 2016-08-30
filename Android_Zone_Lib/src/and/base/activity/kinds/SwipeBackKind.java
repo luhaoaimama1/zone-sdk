@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
-import and.base.activity.kinds.callback.ZActivityCallback;
+import and.base.activity.kinds.callback.ActivityKinds;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
@@ -17,7 +17,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
  *因为我吧 震动也集成了所以  需要加上此权限
  *<uses-permission android:name="android.permission.VIBRATE"/>
  */
-public  class SwipeBackKind extends ZActivityCallback implements SwipeBackActivityBase,SwipeBackLayout.SwipeListener {
+public  class SwipeBackKind extends ActivityKinds implements SwipeBackActivityBase,SwipeBackLayout.SwipeListener {
     private static final int VIBRATE_DURATION = 20;
     private SwipeBackActivityHelper mHelper;
     protected SwipeBackLayout mSwipeBackLayout;
