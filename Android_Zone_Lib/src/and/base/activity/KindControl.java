@@ -33,10 +33,10 @@ public class KindControl extends ActivityKinds {
     }
 
     public void put(Class key, ActivityKinds value) {
-        controlMap.put(FeaturesKind.class, new FeaturesKind());
+        controlMap.put(key, value);
     }
 
-    public void remove(Class key ) {
+    public void remove(Class key) {
         controlMap.remove(key);
     }
 
