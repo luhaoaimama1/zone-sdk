@@ -34,7 +34,9 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
         setListener();
     }
 
-    public  abstract void updateKinds() ;
+    public void updateKinds() {
+
+    }
 
     //---------------本类实现的方法-------------------
     @Override

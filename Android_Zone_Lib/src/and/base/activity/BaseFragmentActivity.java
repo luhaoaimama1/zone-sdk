@@ -34,7 +34,9 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
         setListener();
     }
 
-    public  abstract void updateKinds() ;
+    public void updateKinds() {
+
+    }
 
     //---------------本类实现的方法-------------------
     @Override
