@@ -36,8 +36,8 @@ public class KindControl extends ActivityKinds {
         controlMap.put(FeaturesKind.class, new FeaturesKind());
     }
 
-    public void remove(Class key, ActivityKinds value) {
-        controlMap.remove(FeaturesKind.class);
+    public void remove(Class key ) {
+        controlMap.remove(key);
     }
 
     @Override
