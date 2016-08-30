@@ -2,14 +2,14 @@ package com.example.mylib_test.activity.custom_view;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 import view.GestureView;
 import view.GestureView2;
 
 /**
  * Created by Administrator on 2016/4/14.
  */
-public class ChengChengActivity extends BaseActivityZ {
+public class ChengChengActivity extends BaseActivity {
     @Override
     public void setContentView() {
         String type = getIntent().getStringExtra("type");

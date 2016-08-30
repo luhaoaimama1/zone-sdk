@@ -12,7 +12,7 @@ import android.view.View;
  * Created by fuzhipeng on 16/8/30.
  * 模板的作用 如果不同 copy然后 更改不同的地方
  */
-public abstract class BaseActivityZ extends Activity implements View.OnClickListener, Handler.Callback{
+public abstract class BaseActivity extends Activity implements View.OnClickListener, Handler.Callback{
 
     public Handler handler;
     protected KindControl mKindControl;

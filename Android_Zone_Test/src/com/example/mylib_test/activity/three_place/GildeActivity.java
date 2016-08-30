@@ -12,7 +12,7 @@ import com.example.mylib_test.R;
 
 import java.io.File;
 
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 import and.utils.data.file2io2data.FileUtils;
 import and.utils.data.file2io2data.SDCardUtils;
 import butterknife.Bind;
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2016/4/4.
  */
-public class GildeActivity extends BaseActivityZ {
+public class GildeActivity extends BaseActivity {
     @Bind(R.id.iv)
     ImageView iv;
     @Bind(R.id.bt)

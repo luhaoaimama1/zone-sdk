@@ -2,12 +2,12 @@ package com.example.mylib_test.activity.databingstudy;
 
 import android.view.View;
 
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 
 /**
  * Created by Administrator on 2016/4/16.
  */
-public class DataBingStartActivity extends BaseActivityZ {
+public class DataBingStartActivity extends BaseActivity {
 //    private User user;
 //    private ADatabingstartBinding binding;
 

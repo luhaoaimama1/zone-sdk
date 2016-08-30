@@ -6,7 +6,7 @@ import com.example.mylib_test.R;
 
 import java.util.concurrent.TimeUnit;
 
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
@@ -14,7 +14,7 @@ import rx.functions.Func1;
 /**
  * Created by Administrator on 2016/4/17.
  */
-public class RxjavaActivity extends BaseActivityZ {
+public class RxjavaActivity extends BaseActivity {
     @Override
     public void setContentView() {
         setContentView(R.layout.a_rxjava);

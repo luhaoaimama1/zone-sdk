@@ -10,7 +10,7 @@ import com.zone.view.ninegridview.TouchGreyImageView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.zone.view.ninegridview.ZGridViewAdapter;
@@ -21,7 +21,7 @@ import com.zone.view.ninegridview.preview.ImagePreviewAdapter;
 /**
  * Created by Administrator on 2016/4/12.
  */
-public class GridZoneActivity extends BaseActivityZ {
+public class GridZoneActivity extends BaseActivity {
     @Bind(R.id.gvz)
     ZGridView gvz;
     @Bind(R.id.bt_change)

@@ -1,7 +1,7 @@
 package com.example.mylib_test.activity.photo_shot;
 import com.example.mylib_test.R;
 import and.base.activity.kinds.features.Feature_Pic;
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 import and.base.activity.kinds.FeaturesKind;
 
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-public class Photo_Shot_MainActivity extends BaseActivityZ implements OnClickListener{
+public class Photo_Shot_MainActivity extends BaseActivity implements OnClickListener{
 	private Feature_Pic feature_Pic;
 	@Override
 	public void setContentView() {

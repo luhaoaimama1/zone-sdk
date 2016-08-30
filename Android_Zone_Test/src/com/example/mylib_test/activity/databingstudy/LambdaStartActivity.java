@@ -6,13 +6,13 @@ import com.android.internal.util.Predicate;
 import com.example.mylib_test.R;
 import java.util.Arrays;
 import java.util.List;
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 
 
 /**
  * Created by Administrator on 2016/4/16.
  */
-public class LambdaStartActivity extends BaseActivityZ {
+public class LambdaStartActivity extends BaseActivity {
 
     @Override
     public void setContentView() {

@@ -3,13 +3,13 @@ package com.example.mylib_test.activity.animal;
 import com.zone.view.FlexibleBall;
 import com.zone.view.QQBizierView;
 
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 
 
 /**
  * Created by fuzhipeng on 16/7/29.
  */
-public class PathActivity extends BaseActivityZ {
+public class PathActivity extends BaseActivity {
     @Override
     public void setContentView() {
         String type = getIntent().getStringExtra("type");

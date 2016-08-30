@@ -7,13 +7,13 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.helper.PopXfermode;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView;
 
-import and.base.activity.BaseActivityZ;
+import and.base.activity.BaseActivity;
 
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class XfermodeActivity extends BaseActivityZ {
+public class XfermodeActivity extends BaseActivity {
     private View rl_main;
     private Button bt_pop;
     private PopXfermode popXfermode;
