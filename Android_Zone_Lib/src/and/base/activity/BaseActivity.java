@@ -34,9 +34,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         setListener();
     }
 
-    public void updateKinds() {
-
-    }
+    public  abstract void updateKinds() ;
 
     //---------------本类实现的方法-------------------
     @Override
