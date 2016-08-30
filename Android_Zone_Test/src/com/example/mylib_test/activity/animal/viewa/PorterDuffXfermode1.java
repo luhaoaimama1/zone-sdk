@@ -1,7 +1,5 @@
 package com.example.mylib_test.activity.animal.viewa;
 
-import com.example.notperfectlib.R;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -15,6 +13,8 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.mylib_test.R;
 
 public class PorterDuffXfermode1 extends View{
 	Paint  paint=new Paint();

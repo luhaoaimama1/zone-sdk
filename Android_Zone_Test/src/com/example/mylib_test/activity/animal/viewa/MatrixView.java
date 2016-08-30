@@ -1,7 +1,5 @@
 package com.example.mylib_test.activity.animal.viewa;
 
-import com.example.notperfectlib.R;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +8,8 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.view.View;
+
+import com.example.mylib_test.R;
 
 public class MatrixView extends View {
 	Paint paint=new Paint();

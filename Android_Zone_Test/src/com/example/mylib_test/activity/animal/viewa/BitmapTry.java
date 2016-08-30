@@ -1,7 +1,6 @@
 package com.example.mylib_test.activity.animal.viewa;
 
 
-import com.example.notperfectlib.R;
 
 import and.utils.image.BitmapUtils;
 import android.content.Context;
@@ -14,6 +13,8 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.mylib_test.R;
 
 public class BitmapTry extends View {
 
