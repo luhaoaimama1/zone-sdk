@@ -3,7 +3,6 @@ package com.example.mylib_test.activity.animal;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -26,6 +25,14 @@ public class CustomAniActivity extends Activity {
     Button z;
     @Bind(R.id.zR)
     Button zR;
+    @Bind(R.id.zY)
+    Button ZY;
+    @Bind(R.id.cX)
+    Button cX;
+    @Bind(R.id.cY)
+    Button cY;
+    @Bind(R.id.cZ)
+    Button cZ;
     private ImageView iv;
 
     @Override
@@ -39,7 +46,7 @@ public class CustomAniActivity extends Activity {
 
     }
 
-    @OnClick({R.id.x, R.id.y, R.id.z, R.id.z_, R.id.zR})
+    @OnClick({R.id.x, R.id.y, R.id.z, R.id.z_, R.id.zR,R.id.cX,R.id.cY,R.id.cZ})
     public void onClick(View view) {
         CustomAnim ani = new CustomAnim();
 //        ani.setRotateX(-30);
@@ -64,6 +71,24 @@ public class CustomAniActivity extends Activity {
             case R.id.zR:
                 iv.animate().rotation(30).start();
                 break;
+            case R.id.cX:
+                ani.setCameraX(3);
+                iv.startAnimation(ani);
+                break;
+            case R.id.cY:
+                ani.setCameraY(3);
+                iv.startAnimation(ani);
+                break;
+            case R.id.cZ:
+                ani.setCameraZ(-100);
+                iv.startAnimation(ani);
+                break;
         }
     }
+
+    @OnClick(R.id.zY)
+    public void onClick() {
+        iv.animate().translationY(100).start();
+    }
+
 }
