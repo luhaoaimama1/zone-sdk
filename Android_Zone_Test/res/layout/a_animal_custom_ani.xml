@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/iv"
-    android:src="@drawable/abcd"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
+    android:layout_height="match_parent">
 
-</ImageView>
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/abcd"
+        android:layout_centerInParent="true">
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X:+100"/>
+
+        <Button
+            android:id="@+id/y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Y:+500"/>
+
+        <Button
+            android:id="@+id/z"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z:+200"/>
+        <Button
+            android:id="@+id/z_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z:-200"/>
+        <Button
+            android:id="@+id/zR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2D旋转Z:60"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
