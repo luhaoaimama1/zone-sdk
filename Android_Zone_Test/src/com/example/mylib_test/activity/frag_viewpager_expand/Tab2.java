@@ -64,4 +64,5 @@ public class Tab2 extends Fragment_Lazy {
         ButterKnife.unbind(this);
     }
 
+
 }

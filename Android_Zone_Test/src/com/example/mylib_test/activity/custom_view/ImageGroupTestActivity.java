@@ -6,10 +6,10 @@ import view.ImageGroup_Zone.ShowStatue;
 
 import com.example.mylib_test.R;
 
-import and.utils.ToastUtils;
-import and.utils.measure.MeasureUtils;
-import and.utils.measure.MeasureUtils.ListenerState;
-import and.utils.measure.MeasureUtils.OnMeasureListener;
+import and.utils.activity_fragment_ui.ToastUtils;
+import and.utils.activity_fragment_ui.MeasureUtils;
+import and.utils.activity_fragment_ui.MeasureUtils.ListenerState;
+import and.utils.activity_fragment_ui.MeasureUtils.OnMeasureListener;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;

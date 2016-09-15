@@ -2,12 +2,12 @@ package com.example.mylib_test.activity.wifi;
 
 import com.example.mylib_test.R;
 
-import and.utils.ToastUtils;
-import and.utils.wifi.MyWifiAnd3G;
-import and.utils.wifi.NetManager;
-import and.utils.wifi.NetStatusReceiverUtils;
-import and.utils.wifi.NetManager.NetStatue;
-import and.utils.wifi.NetStatusReceiver.NetWorkListener;
+import and.utils.activity_fragment_ui.ToastUtils;
+import and.utils.system_hardware_software_receiver_shell.software.wifi.MyWifiAnd3G;
+import and.utils.system_hardware_software_receiver_shell.software.wifi.NetManager;
+import and.utils.system_hardware_software_receiver_shell.software.wifi.NetStatusReceiverUtils;
+import and.utils.system_hardware_software_receiver_shell.software.wifi.NetManager.NetStatue;
+import and.utils.system_hardware_software_receiver_shell.software.wifi.NetStatusReceiver.NetWorkListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

@@ -42,8 +42,6 @@
         </activity>
         <activity android:name="com.example.mylib_test.activity.system.SystemMainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.system.WebViewAcitivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.system.ResultBase1"></activity>
-        <activity android:name="com.example.mylib_test.activity.system.ResultBase2"></activity>
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity2"></activity>
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity3"></activity>
         <activity android:name="com.example.mylib_test.activity.wifi.WifiAdapterActivity"></activity>
@@ -70,12 +68,8 @@
         <activity android:name="com.example.mylib_test.activity.photo_shot.ClipTest"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.ThirdParty_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.BlurActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.three_place.UltraRefresh"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GildeActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"></activity>
-        <activity
-            android:name="com.example.mylib_test.activity.three_place.RecyclerActivity"
-            android:theme="@style/AnimalSetAppTheme"></activity>
         <activity android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.SoftTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
@@ -89,8 +83,6 @@
         <activity android:name="com.example.mylib_test.activity.animal.ViewHelperTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CustomAniActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.PixelsAcitivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.three_place.ImageLoaderGridActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.custom_view.ViewPagerRepeatWriteActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.file.FileTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.file.Activity1"></activity>
         <activity android:name="com.example.mylib_test.activity.file.Activity2"></activity>
@@ -106,13 +98,13 @@
         <activity android:name="com.example.mylib_test.activity.databingstudy.DataBingStartActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.databingstudy.LambdaStartActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.databingstudy.RxjavaActivity"></activity>
+        <activity android:name=".activity.animal.PathActivity"></activity>
         <activity
             android:name="other_project.pinyin_sidebar.SideBarActivity"
 
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
-
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
 
     </application>

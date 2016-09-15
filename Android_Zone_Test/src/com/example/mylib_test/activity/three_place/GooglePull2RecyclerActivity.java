@@ -1,6 +1,6 @@
 package com.example.mylib_test.activity.three_place;
 import java.util.LinkedList;
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseActivity;
 import network.engine.utils.XutilsHttpUtils;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,7 +13,7 @@ import com.zone.adapter.callback.Helper;
 import com.zone.adapter.callback.IAdapter;
 
 
-public class GooglePull2RecyclerActivity extends BaseActvity implements OnRefreshListener{
+public class GooglePull2RecyclerActivity extends BaseActivity implements OnRefreshListener{
 
 	private SwipeRefreshLayout swipe_container;
 	private RecyclerView rv;

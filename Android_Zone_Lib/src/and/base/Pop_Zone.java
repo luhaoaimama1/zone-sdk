@@ -11,7 +11,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.PopupWindow;
 
-import and.utils.UiUtils;
+import and.utils.activity_fragment_ui.SystemView2ParameterUtils;
 
 public abstract class Pop_Zone extends PopupWindow {
 	protected Activity activity;
@@ -138,7 +138,7 @@ public abstract class Pop_Zone extends PopupWindow {
 		if(showAtLocationViewId!=-1)
 			view = activity.findViewById(showAtLocationViewId);
 		else
-			view= UiUtils.getActivityRootView(activity);
+			view= SystemView2ParameterUtils.getActivityRootView(activity);
 		setLocation(view);
 	}
 	/**
@@ -151,7 +151,7 @@ public abstract class Pop_Zone extends PopupWindow {
 	protected abstract  void setListener() ;
 	/**
 	 * <br>也可以加动画 this.setAnimationStyle(R.style.PopSelectPicAnimation);
-	 * <br>例子：this.showAtLocation(context.findViewById(R.id.main), Gravity.BOTTOM	| Gravity.CENTER_HORIZONTAL, 0, 0);
+	 * <br>例子：this.showAtLocation(activity.findViewById(R.id.main), Gravity.BOTTOM	| Gravity.CENTER_HORIZONTAL, 0, 0);
 	 * <br>并可以更改pop的其他设置 
 	 * @param view 
 	 */

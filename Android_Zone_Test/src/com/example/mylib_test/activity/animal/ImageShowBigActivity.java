@@ -1,21 +1,20 @@
 package com.example.mylib_test.activity.animal;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActvity;
-import and.utils.measure.MeasureUtils;
+import and.base.activity.BaseActivity;
+import and.utils.activity_fragment_ui.MeasureUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2016/4/14.
  */
-public class ImageShowBigActivity extends BaseActvity {
+public class ImageShowBigActivity extends BaseActivity {
     @Bind(R.id.iv)
     ImageView iv;
     ImageView.ScaleType scaleType;

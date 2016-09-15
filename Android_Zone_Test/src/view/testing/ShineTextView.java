@@ -36,6 +36,7 @@ public class ShineTextView extends TextView {
         }
     }
 
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

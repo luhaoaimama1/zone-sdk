@@ -4,19 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.zone.view.BlurLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="#fbffbc">
-
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/aaaaaaaaaaaab"/>
-
-    </com.zone.view.BlurLayout>
-
-    <com.zone.view.BlurLayout
+    <RelativeLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -84,5 +72,5 @@
             android:textSize="88sp"
             android:textStyle="bold" />
 
-    </com.zone.view.BlurLayout>
+    </RelativeLayout>
 </LinearLayout>

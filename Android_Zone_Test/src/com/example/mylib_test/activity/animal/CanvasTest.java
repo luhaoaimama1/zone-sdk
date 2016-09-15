@@ -3,9 +3,11 @@ package com.example.mylib_test.activity.animal;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.viewa.BaseDraw;
 import com.example.mylib_test.activity.animal.viewa.Canvas1;
+import com.example.mylib_test.activity.animal.viewa.MatrixMethod;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
 import com.example.mylib_test.activity.animal.viewa.SinView;
+import com.example.mylib_test.activity.animal.viewa.XfermodeView2;
 
 import and.utils.image.BitmapUtils;
 import android.app.Activity;
@@ -38,6 +40,9 @@ public class CanvasTest extends Activity{
 		if("bt_surface".equals(type)){
 			setContentView(new SimpleDraw(this));
 		}
+		if("bt_matrixMethod".equals(type)){
+			setContentView(new MatrixMethod(this));
+		}
 		if("bt_MatrixPre".equals(type)){
 				setContentView(new MatrixView(this));
 			}
@@ -66,7 +71,11 @@ public class CanvasTest extends Activity{
 			iv.setBackgroundColor(Color.YELLOW);
 			setContentView(iv);
 		}
-		
+		if("bt_XfermodeUtils".equals(type)){
+			XfermodeView2 iv = new XfermodeView2(this);
+			setContentView(iv);
+		}
+
 	
 	}
 }

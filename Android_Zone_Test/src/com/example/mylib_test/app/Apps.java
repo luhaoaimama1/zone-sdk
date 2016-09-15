@@ -15,10 +15,10 @@ package com.example.mylib_test.app;
  * limitations under the License.
  *******************************************************************************/
 
-import and.utils.convert.DateUtil;
-import and.utils.file2io2data.SharedUtils;
-import and.utils.image.imageloader.ImageLoaderConfigUtils;
-import and.utils.image.imageloader.ImageLoaderOptionsUtils;
+import and.utils.data.convert.DateUtil;
+import and.utils.data.file2io2data.SharedUtils;
+import com.example.mylib_test.imageloader.ImageLoaderConfigUtils;
+import com.example.mylib_test.imageloader.ImageLoaderOptionsUtils;
 
 import android.annotation.TargetApi;
 import android.app.Application;
@@ -97,7 +97,7 @@ public class Apps extends Application {
 //				this));
 
 
-        loggerTest();
+//        loggerTest();
         spUesrTest();
 
     }
@@ -129,8 +129,7 @@ public class Apps extends Application {
     }
 
     private void loggerTest() {
-        Logger.initialize(
-                Settings.getInstance()
+        Logger.initialize(new Settings()
                         .isShowMethodLink(true)
                         .isShowThreadInfo(false)
                         .setMethodOffset(0)
@@ -152,7 +151,7 @@ public class Apps extends Application {
 
         //Logger.d(test, "s"); // Note:incorrect
 
-        Logger.t("Custom Tag").w("logger load custom tag");
+        Logger.w("logger load custom tag");
         try {
             Class.forName("kale");
         } catch (ClassNotFoundException e) {

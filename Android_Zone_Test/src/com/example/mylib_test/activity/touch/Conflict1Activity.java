@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.three_place.Images;
+import com.example.mylib_test.Images;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.callback.Helper;
 

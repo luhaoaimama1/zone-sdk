@@ -7,12 +7,12 @@ import android.widget.LinearLayout;
 import com.example.mylib_test.R;
 import com.nineoldandroids.view.ViewHelper;
 
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseActivity;
 
 /**
  * Created by Administrator on 2016/1/28.
  */
-public class ViewHelperTestActivity extends BaseActvity {
+public class ViewHelperTestActivity extends BaseActivity {
     private Button bt1, bt2, bt3;
     private LinearLayout ll_main;
 

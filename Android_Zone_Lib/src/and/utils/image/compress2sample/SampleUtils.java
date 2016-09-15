@@ -16,7 +16,7 @@ import and.LogUtil;
  * Useage:
  *
  * SampleUtils
- * .load(context,R.drawable.ic_launcher)/load(path)/load(path,isFileDescriptor)
+ * .load(activity,R.drawable.ic_launcher)/load(path)/load(path,isFileDescriptor)
  * .override(targetWidth,targetHeight)
  * .config(config)
  * .FitCenter()/CenterCrop()

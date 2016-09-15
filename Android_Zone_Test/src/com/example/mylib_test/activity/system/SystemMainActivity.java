@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.system;
 
 import com.example.mylib_test.R;
 
-import and.utils.ToastUtils;
+import and.utils.activity_fragment_ui.ToastUtils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,9 +46,6 @@ public class SystemMainActivity extends Activity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.bt_activityResult:
 			startActivityForResult(new Intent(this,ResultActivity2.class), SystemMainActivity.RequestCode);
-			break;
-		case R.id.bt_baseResult:
-			startActivityForResult(new Intent(this,ResultBase1.class), SystemMainActivity.RequestCode);
 			break;
 		case R.id.bt_webView:
 			startActivity(new Intent(this,WebViewAcitivity.class));

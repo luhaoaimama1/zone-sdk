@@ -15,10 +15,11 @@ import android.widget.TextView;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.zone.customview.ninegridview.R;
-import com.zone.view.ninegridview.preview.utils.MeasureUtils;
 import com.zone.zbanner.ViewPagerCircle;
 
 import java.util.List;
+
+import and.utils.activity_fragment_ui.MeasureUtils;
 
 /**
  * Created by Administrator on 2016/4/12.

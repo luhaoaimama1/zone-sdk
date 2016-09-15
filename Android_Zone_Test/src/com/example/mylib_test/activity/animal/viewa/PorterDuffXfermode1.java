@@ -1,7 +1,5 @@
 package com.example.mylib_test.activity.animal.viewa;
 
-import com.example.notperfectlib.R;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -15,6 +13,8 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.mylib_test.R;
 
 public class PorterDuffXfermode1 extends View{
 	Paint  paint=new Paint();
@@ -78,7 +78,7 @@ public class PorterDuffXfermode1 extends View{
 		paint.setColor(Color.RED);
 		canvas.drawCircle(getWidth()/2, getHeight()/2, 200, paint);
 //		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-//		canvas.drawBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.abcd), 0,0, paint);
+//		canvas.drawBitmap(BitmapFactory.decodeResource(activity.getResources(), R.drawable.abcd), 0,0, paint);
 		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
 		canvas.restore();
 		canvas.saveLayer(0, 0, getWidth(), getHeight(), paint,
@@ -87,7 +87,7 @@ public class PorterDuffXfermode1 extends View{
 		paint.setColor(Color.YELLOW);
 		canvas.drawCircle(getWidth()/2, getHeight()/2, 200, paint);
 //		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-//		canvas.drawBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.abcd), 0,0, paint);
+//		canvas.drawBitmap(BitmapFactory.decodeResource(activity.getResources(), R.drawable.abcd), 0,0, paint);
 		paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
 		canvas.restoreToCount(1);
 //		paint.reset(); 

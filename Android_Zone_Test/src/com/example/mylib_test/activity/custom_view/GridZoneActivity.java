@@ -5,24 +5,23 @@ import android.view.View;
 import android.widget.Button;
 import com.bumptech.glide.Glide;
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.three_place.Images;
+import com.example.mylib_test.Images;
 import com.zone.view.ninegridview.TouchGreyImageView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import and.base.activity.BaseActvity;
+import and.base.activity.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.zone.view.ninegridview.ZGridViewAdapter;
 import com.zone.view.ninegridview.ZGridView;
 import com.zone.view.ninegridview.preview.ImageInfo;
-import com.zone.view.ninegridview.preview.ImagePreviewActivity;
 import com.zone.view.ninegridview.preview.ImagePreviewAdapter;
 
 /**
  * Created by Administrator on 2016/4/12.
  */
-public class GridZoneActivity extends BaseActvity {
+public class GridZoneActivity extends BaseActivity {
     @Bind(R.id.gvz)
     ZGridView gvz;
     @Bind(R.id.bt_change)

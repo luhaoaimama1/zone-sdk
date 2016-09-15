@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.os.Build;
 
-import and.utils.Singleton;
 import and.utils.image.lruutils.official.LruCacheWrapper;
 
 /**
@@ -34,7 +33,7 @@ public class LruCacheUtils {
 
     public final LruCacheWrapper<String, Bitmap> getInstance() {
         if (instance == null) {
-            synchronized (Singleton.class) {
+            synchronized (LruCacheUtils.class) {
                 if (instance == null)
                     instance = new LruCacheUtils();
             }

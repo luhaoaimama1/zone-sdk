@@ -1,7 +1,7 @@
 package com.example.mylib_test.activity.utils;
 
 import com.example.mylib_test.R;
-import and.utils.text_edit2input.KeyBoardUtils;
+import and.utils.system_hardware_software_receiver_shell.software.KeyBoardUtils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,7 +47,7 @@ public class Utils_MainActivity extends Activity implements OnClickListener{
 			public void closeState(int keyboardHeight) {
 				System.out.println("键盘：closeState 高度:"+keyboardHeight);
 			}
-		}.monitorKeybordState(findViewById(R.id.flowLayoutZone1));;	
+		}.monitorKeybordState(this);
 	}
 
 	@Override

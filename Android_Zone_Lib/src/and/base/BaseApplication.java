@@ -1,9 +1,9 @@
 package and.base;
 
-import and.utils.ToastUtils;
-import and.utils.wifi.NetStatusReceiverUtils;
-import and.utils.wifi.NetManager.NetStatue;
-import and.utils.wifi.NetStatusReceiver.NetWorkListener;
+import and.utils.activity_fragment_ui.ToastUtils;
+import and.utils.system_hardware_software_receiver_shell.software.wifi.NetStatusReceiverUtils;
+import and.utils.system_hardware_software_receiver_shell.software.wifi.NetManager.NetStatue;
+import and.utils.system_hardware_software_receiver_shell.software.wifi.NetStatusReceiver.NetWorkListener;
 import android.app.Application;
 
 public class BaseApplication extends Application {

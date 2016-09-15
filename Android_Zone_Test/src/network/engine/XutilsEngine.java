@@ -27,12 +27,12 @@
 //	private static final String Params_Charset="utf-8";
 //	private RequestParams prepare ;
 //
-//	public XutilsEngine(Context context, Handler handler) {
-//		this(context, handler,false);
+//	public XutilsEngine(Context activity, Handler handler) {
+//		this(activity, handler,false);
 //	}
 //
-//	public XutilsEngine(Context context, Handler handler, boolean showDialog) {
-//		super(context, handler, showDialog);
+//	public XutilsEngine(Context activity, Handler handler, boolean showDialog) {
+//		super(activity, handler, showDialog);
 //	}
 //
 //	public void getXutilsParams() {
@@ -76,7 +76,7 @@
 //		http.send(HttpRequest.HttpMethod.POST,urlString,prepare, InnerDispose.getXutilsCallback(this, tag, listener));
 //	}
 //	@Override
-//	protected Dialog createDefaultDialog(Context context) {
+//	protected Dialog createDefaultDialog(Context activity) {
 //		return null;
 //	}
 //	static  class InnerDispose{

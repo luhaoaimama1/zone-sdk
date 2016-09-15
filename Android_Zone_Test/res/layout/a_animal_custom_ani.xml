@@ -1,9 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/iv"
-    android:src="@drawable/abcd"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
+    android:layout_height="match_parent">
 
-</ImageView>
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/abcd"
+        android:layout_alignParentBottom="true"/>
+
+
+    <view.FlowLayout_Zone
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/utils_tran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="utils_tran x:100,y:500,z:100" />
+
+        <Button
+            android:id="@+id/utils_xR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rotation (某一点): x:30" />
+
+        <Button
+            android:id="@+id/utils_yR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rotation (某一点): y:30" />
+
+        <Button
+            android:id="@+id/utils_zR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rotation (某一点): z:30" />
+
+        <Button
+            android:id="@+id/mx3D_tran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mx3D utils_tran x:100,y:500,z:-50" />
+
+        <Button
+            android:id="@+id/mx3D_xR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mx3D rotation (某一点): x:30" />
+
+        <Button
+            android:id="@+id/mx3D_yR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mx3D rotation (某一点): y:30" />
+
+        <Button
+            android:id="@+id/mx3D_zR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mx3D rotation (某一点): z:30" />
+
+
+        <Button
+            android:id="@+id/x"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="X:+100" />
+
+        <Button
+            android:id="@+id/y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Y:+500" />
+
+        <Button
+            android:id="@+id/z"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Z:+500" />
+
+
+        <Button
+            android:id="@+id/zR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2D旋转Z:60" />
+
+
+        <Button
+            android:id="@+id/zYR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2DX:+30" />
+
+        <Button
+            android:id="@+id/cX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="camera X:+3" />
+
+        <Button
+            android:id="@+id/cY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="camera Y:+3" />
+
+        <Button
+            android:id="@+id/cZ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="camera Z:+3" />
+
+    </view.FlowLayout_Zone>
+</RelativeLayout>

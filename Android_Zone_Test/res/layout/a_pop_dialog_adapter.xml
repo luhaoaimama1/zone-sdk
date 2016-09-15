@@ -56,12 +56,38 @@
         android:orientation="vertical">
 
         <Button
-            android:tag="blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onClick"
+            android:tag="blue"
             android:text="tagBlue" />
 
     </LinearLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="30dp"
+        android:layout_height="100dp"
+        android:max="100"
+        android:progress="40"
+        android:progressDrawable="@drawable/progressbar_z_vertical" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:max="100"
+        android:progress="40"
+        android:progressDrawable="@drawable/progressbar_z_hori"
+        android:secondaryProgress="70" />
+
+    <com.zone.view.ZSeekBarUnslide
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:max="100"
+        android:thumb="@drawable/thumb"
+        android:progress="40"
+        android:progressDrawable="@drawable/progressbar_z_hori"
+        android:secondaryProgress="70" />
 
 </view.FlowLayout_Zone>
