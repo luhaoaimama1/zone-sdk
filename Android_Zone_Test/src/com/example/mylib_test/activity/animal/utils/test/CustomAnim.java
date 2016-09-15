@@ -1,4 +1,4 @@
-package com.example.mylib_test.activity.animal.viewa;
+package com.example.mylib_test.activity.animal.utils.test;
 
 import android.annotation.TargetApi;
 import android.graphics.Camera;
@@ -8,12 +8,14 @@ import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.Transformation;
 
+import com.example.mylib_test.activity.animal.utils.ZCamera;
+
 public class CustomAnim extends Animation {
 
     private int mCenterWidth;
     private int mCenterHeight;
-    private Camera mCamera = new Camera();
-    private float mRotateY = 0.0f;
+    private Camera mCamera = new ZCamera();
+    private float mRotateX = 0.0f, mRotateY = 0.0f, mRotateZ = 0.0f;
     private float mX = 0.0f, mY = 0.0f, mZ = 0.0f, cX = 0.0f, cY = 0.0f, cZ = 0.0f;
 
     @Override
@@ -31,9 +33,19 @@ public class CustomAnim extends Animation {
     }
 
     // 暴露接口-设置旋转角度
-    public void setRotateX(float rotateY) {
+    public void setRotateY(float rotateY) {
         mRotateY = rotateY;
     }
+
+    public void setRotateX(float rotateX) {
+        this.mRotateX = rotateX;
+    }
+
+    public void setRotateZ(float rotateZ) {
+        this.mRotateZ = rotateZ;
+    }
+
+
 
     // 暴露接口-设置旋转角度
     public void setX(float x) {
@@ -89,12 +101,16 @@ public class CustomAnim extends Animation {
         else
             mCamera.setLocation(cX * interpolatedTime, cY * interpolatedTime, -8 + cZ * interpolatedTime);
 
-//        mCamera.translate(0,0,100*interpolatedTime);
-        // 使用Camera设置旋转的角度
+
+        mCamera.rotateX(mRotateX * interpolatedTime);
+        mCamera.rotate(0,mRotateY * interpolatedTime,0);
+        mCamera.rotateZ(mRotateZ * interpolatedTime);
+
 //        mCamera.rotateX(mRotateY * interpolatedTime);
         // 将旋转变换作用到matrix上
         mCamera.getMatrix(matrix);
         mCamera.restore();
+        System.out.println("mRotateX:___"+mRotateX+"\t mRotateY:"+mRotateY+"\t mRotateZ:"+mRotateZ);
         System.out.println("camera x:" + mCamera.getLocationX() + "\t y:" + mCamera.getLocationY() + "\t z:" + mCamera.getLocationZ());
         System.out.println("Matrix:___"+matrix.toString());
         // 通过pre方法设置矩阵作用前的偏移量来改变旋转中心
