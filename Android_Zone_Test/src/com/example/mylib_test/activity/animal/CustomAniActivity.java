@@ -25,14 +25,22 @@ public class CustomAniActivity extends Activity {
     Button z;
     @Bind(R.id.zR)
     Button zR;
-    @Bind(R.id.zY)
-    Button ZY;
+    @Bind(R.id.zYR)
+    Button zYR;
     @Bind(R.id.cX)
     Button cX;
     @Bind(R.id.cY)
     Button cY;
     @Bind(R.id.cZ)
     Button cZ;
+    @Bind(R.id.utils_tran)
+    Button utilsTran;
+    @Bind(R.id.utils_xR)
+    Button utilsXR;
+    @Bind(R.id.utils_yR)
+    Button utilsYR;
+    @Bind(R.id.utils_zR)
+    Button utilsZR;
     private ImageView iv;
 
     @Override
@@ -46,7 +54,8 @@ public class CustomAniActivity extends Activity {
 
     }
 
-    @OnClick({R.id.x, R.id.y, R.id.z, R.id.z_, R.id.zR,R.id.cX,R.id.cY,R.id.cZ})
+    @OnClick({R.id.x, R.id.y, R.id.z, R.id.z_, R.id.zR, R.id.cX, R.id.cY, R.id.cZ,
+            R.id.utils_tran, R.id.utils_xR, R.id.utils_yR, R.id.utils_zR})
     public void onClick(View view) {
         CustomAnim ani = new CustomAnim();
 //        ani.setRotateX(-30);
@@ -80,15 +89,28 @@ public class CustomAniActivity extends Activity {
                 iv.startAnimation(ani);
                 break;
             case R.id.cZ:
-                ani.setCameraZ(-100);
+                ani.setCameraZ(-1000);
                 iv.startAnimation(ani);
                 break;
         }
+        utilsTest(view);
     }
 
-    @OnClick(R.id.zY)
+    @OnClick(R.id.zYR)
     public void onClick() {
-        iv.animate().translationY(100).start();
+        iv.animate().rotationX(30).start();
     }
 
+    public void utilsTest(View view) {
+        switch (view.getId()) {
+            case R.id.utils_tran:
+                break;
+            case R.id.utils_xR:
+                break;
+            case R.id.utils_yR:
+                break;
+            case R.id.utils_zR:
+                break;
+        }
+    }
 }

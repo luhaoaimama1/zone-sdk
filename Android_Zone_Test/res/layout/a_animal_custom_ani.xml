@@ -33,13 +33,13 @@
             android:id="@+id/z"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Z:+200" />
+            android:text="Z:+500" />
 
         <Button
             android:id="@+id/z_"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Z:-200" />
+            android:text="Z:-500" />
 
         <Button
             android:id="@+id/zR"
@@ -54,24 +54,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:orientation="horizontal"
-        android:layout_below="@+id/ll_up">
+        android:layout_below="@+id/ll_up"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/zY"
+            android:id="@+id/zYR"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2DY:+100" />
+            android:text="2DX:+30" />
+
         <Button
             android:id="@+id/cX"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="camera X:+3" />
+
         <Button
             android:id="@+id/cY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="camera Y:+3" />
+
         <Button
             android:id="@+id/cZ"
             android:layout_width="wrap_content"
@@ -79,4 +82,36 @@
             android:text="camera Z:+3" />
     </LinearLayout>
 
+
+    <view.FlowLayout_Zone
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/utils_tran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="utils_tran x:100,y:200,z:300" />
+
+        <Button
+            android:id="@+id/utils_xR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rotation (某一点): x:30" />
+
+        <Button
+            android:id="@+id/utils_yR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rotation (某一点): y:30" />
+
+        <Button
+            android:id="@+id/utils_zR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rotation (某一点): z:30" />
+
+    </view.FlowLayout_Zone>
 </RelativeLayout>
