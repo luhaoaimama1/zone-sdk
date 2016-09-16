@@ -3,16 +3,13 @@ package com.example.mylib_test.activity.animal;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.utils.test.CustomAnim;
 import com.example.mylib_test.activity.animal.utils.test.Matrix3DAnimTest;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class CustomAniActivity extends Activity {
 
@@ -30,14 +27,11 @@ public class CustomAniActivity extends Activity {
 
     }
 
-    @OnClick({R.id.x, R.id.y, R.id.z, R.id.zR, R.id.cX, R.id.cY, R.id.cZ,
-            R.id.utils_tran, R.id.utils_xR, R.id.utils_yR, R.id.utils_zR,
-            R.id.mx3D_tran, R.id.mx3D_xR, R.id.mx3D_yR, R.id.mx3D_zR})
+
     public void onClick(View view) {
         CustomAnim ani = new CustomAnim();
-//        ani.setRotateX(-30);
-
         switch (view.getId()) {
+
             case R.id.x:
                 ani.setX(100);
                 iv.startAnimation(ani);
@@ -50,49 +44,35 @@ public class CustomAniActivity extends Activity {
                 ani.setZ(500);
                 iv.startAnimation(ani);
                 break;
-            case R.id.zR:
-                iv.animate().rotation(30).start();
-                break;
-            case R.id.cX:
-                ani.setCameraX(3);
+
+            case R.id.utils_xR:
+                ani.setRotateX(30);
                 iv.startAnimation(ani);
                 break;
-            case R.id.cY:
-                ani.setCameraY(3);
+            case R.id.utils_yR:
+                ani.setRotateY(30);
                 iv.startAnimation(ani);
                 break;
-            case R.id.cZ:
-                ani.setCameraZ(-1000);
+            case R.id.utils_zR:
+                ani.setRotateZ(30);
                 iv.startAnimation(ani);
                 break;
         }
-        utilsTest(view);
+        test2D(view);
         mx3DTest(view);
     }
 
-    @OnClick(R.id.zYR)
-    public void onClick() {
-        iv.animate().rotationX(30).start();
-    }
 
-    public void utilsTest(View view) {
-        CustomAnim mCustomAnimUtils = new CustomAnim();
+
+    public void test2D(View view) {
         switch (view.getId()) {
-            case R.id.utils_tran:
-                iv.startAnimation(mCustomAnimUtils);
+            case R.id.zR:
+                iv.animate().rotation(30).start();
                 break;
-            case R.id.utils_xR:
-                mCustomAnimUtils.setRotateX(30);
-                iv.startAnimation(mCustomAnimUtils);
+            case R.id.zYR:
+                iv.animate().rotationX(30).start();
                 break;
-            case R.id.utils_yR:
-                mCustomAnimUtils.setRotateY(30);
-                iv.startAnimation(mCustomAnimUtils);
-                break;
-            case R.id.utils_zR:
-                mCustomAnimUtils.setRotateZ(30);
-                iv.startAnimation(mCustomAnimUtils);
-                break;
+
         }
     }
 
@@ -100,23 +80,43 @@ public class CustomAniActivity extends Activity {
 
         switch (view.getId()) {
             case R.id.mx3D_tran:
-                ani.setTest(Matrix3DAnimTest.Test.tran);
+                ani.setView(iv);
+                ani.setTest(Matrix3DAnimTest.Test.compose);
+                iv.startAnimation(ani);
+                break;
+            case R.id.mx3D_tran2:
+                ani.setView(iv);
+                ani.setTest(Matrix3DAnimTest.Test.compose2);
                 iv.startAnimation(ani);
                 break;
             case R.id.mx3D_xR:
-                ani.setTest(Matrix3DAnimTest.Test.rX);
+                ani.setView(iv);
+                ani.setTest(Matrix3DAnimTest.Test.composeX);
                 iv.startAnimation(ani);
                 break;
             case R.id.mx3D_yR:
-                ani.setTest(Matrix3DAnimTest.Test.rY);
+                ani.setView(iv);
+                ani.setTest(Matrix3DAnimTest.Test.composeY);
                 iv.startAnimation(ani);
                 break;
             case R.id.mx3D_zR:
-//                ani.setTest(Matrix3DAnimTest.Test.rZ);
-//                ani.setTest(Matrix3DAnimTest.Test.rX_rY);
                 ani.setView(iv);
-//                ani.setTest(Matrix3DAnimTest.Test.rYSpec);
-                ani.setTest(Matrix3DAnimTest.Test.compose);
+                ani.setTest(Matrix3DAnimTest.Test.composeZ);
+                iv.startAnimation(ani);
+                break;
+            case R.id.mx3D:
+                ani.setView(iv);
+                ani.setTest(Matrix3DAnimTest.Test.compose3);
+                iv.startAnimation(ani);
+                break;
+            case R.id.layer:
+                ani.setView(iv);
+                ani.setTest(Matrix3DAnimTest.Test.layer);
+                iv.startAnimation(ani);
+                break;
+            case R.id.layer2:
+                ani.setView(iv);
+                ani.setTest(Matrix3DAnimTest.Test.layer2);
                 iv.startAnimation(ani);
                 break;
         }
