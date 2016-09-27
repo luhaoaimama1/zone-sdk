@@ -4,8 +4,16 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 /**
  * Type 可以直接强转成class
+ * 使用范例: T result=((Class<T>) ReflectGenericUtils.getSuperGenericClass(this)).newInstance();
  */
-class ReflectGenericUtils {
+public class ReflectGenericUtils {
+
+    public static Class getSuperGenericClass(Object obj) {
+        return getSuperGenericClass(obj.getClass(), 0);
+    }
+    public static Class getSuperGenericClass(Object obj, int index) {
+        return (Class) getSuperGenericType(obj.getClass(), index);
+    }
 
     public static Class getSuperGenericClass(Class<?> subclass) {
         return getSuperGenericClass(subclass, 0);

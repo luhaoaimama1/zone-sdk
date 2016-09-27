@@ -6,12 +6,14 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 import com.zone.view.base.ViewGroup_Zone;
+import com.zone.view.base.ViewProperty;
+
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/4/11.
  */
-public class ZGridView extends ViewGroup_Zone {
+public class ZGridView extends ViewGroup_Zone<ViewProperty> {
     private final Context context;
     /**
      * 图片之间的间隔

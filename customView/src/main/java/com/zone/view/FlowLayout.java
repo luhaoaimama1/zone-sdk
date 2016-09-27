@@ -1,15 +1,21 @@
 package com.zone.view;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import com.zone.view.base.ViewGroup_Zone;
+import com.zone.view.base.ViewProperty;
+import com.zone.view.base.entity.ViewProperty_FlowLayout;
+
 import android.content.Context;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class FlowLayout extends ViewGroup_Zone {
+
+public class FlowLayout extends ViewGroup_Zone<ViewProperty_FlowLayout> {
     private int maxLine;
-    private List<ViewProperty> childList;
+    private List<ViewProperty_FlowLayout> childList;
     private boolean center_vertical;
 
     public FlowLayout(Context context, AttributeSet attrs, int defStyle) {
@@ -24,6 +30,7 @@ public class FlowLayout extends ViewGroup_Zone {
         super(context);
     }
 
+
     /**
      * 重1开始
      *
@@ -34,7 +41,7 @@ public class FlowLayout extends ViewGroup_Zone {
             throw new IllegalArgumentException("maxLine must be >= 1");
         this.maxLine = maxLine;
         if (childList != null && childList.size() > 0) {
-            for (ViewProperty viewProperty : childList)
+            for (ViewProperty_FlowLayout viewProperty : childList)
                 if (!viewProperty.isLayout) {
                     //为了避免和别人已经invisbility 混乱。只有isLayout=false的时候我才恢复成visibility
                     viewProperty.isLayout = true;
@@ -46,6 +53,7 @@ public class FlowLayout extends ViewGroup_Zone {
 
     /**
      * 居中的时候 是考虑margin的  margin是居中后在用的
+     *
      * @param center_vertical
      */
     public void setVCenter(boolean center_vertical) {
@@ -54,13 +62,11 @@ public class FlowLayout extends ViewGroup_Zone {
     }
 
     @Override
-    public PointF getViewLocation(List<ViewProperty> childList, ViewProperty viewAttr, int index, MeasureSpecMy mMeasureSpecMy) {
+    public PointF getViewLocation(List<ViewProperty_FlowLayout> childList, ViewProperty_FlowLayout viewAttr, int index, MeasureSpecMy mMeasureSpecMy) {
         if (index == 0) {
-            viewAttr.horizontalNum = 0;
-            viewAttr.verticalNum = 0;
             return new PointF(0, 0);
         } else {
-            ViewProperty lastView = childList.get(index - 1);
+            ViewProperty_FlowLayout lastView = (ViewProperty_FlowLayout) viewAttr.preView;
             if (lastView.isLayout) {
                 PointF viewWillLocation = new PointF(lastView.location.x + lastView.width2Height2Margin.x, lastView.location.y);
                 if (viewWillLocation.x + viewAttr.width2Height2Margin.x > mMeasureSpecMy.widthSize) {
@@ -72,10 +78,9 @@ public class FlowLayout extends ViewGroup_Zone {
                     }
                     float maxY = 0;
                     for (ViewProperty attr : childList)
-                        if (attr.location.y == viewWillLocation.y && attr.width2Height2Margin.y > maxY)
+                        //当前不算在内   计算这行 最大的高度;
+                        if (attr != viewAttr && attr.location.y == viewWillLocation.y && attr.width2Height2Margin.y > maxY)
                             maxY = attr.width2Height2Margin.y;
-                    if (viewAttr.width2Height2Margin.y > maxY)
-                        maxY = viewAttr.width2Height2Margin.y;
                     viewAttr.horizontalNum = 0;
                     viewAttr.verticalNum = lastView.verticalNum + 1;
                     return new PointF(0, viewWillLocation.y + maxY);
@@ -93,17 +98,17 @@ public class FlowLayout extends ViewGroup_Zone {
     }
 
     @Override
-    public PointF makeSureMeasureSize(List<ViewProperty> childList, MeasureSpecMy mMeasureSpecMy) {
+    public PointF makeSureMeasureSize(List<ViewProperty_FlowLayout> childList, MeasureSpecMy mMeasureSpecMy) {
         this.childList = childList;
         if (childList.size() != 0) {
-            ViewProperty lastOne = null;
-            for (ViewProperty viewAttr : childList) {
+            ViewProperty_FlowLayout lastOne = null;
+            for (ViewProperty_FlowLayout viewAttr : childList) {
                 if (!viewAttr.isLayout)
                     break;
                 lastOne = viewAttr;
             }
             float maxY = 0;
-            for (ViewProperty viewAttr : childList) {
+            for (ViewProperty_FlowLayout viewAttr : childList) {
                 if (lastOne.location.y == viewAttr.location.y && viewAttr.width2Height2Margin.y > maxY)
                     maxY = viewAttr.width2Height2Margin.y;
             }
@@ -115,18 +120,19 @@ public class FlowLayout extends ViewGroup_Zone {
         }
     }
 
-    private void calculateCente(List<ViewProperty> childList) {
+    private void calculateCente(List<ViewProperty_FlowLayout> childList) {
         List<Float> maxYlist = new ArrayList<>();
-        for (ViewProperty viewProperty : childList) {
+        for (ViewProperty_FlowLayout viewProperty : childList) {
             if (viewProperty.horizontalNum == 0 && viewProperty.verticalNum != 0)
                 maxYlist.add((float) viewProperty.view.getHeight());
         }
         for (int i = 0; i < maxYlist.size(); i++) {
-            for (ViewProperty viewProperty : childList) {
+            for (ViewProperty_FlowLayout viewProperty : childList) {
                 if (viewProperty.horizontalNum == i)
                     viewProperty.offsetExtra = new PointF(0, (maxYlist.get(i) - viewProperty.view.getHeight()) / 2);
             }
         }
     }
+
 
 }
