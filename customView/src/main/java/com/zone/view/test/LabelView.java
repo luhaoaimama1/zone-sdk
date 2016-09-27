@@ -1,11 +1,6 @@
-package view;
+package com.zone.view.test;
 import java.util.ArrayList;
 import java.util.List;
-
-import view.utils.DragZoomRorateUtils;
-
-import com.example.mylib_test.R;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +15,10 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import com.zone.view.test.util.DragZoomRorateUtils;
+
+import com.zone.customview.ninegridview.R;
+
 /**
  * 我最终完美的控件
  * @author Zone

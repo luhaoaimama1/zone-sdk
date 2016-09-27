@@ -1,4 +1,4 @@
-package com.zone.view;
+package com.zone.view.test;
 
 import android.content.Context;
 import android.graphics.Bitmap;

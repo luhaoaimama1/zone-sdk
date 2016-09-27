@@ -1,4 +1,4 @@
-package view.utils;
+package com.zone.view.test.util;
 
 import android.content.Context;
 import android.content.res.TypedArray;

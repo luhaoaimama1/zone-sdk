@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<view.FlowLayout_Zone xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zone.view.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/flowLayoutZone1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
@@ -34,7 +34,7 @@
         android:onClick="onClick"
         android:text="google下拉刷新with异步任务" />
 
-    <view.FlowLayout_Zone
+    <com.zone.view.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f9ffac">
@@ -46,9 +46,9 @@
             android:onClick="onClick"
             android:text="googlepull测试" />
 
-    </view.FlowLayout_Zone>
+    </com.zone.view.FlowLayout>
 
-    <view.FlowLayout_Zone
+    <com.zone.view.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f9ffac">
@@ -67,7 +67,7 @@
             android:onClick="onClick"
             android:text="Glide学习" />
 
-    </view.FlowLayout_Zone>
+    </com.zone.view.FlowLayout>
     <Button
         android:id="@+id/bt_swtichButton"
         android:layout_width="wrap_content"
@@ -84,4 +84,4 @@
         android:text="blur" />
 
 
-</view.FlowLayout_Zone>
+</com.zone.view.FlowLayout>

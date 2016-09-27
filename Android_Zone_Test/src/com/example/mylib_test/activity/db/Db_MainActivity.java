@@ -10,8 +10,8 @@ import com.example.mylib_test.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import view.FlowLayout_Zone;
+
+import com.zone.view.FlowLayout;
 
 public class Db_MainActivity extends Activity implements OnClickListener {
 
@@ -50,7 +50,7 @@ public class Db_MainActivity extends Activity implements OnClickListener {
     @Bind(R.id.tran_add_success)
     Button tranAddSuccess;
     @Bind(R.id.flowLayoutZone1)
-    FlowLayout_Zone flowLayoutZone1;
+    FlowLayout flowLayoutZone1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

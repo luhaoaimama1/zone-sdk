@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<view.FlowLayout_Zone xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zone.view.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/flowLayoutZone1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
@@ -36,13 +36,6 @@
         android:onClick="onClick"
         android:text="label拖拽旋转缩放" />
 
-    <Button
-        android:id="@+id/imageGroup_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="ImageGroup的测试" />
 
     <Button
         android:id="@+id/arcMenu"
@@ -144,4 +137,4 @@
         android:text="手势View测试2" />
 
 
-</view.FlowLayout_Zone>
+</com.zone.view.FlowLayout>

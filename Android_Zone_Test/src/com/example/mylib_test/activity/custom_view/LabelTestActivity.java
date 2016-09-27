@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.custom_view;
 
 import com.example.mylib_test.R;
 
-import view.LabelView;
+import com.zone.view.test.LabelView;
 import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;

@@ -3,10 +3,8 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import view.utils.Attr_Styleable_Utils;
-
 import com.example.mylib_test.R;
+import com.zone.view.test.util.Attr_Styleable_Utils;
 
 import android.content.Context;
 import android.graphics.Point;

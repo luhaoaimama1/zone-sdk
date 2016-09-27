@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.pop_dialog;
 
 import and.utils.activity_fragment_ui.ToastUtils;
 import view.DialogCustemZone;
-import view.FlowLayout_Zone;
+import com.zone.view.FlowLayout;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.pop_dialog.pop.Pop_Bottom;
@@ -38,7 +38,7 @@ public class Dialog_Pop_Adapter_MainActivity extends Activity implements OnClick
 			pop.show();
 			break;
 		case R.id.tag:
-			FlowLayout_Zone fz= (FlowLayout_Zone) findViewById(R.id.flowLayoutZone1);
+			FlowLayout fz= (FlowLayout) findViewById(R.id.flowLayoutZone1);
 			Button bt2= (Button) fz.findViewWithTag("blue");
 			bt2.setBackgroundColor(Color.BLUE);
 			break;

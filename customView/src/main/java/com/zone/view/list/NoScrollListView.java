@@ -1,16 +1,17 @@
-package view;
+package com.zone.view.list;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.GridView;
+import android.widget.ListView;
 
-public class NoScrollGridView extends GridView{  
+public class NoScrollListView extends ListView{  
 	  
-    public NoScrollGridView(Context context, AttributeSet attrs){ 
+    public NoScrollListView(Context context, AttributeSet attrs){  
          super(context, attrs);  
     }  
+ 
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec){  
          int mExpandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);  
          super.onMeasure(widthMeasureSpec, mExpandSpec);  
     }  
-} 
+}  

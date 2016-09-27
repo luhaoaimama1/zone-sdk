@@ -1,18 +1,12 @@
 package com.zone.view;
-
+import java.util.ArrayList;
+import java.util.List;
+import com.zone.view.base.ViewGroup_Zone;
 import android.content.Context;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.zone.view.base.ViewGroup_Zone;
-
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by Administrator on 2016/4/11.
- */
 public class FlowLayout extends ViewGroup_Zone {
     private int maxLine;
     private List<ViewProperty> childList;
@@ -134,6 +128,5 @@ public class FlowLayout extends ViewGroup_Zone {
             }
         }
     }
-
 
 }

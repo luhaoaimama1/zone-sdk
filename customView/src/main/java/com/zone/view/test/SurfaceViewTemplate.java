@@ -1,4 +1,4 @@
-package com.example.mylib_test.activity.animal.viewa;
+package com.zone.view.test;
 
 import android.content.Context;
 import android.graphics.Canvas;

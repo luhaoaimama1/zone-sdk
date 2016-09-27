@@ -35,9 +35,6 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
             case R.id.arcMenu:
                 startActivity(new Intent(this, ArcMenuTestActivity.class));
                 break;
-            case R.id.imageGroup_test:
-                startActivity(new Intent(this, ImageGroupTestActivity.class));
-                break;
             case R.id.square_test:
                 startActivity(new Intent(this, SquareTestActivity.class));
                 break;

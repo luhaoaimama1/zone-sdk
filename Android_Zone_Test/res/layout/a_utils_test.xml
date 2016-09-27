@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent" >
 
-    <view.FlowLayout_Zone
+    <com.zone.view.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -54,7 +54,7 @@
             android:text="正则提取手机号"
             android:onClick="onClick" />
 
-    </view.FlowLayout_Zone>
+    </com.zone.view.FlowLayout>
 
     <View
         android:id="@+id/view1"

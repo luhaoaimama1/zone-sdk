@@ -8,7 +8,6 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile project(':customView')
     compile 'io.reactivex:rxandroid:1.1.0'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
@@ -25,6 +24,7 @@ dependencies {
 
     compile 'com.github.tianzhijiexian:logger:1.1.8'
 
+        compile project(':customView')
 }
 
 android {

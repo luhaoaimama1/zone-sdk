@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <view.FlowLayout_Zone
+    <com.zone.view.FlowLayout
         android:id="@+id/flowLayoutZone1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -177,7 +177,7 @@
             android:onClick="onClick"
             android:text="Matrix各种特殊方法" />
 
-        <com.zone.view.WaveView2
+        <com.zone.view.test.WaveView2
             android:layout_width="match_parent"
             android:layout_height="100dp"/>
 
@@ -284,6 +284,6 @@
             android:background="#00ff00"
             android:layout_margin="4dp"/>
         
-    </view.FlowLayout_Zone>
+    </com.zone.view.FlowLayout>
 
 </ScrollView>

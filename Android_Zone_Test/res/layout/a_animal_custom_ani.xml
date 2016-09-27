@@ -11,7 +11,7 @@
         android:layout_alignParentBottom="true"/>
 
 
-    <view.FlowLayout_Zone
+    <com.zone.view.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -115,5 +115,5 @@
             android:layout_height="wrap_content"
             android:text="camera Z:+3" />
 
-    </view.FlowLayout_Zone>
+    </com.zone.view.FlowLayout>
 </RelativeLayout>

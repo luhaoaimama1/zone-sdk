@@ -20,12 +20,12 @@ import com.example.mylib_test.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import view.FlowLayout_Zone;
+import com.zone.view.FlowLayout;
 
 public class Animal_MainActivity extends Activity implements OnClickListener {
     @Bind(R.id.bt_clip_drawable)
     Button btClipDrawable;
-    private FlowLayout_Zone flowLayoutZone1;
+    private FlowLayout flowLayoutZone1;
     private ImageView iv_iv;
     private Bitmap bt;
     private ScrollView sv;
@@ -40,7 +40,7 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_animaltest);
         ButterKnife.bind(this);
-        flowLayoutZone1 = (FlowLayout_Zone) findViewById(R.id.flowLayoutZone1);
+        flowLayoutZone1 = (FlowLayout) findViewById(R.id.flowLayoutZone1);
         iv_iv = (ImageView) findViewById(R.id.iv_iv);
         sv = (ScrollView) findViewById(R.id.sv);
         testViewTreeObserverListener();

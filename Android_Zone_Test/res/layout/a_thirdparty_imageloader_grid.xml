@@ -17,12 +17,12 @@
             android:gravity="center"
             android:text="点击加载数据" />
 
-        <view.NoScrollGridView
+        <com.zone.view.list.NoScrollGridView
             android:id="@+id/gridView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:numColumns="3" >
-        </view.NoScrollGridView>
+        </com.zone.view.list.NoScrollGridView>
 
           <Button
             android:onClick="onClick"

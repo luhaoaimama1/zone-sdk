@@ -1,4 +1,4 @@
-package view;
+package com.zone.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
