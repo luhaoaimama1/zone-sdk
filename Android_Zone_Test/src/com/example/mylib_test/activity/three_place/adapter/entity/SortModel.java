@@ -1,4 +1,4 @@
-package other_project.pinyin_sidebar;
+package com.example.mylib_test.activity.three_place.adapter.entity;
 
 public class SortModel {
 	private String name;

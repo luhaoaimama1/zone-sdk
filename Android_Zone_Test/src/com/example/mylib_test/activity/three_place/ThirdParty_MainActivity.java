@@ -1,7 +1,5 @@
 package com.example.mylib_test.activity.three_place;
 
-import other_project.pinyin_sidebar.SideBarActivity;
-
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.custom_view.SwtichButtonActivity;
 

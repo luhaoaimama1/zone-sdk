@@ -1,4 +1,4 @@
-package other_project.pinyin_sidebar;
+package com.zone.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import com.zone.customview.ninegridview.R;
 
 public class SideBar extends View {
 
@@ -86,7 +87,7 @@ public class SideBar extends View {
 			break;
 
 		default:
-			setBackgroundResource(com.example.mylib_test.R.drawable.side_bar_bg); // 设置红色背景
+			setBackgroundResource(R.drawable.side_bar_bg); // 设置红色背景
 			// 根据y坐标获取点到的字母
 			if (oldChoode != c) {
 				if (c>=0 && c<=chars.length) {
@@ -107,6 +108,6 @@ public class SideBar extends View {
 	}
 	
 	public interface OnLetterSelectedListener{
-		public void onLetterSelected(String s);
+		 void onLetterSelected(String s);
 	}
 }

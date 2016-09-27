@@ -1,10 +1,15 @@
-package other_project.pinyin_sidebar;
+package com.example.mylib_test.activity.three_place;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import com.example.mylib_test.R;
-import other_project.pinyin_sidebar.SideBar.OnLetterSelectedListener;
-import other_project.pinyin_sidebar.pinyin.PinYin;
+import com.example.mylib_test.activity.three_place.adapter.SortAdapter2;
+import com.zone.view.SideBar;
+import com.zone.view.SideBar.OnLetterSelectedListener;
+import and.utils.data.convert.pinyin.PinYin;
+import com.example.mylib_test.activity.three_place.adapter.entity.SortModel;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -17,7 +22,7 @@ public class SideBarActivity extends Activity {
 	private TextView mTextView;
 	private PinYin pinYin;
 	private List<SortModel> data;
-	private SortAdapter adapter;
+	private SortAdapter2 adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +46,9 @@ public class SideBarActivity extends Activity {
 		// 按字母排序
 		Collections.sort(data, new PinYinComparator());
 		// 创建适配器，显示在ListView上
-		adapter=new SortAdapter(this, data);
+		adapter=new SortAdapter2(this, data);
 		lv.setAdapter(adapter);
+		adapter.relatedList(lv);
 	}
 	public List<SortModel> fillData(String[] names){
 		List<SortModel> sortModels=new ArrayList<SortModel>();
@@ -66,4 +72,18 @@ public class SideBarActivity extends Activity {
 			lv.setSelection(position);
 		}
 	};
+
+
+	public class PinYinComparator implements Comparator<SortModel> {
+
+		/**
+		 * 排序比较
+		 */
+		@Override
+		public int compare(SortModel lhs, SortModel rhs) {
+			return lhs.getSortLetter().compareTo(rhs.getSortLetter());
+		}
+
+	}
+
 }

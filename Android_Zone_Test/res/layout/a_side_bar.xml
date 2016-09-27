@@ -37,7 +37,7 @@
            android:visibility="invisible"
            />
        <!-- 自定义字母导航栏 -->
-       <other_project.pinyin_sidebar.SideBar
+       <com.zone.view.SideBar
            android:id="@+id/side_bar"
            android:layout_width="30dp"
            android:layout_height="match_parent"

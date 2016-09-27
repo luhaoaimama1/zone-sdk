@@ -1,7 +1,7 @@
-package other_project.pinyin_sidebar.pinyin;
+package and.utils.data.convert.pinyin;
 import java.util.ArrayList;
 
-import other_project.pinyin_sidebar.pinyin.HanziToPinyin3.Token;
+import and.utils.data.convert.pinyin.HanziToPinyin3.Token;
 
 
 public class PinYin

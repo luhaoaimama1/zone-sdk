@@ -1,4 +1,4 @@
-package com.example.mylib_test.imageloader;
+package com.example.mylib_test.app.imageloader;
 
 import java.io.File;
 

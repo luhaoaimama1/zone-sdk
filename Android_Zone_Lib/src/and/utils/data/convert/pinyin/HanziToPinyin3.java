@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package other_project.pinyin_sidebar.pinyin;
+package and.utils.data.convert.pinyin;
 
 import java.text.Collator;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.mylib_test.imageloader;
+package com.example.mylib_test.app.imageloader;
 import android.graphics.Bitmap;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.DisplayImageOptions.Builder;

@@ -100,7 +100,7 @@
         <activity android:name="com.example.mylib_test.activity.databingstudy.RxjavaActivity"></activity>
         <activity android:name=".activity.animal.PathActivity"></activity>
         <activity
-            android:name="other_project.pinyin_sidebar.SideBarActivity"
+            android:name=".activity.three_place.SideBarActivity"
 
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
