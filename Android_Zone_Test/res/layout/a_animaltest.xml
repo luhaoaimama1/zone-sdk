@@ -110,6 +110,14 @@
             android:text="Matrix(MapPoint 、逆向矩阵invert  getMatrix Camera getMatrix )" />
 
         <Button
+            android:id="@+id/bt_MatrixStudy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="Matrix 矩阵研究" />
+
+        <Button
             android:id="@+id/bt_canvas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
