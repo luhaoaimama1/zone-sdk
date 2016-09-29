@@ -4,9 +4,19 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent" >
 
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="#00ff00" />
+
     <com.zone.view.FlowLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <EditText
             android:id="@+id/keyboard"
@@ -37,7 +47,7 @@
             android:gravity="center"
             android:background="#ff0000"
             android:text="键盘测试~" />
-        
+
 
         <Button
             android:id="@+id/bitmapTest"
@@ -54,13 +64,15 @@
             android:text="正则提取手机号"
             android:onClick="onClick" />
 
-    </com.zone.view.FlowLayout>
+        <Button
+            android:id="@+id/bt_layoutClip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="布局分块"
+            android:onClick="onClick" />
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:background="#00ff00" />
+
+    </com.zone.view.FlowLayout>
 
 </RelativeLayout>

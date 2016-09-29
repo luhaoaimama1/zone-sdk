@@ -17,6 +17,8 @@ public class ChengChengActivity extends BaseActivity {
             setContentView(new GestureView(this));
         }else if("ges2".equals(type)){
             setContentView(new GestureView2(this));
+        } else if("par".equals(type)){
+            setContentView(R.layout.nb_test);
         } else
             setContentView(R.layout.a_cheng);
     }

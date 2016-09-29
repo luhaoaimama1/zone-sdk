@@ -31,7 +31,7 @@ public abstract class Feature_SystemClip extends ExtraFeature{
 	     // 下面这个crop = true是设置在开启的Intent中设置显示的VIEW可裁剪
 		 intent.putExtra("crop", "true");
 		//裁剪时是否保留图片的比例，这里的比例是1:1
-		 intent.putExtra("scale", true);
+		 intent.putExtra("explode", true);
 		 
 		// 这两项为裁剪框的比例.   固定比率　　就同时缩放了。。。
 //		 intent.putExtra("aspectX", 2);

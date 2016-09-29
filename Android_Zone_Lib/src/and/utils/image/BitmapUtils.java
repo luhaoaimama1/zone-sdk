@@ -550,7 +550,22 @@ public class BitmapUtils {
 		return (bitmap);
 	}
 
-
+	/**
+	 * Creates a bitmap with the given width and height.
+	 * <p/>
+	 * If it fails with an OutOfMemory error, it will force a GC and then try to create the bitmap
+	 * one more time.
+	 * @param width  width of the bitmap
+	 * @param height height of the bitmap
+	 */
+	public static Bitmap createBitmapAndGcIfNecessary(int width, int height) {
+		try {
+			return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+		} catch (OutOfMemoryError e) {
+			System.gc();
+			return Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
+		}
+	}
 
 
 }

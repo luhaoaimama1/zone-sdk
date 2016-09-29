@@ -27,7 +27,8 @@ public class Utils_MainActivity extends Activity implements OnClickListener{
         int height = metric.heightPixels;  // 屏幕高度（像素）
         float density = metric.density;  // 屏幕密度（0.75 / 1.0 / 1.5）
         int densityDpi = metric.densityDpi;  // 屏幕密度DPI（120 / 160 / 240）
-        Log.e("Utils_MainActivity:――――――――-" + "  DisplayMetrics", "density=" + density + "; densityDPI=" + densityDpi);  
+        Log.e("Utils_MainActivity:――――――――-" + "  DisplayMetrics",
+				"density=" + density + "; densityDPI=" + densityDpi);
         float tem = getResources().getDimension(R.dimen.test);
         System.err.println(tem);
 	
@@ -64,6 +65,9 @@ public class Utils_MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.getPhone:
 			startActivity(new Intent(this,GetPhoneTest.class));
+			break;
+		case R.id.bt_layoutClip:
+			startActivity(new Intent(this,LayoutClipAcitivity.class));
 			break;
 
 		default:

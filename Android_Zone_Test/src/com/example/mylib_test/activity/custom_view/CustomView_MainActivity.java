@@ -62,6 +62,9 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
             case R.id.ges2:
                 startActivity(new Intent(this, ChengChengActivity.class).putExtra("type", "ges2"));
                 break;
+            case R.id.par:
+                startActivity(new Intent(this, ChengChengActivity.class).putExtra("type", "par"));
+                break;
             default:
                 break;
         }

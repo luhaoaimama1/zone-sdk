@@ -3,6 +3,8 @@ package and.utils.view.graphics.basic;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import java.lang.ref.WeakReference;
 
@@ -17,13 +19,20 @@ public class DrawBind {
     private int mode=0;
     private static final int VIEW=1,BITMAP=2;
 
-    public void bingView(View view){
-        softView=new WeakReference<View>(view);
-        mode=VIEW;
+    public static DrawBind bingView(View view){
+        DrawBind db = new DrawBind();
+        db.softView=new WeakReference<View>(view);
+        db.mode=VIEW;
+        return db;
     }
-    public void bingBitmap(Bitmap bt){
-        softBt=new WeakReference<Bitmap>(bt);
-        mode=BITMAP;
+    public static DrawBind bingView(ViewParent vp){
+      return   bingView((View)vp);
+    }
+    public static DrawBind bingBitmap(Bitmap bt){
+        DrawBind db = new DrawBind();
+        db.softBt=new WeakReference<Bitmap>(bt);
+        db.mode=BITMAP;
+        return db;
     }
 
     public float[] leftTop(){
@@ -55,6 +64,47 @@ public class DrawBind {
     public float[] center(){
         return calculate(8);
     }
+    public float[] leftTopParent(){
+        return byParent(calculate(0));
+    }
+    public float[] rightTopParent(){
+        return byParent(calculate(2));
+    }
+    public float[] rightBottomParent(){
+        return byParent(calculate(4));
+    }
+
+    public float[] leftBottomParent(){
+        return byParent(byParent(calculate(6)));
+    }
+
+    public float[] centerTopParent(){
+        return byParent(calculate(1));
+    }
+    public float[] centerRightParent(){
+        return byParent(calculate(3));
+    }
+    public float[] centerLeftParent(){
+        return byParent(calculate(5));
+    }
+    public float[] centerBottomParent(){
+        return byParent(calculate(7));
+    }
+    public float[] centerParent(){
+        return byParent(calculate(8));
+    }
+   private float[] byParent(float[] begin){
+       if(softView.get()==null)
+           throw  new IllegalStateException("parent 系列的方法 必须是bind view");
+      return   add(begin,new float[]{softView.get().getLeft(),softView.get().getTop()});
+    }
+    private float[] add(float[] begin,float[] add){
+        for (int i = 0; i < begin.length; i++) {
+            begin[i]+=add[i];
+        }
+        return begin;
+    }
+
     public RectF getRect(){
         float[] leftTop = leftTop();
         float[] rightBottom=rightBottom();
