@@ -3,7 +3,6 @@ package and.utils.view.graphics.basic;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import java.lang.ref.WeakReference;
@@ -64,6 +63,24 @@ public class DrawBind {
     public float[] center(){
         return calculate(8);
     }
+
+    /**
+     *
+     * @return 顺时针的四个顶点
+     */
+    public float[] getVertices(){
+        float[] leftTop = leftTop();
+        float[] rightTop = rightTop();
+        float[] leftBottom = leftBottom();
+        float[] rightBottom = rightBottom();
+        return new  float[]{
+                leftTop[0], leftTop[1],
+                rightTop[0],rightTop[1],
+                rightBottom[0], rightBottom[1],
+                leftBottom[0], leftBottom[1]
+        };
+    }
+
     public float[] leftTopParent(){
         return byParent(calculate(0));
     }

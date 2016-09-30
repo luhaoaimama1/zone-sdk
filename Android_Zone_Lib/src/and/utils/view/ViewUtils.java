@@ -91,7 +91,7 @@ public class ViewUtils {
         return view.getLayoutParams();
     }
 
-    public static Bitmap getCacheBitmap(ImageView view) {
+    public static Bitmap getCacheBitmap(View view) {
         view.setDrawingCacheEnabled(true);
         return view.getDrawingCache(true);
     }
