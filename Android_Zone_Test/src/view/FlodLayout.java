@@ -120,6 +120,7 @@ public class FlodLayout extends LinearLayout {
 
     public void setDepth(int progress) {
         this.depthFactor = progress * 1F / 100;
+        invalidate();
     }
 
     public void setProgress(int progress) {

@@ -71,6 +71,9 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
             case R.id.bt_foldViewGroup:
                 startActivity(new Intent(this, ChengChengActivity.class).putExtra("type", "bt_foldViewGroup"));
                 break;
+            case R.id.bt_wheel:
+                startActivity(new Intent(this, ChengChengActivity.class).putExtra("type", "bt_wheel"));
+                break;
             default:
                 break;
         }

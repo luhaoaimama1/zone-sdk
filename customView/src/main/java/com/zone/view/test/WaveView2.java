@@ -35,7 +35,6 @@ public class WaveView2 extends View {
     private Paint shaderPaint;
     private BitmapShader shader;
     private Matrix matrix;
-    private DrawBind bind;
 
     /**
      * +------------------------+
@@ -67,8 +66,6 @@ public class WaveView2 extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        bind = new DrawBind();
-        bind.bingView(WaveView2.this);
         initShaderPaint();
         initWaveShader();
     }
@@ -109,7 +106,7 @@ public class WaveView2 extends View {
         matrix.postTranslate(waveOffsetRadioX*getWidth()*i,
                  ((float) ((DEFAULT_AMPLITUDE_RATIO+0.5) * getHeight())-((float)(i%100)/100)*(DEFAULT_AMPLITUDE_RATIO+1) * getHeight()));
         shader.setLocalMatrix(matrix);
-        canvas.drawRect(bind.getRect(),shaderPaint);
+        canvas.drawRect(DrawBind.bingView(this).getRect(),shaderPaint);
         postInvalidateDelayed(200);
         i++;
     }
