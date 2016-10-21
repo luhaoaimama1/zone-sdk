@@ -8,56 +8,110 @@ import java.lang.reflect.Type;
  */
 public class ReflectGenericUtils {
 
-    public static Class getSuperGenericClass(Object obj) {
-        return getSuperGenericClass(obj.getClass(), 0);
-    }
-    public static Class getSuperGenericClass(Object obj, int index) {
-        return (Class) getSuperGenericType(obj.getClass(), index);
-    }
+    //        getGenericInterfaces()
+    //        getGenericSuperclass
 
-    public static Class getSuperGenericClass(Class<?> subclass) {
-        return getSuperGenericClass(subclass, 0);
-    }
+    public static class Self_ {
+        //---------------------------1.在本类中使用--------------------------------------
+        /**
+         * 在本类中使用  可以这样
+         * public class Parent<M, B> {
+         * public String tag="Parent";
+         * public Class<M> class_Unsafe;
+         * public M entity;
+         * public Parent(M entity,B bilibili) {
+         * }
+         * }
+         */
 
-    public static Class getSuperGenericClass(Class<?> subclass, int index) {
-        return (Class) getSuperGenericType(subclass, index);
-    }
-
-    public static Type getSuperGenericType(Class<?> subclass) {
-        return getSuperGenericType(subclass, 0);
-    }
-
-    public static Type getSuperGenericType(Class<?> subclass, int index) {
-        Type superclass = subclass.getGenericSuperclass();
-        if (!(superclass instanceof ParameterizedType))
-            return superclass;
-        Type[] params = ((ParameterizedType) superclass).getActualTypeArguments();
-        if (index >= params.length || index < 0)
-            throw new RuntimeException("Index outof bounds");
-        return params[index];
-    }
-
-    public static Class getFieldGenericClass(Field field) {
-        return getFieldGenericClass(field, 0);
-    }
-
-    public static Class getFieldGenericClass(Field field, int index) {
-        return (Class) getFieldGenericType(field, 0);
-    }
-
-    public static Type getFieldGenericType(Field field) {
-        return getFieldGenericType(field, 0);
-    }
-
-    public static Type getFieldGenericType(Field field, int index) {
-        Type fieldClass = field.getGenericType();
-        if (!(fieldClass instanceof ParameterizedType))
-            return fieldClass;
-        Type[] params = ((ParameterizedType) fieldClass).getActualTypeArguments();
-        if (index >= params.length || index < 0)
-            throw new RuntimeException("Index outof bounds");
-        return params[index];
+        //---------------------------2.在外部类中使用--------------------------------------
+        /**
+         *new Child<Short,Float,Person>(){} 有这个{} 相当于匿名类继承 本类
+         * 所有可以获得相当于本类的参数
+         * new Child<Short,Float,Person>(){}.getClass().getGenericSuperclass()
+         * {@link  Super_}
+         */
     }
 
 
+
+    public static class Super_ {
+
+        public static TypeToken_ getType(Class<?> subclass) {
+            return getType(subclass, 0, 0);
+        }
+
+        public static TypeToken_ getType(Class<?> subclass, int superIndex, int index) {
+            for (int i = 0; i < superIndex; i++)
+                subclass = subclass.getSuperclass();
+            Type superclass = subclass.getGenericSuperclass();
+            if (!(superclass instanceof ParameterizedType))
+                return new TypeToken_(superclass);
+            Type[] params = ((ParameterizedType) superclass).getActualTypeArguments();
+            if (index >= params.length || index < 0)
+                throw new RuntimeException("Index outof bounds");
+            return new TypeToken_(params[index]);
+        }
+    }
+
+
+
+
+    public static class Interface_ {
+
+        public static TypeToken_ getType(Class<?> subclass) {
+            return getType(subclass, 0, 0);
+        }
+
+        public static TypeToken_ getType(Class<?> subclass, int interfaceIndex, int typeIndex) {
+            Type[] superclass = subclass.getGenericInterfaces();
+            Type fieldClass = subclass.getGenericInterfaces()[interfaceIndex];
+            if (!(fieldClass instanceof ParameterizedType))
+                return new TypeToken_(fieldClass);
+            Type[] params = ((ParameterizedType) fieldClass).getActualTypeArguments();
+            if (typeIndex >= params.length || typeIndex < 0)
+                throw new RuntimeException("Index outof bounds");
+            return new TypeToken_(params[typeIndex]);
+        }
+    }
+
+    public static class Field_ {
+        public static TypeToken_ getType(Field field) {
+            return getType(field, 0);
+        }
+
+        public static TypeToken_ getType(Field field, int index) {
+            Type fieldClass = field.getGenericType();
+            if (!(fieldClass instanceof ParameterizedType))
+                return new TypeToken_(fieldClass);
+            Type[] params = ((ParameterizedType) fieldClass).getActualTypeArguments();
+            if (index >= params.length || index < 0)
+                throw new RuntimeException("Index outof bounds");
+            return new TypeToken_(params[index]);
+        }
+    }
+
+    public static class TypeToken_ {
+        private Type type;
+
+        public TypeToken_(Type type) {
+            this.type = type;
+        }
+
+        public Type type() {
+            return type;
+        }
+
+        public Class class_Unsafe() {
+            return (Class<?>) type;
+        }
+
+        public Class class_() {
+            try {
+                return (Class<?>) type;
+            } catch (Exception e) {
+                return Object.class;
+            }
+        }
+    }
 }

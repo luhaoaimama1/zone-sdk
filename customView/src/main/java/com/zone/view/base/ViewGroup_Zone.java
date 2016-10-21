@@ -173,7 +173,7 @@ public  abstract  class ViewGroup_Zone<T extends ViewProperty> extends LinearLay
     @NonNull
     protected T generateViewProperty() {
         try {
-            T result=((Class<T>) ReflectGenericUtils.getSuperGenericClass(this)).newInstance();
+            T result=((Class<T>) ReflectGenericUtils.Super_.getType(this.getClass()).class_()).newInstance();
             result.mViewGroup_Zone=this;
             return result;
         } catch (InstantiationException e) {

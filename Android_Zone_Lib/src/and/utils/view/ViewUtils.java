@@ -28,19 +28,6 @@ public class ViewUtils {
 
 
 
-    public static View getActivityRootView2(Activity context) {
-        return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
-    }
-
-    public static FrameLayout getActivityRootView(Activity context) {
-        final FrameLayout decorView = (FrameLayout) context.getWindow().getDecorView();
-        //这么添加View
-//        int w = decorView.getWidth();
-//        int h = decorView.getHeight();
-//        decorView.addView(view, w, h);
-        return decorView;
-    }
-
     /**
      *
      * @param view
