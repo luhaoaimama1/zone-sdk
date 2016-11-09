@@ -1,4 +1,5 @@
 package com.example.mylib_test.activity.http;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,21 +11,30 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.util.HandlerTest;
+import com.example.mylib_test.activity.system.SystemMainActivity;
 import com.zone.okhttp.ok;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class Http_MainActivity extends Activity implements OnClickListener {
     Map<String, Object> map = new HashMap<>();
     Map<String, String> params = new HashMap<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_http_test);
         ButterKnife.bind(this);
+
+
         //这段　只是学习下handler～　
         new Thread() {
             @Override
@@ -47,6 +57,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         }.start();
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -77,8 +88,6 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         }
 
     }
-
-
 
 
     private void tread(View v) {

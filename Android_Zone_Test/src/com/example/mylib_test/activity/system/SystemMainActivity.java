@@ -47,6 +47,9 @@ public class SystemMainActivity extends Activity implements OnClickListener{
 		case R.id.bt_activityResult:
 			startActivityForResult(new Intent(this,ResultActivity2.class), SystemMainActivity.RequestCode);
 			break;
+		case R.id.bt_layoutInflater:
+			startActivityForResult(new Intent(this,LayoutInflaterActivity.class), SystemMainActivity.RequestCode);
+			break;
 		case R.id.crash:
 			throw new NullPointerException("crash test");
 		default:

@@ -41,6 +41,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.mylib_test.activity.system.SystemMainActivity"></activity>
+        <activity
+            android:theme="@style/AppBaseTheme2"
+            android:name="com.example.mylib_test.activity.system.LayoutInflaterActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.system.WebViewAcitivity"></activity>
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity2"></activity>
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity3"></activity>

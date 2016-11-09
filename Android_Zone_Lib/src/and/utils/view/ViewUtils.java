@@ -15,7 +15,13 @@ import android.widget.ImageView;
 public class ViewUtils {
 
 
-    //递归view 所有parent 知道 rootView  设置clipClildren;
+    /**
+     * 递归view 所有parent 知道 rootView  设置clipClildren;
+     * <br>如果遇到 某个一parent找不到为null 那么说明 布局没加载好；在布局加载好的位置使用此方法 ;</br>
+     * 不建议在这里用 如果实在没办法在用:actvitiy:onWindowFocusChanged这个生命周期
+     * @param view
+     * @param clipChildren  false就是 超越边界也能显示  true超越边界的会裁剪吊
+     */
     public static void recurrenceClipChildren(View view, boolean clipChildren) {
         ViewGroup parentView = (ViewGroup) view.getParent();
         ViewGroup rootView = (ViewGroup) view.getRootView();
