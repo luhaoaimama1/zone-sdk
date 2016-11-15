@@ -1,0 +1,36 @@
+<com.example.mylib_test.activity.touch.NestedView.NestedScrollingParentView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/id_stickynavlayout_topview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4400ff00">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:gravity="center"
+            android:text="软件介绍"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/indicatorView"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#f000f0"
+        android:gravity="center"
+        android:text="为了看的清楚"
+        android:textStyle="bold" />
+
+
+    <com.example.mylib_test.activity.touch.NestedView.NestedScrollingChildView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.example.mylib_test.activity.touch.NestedView.NestedScrollingParentView>

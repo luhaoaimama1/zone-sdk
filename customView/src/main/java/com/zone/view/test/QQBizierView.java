@@ -39,8 +39,7 @@ public class QQBizierView extends View {
     }
 
     private void init() {
-        mDrawBind = new DrawBind();
-        mDrawBind.bingView(this);
+        mDrawBind=DrawBind.bingView(this);
         paint = DrawUtils.getStrokePaint(Paint.Style.FILL);
         paint.setColor(Color.RED);
     }

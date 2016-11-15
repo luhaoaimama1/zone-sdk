@@ -1,7 +1,6 @@
 package com.example.mylib_test.activity.touch;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.touch.view.ScrollerView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -47,6 +46,12 @@ public class TouchMainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.frameConflict1:
 			startActivity(new Intent(this,Conflict1Activity.class).putExtra("type", "frame"));
+			break;
+		case R.id.NestedScrolling:
+			startActivity(new Intent(this,NestedScrollingActivity_hongParent.class));
+			break;
+		case R.id.NestedScrollingChild:
+			startActivity(new Intent(this,NestedScrollingActivity_Child.class));
 			break;
 
 		default:

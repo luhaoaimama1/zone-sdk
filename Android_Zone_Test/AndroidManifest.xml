@@ -60,6 +60,9 @@
         <activity android:name="com.example.mylib_test.activity.http.Http_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.EventBusActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.Conflict1Activity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActvity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActivity_hongParent"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActivity_Child"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.GestureDetectorActivity"></activity>

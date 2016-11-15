@@ -33,6 +33,20 @@
         android:layout_height="wrap_content"
         android:text="ScrollerView学习" />
     <Button
+        android:id="@+id/NestedScrolling"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NestedScrolling's demo" />
+    <Button
+        android:id="@+id/NestedScrollingChild"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NestedScrolling child's demo" />
+    <Button
         android:id="@+id/viewDrag"
         android:onClick="onClick"
         android:layout_margin="4dp"
@@ -53,6 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="横竖滑动冲突(内部拦截法)" />
+
+
     <TextView
         android:layout_margin="4dp"
         android:layout_width="fill_parent"

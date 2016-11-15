@@ -42,6 +42,7 @@ public class ScrollerView extends LinearLayout {
 	
 	@Override
 	public void computeScroll() {
+		super.computeScroll();
 		//先判断mScroller滚动是否完成
 		if (mScroller.computeScrollOffset()) {
 			//这里调用View的scrollTo()完成实际的滚动
@@ -49,9 +50,9 @@ public class ScrollerView extends LinearLayout {
 			//必须调用该方法，否则不一定能看到滚动效果
 			postInvalidate();
 		}
-		super.computeScroll();
+
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		switch (event.getAction()) {

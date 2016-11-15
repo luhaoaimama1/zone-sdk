@@ -19,9 +19,8 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'jp.wasabeef:blurry:2.0.0'
 
-    compile 'com.zone:zadapter:1.0.1'
+    compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
     compile 'com.zone:zokhttp:1.1.2'
-
     compile 'com.github.tianzhijiexian:logger:1.1.8'
 
         compile project(':customView')

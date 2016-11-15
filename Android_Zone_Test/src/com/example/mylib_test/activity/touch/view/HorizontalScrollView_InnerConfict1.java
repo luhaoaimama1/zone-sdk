@@ -105,7 +105,7 @@ public class HorizontalScrollView_InnerConfict1 extends LinearLayout {
 
     @Override
     public void computeScroll() {
-        //先判断mScroller滚动是否完成
+        //先判断mScroller滚动是否完成  // 调用startScroll的时候scroller.computeScrollOffset()返回true，
         if (mScroller.computeScrollOffset()) {
             //这里调用View的scrollTo()完成实际的滚动
             scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
