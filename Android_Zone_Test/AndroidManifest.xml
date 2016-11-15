@@ -44,7 +44,6 @@
         <activity
             android:theme="@style/AppBaseTheme2"
             android:name="com.example.mylib_test.activity.system.LayoutInflaterActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.system.WebViewAcitivity"></activity>
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity2"></activity>
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity3"></activity>
         <activity android:name="com.example.mylib_test.activity.wifi.WifiAdapterActivity"></activity>
@@ -96,7 +95,6 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.ArcMenuTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy"></activity>
-        <activity android:name="com.example.mylib_test.activity.custom_view.ImageGroupTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.TouchMainActivity"></activity>
@@ -105,6 +103,7 @@
         <activity android:name="com.example.mylib_test.activity.databingstudy.LambdaStartActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.databingstudy.RxjavaActivity"></activity>
         <activity android:name=".activity.animal.PathActivity"></activity>
+        <activity android:name=".activity.animal.DampingActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.LayoutClipAcitivity"></activity>
         <activity
             android:name=".activity.three_place.SideBarActivity"

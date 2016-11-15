@@ -131,6 +131,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_FlexibleBall:
                 startActivity(new Intent(this, PathActivity.class).putExtra("type", "FlexibleBall"));
                 break;
+            case R.id.bt_damping:
+                startActivity(new Intent(this, DampingActivity.class));
+                break;
 
             default:
                 break;
