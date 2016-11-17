@@ -14,11 +14,12 @@ public class DampingUitls {
      * 最后的映射就是 18*x/maxLength. -> x[0-maxLength], y[0-1]
      * 最后的公式  y=-e^{-x*17/maxLength}+1 -> x[0-maxLength], y[0-1]
      * @param overflowY 可以是正负值
-     * @param maxLength 距离 正的值
-     * @param dampingRadio [0-1]  更改曲线的~
+     * @param maxLength 可以达到的最大距离
+     * @param dampingRadio [0-1]  更改曲线的~ 越大 阻力越大的感觉。
      * @return [-1,1] 的值；
      */
     public static float damping(float overflowY, float maxLength,float dampingRadio) {
+        maxLength=Math.abs(maxLength);
         float signum = Math.signum(overflowY);
         //主要让x一直是>=0 的部分
         double x = Math.abs(overflowY);
