@@ -2,6 +2,7 @@
 >但是也不知道是谁的了 如果涉及什么的问题。请联系我。我会做出相应修改；
 
 >`PS`:不懂怎么用的,都可以看demo 一些都是已经在demo中使用了~;
+
 >`PS2`:customView库正打算摘出去 暂时就不介绍了~;
 
 #功能介绍
@@ -45,7 +46,7 @@
 | DensityUtils | 貌似人人都有 | |
 | GsonUtils | 增加fromJsonToList fromJsonToArray方法 |  防止多写实体类,或者写的太复杂去转化 |
 | MediaTypeUtils | okhttp拿过来的 未使用过 |  |
-| ByteUtil |  | 未使用过 |
+| ByteUtil | 未使用过 |  |
 
 
 ##and.utils.file2io2data包
@@ -53,7 +54,7 @@
 | :------------: |:---------------:| :-----:|
 | Assets2RawUtils  | 从assets文件夹获取 | |
 | EnvironmentUtils | 获取系统cache,file,与智能获取(判断sd卡) |  |
-| FileUtils | 删除，获取文件等 | 范例：getFile("test001","test002","test003.txt"); |
+| FileUtils | 删除，获取文件(没有自动创建)等 | 范例：getFile("test001","test002","test003.txt"); |
 | HashMapZ | HashMap的put的连续使用 ,与get是null的默认值处理 | |
 | IOUtils | io的read,write。 支持file，string,流 |   |
 | SDCardUtils | SD卡等获取信息的封装 |  |
@@ -126,7 +127,7 @@
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | AnimationUtils  | explode动画自己试验用的~大家看看就行了 |  |
-| ViewUtils  | `recurrenceClipChildren(迭代的parent,设置ClipChildren)`,`getCacheBitmap(获取View的DrawingCache)`,`clipView（可以把一个ImageView切成N*M的ImageView` |  |
+| ViewUtils  | `recurrenceClipChildren(迭代的parent,设置ClipChildren)`,`getCacheBitmap(获取View的DrawingCache)`,`clipView（可以把一个ImageView切成N*M的ImageView)` |  |
 
 ##and.utils.view.gesture
 | 名字 | 功能  | 优点|
@@ -147,11 +148,11 @@
 | Circle  | Bézier三阶 圆形动画位移封装|  |
 | DrawBind  | `可以绑定bt,view 可得到九个点入下图所示，与其所有点位移的操作` ,`getRect` |  |
 ```
-* 0---1---2
-* |       |
-* 7---8---3
-* |       |
-* 6---5---4
+0---1---2
+|       |
+7---8---3
+|       |
+6---5---4
 ```
 
 ##and.utils.view
@@ -161,7 +162,7 @@
 | DampingUitls  | 阻尼方法 |  |
 | DrawUtils  | 可不用，不是很好~ |  |
 | GeometryUtils  | 支持ZPointF的,两点之间的长度，终点与三点角度等几何工具类 |  |
-| MathUtils  | 映射工具类,AE表达式里有,Math函数里却没有,封装下 |  |
+| MathUtils  | 映射工具类,AE表达式里有,Math函数里却没有,封装下 | 范例：MathUtils.linear(now,start1,start2,Dst1,Dst2) 即可得出dst1-dst2中now的值 |
 | MatteUtils  | PorterDuff.Mode 的封装工具类 |  |
 
 ##and
