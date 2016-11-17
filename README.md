@@ -1,4 +1,4 @@
->天下文章一大抄，因为从开始学习到现在大约一年多 积攒的工具类。很多都是别人的。
+>`天下文章一大抄`，因为从开始学习到现在大约一年多 积攒的工具类。很多都是别人的。
 >但是也不知道是谁的了 如果涉及什么的问题。请联系我。我会做出相应修改；
 
 >`PS`:不懂怎么用的,都可以看demo 一些都是已经在demo中使用了~;
@@ -100,7 +100,7 @@
 ##and.utils.reflect
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
-| Reflect  | 用法:`Reflect.on(Kale.class).create().get();` | 参考 [天之接线的最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/reflect.md "悬停显示") |
+| Reflect  | 用法:`Reflect.on(Kale.class).create().get();` | 参考 [天之界限的最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/reflect.md "悬停显示") |
 | ReflectCloneUtils  | 深克隆一切对象,支持 list,map,实体嵌套   |  |
 | ReflectGenericUtils  | `泛型获取工具支持：Self_,Super_,Interface_,Field_ ` |  |
 
