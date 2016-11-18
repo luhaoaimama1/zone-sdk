@@ -3,8 +3,6 @@
 
 >`PS`:不懂怎么用的,都可以看demo 一些都是已经在demo中使用了~;
 
->`PS2`:customView库正打算摘出去 暂时就不介绍了~;
-
 
 ### JicPack
 Add it in your root build.gradle at the end of repositories:
@@ -31,7 +29,7 @@ Step 2. Add the dependency
 
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
-| BaseActivity,BaseAppCompatActivity,BaseFragmentActivity | 万能解耦基名字，三个主要是为了兼容 | 解耦，各司其职。拍照等涉及onActivityResult的封装 |
+| BaseActivity,BaseAppCompatActivity,BaseFragmentActivity  | 万能解耦基名字，三个主要是为了兼容 | 解耦，各司其职。拍照等涉及onActivityResult的封装 |
 
 ##and.utils.activity_fragment_ui包
 
