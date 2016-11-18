@@ -27,8 +27,8 @@ public  class SwipeBackKind extends ActivityKinds implements SwipeBackActivityBa
         super(activity);
     }
 
-
-    public void onCreate(Bundle savedInstanceState, Activity activity) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         mHelper = new SwipeBackActivityHelper(activity);
         mHelper.onActivityCreate();
 
@@ -36,7 +36,7 @@ public  class SwipeBackKind extends ActivityKinds implements SwipeBackActivityBa
         setSwipeBackFlag(SwipeBack.LEFT);
     }
 
-  
+    @Override
     public void onPostCreate(Bundle savedInstanceState) {
         mHelper.onPostCreate();
     }

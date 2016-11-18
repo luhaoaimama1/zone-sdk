@@ -24,8 +24,9 @@ public class CollectionActivityKind extends ActivityKinds implements Handler.Cal
         super(activity);
     }
 
-    public void onCreate(Bundle savedInstanceState, Activity context) {
-        activitys.add(context);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        activitys.add(activity);
     }
 
     @Override

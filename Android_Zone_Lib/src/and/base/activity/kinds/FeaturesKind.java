@@ -24,7 +24,7 @@ public class FeaturesKind extends ActivityKinds {
         super(activity);
     }
 
-
+    @Override
     public void onResume() {
         super.onResume();
         if (!isInit) {
@@ -36,14 +36,14 @@ public class FeaturesKind extends ActivityKinds {
         }
 
     }
-
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         for (ExtraFeature item : featureList) {
             item.onActivityResult(requestCode, resultCode, intent);
         }
     }
-
+    @Override
     public void onPause() {
         super.onPause();
         for (ExtraFeature item : featureList) {
@@ -51,7 +51,7 @@ public class FeaturesKind extends ActivityKinds {
         }
     }
 
-
+    @Override
     public void onDestroy() {
         super.onDestroy();
     }
