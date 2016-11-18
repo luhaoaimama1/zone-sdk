@@ -20,6 +20,10 @@ public class CollectionActivityKind extends ActivityKinds implements Handler.Cal
 
     public static List<Activity> activitys = new ArrayList<Activity>();
 
+    public CollectionActivityKind(Activity activity) {
+        super(activity);
+    }
+
     public void onCreate(Bundle savedInstanceState, Activity context) {
         activitys.add(context);
     }

@@ -12,12 +12,15 @@ public class ActivityKinds {
 
     public Activity activity;
 
+    public ActivityKinds(Activity activity) {
+        this.activity = activity;
+    }
+
     /*
-     * @param bundle
-     * @param activity 唯一有差别的地方
-     */
-    public void onCreate(Bundle bundle, Activity context) {
-        this.activity = context;
+         * @param bundle
+         * @param activity 唯一有差别的地方
+         */
+    public void onCreate(Bundle bundle) {
     }
 
     public void onPostCreate(@Nullable Bundle savedInstanceState) {

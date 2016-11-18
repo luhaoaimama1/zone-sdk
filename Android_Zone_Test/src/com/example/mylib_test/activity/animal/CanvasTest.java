@@ -7,7 +7,6 @@ import com.example.mylib_test.activity.animal.viewa.Canvas1;
 import com.example.mylib_test.activity.animal.viewa.MatrixMethod;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
-import com.example.mylib_test.activity.animal.viewa.SinView;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView2;
 
 import and.utils.image.BitmapUtils;
@@ -39,10 +38,6 @@ public class CanvasTest extends Activity implements View.OnClickListener {
 
         if ("shader".equals(type)) {
             setContentView(R.layout.a_shader);
-        }
-
-        if ("surfaceView".equals(type)) {
-            setContentView(new SinView(this));
         }
         if ("bt_surface".equals(type)) {
             setContentView(new SimpleDraw(this));

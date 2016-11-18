@@ -1,7 +1,7 @@
 package com.example.mylib_test.activity.three_place;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.custom_view.SwtichButtonActivity;
+import com.example.mylib_test.activity.custom_view.RippleViewActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,9 +23,6 @@ public class ThirdParty_MainActivity extends Activity implements OnClickListener
             case R.id.imageLoader:
                 startActivity(new Intent(this, ImageLoaderActivity.class));
                 break;
-            case R.id.sideBar:
-                startActivity(new Intent(this, SideBarActivity.class));
-                break;
             case R.id.google_pull:
                 startActivity(new Intent(this, GooglePullActvity.class));
                 break;
@@ -38,7 +35,7 @@ public class ThirdParty_MainActivity extends Activity implements OnClickListener
                 startActivity(new Intent(this, GildeActivity.class));
                 break;
             case R.id.bt_swtichButton:
-                startActivity(new Intent(this, SwtichButtonActivity.class));
+                startActivity(new Intent(this, RippleViewActivity.class));
                 break;
 
             case R.id.bt_blur:

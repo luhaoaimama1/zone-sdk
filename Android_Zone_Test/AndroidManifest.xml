@@ -51,10 +51,8 @@
         <activity android:name="com.example.mylib_test.activity.three_place.ImageLoaderActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.GetPhoneTest"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.CustomView_MainActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.custom_view.FlowZoneActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.custom_view.GridZoneActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ChengChengActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.custom_view.SwtichButtonActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.RippleViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.db.Db_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.Http_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.EventBusActivity"></activity>
@@ -91,7 +89,6 @@
         <activity android:name="com.example.mylib_test.activity.file.FileTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.file.Activity1"></activity>
         <activity android:name="com.example.mylib_test.activity.file.Activity2"></activity>
-        <activity android:name="com.example.mylib_test.activity.custom_view.LabelTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ArcMenuTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy"></activity>
@@ -105,10 +102,6 @@
         <activity android:name=".activity.animal.PathActivity"></activity>
         <activity android:name=".activity.animal.DampingActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.LayoutClipAcitivity"></activity>
-        <activity
-            android:name=".activity.three_place.SideBarActivity"
-
-            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>

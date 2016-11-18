@@ -11,10 +11,8 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2016/4/15.
  * 由于内容较多 可以看我的笔记~  搜索词:SwitchButton（IOS倾向） 的api 学习
  */
-public class SwtichButtonActivity extends BaseActivity {
+public class RippleViewActivity extends BaseActivity {
 
-    @Bind(R.id.sb_custom_miui)
-    SwitchButton sbCustomMiui;
 
     @Override
     public void setContentView() {

@@ -81,9 +81,6 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_shader:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "shader"));
                 break;
-            case R.id.bt_surfaceView:
-                startActivity(new Intent(this, CanvasTest.class).putExtra("type", "surfaceView"));
-                break;
             case R.id.bt_surface:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_surface"));
                 break;

@@ -29,9 +29,6 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
             case R.id.bt_viewPagerIndicator:
 //			startActivity(new Intent(this,ViewpagerIndicatorActivity.class));
                 break;
-            case R.id.label_test:
-                startActivity(new Intent(this, LabelTestActivity.class));
-                break;
             case R.id.arcMenu:
                 startActivity(new Intent(this, ArcMenuTestActivity.class));
                 break;
@@ -46,12 +43,6 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
                 break;
             case R.id.bt_scroll:
                 startActivity(new Intent(this, AndroidHeroActivity.class).putExtra("type", "scroll"));
-                break;
-            case R.id.flowZone:
-                startActivity(new Intent(this, FlowZoneActivity.class));
-                break;
-            case R.id.gridZone:
-                startActivity(new Intent(this, GridZoneActivity.class));
                 break;
             case R.id.chengcheng:
                 startActivity(new Intent(this, ChengChengActivity.class));

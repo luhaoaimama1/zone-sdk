@@ -1,5 +1,6 @@
 package and.base.activity.kinds;
 
+import android.app.Activity;
 import android.content.Intent;
 
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ import and.base.activity.kinds.callback.ActivityKinds;
 public class FeaturesKind extends ActivityKinds {
     public List<ExtraFeature> featureList = new ArrayList<ExtraFeature>();
     private boolean isInit;
+
+    public FeaturesKind(Activity activity) {
+        super(activity);
+    }
 
 
     public void onResume() {

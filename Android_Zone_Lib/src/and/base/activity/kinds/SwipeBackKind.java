@@ -23,7 +23,11 @@ public  class SwipeBackKind extends ActivityKinds implements SwipeBackActivityBa
     protected SwipeBackLayout mSwipeBackLayout;
     protected SwipeBack swipeBack;
 
-  
+    public SwipeBackKind(Activity activity) {
+        super(activity);
+    }
+
+
     public void onCreate(Bundle savedInstanceState, Activity activity) {
         mHelper = new SwipeBackActivityHelper(activity);
         mHelper.onActivityCreate();

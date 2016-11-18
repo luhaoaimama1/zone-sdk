@@ -22,11 +22,11 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         super.onCreate(arg0);
         handler = new Handler(this);
 
-        mKindControl = new KindControl();
-        mKindControl.initKinds();
+        mKindControl = new KindControl(this);
+        mKindControl.initKinds(this);
         updateKinds();
 
-        mKindControl.onCreate(arg0, this);
+        mKindControl.onCreate(arg0);
 
         setContentView();
         findIDs();
@@ -34,6 +34,9 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         setListener();
     }
 
+    /**
+     * 在 所有 mKindControl.onCreate(arg0, this);之前使用
+     */
     public  void updateKinds() {
 
     }

@@ -29,15 +29,6 @@
 
 
     <Button
-        android:id="@+id/label_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="label拖拽旋转缩放" />
-
-
-    <Button
         android:id="@+id/arcMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,20 +91,6 @@
         android:onClick="onClick"
         android:text="scroll" />
 
-    <Button
-        android:id="@+id/flowZone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="flowZone" />
-    <Button
-        android:id="@+id/gridZone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="GridZone" />
     <Button
         android:id="@+id/chengcheng"
         android:layout_width="wrap_content"

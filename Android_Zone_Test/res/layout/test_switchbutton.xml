@@ -6,35 +6,6 @@
     android:orientation="vertical">
 
 
-    <com.zone.view.switchbutton.SwitchButton
-        android:id="@+id/sb_custom_miui"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:kswBackColor="#000000"
-        app:kswBackMeasureRatio="4"
-        app:kswThumbColor="#00fff0"
-        app:kswThumbHeight="30dp"
-        app:kswThumbWidth="30dp" />
-
-    <com.zone.view.switchbutton.SwitchButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:kswTintColor="#888800" />
-
-    <com.zone.view.switchbutton.SwitchButton
-        style="@style/SwitchButtonIOS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-    <com.zone.view.switchbutton.SwitchButton
-        style="@style/SwitchButtonMD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
     <com.andexert.library.RippleView
         android:id="@+id/more"
         android:layout_width="match_parent"

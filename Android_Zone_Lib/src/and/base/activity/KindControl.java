@@ -20,12 +20,16 @@ import and.base.activity.kinds.callback.ActivityKinds;
 public class KindControl extends ActivityKinds {
     public Map<Class, ActivityKinds> controlMap = new HashMap<>();
 
+    public KindControl(Activity activity) {
+        super(activity);
+    }
+
     //在onCreate 之前调用不然为空;
-    public void initKinds() {
-        controlMap.put(CollectionActivityKind.class, new CollectionActivityKind());
-        controlMap.put(FeaturesKind.class, new FeaturesKind());
-        controlMap.put(ScreenSettingKind.class, new ScreenSettingKind());
-        controlMap.put(SwipeBackKind.class, new SwipeBackKind());
+    public void initKinds(Activity context) {
+        controlMap.put(CollectionActivityKind.class, new CollectionActivityKind(context));
+        controlMap.put(FeaturesKind.class, new FeaturesKind(context));
+        controlMap.put(ScreenSettingKind.class, new ScreenSettingKind(context));
+        controlMap.put(SwipeBackKind.class, new SwipeBackKind(context));
     }
 
     public <T extends ActivityKinds> T get(Class<T> key) {
@@ -41,9 +45,9 @@ public class KindControl extends ActivityKinds {
     }
 
     @Override
-    public void onCreate(Bundle bundle, Activity context) {
+    public void onCreate(Bundle bundle) {
         for (Map.Entry<Class, ActivityKinds> item : controlMap.entrySet())
-            item.getValue().onCreate(bundle, context);
+            item.getValue().onCreate(bundle);
     }
 
     @Override

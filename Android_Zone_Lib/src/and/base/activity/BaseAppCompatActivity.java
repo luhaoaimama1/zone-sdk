@@ -22,11 +22,11 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
         super.onCreate(arg0);
         handler = new Handler(this);
 
-        mKindControl = new KindControl();
-        mKindControl.initKinds();
+        mKindControl = new KindControl(this);
+        mKindControl.initKinds(this);
         updateKinds();
 
-        mKindControl.onCreate(arg0, this);
+        mKindControl.onCreate(arg0);
 
         setContentView();
         findIDs();
