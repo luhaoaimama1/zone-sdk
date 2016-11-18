@@ -185,7 +185,7 @@
             android:onClick="onClick"
             android:text="Matrix各种特殊方法" />
 
-        <com.zone.view.test.WaveView2
+        <view.WaveView2
             android:layout_width="match_parent"
             android:layout_height="100dp"/>
 

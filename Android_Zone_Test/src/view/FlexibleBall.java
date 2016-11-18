@@ -1,4 +1,5 @@
-package com.zone.view.test;
+package view;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -6,9 +7,10 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import and.utils.view.graphics.basic.Circle;
+
 import and.utils.view.graphics.DrawUtils;
 import and.utils.view.graphics.animation.FlexibleBallAnimation;
+import and.utils.view.graphics.basic.Circle;
 import and.utils.view.graphics.basic.ZPath;
 import and.utils.view.graphics.basic.ZPointF;
 

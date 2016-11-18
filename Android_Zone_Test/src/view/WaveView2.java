@@ -1,4 +1,4 @@
-package com.zone.view.test;
+package view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,8 +12,8 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
-import and.utils.view.graphics.basic.DrawBind;
 import and.utils.view.graphics.DrawUtils;
+import and.utils.view.graphics.basic.DrawBind;
 
 /**
  * Created by fuzhipeng on 16/7/28.

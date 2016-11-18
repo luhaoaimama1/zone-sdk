@@ -1,4 +1,5 @@
-package com.zone.view.test;
+package view;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,9 +10,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import and.utils.view.graphics.BizierUtils;
+import and.utils.view.graphics.DrawUtils;
 import and.utils.view.graphics.basic.Circle;
 import and.utils.view.graphics.basic.DrawBind;
-import and.utils.view.graphics.DrawUtils;
 import and.utils.view.graphics.basic.ZPointF;
 
 /**

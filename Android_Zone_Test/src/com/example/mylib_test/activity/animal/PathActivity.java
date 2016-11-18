@@ -1,7 +1,7 @@
 package com.example.mylib_test.activity.animal;
 
-import com.zone.view.test.FlexibleBall;
-import com.zone.view.test.QQBizierView;
+import view.FlexibleBall ;
+import view.QQBizierView ;
 
 import and.base.activity.BaseActivity;
 
