@@ -143,7 +143,7 @@ Step 2. Add the dependency
 ##and.utils.view.gesture
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
-| ZGestrueDetector  | 支持 旋转，缩放，位移的回调参数 |  |
+| ZGestrueDetector  | 支持 `旋转` `缩放` `位移`的回调参数 |  |
 
 ##and.utils.view.graphics.animation
 | 名字 | 功能  | 优点|
