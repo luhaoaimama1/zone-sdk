@@ -5,8 +5,21 @@
 
 >`PS2`:customView库正打算摘出去 暂时就不介绍了~;
 
-#功能介绍
 
+### JicPack
+Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+Step 2. Add the dependency
+
+> compile 'com.github.luhaoaimama1:zone-sdk:[Latest release](https://github.com/luhaoaimama1/zone-sdk/releases)'
+    
 ##and.base包
 
 | 名字 | 功能  | 优点|

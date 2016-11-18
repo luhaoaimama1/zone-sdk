@@ -21,7 +21,7 @@ dependencies {
     compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
     compile 'com.zone:zokhttp:1.1.2'
     compile 'com.github.tianzhijiexian:logger:1.1.8'
-    compile 'com.github.luhaoaimama1:ZView:1.0.33'
+    compile 'com.github.luhaoaimama1:ZView:1.0.34'
     //    compile project(':Android_Zone_Lib')
 //    compile project(':UltraRefresh')
 //   compile project(':customView')

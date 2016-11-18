@@ -4,7 +4,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.mylib_test.R;
-import com.zone.view.test.util.Attr_Styleable_Utils;
+import com.zone.view.label.util.Attr_Styleable_Utils;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -292,7 +292,7 @@ public class ArcMenu_Zone extends RelativeLayout implements OnClickListener{
 	}
 	/**
 	 * 开始菜单动画，点击的MenuItem放大消失，其他的缩小消失
-	 * @param item
+	 * @param v
 	 */
 	private void menuItemAnim(View v){
 		for (View item : outter_viewList) {
