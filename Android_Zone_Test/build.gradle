@@ -3,8 +3,7 @@ apply plugin: 'me.tatarka.retrolambda'
 
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
-    compile project(':Android_Zone_Lib')
-//    compile project(':UltraRefresh')
+
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -22,8 +21,10 @@ dependencies {
     compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
     compile 'com.zone:zokhttp:1.1.2'
     compile 'com.github.tianzhijiexian:logger:1.1.8'
-
-        compile project(':customView')
+    compile 'com.github.luhaoaimama1:ZView:1.0.31'
+    //    compile project(':Android_Zone_Lib')
+//    compile project(':UltraRefresh')
+//        compile project(':customView')
 }
 
 android {

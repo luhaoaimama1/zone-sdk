@@ -18,6 +18,9 @@ public class DrawBind {
     private int mode=0;
     private static final int VIEW=1,BITMAP=2;
 
+    private DrawBind() {
+    }
+
     public static DrawBind bingView(View view){
         DrawBind db = new DrawBind();
         db.softView=new WeakReference<View>(view);
@@ -27,6 +30,7 @@ public class DrawBind {
     public static DrawBind bingView(ViewParent vp){
       return   bingView((View)vp);
     }
+
     public static DrawBind bingBitmap(Bitmap bt){
         DrawBind db = new DrawBind();
         db.softBt=new WeakReference<Bitmap>(bt);

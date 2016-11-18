@@ -12,13 +12,6 @@
             backward-compatibility can go here.
         -->
     </style>
-    <style name="AppBaseTheme2" parent="Theme.AppCompat.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
 
     <!-- Application theme. -->
     <style name="AnimalSetAppTheme" parent="AppBaseTheme">

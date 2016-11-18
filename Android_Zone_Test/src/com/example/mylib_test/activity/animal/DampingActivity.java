@@ -1,13 +1,13 @@
 package com.example.mylib_test.activity.animal;
 import android.widget.EditText;
 import com.example.mylib_test.R;
-import com.zone.view.test.DampingView;
 import and.base.activity.BaseActivity;
 import and.utils.activity_fragment_ui.ToastUtils;
 import and.utils.data.check.EmptyCheck;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import view.DampingView;
 
 
 /**
