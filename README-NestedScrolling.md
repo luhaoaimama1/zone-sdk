@@ -39,6 +39,7 @@ onNestedFling：同onNestedScroll不咋常用
 #Child
 
 [child流程接入](http://fromwiz.com/share/s/3Hsjaq1-lQ9Q2SChN02Hkyvk0hpNyB0-1QGL2Fj4sK1tPrPG)
+
 [child代码实例](https://github.com/luhaoaimama1/zone-sdk/blob/master/Android_Zone_Test/src/com/example/mylib_test/activity/touch/NestedScrollingActivity_Child.java) 
 
 ##方法的使用时机:
