@@ -36,8 +36,8 @@ public class KindControl extends ActivityKinds {
         return (T) controlMap.get(key);
     }
 
-    public void put(Class key, ActivityKinds value) {
-        controlMap.put(key, value);
+    public void put(ActivityKinds value) {
+        controlMap.put(value.getClass(), value);
     }
 
     public void remove(Class key) {

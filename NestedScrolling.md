@@ -45,19 +45,17 @@ onNestedFling：同onNestedScroll不咋常用
 
 startNestedScroll,stopNestedScroll；
 
-![](https://github.com/luhaoaimama1/zone-sdk/blob/master/demo/NestedScroll_start.png)
+![](./demo/NestedScroll_start.png)
 
 dispatchNestedPreScroll使用时机  此例为RecyclerView的内容；
 (因为是子view消耗钱 父消耗 )  所以 用if判断 父亲是否消耗；
 
-![](https://github.com/luhaoaimama1/zone-sdk/blob/master/demo/Nested_PreScroll.png)
+![](./demo/Nested_PreScroll.png)
 
 dispatchNestedScroll  则和上边不同；是child先消耗了；在吧剩下的给NestedParent；看他消耗不；
 >参考RecyclerView
 
-![](https://github.com/luhaoaimama1/zone-sdk/blob/master/demo/Nested_dispatchScroll.png)
-
-
+![](./demo/Nested_dispatchScroll.png)
 
 ##注意：
 1.抖动问题：offsetInWindow 如果不加这个参数会出现抖动，
