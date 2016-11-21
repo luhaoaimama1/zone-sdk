@@ -21,6 +21,7 @@ fling和 scorll 类似 就不说了
 ###方法的使用时机:
 
 startNestedScroll,stopNestedScroll；
+
 ![](https://github.com/luhaoaimama1/zone-sdk/blob/master/demo/NestedScroll_start.png)
 
 dispatchNestedPreScroll使用时机  此例为RecyclerView的内容；
@@ -29,6 +30,7 @@ dispatchNestedPreScroll使用时机  此例为RecyclerView的内容；
 ![](https://github.com/luhaoaimama1/zone-sdk/blob/master/demo/Nested_PreScroll.png)
 
 dispatchNestedScroll  则和上边不同；是child先消耗了；在吧剩下的给NestedParent；看他消耗不；
+>参考RecyclerView
 
 ![](https://github.com/luhaoaimama1/zone-sdk/blob/master/demo/Nested_dispatchScroll.png)
 
