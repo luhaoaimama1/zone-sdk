@@ -34,6 +34,7 @@ onNestedPreFling你可以捕获对内部View的fling事件，如果return true�
 onNestedFling：同onNestedScroll不咋常用
 ```
 >摘自HongYang: http://blog.csdn.net/lmj623565791/article/details/52204039
+
 >[parent代码实例](https://github.com/luhaoaimama1/zone-sdk/blob/master/Android_Zone_Test/src/com/example/mylib_test/activity/touch/NestedScrollingActivity_hongParent.java)
 
 #Child
