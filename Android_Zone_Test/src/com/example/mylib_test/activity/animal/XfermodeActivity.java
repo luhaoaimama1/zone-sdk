@@ -18,6 +18,7 @@ public class XfermodeActivity extends BaseActivity {
     private Button bt_pop;
     private PopXfermode popXfermode;
     private XfermodeView xfermodeView;
+    private Button bt_borderIsCircle;
 
     @Override
     public void setContentView() {
@@ -26,14 +27,16 @@ public class XfermodeActivity extends BaseActivity {
 
     @Override
     public void findIDs() {
-        rl_main=findViewById(R.id.rl_main);
-        bt_pop=(Button)findViewById(R.id.bt_pop);
-        xfermodeView=(XfermodeView)findViewById(R.id.xfermodeView);
+        rl_main = findViewById(R.id.rl_main);
+        bt_pop = (Button) findViewById(R.id.bt_pop);
+        bt_borderIsCircle = (Button) findViewById(R.id.borderIsCircle);
+        xfermodeView = (XfermodeView) findViewById(R.id.xfermodeView);
+        xfermodeView.setBordMode(borderIsCircle);
     }
 
     @Override
     public void initData() {
-        popXfermode=new PopXfermode(this,xfermodeView,bt_pop);
+        popXfermode = new PopXfermode(this, xfermodeView, bt_pop);
     }
 
     @Override
@@ -41,13 +44,24 @@ public class XfermodeActivity extends BaseActivity {
 
     }
 
+    boolean borderIsCircle = false;
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.bt_pop:
                 popXfermode.show();
-            break;
+                break;
+            case R.id.borderIsCircle:
+                borderIsCircle=!borderIsCircle;
+                xfermodeView.setBordMode(borderIsCircle);
+                if (borderIsCircle)
+                    bt_borderIsCircle.setText("边界是圆");
+                else
+                    bt_borderIsCircle.setText("边界是手机大小");
+                break;
         }
         super.onClick(v);
     }
+
 }

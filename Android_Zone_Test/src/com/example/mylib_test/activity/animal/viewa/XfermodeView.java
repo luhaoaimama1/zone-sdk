@@ -13,21 +13,22 @@ import android.view.View;
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class XfermodeView extends View{
-    private  Context context;
-    Paint paint=new Paint();
+public class XfermodeView extends View {
+    private Context context;
+    Paint paint = new Paint();
     private PorterDuff.Mode mode;
 
     public XfermodeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context=context;
+        this.context = context;
     }
 
     public XfermodeView(Context context) {
         this(context, null);
     }
-    public void setXferMode(PorterDuff.Mode mode){
-        this.mode=mode;
+
+    public void setXferMode(PorterDuff.Mode mode) {
+        this.mode = mode;
     }
 
     @Override
@@ -36,12 +37,20 @@ public class XfermodeView extends View{
         onDrawFinal(canvas);
     }
 
+    boolean borderIsCircle = false;
+
+    public void setBordMode(boolean borderIsCircle) {
+        this.borderIsCircle = borderIsCircle;
+        invalidate();
+    }
 
     private void onDrawFinal(Canvas canvas) {
-        if (mode!=null) {
+        if (mode != null) {
             paint.reset();
-            bitmapXfermodeExample1(canvas);
-//            graphXfermodeExample2(canvas);
+            if (!borderIsCircle)
+                bitmapXfermodeExample1(canvas);
+            else
+                graphXfermodeExample2(canvas);
         }
     }
 
@@ -65,7 +74,8 @@ public class XfermodeView extends View{
 
     //这种对应情况图1
     private void bitmapXfermodeExample1(Canvas canvas) {
-        Canvas canvas2=new Canvas();
+        Canvas canvas2 = new Canvas();
+
         //画黄色的圆 满屏幕那种 bitmap
         Bitmap bt = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_4444);
         canvas2.setBitmap(bt);
