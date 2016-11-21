@@ -3,7 +3,7 @@
 
 >ExtraFeature(观察者的基类):专注：`init（onResume中使用）`,`onActivityResult`,`destory`
 
->RequestCodeConfig(所有ExtraFeature的Code声明):其中的START_CODE(默认1000开始)可以修改 主要是怕碰到别的类似开源项目code重复导致不必要的问题;
+>RequestCodeConfig(所有ExtraFeature的Code声明):其中的START_CODE(默认1000开始)可以修改,而进行整体code偏移 主要是怕碰到别的类似开源项目code重复导致不必要的问题;
 
 | 名字 | 功能  |
 | :------------: |:---------------:|
@@ -18,20 +18,34 @@ Activity中拍照的使用范例：
 >声明后 注意 把拍照的功能添加到FeaturesKind里面 `mKindControl.get(FeaturesKind.class).addFeature(feature_Pic);`
 
 ```
-@Override
-public void updateKinds() {
-    super.updateKinds();
+     @Override
+    public void updateKinds() {
+        super.updateKinds();
+        feature_Pic = new Feature_Pic(this) {
+            @Override
+            protected void getReturnedPicPath(String path) {
+                System.out.println(path);
+                Intent intent = new Intent(Photo_Shot_MainActivity.this,ShowPicActivity.class);
+                Uri uri = Uri.parse(path);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        };
+        mKindControl.get(FeaturesKind.class).addFeature(feature_Pic);
+    }
+```
+>然后调用此方法就好了~ `feature_Pic.openCamera();` `feature_Pic.openPhotos();`
 
-    feature_Pic = new Feature_Pic(this) {
-        @Override
-        protected void getReturnedPicPath(String path) {
-            System.out.println(path);
-            Intent intent = new Intent(Photo_Shot_MainActivity.this,ShowPicActivity.class);
-            Uri uri = Uri.parse(path);
-            intent.setData(uri);
-            startActivity(intent);
+```
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+        case R.id.shot:
+            feature_Pic.openCamera();
+            break;
+        case R.id.photo:
+            feature_Pic.openPhotos();
+            break;
         }
-    };
-    mKindControl.get(FeaturesKind.class).addFeature(feature_Pic);
-}
+    }
 ```

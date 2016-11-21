@@ -9,7 +9,7 @@
 | 名字 | 功能  |
 | :------------: |:---------------:| 
 | CollectionActivityKind  | 收集所有Activity用的 |  
-| FeaturesKind  |  [这个是处理关于onActivityResult生命周期的观察者模式](./README-FeatureKind.md) | 
+| FeaturesKind  |  [专门处理关于onActivityResult的,点此出介绍](./README-FeatureKind.md) | 
 | ScreenSettingKind  | setNoTitle,setFullScreen的 | 
 | SwipeBackKind  | 左滑退出Activity用的 集成别的项目~ |
 
