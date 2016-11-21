@@ -30,6 +30,7 @@ Step 2. Add the dependency
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | BaseActivity,BaseAppCompatActivity,BaseFragmentActivity  | 万能解耦基名字，三个主要是为了兼容 | 解耦，各司其职。拍照等涉及onActivityResult的封装 |
+>[万能基础类,点此看介绍](./README-BaseActivity.md)
 
 ##and.utils.activity_fragment_ui包
 
