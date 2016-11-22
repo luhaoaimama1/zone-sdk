@@ -95,6 +95,7 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.TouchMainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.EventPassActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.databingstudy.DataBingMainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.databingstudy.DataBingStartActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.databingstudy.LambdaStartActivity"></activity>

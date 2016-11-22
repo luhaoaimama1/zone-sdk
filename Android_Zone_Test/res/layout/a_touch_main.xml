@@ -68,6 +68,14 @@
         android:layout_height="wrap_content"
         android:text="横竖滑动冲突(内部拦截法)" />
 
+    <Button
+        android:id="@+id/eventPass"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="事件传递探究" />
+
 
     <TextView
         android:layout_margin="4dp"
