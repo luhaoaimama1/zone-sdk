@@ -227,6 +227,7 @@ public class RxjavaActivity extends BaseActivity {
                 .skip(1)
                 .take(2).map(s -> s + ":Zone")
                 .subscribe(s -> System.out.println(s));
+
     }
 
     private static void liftExample() {

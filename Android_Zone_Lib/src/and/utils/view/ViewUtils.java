@@ -8,12 +8,30 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by fuzhipeng on 16/9/29.
  */
 
 public class ViewUtils {
 
+    // 防止Android过快点击造成多次事件
+    public static void clickThrottleFirst(View view, final View.OnClickListener mOnClickListener
+            , final long windowDuration, final TimeUnit unit){
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long clickTime = 0;
+                //因为第一次的值一定大于 你设置的值 所以第一次会走；
+                if(System.currentTimeMillis()-clickTime>=unit.toMillis(windowDuration)){
+                    mOnClickListener.onClick(v);
+                    clickTime = System.currentTimeMillis();
+                }
+
+            }
+        });
+    }
 
     /**
      * 递归view 所有parent 知道 rootView  设置clipClildren;
