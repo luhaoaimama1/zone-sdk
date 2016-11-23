@@ -131,6 +131,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_damping:
                 startActivity(new Intent(this, DampingActivity.class));
                 break;
+            case R.id.bt_PathMeasure:
+                startActivity(new Intent(this, PathMeasureActivity.class));
+                break;
 
             default:
                 break;

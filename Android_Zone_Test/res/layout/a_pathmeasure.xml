@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.mylib_test.activity.animal.viewa.PathMeasureView
+        android:id="@+id/pathMeasureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.zone.view.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:gravity="center"
+            android:text="默认Path Arc的绘图,log会研究Region setPath 关于clip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="构造器测试"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_Constructor" />
+
+        <Button
+            android:text="NextContour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_NextContour" />
+
+        <Button
+            android:text="GetSegment->startWithMoveTo:True"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_GetSegmentTrue" />
+        <Button
+            android:text="GetSegment->startWithMoveTo:False"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_GetSegmentFalse" />
+        <Button
+            android:text="GetMatrix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_GetMatrix" />
+    </com.zone.view.FlowLayout>
+
+</RelativeLayout>

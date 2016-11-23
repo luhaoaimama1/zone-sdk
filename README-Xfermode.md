@@ -64,3 +64,12 @@
     paint.setColor(Color.BLUE);
     canvas2.drawCircle(getWidth() / 2 + 200, getHeight() / 2 + 200, 200, paint);
 ```
+
+
+
+
+st->op1(right)->cond
+cond(yes, right)->c2
+cond(no)->sub1(left)->op1
+c2(yes)->io->e
+c2(no)->op2->e

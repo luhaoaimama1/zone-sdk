@@ -1,5 +1,7 @@
 package com.example.mylib_test.activity.animal;
 
+import com.example.mylib_test.activity.animal.viewa.PathMeasureView;
+
 import view.FlexibleBall ;
 import view.QQBizierView ;
 
