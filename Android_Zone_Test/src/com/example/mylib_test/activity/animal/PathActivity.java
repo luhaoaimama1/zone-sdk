@@ -28,7 +28,6 @@ public class PathActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
     }
 
     @Override

@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
  * Created by fuzhipeng on 2016/10/21.
  */
 
-public class UiHelper {
+public class ActivityUtils {
     //判断SDK版本是否大于等于19，大于就让他显示，小于就要隐藏，不然低版本会多出来一个
 //    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
 //            UIhelper.setTranslucentStatus(this,true);
@@ -54,16 +54,70 @@ public class UiHelper {
         return statusHeight;
     }
 
-    public static View getActivityRootView2(Activity context) {
-        return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
+
+    /**
+     * DecorView(Activity 's Root[顶层]View){
+     *   LinearLayout
+     *      {
+     *          title(ViewStub)
+     *          content(FrameLayout
+     *          注意 如果keyBoard弹出，
+     *          并且模式是windowSoftInputMode="stateHidden|adjustResize，
+     *          改变此控件高度){
+     *              setContent(setContentView)
+     *          }
+     *      }
+     * }
+     * @param activity
+     * @return
+     */
+    public static View getActivitySetContentView(Activity activity) {
+        return ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
     }
 
-    public static FrameLayout getActivityRootView(Activity context) {
-        final FrameLayout decorView = (FrameLayout) context.getWindow().getDecorView();
+    /**
+     * DecorView(Activity 's Root[顶层]View){
+     *   LinearLayout
+     *      {
+     *          title(ViewStub)
+     *          content(FrameLayout
+     *          注意 如果keyBoard弹出，
+     *          并且模式是windowSoftInputMode="stateHidden|adjustResize，
+     *          改变此控件高度){
+     *              setContent(setContentView)
+     *          }
+     *      }
+     * }
+     * @param activity
+     * @return
+     */
+    public static View getActivityContentView(Activity activity) {
+        return  activity.findViewById(android.R.id.content);
+    }
+
+    /**
+     * DecorView(Activity 's Root[顶层]View){
+     *   LinearLayout
+     *      {
+     *          title(ViewStub)
+     *          content(FrameLayout
+     *          注意 如果keyBoard弹出，
+     *          并且模式是windowSoftInputMode="stateHidden|adjustResize，
+     *          改变此控件高度){
+     *              setContent(setContentView)
+     *          }
+     *      }
+     * }
+     * @param activity
+     * @return
+     */
+    public static FrameLayout getActivityRootView(Activity activity) {
+        final FrameLayout decorView = (FrameLayout) activity.getWindow().getDecorView();
         //这么添加View
 //        int w = decorView.getWidth();
 //        int h = decorView.getHeight();
 //        decorView.addView(view, w, h);
         return decorView;
     }
+
 }

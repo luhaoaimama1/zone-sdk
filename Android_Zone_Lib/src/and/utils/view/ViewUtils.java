@@ -106,4 +106,13 @@ public class ViewUtils {
         view.setDrawingCacheEnabled(true);
         return view.getDrawingCache(true);
     }
+    /**
+     * 迭代找到最顶层  如果是在Activity则等于DectorView;
+     * @param view
+     * @return
+     */
+    public static View getRootView(View view){
+        return view.getRootView();
+    }
+
 }

@@ -18,8 +18,10 @@ import android.widget.ScrollView;
 
 import com.example.mylib_test.R;
 
+import and.utils.activity_fragment_ui.ActivityUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
 import com.zone.view.FlowLayout;
 
 public class Animal_MainActivity extends Activity implements OnClickListener {
@@ -54,6 +56,14 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv:
+                int[] loWindow =new int[2];
+                int[] loScreen =new int[2];
+                flowLayoutZone1.getLocationInWindow(loWindow);
+                flowLayoutZone1.getLocationOnScreen(loScreen);
+                ActivityUtils.getActivityRootView(this);
+
+                break;
             case R.id.animal:
                 startActivity(new Intent(this, AniPro.class));
                 break;
@@ -159,6 +169,13 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void testViewTreeObserverListener() {
+
+        sv.post(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("ViewTreeObserver:post");
+            }
+        });
         sv.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
             @Override
             public void onDraw() {
@@ -170,15 +187,19 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             public boolean onPreDraw() {
                 sv.getViewTreeObserver().removeOnPreDrawListener(this);
                 System.out.println("ViewTreeObserver:onPreDraw");
-                //todo  这个什么鬼
-                return false;
+                //todo  true的时候 能看到页面 false直接卡死了
+                return true;
             }
         };
         sv.getViewTreeObserver().addOnPreDrawListener(pre);
+//        sv.getViewTreeObserver().dispatchOnGlobalLayout();
+
         sv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                System.out.println("ViewTreeObserver:OnGlobalLayoutListener");
+                sv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                System.out.println("ViewTreeObserver:OnGlobalLayoutListener"
+                        + "->可见性：" + (sv.getVisibility() == View.VISIBLE ? "可见" : "不可见"));
             }
         });
         sv.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
@@ -200,6 +221,12 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             }
         });
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        System.out.println("ViewTreeObserver_onWindowFocusChanged_hasFocus:" + (hasFocus ? "true" : "false"));
     }
 
     @Override

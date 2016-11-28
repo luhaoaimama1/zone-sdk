@@ -40,8 +40,7 @@ Step 2. Add the dependency
 | FragmentSwitcher   | fragment切换的封装 | 使用相当起来方便举个例子：fragmentSwitcher.switchPage(0);|
 | ~~MeasureUtils~~用View.post()代替   | 主要在onCreate中来测量高度 | |
 | ToastUtils   | 借来的~ | |
-| UiHelper   | rootView与 statuBar高度的获取| |
-| UiHelper   | rootView与 statuBar高度的获取| |
+| ActivityUtils   | Dector Content setContentView,与 statuBar高度的获取| |
 
 ##and.utils.check
 | 名字 | 功能  | 优点|
