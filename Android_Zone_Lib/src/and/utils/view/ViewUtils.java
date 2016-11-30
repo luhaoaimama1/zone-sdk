@@ -1,11 +1,8 @@
 package and.utils.view;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import java.util.concurrent.TimeUnit;
@@ -65,7 +62,7 @@ public class ViewUtils {
         if (parentView== null)
             return null;
 
-        Bitmap viewBmp = getCacheBitmap(view);
+        Bitmap viewBmp = ViewShot.getCacheBitmap(view);
         int bmpWidth = viewBmp.getWidth() / xParts;
         int bmpHeight = viewBmp.getHeight() / yParts;
 
@@ -102,10 +99,6 @@ public class ViewUtils {
         return view.getLayoutParams();
     }
 
-    public static Bitmap getCacheBitmap(View view) {
-        view.setDrawingCacheEnabled(true);
-        return view.getDrawingCache(true);
-    }
     /**
      * 迭代找到最顶层  如果是在Activity则等于DectorView;
      * @param view

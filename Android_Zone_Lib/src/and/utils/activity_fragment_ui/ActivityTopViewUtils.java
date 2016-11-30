@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
  * Created by fuzhipeng on 2016/10/21.
  */
 
-public class ActivityUtils {
+public class ActivityTopViewUtils {
     //判断SDK版本是否大于等于19，大于就让他显示，小于就要隐藏，不然低版本会多出来一个
 //    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
 //            UIhelper.setTranslucentStatus(this,true);

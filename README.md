@@ -40,7 +40,7 @@ Step 2. Add the dependency
 | FragmentSwitcher   | fragment切换的封装 | 使用相当起来方便举个例子：fragmentSwitcher.switchPage(0);|
 | ~~MeasureUtils~~用View.post()代替   | 主要在onCreate中来测量高度 | |
 | ToastUtils   | 借来的~ | |
-| ActivityUtils   | Dector Content setContentView,与 statuBar高度的获取| |
+| ActivityTopViewUtils   | Dector Content setContentView,与 statuBar高度的获取| |
 
 ##and.utils.check
 | 名字 | 功能  | 优点|
@@ -138,7 +138,8 @@ Step 2. Add the dependency
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | AnimationUtils  | explode动画自己试验用的~大家看看就行了 |  |
-| ViewUtils  | `recurrenceClipChildren(迭代的parent,设置ClipChildren)`,`getCacheBitmap(获取View的DrawingCache)`,`clipView（可以把一个ImageView切成N*M的ImageView)` |  |
+| ViewUtils  | `recurrenceClipChildren(迭代的parent,设置ClipChildren)`,`clipView（可以把一个ImageView切成N*M的ImageView)` |  |
+| ViewShot  | `getCacheBitmap(获取View的DrawingCache)` |  |
 
 ##and.utils.view.gesture
 | 名字 | 功能  | 优点|

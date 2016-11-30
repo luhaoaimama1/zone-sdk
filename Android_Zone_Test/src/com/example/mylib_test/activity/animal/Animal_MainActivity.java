@@ -18,7 +18,7 @@ import android.widget.ScrollView;
 
 import com.example.mylib_test.R;
 
-import and.utils.activity_fragment_ui.ActivityUtils;
+import and.utils.activity_fragment_ui.ActivityTopViewUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -61,7 +61,7 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
                 int[] loScreen =new int[2];
                 flowLayoutZone1.getLocationInWindow(loWindow);
                 flowLayoutZone1.getLocationOnScreen(loScreen);
-                ActivityUtils.getActivityRootView(this);
+                ActivityTopViewUtils.getActivityRootView(this);
 
                 break;
             case R.id.animal:

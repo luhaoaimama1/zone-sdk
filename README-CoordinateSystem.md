@@ -13,6 +13,7 @@
 | getHitRect | parent | 相当于getLeft/Top等值放入Rect |
 | getLocationOnScreen | srceen | 获取左上角的点在srceen的位置 |
 | getLocationInWindow | window(Activity为Dialog的时候和 screen不一样大) |获取左上角的点在window的位置 |
+| getWindowVisibleDisplayFrame | screen |获取到程序显示的区域，包括标题栏，但不包括状态栏。 |
 
 #Event中方法
 | 方法 | 坐标系  | 含义 | 
