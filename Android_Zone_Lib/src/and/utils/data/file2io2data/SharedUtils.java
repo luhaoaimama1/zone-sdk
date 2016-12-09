@@ -1,153 +1,152 @@
 package and.utils.data.file2io2data;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
+import and.Config;
 
 /**
- * @version 2015.7.15
- * @author Zone
- *
- * 主要因为效率分两部分
- * 静态方法：是单独操作
- * 非静态方法 ：是连续操作
+ * 引用项目:https://github.com/openproject/LessCode
+ * 不习惯$符号的方法名,所以改了下；
  */
 public class SharedUtils {
-	private static final String SP_TAG="preferences";
-	private static final String UserNameKEY="userName_";
-	private  Gson gson;
-	private SharedPreferences share;
-	private Editor editor;
-	private static SharedUtils su;
-	@SuppressLint("CommitPrefEdits")
-	private SharedUtils(Context context) {
-		share = context.getSharedPreferences(SP_TAG, Context.MODE_PRIVATE);
-		editor = share.edit();
-	}
 
-	public static SharedUtils getInstance(Context context) {
-		if (su == null)
-			synchronized (SharedUtils.class) {
-				if (su == null)
-					su = new SharedUtils(context);
-			}
-		return su;
-	}
+    public static final String SHARED_NAME = "shared_name";
 
-	public SharedPreferences readSp() {
-		return share;
-	}
+    private static SharedPreferences getSharedPreferences() {
+        return Config.getInstance().getAppContext().getSharedPreferences(SHARED_NAME,
+                Context.MODE_PRIVATE);
+    }
 
-	public Editor writeSp() {
-		return editor;
-	}
+    public static <T> void put(String key, T value) {
+        SharedPreferences sp = getSharedPreferences();
+        SharedPreferences.Editor editor = sp.edit();
 
-	/**
-	 * todo getUser()
-	 * @return
-	 */
-//	public User  getUser() {
-//		// 读取用户名密码
-//		String userName = share.getString("userName", null);
-//		String userPassword = share.getString("userPassword", null);
-//		User user = new User(userName, userPassword);
-//		return user;
-//
-//	}
-	/**
-	 * @return
-	 */
-	public List<User> getAllUser() {
-		// 读取用户名密码
-		Map<String, ?> allData = share.getAll();
-		List<User> userList=new ArrayList<>();
-		for (Map.Entry<String, ?> stringEntry : allData.entrySet()) {
-			if (stringEntry.getKey().startsWith(stringEntry.getKey())) {
-				String userString= (String) stringEntry.getValue();
-				checkGson();
-				User user=gson.fromJson(userString,User.class);
-				userList.add(user);
-			}
-		}
-		Collections.sort(userList);
-		return userList;
+        if (value == null) {
+            // if value is null, just handler it as a String
+            editor.putString(key, null);
+        } else {
+            if (value.getClass() == Boolean.class) {
+                editor.putBoolean(key, (Boolean) value);
+            } else if (value.getClass() == Float.class) {
+                editor.putFloat(key, (Float) value);
+            } else if (value.getClass() == Integer.class) {
+                editor.putInt(key, (Integer) value);
+            } else if (value.getClass() == Long.class) {
+                editor.putLong(key, (Long) value);
+            } else if (value.getClass() == String.class) {
+                editor.putString(key, (String) value);
+            } else {
+                throw new RuntimeException("the put value type can't support.");
+            }
+        }
+        SharedPreferencesCompat.apply(editor);
+    }
 
-	}
-	private void checkGson(){
-		if(gson==null)
-			gson=new Gson();
-	}
-	/**
-	 * gson来保存实体类
-	 * @return
-	 */
-	public void setUser(User user) {
-		checkGson();
-		editor.putString(UserNameKEY+user.getUserName(), gson.toJson(user));
-		editor.commit();
-	}
+    public static String get(String key, String defaultValue) {
+        SharedPreferences sp = getSharedPreferences();
+        return sp.getString(key, defaultValue);
+    }
 
-	public static class User implements Comparable<User>{
-		private String userName;
-		private String userPassword;
-		private boolean  isRememberPassword;
-		private int loginNum;
-		private Date date;
+    public static boolean get(String key, boolean defaultValue) {
+        SharedPreferences sp = getSharedPreferences();
+        return sp.getBoolean(key, defaultValue);
+    }
 
-		public User() {
-		}
+    public static float get(String key, float defaultValue) {
+        SharedPreferences sp = getSharedPreferences();
+        return sp.getFloat(key, defaultValue);
+    }
 
-		public String getUserName() {
-			return userName;
-		}
+    public static int get(String key, int defaultValue) {
+        SharedPreferences sp = getSharedPreferences();
+        return sp.getInt(key, defaultValue);
+    }
 
-		public void setUserName(String userName) {
-			this.userName = userName;
-		}
+    public static long get(String key, long defaultValue) {
+        SharedPreferences sp = getSharedPreferences();
+        return sp.getLong(key, defaultValue);
+    }
 
-		public String getUserPassword() {
-			return userPassword;
-		}
 
-		public void setUserPassword(String userPassword) {
-			this.userPassword = userPassword;
-		}
+    public static Map<String, ?> getAll() {
+        return getSharedPreferences().getAll();
+    }
 
-		public boolean isRememberPassword() {
-			return isRememberPassword;
-		}
+    public static void registerOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        getSharedPreferences().registerOnSharedPreferenceChangeListener(listener);
+    }
 
-		public void setIsRememberPassword(boolean isRememberPassword) {
-			this.isRememberPassword = isRememberPassword;
-		}
+    public static void unregisterOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        getSharedPreferences().unregisterOnSharedPreferenceChangeListener(listener);
+    }
 
-		public int getLoginNum() {
-			return loginNum;
-		}
+    public static boolean contains(String key) {
+        return getSharedPreferences().contains(key);
+    }
 
-		public void setLoginNum(int loginNum) {
-			this.loginNum = loginNum;
-		}
+    public static void remove(String key) {
+        SharedPreferences sp = getSharedPreferences();
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove(key);
+        SharedPreferencesCompat.apply(editor);
+    }
 
-		public Date getDate() {
-			return date;
-		}
+    public static void clear() {
+        SharedPreferences sp = getSharedPreferences();
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear();
+        SharedPreferencesCompat.apply(editor);
+    }
 
-		public void setDate(Date date) {
-			this.date = date;
-		}
 
-		@Override
-		public int compareTo(User another) {
-			return this.date.getTime()<=another.getDate().getTime()?-1:1;
-		}
-	}
+    /**
+     * *********************************************************************************************
+     * Unlike commit(), which writes its preferences out to persistent storage synchronously,
+     * apply() commits its changes to the in-memory SharedPreferencesimmediately
+     * but starts an asynchronous commit to disk and you won't be notified of any failures.
+     * If another editor on this SharedPreferences does a regularcommit() while a apply() is still outstanding,
+     * the commit() will block until all async commits are completed as well as the commit itself.
+     * *********************************************************************************************
+     */
+    private static class SharedPreferencesCompat {
+        private static final Method sApplyMethod = findApplyMethod();
+
+        /**
+         * check apply mthod by reflect
+         *
+         * @return
+         */
+        @SuppressWarnings({"unchecked", "rawtypes"})
+        private static Method findApplyMethod() {
+            try {
+                Class clz = SharedPreferences.Editor.class;
+                return clz.getMethod("apply");
+            } catch (NoSuchMethodException e) {
+            }
+
+            return null;
+        }
+
+        /**
+         * if it has apply(), use apply() first;
+         * else just use the commit().
+         *
+         * @param editor
+         */
+        public static void apply(SharedPreferences.Editor editor) {
+            try {
+                if (sApplyMethod != null) {
+                    sApplyMethod.invoke(editor);
+                    return;
+                }
+            } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            editor.commit();
+        }
+    }
+
+
 }

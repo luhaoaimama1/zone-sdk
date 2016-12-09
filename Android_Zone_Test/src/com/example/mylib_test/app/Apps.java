@@ -15,8 +15,8 @@ package com.example.mylib_test.app;
  * limitations under the License.
  *******************************************************************************/
 
+import and.Config;
 import and.utils.data.convert.DateUtil;
-import and.utils.data.file2io2data.SharedUtils;
 import com.example.mylib_test.app.imageloader.ImageLoaderConfigUtils;
 import com.example.mylib_test.app.imageloader.ImageLoaderOptionsUtils;
 
@@ -62,6 +62,7 @@ public class Apps extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+         Config.Build.init(this).perform();
         if (false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
@@ -98,34 +99,7 @@ public class Apps extends Application {
 
 
 //        loggerTest();
-        spUesrTest();
 
-    }
-
-    private void spUesrTest() {
-        SharedUtils.User user = new SharedUtils.User();
-        user.setDate(new Date());
-        user.setUserName("zone");
-        user.setUserPassword("123456");
-        user.setIsRememberPassword(true);
-        user.setLoginNum(1);
-        SharedUtils.User user2 = new SharedUtils.User();
-        user2.setDate(DateUtil.str2Date("2000-02-10 10:30:22", "yyyy-MM-dd HH:mm:ss"));
-        user2.setUserName("zone2");
-        user2.setUserPassword("1234567");
-        user2.setIsRememberPassword(false);
-        user2.setLoginNum(1);
-        SharedUtils.User user3 = new SharedUtils.User();
-        user3.setDate(DateUtil.str2Date("2007-02-10 10:30:22", "yyyy-MM-dd HH:mm:ss"));
-        user3.setUserName("zone3");
-        user3.setUserPassword("1234567");
-        user3.setIsRememberPassword(false);
-        user3.setLoginNum(1);
-        SharedUtils.getInstance(this).setUser(user3);
-        SharedUtils.getInstance(this).setUser(user2);
-        SharedUtils.getInstance(this).setUser(user);
-        List<SharedUtils.User> all = SharedUtils.getInstance(this).getAllUser();
-        System.out.println("spUitls user的测试");
     }
 
     private void loggerTest() {

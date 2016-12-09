@@ -3,7 +3,15 @@
 
 >`PS`:不懂怎么用的,都可以看demo 一些都是已经在demo中使用了~;
 
+## Usage
 
+####Required Config
+
+```
+Config.Build.init(this).perform();
+```
+
+ 
 ### JicPack
 Add it in your root build.gradle at the end of repositories:
 ```
@@ -69,7 +77,7 @@ Step 2. Add the dependency
 | HashMapZ | HashMap的put的连续使用 ,与get是null的默认值处理 | |
 | IOUtils | io的read,write。 支持file，string,流 |   |
 | SDCardUtils | SD卡等获取信息的封装 |  |
-| SharedUtils| 主要为了省写系统的获取；与存到一个地方 |  |
+| SharedUtils| 主要为了省写系统的获取；与存到一个地方 [引用项目LessCode](https://github.com/openproject/LessCode) |  |
 | SerializeUtils | 未使用 |  |
 | TypefaceUtils| 未使用|  |
 
@@ -140,6 +148,7 @@ Step 2. Add the dependency
 | AnimationUtils  | explode动画自己试验用的~大家看看就行了 |  |
 | ViewUtils  | `recurrenceClipChildren(迭代的parent,设置ClipChildren)`,`clipView（可以把一个ImageView切成N*M的ImageView)` |  |
 | ViewShot  | `getCacheBitmap(获取View的DrawingCache)` |  |
+| FindView  | 代替findViewById [引用项目LessCode](https://github.com/openproject/LessCode) |  |
 
 ##and.utils.view.gesture
 | 名字 | 功能  | 优点|
@@ -181,6 +190,7 @@ Step 2. Add the dependency
 ##and
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
+| Config  | 库配置,配置库所需要的全局变量 |  |
 | LogUtil  | 简单log工具类 可实现点击链接 |  |
 | TimeDiffUtils  | 计算两点时间插的工具类 | 范例：TimeDiffUtils.start("Method1") ,TimeDiffUtils.end("Method1") |
 

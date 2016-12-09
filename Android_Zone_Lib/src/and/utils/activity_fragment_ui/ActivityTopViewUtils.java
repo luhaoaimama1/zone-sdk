@@ -2,12 +2,15 @@ package and.utils.activity_fragment_ui;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by fuzhipeng on 2016/10/21.
@@ -31,16 +34,27 @@ public class ActivityTopViewUtils {
     }
 
     /**
+     * 获取标题栏高度
      *
+     * @param activity
+     * @return
+     */
+    public static int $titleBarHeight(Activity activity) {
+        int contentTop = activity.getWindow().findViewById(Window.ID_ANDROID_CONTENT).getTop();
+        int titleBarHeight = contentTop - getStatusHeight(activity);
+        return titleBarHeight;
+    }
+
+    /**
      * @param activity
      * @return > 0 success; <= 0 fail
      */
-    public static int getStatusHeight(Activity activity){
+    public static int getStatusHeight(Activity activity) {
         int statusHeight = 0;
         Rect localRect = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);
         statusHeight = localRect.top;
-        if (0 == statusHeight){
+        if (0 == statusHeight) {
             Class<?> localClass;
             try {
                 localClass = Class.forName("com.android.internal.R$dimen");
@@ -57,17 +71,18 @@ public class ActivityTopViewUtils {
 
     /**
      * DecorView(Activity 's Root[顶层]View){
-     *   LinearLayout
-     *      {
-     *          title(ViewStub)
-     *          content(FrameLayout
-     *          注意 如果keyBoard弹出，
-     *          并且模式是windowSoftInputMode="stateHidden|adjustResize，
-     *          改变此控件高度){
-     *              setContent(setContentView)
-     *          }
-     *      }
+     * LinearLayout
+     * {
+     * title(ViewStub)
+     * content(FrameLayout
+     * 注意 如果keyBoard弹出，
+     * 并且模式是windowSoftInputMode="stateHidden|adjustResize，
+     * 改变此控件高度){
+     * setContent(setContentView)
      * }
+     * }
+     * }
+     *
      * @param activity
      * @return
      */
@@ -77,37 +92,39 @@ public class ActivityTopViewUtils {
 
     /**
      * DecorView(Activity 's Root[顶层]View){
-     *   LinearLayout
-     *      {
-     *          title(ViewStub)
-     *          content(FrameLayout
-     *          注意 如果keyBoard弹出，
-     *          并且模式是windowSoftInputMode="stateHidden|adjustResize，
-     *          改变此控件高度){
-     *              setContent(setContentView)
-     *          }
-     *      }
+     * LinearLayout
+     * {
+     * title(ViewStub)
+     * content(FrameLayout
+     * 注意 如果keyBoard弹出，
+     * 并且模式是windowSoftInputMode="stateHidden|adjustResize，
+     * 改变此控件高度){
+     * setContent(setContentView)
      * }
+     * }
+     * }
+     *
      * @param activity
      * @return
      */
     public static View getActivityContentView(Activity activity) {
-        return  activity.findViewById(android.R.id.content);
+        return activity.findViewById(android.R.id.content);
     }
 
     /**
      * DecorView(Activity 's Root[顶层]View){
-     *   LinearLayout
-     *      {
-     *          title(ViewStub)
-     *          content(FrameLayout
-     *          注意 如果keyBoard弹出，
-     *          并且模式是windowSoftInputMode="stateHidden|adjustResize，
-     *          改变此控件高度){
-     *              setContent(setContentView)
-     *          }
-     *      }
+     * LinearLayout
+     * {
+     * title(ViewStub)
+     * content(FrameLayout
+     * 注意 如果keyBoard弹出，
+     * 并且模式是windowSoftInputMode="stateHidden|adjustResize，
+     * 改变此控件高度){
+     * setContent(setContentView)
      * }
+     * }
+     * }
+     *
      * @param activity
      * @return
      */

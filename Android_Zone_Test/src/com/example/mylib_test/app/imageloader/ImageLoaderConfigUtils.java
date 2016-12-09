@@ -64,7 +64,7 @@ public class ImageLoaderConfigUtils {
 		//缓存到文件的最大数据   50 MiB
 		config.diskCacheSize(50 * 1024 * 1024); 
 		//文件数量
-		//config.diskCacheFileCount(1000); 
+		//config.diskCacheFileCount(1000);
 		
 		// //将保存的时候的URI名称用MD5 加密
 		config.diskCacheFileNameGenerator(new Md5FileNameGenerator()); 
