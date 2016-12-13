@@ -15,8 +15,8 @@ package com.example.mylib_test.app;
  * limitations under the License.
  *******************************************************************************/
 
-import and.Config;
-import and.utils.data.convert.DateUtil;
+import and.Configuration;
+
 import com.example.mylib_test.app.imageloader.ImageLoaderConfigUtils;
 import com.example.mylib_test.app.imageloader.ImageLoaderOptionsUtils;
 
@@ -32,9 +32,7 @@ import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -62,7 +60,7 @@ public class Apps extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-         Config.Build.init(this).perform();
+         Configuration.Build.init(this).perform();
         if (false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());

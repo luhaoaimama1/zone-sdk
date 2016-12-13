@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
-import and.Config;
+import and.Configuration;
 
 /**
  * 引用项目:https://github.com/openproject/LessCode
@@ -15,7 +15,7 @@ public class SharedUtils {
     public static final String SHARED_NAME = "shared_name";
 
     private static SharedPreferences getSharedPreferences() {
-        return Config.getInstance().getAppContext().getSharedPreferences(SHARED_NAME,
+        return Configuration.getInstance().getAppContext().getSharedPreferences(SHARED_NAME,
                 Context.MODE_PRIVATE);
     }
 

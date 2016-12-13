@@ -4,21 +4,20 @@ import android.content.Context;
 
 /**
  * Created by fuzhipeng on 2016/12/9.
- *
  * 例如:Config.Build.init(this).perform();
  */
-public class Config {
+public class Configuration {
 
     private final Context appContext;
 
-    private static Config instance;
+    private static Configuration instance;
 
-    private Config(Build build) {
+    private Configuration(Build build) {
         instance = this;
         appContext = build.appContext;
     }
 
-    public static Config getInstance() {
+    public static Configuration getInstance() {
         if (instance == null)
             throw new IllegalStateException("please use Inner Build's perform() ");
         else
@@ -42,8 +41,8 @@ public class Config {
             return build;
         }
 
-        public Config perform() {
-            return new Config(this);
+        public Configuration perform() {
+            return new Configuration(this);
         }
     }
 }
