@@ -73,7 +73,7 @@ public class DrawTextView extends RelativeLayout {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         paintStokeLine.setColor(Color.BLACK);
-        canvas.drawLine(getWidth()/2,0,getWidth()/2,getHeight(), paintStokeLine);
+        canvas.drawLine(getWidth() / 2, 0, getWidth() / 2, getHeight(), paintStokeLine);
         //键盘监听 开启 输入字符串
         Paint paint = DrawUtils.getStrokePaint(Paint.Style.FILL);
         paint.setTextSize(TextSize);
@@ -95,18 +95,19 @@ public class DrawTextView extends RelativeLayout {
             drawText_(canvas, paint, i);
             i++;
         }
-        sb.append("\n top:BLACK value:"+fm.top);
-        sb.append("\n ascent:MAGENTA value:"+fm.ascent);
-        sb.append("\n descent:GREEN value:"+fm.descent);
-        sb.append("\n bottom:RED value:"+fm.bottom);
+        sb.append("\n top:BLACK value:" + fm.top);
+        sb.append("\n ascent:MAGENTA value:" + fm.ascent);
+        sb.append("\n descent:GREEN value:" + fm.descent);
+        sb.append("\n bottom:RED value:" + fm.bottom);
         sb.append("\n baseLine:BLUE 上边的值都是基于baseLine的值");
-        sb.append("\n bounds:"+bounds.toString());
-        System.out.println("heihei__bounds："+bounds.toString());
-        sb.append("\n textSize:"+TextSize);
+        sb.append("\n bounds:" + bounds.toString());
+        System.out.println("heihei__bounds：" + bounds.toString());
+        sb.append("\n textSize:" + TextSize);
         sb.append("\n 推断出:textSize=descent+bounds.top");
-        tv.setText(introduce+sb.toString());
-        DrawUtils.Text.drawTextTopOfPoint(canvas,"lucky!",getWidth()/2,200,0,paint, Paint.Align.LEFT);
-        canvas.drawLine(0,200,getWidth(),200,paint);
+        tv.setText(introduce + sb.toString());
+        //封装工具测试
+//        DrawUtils.Text.drawTextTopOfPoint(canvas,"lucky!",getWidth()/2,200,0,paint, Paint.Align.LEFT);
+//        canvas.drawLine(0,200,getWidth(),200,paint);
     }
 
     // FIXME: 2016/12/15  这里不要用canvas位移和还原会出问题的。。。。大概viewgroup里就会出问题吧；
