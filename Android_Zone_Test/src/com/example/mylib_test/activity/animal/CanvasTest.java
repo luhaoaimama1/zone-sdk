@@ -4,6 +4,7 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.utils.test.MatrixStudy;
 import com.example.mylib_test.activity.animal.viewa.BaseDraw;
 import com.example.mylib_test.activity.animal.viewa.Canvas1;
+import com.example.mylib_test.activity.animal.viewa.DrawTextView;
 import com.example.mylib_test.activity.animal.viewa.MatrixMethod;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
@@ -78,8 +79,10 @@ public class CanvasTest extends Activity implements View.OnClickListener {
             setContentView(iv);
         }
         if ("bt_XfermodeUtils".equals(type)) {
-            XfermodeView2 iv = new XfermodeView2(this);
-            setContentView(iv);
+            setContentView(new XfermodeView2(this));
+        }
+        if ("bt_drawText".equals(type)) {
+            setContentView(new DrawTextView(this));
         }
 
 

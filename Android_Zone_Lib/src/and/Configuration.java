@@ -4,7 +4,7 @@ import android.content.Context;
 
 /**
  * Created by fuzhipeng on 2016/12/9.
- * 例如:Config.Build.init(this).perform();
+ * 例如:Configuration.Build.init(this).perform();
  */
 public class Configuration {
 

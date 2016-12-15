@@ -124,6 +124,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_draw:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_draw"));
                 break;
+            case R.id.bt_drawText:
+                startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_drawText"));
+                break;
             case R.id.bt_matrixMethod:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "bt_matrixMethod"));
                 break;
