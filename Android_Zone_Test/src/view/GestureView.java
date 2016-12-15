@@ -13,7 +13,7 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
-import and.utils.view.graphics.DrawUtils;
+import and.utils.view.DrawUtils;
 import and.utils.view.gesture.RotationGestureDetector;
 
 /**

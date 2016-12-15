@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import and.utils.view.graphics.DampingUitls;
-import and.utils.view.graphics.DrawUtils;
+import and.utils.view.DrawUtils;
 import and.utils.view.graphics.basic.DrawBind;
 
 /**

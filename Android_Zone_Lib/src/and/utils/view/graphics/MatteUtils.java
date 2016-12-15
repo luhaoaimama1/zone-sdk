@@ -8,6 +8,8 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.view.View;
 
+import and.utils.view.DrawUtils;
+
 /**
  * Created by fuzhipeng on 16/8/11.
  */

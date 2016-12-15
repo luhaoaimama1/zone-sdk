@@ -10,7 +10,7 @@ import android.view.View;
 import com.example.mylib_test.R;
 
 import and.utils.image.compress2sample.SampleUtils;
-import and.utils.view.graphics.DrawUtils;
+import and.utils.view.DrawUtils;
 
 /**
  * Created by Administrator on 2016/9/16.

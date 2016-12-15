@@ -13,13 +13,11 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import and.utils.view.graphics.DrawUtils;
+import and.utils.view.DrawUtils;
 
 /**
  * Created by fuzhipeng on 2016/12/14.
  */
-//1.textSize=descent+bounds.top
-
 public class DrawTextView extends RelativeLayout {
 
     private static String introduce = "从[下到上]Align格式";
@@ -52,11 +50,9 @@ public class DrawTextView extends RelativeLayout {
         EditText ed;
         addView(ed = new EditText(context), lp);
         ed.setText(content);
-//        ed.setBackgroundColor(Color.GREEN);
         ed.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -109,8 +105,11 @@ public class DrawTextView extends RelativeLayout {
         sb.append("\n textSize:"+TextSize);
         sb.append("\n 推断出:textSize=descent+bounds.top");
         tv.setText(introduce+sb.toString());
+        DrawUtils.Text.drawTextTopOfPoint(canvas,"lucky!",getWidth()/2,200,0,paint, Paint.Align.LEFT);
+        canvas.drawLine(0,200,getWidth(),200,paint);
     }
 
+    // FIXME: 2016/12/15  这里不要用canvas位移和还原会出问题的。。。。大概viewgroup里就会出问题吧；
     private void drawText_(Canvas canvas, Paint paint, int i) {
 
         int baseLineY = (getHeight() - 100 - Margin) - (TextSize + Margin) * i;

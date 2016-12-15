@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.mylib_test.R;
-import and.utils.view.graphics.DrawUtils;
+import and.utils.view.DrawUtils;
 
 import and.utils.image.compress2sample.SampleUtils;
 

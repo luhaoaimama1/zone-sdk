@@ -146,6 +146,7 @@ Step 2. Add the dependency
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | AnimationUtils  | explode动画自己试验用的~大家看看就行了 |  |
+| DrawUtils  | 可不用，不是很好~ |  |
 | ViewUtils  | `recurrenceClipChildren(迭代的parent,设置ClipChildren)`,`clipView（可以把一个ImageView切成N*M的ImageView)` |  |
 | ViewShot  | `getCacheBitmap(获取View的DrawingCache)` |  |
 | FindView  | 代替findViewById [引用项目LessCode](https://github.com/openproject/LessCode) |  |
@@ -182,7 +183,6 @@ Step 2. Add the dependency
 | :------------: |:---------------:| :-----:|
 | BizierUtils  | qq红点的两种 实现方法的封装 |  |
 | DampingUitls  | 阻尼方法 |  |
-| DrawUtils  | 可不用，不是很好~ |  |
 | GeometryUtils  | 支持ZPointF的,两点之间的长度，终点与三点角度等几何工具类 |  |
 | MathUtils  | 映射工具类,AE表达式里有,Math函数里却没有,封装下 | 范例：MathUtils.linear(now,start1,start2,Dst1,Dst2) 即可得出dst1-dst2中now的值 |
 | MatteUtils  | PorterDuff.Mode 的封装工具类 |  |

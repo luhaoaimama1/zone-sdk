@@ -12,7 +12,7 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
-import and.utils.view.graphics.DrawUtils;
+import and.utils.view.DrawUtils;
 import and.utils.view.graphics.basic.DrawBind;
 
 /**
