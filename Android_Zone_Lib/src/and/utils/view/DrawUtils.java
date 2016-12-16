@@ -3,6 +3,10 @@ package and.utils.view;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.annotation.NonNull;
 import android.view.View;
 
@@ -45,8 +49,15 @@ public class DrawUtils {
      * 仅仅是提示，可以查看paint关注更多API
      * 关于drawText的文章：
      * https://github.com/luhaoaimama1/AndroidNote-Zone/blob/master/Android的drawText.md
+     *
+     *
+     * DrawUtils.Text.with(canvas, content, 0, y, paint)
+     * .align(align)
+     * .drawBound(paintBounds)
+     * .show(showType);
      */
     public static class Text {
+
 
         public static float getTextHeight(Paint paint) {
             Paint.FontMetrics fontMetrics = paint.getFontMetrics();
@@ -65,38 +76,111 @@ public class DrawUtils {
             return width;
         }
 
-        /**
-         *
-         * @param canvas
-         * @param content
-         * @param x
-         * @param y
-         * @param degrees todo 缩放和他类似  搞canvas即可；
-         * @param paint
-         * @param align
-         */
-        public static void drawTextTopOfPoint(Canvas canvas, String content, float x, float y, float degrees, @NonNull Paint paint, Paint.Align align) {
+        Canvas canvas;
+        String content;
+        float x;
+        float y;
+        Paint paint;
+        float degrees;
+        Paint.Align align;
+        Paint.Align oldAlign;
+        boolean alignIsRestore;
+        Paint drawBoundPaint;
+        ShowType showType;
+
+        private Text(Canvas canvas, String content, float x, float y, @NonNull Paint paint) {
+            this.canvas = canvas;
+            this.content = content;
+            this.x = x;
+            this.y = y;
+            this.paint = paint;
+            oldAlign = paint.getTextAlign();
+        }
+
+        public static Text with(Canvas canvas, String content, float x, float y, @NonNull Paint paint) {
+            return new Text(canvas, content, x, y, paint);
+        }
+
+        public Text rotate(float degrees) {
+            this.degrees = degrees;
+            return this;
+        }
+
+        public Text align(Paint.Align align) {
+            return align(align, false);
+        }
+
+        public Text align(Paint.Align align, boolean alignIsRestore) {
+            this.align = align;
+            this.alignIsRestore = alignIsRestore;
+            return this;
+        }
+
+        public Text drawBound(@NonNull Paint paint) {
+            drawBoundPaint = paint;
+            if (drawBoundPaint == this.paint)
+                throw new IllegalStateException("drawBound 's paint is not drawText's paint!");
+            return this;
+        }
+
+        public RectF show(@NonNull ShowType showType) {
+            this.showType = showType;
             if (align != null)
                 paint.setTextAlign(align);
+
             Paint.FontMetrics fontMetrics = paint.getFontMetrics();
-            if (degrees != 0)
+            float baseLineY = getLineYByShowType(fontMetrics);
+
+
+            int width = (int) paint.measureText(content);
+            RectF rect = new RectF(0, fontMetrics.top, width, fontMetrics.bottom);
+            switch (paint.getTextAlign()) {
+                case LEFT:
+                    rect.offset(x, baseLineY);
+                    break;
+                case RIGHT:
+                    rect.offset(x - width, baseLineY);
+                    break;
+                case CENTER:
+                    rect.offset(x - width / 2, baseLineY);
+                    break;
+            }
+
+            if (degrees != 0) {
+                canvas.save();
                 canvas.rotate(degrees, x, y);
-            canvas.drawText(content, x, y - fontMetrics.bottom, paint);
+            }
+
+            if (drawBoundPaint != null)
+                canvas.drawRect(rect, drawBoundPaint);
+            canvas.drawText(content, x, baseLineY, paint);
+
             if (degrees != 0)
                 canvas.restore();
+
+            if (alignIsRestore)
+                paint.setTextAlign(oldAlign);
+            return rect;
         }
 
-        public static void drawTextTopOfPoint(Canvas canvas, String content, float x, float y, @NonNull Paint paint) {
-            drawTextTopOfPoint(canvas, content, x, y, 0, paint, null);
+        private float getLineYByShowType(Paint.FontMetrics fontMetrics) {
+            switch (showType) {
+                case TopOfPoint:
+                    return y - fontMetrics.bottom;
+                case CenterIsPoint:
+                    return y - (fontMetrics.top + fontMetrics.bottom) / 2;
+                case bottomOfPoint:
+                    return y - fontMetrics.top;
+                case baseLineIsPoint:
+                    return y;
+                default:
+                    return y - fontMetrics.bottom;
+
+            }
         }
 
-        public static void drawTextTopOfPoint(Canvas canvas, String content, float x, float y, float degrees, @NonNull Paint paint) {
-            drawTextTopOfPoint(canvas, content, x, y, degrees, paint, null);
+        public enum ShowType {
+            TopOfPoint, CenterIsPoint, bottomOfPoint, baseLineIsPoint;
         }
-
-        public static void drawTextTopOfPoint(Canvas canvas, String content, float x, float y, @NonNull Paint paint, Paint.Align align) {
-            drawTextTopOfPoint(canvas, content, x, y, 0, paint, align);
-        }
-
     }
 }

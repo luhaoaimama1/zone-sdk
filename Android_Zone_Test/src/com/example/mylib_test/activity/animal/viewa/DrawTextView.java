@@ -4,7 +4,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -72,6 +75,8 @@ public class DrawTextView extends RelativeLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+
         paintStokeLine.setColor(Color.BLACK);
         canvas.drawLine(getWidth() / 2, 0, getWidth() / 2, getHeight(), paintStokeLine);
         //键盘监听 开启 输入字符串
@@ -105,10 +110,12 @@ public class DrawTextView extends RelativeLayout {
         sb.append("\n textSize:" + TextSize);
         sb.append("\n 推断出:textSize=descent+bounds.top");
         tv.setText(introduce + sb.toString());
-        //封装工具测试
-//        DrawUtils.Text.drawTextTopOfPoint(canvas,"lucky!",getWidth()/2,200,0,paint, Paint.Align.LEFT);
-//        canvas.drawLine(0,200,getWidth(),200,paint);
+
+
+
     }
+
+
 
     // FIXME: 2016/12/15  这里不要用canvas位移和还原会出问题的。。。。大概viewgroup里就会出问题吧；
     private void drawText_(Canvas canvas, Paint paint, int i) {

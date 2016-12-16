@@ -1,5 +1,6 @@
 package com.example.mylib_test;
 import com.example.mylib_test.activity.db.entity.MenuEntity;
+import com.example.mylib_test.other.CustomLayoutAnimationController;
 import com.zone.adapter.QuickAdapter;
 import com.zone.adapter.QuickManager;
 import com.zone.adapter.callback.Helper;
@@ -18,6 +19,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -94,6 +98,21 @@ public class MainActivity2 extends Activity implements Handler.Callback{
 						},1000);
 					}
 				}).perform();
+
+		//通过加载XML动画设置文件来创建一个Animation对象；
+//		Animation animation= AnimationUtils.loadAnimation(this, R.anim.scale_in);   //得到一个LayoutAnimationController对象；
+//		LayoutAnimationController controller = new LayoutAnimationController(animation);   //设置控件显示的顺序；
+//		controller.setOrder(LayoutAnimationController.ORDER_RANDOM);   //设置控件显示间隔时间；
+//		controller.setDelay(0.3F);   //为ListView设置LayoutAnimationController属性；
+//		listView1.setLayoutAnimation(controller);
+//		listView1.startLayoutAnimation();
+
+
+//		CustomLayoutAnimationController controller2 = new CustomLayoutAnimationController(animation);   //设置控件显示的顺序；
+//		controller2.setOrder(LayoutAnimationController.ORDER_REVERSE);   //设置控件显示间隔时间；
+//		controller2.setDelay(2F);   //为ListView设置LayoutAnimationController属性；
+//		listView1.setLayoutAnimation(controller2);
+//		listView1.startLayoutAnimation();
 	}
 	private void createDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);

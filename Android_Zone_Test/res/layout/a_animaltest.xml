@@ -164,6 +164,13 @@
             android:layout_margin="4dp"
             android:onClick="onClick"
             android:text="draw text" />
+        <Button
+            android:id="@+id/bt_drawTextUtils"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="drawtext工具测试" />
 
         <view.testing.MyTextView
             android:layout_width="wrap_content"
