@@ -10,6 +10,7 @@ import com.example.mylib_test.activity.animal.viewa.MatrixMethod;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView2;
+import com.example.mylib_test.activity.animal.viewa.XfermodeView3;
 
 import and.utils.image.BitmapUtils;
 
@@ -80,12 +81,15 @@ public class CanvasTest extends Activity implements View.OnClickListener {
             setContentView(iv);
         }
         if ("bt_XfermodeUtils".equals(type)) {
-            setContentView(new XfermodeView2(this));
+            setContentView(new XfermodeView3(this));
         }
         if ("bt_drawText".equals(type)) {
             setContentView(new DrawTextView(this));
         }
         if ("bt_drawTextUtils".equals(type)) {
+            setContentView(new DrawTextTestView(this));
+        }
+        if ("bt_LightingColorFilter".equals(type)) {
             setContentView(new DrawTextTestView(this));
         }
 

@@ -71,8 +71,8 @@ public class MatteUtils {
      * @param view
      * @param paint
      */
-    public static void saveLayerAllFlag(Canvas canvas, View view, Paint paint) {
-        canvas.saveLayer(0, 0, view.getWidth(), view.getHeight(), paint, Canvas.ALL_SAVE_FLAG);
+    public static int saveLayerAllFlag(Canvas canvas, View view, Paint paint) {
+        return canvas.saveLayer(0, 0, view.getWidth(), view.getHeight(), paint, Canvas.ALL_SAVE_FLAG);
     }
 
 
