@@ -14,7 +14,7 @@ is that offscreen buffer drawn back to the current target of the Canvas (either 
 
 ##疑问 
 
-####Canvas我为什么认为叫 辅助/助手坐标系？
+###Canvas我为什么认为叫 辅助/助手坐标系？
 先看一个例子：
 ```
 new Cavas(bitmap);
@@ -30,7 +30,7 @@ cavas.drawLine(...)//横线
 **结论：canvas就像 辅助坐标系，辅助draw方法绘制到最终的bitmap上**
 鼠绘的人会不停的旋转画布翻转画布，来绘制线条，主要为了为更舒适(对我们来说就是更简单,更容易理解 )；
 
-####canvas怎么就让绘制简单了？
+###canvas怎么就让绘制简单了？
 ```
 new Cavas(bitmap);cavas.drawLine(...)//横线
 cavas.rorate(90°,x,y);
@@ -38,10 +38,10 @@ cavas.drawLine(...)//横线
 ```
 >如果没有画布你怎么绘制Line 会计算 cos(90°)与sin(90°)算成坐标点 然后drawLine 发现简单了吧
 
-####saveLayerAlpha(...int alpha..) 透明度怎么回事？
+###saveLayerAlpha(...int alpha..) 透明度怎么回事？
 我认为原理大概是:bitmap会有个方法(假想)叫setAlpha(int alpha)导致所有drawXXX系列的图像的透明度(drawAlpha)最终会=alpha/255*drawAlpha;
 
-####restoreToCount方法和restore方法的区别
+###restoreToCount方法和restore方法的区别
 restoreToCount(int saveCount):就是对restore的封装(saveCount必须>=1) 
 ```
 例如:save四次 然后restore三次；
@@ -56,13 +56,13 @@ restore();到2
 //save栈中为 1->2  也相当于直接使用 restoreToCount(2)
 ```
 
-####为什么 view ondraw里的 不用restore layer就能显示？
+###为什么 view ondraw里的 不用restore layer就能显示？
 源码大概最后会使用canvas.restoreToCount(1)吧
 >Tips:自己弄的Canvas 注意一定要restore 把离屏缓存 不然 layer绘制的不会显示!
 
 >**所以我们要养成习惯restore,这样代码在哪都不会错**
 
-####为什么第一次saveLayer的值是1？而不是0?
+###为什么第一次saveLayer的值是1？而不是0?
 因为canvas.save() 返回的值 是上个图层的值。而且Canvas提供了图层（Layer）支持，缺省情况可以看作是只有一个图 层Layer。
 
 ##Tips
