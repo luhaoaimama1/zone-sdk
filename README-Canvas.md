@@ -49,7 +49,7 @@ save();1
 save();2
 save();3
 save();4
-//save栈中为1->2->3->4
+//save栈中为1->2->3->4->5(now)
 restore();到4
 restore();到3
 restore();到2

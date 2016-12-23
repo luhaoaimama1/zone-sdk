@@ -6,6 +6,7 @@ import com.example.mylib_test.activity.animal.viewa.BaseDraw;
 import com.example.mylib_test.activity.animal.viewa.Canvas1;
 import com.example.mylib_test.activity.animal.viewa.DrawTextTestView;
 import com.example.mylib_test.activity.animal.viewa.DrawTextView;
+import com.example.mylib_test.activity.animal.viewa.GlowView;
 import com.example.mylib_test.activity.animal.viewa.MatrixMethod;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
@@ -91,6 +92,9 @@ public class CanvasTest extends Activity implements View.OnClickListener {
         }
         if ("bt_LightingColorFilter".equals(type)) {
             setContentView(new DrawTextTestView(this));
+        }
+        if ("bt_glow".equals(type)) {
+            setContentView(new GlowView(this));
         }
 
 

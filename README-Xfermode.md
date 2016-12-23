@@ -82,6 +82,5 @@ canvas.drawBitmap(srcBmp, width / 2, height / 2, mPaint);
 ####**没有saveLayer的绘图流程**
 由于我们先把整个画布给染成了绿色，然后再画上了一个圆形，所以在应用xfermode来画源图像的时候，目标图像当前Bitmap上的所有图像了，也就是整个绿色的屏幕和一个圆形了。所以这时候源图像的相交区域是没有透明像素的，透明度全是100%，这也就不难解释结果是这样的原因了。
 ![](./demo/xfermode_question3.png)
-
-
+>总结就是  saveLayer为了区分，哪一步的图形,应该与合成模式的bitmap去合成 运算；
 

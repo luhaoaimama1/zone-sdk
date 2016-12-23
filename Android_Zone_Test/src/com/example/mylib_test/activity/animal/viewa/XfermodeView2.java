@@ -33,9 +33,8 @@ public class XfermodeView2 extends View {
         paint.setColor(Color.RED);
         canvas2.drawRect(getWidth() / 2 - 200, getHeight() / 2 - 200, getWidth() / 2 + 200, getHeight() / 2 + 300, paint);
         //2:saveLayer
-//        canvas2.saveLayer(0, 0, getWidth(), getHeight(), paint,
-//                Canvas.ALL_SAVE_FLAG);
-        MatteUtils.saveLayerAllFlag(canvas2,this,paint);
+        canvas2.saveLayer(0, 0, getWidth(), getHeight(), paint,
+                Canvas.ALL_SAVE_FLAG);
         //3:绘制黄色的圆
         paint.setColor(Color.YELLOW);
         canvas2.drawCircle(getWidth() / 2, getHeight() / 2, 200, paint);

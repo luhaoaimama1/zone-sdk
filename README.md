@@ -112,9 +112,11 @@ Step 2. Add the dependency
 ##and.utils.image
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
+| BitmapComposer  |  根据AE的添加图层的方式,去实现合成图像 |  |
 | BitmapUtils  |  处理位图的工具类 旋转,缩放,深拷贝,模糊，与drawable转化bt等|  |
 | ImageTypeUtils  |  获取图片类型 |  |
 | PhotoUtils  |  `让系统接受广播刷新图片库  能马上看到该图片`，`通过uri获取文件的绝对路径` 等关于相册的功能 |  |
+| WaveHelper  |  波浪获取帮助类 |  |
 
 ##and.utils.reflect
 | 名字 | 功能  | 优点|
