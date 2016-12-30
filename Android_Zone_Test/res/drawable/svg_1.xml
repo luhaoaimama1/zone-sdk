@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="1280dp"
+    android:height="720dp"
+    android:viewportWidth="1280"
+    android:viewportHeight="720">
+
+    <path
+        android:name="横线"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:strokeMiterLimit="10"
+        android:pathData="M 447.9 296.6 L 859.1 296.6" />
+    <path
+        android:name="放大镜"
+        android:strokeColor="#000000"
+        android:strokeWidth="1"
+        android:strokeMiterLimit="10"
+        android:pathData="M735.2,175.3c13-24.4,43.3-33.6,67.7-20.6c24.4,13,33.6,43.3,20.6,67.7S780.2,256,755.8,243
+S722.2,199.7,735.2,175.3z M811.7,237l47.4,59.6L811.7,237z" />
+</vector>

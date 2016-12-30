@@ -84,6 +84,7 @@
         <activity android:name="com.example.mylib_test.activity.animal.AniPro"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.ColorMarixTry"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.WaveActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.SVGActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.ViewHelperTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CustomAniActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.PixelsAcitivity"></activity>

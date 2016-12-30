@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="5000"
+    android:propertyName="pathData"
+    android:valueFrom="M 20, 80 L 50 , 80 80 ,80"
+    android:valueTo="M 20 ,80 L 50 ,50 80 ,80"
+    android:valueType="pathType"
+    android:interpolator="@android:anim/bounce_interpolator">
+
+</objectAnimator>
