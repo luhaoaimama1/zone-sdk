@@ -85,13 +85,17 @@ public class WaveActivity extends Activity {
                 Matrix first = new Matrix();
                 first.postTranslate(0, -20);
                 new WaveHelper(bt.getWidth(), bt.getHeight(), new WaveHelper.RefreshCallback() {
+                    public BitmapComposer.Layer mb;
+                    public BitmapComposer.Layer kb;
+
                     @Override
                     public void refresh(Bitmap wave) {
                         Bitmap render = bitmapComposer.clear()
-                                .newLayer(BitmapComposer.Layer.bitmap(bt))
+                                .newLayer(kb=BitmapComposer.Layer.bitmap(bt)
+                                        .colorFilter(new ColorMatrixColorFilter(colorMatrix)))
                                 .newLayer(
-                                        BitmapComposer.Layer.bitmap(bt)
-                                                .colorFilter(new ColorMatrixColorFilter(colorMatrix))
+                                        mb=BitmapComposer.Layer.bitmap(bt)
+//                                                .colorFilter(new ColorMatrixColorFilter(colorMatrix))
                                                 .mask(wave, PorterDuff.Mode.DST_IN)
 //                                                .matrix(first)
                                 )

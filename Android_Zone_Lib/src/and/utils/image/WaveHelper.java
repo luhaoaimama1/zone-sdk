@@ -28,7 +28,6 @@ import and.utils.view.DrawUtils;
  * 参考：https://github.com/race604/WaveLoading
  */
 public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
-
     private int width;
     private int height;
     private Canvas canvas;
@@ -38,8 +37,8 @@ public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
     //我要制造波浪 需要知道rect
     private float mLevelProgress = 0.5F;
     //pixels
-    private float mAmplitude ;
-    private float mLength ;
+    private float mAmplitude;
+    private float mLength;
     private float mSpeed;// pix/s
     private Paint mPaint;
     private float speedOffsetX;
@@ -62,9 +61,9 @@ public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
     }
 
     private void initValue() {
-        this.mLength=width*2F/3;
-        this.mAmplitude=mLength/8;
-        this.mSpeed=300;
+        this.mLength = width * 2F / 3;
+        this.mAmplitude = mLength / 8;
+        this.mSpeed = 300;
     }
 
     private void startAnimator() {
@@ -114,6 +113,7 @@ public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
     //mSpeed=pix/s
     public void setSpeed(float mSpeed) {
         this.mSpeed = mSpeed;
+        refreshWithNoStart();
     }
 
     public float getAmplitude() {
@@ -122,6 +122,7 @@ public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
 
     public void setAmplitude(float mAmplitude) {
         this.mAmplitude = mAmplitude;
+        refreshWithNoStart();
     }
 
     public float getOffsetXRadioOfLength() {
@@ -129,7 +130,8 @@ public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
     }
 
     public void setOffsetXRadioOfLength(float offsetXRadioOfLength) {
-        this.offsetXRadioOfLength = offsetXRadioOfLength%1;
+        this.offsetXRadioOfLength = offsetXRadioOfLength % 1;
+        refreshWithNoStart();
     }
 
     public float getLength() {
@@ -145,6 +147,12 @@ public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
             this.mLength = min;
         else
             this.mLength = mLength;
+        refreshWithNoStart();
+    }
+
+    private void refreshWithNoStart() {
+        if (!valueAnimator.isRunning() && callback != null)
+            callback.refresh(getWave());
     }
 
     public float getLevelProgress() {
@@ -153,6 +161,7 @@ public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
 
     public void setLevelProgress(float mLevelProgress) {
         this.mLevelProgress = mLevelProgress;
+        refreshWithNoStart();
     }
 
     public Bitmap getBitmap() {
@@ -181,6 +190,11 @@ public class WaveHelper implements ValueAnimator.AnimatorUpdateListener {
     public void cancel() {
         if (valueAnimator.isRunning())
             valueAnimator.cancel();
+    }
+
+    public void start() {
+        if (!valueAnimator.isRunning())
+            valueAnimator.start();
     }
 
 
