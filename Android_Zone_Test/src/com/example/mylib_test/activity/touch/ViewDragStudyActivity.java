@@ -6,6 +6,7 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.touch.view.ViewDragStudyFrame;
 
 import and.base.activity.BaseActivity;
+import and.base.activity.kinds.SwipeBackKind;
 import and.utils.activity_fragment_ui.ToastUtils;
 
 /**
@@ -15,6 +16,12 @@ public class ViewDragStudyActivity extends BaseActivity {
     @Override
     public void setContentView() {
         setContentView(R.layout.a_viewdragstudy);
+    }
+
+    @Override
+    public void updateKinds() {
+        super.updateKinds();
+        mKindControl.remove(SwipeBackKind.class);
     }
 
     @Override

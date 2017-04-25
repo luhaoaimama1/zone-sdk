@@ -48,8 +48,7 @@ public class DrawUtils {
     /**
      * 仅仅是提示，可以查看paint关注更多API
      * 关于drawText的文章：
-     * https://github.com/luhaoaimama1/AndroidNote-Zone/blob/master/Android的drawText.md
-     *
+     * https://luhaoaimama1.github.io/2016/12/18/drawText/
      *
      * DrawUtils.Text.with(canvas, content, 0, y, paint)
      * .align(align)

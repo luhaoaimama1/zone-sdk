@@ -10,6 +10,7 @@ import com.example.mylib_test.activity.pop_dialog.pop.Pop_Photo;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -41,6 +42,19 @@ public class Dialog_Pop_Adapter_MainActivity extends Activity implements OnClick
 			FlowLayout fz= (FlowLayout) findViewById(R.id.flowLayoutZone1);
 			Button bt2= (Button) fz.findViewWithTag("blue");
 			bt2.setBackgroundColor(Color.BLUE);
+			break;
+		case R.id.bt_floatView:
+			// TODO Auto-generated method stub
+			Intent intent = new Intent(Dialog_Pop_Adapter_MainActivity.this, FxService.class);
+			//启动FxService
+			startService(intent);
+			finish();
+			break;
+		case R.id.bt_floatViewClose:
+			//uninstallApp("com.phicomm.hu");
+			Intent intent2 = new Intent(Dialog_Pop_Adapter_MainActivity.this, FxService.class);
+			//终止FxService
+			stopService(intent2);
 			break;
 		case R.id.pop_bottom:
 //			PopCus pc=new PopCus(this, R.layout.poptest);

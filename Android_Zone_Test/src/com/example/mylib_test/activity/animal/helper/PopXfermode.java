@@ -35,7 +35,7 @@ public class PopXfermode extends Pop_Zone {
         super(activity);
         this.xfermodeView=xfermodeView;
         this.bt_pop=bt_pop;
-        setPopContentView(R.layout.pop_list, Mode.Fill, -1);
+        setPopContentView(R.layout.pop_list, -1);
         setBgVisibility(false);
         for (PorterDuff.Mode mode : PorterDuff.Mode.values()) {
             listData.add(mode.name());

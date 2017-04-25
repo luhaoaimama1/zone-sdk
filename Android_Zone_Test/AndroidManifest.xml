@@ -3,7 +3,7 @@
     package="com.example.mylib_test"
     android:versionCode="1"
     android:versionName="1.0">
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -62,6 +62,7 @@
         <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActivity_Child"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity2"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.GestureDetectorActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.MyScaleActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ScrollerActivity"></activity>
@@ -74,6 +75,8 @@
         <activity android:name="com.example.mylib_test.activity.three_place.GildeActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"></activity>
+        <service android:name="com.example.mylib_test.activity.pop_dialog.FxService"></service>
+        <service android:name="com.example.mylib_test.activity.pop_dialog.FxService2"></service>
         <activity android:name="com.example.mylib_test.activity.utils.SoftTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.ress.ResMainActvitity"></activity>

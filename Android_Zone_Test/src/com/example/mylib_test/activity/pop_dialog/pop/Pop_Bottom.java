@@ -15,7 +15,7 @@ public class Pop_Bottom extends Pop_Zone implements OnClickListener{
 	public Pop_Bottom(Activity activity,int showAtLocationViewId) {
 		super(activity,  showAtLocationViewId);
 		this.context=activity;
-		setPopContentView(R.layout.pop_bottom, Mode.Wrap, -1);
+		setPopContentView(R.layout.pop_bottom, -1);
 	}
 
 	@Override

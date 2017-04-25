@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,6 +24,7 @@ public class ViewUtils {
                 //因为第一次的值一定大于 你设置的值 所以第一次会走；
                 if(System.currentTimeMillis()-clickTime>=unit.toMillis(windowDuration)){
                     mOnClickListener.onClick(v);
+                    //todo 有bug 如何能记录下时间
                     clickTime = System.currentTimeMillis();
                 }
 

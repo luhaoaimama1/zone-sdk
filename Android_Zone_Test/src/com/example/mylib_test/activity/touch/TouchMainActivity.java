@@ -26,6 +26,9 @@ public class TouchMainActivity extends Activity implements OnClickListener{
 		case R.id.viewDrag:
 			startActivity(new Intent(this,ViewDragStudyActivity.class));
 			break;
+		case R.id.viewDrag2:
+			startActivity(new Intent(this,ViewDragStudyActivity2.class));
+			break;
 		case R.id.gestureDetectorActivity:
 			startActivity(new Intent(this,GestureDetectorActivity.class));
 			break;

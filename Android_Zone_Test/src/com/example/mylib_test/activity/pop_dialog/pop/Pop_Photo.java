@@ -11,13 +11,12 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 public class Pop_Photo extends Pop_Zone implements OnClickListener{
-	//¿Ø¼þ
 	private TextView tv_goodsNumber;
 	private TextView tv_call;
 	private TextView tv_cancel;
 	public Pop_Photo(Activity activity,int showAtLocationViewId) {
 		super(activity, showAtLocationViewId);
-		setPopContentView( R.layout.popwindow_phone, Mode.Fill , R.id.ll_cancelId);
+		setPopContentView( R.layout.popwindow_phone, R.id.ll_cancelId);
 	}
 	@Override
 	public void onClick(View v) {
