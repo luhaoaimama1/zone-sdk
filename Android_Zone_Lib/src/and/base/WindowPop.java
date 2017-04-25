@@ -10,8 +10,7 @@ import android.widget.FrameLayout;
 
 /**
  * [2017] by Zone
- * <p>
- * infalt
+ * 悬浮窗支持
  */
 public abstract class WindowPop {
 
