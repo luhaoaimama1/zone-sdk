@@ -107,6 +107,7 @@ public class ZEventBus {
                     e("对象已被回收！");
                     return;
                 }
+                e("执行方法:"+method.getName());
                 method.invoke(callBackObj, eventObj);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
