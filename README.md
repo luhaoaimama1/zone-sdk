@@ -3,16 +3,16 @@
 
 >`PS`:不懂怎么用的,都可以看demo 一些都是已经在demo中使用了~;
 
-## Usage
+##  Usage
 
-####Required Config
+## ## Required Config
 
 ```
 Config.Build.init(this).perform();
 ```
 
  
-### JicPack
+## # JicPack
 Add it in your root build.gradle at the end of repositories:
 ```
 allprojects {
@@ -26,21 +26,22 @@ Step 2. Add the dependency
 
 > compile 'com.github.luhaoaimama1:zone-sdk:[Latest release](https://github.com/luhaoaimama1/zone-sdk/releases)'
     
-##and.base包
+## and.base包
 
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | Fragment_Lazy | 懒加载的Frament | 兼容ViewPager与正常fragment的替换 |
 | Pop_Zone   | popWindow的基名字 | 解耦出来，写起来方便不少 |
+| WindowPop   | 悬浮窗封装 | 解耦出来，写起来方便不少 |
 
-##and.base.activity包
+## and.base.activity包
 
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | BaseActivity,BaseAppCompatActivity,BaseFragmentActivity  | 万能解耦基名字，三个主要是为了兼容 | 解耦，各司其职。拍照等涉及onActivityResult的封装 |
 >[万能基础类,点此看介绍](https://luhaoaimama1.github.io/2016/03/23/BaseActivity/)
 
-##and.utils.activity_fragment_ui包
+## and.utils.activity_fragment_ui包
 
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
@@ -50,12 +51,12 @@ Step 2. Add the dependency
 | ToastUtils   | 借来的~ | |
 | ActivityTopViewUtils   | Dector Content setContentView,与 statuBar高度的获取| |
 
-##and.utils.check
+## and.utils.check
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | check包下 | 主要用来检测各种是否为空等功能 | |
 
-##and.utils.convert包
+## and.utils.convert包
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | and.utils.data.convert.de2encode包 | 解码编码用的 | 仅仅使用过MD5Utils  |
@@ -68,7 +69,7 @@ Step 2. Add the dependency
 | ByteUtil | 未使用过 |  |
 
 
-##and.utils.file2io2data包
+## and.utils.file2io2data包
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | Assets2RawUtils  | 从assets文件夹获取 | |
@@ -81,7 +82,7 @@ Step 2. Add the dependency
 | SerializeUtils | 未使用 |  |
 | TypefaceUtils| 未使用|  |
 
-##and.utils.info包
+## and.utils.info包
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | AppUtils  |  包名,app名,版本等, 有调用系统分享 | |
@@ -92,24 +93,24 @@ Step 2. Add the dependency
 | ScreenUtils | 得到Screen大小，与请求窗口 是否去掉tilted和全屏的功能 | |
 | TelephoneUtil | IMEI,IMSI等信息 | |
 
-##and.utils.executor包
+## and.utils.executor包
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | ExecutorUtils  |  集中管理,自己开启的线程 | 经常会自己开线程去浪费资源 |
 
-##and.utils.image.compress2sample包
+## and.utils.image.compress2sample包
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | CompressUtils  | 压缩，保存位图|  |
 | SampleUtils  |  小型的获取位图工具 | 范例：`SampleUtils .load(activity,R.drawable.ic_launcher)/load(path)/load(path,isFileDescriptor) .override(targetWidth,targetHeight).config(config).FitCenter()/CenterCrop() .bitmap()/.calculateInSampleSize()/justDecodeBounds()` |
 
-##and.utils.image.lruutils包
+## and.utils.image.lruutils包
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | DiskLruUtils  |  DiskLru管理封装 |  |
 | LruCacheUtils  |  LruCacheUtils管理封装 |  |
 
-##and.utils.image
+## and.utils.image
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | BitmapComposer  |  根据AE的添加图层的方式,去实现合成图像 |  |
@@ -118,14 +119,14 @@ Step 2. Add the dependency
 | PhotoUtils  |  `让系统接受广播刷新图片库  能马上看到该图片`，`通过uri获取文件的绝对路径` 等关于相册的功能 |  |
 | WaveHelper  |  波浪获取帮助类 |  |
 
-##and.utils.reflect
+## and.utils.reflect
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | Reflect  | 用法:`Reflect.on(Kale.class).create().get();` | 参考 [天之界限的最佳实践](https://github.com/tianzhijiexian/Android-Best-Practices/blob/master/2015.9/reflect/reflect.md "悬停显示") |
 | ReflectCloneUtils  | 深克隆一切对象,支持 list,map,实体嵌套   |  |
 | ReflectGenericUtils  | `泛型获取工具支持：Self_,Super_,Interface_,Field_ ` |  |
 
-##and.utils.system_hardware_software_receiver_shell
+## and.utils.system_hardware_software_receiver_shell
 >（里的包 出了software都没用过~）
 
 | 名字 | 功能  | 优点|
@@ -133,7 +134,7 @@ Step 2. Add the dependency
 | ClipboardUtil  | 关于剪切板的工具类 | |
 | KeyBoardUtils  | 有关键盘的工具类   |  |
 
-##and.utils.system_hardware_software_receiver_shell.software.wifi
+## and.utils.system_hardware_software_receiver_shell.software.wifi
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | NetManager  | 查看当前网络类型与是否联网 |  |
@@ -141,10 +142,10 @@ Step 2. Add the dependency
 | NetStatusReceiver  | `查看网络类型,与关于网络广播的类` |  |
 | NetworkManagerFinal  | 别人的留着 有些bug碰到或许可以参考下 |  |
 
-##and.utils.unused
+## and.utils.unused
 >暂时不要用吧~
 
-##and.utils.view
+## and.utils.view
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | AnimationUtils  | explode动画自己试验用的~大家看看就行了 |  |
@@ -153,18 +154,18 @@ Step 2. Add the dependency
 | ViewShot  | `getCacheBitmap(获取View的DrawingCache)` |  |
 | FindView  | 代替findViewById [引用项目LessCode](https://github.com/openproject/LessCode) |  |
 
-##and.utils.view.gesture
+## and.utils.view.gesture
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | ZGestrueDetector  | 支持 `旋转` `缩放` `位移`的回调参数 | [demo让我摘出去了为了写博客。。。](https://github.com/luhaoaimama1/GestureStudy) |
 ![](https://github.com/luhaoaimama1/GestureStudy/blob/master/demo/gif.gif)
 
-##and.utils.view.graphics.animation
+## and.utils.view.graphics.animation
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | FlexibleBallAnimation  | Bézier三阶 圆形动画位移封装|  |
 
-##and.utils.view.graphics.basic
+## and.utils.view.graphics.basic
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | ZPointF  | 主要是：让点与点之间有父子关系,例如 parent点移动40,那么不需要给child点做任何操作即可移动40 |  |
@@ -180,7 +181,7 @@ Step 2. Add the dependency
 6---5---4
 ```
 
-##and.utils.view
+## and.utils.view
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | BizierUtils  | qq红点的两种 实现方法的封装 |  |
@@ -189,7 +190,12 @@ Step 2. Add the dependency
 | MathUtils  | 映射工具类,AE表达式里有,Math函数里却没有,封装下 | 范例：MathUtils.linear(now,start1,start2,Dst1,Dst2) 即可得出dst1-dst2中now的值 |
 | MatteUtils  | PorterDuff.Mode 的封装工具类 |  |
 
-##and
+## and.utils.zeventbus
+| 名字 | 功能  | 优点|
+| :------------: |:---------------:| :-----:|
+| ZEventBus  | 问题缘由:https://github.com/GcsSloop/diycode/issues/8 |  |
+
+## and
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | Config  | 库配置,配置库所需要的全局变量 |  |
