@@ -10,6 +10,7 @@ import com.example.mylib_test.activity.db.Db_MainActivity;
 import com.example.mylib_test.activity.db.entity.MenuEntity;
 import com.example.mylib_test.activity.file.FileTestActivity;
 import com.example.mylib_test.activity.http.Http_MainActivity;
+import com.example.mylib_test.activity.http.ZBusActivity;
 import com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity;
 import com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity;
 import com.example.mylib_test.activity.ress.ResMainActvitity;
@@ -24,6 +25,7 @@ public class MainMenu {
 	
 	static{
 		menu.add(new MenuEntity("http测试Thread测试(和handle的测试)", Http_MainActivity.class)) ;
+		menu.add(new MenuEntity("ZBusActivity", ZBusActivity.class)) ;
 		menu.add(new MenuEntity("pop dialog测试(还有 文字高亮 链接等效果)", Dialog_Pop_Adapter_MainActivity.class)) ;
 		menu.add(new MenuEntity("动画、surfaceView、绘图方面的研究", Animal_MainActivity.class)) ;
 		menu.add(new MenuEntity("res shape selector等的研究", ResMainActvitity.class)) ;

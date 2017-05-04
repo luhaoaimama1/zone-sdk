@@ -63,16 +63,16 @@ public abstract class Pop_Zone extends PopupWindow {
      */
     private void initPop(int layout, final int dismissViewId) {
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//		mMenuView = inflater.inflate(layout,null);
+        //mMenuView = inflater.inflate(layout,null);
         mMenuView = inflater.inflate(layout, new FrameLayout(activity), false);
         // 设置SelectPicPopupWindow的View
         this.setContentView(mMenuView);
         LayoutParams lp = mMenuView.getLayoutParams();
         // 设置SelectPicPopupWindow弹出窗体的宽
-//			this.setWidth(LayoutParams.FILL_PARENT);
+        //this.setWidth(LayoutParams.FILL_PARENT);
         this.setWidth(lp.width);
         // 设置SelectPicPopupWindow弹出窗体的高
-//			this.setHeight(LayoutParams.FILL_PARENT);
+        //this.setHeight(LayoutParams.FILL_PARENT);
         this.setHeight(lp.height);
         // 设置SelectPicPopupWindow弹出窗体可点击
         this.setTouchable(true);

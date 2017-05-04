@@ -22,12 +22,15 @@ import com.example.mylib_test.app.imageloader.ImageLoaderOptionsUtils;
 
 import android.annotation.TargetApi;
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
 
 import com.example.mylib_test.R;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.Settings;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 
@@ -97,8 +100,14 @@ public class Apps extends Application {
 
 
 //        loggerTest();
-
+        refWatcher = LeakCanary.install(this);
     }
+    private RefWatcher refWatcher;
+    public static RefWatcher getRefWatcher(Context context) {
+        Apps application = (Apps) context.getApplicationContext();
+        return application.refWatcher;
+    }
+
 
     private void loggerTest() {
         Logger.initialize(new Settings()

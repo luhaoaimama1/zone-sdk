@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.zone.view.FlowLayout
+        android:id="@+id/flowLayoutZone1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#00ff00"
+            android:gravity="center"
+            android:text=" ZEventBus" />
+
+        <Button
+            android:id="@+id/zeventBus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="method:1" />
+
+        <Button
+            android:id="@+id/zeventBus2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="no method" />
+
+        <Button
+            android:id="@+id/zeventBus3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="构造参数被回收" />
+
+
+    </com.zone.view.FlowLayout>
+</ScrollView>
+

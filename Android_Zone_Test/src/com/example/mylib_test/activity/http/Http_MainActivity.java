@@ -14,27 +14,27 @@ import android.widget.Button;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.util.HandlerTest;
-import com.example.mylib_test.activity.system.SystemMainActivity;
-import com.zone.okhttp.ok;
+import com.example.mylib_test.app.Apps;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import and.utils.zeventbus.ZEventBus;
 import butterknife.ButterKnife;
 
 public class Http_MainActivity extends Activity implements OnClickListener {
     Map<String, Object> map = new HashMap<>();
     Map<String, String> params = new HashMap<>();
+    private static ZEventBus  zb;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_http_test);
+//        findViewById(R.id.zeventBus3).setOnClickListener(this);
         ButterKnife.bind(this);
-
-
         //这段　只是学习下handler～　
         new Thread() {
             @Override
@@ -57,7 +57,6 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         }.start();
 
     }
-
 
     @Override
     public void onClick(View v) {
@@ -104,7 +103,10 @@ public class Http_MainActivity extends Activity implements OnClickListener {
 
     @Override
     protected void onDestroy() {
+        ButterKnife.unbind(this);
+//        ok.cancelTag(this);
         super.onDestroy();
-        ok.cancelTag(this);
+        RefWatcher refWatcher = Apps.getRefWatcher(this);
+        refWatcher.watch(this);
     }
 }

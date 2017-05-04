@@ -37,18 +37,18 @@ public class ExecutorUtils {
         SERIAL_EXECUTOR.execute(command);
     }
 
-    public void schedule(Runnable command, long delay, TimeUnit unit) {
+    public static  void schedule(Runnable command, long delay, TimeUnit unit) {
         scheduled.schedule(command, delay, unit);
     }
 
-    public void scheduleAtFixedRate(Runnable command,
+    public static void scheduleAtFixedRate(Runnable command,
                                     long initialDelay,
                                     long period,
                                     TimeUnit unit) {
         scheduled.scheduleAtFixedRate(command, initialDelay, period, unit);
     }
 
-    public void scheduleWithFixedDelay(Runnable command,
+    public static void scheduleWithFixedDelay(Runnable command,
                                        long initialDelay,
                                        long delay,
                                        TimeUnit unit) {
