@@ -12,6 +12,9 @@ import com.example.mylib_test.activity.http.entity.Img;
 import com.example.mylib_test.app.Apps;
 import com.squareup.leakcanary.RefWatcher;
 
+import java.util.concurrent.TimeUnit;
+
+import and.utils.executor.ExecutorUtils;
 import and.utils.zeventbus.ThreadModeX;
 import and.utils.zeventbus.Mode;
 import and.utils.zeventbus.ZEventBus;
@@ -23,10 +26,13 @@ public class ZBusActivity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_http_ebus);
-        ButterKnife.bind(this);
 
+        findViewById(R.id.zeventBus3).setOnClickListener(this);
+        findViewById(R.id.zeventBus).setOnClickListener(this);
+        findViewById(R.id.zeventBus2).setOnClickListener(this);
     }
-//    /**
+
+    //    /**
 //     * 注意不能用内部类 会泄漏 activity 因为持有外部引用！
 //     */
 //    public  class Bean{
@@ -51,14 +57,21 @@ public class ZBusActivity extends Activity implements OnClickListener {
                 new ZEventBus(this).post(new Img());
                 return;
             case R.id.zeventBus3:
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        new ZEventBus(ZBusActivity.this).post(new Bean("what?"));
-                    }
-                }, 1000);
+                zEventBus = new ZEventBus(ZBusActivity.this);
+                mHandler.postDelayed(runable, 10000);
                 finish();
+                System.gc();
                 return;
+        }
+    }
+
+    public static ZEventBus zEventBus;
+    public static MyRunnable runable = new MyRunnable();
+
+    public static class MyRunnable implements Runnable {
+        @Override
+        public void run() {
+            ZBusActivity.zEventBus.post(new Bean("what?"));
         }
     }
 
@@ -66,10 +79,7 @@ public class ZBusActivity extends Activity implements OnClickListener {
 
     @Override
     protected void onDestroy() {
-        ButterKnife.unbind(this);
         super.onDestroy();
-        RefWatcher refWatcher = Apps.getRefWatcher(this);
-        refWatcher.watch(this);
     }
 
     @Override

@@ -137,6 +137,11 @@ public class MainActivity2 extends Activity implements Handler.Callback{
 
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
+	@Override
 	public boolean handleMessage(Message msg) {
 		return false;
 	}
