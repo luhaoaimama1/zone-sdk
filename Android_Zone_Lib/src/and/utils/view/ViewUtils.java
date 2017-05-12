@@ -14,24 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 public class ViewUtils {
 
-    // 防止Android过快点击造成多次事件
-    public static void clickThrottleFirst(View view, final View.OnClickListener mOnClickListener
-            , final long windowDuration, final TimeUnit unit){
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                long clickTime = 0;
-                //因为第一次的值一定大于 你设置的值 所以第一次会走；
-                if(System.currentTimeMillis()-clickTime>=unit.toMillis(windowDuration)){
-                    mOnClickListener.onClick(v);
-                    //todo 有bug 如何能记录下时间
-                    clickTime = System.currentTimeMillis();
-                }
-
-            }
-        });
-    }
-
     /**
      * 递归view 所有parent 知道 rootView  设置clipClildren;
      * <br>如果遇到 某个一parent找不到为null 那么说明 布局没加载好；在布局加载好的位置使用此方法 ;</br>
