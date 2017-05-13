@@ -3,6 +3,8 @@ package com.example.mylib_test.activity.custom_view;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy;
 import com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity;
+import com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity2;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +24,9 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
         switch (v.getId()) {
             case R.id.frg_disable_scroll:
                 startActivity(new Intent(this, ViewPagerDisableScrollActivity.class));
+                break;
+            case R.id.frg_scroll_:
+                startActivity(new Intent(this, ViewPagerDisableScrollActivity2.class));
                 break;
             case R.id.frammentSwitch:
                 startActivity(new Intent(this, FramentSwitchAcitiviy.class));

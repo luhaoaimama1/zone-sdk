@@ -97,6 +97,7 @@
         <activity android:name="com.example.mylib_test.activity.file.Activity2"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ArcMenuTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.ViewPagerDisableScrollActivity2"></activity>
         <activity android:name="com.example.mylib_test.activity.frag_viewpager_expand.FramentSwitchAcitiviy"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"></activity>
