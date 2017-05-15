@@ -46,18 +46,19 @@ public class ViewPagerIndicator extends ImageView {
                 if (state == -1) {
                     //绘制 rects[position]
                     //第一此的setposition
-                    vp.post(new Runnable() {
+                    vp.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             rects = new int[views.length][2];
-                            for (int i = 0; i < rects.length; i++) {
+                            for (int i = 0; i < rects.length; i++)
+                                //postDelay 因为有些机器需要延时才能得到正确的值 不然值特别奇怪
+                                //而且延时200都不一定获得正确的值... 如果有人知道更好的办法请告诉我~
                                 views[i].getLocationOnScreen(rects[i]);
-                            }
                             startpoint = rects[position][0];
                             kuand = views[position].getWidth();
                             invalidate();
                         }
-                    });
+                    }, 500);
                 } else {
                     if (position + 1 < views.length) {//防止数组越界
                         startpoint = (int) (rects[position][0]
