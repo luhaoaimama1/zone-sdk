@@ -70,6 +70,9 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
             case R.id.bt_wheel:
                 startActivity(new Intent(this, ChengChengActivity.class).putExtra("type", "bt_wheel"));
                 break;
+            case R.id.bt_ScrollerView:
+                startActivity(new Intent(this, ScrollerViewActivity.class));
+                break;
             default:
                 break;
         }

@@ -90,7 +90,8 @@ public class NotificationUtil {
             notification.ledOnMS = 5000; //闪光时间，毫秒
 
             notification.tickerText = ticker;
-            notification.setLatestEventInfo(context, title, msg, pendingIntent);
+            //todo 方法过期了  到时候弄
+//            notification.setLatestEventInfo(context, title, msg, pendingIntent);
             // 把Notification传递给NotificationManager
             notificationManager.notify(id, notification);
         }

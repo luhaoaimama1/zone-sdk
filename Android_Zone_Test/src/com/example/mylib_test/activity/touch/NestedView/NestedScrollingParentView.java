@@ -5,6 +5,7 @@ import android.support.v4.view.NestedScrollingParentHelper;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -63,6 +64,11 @@ public class NestedScrollingParentView extends LinearLayout implements NestedScr
             scrollBy(0, dy);
         }
 
+        Log.e(TAG,
+                String.format("dx:%d \tdy:%d \tcanScrollVertically 1:%b \tcanScrollVertically -1:%b " +
+                        "自己:\tcanScrollVertically 1:%b \tcanScrollVertically -1:%b"
+                ,dx,dy,ViewCompat.canScrollVertically(target, 1),ViewCompat.canScrollVertically(target, -1),
+                        ViewCompat.canScrollVertically(this, 1),ViewCompat.canScrollVertically(this, -1)));
 
     }
 
@@ -164,5 +170,43 @@ public class NestedScrollingParentView extends LinearLayout implements NestedScr
         }
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        //拦截 则不会走  nest嵌套
+        Log.i(TAG, "onInterceptTouchEvent");
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN :
+                Log.i(TAG, "onInterceptTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.i(TAG, "onInterceptTouchEvent ACTION_MOVE");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.i(TAG, "onInterceptTouchEvent ACTION_UP");
+                break;
+
+            default:
+                break;
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        Log.i(TAG, "onTouchEvent");
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN :
+                Log.i(TAG, "onTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.i(TAG, "onTouchEvent ACTION_MOVE");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.i(TAG, "onTouchEvent ACTION_UP");
+                break;
+            default:
+                break;
+        }
+        return super.onTouchEvent(ev);
+    }
 
 }
