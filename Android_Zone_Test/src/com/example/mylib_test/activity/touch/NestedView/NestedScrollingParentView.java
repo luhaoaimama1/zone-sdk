@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 import com.example.mylib_test.R;
-import and.utils.reflect.Reflect;
+
+import com.zone.lib.utils.reflect.Reflect;
 
 /**
  * HongYang  demo 借鉴过来的；
@@ -157,8 +158,8 @@ public class NestedScrollingParentView extends LinearLayout implements NestedScr
         //防止滑动出界； 滑动多了也不怕
         if (y < 0)
             y = 0;
-        if (y > mTopViewHeight)
-            y = mTopViewHeight;
+//        if (y > mTopViewHeight)
+//            y = mTopViewHeight;
         super.scrollTo(x, y);
     }
 
@@ -189,6 +190,7 @@ public class NestedScrollingParentView extends LinearLayout implements NestedScr
                 break;
         }
         return super.onInterceptTouchEvent(ev);
+//        return true;
     }
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
@@ -206,7 +208,16 @@ public class NestedScrollingParentView extends LinearLayout implements NestedScr
             default:
                 break;
         }
-        return super.onTouchEvent(ev);
+        return true;
     }
 
+    @Override
+    public boolean canScrollVertically(int direction) {
+        if (direction < 0) {
+            return getScrollY() == 0;
+        } else {
+            return getScrollY()==mTopViewHeight;
+        }
+//        return super.canScrollVertically(direction);
+    }
 }

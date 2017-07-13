@@ -2,12 +2,11 @@ package com.example.mylib_test.activity.pop_dialog;
 
 import android.content.Context;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import com.example.mylib_test.R;
-import and.base.WindowPop;
-import and.utils.activity_fragment_ui.ToastUtils;
+import com.zone.lib.base.WindowPop;
+import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

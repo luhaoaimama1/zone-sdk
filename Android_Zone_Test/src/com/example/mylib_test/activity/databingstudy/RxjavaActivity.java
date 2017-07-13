@@ -6,7 +6,7 @@ import com.example.mylib_test.R;
 
 import java.util.concurrent.TimeUnit;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;

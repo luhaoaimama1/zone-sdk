@@ -12,9 +12,9 @@ import com.example.mylib_test.R;
 
 import java.io.File;
 
-import and.base.activity.BaseActivity;
-import and.utils.data.file2io2data.FileUtils;
-import and.utils.data.file2io2data.SDCardUtils;
+import com.zone.lib.base.activity.BaseActivity;
+import com.zone.lib.utils.data.file2io2data.FileUtils;
+import com.zone.lib.utils.data.file2io2data.SDCardUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

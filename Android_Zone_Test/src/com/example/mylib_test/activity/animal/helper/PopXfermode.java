@@ -15,12 +15,12 @@ import com.zone.adapter.callback.Helper;
 import java.util.ArrayList;
 import java.util.List;
 
-import and.base.Pop_Zone;
+import com.zone.lib.base.BasePopWindow;
 
 /**
  * Created by Administrator on 2016/3/21.
  */
-public class PopXfermode extends Pop_Zone {
+public class PopXfermode extends BasePopWindow {
     private  Button bt_pop;
     private  XfermodeView xfermodeView;
     private ListView lv;

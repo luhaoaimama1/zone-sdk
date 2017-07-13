@@ -112,6 +112,7 @@
         <activity android:name=".activity.animal.PathMeasureActivity"></activity>
         <activity android:name=".activity.animal.DampingActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.LayoutClipAcitivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.statu.StatuMainActivity"></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>

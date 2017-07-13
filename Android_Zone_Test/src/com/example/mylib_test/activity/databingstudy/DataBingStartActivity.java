@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.databingstudy;
 
 import android.view.View;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 
 /**
  * Created by Administrator on 2016/4/16.

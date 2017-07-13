@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.ress;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 
 /**
  * Created by Administrator on 2016/5/14.

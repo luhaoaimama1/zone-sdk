@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
+    android:layout_height="match_parent">
+
+    <com.zone.view.FlowLayout
+        android:id="@+id/flowLayoutZone1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btLow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="低电量淡化" />
+        <Button
+            android:id="@+id/bt4FullScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="4.0以后全屏" />
+        <Button
+            android:id="@+id/btClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="清除所有" />
+
+    </com.zone.view.FlowLayout>
+
+</ScrollView>
+

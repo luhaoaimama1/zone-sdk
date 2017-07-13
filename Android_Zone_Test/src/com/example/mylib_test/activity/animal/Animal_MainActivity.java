@@ -18,7 +18,7 @@ import android.widget.ScrollView;
 
 import com.example.mylib_test.R;
 
-import and.utils.activity_fragment_ui.ActivityTopViewUtils;
+import com.zone.lib.utils.activity_fragment_ui.ActivityTopViewUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

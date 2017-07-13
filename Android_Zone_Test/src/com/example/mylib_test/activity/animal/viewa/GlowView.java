@@ -1,19 +1,13 @@
 package com.example.mylib_test.activity.animal.viewa;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.BlurMaskFilter;
-import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.view.View;
 
-import com.example.mylib_test.R;
-
-import and.utils.view.DrawUtils;
+import com.zone.lib.utils.view.DrawUtils;
 
 public class GlowView extends View {
     Paint paint = DrawUtils.getStrokePaint(Paint.Style.FILL);

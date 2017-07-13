@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import and.utils.view.DrawUtils;
+import com.zone.lib.utils.view.DrawUtils;
 
 public class RemoteControlMenu extends View {
     private  Paint mDeafultPaint;

@@ -6,7 +6,7 @@ import com.android.internal.util.Predicate;
 import com.example.mylib_test.R;
 import java.util.Arrays;
 import java.util.List;
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 
 
 /**

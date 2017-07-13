@@ -9,7 +9,7 @@ import com.zone.adapter.callback.Helper;
 import java.util.ArrayList;
 import java.util.List;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

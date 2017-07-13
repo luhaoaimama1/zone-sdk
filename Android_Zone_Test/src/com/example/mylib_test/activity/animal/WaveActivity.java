@@ -12,9 +12,9 @@ import android.widget.SeekBar;
 
 import com.example.mylib_test.R;
 
-import and.utils.image.WaveHelper;
-import and.utils.image.compress2sample.SampleUtils;
-import and.utils.image.BitmapComposer;
+import com.zone.lib.utils.image.WaveHelper;
+import com.zone.lib.utils.image.compress2sample.SampleUtils;
+import com.zone.lib.utils.image.BitmapComposer;
 import view.WaveView2;
 
 //参考:https://github.com/race604/WaveLoading

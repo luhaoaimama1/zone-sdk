@@ -4,7 +4,7 @@ import android.widget.SeekBar;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 import view.FlodLayout;
 import view.FlodLayoutGroup;
 import view.GestureView;

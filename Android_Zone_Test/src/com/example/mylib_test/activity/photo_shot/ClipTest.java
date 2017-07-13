@@ -3,7 +3,7 @@ package com.example.mylib_test.activity.photo_shot;
 //import com.edmodo.cropper.CropImageView;
 //import com.edmodo.cropper.cropwindow.CropOverlayView;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 
 import android.view.View;
 import android.view.View.OnClickListener;

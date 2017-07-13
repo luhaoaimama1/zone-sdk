@@ -1,13 +1,12 @@
 package com.example.mylib_test.activity.animal;
 
 
-import android.os.Bundle;
 import android.view.View;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.viewa.PathMeasureView;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

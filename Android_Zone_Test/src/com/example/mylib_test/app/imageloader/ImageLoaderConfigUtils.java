@@ -2,7 +2,7 @@ package com.example.mylib_test.app.imageloader;
 
 import java.io.File;
 
-import and.utils.data.info.ScreenUtils;
+import com.zone.lib.utils.data.info.ScreenUtils;
 import android.content.Context;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;

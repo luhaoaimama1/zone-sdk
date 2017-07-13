@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.frag_viewpager_expand;
 
 import com.example.mylib_test.R;
 
-import and.utils.activity_fragment_ui.FragmentSwitcher;
+import com.zone.lib.utils.activity_fragment_ui.FragmentSwitcher;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;

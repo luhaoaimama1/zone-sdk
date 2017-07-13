@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.touch;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 
 /**
  * Created by fuzhipeng on 2016/11/22.

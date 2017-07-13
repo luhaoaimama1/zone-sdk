@@ -2,9 +2,8 @@ package com.example.mylib_test.activity.custom_view;
 
 import android.view.View;
 import com.example.mylib_test.R;
-import com.zone.view.switchbutton.SwitchButton;
-import and.base.activity.BaseActivity;
-import butterknife.Bind;
+
+import com.zone.lib.base.activity.BaseActivity;
 import butterknife.ButterKnife;
 
 /**

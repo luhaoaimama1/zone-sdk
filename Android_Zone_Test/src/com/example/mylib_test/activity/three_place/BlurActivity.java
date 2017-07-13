@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.example.mylib_test.R;
-import and.utils.image.BitmapUtils;
+import com.zone.lib.utils.image.BitmapUtils;
 import jp.wasabeef.blurry.Blurry;
 
 public class BlurActivity extends Activity {

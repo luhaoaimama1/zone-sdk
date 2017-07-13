@@ -9,9 +9,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import and.utils.view.graphics.DampingUitls;
-import and.utils.view.DrawUtils;
-import and.utils.view.graphics.basic.DrawBind;
+import com.zone.lib.utils.view.graphics.DampingUitls;
+import com.zone.lib.utils.view.DrawUtils;
+import com.zone.lib.utils.view.graphics.basic.DrawBind;
 
 /**
  * Created by fuzhipeng on 16/7/29.

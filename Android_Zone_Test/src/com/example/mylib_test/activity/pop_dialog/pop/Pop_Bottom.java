@@ -1,14 +1,14 @@
 package com.example.mylib_test.activity.pop_dialog.pop;
 import com.example.mylib_test.R;
 
-import and.base.Pop_Zone;
-import and.utils.activity_fragment_ui.ToastUtils;
+import com.zone.lib.base.BasePopWindow;
+import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
 import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class Pop_Bottom extends Pop_Zone implements OnClickListener{
+public class Pop_Bottom extends BasePopWindow implements OnClickListener{
 	private Button bt_how,bt_are,bt_you;
 	private Activity context;
 

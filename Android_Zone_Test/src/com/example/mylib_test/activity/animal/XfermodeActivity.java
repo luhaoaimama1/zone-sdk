@@ -7,7 +7,7 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.helper.PopXfermode;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 
 
 /**

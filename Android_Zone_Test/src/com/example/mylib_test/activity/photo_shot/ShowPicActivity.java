@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import and.utils.image.compress2sample.SampleUtils;
+import com.zone.lib.utils.image.compress2sample.SampleUtils;
 
 public class ShowPicActivity extends Activity {
 	private ImageView iv_uri,iv_url,iv_provider,iv_assets,iv_drawables;

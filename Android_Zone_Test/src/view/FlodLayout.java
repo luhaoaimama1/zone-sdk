@@ -10,9 +10,9 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import com.example.mylib_test.R;
-import and.utils.image.compress2sample.SampleUtils;
-import and.utils.view.DrawUtils;
-import and.utils.view.graphics.basic.MatrixUtils;
+import com.zone.lib.utils.image.compress2sample.SampleUtils;
+import com.zone.lib.utils.view.DrawUtils;
+import com.zone.lib.utils.view.graphics.basic.MatrixUtils;
 
 /**
  * Created by fuzhipeng on 16/9/30.

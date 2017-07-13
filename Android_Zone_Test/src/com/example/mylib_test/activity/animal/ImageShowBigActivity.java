@@ -6,8 +6,8 @@ import android.widget.ImageView;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActivity;
-import and.utils.activity_fragment_ui.MeasureUtils;
+import com.zone.lib.base.activity.BaseActivity;
+import com.zone.lib.utils.activity_fragment_ui.MeasureUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

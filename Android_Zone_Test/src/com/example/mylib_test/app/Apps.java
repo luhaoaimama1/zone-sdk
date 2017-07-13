@@ -15,26 +15,20 @@ package com.example.mylib_test.app;
  * limitations under the License.
  *******************************************************************************/
 
-import and.Configuration;
+import com.zone.lib.Configuration;
 
 import com.example.mylib_test.app.imageloader.ImageLoaderConfigUtils;
 import com.example.mylib_test.app.imageloader.ImageLoaderOptionsUtils;
-
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
-
 import com.example.mylib_test.R;
-import com.orhanobut.logger.Logger;
-import com.orhanobut.logger.Settings;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
-
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -108,95 +102,4 @@ public class Apps extends Application {
         return application.refWatcher;
     }
 
-
-    private void loggerTest() {
-        Logger.initialize(new Settings()
-                        .isShowMethodLink(true)
-                        .isShowThreadInfo(false)
-                        .setMethodOffset(0)
-//						.setLogPriority(Log.VERBOSE)
-        );
-
-        levTest();
-        objTest();
-        jsonTest();
-        locationTest();
-        largeDataTest();
-    }
-
-    private void levTest() {
-        Logger.v(null);
-        Logger.d("%s test", "kale"); // 多参数 可以解决release版本中字符拼接带来的性能消耗
-        String test = "abc %s def %s gh";
-        Logger.d(test);
-
-        //Logger.d(test, "s"); // Note:incorrect
-
-        Logger.w("logger load custom tag");
-        try {
-            Class.forName("kale");
-        } catch (ClassNotFoundException e) {
-            Logger.e(e, "something happened"); // exception
-        }
-
-        Logger.d("first\nsecond\nthird");
-        test();
-    }
-
-    private void test() {
-        Logger.d("just test");
-    }
-
-    private void objTest() {
-        // object
-        Logger.object(new User("jack", "f"));
-        // list
-        Logger.object(Arrays.asList("kale", "jack", "tony"));
-        // array
-        Logger.object(new String[]{"Android", "ios", "wp"});
-        double[][] doubles = {
-                {1.2, 1.6, 1.7, 30, 33},
-                {1.2, 1.6, 1.7, 30, 33},
-                {1.2, 1.6, 1.7, 30, 33},
-                {1.2, 1.6, 1.7, 30, 33}
-        };
-        Logger.object(doubles);
-    }
-
-    private void jsonTest() {
-        Logger.json(Dummy.SMALL_SON_WITH_NO_LINE_BREAK); // json
-        String j = "[" + Dummy.JSON_WITH_NO_LINE_BREAK + "," + Dummy.JSON_WITH_LINE_BREAK + "]";
-        Logger.json(j);
-    }
-
-    private void locationTest() {
-        Foo.foo(); // other class
-        new User("kale", "m").show();// Internal class
-    }
-
-    private void largeDataTest() {
-        for (int i = 0; i < 20; i++) {
-            Logger.d("No." + i);
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // 内部类中打log测试
-    ///////////////////////////////////////////////////////////////////////////
-
-    public static class User {
-
-        private String name;
-
-        private String sex;
-
-        User(String name, String sex) {
-            this.name = name;
-            this.sex = sex;
-        }
-
-        public void show() {
-            Logger.d("name:%s sex:%s", name, sex);
-        }
-    }
 }

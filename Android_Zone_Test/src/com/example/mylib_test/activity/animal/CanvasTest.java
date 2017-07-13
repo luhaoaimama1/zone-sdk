@@ -10,10 +10,9 @@ import com.example.mylib_test.activity.animal.viewa.GlowView;
 import com.example.mylib_test.activity.animal.viewa.MatrixMethod;
 import com.example.mylib_test.activity.animal.viewa.MatrixView;
 import com.example.mylib_test.activity.animal.viewa.SimpleDraw;
-import com.example.mylib_test.activity.animal.viewa.XfermodeView2;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView3;
 
-import and.utils.image.BitmapUtils;
+import com.zone.lib.utils.image.BitmapUtils;
 
 import android.app.Activity;
 import android.graphics.BitmapFactory;

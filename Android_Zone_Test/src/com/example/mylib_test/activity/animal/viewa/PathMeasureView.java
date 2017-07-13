@@ -17,8 +17,8 @@ import android.view.animation.LinearInterpolator;
 import com.example.mylib_test.R;
 import com.nineoldandroids.animation.ValueAnimator;
 
-import and.utils.image.compress2sample.SampleUtils;
-import and.utils.view.DrawUtils;
+import com.zone.lib.utils.image.compress2sample.SampleUtils;
+import com.zone.lib.utils.view.DrawUtils;
 import zone.com.zanimate.value.ValueAnimatorProxy;
 
 /**

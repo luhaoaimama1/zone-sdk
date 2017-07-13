@@ -16,7 +16,7 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-import and.utils.system_hardware_software_receiver_shell.software.wifi.NetManager;
+import com.zone.lib.utils.system_hardware_software_receiver_shell.software.wifi.NetManager;
 
 public class GooglePullActvity extends Activity implements OnRefreshListener,Handler.Callback {
 	private ListView lv;

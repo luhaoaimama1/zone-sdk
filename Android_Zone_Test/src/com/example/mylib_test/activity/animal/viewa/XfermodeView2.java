@@ -9,8 +9,8 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.view.View;
 
-import and.utils.view.graphics.MatteUtils;
-import and.utils.view.graphics.basic.Circle;
+import com.zone.lib.utils.view.graphics.MatteUtils;
+import com.zone.lib.utils.view.graphics.basic.Circle;
 
 /**
  * Created by Administrator on 2016/3/21.

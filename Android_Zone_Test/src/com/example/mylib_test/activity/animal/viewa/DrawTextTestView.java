@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
-import and.utils.view.DrawUtils;
+import com.zone.lib.utils.view.DrawUtils;
 
 /**
  * Created by fuzhipeng on 2016/12/16.

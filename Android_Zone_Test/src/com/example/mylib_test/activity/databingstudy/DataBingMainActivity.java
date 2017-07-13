@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.example.mylib_test.R;
 
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 
 /**
  * Created by Administrator on 2016/4/16.

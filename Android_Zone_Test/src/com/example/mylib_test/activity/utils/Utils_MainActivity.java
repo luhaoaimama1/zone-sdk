@@ -1,7 +1,7 @@
 package com.example.mylib_test.activity.utils;
 
 import com.example.mylib_test.R;
-import and.utils.system_hardware_software_receiver_shell.software.KeyBoardUtils;
+import com.zone.lib.utils.system_hardware_software_receiver_shell.software.KeyBoardUtils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

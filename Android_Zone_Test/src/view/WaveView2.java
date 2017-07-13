@@ -7,7 +7,7 @@ import android.graphics.Matrix;
 import android.util.AttributeSet;
 import android.view.View;
 
-import and.utils.image.WaveHelper;
+import com.zone.lib.utils.image.WaveHelper;
 
 /**
  * Created by fuzhipeng on 16/7/28.
@@ -75,6 +75,5 @@ public class WaveView2 extends View {
     public void setOffsetXRadioOfLength(float offsetXRadioOfLength) {
         wave.setOffsetXRadioOfLength(offsetXRadioOfLength);
     }
-
 
 }

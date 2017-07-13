@@ -14,9 +14,9 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 
-import and.utils.view.DrawUtils;
-import and.utils.view.gesture.RotationGestureDetector;
-import and.utils.view.gesture.ZGestrueDetector;
+import com.zone.lib.utils.view.DrawUtils;
+import com.zone.lib.utils.view.gesture.RotationGestureDetector;
+import com.zone.lib.utils.view.gesture.ZGestrueDetector;
 
 /**
  * Created by Administrator on 2016/6/19.

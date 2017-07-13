@@ -5,9 +5,9 @@ import android.widget.ImageView;
 import com.example.mylib_test.R;
 import com.zone.view.FlowLayout;
 
-import and.base.activity.BaseActivity;
-import and.utils.view.AnimationUtils;
-import and.utils.view.ViewUtils;
+import com.zone.lib.base.activity.BaseActivity;
+import com.zone.lib.utils.view.AnimationUtils;
+import com.zone.lib.utils.view.ViewUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

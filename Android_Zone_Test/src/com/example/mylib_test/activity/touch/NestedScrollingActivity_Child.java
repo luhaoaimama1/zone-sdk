@@ -1,20 +1,13 @@
 package com.example.mylib_test.activity.touch;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.touch.NestedView.NestedScrollingChildView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.zip.Inflater;
-
-import and.base.activity.BaseActivity;
+import com.zone.lib.base.activity.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

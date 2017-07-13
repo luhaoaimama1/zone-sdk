@@ -1,11 +1,10 @@
 package com.example.mylib_test.activity.frag_viewpager_expand;
 
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.mylib_test.R;
 
-import and.base.Fragment_Lazy;
+import com.zone.lib.base.Fragment_Lazy;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 

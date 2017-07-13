@@ -2,15 +2,15 @@ package com.example.mylib_test.activity.pop_dialog.pop;
 
 import com.example.mylib_test.R;
 
-import and.base.Pop_Zone;
-import and.utils.activity_fragment_ui.ToastUtils;
+import com.zone.lib.base.BasePopWindow;
+import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
 import android.app.Activity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class Pop_Photo extends Pop_Zone implements OnClickListener{
+public class Pop_Photo extends BasePopWindow implements OnClickListener{
 	private TextView tv_goodsNumber;
 	private TextView tv_call;
 	private TextView tv_cancel;

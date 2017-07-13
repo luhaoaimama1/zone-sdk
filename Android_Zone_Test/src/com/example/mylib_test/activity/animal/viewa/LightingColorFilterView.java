@@ -10,8 +10,8 @@ import android.view.View;
 
 import com.example.mylib_test.R;
 
-import and.utils.image.compress2sample.SampleUtils;
-import and.utils.view.DrawUtils;
+import com.zone.lib.utils.image.compress2sample.SampleUtils;
+import com.zone.lib.utils.view.DrawUtils;
 
 /**
  * Created by fuzhipeng on 2016/12/19.

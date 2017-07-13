@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import and.utils.image.BitmapUtils;
+import com.zone.lib.utils.image.BitmapUtils;
 
 /**
  * Created by fuzhipeng on 16/9/29.

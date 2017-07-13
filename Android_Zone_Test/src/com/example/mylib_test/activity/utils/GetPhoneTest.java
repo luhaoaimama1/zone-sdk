@@ -1,8 +1,8 @@
 package com.example.mylib_test.activity.utils;
 
-import and.utils.activity_fragment_ui.ToastUtils;
-import and.utils.view.special_view.editview.SpannableUtils;
-import and.utils.view.special_view.editview.SpannableUtils.onClickSpannableListener;
+import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
+import com.zone.lib.utils.view.special_view.editview.SpannableUtils;
+import com.zone.lib.utils.view.special_view.editview.SpannableUtils.onClickSpannableListener;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;

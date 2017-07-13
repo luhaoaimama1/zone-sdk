@@ -2,7 +2,7 @@ package com.example.mylib_test.activity.animal.viewa;
 
 
 
-import and.utils.image.BitmapUtils;
+import com.zone.lib.utils.image.BitmapUtils;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;

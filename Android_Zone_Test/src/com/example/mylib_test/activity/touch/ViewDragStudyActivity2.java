@@ -8,9 +8,9 @@ import android.widget.TextView;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.touch.view.ViewDragFrame;
 
-import and.base.activity.BaseActivity;
-import and.base.activity.kinds.SwipeBackKind;
-import and.utils.activity_fragment_ui.ToastUtils;
+import com.zone.lib.base.activity.BaseActivity;
+import com.zone.lib.base.activity.kinds.SwipeBackKind;
+import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
