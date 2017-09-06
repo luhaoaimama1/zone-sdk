@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 import com.zone.lib.Configuration;
+import com.zone.lib.utils.data.check.StringCheck;
 import com.zone.lib.utils.data.convert.GsonUtils;
 
 /**
@@ -43,6 +44,15 @@ public class SharedUtils {
             }
         }
         SharedPreferencesCompat.apply(editor);
+    }
+
+    public static  <T> T  get(String key, Class<T> t) {
+        SharedPreferences sp = getSharedPreferences();
+        String content=sp.getString(key, "");
+        if(StringCheck.isEmptyTrim(content))
+            return null;
+        else
+            return GsonUtils.fromJson( content,t);
     }
 
     public static String get(String key, String defaultValue) {
