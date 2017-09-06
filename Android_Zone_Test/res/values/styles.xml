@@ -30,4 +30,6 @@
         <item name="android:windowExitAnimation">@anim/pop_bottom_out</item>
     </style>
 
+
+
 </resources>

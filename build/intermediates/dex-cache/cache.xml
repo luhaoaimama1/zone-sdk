@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/exploded-aar/com.github.luhaoaimama1/Android_Zone_Lib/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.3"
-        sha1="4c78826d6b8d6fdb01f73e3dde57648327ff660a">
-        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/pre-dexed/debug/com.github.luhaoaimama1-Android_Zone_Lib-unspecified_72c385a3f71ad8617c8281a40feeae48fe637175.jar" />
-    </item>
-
-</items>
+<items version="2" />

@@ -27,6 +27,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         updateKinds();
 
         mKindControl.onCreate(arg0);
+        kindsOnCreate();
 
         setContentView();
         findIDs();
@@ -38,6 +39,12 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
      * 在 所有 mKindControl.onCreate(arg0, this);之前使用
      */
     public  void updateKinds() {
+
+    }
+    /**
+     * 在 所有 mKindControl.onCreate(arg0, this);之后使用
+     */
+    public  void kindsOnCreate() {
 
     }
 

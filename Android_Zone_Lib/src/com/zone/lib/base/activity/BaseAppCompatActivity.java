@@ -27,6 +27,7 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
         updateKinds();
 
         mKindControl.onCreate(arg0);
+        kindsOnCreate();
 
         setContentView();
         findIDs();
@@ -35,6 +36,9 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
     }
 
     public void updateKinds() {
+
+    }
+    public void  kindsOnCreate() {
 
     }
 

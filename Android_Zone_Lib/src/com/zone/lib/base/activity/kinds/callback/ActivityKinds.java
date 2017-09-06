@@ -13,6 +13,8 @@ public class ActivityKinds {
     public Activity activity;
 
     public ActivityKinds(Activity activity) {
+        if(activity==null)
+            throw  new IllegalArgumentException("activity not is null!");
         this.activity = activity;
     }
 

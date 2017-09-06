@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.event.FirstEvent;
-import com.orhanobut.logger.Logger;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -48,14 +47,14 @@ public class EventFragment extends Fragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void zoneEvent(FirstEvent event) {/* Do something */
         String msg = "onEvent收到了消息：" + event.getMsg();
-        Logger.d(msg);
+//        Logger.d(msg);
         textView5.setText(event.getMsg());
     }
     @Subscribe(sticky = true)
     public void onEvent(FirstEvent event) {
         // UI updates must run on MainThread
         String msg = "sticky onEvent收到了消息：" + event.getMsg();
-        Logger.d(msg);
+//        Logger.d(msg);
     }
 
 }

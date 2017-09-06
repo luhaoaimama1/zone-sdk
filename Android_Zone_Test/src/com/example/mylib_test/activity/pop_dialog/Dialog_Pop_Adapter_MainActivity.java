@@ -1,5 +1,7 @@
 package com.example.mylib_test.activity.pop_dialog;
 
+import com.example.mylib_test.activity.pop_dialog.dialog.ZDialog;
+import com.zone.lib.base.FullScrreenDialog;
 import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
 import view.DialogCustemZone;
 import com.zone.view.FlowLayout;
@@ -10,6 +12,7 @@ import com.example.mylib_test.activity.pop_dialog.pop.Pop_Photo;
 
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -82,6 +85,10 @@ public class Dialog_Pop_Adapter_MainActivity extends Activity implements OnClick
 				}
 				
 			};
+			break;
+		case R.id.dialogFullScreen:
+			ZDialog zDialog=new ZDialog(this);
+			zDialog.show();
 			break;
 		case R.id.textGaoLiang:
 			//点击文字高粱等效果

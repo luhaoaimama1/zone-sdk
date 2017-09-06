@@ -141,4 +141,24 @@ public class AppUtils {
 		return null;
 	}
 
+	/**
+	 * 判断是否安装某个应用
+	 *
+	 * @param context     上下文
+	 * @param packageName 包名
+	 * @return 是否安装
+	 */
+	public static boolean isAvailable(Context context, String packageName) {
+		final PackageManager packageManager = context.getPackageManager();//获取packagemanager
+		List<PackageInfo> pInfo = packageManager.getInstalledPackages(0);//获取所有已安装程序的包信息
+		//从pinfo中将包名字逐一取出，压入pName list中
+		if (pInfo != null) {
+			for (int i = 0; i < pInfo.size(); i++) {
+				String pn = pInfo.get(i).packageName;
+				if (pn.equals(packageName))
+					return true;
+			}
+		}
+		return false;
+	}
 }

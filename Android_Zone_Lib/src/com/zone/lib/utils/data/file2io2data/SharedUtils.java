@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 import com.zone.lib.Configuration;
+import com.zone.lib.utils.data.convert.GsonUtils;
 
 /**
  * 引用项目:https://github.com/openproject/LessCode
@@ -12,11 +13,10 @@ import com.zone.lib.Configuration;
  */
 public class SharedUtils {
 
-    public static final String SHARED_NAME = "shared_name";
+    private static final String SHARED_NAME = "preferences";
 
     private static SharedPreferences getSharedPreferences() {
-        return Configuration.getInstance().getAppContext().getSharedPreferences(SHARED_NAME,
-                Context.MODE_PRIVATE);
+        return  Configuration.getInstance().getAppContext().getSharedPreferences(SHARED_NAME,Context.MODE_PRIVATE);
     }
 
     public static <T> void put(String key, T value) {
@@ -38,7 +38,8 @@ public class SharedUtils {
             } else if (value.getClass() == String.class) {
                 editor.putString(key, (String) value);
             } else {
-                throw new RuntimeException("the put value type can't support.");
+                editor.putString(key, GsonUtils.toJson(value));
+//                throw new RuntimeException("the put value type can't support.");
             }
         }
         SharedPreferencesCompat.apply(editor);

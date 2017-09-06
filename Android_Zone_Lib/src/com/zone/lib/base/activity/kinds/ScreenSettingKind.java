@@ -29,7 +29,11 @@ public class ScreenSettingKind extends ActivityKinds {
      */
     public void setNoTitle_AppCompatActivity() {
         //设置无标题
-        ((AppCompatActivity) activity).getSupportActionBar().hide();
+        try {
+            ((AppCompatActivity) activity).getSupportActionBar().hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

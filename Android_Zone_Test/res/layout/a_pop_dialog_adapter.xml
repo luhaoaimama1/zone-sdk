@@ -27,6 +27,13 @@
         android:layout_margin="4dp"
         android:onClick="onClick"
         android:text="dialog" />
+    <Button
+        android:id="@+id/dialogFullScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="全屏dialog" />
 
     <Button
         android:id="@+id/bt_floatView"

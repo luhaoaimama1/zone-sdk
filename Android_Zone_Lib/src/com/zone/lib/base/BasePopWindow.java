@@ -13,8 +13,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 import com.zone.lib.utils.activity_fragment_ui.ActivityTopViewUtils;
+
 /**
- * Created by fuzhipeng on 16/8/30.
+ * Created by fuzhipeng on 15/8/30.
  */
 public abstract class BasePopWindow extends PopupWindow {
     protected Activity activity;
@@ -46,6 +47,7 @@ public abstract class BasePopWindow extends PopupWindow {
     /**
      * 仅仅调用show()即可
      * <br>默认颜色　　是浅黑色
+     *
      * @param activity             在那个activity 弹出pop
      * @param showAtLocationViewId
      */
@@ -113,24 +115,33 @@ public abstract class BasePopWindow extends PopupWindow {
                 }
             });
         }
+
     }
+
+    View locationView;
+    boolean skipOnCreate;
 
     /**
      * 这样就制定规范了
      */
     public void show() {
+        if (!skipOnCreate)
+            onCreate();
+        setLocation(locationView);
+    }
+
+    private void onCreate() {
+        skipOnCreate = true;
         //防止每次都初始化   提升性能相对于我
         if (mMenuView == null)
             initPop(layoutid, dismissViewId);
         findView(mMenuView);
         initData();
         setListener();
-        View view = null;
         if (showAtLocationViewId != -1)
-            view = activity.findViewById(showAtLocationViewId);
+            locationView = activity.findViewById(showAtLocationViewId);
         else
-            view = ActivityTopViewUtils.getActivityRootView(activity);
-        setLocation(view);
+            locationView = ActivityTopViewUtils.getActivityRootView(activity);
     }
 
     /**

@@ -27,6 +27,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
         updateKinds();
 
         mKindControl.onCreate(arg0);
+        kindsOnCreate();
 
         setContentView();
         findIDs();
@@ -35,6 +36,9 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
     }
 
     public void updateKinds() {
+
+    }
+    public void  kindsOnCreate() {
 
     }
 
