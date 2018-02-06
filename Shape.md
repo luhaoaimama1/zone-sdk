@@ -1,9 +1,6 @@
-#[点击跳转](#折叠)
-
-
 |  Rectangle  | Oval  | Line |  Ring  |
 | :------------: |:---------------:|:------------: |:------------: |
-| [![](https://ww1.sinaimg.cn/large/006tKfTcgw1fb913k1wc0j30f50a53zv.jpg)](#折叠) | AAA| AAA| AAA|
+| [![](https://ww1.sinaimg.cn/large/006tKfTcgw1fb913k1wc0j30f50a53zv.jpg)](#Rectangle) | AAA| AAA| AAA|
 aaaa
 
 #a
@@ -16,7 +13,8 @@ a
 a
 a
 
-# 折叠
+# Rectangle
+
 ```Java
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
