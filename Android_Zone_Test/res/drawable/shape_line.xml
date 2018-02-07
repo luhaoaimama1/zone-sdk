@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+
+    <padding
+        android:bottom="7dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="7dp" />
+
+    <!-- 如果不设置dashGap就是实线了 -->
+    <stroke
+        android:width="1dp"
+        android:color="#2F90BD"
+        android:dashGap="2dp"
+        android:dashWidth="4dp" />
+
+    <size
+        android:width="0dp"
+        android:height="0dp" />
+
+
+</shape>

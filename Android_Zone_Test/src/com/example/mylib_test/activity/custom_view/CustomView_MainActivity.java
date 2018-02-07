@@ -73,6 +73,9 @@ public class CustomView_MainActivity extends Activity implements OnClickListener
             case R.id.bt_ScrollerView:
                 startActivity(new Intent(this, ScrollerViewActivity.class));
                 break;
+            case R.id.bt_FramePaddding:
+                startActivity(new Intent(this, ChengChengActivity.class).putExtra("type", "FrameLayoutPadding"));
+                break;
             default:
                 break;
         }

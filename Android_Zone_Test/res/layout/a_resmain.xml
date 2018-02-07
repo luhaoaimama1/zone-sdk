@@ -4,45 +4,123 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_box"
-        android:padding="20dp"
-        android:text="shape的研究" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_ring"
-        android:padding="20dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_oval"
-        android:padding="10dp"
-        android:scaleType="center" />
-
-    <TextView
+    <com.zone.view.FlowLayout
+        android:id="@+id/flowLayoutZone1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/layer_shadow"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="带阴影的圆角矩形" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layer_oval"
-        android:padding="20dp"
-        android:text="GO"
-        android:textColor="#ffffffff" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/font_focus"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="gradient" />
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/insettest"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_grad_linear"
+            android:padding="20dp"
+            android:text="Linear"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_grad_radial"
+            android:padding="20dp"
+            android:text="Radial"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_grad_swe"
+            android:padding="20dp"
+            android:text="Sweep"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/font_focus"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Shape" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rec"
+            android:padding="20dp"
+            android:text="Rect" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_oval"
+            android:padding="10dp"
+            android:scaleType="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_ring"
+            android:padding="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_line"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/font_focus"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="LayerList" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layer_shadow"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="带阴影的圆角矩形" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layer_oval"
+            android:padding="20dp"
+            android:text="GO"
+            android:textColor="#ffffffff" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/font_focus"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Inset" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/insettest" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/font_focus"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Inset" />
+
+    </com.zone.view.FlowLayout>
+
+
 </LinearLayout>

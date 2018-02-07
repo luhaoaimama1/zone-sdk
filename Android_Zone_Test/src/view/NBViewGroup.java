@@ -3,6 +3,7 @@ package view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
@@ -46,6 +47,16 @@ public class NBViewGroup extends LinearLayout {
         canvas.restore();
 
         super.dispatchDraw(canvas);
+
+        //单独绘制
+        if (getChildAt(1)!=null) {
+            canvas.save();
+            canvas.translate(0,500);
+            boolean drawChild=drawChild(canvas, getChildAt(1), getDrawingTime());
+            System.out.println("成功？"+drawChild+"绘制a==>" + getDrawingTime());
+            canvas.restore();
+        }
+
     }
 
 }

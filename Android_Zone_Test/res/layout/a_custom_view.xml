@@ -155,5 +155,13 @@
         android:onClick="onClick"
         android:text="ScrollerView" />
 
+    <Button
+        android:id="@+id/bt_FramePaddding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:onClick="onClick"
+        android:text="FrameLayout中padding的研究" />
+
 
 </com.zone.view.FlowLayout>

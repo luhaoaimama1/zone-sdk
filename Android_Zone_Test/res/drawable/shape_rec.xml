@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="#000000"></solid>
+
+    <gradient
+        android:angle="45"
+        android:endColor="#80FF00FF"
+        android:startColor="#FFFF0000" />
+
+    <size
+        android:width="60dp"
+        android:height="10dp" />
+
+    <padding
+        android:bottom="7dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="7dp" />
+
+    <!--﻿corners标签仅仅对Rectangle有效-->
+    <corners android:radius="8dp" />
+
+    <stroke
+        android:width="4dp"
+        android:color="#ff5da2ff"
+        android:dashGap="1dp"
+        android:dashWidth="7dp" />
+</shape>

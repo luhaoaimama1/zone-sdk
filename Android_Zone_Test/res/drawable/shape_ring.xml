@@ -2,8 +2,34 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="ring"
     android:useLevel="false">
+    <!--android:useLevel 一般为false，否则可能环形无法显示，只有作为LevelListDrawable使用时才设为true-->
+
+    <padding
+        android:bottom="4dp"
+        android:left="4dp"
+        android:right="4dp"
+        android:top="4dp" />
+
+    <!-- size设置oval形状的大小  innerRadius thickness 不设置会根据这个最大的值为半径
+    除与android:innerRadiusRatio(3)，android:thicknessRatio(9)设定-->
+    <size
+        android:width="100dp"
+        android:height="60dp" />
+
+    <!-- type="sweep"  这里centerX，centerY有效 gradientRadius无效~-->
     <gradient
+        android:angle="45"
+        android:centerColor="@color/black"
+        android:centerX="0.5"
+        android:centerY="0.5"
         android:endColor="#2F90BD"
+        android:gradientRadius="5dp"
         android:startColor="#FFFFFF"
         android:type="sweep" />
+
+    <stroke
+        android:width="4dp"
+        android:color="#ff5da2ff"
+        android:dashGap="1dp"
+        android:dashWidth="7dp" />
 </shape>

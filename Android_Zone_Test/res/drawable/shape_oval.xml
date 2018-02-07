@@ -1,9 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!-- android:shape指定形状类型，默认为rectangle -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
+
+    <padding
+        android:bottom="4dp"
+        android:left="4dp"
+        android:right="4dp"
+        android:top="4dp" />
+
+    <!-- size设置oval形状的大小 一样就是圆,不一样就是椭圆 -->
+    <size
+        android:width="50dp"
+        android:height="50dp" />
+
     <gradient
         android:endColor="#000000"
         android:gradientRadius="40dp"
         android:startColor="#FFFFFF"
         android:type="radial" />
+
+    <stroke
+        android:width="4dp"
+        android:color="#ff5da2ff"
+        android:dashGap="1dp"
+        android:dashWidth="7dp" />
 </shape>

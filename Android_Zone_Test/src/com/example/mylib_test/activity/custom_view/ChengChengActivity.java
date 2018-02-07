@@ -31,6 +31,8 @@ public class ChengChengActivity extends BaseActivity {
             flod();
         } else if("bt_wheel".equals(type)){
             setContentView(R.layout.a_wheel);
+        } else if("FrameLayoutPadding".equals(type)){
+            setContentView(R.layout.a_test_frame_padding);
         } else
             setContentView(R.layout.a_cheng);
     }
