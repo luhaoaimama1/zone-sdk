@@ -1,2 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/8e5a152ff28fc541a309087a043a39cd8ec5f3b0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="105678dca6992ff2692de3c3707292e64e8859e5">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a8ed574087be6a97cadb83732b485a0264f64811/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/bc1c7df01d84e82af63041d924f72caec38a73b9/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_abd7ee593ac12cbb5b4343c1ad1427f5f640c87c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/f2867125dfa20bda2ce85708dfdaf2d9af17155a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9f560fa966c6ecc4fbe8ce058875650e1a06508d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations-java5/15.0/7011b4551a8451906759b05814c58b9eb829ea9b/annotations-java5-15.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7011b4551a8451906759b05814c58b9eb829ea9b">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/annotations-java5-15.0_035fe116aa7b9bd457b4b0f186f8af66cc72f9ea/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.6.0_d88e3471fad881a68fac17c1cbda4e5e5e227915/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-7.0.1_b1042d5f5af56eaba5d6e1170a7b23d337a3e5a1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.3/5a1aef6a9d56efb473b8be6b66689077e7317c45/rxjava-1.1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5a1aef6a9d56efb473b8be6b66689077e7317c45">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-1.1.3_8466b1c45c8516485e16743c21d3517cfa73f22f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.haha/haha/2.0.2/fd65b84d12d6adc77ec0e4fcaca623fc391d8679/haha-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fd65b84d12d6adc77ec0e4fcaca623fc391d8679">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/haha-2.0.2_f5a5c0020bfa00b6d65213245c391cf2d4daf461/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/leakcanary-analyzer/1.4-beta2/449777cd466ac0a16f7e8d0dc508e70e2cdd13a9/leakcanary-analyzer-1.4-beta2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="449777cd466ac0a16f7e8d0dc508e70e2cdd13a9">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/leakcanary-analyzer-1.4-beta2_8f4e5143988d3b9eafecb0ce4656845e6900d558/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.2/f8d87f15b94b8d74e7ccf61d7eedb558811cdb30/converter-gson-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.0.2_b556ed7e36eefee084e5b4862d7a3e5960119903/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/33887b101e0f2e5945f7745e7109b0263e877d87/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4af1e79e6aea84053d2a3da9f50e300bff734240">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fc391f6c1842c72964450f71edadb9ed4d48c28a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/93995ed4d68372b879302b77f18331c0d7839c98/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3808a5d50cd2c89097c0709349f4274b575ba35">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2f0d82652b1034a4153c5a2e03740b4fd21547ef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.1_4b6df969d1eb628cca99e0caf53427ffc2f51f6a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.2.0_5a7c204996448f685c1f68e1341b8a1c85698f1b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/ae597fd58ce6f707a6323af9916361399e4517fa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4c936aa8c7d2522c82e3f1829c791d9e367f009">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_359a1d35b42c570d22e5870c52b46badb1cd788b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ca47c1f9aa3cdd2c59a378ea366b2f3bcbd2940">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_153939306f5433c3f0288504e420dd7d450ec8f5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.2/43eeae0b9fb087bb3194ba59ab63a38a32fbf3e/retrofit-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="043eeae0b9fb087bb3194ba59ab63a38a32fbf3e">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.0.2_f85c9aeafc1fb96d52e79a403891ec310bcdc4d4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/library-2.4.0_1f0ef8d06d96527d88d33c0a35d2913aa751f6a7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/6d76f3f29e86c28dcc232d8d97c6925d0743a3d3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e39dd45427d2ba136c82ed1946f80dd3dff16695">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1486c0ae2566adfe348f1efe4bb69b3c2e218e79/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/45ef931b59e024f04dd44731a4c169a262eaef37/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ff5ca6df5753cec41e3d28a5f6adeeae7f470563/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_7c89b30c965133f516155e8b006ac4fdb2a9c232/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_0558ec998cdfe0b6d24f7879d5c1815ddf6fae07/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/1724ac1a05e5fa8c3b7c3e810684d90112de64cb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="34ad801141ce5ab08ad2e2cd3fcbda31feca1aa9">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7f2e7d5095e4c5b5d424328573eab4da9dde294d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/f2867125dfa20bda2ce85708dfdaf2d9af17155a/output/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_2a567923ee6583a3294bcfe549c05a9b971de292/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/e6ae1dd6b77fdabf61d048a4f284d4af6c5ef114/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="528f38233a6f9926573918cc238c06c8c7890ad5">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_468607018a711ad6d001bc0374795e9bc93b0d45/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.0.0/ddd99896e9569eaababbe81b35d80e1b91c4ad85/eventbus-3.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ddd99896e9569eaababbe81b35d80e1b91c4ad85">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/eventbus-3.0.0_79284e682b10488910230d5467e16e9ff7ee8041/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/a62f672c10563dfa3e81d8e60907f34f0be22ad3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="71d09463e2ccf704a0add4167de6ce069bf62cd2">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_be5023e70f81067fcb2d3b80992af9784b5518d1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/2eb52c76d0c62566d224156ba71bf91146c016fc/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee17feb34ce104bc17d1a1e64346d7f779ebb066">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_87d544f269418ce35fe3db5b9eb9f0af72d87382/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_f2844e2ffa2e8980e93c49b96edd85f2f6ba617b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/libs/xUitls_lib.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8188b744e9c60f9beb9d745c6b1dd1cae758a544">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/2/xUitls_lib_9dd6eca1d32172d1c3106e5b79678df26478ab3c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/d3576bb8ed5c94ca6c0ef8fc54d621912bddc2ef/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6d0958dbac8e7be76690b8e85d91698dfadbd81e">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8367613e635e742593b0cfd6099654cb1956b3a8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.5/442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375/universal-image-loader-1.9.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/universal-image-loader-1.9.5_ce9d2b18d4821d4f0af6c446310d207fe7f8475b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/fd29e7a6276f486e457686e14e7377b105308817/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9c8472f8e10502af60d0f63ea11eed68bdf690c2">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_740d854bdf48679ba0617e2578c0c4a9153ab89f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.android/build-cache/77b756e66cfd59fb30a4244890fee33f4cb122fe/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="229788343b678493bbfa65f7a3f1ea22a8f140b4">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/classes_477821f63012214a2d2ee388141439c4e317ec44/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/fuzhipeng/.gradle/caches/modules-2/files-2.1/com.squareup.leakcanary/leakcanary-watcher/1.4-beta2/6a920fb0d14e5e3b36e37cf33b1eeef2bcce4c92/leakcanary-watcher-1.4-beta2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6a920fb0d14e5e3b36e37cf33b1eeef2bcce4c92">
+        <dex dex="/Users/fuzhipeng/AndroidStudioProjects/ZoneStudio/Android_Zone_Test/build/intermediates/transforms/dex/debug/folders/1000/10/leakcanary-watcher-1.4-beta2_053d4d394e43f9d67b8b07454363aeb720238b4a/classes.dex" />
+    </item>
+
+</items>

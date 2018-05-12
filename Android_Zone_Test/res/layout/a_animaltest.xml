@@ -46,6 +46,13 @@
             android:layout_margin="4dp"
             android:onClick="onClick"
             android:text="自定义动画的研究" />
+        <Button
+            android:id="@+id/bt_Animator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:onClick="onClick"
+            android:text="属性动画研究" />
 
         <TextView
             android:layout_width="match_parent"

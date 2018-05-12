@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.example.mylib_test.R;
+import com.example.mylib_test.activity.http.aidl.AIDLActivity;
 import com.example.mylib_test.activity.http.util.HandlerTest;
 import com.example.mylib_test.app.Apps;
 import com.squareup.leakcanary.RefWatcher;
@@ -71,6 +72,9 @@ public class Http_MainActivity extends Activity implements OnClickListener {
                 ht.updateView(hand);
                 break;
 
+            case R.id.bt_aidl:
+                startActivity(new Intent(this, AIDLActivity.class));
+                break;
             default:
                 break;
         }

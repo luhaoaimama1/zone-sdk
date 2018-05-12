@@ -1,5 +1,7 @@
 package com.example.mylib_test.activity.ress;
 
+import android.animation.ObjectAnimator;
+
 import com.example.mylib_test.R;
 
 import com.zone.lib.base.activity.BaseActivity;
@@ -27,4 +29,5 @@ public class ResMainActvitity extends BaseActivity {
     public void setListener() {
 
     }
+
 }

@@ -29,7 +29,7 @@ public class ZHandler extends Handler {
     }
 
     /**
-     *  Tips：在生命周期结束的时候调用
+     * Tips：在生命周期结束的时候调用
      */
     public void removeAllMessage() {
         removeCallbacksAndMessages(null);//remove全部任务！

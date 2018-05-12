@@ -162,6 +162,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             case R.id.bt_svg:
                 startActivity(new Intent(this, SVGActivity.class));
                 break;
+            case R.id.bt_Animator:
+                startActivity(new Intent(this, AnimatorActivity.class));
+                break;
 
             default:
                 break;

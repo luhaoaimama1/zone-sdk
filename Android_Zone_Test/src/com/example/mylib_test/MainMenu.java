@@ -25,7 +25,7 @@ public class MainMenu {
 	public static List<MenuEntity> menu=new ArrayList<MenuEntity>();
 	
 	static{
-		menu.add(new MenuEntity("http测试Thread测试(和handle的测试)", Http_MainActivity.class)) ;
+		menu.add(new MenuEntity("IPC、socket、http、Thread、handle的测试)", Http_MainActivity.class)) ;
 		menu.add(new MenuEntity("ZBusActivity", ZBusActivity.class)) ;
 		menu.add(new MenuEntity("pop dialog测试(还有 文字高亮 链接等效果)", Dialog_Pop_Adapter_MainActivity.class)) ;
 		menu.add(new MenuEntity("动画、surfaceView、绘图方面的研究", Animal_MainActivity.class)) ;
