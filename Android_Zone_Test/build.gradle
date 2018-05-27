@@ -5,18 +5,10 @@ apply plugin: 'me.tatarka.retrolambda'
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
 
-//    compile 'com.github.luhaoaimama1:ZView:1.0.35'
-    compile 'com.github.luhaoaimama1:ZView:1.0.35'
-
-    compile project(':Android_Zone_Lib')
-    compile (project(':Android_Zone_Lib')){
-        exclude group: 'com.android.support', module: 'support-v4'
-    }
-
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.facebook.fresco:fresco:1.9.0'
+
     compile 'io.reactivex:rxandroid:1.1.0'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
@@ -28,20 +20,22 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'jp.wasabeef:blurry:2.0.0'
 
-//    compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
-    compile('com.github.luhaoaimama1:ZAdapter3:1.0.91',{
-        exclude group: 'com.android.support', module: 'support-v4'
-    })
-
     compile 'com.zone:zokhttp:1.1.2'
-//    compile project(':UltraRefresh')
-//   compile project(':customView')
     compile 'com.github.luhaoaimama1:ZAnimate:1.0.1'
     compile 'com.github.luhaoaimama1:ZRefreshLayout:1.0.15'
 
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+
+    compile project(':Android_Zone_Lib')
+    compile 'com.facebook.fresco:fresco:1.9.0'
+    compile 'com.github.luhaoaimama1:ZView:1.0.35'
+//        compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
+    compile('com.github.luhaoaimama1:ZAdapter3:1.0.91',{
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    })
+    compile 'com.android.support:recyclerview-v7:23.2.0'
 }
 
 android {

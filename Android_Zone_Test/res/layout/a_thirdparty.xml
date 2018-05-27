@@ -2,7 +2,7 @@
 <com.zone.view.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/flowLayoutZone1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/imageLoader"
@@ -26,33 +26,22 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:onClick="onClick"
-        android:text="google下拉刷新with异步任务" />
+        android:text="google下拉刷新and异步任务" />
+
 
     <com.zone.view.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f9ffac">
-        <Button
-            android:id="@+id/bt_pull2recycler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
-            android:text="googlepull测试" />
 
-    </com.zone.view.FlowLayout>
-
-    <com.zone.view.FlowLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f9ffac">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="下面的是Glide测试"
-            android:padding="10dp"
             android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="下面的是Glide测试"
             android:textColor="#ff4e4e" />
+
         <Button
             android:id="@+id/bt_glide"
             android:layout_width="wrap_content"
@@ -60,6 +49,7 @@
             android:layout_margin="4dp"
             android:onClick="onClick"
             android:text="Glide学习" />
+
         <Button
             android:id="@+id/bt_fresco"
             android:layout_width="wrap_content"
@@ -69,6 +59,7 @@
             android:text="Fresco学习" />
 
     </com.zone.view.FlowLayout>
+
     <Button
         android:id="@+id/bt_swtichButton"
         android:layout_width="wrap_content"
@@ -76,6 +67,7 @@
         android:layout_margin="4dp"
         android:onClick="onClick"
         android:text="水波纹测试" />
+
     <Button
         android:id="@+id/bt_blur"
         android:layout_width="wrap_content"

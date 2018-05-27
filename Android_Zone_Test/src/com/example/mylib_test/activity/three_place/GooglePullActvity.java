@@ -12,8 +12,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.mylib_test.delegates.TextDelegates;
 import com.zone.adapter3.QuickRcvAdapter;
 import com.zone.adapter3.base.IAdapter;
 import com.zone.adapter3.loadmore.OnScrollRcvListener;
@@ -41,18 +43,19 @@ public class GooglePullActvity extends Activity implements OnRefreshListener,Han
 //	            android.R.color.holo_orange_light, android.R.color.holo_red_light);
 		swipe_container.setColorScheme(android.R.color.holo_red_light);
 		lv=(RecyclerView) findViewById(R.id.lv);
+		lv.setLayoutManager(new LinearLayoutManager(this));
 		adapter=new QuickRcvAdapter(this, data)
-				.addViewHolder(new PullDelegates())
+				.addViewHolder(new TextDelegates())
 				.relatedList(lv)
 				.addOnScrollListener(new OnScrollRcvListener(){
 					@Override
 					protected void loadMore(RecyclerView recyclerView) {
 						super.loadMore(recyclerView);
-						data.addLast("上拉加载了~");
-						adapter.notifyDataSetChanged();
 						//相当于告诉他加载完成了
 						new Handler().postDelayed(new Runnable() {
 							public void run() {
+								data.addLast("上啦加载的数据~");
+								adapter.notifyDataSetChanged();
 								adapter.loadMoreComplete();
 							}
 						}, 3000);
@@ -75,6 +78,8 @@ public class GooglePullActvity extends Activity implements OnRefreshListener,Han
 
 	@Override
 	public boolean handleMessage(Message msg) {
+		data.addFirst("当前没有网络呢");
+		adapter.notifyDataSetChanged();
 		swipe_container.setRefreshing(false);
 		return false;
 	}

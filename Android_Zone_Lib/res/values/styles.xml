@@ -27,8 +27,10 @@
 
     <!--设置全局动画 并且需要继承Animation.Translucent，一般情况是继承的Animation.Activity 这样才能与windowIsTranslucent：true同时好使-->
     <style name="Animation.Activity.Translucent.Style" parent="@android:style/Animation.Translucent">
-        <item name="android:windowEnterAnimation">@anim/anim_enter</item>
-        <item name="android:windowExitAnimation">@anim/anim_exit</item>
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+        <!--<item name="android:windowEnterAnimation">@anim/anim_enter</item>-->
+        <!--<item name="android:windowExitAnimation">@anim/anim_exit</item>-->
     </style>
 
 

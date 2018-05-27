@@ -14,6 +14,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ public class MainActivity2 extends Activity implements Handler.Callback {
 
         createDialog();
         listView1 = (RecyclerView) findViewById(R.id.listView1);
+        listView1.setLayoutManager(new LinearLayoutManager(this));
         final int[] colorArry = {Color.WHITE, Color.GREEN, Color.YELLOW, Color.CYAN};
         adapter2 = new QuickRcvAdapter<MenuEntity>(this, MainMenu.menu)
                 .addViewHolder(new MenuEntityDeletates(this, colorArry, MainMenu.menu))

@@ -32,7 +32,7 @@ public class MainMenu {
 		menu.add(new MenuEntity("res shape selector等的研究", ResMainActvitity.class)) ;
 		menu.add(new MenuEntity("onTouch事件传递与其辅助类的研究", TouchMainActivity.class)) ;
 		menu.add(new MenuEntity("自定义控件", CustomView_MainActivity.class)) ;
-		menu.add(new MenuEntity("databing、lambda、rxjava的学习", DataBingMainActivity.class)) ;
+		menu.add(new MenuEntity("databing、lambda、rxjava的学习(可滑动返回)", DataBingMainActivity.class)) ;
 		menu.add(new MenuEntity("第三方 （ImageLoader等）", ThirdParty_MainActivity.class)) ;
 		menu.add(new MenuEntity("工具箱Utils的测试", Utils_MainActivity.class)) ;
 //		menu.add(new MenuEntity("db测试", Db_MainActivity.class)) ;

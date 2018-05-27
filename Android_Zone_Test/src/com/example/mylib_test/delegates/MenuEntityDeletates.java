@@ -45,8 +45,9 @@ public class MenuEntityDeletates extends ViewDelegates<MenuEntity> {
                 .setOnClickListener( new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        System.out.println("position:" + holder.getPosition());
-                        Class<?> goClass  =menu.get(holder.getLayoutPosition()).goClass;
+                        int position=holder.getLayoutPosition()- MenuEntityDeletates.this.adapter.getHeaderViewsCount();
+                        System.out.println("position:" +position);
+                        Class<?> goClass  =menu.get(position).goClass;
                         if (goClass != null) {
                             activity.startActivity(new Intent(activity, goClass));
                         }

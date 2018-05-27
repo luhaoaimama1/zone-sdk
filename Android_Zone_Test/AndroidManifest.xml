@@ -83,13 +83,11 @@
         <activity android:name="com.example.mylib_test.activity.three_place.BlurActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GildeActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.FrescoActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.three_place.GooglePull2RecyclerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"></activity>
 
         <service android:name="com.example.mylib_test.activity.pop_dialog.FxService"></service>
         <service android:name="com.example.mylib_test.activity.pop_dialog.FxService2"></service>
 
-        <activity android:name="com.example.mylib_test.activity.utils.SoftTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.ress.ResMainActvitity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CanvasTest"></activity>

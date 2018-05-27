@@ -51,13 +51,13 @@ public class FrescoActivity extends BaseActivity {
     @Override
     public void initData() {
         //todo   HTTP,File,Resource,Uri,Gif,Mp4,Error;
-        mDatas.add(new Entity("http","https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png"));
-        mDatas.add(new Entity("File","https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png"));
-        mDatas.add(new Entity("Resource","https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png"));
-        mDatas.add(new Entity("Uri","https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png"));
-        mDatas.add(new Entity("Gif","https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png"));
-        mDatas.add(new Entity("Mp4","https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png"));
-        mDatas.add(new Entity("Error","https://raw.githubusercontent.com/facebook/fresco/gh-pages/static/logo.png"));
+        mDatas.add(new Entity("http","http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"));
+        mDatas.add(new Entity("File","http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"));
+        mDatas.add(new Entity("Resource","http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"));
+        mDatas.add(new Entity("Uri","http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"));
+        mDatas.add(new Entity("Gif","http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"));
+        mDatas.add(new Entity("Mp4","http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"));
+        mDatas.add(new Entity("Error","http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"));
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setItemAnimator(new DefaultItemAnimator());
         muliAdapter = new QuickRcvAdapter(this, mDatas) {
