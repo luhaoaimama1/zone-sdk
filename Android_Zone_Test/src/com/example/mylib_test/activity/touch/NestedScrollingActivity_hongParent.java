@@ -4,12 +4,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.mylib_test.R;
-import com.zone.adapter.QuickRcvAdapter;
-import com.zone.adapter.callback.Helper;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.mylib_test.delegates.TextDelegates;
+import com.example.mylib_test.delegates.TextType2Delegates;
+import com.zone.adapter3.QuickRcvAdapter;
 import com.zone.lib.base.activity.BaseActivity;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -37,17 +40,10 @@ public class NestedScrollingActivity_hongParent extends BaseActivity {
             mDatas.add("Parent Demo -> " + i);
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new QuickRcvAdapter<String>(this, mDatas) {
-            @Override
-            public void fillData(Helper<String> helper, String item, boolean itemChanged, int layoutId) {
-                helper.setText(R.id.tv, item);
-            }
 
-            @Override
-            public int getItemLayoutId(String s, int position) {
-                return R.layout.item_rc_textview;
-            }
-        });
+        new QuickRcvAdapter<String>(this, mDatas)
+                .addViewHolder(new TextType2Delegates())
+                .relatedList(recyclerView);
     }
 
     @Override

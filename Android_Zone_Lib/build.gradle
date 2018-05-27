@@ -11,6 +11,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.5'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'
+//    compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:appcompat-v7:22.1.1'
     //    compile 'com.android.support:recyclerview-v7:22.1.1'
     //    compile 'com.jakewharton:butterknife:7.0.1'

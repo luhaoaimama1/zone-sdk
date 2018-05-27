@@ -2,19 +2,18 @@ package com.example.mylib_test.activity.animal.helper;
 
 import android.app.Activity;
 import android.graphics.PorterDuff;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.viewa.XfermodeView;
-import com.zone.adapter.QuickAdapter;
-import com.zone.adapter.callback.Helper;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import com.zone.adapter3.QuickRcvAdapter;
+import com.zone.adapter3.bean.Holder;
+import com.zone.adapter3.bean.ViewDelegates;
 import com.zone.lib.base.BasePopWindow;
 
 /**
@@ -23,7 +22,7 @@ import com.zone.lib.base.BasePopWindow;
 public class PopXfermode extends BasePopWindow {
     private  Button bt_pop;
     private  XfermodeView xfermodeView;
-    private ListView lv;
+    private RecyclerView lv;
     List<String> listData=new ArrayList<>();
     /**
      * 仅仅调用show()即可
@@ -47,30 +46,35 @@ public class PopXfermode extends BasePopWindow {
 
     @Override
     protected void findView(View mMenuView) {
-        lv= (ListView) mMenuView.findViewById(R.id.lv);
+        lv= (RecyclerView) mMenuView.findViewById(R.id.lv);
+        lv.setLayoutManager(new LinearLayoutManager(activity));
     }
 
     @Override
     protected void initData() {
-        lv.setAdapter(new QuickAdapter<String>(activity,listData) {
+        ViewDelegates<String> delegates = new ViewDelegates<String>() {
+
             @Override
-            public void fillData(final Helper<String> helper, final String item, boolean itemChanged, int layoutId) {
-                helper.setText(R.id.tv,item).setOnClickListener(R.id.rl_main,new View.OnClickListener() {
+            public void fillData(int i, String s, Holder holder) {
+                holder.setText(R.id.tv, s).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        bt_pop.setText(helper.getData());
-                        xfermodeView.setXferMode(PorterDuff.Mode.valueOf(helper.getData()));
+                        bt_pop.setText(s);
+                        xfermodeView.setXferMode(PorterDuff.Mode.valueOf(s));
                         xfermodeView.postInvalidate();
                         dismiss();
                     }
-                });
+                }, R.id.rl_main);
             }
 
             @Override
-            public int getItemLayoutId(String s, int position) {
-                return  R.layout.item_textview_only;
+            public int getLayoutId() {
+                return R.layout.item_textview_only;
             }
-        });
+        };
+        new QuickRcvAdapter<String>(activity,listData)
+                .addViewHolder(delegates)
+                .relatedList(lv);
     }
 
     @Override

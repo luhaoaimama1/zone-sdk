@@ -15,6 +15,7 @@ package com.example.mylib_test.app;
  * limitations under the License.
  *******************************************************************************/
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zone.lib.Configuration;
 
 import com.example.mylib_test.app.imageloader.ImageLoaderConfigUtils;
@@ -85,6 +86,10 @@ public class Apps extends Application {
         ImageLoaderOptionsUtils.initShowImage(R.drawable.ic_stub, R.drawable.ic_empty, R.drawable.ic_error);
         //初始化ImageLoader
         ImageLoaderConfigUtils.initImageLoader(getApplicationContext(), ImageLoaderOptionsUtils.getNormalOption＿NotBuild().build(), false);
+
+
+
+        Fresco.initialize(this);
 
 //		CrashHandler.getInstance().init(this);
 

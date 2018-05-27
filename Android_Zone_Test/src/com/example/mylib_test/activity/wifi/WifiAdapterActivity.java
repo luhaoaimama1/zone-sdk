@@ -4,32 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.wifi.entity.WifiItem;
-import com.zone.adapter.QuickAdapter;
-import com.zone.adapter.callback.Helper;
+import com.example.mylib_test.delegates.WifiDelegate;
+import com.zone.adapter3.QuickRcvAdapter;
 import com.zone.lib.utils.system_hardware_software_receiver_shell.software.wifi.MyWifiAnd3G;
 import android.app.Activity;
 import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 public class WifiAdapterActivity extends Activity {
-	private ListView listView ;
+	private RecyclerView listView ;
 	private MyWifiAnd3G mWifiAnd3G; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.adapter);
 		init();
 	}
-
 	private void init() {
-		// TODO Auto-generated method stub
 		mWifiAnd3G = new MyWifiAnd3G(this);
 		System.out.println("ip解析后地址："+mWifiAnd3G.getIPAddress());
-		listView = (ListView) findViewById(R.id.listView);
+		listView = (RecyclerView) findViewById(R.id.listView);
+		listView.setLayoutManager(new LinearLayoutManager(this));
+
 		int[] idArray=new int[]{R.id.Wifi_item_ssid,R.id.Wifi_item_con,R.id.Wifi_item_NotCon,R.id.Wifi_item_ToString};
 		
 		List<WifiItem> data=new ArrayList<WifiItem>();
@@ -52,57 +50,8 @@ public class WifiAdapterActivity extends Activity {
 			}
 		}
 
-
-		QuickAdapter<WifiItem> adpt=new QuickAdapter<WifiItem>(this, data) {
-
-			@Override
-			public void fillData(final Helper<WifiItem> helper, final WifiItem item, boolean itemChanged, int layoutId) {
-				// TODO Auto-generated method stub
-				// TODO Auto-generated method stub
-				//能得到View就能设置 事件了
-
-
-				//给view做监听事件处理
-				OnClickListener listener = new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						// TODO Auto-generated method stub
-						switch (v.getId()) {
-							case R.id.Wifi_item_con:
-								System.out.println("连接==========" + helper.getData().getSSID());
-								System.out.println("ssid"+item.getSSID());
-//							System.out.println("cfg"+it.getCfg());
-								mWifiAnd3G.connectConfiguration(helper.getData().getCfg(), 10, 300);
-								break;
-							case R.id.Wifi_item_NotCon:
-								System.out.println("断开=========="+helper.getData().getSSID());
-								mWifiAnd3G.disconnectWifi();
-								break;
-							case R.id.Wifi_item_ToString:
-								System.out.println("toString=========="+helper.getData().getWifiToString());
-								break;
-
-							default:
-								break;
-						}
-					}
-				};
-				helper.setText(R.id.Wifi_item_ssid,item.getSSID())
-						.setText(R.id.Wifi_item_con, item.getWifi_con())
-						.setText(R.id.Wifi_item_NotCon, item.getWifi_NotCon())
-						.setText(R.id.Wifi_item_ToString, "toString")
-						.setOnClickListener(R.id.Wifi_item_con, listener)
-						.setOnClickListener(R.id.Wifi_item_NotCon, listener)
-						.setOnClickListener(R.id.Wifi_item_ToString,listener);
-			}
-
-			@Override
-			public int getItemLayoutId(WifiItem wifiItem, int position) {
-				return  R.layout.wifi_item;
-			}
-
-		};
-		adpt.relatedList(listView);
+		new QuickRcvAdapter<WifiItem>(this, data)
+				.addViewHolder(new WifiDelegate(mWifiAnd3G))
+				.relatedList(listView);
 	}
 }

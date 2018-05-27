@@ -3,7 +3,7 @@ package com.example.mylib_test.activity.three_place;
 import java.util.LinkedList;
 
 import com.example.mylib_test.R;
-import com.example.mylib_test.activity.three_place.adapter.PullToAdapter;
+import com.example.mylib_test.delegates.PullDelegates;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -12,17 +12,18 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.ListView;
+import android.support.v7.widget.RecyclerView;
 
+import com.zone.adapter3.QuickRcvAdapter;
+import com.zone.adapter3.base.IAdapter;
+import com.zone.adapter3.loadmore.OnScrollRcvListener;
 import com.zone.lib.utils.system_hardware_software_receiver_shell.software.wifi.NetManager;
 
 public class GooglePullActvity extends Activity implements OnRefreshListener,Handler.Callback {
-	private ListView lv;
+	private RecyclerView lv;
 	private SwipeRefreshLayout swipe_container;
 	private Handler handler=new Handler(this);
-	private PullToAdapter adapter;
+	private IAdapter adapter;
 	private static LinkedList<String> data=new LinkedList<String>();
 	static{
 		for (int i = 0; i < 30; i++) {
@@ -39,43 +40,24 @@ public class GooglePullActvity extends Activity implements OnRefreshListener,Han
 //		swipe_container.setColorScheme(android.R.color.holo_blue_bright,  android.R.color.holo_green_light, 
 //	            android.R.color.holo_orange_light, android.R.color.holo_red_light);
 		swipe_container.setColorScheme(android.R.color.holo_red_light);
-		lv=(ListView) findViewById(R.id.lv);
-		adapter=new PullToAdapter(this, data);
-		adapter.relatedList(lv);
-		lv.setOnScrollListener(new OnScrollListener() {
-			int scrollState;
-			boolean loadMoreOk=true;
-			@Override
-			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				this.scrollState=scrollState;
-			}
-			
-			@Override
-			public void onScroll(AbsListView view, int firstVisibleItem,
-					int visibleItemCount, int totalItemCount) {
-				if(scrollState==OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
-					if((firstVisibleItem+visibleItemCount)==totalItemCount){
-						if (loadMoreOk) {
-							loadMore(firstVisibleItem, visibleItemCount,totalItemCount);
-							loadMoreOk=false;
-						}
+		lv=(RecyclerView) findViewById(R.id.lv);
+		adapter=new QuickRcvAdapter(this, data)
+				.addViewHolder(new PullDelegates())
+				.relatedList(lv)
+				.addOnScrollListener(new OnScrollRcvListener(){
+					@Override
+					protected void loadMore(RecyclerView recyclerView) {
+						super.loadMore(recyclerView);
+						data.addLast("上拉加载了~");
+						adapter.notifyDataSetChanged();
+						//相当于告诉他加载完成了
+						new Handler().postDelayed(new Runnable() {
+							public void run() {
+								adapter.loadMoreComplete();
+							}
+						}, 3000);
 					}
-				}
-			}
-
-			private void loadMore(int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-				System.out.println("loadMore_______:firstVisibleItem"+firstVisibleItem+"\t visibleItemCount"+visibleItemCount
-						+"\t totalItemCount"+totalItemCount);
-				data.addLast("上拉加载了~");
-				adapter.notifyDataSetChanged();
-				//相当于告诉他加载完成了
-				new Handler().postDelayed(new Runnable() {
-			        public void run() {
-			        	loadMoreOk=true;
-			        }
-			    }, 3000);
-			}
-		});
+				});
 	}
 	@Override
 	public void onRefresh() {

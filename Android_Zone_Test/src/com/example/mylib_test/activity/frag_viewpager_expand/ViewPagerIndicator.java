@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-public class ViewPagerIndicator extends ImageView {
+public class ViewPagerIndicator extends ImageView  {
 
     private Drawable chatDrawable;
 

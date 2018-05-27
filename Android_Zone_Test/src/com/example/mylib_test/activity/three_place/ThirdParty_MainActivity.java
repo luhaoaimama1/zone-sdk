@@ -34,6 +34,9 @@ public class ThirdParty_MainActivity extends Activity implements OnClickListener
             case R.id.bt_glide:
                 startActivity(new Intent(this, GildeActivity.class));
                 break;
+            case R.id.bt_fresco:
+                startActivity(new Intent(this, FrescoActivity.class));
+                break;
             case R.id.bt_swtichButton:
                 startActivity(new Intent(this, RippleViewActivity.class));
                 break;
