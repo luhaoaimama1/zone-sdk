@@ -14,9 +14,9 @@ public class Pop_Photo extends BasePopWindow implements OnClickListener{
 	private TextView tv_goodsNumber;
 	private TextView tv_call;
 	private TextView tv_cancel;
-	public Pop_Photo(Activity activity,int showAtLocationViewId) {
+	public Pop_Photo(Activity activity,int showAtLocationViewId,int buttonID) {
 		super(activity, showAtLocationViewId);
-		setPopContentView( R.layout.popwindow_phone, R.id.ll_cancelId);
+		setPopContentView( R.layout.popwindow_phone, R.id.ll_cancelId,buttonID);
 	}
 	@Override
 	public void onClick(View v) {
@@ -53,7 +53,7 @@ public class Pop_Photo extends BasePopWindow implements OnClickListener{
 
 	@Override
 	protected void setLocation(View view) {
-		this.setAnimationStyle(R.style.PopSelectPicAnimation);
+//		this.setAnimationStyle(R.style.PopSelectPicAnimation);
 		this.showAtLocation(view,Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);	
 	}
 

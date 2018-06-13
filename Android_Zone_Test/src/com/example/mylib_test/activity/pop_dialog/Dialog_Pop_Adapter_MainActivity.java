@@ -38,7 +38,7 @@ public class Dialog_Pop_Adapter_MainActivity extends Activity implements OnClick
 		case R.id.pop:
 //			PopCus pc=new PopCus(this, R.layout.poptest);
 //			pc.showPop();
-			Pop_Photo pop=new Pop_Photo(this, R.id.flowLayoutZone1);
+			Pop_Photo pop=new Pop_Photo(this, R.id.flowLayoutZone1,R.id.pop);
 			pop.show();
 			break;
 		case R.id.tag:

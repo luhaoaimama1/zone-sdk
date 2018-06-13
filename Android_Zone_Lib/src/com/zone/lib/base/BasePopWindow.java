@@ -2,6 +2,11 @@ package com.zone.lib.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -23,6 +28,7 @@ public abstract class BasePopWindow extends PopupWindow {
     private int layoutid, dismissViewId, showAtLocationViewId;
     private boolean bgVisibility = true;
     private int bgColor = 0xb0000000;
+    private int buttonID=-1;
 
     /**
      * @param layoutid
@@ -31,6 +37,16 @@ public abstract class BasePopWindow extends PopupWindow {
     public void setPopContentView(int layoutid, int dismissViewId) {
         this.layoutid = layoutid;
         this.dismissViewId = dismissViewId;
+    }
+
+    /**
+     * @param layoutid
+     * @param dismissViewId pop布局中控件id viewrect范围之外 点击 即可dissming
+     */
+    public void setPopContentView(int layoutid, int dismissViewId,int buttonID) {
+        this.layoutid = layoutid;
+        this.dismissViewId = dismissViewId;
+        this.buttonID=buttonID;
     }
 
     /**
@@ -84,7 +100,22 @@ public abstract class BasePopWindow extends PopupWindow {
         if (bgVisibility) {
             // 设置SelectPicPopupWindow弹出窗体动画效果this.setAnimationStyle(R.style.AnimBottom);
             // 实例化一个ColorDrawable颜色为半透明
-            ColorDrawable dw = new ColorDrawable(bgColor);
+            ColorDrawable dw = new ColorDrawable(bgColor){
+                @Override
+                public void draw(Canvas canvas) {
+                    super.draw(canvas);
+                    if(buttonID!=-1){
+                        Paint paint = new Paint();
+                        paint.setColor(Color.BLUE);
+                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                        View view=activity.findViewById(buttonID) ;
+                        Rect rect=new Rect();
+                        view.getGlobalVisibleRect(rect);
+                        canvas.drawRect(rect,paint);
+//                        canvas.drawRoundRect(rect,paint);
+                    }
+                }
+            };
             // 设置SelectPicPopupWindow弹出窗体的背景
             setBackgroundDrawable(dw);
             // 设置layout在PopupWindow中显示的位置
