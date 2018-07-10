@@ -11,22 +11,22 @@ import com.example.mylib_test.activity.touch.view.ViewDragFrame;
 import com.zone.lib.base.activity.BaseActivity;
 import com.zone.lib.base.activity.kinds.SwipeBackKind;
 import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by Zone on 2016/1/29.
  */
 public class ViewDragStudyActivity2 extends BaseActivity {
-    @Bind(R.id.tv_mMenuView)
+    @BindView(R.id.tv_mMenuView)
     TextView tvMMenuView;
-    @Bind(R.id.tv_back)
+    @BindView(R.id.tv_back)
     TextView tvBack;
-    @Bind(R.id.tv_moveEnable)
+    @BindView(R.id.tv_moveEnable)
     TextView tvMoveEnable;
-    @Bind(R.id.viewDragStudyFrame)
+    @BindView(R.id.viewDragStudyFrame)
     ViewDragFrame viewDragStudyFrame;
-    @Bind(R.id.tv_leftOrRight)
+    @BindView(R.id.tv_leftOrRight)
     TextView tvLeftOrRight;
 
     @Override

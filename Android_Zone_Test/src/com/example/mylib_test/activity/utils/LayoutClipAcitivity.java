@@ -8,7 +8,7 @@ import com.zone.view.FlowLayout;
 import com.zone.lib.base.activity.BaseActivity;
 import com.zone.lib.utils.view.AnimationUtils;
 import com.zone.lib.utils.view.ViewUtils;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -17,7 +17,7 @@ import butterknife.OnClick;
  */
 
 public class LayoutClipAcitivity extends BaseActivity {
-    @Bind(R.id.iv_clip)
+    @BindView(R.id.iv_clip)
     ImageView iv_clip;
 
     @Override

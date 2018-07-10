@@ -49,7 +49,6 @@
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity3"></activity>
         <activity android:name="com.example.mylib_test.activity.wifi.WifiAdapterActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.photo_shot.ShowPicActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.three_place.ImageLoaderActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.GetPhoneTest"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.CustomView_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ChengChengActivity"></activity>
@@ -89,6 +88,7 @@
         <service android:name="com.example.mylib_test.activity.pop_dialog.FxService2"></service>
 
         <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.TextViewLinkActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.ress.ResMainActvitity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CanvasTest"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.XfermodeActivity"></activity>

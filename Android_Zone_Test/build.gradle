@@ -2,11 +2,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
     compile 'io.reactivex:rxandroid:1.1.0'
@@ -28,15 +32,34 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 
-    compile project(':Android_Zone_Lib')
+    compile (project(':Android_Zone_Lib')){
+        exclude group: 'com.jakewharton', module: 'butterknife'
+    }
+
     compile 'com.facebook.fresco:fresco:1.9.0'
     compile 'com.github.luhaoaimama1:ZView:1.0.35'
 //        compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
-    compile('com.github.luhaoaimama1:ZAdapter3:1.0.91',{
+    compile('com.github.luhaoaimama1:ZAdapter3:1.0.92',{
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     })
     compile 'com.android.support:recyclerview-v7:23.2.0'
+
+    compile"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+
+    compile ('com.jakewharton:butterknife:8.8.1'){
+        exclude  module: 'support-compat'
+    }
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 }
+
+//Kotlin gradle.build ZipException because of duplicates
+//https://discuss.kotlinlang.org/t/kotlin-gradle-build-zipexception-because-of-duplicates/2133/8
+configurations {
+    compile.exclude group : 'org.jetbrains' , module : 'annotations'
+}
+
 
 android {
     compileSdkVersion 22
@@ -84,4 +107,10 @@ android {
 //    packagingOptions {
 //        exclude 'META-INF/LICENSE.txt'
 //    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }

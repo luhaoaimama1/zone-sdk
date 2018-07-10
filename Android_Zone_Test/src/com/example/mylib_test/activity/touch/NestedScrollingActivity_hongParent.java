@@ -13,12 +13,12 @@ import com.example.mylib_test.delegates.TextType2Delegates;
 import com.zone.adapter3.QuickRcvAdapter;
 import com.zone.lib.base.activity.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class NestedScrollingActivity_hongParent extends BaseActivity {
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     private List<String> mDatas = new ArrayList<String>();

@@ -8,19 +8,19 @@ import com.example.mylib_test.R;
 
 import com.zone.lib.base.activity.BaseActivity;
 import com.zone.lib.utils.activity_fragment_ui.MeasureUtils;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2016/4/14.
  */
 public class ImageShowBigActivity extends BaseActivity {
-    @Bind(R.id.iv)
+    @BindView(R.id.iv)
     ImageView iv;
     ImageView.ScaleType scaleType;
-    @Bind(R.id.bt)
+    @BindView(R.id.bt)
     Button bt;
-    @Bind(R.id.bt_refresh)
+    @BindView(R.id.bt_refresh)
     Button btRefresh;
     private int next;
 

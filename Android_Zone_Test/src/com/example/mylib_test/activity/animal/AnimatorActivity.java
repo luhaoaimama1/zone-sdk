@@ -12,13 +12,13 @@ import android.widget.ImageView;
 
 import com.example.mylib_test.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AnimatorActivity extends Activity {
     private final String TAG = "AnimatorActivity";
-    @Bind(R.id.iv)
+    @BindView(R.id.iv)
     ImageView iv;
     private ObjectAnimator objAni;
 

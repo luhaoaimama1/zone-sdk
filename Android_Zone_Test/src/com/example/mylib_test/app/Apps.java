@@ -87,8 +87,6 @@ public class Apps extends Application {
         //初始化ImageLoader
         ImageLoaderConfigUtils.initImageLoader(getApplicationContext(), ImageLoaderOptionsUtils.getNormalOption＿NotBuild().build(), false);
 
-
-
         Fresco.initialize(this);
 
 //		CrashHandler.getInstance().init(this);
@@ -96,7 +94,6 @@ public class Apps extends Application {
 //		每次loading页 发送bug日志  如果发送成功就删除
 //		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(
 //				this));
-
 
 //        loggerTest();
         refWatcher = LeakCanary.install(this);

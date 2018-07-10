@@ -23,11 +23,13 @@ import java.util.Map;
 
 import com.zone.lib.utils.zeventbus.ZEventBus;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class Http_MainActivity extends Activity implements OnClickListener {
     Map<String, Object> map = new HashMap<>();
     Map<String, String> params = new HashMap<>();
     private static ZEventBus  zb;
+    private Unbinder bk;
 
 
     @Override
@@ -35,7 +37,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_http_test);
 //        findViewById(R.id.zeventBus3).setOnClickListener(this);
-        ButterKnife.bind(this);
+        bk=ButterKnife.bind(this);
         //这段　只是学习下handler～　
         new Thread() {
             @Override
@@ -107,7 +109,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
 
     @Override
     protected void onDestroy() {
-        ButterKnife.unbind(this);
+        bk.unbind();
 //        ok.cancelTag(this);
         super.onDestroy();
         RefWatcher refWatcher = Apps.getRefWatcher(this);

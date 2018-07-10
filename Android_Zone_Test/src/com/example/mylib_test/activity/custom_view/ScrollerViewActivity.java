@@ -8,7 +8,7 @@ import android.widget.ScrollView;
 
 import com.example.mylib_test.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
  */
 
 public class ScrollerViewActivity extends Activity {
-    @Bind(R.id.sv)
+    @BindView(R.id.sv)
     HorizontalScrollView sv;
 
     @Override

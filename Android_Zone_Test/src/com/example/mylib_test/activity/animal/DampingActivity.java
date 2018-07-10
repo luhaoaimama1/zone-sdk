@@ -4,7 +4,7 @@ import com.example.mylib_test.R;
 import com.zone.lib.base.activity.BaseActivity;
 import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
 import com.zone.lib.utils.data.check.EmptyCheck;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import view.DampingView;
 
@@ -13,11 +13,11 @@ import view.DampingView;
  * Created by fuzhipeng on 16/7/29.
  */
 public class DampingActivity extends BaseActivity implements DampingView.DownCallback{
-    @Bind(R.id.maxValue)
+    @BindView(R.id.maxValue)
     EditText maxValue;
-    @Bind(R.id.dampingRadio)
+    @BindView(R.id.dampingRadio)
     EditText dampingRadio;
-    @Bind(R.id.dampingView)
+    @BindView(R.id.dampingView)
     DampingView dampingView;
 
     @Override

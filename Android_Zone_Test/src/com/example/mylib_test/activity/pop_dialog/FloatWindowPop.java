@@ -7,7 +7,7 @@ import android.widget.Button;
 import com.example.mylib_test.R;
 import com.zone.lib.base.WindowPop;
 import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -17,7 +17,7 @@ import butterknife.OnClick;
 
 public class FloatWindowPop extends WindowPop {
     private static final String TAG = "FloatWindowPop";
-    @Bind(R.id.float_id)
+    @BindView(R.id.float_id)
     Button floatId;
     private View mMenuView;
 

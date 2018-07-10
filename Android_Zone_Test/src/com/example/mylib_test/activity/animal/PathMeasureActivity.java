@@ -7,7 +7,7 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.animal.viewa.PathMeasureView;
 
 import com.zone.lib.base.activity.BaseActivity;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -17,7 +17,7 @@ import butterknife.OnClick;
 
 public class PathMeasureActivity extends BaseActivity {
 
-    @Bind(R.id.pathMeasureView)
+    @BindView(R.id.pathMeasureView)
     PathMeasureView pathMeasureView;
 
     @Override

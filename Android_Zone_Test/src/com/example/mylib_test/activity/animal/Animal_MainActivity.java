@@ -19,13 +19,13 @@ import android.widget.ScrollView;
 import com.example.mylib_test.R;
 
 import com.zone.lib.utils.activity_fragment_ui.ActivityTopViewUtils;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import com.zone.view.FlowLayout;
 
 public class Animal_MainActivity extends Activity implements OnClickListener {
-    @Bind(R.id.bt_clip_drawable)
+    @BindView(R.id.bt_clip_drawable)
     Button btClipDrawable;
     private FlowLayout flowLayoutZone1;
     private ImageView iv_iv;
@@ -164,6 +164,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.bt_Animator:
                 startActivity(new Intent(this, AnimatorActivity.class));
+                break;
+            case R.id.bt_spannable:
+                startActivity(new Intent(this, TextViewLinkActivity.class));
                 break;
 
             default:

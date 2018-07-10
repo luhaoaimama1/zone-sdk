@@ -13,21 +13,23 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by Administrator on 2016/4/19.
  */
 public class EventFragment extends Fragment {
-    @Bind(R.id.textView5)
+    @BindView(R.id.textView5)
     TextView textView5;
+    private Unbinder bk;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.f_event, null);
-        ButterKnife.bind(this, view);
+        bk=ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
         return view;
     }
@@ -40,7 +42,7 @@ public class EventFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        bk.unbind();
         EventBus.getDefault().unregister(this);
     }
 

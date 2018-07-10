@@ -5,22 +5,6 @@
     android:layout_height="wrap_content">
 
     <Button
-        android:id="@+id/imageLoader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="imageLoader" />
-
-    <Button
-        android:id="@+id/imageLoaderGrid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="imageLoaderGird" />
-
-    <Button
         android:id="@+id/google_pull"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

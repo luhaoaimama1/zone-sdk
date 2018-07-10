@@ -8,13 +8,13 @@ import com.example.mylib_test.R;
 import com.example.mylib_test.activity.touch.NestedView.NestedScrollingChildView;
 
 import com.zone.lib.base.activity.BaseActivity;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class NestedScrollingActivity_Child extends BaseActivity {
 
-    @Bind(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     NestedScrollingChildView nestedScrollingChildView;
 
     @Override
