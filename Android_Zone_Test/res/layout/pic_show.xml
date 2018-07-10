@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
-<com.zone.view.FlowLayout
-  android:layout_width="fill_parent"
-    android:layout_height="wrap_content"  >
-    <com.zone.view.SquareImageView
-        android:id="@+id/iv_uri"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+    android:layout_height="wrap_content">
 
-    <TextView
+    <com.zone.view.FlowLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="uri" />
+        android:layout_height="wrap_content">
 
-    <com.zone.view.SquareImageView
-        android:id="@+id/iv_url"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+        <com.zone.view.SquareImageView
+            android:id="@+id/iv_uri"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="url" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="uri" />
 
-    <com.zone.view.SquareImageView
-        android:id="@+id/iv_provider"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+        <com.zone.view.SquareImageView
+            android:id="@+id/iv_url"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="from content provider  " />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="url" />
 
-    <com.zone.view.SquareImageView
-        android:id="@+id/iv_assets"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+        <com.zone.view.SquareImageView
+            android:id="@+id/iv_provider"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="from assets   " />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="from content provider  " />
 
-    <com.zone.view.SquareImageView
-        android:id="@+id/iv_drawables"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+        <com.zone.view.SquareImageView
+            android:id="@+id/iv_assets"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=" from drawables   " />
-</com.zone.view.FlowLayout>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="from assets   " />
+
+        <com.zone.view.SquareImageView
+            android:id="@+id/iv_drawables"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=" from drawables   " />
+    </com.zone.view.FlowLayout>
 </ScrollView>

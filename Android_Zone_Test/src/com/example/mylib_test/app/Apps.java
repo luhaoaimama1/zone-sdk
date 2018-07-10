@@ -17,15 +17,11 @@ package com.example.mylib_test.app;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zone.lib.Configuration;
-
-import com.example.mylib_test.app.imageloader.ImageLoaderConfigUtils;
-import com.example.mylib_test.app.imageloader.ImageLoaderOptionsUtils;
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
-import com.example.mylib_test.R;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.zone.okhttp.HttpConfig;
@@ -81,11 +77,6 @@ public class Apps extends Application {
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-
-        //记得设置加载中图片 不然下拉加载http的时候慢了 会显示复用之前的背景就会造成 从复用过来的图变成 加载后的图！！！
-        ImageLoaderOptionsUtils.initShowImage(R.drawable.ic_stub, R.drawable.ic_empty, R.drawable.ic_error);
-        //初始化ImageLoader
-        ImageLoaderConfigUtils.initImageLoader(getApplicationContext(), ImageLoaderOptionsUtils.getNormalOption＿NotBuild().build(), false);
 
         Fresco.initialize(this);
 

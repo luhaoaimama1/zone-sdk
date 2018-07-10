@@ -176,7 +176,6 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
 
     private void bitmapRecyleTest() {
         if (bt != null) {
-            //		ImageLoader.getInstance().loadImageSync(ImageLoaderURIUtils.transformURI(R.drawable.abcd+"", Type.Drawable));
             Log.i("hei", "bitmapRecyleTest" + (bt.isRecycled() == true ? "回收成功" : "回收失败"));
             iv_iv.setImageBitmap(bt);
             rec(bt);

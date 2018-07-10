@@ -1,13 +1,16 @@
 package com.example.mylib_test.activity.photo_shot;
+import com.bumptech.glide.Glide;
 import com.example.mylib_test.R;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.zone.lib.utils.image.compress2sample.SampleUtils;
+
+import java.io.IOException;
 
 public class ShowPicActivity extends Activity {
 	private ImageView iv_uri,iv_url,iv_provider,iv_assets,iv_drawables;
@@ -22,15 +25,22 @@ public class ShowPicActivity extends Activity {
 		iv_assets = (ImageView) findViewById(R.id.iv_assets);
 		iv_drawables = (ImageView) findViewById(R.id.iv_drawables);
 		Uri uri = getIntent().getData();
-//		Bitmap bt = Compress_Sample_Utils.getSampleBitmap(uri.toString(), 600, null);
-		Bitmap bt = SampleUtils.load(uri.toString()).overrideW(600).bitmap();
 		iv_provider.setImageBitmap(null);
 		if (uri != null) {
-			ImageLoader.getInstance().displayImage("file://"+uri.toString(), iv_uri);
-			ImageLoader.getInstance().displayImage("file://"+uri.getPath(), iv_url);
+			Glide.with(this).load("file://"+uri.toString()).into(iv_uri);
+			Glide.with(this).load("file://"+uri.getPath()).into(iv_url);
 		}
-		ImageLoader.getInstance().displayImage("assets://"+"abcd.jpg", iv_assets);
-		ImageLoader.getInstance().displayImage("drawable://"+R.drawable.abcd, iv_drawables);
+		Glide.with(this).load(R.drawable.abcd).into(iv_drawables);
+
+//glide加载 asset		https://github.com/bumptech/glide/issues/155
+//		Glide.with(this).load("file:///androd_asset/abcd.jpg").into(iv_assets);
+		try {
+			iv_assets.setImageBitmap(BitmapFactory.decodeStream(getAssets().open("abcd.jpg")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		iv_assets.setImageURI(Uri.parse("file:///android_asset/abcd.jpg"));
+
 	}
 
 }
