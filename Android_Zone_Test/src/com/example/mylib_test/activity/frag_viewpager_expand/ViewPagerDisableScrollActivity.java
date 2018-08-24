@@ -103,9 +103,9 @@ public class ViewPagerDisableScrollActivity extends FragmentActivity {
 		public Fragment getItem(int position) {
 			switch (position) {
 			case 0:
-				return new Tab1();
-			case 1:
 				return new Tab2();
+			case 1:
+				return new Tab1();
 			case 2:
 				return new Tab3();
 			case 3:

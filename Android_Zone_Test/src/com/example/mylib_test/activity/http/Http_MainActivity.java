@@ -21,7 +21,7 @@ import com.squareup.leakcanary.RefWatcher;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.zone.lib.utils.zeventbus.ZEventBus;
+import com.example.mylib_test.activity.http.zeventbus.ZEventBus;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 

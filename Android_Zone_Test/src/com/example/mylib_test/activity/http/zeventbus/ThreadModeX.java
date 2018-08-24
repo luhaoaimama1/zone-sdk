@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.zone.lib.utils.zeventbus;
+package com.example.mylib_test.activity.http.zeventbus;
 
 
 import java.lang.annotation.Documented;

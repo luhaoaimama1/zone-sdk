@@ -105,5 +105,13 @@
         android:layout_height="wrap_content"
         android:text="并列冲突解决不了 把并列冲突布局改成 嵌套冲突 在解决(点进去可看失败成果)" />
 
+    <Button
+        android:id="@+id/nestScrollB"
+        android:onClick="onClick"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="嵌套滚动" />
+
 
 </com.zone.view.FlowLayout>

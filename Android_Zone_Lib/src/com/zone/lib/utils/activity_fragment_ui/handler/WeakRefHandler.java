@@ -9,11 +9,11 @@ import java.lang.ref.WeakReference;
 /**
  * 主要是防止空缓存
  */
-public class ZHandler extends Handler {
+public class WeakRefHandler extends Handler {
     private final WeakReference<Activity> mCallback;
 
-    public ZHandler(Activity activity) {
-        mCallback = new WeakReference<Activity>(activity);
+    public WeakRefHandler(Activity activity) {
+        mCallback = new WeakReference<>(activity);
     }
 
     @Override

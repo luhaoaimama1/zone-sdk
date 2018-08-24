@@ -17,8 +17,6 @@ public class DrawUtils {
         canvas.drawBitmap(bt, (view.getWidth() - bt.getWidth()) / 2, (view.getHeight() - bt.getHeight()) / 2, paint);
     }
 
-    ;
-
     public static Paint getBtPaint() {
         Paint paint = new Paint();
         paint.setDither(true);

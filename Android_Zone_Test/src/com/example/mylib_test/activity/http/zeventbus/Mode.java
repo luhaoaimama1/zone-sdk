@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zone.lib.utils.zeventbus;
+package com.example.mylib_test.activity.http.zeventbus;
 
 /**
  * Each event handler method has a thread mode, which determines in which thread the method is to be called by EventBus.
  * EventBus takes care of threading independently from the posting thread.
  * 
- * @see EventBus#register(Object)
  * @author Markus
  */
 public enum Mode {

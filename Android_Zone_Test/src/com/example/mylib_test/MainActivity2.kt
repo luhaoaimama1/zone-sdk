@@ -22,6 +22,7 @@ class MainActivity2 : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a_menu)
+        sptest()
 
         createDialog()
         listView1 = findViewById(R.id.listView1) as RecyclerView
@@ -75,6 +76,11 @@ class MainActivity2 : Activity() {
         //		controller2.setDelay(2F);   //为ListView设置LayoutAnimationController属性；
         //		listView1.setLayoutAnimation(controller2);
         //		listView1.startLayoutAnimation();
+    }
+
+    private fun sptest() {
+        SP2.put("like","嗯")
+        print("取值："+SP2.get("like","null"))
     }
 
     private fun createDialog() {

@@ -1,4 +1,5 @@
 package com.zone.lib.utils.data.file2io2data;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import java.lang.reflect.InvocationTargetException;
@@ -12,15 +13,20 @@ import com.zone.lib.utils.data.convert.GsonUtils;
  * 引用项目:https://github.com/openproject/LessCode
  * 不习惯$符号的方法名,所以改了下；
  */
-public class SharedUtils {
+public class QuickShare {
 
-    private static final String SHARED_NAME = "preferences";
+    private String shareName = "preferences";
 
-    private static SharedPreferences getSharedPreferences() {
-        return  Configuration.getInstance().getAppContext().getSharedPreferences(SHARED_NAME,Context.MODE_PRIVATE);
+    protected QuickShare(String shareName) {
+        this.shareName = shareName;
     }
 
-    public static <T> void put(String key, T value) {
+    private SharedPreferences getSharedPreferences() {
+        return Configuration.getInstance().getAppContext()
+                .getSharedPreferences(shareName, Context.MODE_PRIVATE);
+    }
+
+    public <T> void put(String key, T value) {
         SharedPreferences sp = getSharedPreferences();
         SharedPreferences.Editor editor = sp.edit();
 
@@ -46,65 +52,65 @@ public class SharedUtils {
         SharedPreferencesCompat.apply(editor);
     }
 
-    public static  <T> T  get(String key, Class<T> t) {
+    public <T> T get(String key, Class<T> t) {
         SharedPreferences sp = getSharedPreferences();
-        String content=sp.getString(key, "");
-        if(StringCheck.isEmptyTrim(content))
+        String content = sp.getString(key, "");
+        if (StringCheck.isEmptyTrim(content))
             return null;
         else
-            return GsonUtils.fromJson( content,t);
+            return GsonUtils.fromJson(content, t);
     }
 
-    public static String get(String key, String defaultValue) {
+    public String get(String key, String defaultValue) {
         SharedPreferences sp = getSharedPreferences();
         return sp.getString(key, defaultValue);
     }
 
-    public static boolean get(String key, boolean defaultValue) {
+    public boolean get(String key, boolean defaultValue) {
         SharedPreferences sp = getSharedPreferences();
         return sp.getBoolean(key, defaultValue);
     }
 
-    public static float get(String key, float defaultValue) {
+    public float get(String key, float defaultValue) {
         SharedPreferences sp = getSharedPreferences();
         return sp.getFloat(key, defaultValue);
     }
 
-    public static int get(String key, int defaultValue) {
+    public int get(String key, int defaultValue) {
         SharedPreferences sp = getSharedPreferences();
         return sp.getInt(key, defaultValue);
     }
 
-    public static long get(String key, long defaultValue) {
+    public long get(String key, long defaultValue) {
         SharedPreferences sp = getSharedPreferences();
         return sp.getLong(key, defaultValue);
     }
 
 
-    public static Map<String, ?> getAll() {
+    public Map<String, ?> getAll() {
         return getSharedPreferences().getAll();
     }
 
-    public static void registerOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+    public void registerOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         getSharedPreferences().registerOnSharedPreferenceChangeListener(listener);
     }
 
-    public static void unregisterOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+    public void unregisterOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
         getSharedPreferences().unregisterOnSharedPreferenceChangeListener(listener);
     }
 
-    public static boolean contains(String key) {
+    public boolean contains(String key) {
         return getSharedPreferences().contains(key);
     }
 
-    public static void remove(String key) {
+    public void remove(String key) {
         SharedPreferences sp = getSharedPreferences();
         SharedPreferences.Editor editor = sp.edit();
         editor.remove(key);
         SharedPreferencesCompat.apply(editor);
     }
 
-    public static void clear() {
+    public void clear() {
         SharedPreferences sp = getSharedPreferences();
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
@@ -122,6 +128,7 @@ public class SharedUtils {
      * *********************************************************************************************
      */
     private static class SharedPreferencesCompat {
+
         private static final Method sApplyMethod = findApplyMethod();
 
         /**
@@ -158,6 +165,4 @@ public class SharedUtils {
             editor.commit();
         }
     }
-
-
 }

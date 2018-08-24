@@ -8,46 +8,48 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:22.1.1'
 
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+//    compile 'com.github.bumptech.glide:glide:4.8.0'
 
-    compile 'io.reactivex:rxandroid:1.1.0'
+    implementation 'io.reactivex:rxandroid:1.1.0'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
-    compile 'io.reactivex:rxjava:1.1.3'
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    implementation 'io.reactivex:rxjava:1.1.3'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
     //    compile 'com.squareup.retrofit2:retrofit-converters:2.0.2'
     //    compile 'com.squareup.retrofit2:converter-gson'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'jp.wasabeef:blurry:2.0.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'jp.wasabeef:blurry:2.0.0'
 
-    compile 'com.zone:zokhttp:1.1.2'
-    compile 'com.github.luhaoaimama1:ZAnimate:1.0.1'
-    compile 'com.github.luhaoaimama1:ZRefreshLayout:1.0.15'
+    implementation 'com.zone:zokhttp:1.1.2'
+    implementation 'com.github.luhaoaimama1:ZAnimate:1.0.1'
+    implementation 'com.github.luhaoaimama1:ZRefreshLayout:1.0.15'
 
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 
-    compile (project(':Android_Zone_Lib')){
+    implementation (project(':Android_Zone_Lib')){
         exclude group: 'com.jakewharton', module: 'butterknife'
     }
 
-    compile 'com.facebook.fresco:fresco:1.9.0'
-    compile 'com.github.luhaoaimama1:ZView:1.0.35'
+    implementation 'com.facebook.fresco:fresco:1.9.0'
+    implementation 'com.github.luhaoaimama1:ZView:1.0.35'
 //        compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
-    compile('com.github.luhaoaimama1:ZAdapter3:1.0.92',{
+    implementation('com.github.luhaoaimama1:ZAdapter3:1.0.92',{
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     })
-    compile 'com.android.support:recyclerview-v7:23.2.0'
+    implementation 'com.android.support:recyclerview-v7:23.2.0'
 
-    compile"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
 
-    compile ('com.jakewharton:butterknife:8.8.1'){
+    implementation ('com.jakewharton:butterknife:8.8.1'){
         exclude  module: 'support-compat'
     }
     kapt 'com.jakewharton:butterknife-compiler:8.8.1'
@@ -63,7 +65,7 @@ configurations {
 android {
     compileSdkVersion 22
 //    buildToolsVersion '23.0.3'
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '27.0.3'
 //    dataBinding {
 //        enabled = true
 //    }
@@ -79,7 +81,7 @@ android {
         }
 
         // Move the tests to tests/java, tests/res, etc...
-        instrumentTest.setRoot('tests')
+        androidTest.setRoot('tests')
 
         // Move the perform types to perform-types/<type>
         // For instance, perform-types/debug/java, perform-types/debug/AndroidManifest.xml, ...
@@ -97,11 +99,14 @@ android {
 //        }
         // dex突破65535的限制
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 //    packagingOptions {
 //        exclude 'META-INF/LICENSE.txt'

@@ -73,6 +73,7 @@
         <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity2"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.GestureDetectorActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.MyScaleActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.NestedScrollBActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ScrollerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.AsyncTask_TestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity"></activity>
@@ -82,6 +83,7 @@
         <activity android:name="com.example.mylib_test.activity.three_place.BlurActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GildeActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.FrescoActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.TextBugActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"></activity>
 
         <service android:name="com.example.mylib_test.activity.pop_dialog.FxService"></service>

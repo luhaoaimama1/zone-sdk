@@ -9,10 +9,10 @@ import android.view.View.OnClickListener;
 
 import com.example.mylib_test.R;
 import com.example.mylib_test.activity.http.entity.Img;
+import com.example.mylib_test.activity.http.zeventbus.Mode;
+import com.example.mylib_test.activity.http.zeventbus.ThreadModeX;
+import com.example.mylib_test.activity.http.zeventbus.ZEventBus;
 
-import com.zone.lib.utils.zeventbus.ThreadModeX;
-import com.zone.lib.utils.zeventbus.Mode;
-import com.zone.lib.utils.zeventbus.ZEventBus;
 
 public class ZBusActivity extends Activity implements OnClickListener {
 

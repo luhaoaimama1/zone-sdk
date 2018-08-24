@@ -1,4 +1,4 @@
-package com.zone.lib.utils.zeventbus;
+package com.example.mylib_test.activity.http.zeventbus;
 
 import android.annotation.TargetApi;
 import android.os.AsyncTask;
