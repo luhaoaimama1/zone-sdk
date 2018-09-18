@@ -98,5 +98,12 @@ class MainActivity2 : Activity() {
         alert = builder.create()
     }
 
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
 }

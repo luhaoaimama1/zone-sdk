@@ -89,6 +89,12 @@ public class Apps extends Application {
 //        loggerTest();
         refWatcher = LeakCanary.install(this);
     }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
+
     private RefWatcher refWatcher;
     public static RefWatcher getRefWatcher(Context context) {
         Apps application = (Apps) context.getApplicationContext();

@@ -7,9 +7,9 @@
         <enum name="right_bottom" value="2" />
         <enum name="left_bottom" value="3" />
     </attr>
-    <attr name="radius" format="dimension"></attr>
-    <attr name="startAngel" format="float"></attr>
-    <attr name="spreadAngel" format="float"></attr>
+    <!--<attr name="radius" format="dimension"></attr>-->
+    <!--<attr name="startAngel" format="float"></attr>-->
+    <!--<attr name="spreadAngel" format="float"></attr>-->
 
     <declare-styleable name="ArcMenu">
         <attr name="position" />
@@ -23,4 +23,10 @@
         <attr name="spreadAngel" />
     </declare-styleable>
 
+    <declare-styleable name="CircleProgressView">
+        <attr name="radius" format="dimension" />
+        <attr name="progressStrokeWidth" format="dimension" />
+        <attr name="progress" format="integer" />
+        <attr name="progressInner" format="integer" />
+    </declare-styleable>
 </resources>

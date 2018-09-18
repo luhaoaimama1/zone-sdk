@@ -1,74 +1,151 @@
-/*
- * Copyright (c) 2015-2018 BiliBili Inc.
- */
 
 package view
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
+import android.annotation.TargetApi
 import android.content.Context
-import android.graphics.Canvas
+import android.graphics.*
+import android.os.Build
 import android.support.v4.view.NestedScrollingParent
 import android.support.v4.view.NestedScrollingParentHelper
 import android.support.v4.view.ViewCompat
 import android.util.AttributeSet
 import android.view.View
-import android.view.animation.LinearInterpolator
+import android.view.ViewOutlineProvider
 import android.widget.FrameLayout
-import com.zone.lib.utils.image.BitmapUtils
+import com.zone.lib.utils.data.convert.DensityUtils
 
 /**
- * Copyright (c) 2018 BiliBili Inc.
  *[2018/8/24] by Zone
  */
+object MathUtils {
+    //    t, tMin, tMax, value1, value2
+    fun <T : Number, R : Number> linearMap(srcNow: T, src1: T, src2: T, dst1: R, dst2: R): R {
+
+        val radio: Float = when (srcNow) {
+            is Float -> (srcNow.toFloat() - src1.toFloat()) / (src2.toFloat() - src1.toFloat())
+            is Double -> ((srcNow.toDouble() - src1.toDouble()) / (src2.toDouble() - src1.toDouble())).toFloat()
+            is Int -> ((srcNow.toInt() - src1.toInt()) / (src2.toInt() - src1.toInt())).toFloat()
+            is Long -> ((srcNow.toLong() - src1.toLong()) / (src2.toLong() - src1.toLong())).toFloat()
+            else -> throw IllegalStateException("状态异常")
+        }
+        val result: Float = when (dst1) {
+            is Double -> (radio * (dst2.toDouble() - dst1.toDouble()) + dst1).toFloat()
+            is Float -> radio * (dst2.toFloat() - dst1.toFloat()) + dst1
+            is Int -> radio * (dst2.toInt() - dst1.toInt()).toFloat() + dst1.toFloat()
+            is Long -> radio * (dst2.toLong() - dst1.toLong()) + dst1
+            else -> throw IllegalStateException("状态异常")
+        }
+        return when (dst1) {
+            is Double -> result.toDouble()
+            is Float -> result
+            is Int -> result.toInt()
+            is Long -> result.toLong()
+            else -> throw IllegalStateException("状态异常")
+        } as R
+    }
+}
 
 enum class State { REST, PULLING, LOADING, RELEASE, ANIMATE_LEAVE, ANIMATE_BACK }
+
+interface CenterProgress{
+    fun progress(progress:Float)
+}
 
 class BrilliantViewGroup : FrameLayout, NestedScrollingParent {
 
     var closeAbleHeight = 300
     var scaleMiniMax = 0.4F
+    var scaleLeave = 0.3F
     var leaveProcess = 0F
     var backProcess = 0F
     var state = State.REST
+    var centerProgress:CenterProgress?=null
+
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
+    private var textPaint: Paint
+
     init {
         mNestedScrollingParentHelper = NestedScrollingParentHelper(this)
+        textPaint = Paint()
+        textPaint.isAntiAlias = true
+        textPaint.textSize = DensityUtils.dp2px(context, 12F).toFloat()
+        textPaint.color = Color.WHITE
     }
 
-    override fun dispatchDraw(canvas: Canvas) {
-        when (state) {
-            State.REST -> super.dispatchDraw(canvas)
-            State.ANIMATE_LEAVE -> {
-                canvas.save()
-                val scaleRadio = if (mTotalUnconsumed > 300) scaleMiniMax else mTotalUnconsumed * 0.6F / 300
-                canvas.scale(scaleRadio, scaleRadio, (width / 2).toFloat(), (height / 2).toFloat())
-                super.dispatchDraw(canvas)
-                canvas.restore()
-
-            }
-            State.ANIMATE_BACK -> {
-                canvas.save()
-                val mTotalUnconsumedTemp = mTotalUnconsumed * backProcess
-                val scaleRadio = if (mTotalUnconsumedTemp > 300) scaleMiniMax else 1 - mTotalUnconsumedTemp * (1 - scaleMiniMax) / 300
-                canvas.scale(scaleRadio, scaleRadio, (width / 2).toFloat(), (height / 2).toFloat())
-                super.dispatchDraw(canvas)
-                canvas.restore()
-
-            }
-            else -> {
-                canvas.save()
-                val scaleRadio = if (mTotalUnconsumed > 300) scaleMiniMax else 1 - mTotalUnconsumed * (1 - scaleMiniMax) / 300
-                canvas.scale(scaleRadio, scaleRadio, (width / 2).toFloat(), (height / 2).toFloat())
-                super.dispatchDraw(canvas)
-                canvas.restore()
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            val childAt = getChildAt(0)
+            childAt.post{
+                /* Sets the Outline of the View. */
+                val mOutlineProvider = object : ViewOutlineProvider() {
+                    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                    override fun getOutline(view: View, outline: Outline) {
+                        outline.setRoundRect(Rect(0,0,width,height), 100F)
+                    }
+                }
+                childAt.setOutlineProvider(mOutlineProvider);
+                /* Enables clipping on the View. */
+                childAt.setClipToOutline(true);
             }
         }
+    }
+
+    val martrix = Matrix()
+    override fun dispatchDraw(canvas: Canvas) {
+        val restoreCount = canvas.save()
+        martrix.reset()
+        when (state) {
+            State.REST -> {
+            }
+            State.ANIMATE_LEAVE -> {
+                val offsetTotalY = height * (.5f + scaleLeave / 2)
+                val nowOffsetY = offsetTotalY * leaveProcess
+                val nowScaleRadio = MathUtils.linearMap(leaveProcess, 0F, 1F, scaleMiniMax, scaleLeave)
+
+                background!!.alpha=MathUtils.linearMap(leaveProcess, 0F, 1F, 127, 0)
+                martrix.postScale(nowScaleRadio, nowScaleRadio, (width / 2).toFloat(), (height / 2).toFloat())
+                martrix.postTranslate(0F, -nowOffsetY)
+            }
+            State.ANIMATE_BACK -> {
+                val mTotalUnconsumedTemp = mTotalUnconsumed * (1 - backProcess)
+                val scaleRadio = MathUtils.linearMap(mTotalUnconsumedTemp, 300F, 0F, scaleMiniMax, 1F)
+
+                centerProgress?.progress(MathUtils.linearMap(mTotalUnconsumedTemp, 300F, 0F, 1F, 0F))
+                textPaint.alpha = MathUtils.linearMap(mTotalUnconsumedTemp, 300F, 0F, 255, 100)
+                background!!.alpha=MathUtils.linearMap(mTotalUnconsumedTemp, 300F, 0F, 127, 255)
+                martrix.postScale(scaleRadio, scaleRadio, (width / 2).toFloat(), (height / 2).toFloat())
+            }
+            else -> {
+                val scaleRadio = if (mTotalUnconsumed > 300) scaleMiniMax else MathUtils.linearMap(mTotalUnconsumed, 300F, 0F, scaleMiniMax, 1F)
+
+                textPaint.alpha = MathUtils.linearMap(scaleRadio, scaleMiniMax, 1F, 255, 100)
+                background!!.alpha=MathUtils.linearMap(scaleRadio, scaleMiniMax, 1F, 127, 255)
+                centerProgress?.progress(MathUtils.linearMap(scaleRadio, scaleMiniMax, 1F, 1F, 0F))
+                martrix.postScale(scaleRadio, scaleRadio, (width / 2).toFloat(), (height / 2).toFloat())
+            }
+        }
+
+        //把原来的背景清除掉  才能用alpha
+        canvas.clipRect(0F,0F,width.toFloat(), height.toFloat())
+        canvas.drawColor(Color.TRANSPARENT)
+        background.draw(canvas)
+
+        canvas.concat(martrix)
+        super.dispatchDraw(canvas)//绘制内容
+
+        if (state != State.ANIMATE_LEAVE)
+            canvas.drawText("关闭", (width - textPaint.measureText("关闭")) / 2,
+                height.toFloat() + DensityUtils.dp2px(context, 21F), textPaint)
+
+        canvas.restoreToCount(restoreCount)
     }
 
     //参考 SwipeRefreshLayout_NestedScrollingParent
@@ -152,6 +229,8 @@ class BrilliantViewGroup : FrameLayout, NestedScrollingParent {
         if (mTotalUnconsumed > 0) {
             println("Zone:onStopNestedScroll 消耗的:" + mTotalUnconsumed)
             finishSpinner(mTotalUnconsumed)
+        }else{
+            resetState(false)
         }
     }
 
@@ -164,26 +243,36 @@ class BrilliantViewGroup : FrameLayout, NestedScrollingParent {
         if (mTotalUnconsumed > closeAbleHeight) {
             //离开
             println("Zone:onStopNestedScroll 离开:")
-            goLeaveAnimate()
+            state = State.ANIMATE_LEAVE
+            leaveAnimator.start()
         } else {
             //回来
+            state = State.ANIMATE_BACK
             println("Zone:onStopNestedScroll 回来:")
-            goBackAnimate()
+            backAnimator.start()
         }
     }
 
-    val leaveAnimator = ValueAnimator.ofInt(0, 1000)
-//    val backAnimator = ValueAnimator.ofFloat(0f, 100f).apply {
-////        duration = 1000
-//        addListener(listener)
-//        addUpdateListener {
-//            backProcess = it.animatedValue as Float
-//        }
-//    }
-    val backAnimator = ValueAnimator.ofFloat(0f, 100f)
-    val listener = object : AnimatorListenerAdapter() {
-        override fun onAnimationEnd(animation: Animator?) {
-            resetState(true)
+    val leaveAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
+        addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                resetState(true)
+            }
+        })
+        addUpdateListener { animation ->
+            leaveProcess = animation.animatedValue as Float
+            postInvalidate()
+        }
+    }
+    val backAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
+        addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator?) {
+                resetState(true)
+            }
+        })
+        addUpdateListener {
+            backProcess = it.animatedValue as Float
+            postInvalidate()
         }
     }
 
@@ -194,27 +283,4 @@ class BrilliantViewGroup : FrameLayout, NestedScrollingParent {
         backProcess = 0F
         if (isInvalidate) postInvalidate()
     }
-
-    private fun goLeaveAnimate() {
-        leaveAnimator.addUpdateListener { animation ->
-            leaveProcess = animation.animatedValue as Int * 1f / 1000
-            postInvalidate()
-        }
-        leaveAnimator.addListener(listener)
-        leaveAnimator.start()
-    }
-
-    private fun goBackAnimate() {
-        backAnimator.addUpdateListener { animation ->
-            val temp = animation.animatedValue as Float
-            backProcess=0F
-            postInvalidate()
-        }
-        backAnimator.addListener(listener)
-        backAnimator .interpolator = LinearInterpolator()
-        backAnimator.duration =1000
-
-        backAnimator.start()
-    }
-
 }

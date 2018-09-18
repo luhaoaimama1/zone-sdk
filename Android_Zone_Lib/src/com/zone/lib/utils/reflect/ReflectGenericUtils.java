@@ -19,7 +19,7 @@ public class ReflectGenericUtils {
          * public String tag="Parent";
          * public Class<M> class_Unsafe;
          * public M entity;
-         * public Parent(M entity,B bilibili) {
+         * public Parent(M entity,B b) {
          * }
          * }
          */

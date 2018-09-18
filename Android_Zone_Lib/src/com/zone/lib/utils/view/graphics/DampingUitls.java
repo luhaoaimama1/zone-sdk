@@ -24,7 +24,7 @@ public class DampingUitls {
         //主要让x一直是>=0 的部分
         double x = Math.abs(overflowY);
         //0-1， 指数：1-e;
-        double eReplace = MathUtils.linear(dampingRadio,0,1,1, Math.E);
+        double eReplace = MathUtils.linearMap(dampingRadio,0,1,1, Math.E);
 //        double dampingY = -Math.exp(-x *18/maxLength) + 1;
         double dampingY = -Math.pow(eReplace,-x *18/maxLength) + 1;
         return (float) (signum * dampingY);

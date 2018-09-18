@@ -98,7 +98,7 @@ public class Http_MainActivity extends Activity implements OnClickListener {
     private void tread(View v) {
         switch (v.getId()) {
             case R.id.asyncTask:
-                startActivity(new Intent(this, AsyncTask_TestActivity.class));
+//                startActivity(new Intent(this, AsyncTask_TestActivity.class));
                 break;
 
             default:

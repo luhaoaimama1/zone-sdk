@@ -23,6 +23,7 @@ public class FxService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        System.out.println("FxService——onDestroy");
         floatWindowPop.remove();
     }
 

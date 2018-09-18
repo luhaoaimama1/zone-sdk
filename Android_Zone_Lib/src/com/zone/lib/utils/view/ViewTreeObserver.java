@@ -7,7 +7,6 @@ import static android.os.Build.VERSION_CODES.JELLY_BEAN;
 import static android.os.Build.VERSION_CODES.JELLY_BEAN_MR2;
 
 /**
- * Copyright (c) 2018 BiliBili Inc.
  * [2018/7/20] by Zone
  */
 public class ViewTreeObserver {
