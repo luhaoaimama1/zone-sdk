@@ -59,10 +59,6 @@ public class TouchMainActivity extends Activity implements OnClickListener{
 		case R.id.eventPass:
 			startActivity(new Intent(this,EventPassLogActivity.class));
 			break;
-		case R.id.nestScrollB:
-			startActivity(new Intent(this,NestedScrollBActivity.class));
-			break;
-
 		default:
 			break;
 		}

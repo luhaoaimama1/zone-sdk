@@ -46,6 +46,7 @@
             android:name="com.example.mylib_test.activity.system.LayoutInflaterActivity"
             android:theme="@style/AppBaseTheme2"></activity>
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity2"></activity>
+        <activity android:name="com.example.mylib_test.activity.system.PageActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.system.ResultActivity3"></activity>
         <activity android:name="com.example.mylib_test.activity.wifi.WifiAdapterActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.photo_shot.ShowPicActivity"></activity>
@@ -123,8 +124,9 @@
         <activity android:name=".activity.animal.PathActivity"></activity>
         <activity android:name=".activity.animal.PathMeasureActivity"></activity>
         <activity android:name=".activity.animal.DampingActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.utils.LayoutClipAcitivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.statu.StatuMainActivity"></activity>
+        <activity android:name=".activity.bbbb.BBBBActivity"></activity>
+        <activity android:name=".activity.utils.LayoutClipAcitivity"></activity>
+        <activity android:name=".activity.statu.StatuMainActivity"></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>

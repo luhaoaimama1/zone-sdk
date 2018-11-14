@@ -33,6 +33,7 @@
             android:onClick="onClick"
             android:padding="10dp"
             android:text="activityResult研究" />
+
         <Button
             android:id="@+id/bt_layoutInflater"
             android:layout_width="wrap_content"

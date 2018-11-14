@@ -22,7 +22,7 @@ class FrescoSuperscriptDeletates : ViewDelegates<FrescoActivity.Entity>(){
         val sdv =holder.getView(R.id.sdv) as SimpleDraweeView;
         val uri = Uri.parse(entity?.uri);
         sdv.setImageURI(uri);
-        val width = DensityUtils.dp2px(context, 20f);
+        val width = DensityUtils.dp2px(context, 20f)
         val drawable = SuperscriptDrawable(ContextCompat.getDrawable(context,R.drawable.icon));
         sdv.getHierarchy().setOverlayImage(drawable);
     }

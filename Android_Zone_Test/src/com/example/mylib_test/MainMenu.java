@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.mylib_test.activity.animal.Animal_MainActivity;
+import com.example.mylib_test.activity.bbbb.BBBBActivity;
 import com.example.mylib_test.activity.custom_view.CustomView_MainActivity;
 import com.example.mylib_test.activity.databingstudy.DataBingMainActivity;
 import com.example.mylib_test.activity.db.Db_MainActivity;
@@ -41,6 +42,7 @@ public class MainMenu {
 		menu.add(new MenuEntity("照片和拍摄(图片裁剪等辅助测试)", Photo_Shot_MainActivity.class)) ;
 		menu.add(new MenuEntity("系统控件等的研究", SystemMainActivity.class)) ;
 		menu.add(new MenuEntity("系统状态栏等研究", StatuMainActivity.class)) ;
+		menu.add(new MenuEntity("BBBBBBBBBB", BBBBActivity.class)) ;
 	}
 
 }
