@@ -6,56 +6,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-dependencies {
-    implementation fileTree(include: '*.jar', dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:22.1.1'
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
-//    compile 'com.github.bumptech.glide:glide:4.8.0'
-
-//    implementation 'io.reactivex:rxandroid:1.1.0'
-    // Because RxAndroid releases are few and far between, it is recommended you also
-    // explicitly depend on RxJava's latest version for bug fixes and new features.
-//    implementation 'io.reactivex:rxjava:1.1.3'
-    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
-    //    compile 'com.squareup.retrofit2:retrofit-converters:2.0.2'
-    //    compile 'com.squareup.retrofit2:converter-gson'
-    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
-    implementation 'org.greenrobot:eventbus:3.0.0'
-    implementation 'jp.wasabeef:blurry:2.0.0'
-
-    implementation 'com.zone:zokhttp:1.1.2'
-    implementation 'com.github.luhaoaimama1:ZAnimate:1.0.1'
-    implementation 'com.github.luhaoaimama1:ZRefreshLayout:1.0.15'
-
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-
-    implementation (project(':Android_Zone_Lib')){
-        exclude group: 'com.jakewharton', module: 'butterknife'
-    }
-
-    implementation 'com.facebook.fresco:fresco:1.9.0'
-    implementation 'com.github.luhaoaimama1:ZView:1.0.35'
-//        compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
-    implementation('com.github.luhaoaimama1:ZAdapter3:1.0.94',{
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
-    })
-    implementation 'com.android.support:recyclerview-v7:23.2.0'
-
-    implementation ('com.jakewharton:butterknife:8.8.1'){
-        exclude  module: 'support-compat'
-    }
-    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
-}
-
-//Kotlin gradle.build ZipException because of duplicates
-//https://discuss.kotlinlang.org/t/kotlin-gradle-build-zipexception-because-of-duplicates/2133/8
-configurations {
-    compile.exclude group : 'org.jetbrains' , module : 'annotations'
-}
 
 android {
     compileSdkVersion 28
@@ -106,10 +56,68 @@ android {
 //        exclude 'META-INF/LICENSE.txt'
 //    }
 
-    lintOptions {
-        checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
-        abortOnError false
-    }
+//    lintOptions {
+//        checkReleaseBuilds false
+//        // Or, if you prefer, you can continue to check for errors in release builds,
+//        // but continue the build even when errors are found:
+//        abortOnError false
+//    }
 }
+
+dependencies {
+    implementation fileTree(include: '*.jar', dir: 'libs')
+
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+//    compile 'com.github.bumptech.glide:glide:4.8.0'
+
+//    implementation 'io.reactivex:rxandroid:1.1.0'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+//    implementation 'io.reactivex:rxjava:1.1.3'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
+    //    compile 'com.squareup.retrofit2:retrofit-converters:2.0.2'
+    //    compile 'com.squareup.retrofit2:converter-gson'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'jp.wasabeef:blurry:2.0.0'
+
+    implementation 'com.zone:zokhttp:1.1.2'
+    implementation 'com.github.luhaoaimama1:ZAnimate:1.0.1'
+    implementation 'com.github.luhaoaimama1:ZRefreshLayout:1.0.15'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+
+    implementation (project(':Android_Zone_Lib')){
+        exclude group: 'com.jakewharton', module: 'butterknife'
+    }
+
+    implementation 'com.facebook.fresco:fresco:1.9.0'
+//        compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
+    implementation('com.github.luhaoaimama1:ZAdapter3:1.0.94',{
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    })
+
+    implementation ('com.jakewharton:butterknife:8.8.1'){
+        exclude  module: 'support-compat'
+    }
+    implementation ('com.github.luhaoaimama1:ZView:1.0.35'){
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
+    implementation ('com.android.support:recyclerview-v7:23.2.0'){
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
+}
+
+//Kotlin gradle.build ZipException because of duplicates
+//https://discuss.kotlinlang.org/t/kotlin-gradle-build-zipexception-because-of-duplicates/2133/8
+configurations {
+    compile.exclude group : 'org.jetbrains' , module : 'annotations'
+}
+
