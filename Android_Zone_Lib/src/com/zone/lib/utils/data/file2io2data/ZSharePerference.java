@@ -13,11 +13,11 @@ import com.zone.lib.utils.data.convert.GsonUtils;
  * 引用项目:https://github.com/openproject/LessCode
  * 不习惯$符号的方法名,所以改了下；
  */
-public class QuickShare {
+public class ZSharePerference {
 
     private String shareName = "preferences";
 
-    protected QuickShare(String shareName) {
+    protected ZSharePerference(String shareName) {
         this.shareName = shareName;
     }
 

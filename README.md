@@ -78,7 +78,7 @@ Step 2. Add the dependency
 | HashMapZ | HashMap的put的连续使用 ,与get是null的默认值处理 | |
 | IOUtils | io的read,write。 支持file，string,流 |   |
 | SDCardUtils | SD卡等获取信息的封装 |  |
-| QuickShare| 主要为了省写系统的获取；与存到一个地方 [引用项目LessCode](https://github.com/openproject/LessCode) |  |
+| ZSharePerference `还是叫SharePerference 不然自己都找不到`| 主要为了省写系统的获取；与存到一个地方 [引用项目LessCode](https://github.com/openproject/LessCode) |  |
 | SerializeUtils | 未使用 |  |
 | TypefaceUtils| 未使用|  |
 
