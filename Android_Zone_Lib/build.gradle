@@ -1,28 +1,27 @@
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+//apply plugin: 'com.novoda.bintray-release'//添加
 // JitPack Maven
 apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
 group = 'com.github.luhaoaimama1'
 
+
 dependencies {
     api fileTree(include: '*.jar', dir: 'libs')
-    testImplementation 'junit:junit:4.8.2@jar'
+    testImplementation 'junit:junit:4.12@jar'
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'me.imid.swipebacklayout.lib:library:1.1.0'
-    api 'com.google.code.gson:gson:2.5'
+    api 'com.google.code.gson:gson:2.8.2'
     api 'com.nineoldandroids:library:2.4.0'
-//    implementation 'com.jakewharton:butterknife:7.0.1'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:7.0.1'
-    api 'com.android.support:appcompat-v7:22.1.1'
+    api 'com.android.support:appcompat-v7:28.0.0'
     api 'org.jetbrains:annotations-java5:15.0'
 }
 
 android {
-    compileSdkVersion 22
-//    buildToolsVersion '23.0.3'
-    buildToolsVersion '27.0.3'
-
+    compileSdkVersion 28
     defaultConfig {
-        minSdkVersion 8
+        minSdkVersion 14
 //        targetSdkVersion 24
         versionCode 1
         versionName "1.0"

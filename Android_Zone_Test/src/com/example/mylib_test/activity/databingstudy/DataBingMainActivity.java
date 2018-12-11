@@ -38,12 +38,6 @@ public class DataBingMainActivity extends BaseActivity {
             case R.id.bt_start:
                 startActivity(new Intent(this, DataBingStartActivity.class));
                 break;
-            case R.id.bt_lambda:
-                startActivity(new Intent(this, LambdaStartActivity.class));
-                break;
-            case R.id.bt_rxjava:
-                startActivity(new Intent(this, RxjavaActivity.class));
-                break;
         }
     }
 }

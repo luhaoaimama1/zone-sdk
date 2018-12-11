@@ -10,18 +10,4 @@
         android:layout_margin="4dp"
         android:onClick="onClick"
         android:text="初识databing" />
-    <Button
-        android:id="@+id/bt_lambda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="初识lambda" />
-    <Button
-        android:id="@+id/bt_rxjava"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="rxjava" />
 </com.zone.view.FlowLayout>

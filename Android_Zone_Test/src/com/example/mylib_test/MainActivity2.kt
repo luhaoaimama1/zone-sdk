@@ -29,37 +29,37 @@ class MainActivity2 : Activity() {
         listView1!!.layoutManager = LinearLayoutManager(this)
         val colorArry = intArrayOf(Color.WHITE, Color.GREEN, Color.YELLOW, Color.CYAN)
         adapter2 = QuickRcvAdapter<MenuEntity>(this, MainMenu.menu)
-                .addViewHolder(MenuEntityDeletates(this, colorArry, MainMenu.menu))
-                .addHeaderHolder(R.layout.header_simple)
-                .addFooterHolder(R.layout.footer_simple)
-                .relatedList(listView1)
-                .setOnItemLongClickListener { viewGroup, view, i ->
-                    positonId = i
-                    alert!!.show()
-                    false
-                }
-                .addOnScrollListener(object : OnScrollRcvListener() {
+            .addViewHolder(MenuEntityDeletates(this, colorArry, MainMenu.menu))
+            .addHeaderHolder(R.layout.header_simple)
+            .addFooterHolder(R.layout.footer_simple)
+            .relatedList(listView1)
+            .setOnItemLongClickListener { viewGroup, view, i ->
+                positonId = i
+                alert!!.show()
+                false
+            }
+            .addOnScrollListener(object : OnScrollRcvListener() {
 
-                    var refesh = true
+                var refesh = true
 
-                    override fun loadMore(recyclerView: RecyclerView) {
-                        super.loadMore(recyclerView)
-                        val mDatasa = ArrayList<MenuEntity>()
-                        for (i in 0..4) {
-                            mDatasa.add(MenuEntity("insert $i", null))
-                        }
-                        listView1!!.postDelayed({
-                            if (refesh) {
-                                adapter2!!.loadMoreComplete()
-                                adapter2!!.data.addAll(mDatasa)
-                                adapter2!!.notifyDataSetChanged()
-                            } else {
-                                adapter2!!.loadMoreFail()
-                            }
-                            refesh = !refesh
-                        }, 1000)
+                override fun loadMore(recyclerView: RecyclerView) {
+                    super.loadMore(recyclerView)
+                    val mDatasa = ArrayList<MenuEntity>()
+                    for (i in 0..4) {
+                        mDatasa.add(MenuEntity("insert $i", null))
                     }
-                })
+                    listView1!!.postDelayed({
+                        if (refesh) {
+                            adapter2!!.loadMoreComplete()
+                            adapter2!!.data.addAll(mDatasa)
+                            adapter2!!.notifyDataSetChanged()
+                        } else {
+                            adapter2!!.loadMoreFail()
+                        }
+                        refesh = !refesh
+                    }, 1000)
+                }
+            }) as IAdapter<MenuEntity>?
 
 
         //通过加载XML动画设置文件来创建一个Animation对象；
