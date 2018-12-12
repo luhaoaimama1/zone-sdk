@@ -6,10 +6,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 
-import com.zone.lib.utils.view.graphics.DampingUitls;
+import com.zone.lib.utils.view.graphics.DampingUtils;
 import com.zone.lib.utils.view.DrawUtils;
 import com.zone.lib.utils.view.graphics.basic.DrawBind;
 
@@ -47,37 +46,18 @@ public class DampingView extends View {
         center = mDrawBind.center();
     }
 
-    private float down;
-    private float length;
-    private DownCallback mDownCallback;
+    private float maxX = 500, dampingRadio = 1F, maxY = 500;
 
-    public void setDownCallback(DownCallback mDownCallback){
-        this.mDownCallback=mDownCallback;
-    }
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                if(mDownCallback!=null)
-                mDownCallback.down();
-                down = event.getY();
-                break;
-            case MotionEvent.ACTION_MOVE:
-                length = event.getY() - down;
-                break;
-            case MotionEvent.ACTION_UP:
-                break;
-        }
-        invalidate();
-        return true;
-    }
-
-    private float maxValue = 500, dampingRadio = 0.3F;
-
-    public void setMaxValue(float maxValue) {
-        this.maxValue = maxValue;
+    public void setMaxX(float maxX) {
+        this.maxX = maxX;
         invalidate();
     }
+
+    public void setMaxY(float maxY) {
+        this.maxY = maxY;
+        invalidate();
+    }
+
     public void setDampingRadio(float dampingRadio) {
         this.dampingRadio = dampingRadio;
         invalidate();
@@ -89,9 +69,9 @@ public class DampingView extends View {
         super.onDraw(canvas);
         //x100 y300
         Path path = new Path();
-        for (int i = 0; i <= length; i++) {
-            float x = center[0] + i;
-            float y = center[1] - DampingUitls.damping(i, maxValue, dampingRadio) * 300;
+        for (int i = 0; i <= 2000; i++) {
+            float x = i;
+            float y = getHeight()- DampingUtils.INSTANCE.damping(i, maxX, maxY, dampingRadio);
             if (i == 0)
                 path.moveTo(x, y);
             else
@@ -100,9 +80,5 @@ public class DampingView extends View {
         }
         canvas.drawPath(path, paint);
     }
-    public  interface DownCallback{
-        void down();
-    }
-
 
 }

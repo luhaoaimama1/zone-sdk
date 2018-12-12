@@ -62,11 +62,11 @@ class NestedScrollBActivity : BaseActivity() {
         tv = findViewById(R.id.tv) as TextView?
         cpv = findViewById(R.id.cpv) as CircleProgressView?
         animal = findViewById(R.id.animal)
-        animal!!.postDelayed(Runnable {
+        animal!!.postDelayed({
             ValueAnimator.ofFloat(-251F,-242F,-119F,-35F,23F,27F,23F,9.6F,0F).apply {
                 duration=650
                 addUpdateListener {
-                    animal!!.translationX=MathUtils.linearMap(it.getAnimatedValue() as Float,-251F,0F,-1080F,0F)
+                    animal!!.translationX=MathUtils.linear(it.getAnimatedValue() as Float,-251F,0F,-1080F,0F,MathUtils.Linear.OverOver)
                 }
                 addListener(object : AnimatorListenerAdapter(){
                     override fun onAnimationStart(animation: Animator?) {

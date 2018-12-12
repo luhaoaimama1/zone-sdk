@@ -110,7 +110,7 @@ public class WaveActivity extends Activity {
 
     }
 
-    private static class SimpleOnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
+    public static class SimpleOnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

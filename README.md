@@ -185,7 +185,7 @@ Step 2. Add the dependency
 | 名字 | 功能  | 优点|
 | :------------: |:---------------:| :-----:|
 | BizierUtils  | qq红点的两种 实现方法的封装 |  |
-| DampingUitls  | 阻尼方法 |  |
+| DampingUtils  | 阻尼方法 | demo:动画研究里的-path学习-阻尼公式  |
 | GeometryUtils  | 支持ZPointF的,两点之间的长度，终点与三点角度等几何工具类 |  |
 | MathUtils  | 映射工具类,AE表达式里有,Math函数里却没有,封装下 | 范例：MathUtils.linear(now,start1,start2,Dst1,Dst2) 即可得出dst1-dst2中now的值 |
 | MatteUtils  | PorterDuff.Mode 的封装工具类 |  |
