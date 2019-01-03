@@ -104,15 +104,24 @@ dependencies {
     implementation ('com.github.luhaoaimama1:ZView:1.0.35'){
         exclude group: 'com.android.support', module: 'support-v4'
     }
-    implementation ('com.android.support:recyclerview-v7:23.2.0'){
+    implementation ( 'com.android.support:recyclerview-v7:27.1.1'){
         exclude group: 'com.android.support', module: 'support-v4'
     }
+//    implementation ('com.android.support:recyclerview-v7:23.2.0'){
+//        exclude group: 'com.android.support', module: 'support-v4'
+//    }
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
     implementation ('com.jakewharton:butterknife:8.8.1'){
         exclude  module: 'support-compat'
     }
+
+//    https://developer.android.com/topic/libraries/architecture/adding-components
+    def lifecycle_version = "1.1.1"
+    implementation "android.arch.lifecycle:runtime:$lifecycle_version"
+//    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // use kapt for Kotlin
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 }
 
@@ -121,4 +130,13 @@ dependencies {
 configurations {
     compile.exclude group : 'org.jetbrains' , module : 'annotations'
 }
-
+//configurations.all {
+//    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//        def requested = details.requested
+//        if (requested.group == 'com.android.support') {
+//            if (!requested.name.startsWith("multidex")) {
+//                details.useVersion '24.1.0'
+//            }
+//        }
+//    }
+//}

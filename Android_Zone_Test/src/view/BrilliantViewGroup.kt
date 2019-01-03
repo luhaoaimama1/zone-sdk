@@ -189,8 +189,7 @@ class BrilliantViewGroup : FrameLayout, NestedScrollingParent {
         }
     }
 
-    //mTotalUnconsumed 这个就是 当前view乡下已经消耗的值。如果向上的时候。会把 mTotalUnconsumed这个值消耗掉 当消耗没了就 不管了。
-    // 如果是向下 recycelrView处理不了 会自动调用走onNestedScroll 让他处理剩下的滑动的
+    //总结：就是自身控件存储了一定的滑动偏移值。在内部空间滑动前问此控件 需要消耗一定的滑动值不
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray) {
         println("ZoneInner:onNestedPreScroll 执行的 dy:$dy \t mTotalUnconsumed:$mTotalUnconsumed")
         if (state == State.PULLING) {

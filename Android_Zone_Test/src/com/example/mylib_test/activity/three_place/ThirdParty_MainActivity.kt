@@ -25,6 +25,7 @@ class ThirdParty_MainActivity : Activity(), View.OnClickListener {
             R.id.bt_swtichButton -> startActivity(Intent(this, RippleViewActivity::class.java))
             R.id.bt_blur -> startActivity(Intent(this, BlurActivity::class.java))
             R.id.textBug -> startActivity(Intent(this, TextBugActivity::class.java))
+            R.id.lifeCycle -> startActivity(Intent(this, LifecycleActivity::class.java))
         }
     }
 
