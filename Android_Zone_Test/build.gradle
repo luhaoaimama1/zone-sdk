@@ -1,6 +1,4 @@
-//apply plugin: 'android'
 apply plugin: 'com.android.application'
-//apply plugin: 'me.tatarka.retrolambda'
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -26,12 +24,6 @@ android {
         // Move the tests to tests/java, tests/res, etc...
         androidTest.setRoot('tests')
 
-        // Move the perform types to perform-types/<type>
-        // For instance, perform-types/debug/java, perform-types/debug/AndroidManifest.xml, ...
-        // This moves them out of them default location under src/<type>/... which would
-        // conflict load src/ being used by the main source set.
-        // Adding new perform types or product flavors should be accompanied
-        // by a similar customization.
         debug.setRoot('perform-types/debug')
         release.setRoot('perform-types/release')
 
@@ -49,12 +41,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-//        sourceCompatibility JavaVersion.VERSION_1_7
-//        targetCompatibility JavaVersion.VERSION_1_7
     }
-//    packagingOptions {
-//        exclude 'META-INF/LICENSE.txt'
-//    }
 
 //    lintOptions {
 //        checkReleaseBuilds false
@@ -72,13 +59,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 //    compile 'com.github.bumptech.glide:glide:4.8.0'
 
-//    implementation 'io.reactivex:rxandroid:1.1.0'
-    // Because RxAndroid releases are few and far between, it is recommended you also
-    // explicitly depend on RxJava's latest version for bug fixes and new features.
-//    implementation 'io.reactivex:rxjava:1.1.3'
     implementation 'com.squareup.retrofit2:retrofit:2.0.2'
-    //    compile 'com.squareup.retrofit2:retrofit-converters:2.0.2'
-    //    compile 'com.squareup.retrofit2:converter-gson'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'jp.wasabeef:blurry:2.0.0'
@@ -96,7 +77,6 @@ dependencies {
     }
 
     implementation 'com.facebook.fresco:fresco:1.9.0'
-//        compile 'com.github.luhaoaimama1:ZAdapter:1.1.0'
     implementation('com.github.luhaoaimama1:ZAdapter3:1.0.94',{
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     })
@@ -107,22 +87,20 @@ dependencies {
     implementation ( 'com.android.support:recyclerview-v7:27.1.1'){
         exclude group: 'com.android.support', module: 'support-v4'
     }
-//    implementation ('com.android.support:recyclerview-v7:23.2.0'){
-//        exclude group: 'com.android.support', module: 'support-v4'
-//    }
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
 
     implementation ('com.jakewharton:butterknife:8.8.1'){
         exclude  module: 'support-compat'
     }
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 
 //    https://developer.android.com/topic/libraries/architecture/adding-components
     def lifecycle_version = "1.1.1"
     implementation "android.arch.lifecycle:runtime:$lifecycle_version"
 //    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // use kapt for Kotlin
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
+
 }
 
 //Kotlin gradle.build ZipException because of duplicates
