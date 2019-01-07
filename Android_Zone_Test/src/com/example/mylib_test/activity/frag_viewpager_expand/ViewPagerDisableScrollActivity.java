@@ -9,11 +9,13 @@ import com.zone.zbanner.ViewPaperDisableScroll;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,7 +52,7 @@ public class ViewPagerDisableScrollActivity extends FragmentActivity {
 		// return false;
 		// }
 		// });
-		vPager.setOnPageChangeListener(new OnPageChangeListener() {
+		vPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			//这个监听是  那个包固有的监听android.support.v4.view
 			@Override
 			public void onPageSelected(int arg0) {

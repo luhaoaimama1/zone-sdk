@@ -10,8 +10,9 @@ import com.zone.lib.utils.system_hardware_software_receiver_shell.software.wifi.
 import android.app.Activity;
 import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class WifiAdapterActivity extends Activity {
 	private RecyclerView listView ;

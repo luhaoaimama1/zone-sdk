@@ -3,11 +3,13 @@ package com.example.mylib_test.activity.frag_viewpager_expand;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -35,7 +37,7 @@ public class ViewPagerDisableScrollActivity2 extends FragmentActivity {
 		Ui_init();
 		vPager.setDisableScroll(false);
 		vPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-		vPager.setOnPageChangeListener(new OnPageChangeListener() {
+		vPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			//这个监听是  那个包固有的监听android.support.v4.view
 			@Override
 			public void onPageSelected(int arg0) {

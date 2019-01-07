@@ -1,12 +1,13 @@
 package com.zone.lib.utils.activity_fragment_ui;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * Created by Zone on 2016/1/25.
@@ -109,7 +110,7 @@ public class FragmentSwitcher {
         this.ani_out_pri=ani_out_pri;
     }
 
-    private void checkAni(FragmentTransaction tran,FragmentEntity entity){
+    private void checkAni(FragmentTransaction tran, FragmentEntity entity){
         if (entity!=null) {
             if((entity.ani_in!=-1||entity.ani_out!=-1)){
                 tran.setCustomAnimations(entity.ani_in,entity.ani_out);

@@ -3,8 +3,6 @@ package com.zone.lib.base.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +11,8 @@ import com.zone.lib.base.activity.kinds.FeaturesKind;
 import com.zone.lib.base.activity.kinds.ScreenSettingKind;
 import com.zone.lib.base.activity.kinds.SwipeBackKind;
 import com.zone.lib.base.activity.kinds.callback.ActivityKinds;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by fuzhipeng on 16/8/30.

@@ -1,18 +1,16 @@
 package com.example.mylib_test.activity.touch;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.example.mylib_test.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.mylib_test.delegates.TextDelegates;
 import com.example.mylib_test.delegates.TextType2Delegates;
 import com.zone.adapter3.QuickRcvAdapter;
 import com.zone.lib.base.activity.BaseActivity;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

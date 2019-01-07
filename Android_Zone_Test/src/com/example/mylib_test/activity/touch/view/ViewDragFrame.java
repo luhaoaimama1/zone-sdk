@@ -1,8 +1,9 @@
 package com.example.mylib_test.activity.touch.view;
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ViewDragHelper;
+import androidx.core.view.ViewCompat;
+import androidx.customview.widget.ViewDragHelper;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;

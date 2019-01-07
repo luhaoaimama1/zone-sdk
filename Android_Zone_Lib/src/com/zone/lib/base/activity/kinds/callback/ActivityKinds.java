@@ -3,7 +3,8 @@ package com.zone.lib.base.activity.kinds.callback;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by fuzhipeng on 16/8/30.

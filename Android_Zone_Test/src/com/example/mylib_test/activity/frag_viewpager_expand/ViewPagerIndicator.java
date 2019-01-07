@@ -3,7 +3,8 @@ package com.example.mylib_test.activity.frag_viewpager_expand;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;

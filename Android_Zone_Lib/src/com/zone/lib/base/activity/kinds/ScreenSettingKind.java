@@ -1,11 +1,12 @@
 package com.zone.lib.base.activity.kinds;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.zone.lib.base.activity.kinds.callback.ActivityKinds;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by fuzhipeng on 16/8/30.

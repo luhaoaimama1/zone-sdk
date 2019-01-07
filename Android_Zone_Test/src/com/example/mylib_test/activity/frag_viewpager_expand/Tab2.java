@@ -1,12 +1,13 @@
 package com.example.mylib_test.activity.frag_viewpager_expand;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.mylib_test.R;
 import com.zone.lib.base.LazyFragment;
+
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

@@ -1,6 +1,6 @@
 package com.zone.lib.utils.view;
 
-import android.support.v4.util.SparseArrayCompat;
+import androidx.collection.SparseArrayCompat;
 
 /**
  * Created by qibin on 16-9-25.

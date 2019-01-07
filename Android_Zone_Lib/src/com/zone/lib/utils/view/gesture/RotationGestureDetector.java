@@ -1,7 +1,8 @@
 package com.zone.lib.utils.view.gesture;
 
-import android.support.annotation.NonNull;
 import android.view.MotionEvent;
+
+import androidx.annotation.NonNull;
 
 public class RotationGestureDetector {
 

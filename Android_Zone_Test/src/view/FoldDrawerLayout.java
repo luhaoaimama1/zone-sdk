@@ -1,9 +1,10 @@
 package view;
 
 import android.content.Context;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.DrawerLayout;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;

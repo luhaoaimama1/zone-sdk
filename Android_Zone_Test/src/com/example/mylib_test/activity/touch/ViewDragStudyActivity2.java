@@ -1,7 +1,6 @@
 package com.example.mylib_test.activity.touch;
 
 import android.os.Bundle;
-import android.support.v4.widget.ViewDragHelper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +10,8 @@ import com.example.mylib_test.activity.touch.view.ViewDragFrame;
 import com.zone.lib.base.activity.BaseActivity;
 import com.zone.lib.base.activity.kinds.SwipeBackKind;
 import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
+
+import androidx.customview.widget.ViewDragHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

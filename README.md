@@ -3,6 +3,9 @@
 
 >`PS`:不懂怎么用的,都可以看demo 一些都是已经在demo中使用了~;
 
+## 编译注意
+由于Gradle升级到5.1 所以用的编辑器是3.3 Canary13.不然编译报错。并且升级到AndroidX
+
 ##  Usage
 
 ## ## Required Config

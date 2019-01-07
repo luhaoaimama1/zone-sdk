@@ -1,7 +1,8 @@
 package com.zone.lib.utils.activity_fragment_ui;
 
-import android.support.v4.view.ViewPager;
 import android.util.Log;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * [2017] by Zone

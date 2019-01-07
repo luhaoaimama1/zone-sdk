@@ -5,7 +5,8 @@ import com.example.mylib_test.R;
 import com.zone.lib.utils.activity_fragment_ui.FragmentSwitcher;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 

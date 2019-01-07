@@ -2,8 +2,6 @@ package com.example.mylib_test.activity.animal.helper;
 
 import android.app.Activity;
 import android.graphics.PorterDuff;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +13,9 @@ import com.zone.adapter3.QuickRcvAdapter;
 import com.zone.adapter3.bean.Holder;
 import com.zone.adapter3.bean.ViewDelegates;
 import com.zone.lib.base.BasePopWindow;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Administrator on 2016/3/21.

@@ -1,7 +1,8 @@
 package com.example.mylib_test.activity.three_place
 
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import butterknife.ButterKnife
 import com.example.mylib_test.R
 import com.example.mylib_test.delegates.FrescoDeletates
@@ -43,7 +44,7 @@ class FrescoActivity : BaseActivity() {
     }
 
     override fun initData() {
-        rv!!.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rv!!.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rv!!.itemAnimator = DefaultItemAnimator()
         muliAdapter = object : QuickRcvAdapter<Entity>(this, mDatas), IAdapter<Entity> {
             override fun getItemViewType2(dataPosition: Int): Int {

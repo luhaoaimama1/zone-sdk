@@ -4,8 +4,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.PointF;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.view.GestureDetectorCompat;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;

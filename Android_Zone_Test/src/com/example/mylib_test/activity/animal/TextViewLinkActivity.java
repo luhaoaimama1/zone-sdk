@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.ParcelableSpan;
@@ -65,6 +64,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.annotation.NonNull;
 import view.ExpandTextView;
 
 //https://blog.csdn.net/wangyingtong/article/details/51693668

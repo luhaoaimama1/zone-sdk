@@ -2,10 +2,11 @@ package com.zone.lib.base;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.fragment.app.DialogFragment;
+
 /**
  * http://blog.csdn.net/javaandroid730/article/details/69526202
  */

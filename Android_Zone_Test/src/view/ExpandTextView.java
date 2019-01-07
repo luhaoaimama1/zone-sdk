@@ -2,13 +2,14 @@ package view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.SpannedString;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 /**
  * [2018] by Zone

@@ -1,12 +1,13 @@
 package com.example.mylib_test.activity.touch.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.mylib_test.activity.touch.EventPassLogActivity;
+
+import androidx.annotation.Nullable;
 
 /**
  * MIT License

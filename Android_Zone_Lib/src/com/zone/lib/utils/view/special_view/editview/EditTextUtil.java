@@ -1,7 +1,6 @@
 package com.zone.lib.utils.view.special_view.editview;
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
@@ -12,6 +11,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.zone.lib.utils.data.check.CharacterCheck;
+
+import androidx.annotation.NonNull;
 
 /**
  * implements TextWatcher  完成对其内容的监听
