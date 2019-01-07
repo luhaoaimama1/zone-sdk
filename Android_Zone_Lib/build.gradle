@@ -21,7 +21,6 @@ android {
     compileSdkVersion 28
     defaultConfig {
         minSdkVersion 14
-//        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -73,5 +72,11 @@ artifacts {
     archives classesJar
     archives javadocJar
     archives sourcesJar
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
 }
 //---------------jitPack 文档注释Over------------------------
