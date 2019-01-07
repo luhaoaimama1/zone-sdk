@@ -8,14 +8,13 @@ group = 'com.github.luhaoaimama1'
 dependencies {
     api fileTree(include: '*.jar', dir: 'libs')
     testImplementation 'junit:junit:4.13-beta-1@jar'
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
 
-    api 'org.jetbrains:annotations-java5:16.0.3'
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.11"
+    compileOnly 'androidx.appcompat:appcompat:1.0.0-beta01'
+    compileOnly 'org.jetbrains:annotations-java5:16.0.3'
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.11"
 
     api 'me.imid.swipebacklayout.lib:library:1.1.0'
     api 'com.google.code.gson:gson:2.8.5'
-    api 'com.nineoldandroids:library:2.4.0'
 }
 
 android {

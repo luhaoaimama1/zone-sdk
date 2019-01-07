@@ -1,11 +1,10 @@
 package com.zone.lib.utils.view.graphics.animation;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.graphics.Matrix;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorListenerAdapter;
-import com.nineoldandroids.animation.ValueAnimator;
-
 import com.zone.lib.utils.view.graphics.basic.Circle;
 import com.zone.lib.utils.view.graphics.GeometryUtils;
 import com.zone.lib.utils.view.graphics.basic.ZPath;

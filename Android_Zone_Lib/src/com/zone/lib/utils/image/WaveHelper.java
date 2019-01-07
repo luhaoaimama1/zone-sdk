@@ -1,5 +1,6 @@
 package com.zone.lib.utils.image;
 
+import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,7 +9,6 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.os.SystemClock;
 import android.view.animation.LinearInterpolator;
-import com.nineoldandroids.animation.ValueAnimator;
 import com.zone.lib.utils.view.DrawUtils;
 
 /**
