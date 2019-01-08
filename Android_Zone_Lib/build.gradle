@@ -50,7 +50,7 @@ android {
 
 //---------------jitPack 文档注释 Start------------------------
 task sourcesJar(type: Jar) {
-    archiveClassifier = 'sources'
+    classifier = 'sources'
     from android.sourceSets.main.java.sourceFiles
 }
 
@@ -60,7 +60,7 @@ task javadoc(type: Javadoc) {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    archiveClassifier = 'javadoc'
+    classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
