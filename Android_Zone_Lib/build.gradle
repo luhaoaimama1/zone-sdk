@@ -6,7 +6,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.luhaoaimama1'
 
 dependencies {
-    api fileTree(include: '*.jar', dir: 'libs')
+    implementation fileTree(include: '*.jar', dir: 'libs')
     testImplementation 'junit:junit:4.13-beta-1@jar'
 
     api 'androidx.appcompat:appcompat:1.0.0-beta01'
