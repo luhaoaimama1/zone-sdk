@@ -69,6 +69,7 @@ task classesJar(type: Jar) {
 }
 
 artifacts {
+//注意5.1以后不要使用 下面的classjar 不然引用的时候是jar而不是aar
 //    archives classesJar
     archives javadocJar
     archives sourcesJar
