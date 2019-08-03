@@ -1,7 +1,5 @@
 package com.zone.lib.utils.image;
 
-import com.zone.lib.LogUtil;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -24,6 +22,8 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Log;
+
+import com.zone.lib.LogZSDK;
 
 import java.io.ByteArrayOutputStream;
 
@@ -155,7 +155,7 @@ public class BitmapUtils {
                 } else {
                     temp = Bitmap.createScaledBitmap(src, dstWidth, dstHeight, true);
                 }
-                LogUtil.d("getNewBitmap:复制的位图　和原图　是否为同一个：" + (temp == src ? "是" : "不是"));
+                LogZSDK.INSTANCE.d("getNewBitmap:复制的位图　和原图　是否为同一个：" + (temp == src ? "是" : "不是"));
                 if (recycledSrc) {
                     recycledBitmap(src);
                 }
@@ -172,7 +172,7 @@ public class BitmapUtils {
     public static Bitmap copyDeep(Bitmap src, boolean recycledSrc) {
         if (src != null) {
             Bitmap temp = src.copy(src.getConfig(), true);
-            LogUtil.d("copy:复制的位图　和原图　是否为同一个：" + (temp == src ? "是" : "不是"));
+            LogZSDK.INSTANCE.d("copy:复制的位图　和原图　是否为同一个：" + (temp == src ? "是" : "不是"));
             if (recycledSrc) {
                 recycledBitmap(src);
             }

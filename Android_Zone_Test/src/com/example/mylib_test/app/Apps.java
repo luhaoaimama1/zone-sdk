@@ -16,7 +16,6 @@ package com.example.mylib_test.app;
  *******************************************************************************/
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.zone.lib.Configuration;
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
@@ -24,6 +23,7 @@ import android.os.Build;
 import android.os.StrictMode;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.zone.lib.Configure;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 import java.util.HashMap;
@@ -54,7 +54,7 @@ public class Apps extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-         Configuration.Build.init(this).perform();
+        Configure.init(this);
         if (false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());

@@ -7,7 +7,10 @@ group = 'com.github.luhaoaimama1'
 
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
-    testImplementation 'junit:junit:4.13-beta-1@jar'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
 
     api 'androidx.appcompat:appcompat:1.0.0-beta01'
     api 'org.jetbrains:annotations-java5:16.0.3'
@@ -37,7 +40,8 @@ android {
         }
 
         // Move the tests to tests/java, tests/res, etc...
-        androidTest.setRoot('tests')
+        androidTest.setRoot('androidTest')
+        test.setRoot('test')
 
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')

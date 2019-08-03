@@ -13,9 +13,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import java.util.ArrayList;
 
-import com.zone.lib.LogUtil;
+import com.zone.lib.LogZSDK;
+
+import java.util.ArrayList;
 
 /**
  * @author MaTianyu
@@ -25,7 +26,7 @@ public class NotificationUtil {
     private static int LedID = 0;
     public static void notification(Context context, Uri uri,
                                     int icon, String ticker, String title, String msg) {
-        LogUtil.i( "notiry uri :" + uri);
+        LogZSDK.INSTANCE.i( "notiry uri :" + uri);
         // 设置通知的事件消息
         Intent intent = new Intent();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.DONUT) {

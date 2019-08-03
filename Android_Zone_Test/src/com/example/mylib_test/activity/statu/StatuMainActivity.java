@@ -1,6 +1,8 @@
 package com.example.mylib_test.activity.statu;
 
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.example.mylib_test.R;
@@ -53,6 +55,22 @@ public class StatuMainActivity extends BaseActivity {
     @OnClick(R.id.bt4FullScreen)
     public void bt4FullScreenClick() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        View decorView = getWindow().getDecorView();
+//        // Hide the status bar.
+//        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+//        decorView.setSystemUiVisibility(uiOptions);
+//
+//
+//        // Remember that you should never show the action bar if the
+//        // status bar is hidden, so hide that too if necessary.
+//        ActionBar actionBar = getActionBar();
+//        if(actionBar!=null)
+//         actionBar.hide();
+    }
+    @OnClick(R.id.btBg)
+    public void btBg() {
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 100);
+        getWindow().setBackgroundDrawable(new ColorDrawable(0xb0000000));
 //        View decorView = getWindow().getDecorView();
 //        // Hide the status bar.
 //        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;

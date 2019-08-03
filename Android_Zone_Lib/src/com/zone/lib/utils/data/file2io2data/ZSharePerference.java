@@ -2,10 +2,11 @@ package com.zone.lib.utils.data.file2io2data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
-import com.zone.lib.Configuration;
+import com.zone.lib.Configure;
 import com.zone.lib.utils.data.check.StringCheck;
 import com.zone.lib.utils.data.convert.GsonUtils;
 
@@ -22,7 +23,7 @@ public class ZSharePerference {
     }
 
     private SharedPreferences getSharedPreferences() {
-        return Configuration.getInstance().getAppContext()
+        return Configure.getApplicationContext()
                 .getSharedPreferences(shareName, Context.MODE_PRIVATE);
     }
 

@@ -21,4 +21,14 @@
         android:onClick="onClick"
         android:padding="10dp"
         android:text="page传递" />
+
+    <view.TextViewLineSpacingFix
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#00ff00"
+        android:layout_width="match_parent"
+        android:lineSpacingMultiplier="@dimen/card_warning_text_extra_space"
+        android:layout_height="match_parent"
+        android:text="a哇咔咔卡卡卡卡卡啊，a哇咔咔卡卡卡卡卡啊a哇咔咔卡卡卡卡卡啊a哇咔咔卡卡卡卡卡啊"/>
 </com.zone.view.FlowLayout>

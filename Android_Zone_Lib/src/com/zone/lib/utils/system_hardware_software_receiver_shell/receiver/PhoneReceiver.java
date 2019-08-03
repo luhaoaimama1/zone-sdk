@@ -6,8 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
+import com.zone.lib.LogLevel;
+import com.zone.lib.LogZSDK;
 import com.zone.lib.utils.data.check.EmptyCheck;
-import com.zone.lib.LogUtil;
 
 /**
  * <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -41,12 +42,12 @@ public class PhoneReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (LogUtil.writeLog) {
-            LogUtil.i( "action: " + intent.getAction());
-            LogUtil.d( "intent : ");
+        if (LogZSDK.INSTANCE.levelOK(LogLevel.i)) {
+            LogZSDK.INSTANCE.i( "action: " + intent.getAction());
+            LogZSDK.INSTANCE.i( "intent : ");
             Bundle bundle = intent.getExtras();
             for (String key : bundle.keySet()) {
-                LogUtil.d( key + " : " + bundle.get(key));
+                LogZSDK.INSTANCE.d( key + " : " + bundle.get(key));
             }
         }
         if (NEW_OUTGOING_CALL.equals(intent.getAction())) {

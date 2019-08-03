@@ -1,12 +1,13 @@
 package com.zone.lib.utils.data.info;
 import android.content.Context;
 import android.telephony.TelephonyManager;
+
+import com.zone.lib.LogZSDK;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.zone.lib.LogUtil;
 
 /**
  * Get phone info, such as IMEI,IMSI,Number,Sim State, etc.
@@ -33,7 +34,7 @@ public class TelephoneUtil {
     public static String getIMSI(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String IMSI = telephonyManager.getSubscriberId();
-        LogUtil.i(" IMSI：" + IMSI);
+        LogZSDK.INSTANCE.i(" IMSI：" + IMSI);
         return IMSI;
     }
 
@@ -49,7 +50,7 @@ public class TelephoneUtil {
     public static String getIMEI(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String IMEI = telephonyManager.getDeviceId();
-        LogUtil.i( " IMEI：" + IMEI);
+        LogZSDK.INSTANCE.i( " IMEI：" + IMEI);
         return IMEI;
     }
 
@@ -92,7 +93,7 @@ public class TelephoneUtil {
         sb.append("\nSubscriberId         :").append(tm.getSubscriberId());
         sb.append("\nVoiceMailNumber      :").append(tm.getVoiceMailNumber());
 
-        LogUtil.i( sb.toString());
+        LogZSDK.INSTANCE.i( sb.toString());
         return sb.toString();
     }
 
@@ -163,7 +164,7 @@ public class TelephoneUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LogUtil.i( "MTK: " + teleInfo);
+        LogZSDK.INSTANCE.i( "MTK: " + teleInfo);
         return teleInfo;
     }
 
@@ -205,7 +206,7 @@ public class TelephoneUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LogUtil.i("MTK2: " + teleInfo);
+        LogZSDK.INSTANCE.i("MTK2: " + teleInfo);
         return teleInfo;
     }
 
@@ -243,7 +244,7 @@ public class TelephoneUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LogUtil.i("Qualcomm: " + teleInfo);
+        LogZSDK.INSTANCE.i("Qualcomm: " + teleInfo);
         return teleInfo;
     }
 
@@ -281,7 +282,7 @@ public class TelephoneUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LogUtil.i( "Spreadtrum: " + teleInfo);
+        LogZSDK.INSTANCE.i( "Spreadtrum: " + teleInfo);
         return teleInfo;
     }
 }

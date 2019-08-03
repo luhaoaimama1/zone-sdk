@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
-import com.zone.lib.LogUtil;
+import com.zone.lib.LogLevel;
+import com.zone.lib.LogZSDK;
 
 /**
  * 时间广播
@@ -19,12 +20,12 @@ public class TimeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (LogUtil.writeLog) {
-            LogUtil.i( "action: " + intent.getAction());
-            LogUtil.d( "intent : ");
+        if (LogZSDK.INSTANCE.levelOK(LogLevel.i)) {
+            LogZSDK.INSTANCE.i( "action: " + intent.getAction());
+            LogZSDK.INSTANCE.i( "intent : ");
             Bundle bundle = intent.getExtras();
             for (String key : bundle.keySet()) {
-                LogUtil.d( key + " : " + bundle.get(key));
+                LogZSDK.INSTANCE.i( key + " : " + bundle.get(key));
             }
         }
         if (Intent.ACTION_TIME_TICK.equals(intent.getAction())) {

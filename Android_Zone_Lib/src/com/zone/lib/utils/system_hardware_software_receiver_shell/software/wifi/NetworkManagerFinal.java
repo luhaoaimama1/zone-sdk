@@ -5,9 +5,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
-import java.lang.reflect.Method;
+import com.zone.lib.LogLevel;
+import com.zone.lib.LogZSDK;
 
-import com.zone.lib.LogUtil;
+import java.lang.reflect.Method;
 
 /**
  * assist us in sensing state of the networks.
@@ -204,21 +205,21 @@ public class NetworkManagerFinal {
         ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivity != null) {
             NetworkInfo in = connectivity.getActiveNetworkInfo();
-            LogUtil.i( "-------------$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------------");
-            LogUtil.i("getActiveNetworkInfo: " + in);
+            LogZSDK.INSTANCE.i( "-------------$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-------------");
+            LogZSDK.INSTANCE.i("getActiveNetworkInfo: " + in);
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
             if (info != null) {
                 for (int i = 0; i < info.length; i++) {
                     // if (info[i].getType() == ConnectivityManager.TYPE_WIFI) {
-                    LogUtil.i("NetworkInfo[" + i + "]isAvailable : " + info[i].isAvailable());
-                    LogUtil.i("NetworkInfo[" + i + "]isConnected : " + info[i].isConnected());
-                    LogUtil.i("NetworkInfo[" + i + "]isConnectedOrConnecting : " + info[i].isConnectedOrConnecting());
-                    LogUtil.i( "NetworkInfo[" + i + "]: " + info[i]);
+                    LogZSDK.INSTANCE.i("NetworkInfo[" + i + "]isAvailable : " + info[i].isAvailable());
+                    LogZSDK.INSTANCE.i("NetworkInfo[" + i + "]isConnected : " + info[i].isConnected());
+                    LogZSDK.INSTANCE.i("NetworkInfo[" + i + "]isConnectedOrConnecting : " + info[i].isConnectedOrConnecting());
+                    LogZSDK.INSTANCE.i( "NetworkInfo[" + i + "]: " + info[i]);
                     // }
                 }
-                LogUtil.i( "\n");
+                LogZSDK.INSTANCE.i( "\n");
             } else {
-                LogUtil.i("getAllNetworkInfo is null");
+                LogZSDK.INSTANCE.i("getAllNetworkInfo is null");
             }
         }
         return false;
@@ -235,8 +236,8 @@ public class NetworkManagerFinal {
     public static int getConnectedTypeINT(Context context) {
         NetworkInfo net = getConnectivityManager(context).getActiveNetworkInfo();
         if (net != null) {
-            if (LogUtil.writeLog) {
-                LogUtil.i("NetworkInfo: " + net.toString());
+            if (LogZSDK.INSTANCE.levelOK(LogLevel.i)) {
+                LogZSDK.INSTANCE.i("NetworkInfo: " + net.toString());
             }
             return net.getType();
         }

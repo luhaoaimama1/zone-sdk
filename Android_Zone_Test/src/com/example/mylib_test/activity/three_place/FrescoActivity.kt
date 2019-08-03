@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import butterknife.ButterKnife
 import com.example.mylib_test.R
 import com.example.mylib_test.delegates.FrescoDeletates
+import com.example.mylib_test.delegates.FrescoProcessorDealDeletates
 import com.example.mylib_test.delegates.FrescoProcessorDeletates
 import com.example.mylib_test.delegates.FrescoSuperscriptDeletates
 import com.zone.adapter3.QuickRcvAdapter
@@ -33,6 +34,7 @@ class FrescoActivity : BaseActivity() {
         mDatas.add(Entity("Error", "http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"))
         mDatas.add(Entity("角标", "http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"))
         mDatas.add(Entity("进度", "http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"))
+        mDatas.add(Entity("处理", "http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"))
     }
 
     override fun setContentView() {
@@ -51,6 +53,7 @@ class FrescoActivity : BaseActivity() {
                 when (mDatas.get(dataPosition).introduce) {
                     "角标" -> return 1
                     "进度" -> return 2
+                    "处理" -> return 3
                     else -> return 0
                 }
             }
@@ -59,6 +62,7 @@ class FrescoActivity : BaseActivity() {
         muliAdapter!!.addViewHolder(FrescoDeletates())
                 .addViewHolder(1, FrescoSuperscriptDeletates())
                 .addViewHolder(2, FrescoProcessorDeletates())
+                .addViewHolder(3, FrescoProcessorDealDeletates())
                 .relatedList(rv)
                 .addItemDecoration(10)
 

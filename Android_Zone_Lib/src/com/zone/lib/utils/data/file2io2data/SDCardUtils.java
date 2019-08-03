@@ -1,15 +1,14 @@
 package com.zone.lib.utils.data.file2io2data;
 
 import java.io.File;
-
-import com.zone.lib.LogUtil;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.text.format.Formatter;
+
+import com.zone.lib.LogZSDK;
 
 public class SDCardUtils {
     /**
@@ -104,7 +103,7 @@ public class SDCardUtils {
             long left = (long) size.getAvailableBlocks();// 还剩下多少块
             // Formatter.formatFileSize(activity, left*kuai) 把byte 转化成 GB,KB什么的
             String leftStr = Formatter.formatFileSize(context, left * kuai);
-            LogUtil.d("剩余空间：" + leftStr);
+            LogZSDK.INSTANCE.d("剩余空间：" + leftStr);
             if (need == null) {
                 return true;
             }
@@ -134,20 +133,20 @@ public class SDCardUtils {
                     needBig = needlong * 1024 * 1024 * 1024;
                     break;
                 default:
-                    LogUtil.d("不是 KB,MB,GB 之一");
+                    LogZSDK.INSTANCE.d("不是 KB,MB,GB 之一");
                     return false;
             }
             if (needBig < (left * kuai)) {
                 long lin = left * kuai - needBig;
-                LogUtil.d("用完你所需要的内存还剩：" + Formatter.formatFileSize(context, lin));
+                LogZSDK.INSTANCE.d("用完你所需要的内存还剩：" + Formatter.formatFileSize(context, lin));
                 return true;
             } else {
-                LogUtil.d("内存不足");
+                LogZSDK.INSTANCE.d("内存不足");
                 return false;
             }
 
         } else {
-            LogUtil.d("SD卡不存在等状况！！");
+            LogZSDK.INSTANCE.d("SD卡不存在等状况！！");
             return false;
         }
     }
@@ -174,7 +173,7 @@ public class SDCardUtils {
                 sd.totalBytes = sf.getTotalBytes();
             }
         }
-        LogUtil.i(sd.toString());
+        LogZSDK.INSTANCE.i(sd.toString());
         return sd;
     }
 

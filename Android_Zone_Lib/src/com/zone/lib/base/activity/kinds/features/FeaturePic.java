@@ -2,9 +2,10 @@ package com.zone.lib.base.activity.kinds.features;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Locale;
+
+import com.zone.lib.LogZSDK;
 import com.zone.lib.base.activity.kinds.features.core.ExtraFeature;
 import com.zone.lib.base.activity.RequestCodeConfig;
-import com.zone.lib.LogUtil;
 import com.zone.lib.utils.data.file2io2data.FileUtils;
 import com.zone.lib.utils.data.file2io2data.SDCardUtils;
 
@@ -32,7 +33,7 @@ public abstract  class FeaturePic extends ExtraFeature{
 
 	public  void openCamera() {
 		String picName = DateFormat.format("yyyyMMdd_hhmmss",Calendar.getInstance(Locale.CHINA))+ ".jpg";
-		LogUtil.d("照片名格式：yyyyMMdd_hhmmss.jpg");
+		LogZSDK.INSTANCE.d("照片名格式：yyyyMMdd_hhmmss.jpg");
 		outFile = new File(outFile, picName);
 		path = outFile.getPath();
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -90,7 +91,7 @@ public abstract  class FeaturePic extends ExtraFeature{
 					}
 					cursor.moveToFirst();
 					for (int i = 0; i < cursor.getColumnCount(); i++) {
-						LogUtil.d(i + "-----------------" + cursor.getString(i) + "----" + cursor.getColumnName(i));
+						LogZSDK.INSTANCE.d(i + "-----------------" + cursor.getString(i) + "----" + cursor.getColumnName(i));
 						if (cursor.getColumnName(i).contains("data")) {
 							path = cursor.getString(i);
 						}

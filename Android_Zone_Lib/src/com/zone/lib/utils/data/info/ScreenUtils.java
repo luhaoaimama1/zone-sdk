@@ -6,7 +6,8 @@ import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.zone.lib.LogUtil;
+import com.zone.lib.LogLevel;
+import com.zone.lib.LogZSDK;
 
 public class ScreenUtils {
 	public static void  requestFillWindow(Activity context){
@@ -37,7 +38,7 @@ public class ScreenUtils {
 	 */
 	public static DisplayMetrics printDisplayInfo(Context context) {
 		DisplayMetrics dm = context.getResources().getDisplayMetrics();
-		if (LogUtil.writeLog) {
+		if (LogZSDK.INSTANCE.levelOK(LogLevel.i)) {
 			StringBuilder sb = new StringBuilder();
 			sb.append("_______  显示信息:  ");
 			sb.append("\ndensity         :").append(dm.density);
@@ -47,7 +48,7 @@ public class ScreenUtils {
 			sb.append("\nscaledDensity   :").append(dm.scaledDensity);
 			sb.append("\nxdpi            :").append(dm.xdpi);
 			sb.append("\nydpi            :").append(dm.ydpi);
-			LogUtil.i(sb.toString());
+			LogZSDK.INSTANCE.i(sb.toString());
 		}
 		return dm;
 	}

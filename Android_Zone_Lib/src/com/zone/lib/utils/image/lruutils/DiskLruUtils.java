@@ -5,9 +5,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import com.zone.lib.LogZSDK;
 import com.zone.lib.utils.image.compress2sample.SampleUtils;
 import com.zone.lib.utils.image.lruutils.official.DiskLruCache;
-import com.zone.lib.LogUtil;
 import com.zone.lib.utils.data.file2io2data.IOUtils;
 import com.zone.lib.utils.data.convert.de2encode.MD5Utils;
 import android.content.Context;
@@ -92,10 +93,10 @@ public class DiskLruUtils {
 			OutputStream outputStream = editor.newOutputStream(0);  
 			if(readToOutStream(bm, outputStream)){
 				editor.commit();
-				LogUtil.d("addBitmap:" + url);
+				LogZSDK.INSTANCE.d("addBitmap:" + url);
 			}else {  
 				editor.abort();
-				LogUtil.e("addBitmap Fail:" + url);
+				LogZSDK.INSTANCE.e("addBitmap Fail:" + url);
 			}  
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -114,10 +115,10 @@ public class DiskLruUtils {
 				OutputStream outputStream = editor.newOutputStream(0);
 				if(readToOutStream(contentStr, outputStream)){
                     editor.commit();
-                    LogUtil.d("addString  :" + url);
+                    LogZSDK.INSTANCE.d("addString  :" + url);
                 }else {
                     editor.abort();
-					LogUtil.e("addString Fail:" + url);
+					LogZSDK.INSTANCE.e("addString Fail:" + url);
                 }
 			}
 		} catch (IOException e) {
@@ -129,7 +130,7 @@ public class DiskLruUtils {
 		String key = MD5Utils.hashKeyForDisk(url);
 		try {
 			boolean temp= mDiskLruCache.remove(key);
-			LogUtil.d("addUrl:" + url + (temp == true ? "成功" : "失败"));
+			LogZSDK.INSTANCE.d("addUrl:" + url + (temp == true ? "成功" : "失败"));
 			return temp;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -144,7 +145,7 @@ public class DiskLruUtils {
 			DiskLruCache.Snapshot snapShot = mDiskLruCache.get(key);
 			if(snapShot != null){
 				bitmap = BitmapFactory.decodeStream(snapShot.getInputStream(0));
-				LogUtil.d("getBitmap:" + url);
+				LogZSDK.INSTANCE.d("getBitmap:" + url);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -159,7 +160,7 @@ public class DiskLruUtils {
 			DiskLruCache.Snapshot snapShot = mDiskLruCache.get(key);
 			if(snapShot != null){
 				contentStr =IOUtils.read(snapShot.getInputStream(0), encoded);
-				LogUtil.d("getString key:" + url);
+				LogZSDK.INSTANCE.d("getString key:" + url);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

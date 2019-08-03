@@ -2,6 +2,8 @@ package com.zone.lib.utils.data.file2io2data;
 
 import android.database.Cursor;
 
+import com.zone.lib.LogZSDK;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -17,7 +19,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
-import com.zone.lib.LogUtil;
 
 /**
  * @version 2015.7.15
@@ -47,7 +48,7 @@ public class IOUtils {
 			try {
 				closeable.close();
 			} catch (Throwable ignored) {
-				LogUtil.d(ignored.getMessage(), ignored);
+				LogZSDK.INSTANCE.e(ignored.getMessage(), ignored);
 			}
 		}
 	}
@@ -57,7 +58,7 @@ public class IOUtils {
 			try {
 				cursor.close();
 			} catch (Throwable ignored) {
-				LogUtil.d(ignored.getMessage(), ignored);
+				LogZSDK.INSTANCE.e(ignored.getMessage(), ignored);
 			}
 		}
 	}

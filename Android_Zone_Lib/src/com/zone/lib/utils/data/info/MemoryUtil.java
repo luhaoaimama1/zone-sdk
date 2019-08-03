@@ -1,11 +1,13 @@
 package com.zone.lib.utils.data.info;
+
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
 import android.text.format.Formatter;
 
-import com.zone.lib.LogUtil;
+import com.zone.lib.LogLevel;
+import com.zone.lib.LogZSDK;
 
 /**
  * Get memory info.
@@ -31,7 +33,7 @@ public class MemoryUtil {
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static ActivityManager.MemoryInfo printMemoryInfo(Context context) {
         ActivityManager.MemoryInfo mi = getMemoryInfo(context);
-        if (LogUtil.writeLog) {
+        if (LogZSDK.INSTANCE.levelOK(LogLevel.i)) {
             StringBuilder sb = new StringBuilder();
             sb.append("_______  Memory :   ");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -40,7 +42,7 @@ public class MemoryUtil {
             sb.append("\navailMem        :").append(mi.availMem);
             sb.append("\nlowMemory       :").append(mi.lowMemory);
             sb.append("\nthreshold       :").append(mi.threshold);
-            LogUtil.i( sb.toString());
+            LogZSDK.INSTANCE.i(sb.toString());
         }
         return mi;
     }

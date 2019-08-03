@@ -11,6 +11,7 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zone.lib.ZLogger
 import java.util.ArrayList
 
 class MainActivity2 : Activity() {
@@ -19,11 +20,22 @@ class MainActivity2 : Activity() {
     private var alert: AlertDialog? = null
     private var adapter2: IAdapter<MenuEntity>? = null
 
+    companion object{
+
+        //还原最开始的log配置  如果某次配置一次特殊的 打印完后的记得还原配置
+        @JvmStatic
+        fun initLogger(){
+            ZLogger.logLevelList.clear()
+            ZLogger.mayLoggerList .clear()
+            ZLogger.mayLoggerList .addAll(listOf<ZLogger>(LogApp))
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a_menu)
-        sptest()
+        MainActivity2.initLogger()
 
+        sptest()
         createDialog()
         listView1 = findViewById(R.id.listView1) as RecyclerView
         listView1!!.layoutManager = LinearLayoutManager(this)

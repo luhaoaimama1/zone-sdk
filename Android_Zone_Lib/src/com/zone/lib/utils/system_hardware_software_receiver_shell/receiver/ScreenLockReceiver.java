@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.zone.lib.LogUtil;
+import com.zone.lib.LogZSDK;
 
 public class ScreenLockReceiver extends BroadcastReceiver {
     private ScreenListener screenListener;
@@ -15,12 +15,12 @@ public class ScreenLockReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (action.equals(Intent.ACTION_SCREEN_ON)) {
-            LogUtil.d( "屏幕解锁广播...");
+            LogZSDK.INSTANCE.d( "屏幕解锁广播...");
             if (screenListener != null) {
                 screenListener.screenOn();
             }
         } else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
-            LogUtil.d( "屏幕加锁广播...");
+            LogZSDK.INSTANCE.d( "屏幕加锁广播...");
             if (screenListener != null) {
                 screenListener.screenOff();
             }
@@ -33,7 +33,7 @@ public class ScreenLockReceiver extends BroadcastReceiver {
             IntentFilter filter = new IntentFilter();
             filter.addAction(Intent.ACTION_SCREEN_OFF);
             filter.addAction(Intent.ACTION_SCREEN_ON);
-            LogUtil.d("注册屏幕解锁、加锁广播接收者...");
+            LogZSDK.INSTANCE.d("注册屏幕解锁、加锁广播接收者...");
             context.registerReceiver(this, filter);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +43,7 @@ public class ScreenLockReceiver extends BroadcastReceiver {
     public void unRegisterScreenReceiver(Context context) {
         try {
             context.unregisterReceiver(this);
-            LogUtil.d("注销屏幕解锁、加锁广播接收者...");
+            LogZSDK.INSTANCE.d("注销屏幕解锁、加锁广播接收者...");
         } catch (Exception e) {
             e.printStackTrace();
         }

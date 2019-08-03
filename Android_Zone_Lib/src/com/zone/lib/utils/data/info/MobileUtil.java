@@ -5,10 +5,11 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.SystemClock;
+
+import com.zone.lib.LogZSDK;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.zone.lib.LogUtil;
 
 /**
  * 手机信息 & MAC地址 & 开机时间
@@ -28,7 +29,7 @@ public class MobileUtil {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifi.getConnectionInfo();
         String mac = info.getMacAddress();
-        LogUtil.i(" MAC：" + mac);
+        LogZSDK.INSTANCE.i(" MAC：" + mac);
         return mac;
     }
 
@@ -39,7 +40,7 @@ public class MobileUtil {
         long ut = SystemClock.elapsedRealtime() / 1000;
         int h = (int) ((ut / 3600));
         int m = (int) ((ut / 60) % 60);
-        LogUtil.i( h + ":" + m);
+        LogZSDK.INSTANCE.i( h + ":" + m);
         return h + ":" + m;
     }
 
@@ -87,7 +88,7 @@ public class MobileUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             sb.append("\nSERIAL             :").append(Build.SERIAL);
         }
-        LogUtil.i( sb.toString());
+        LogZSDK.INSTANCE.i( sb.toString());
         return sb.toString();
     }
 }

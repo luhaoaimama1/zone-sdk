@@ -4,11 +4,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.zone.lib.LogZSDK;
+
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
-
-import com.zone.lib.LogUtil;
 
 /**
  * Created by Zone on 2016/4/7.
@@ -205,20 +205,20 @@ public class SampleUtils {
             justDecodeBounds();
         if (targetWidth == null && targetHeight != null) {
             inSampleSize = opts.outHeight / targetHeight;
-            LogUtil.d("targetHeight 的缩放比：" + inSampleSize);
+            LogZSDK.INSTANCE.d("targetHeight 的缩放比：" + inSampleSize);
         } else if (targetHeight == null && targetWidth != null) {
             inSampleSize = opts.outWidth / targetWidth;
-            LogUtil.d("targetWidth 的缩放比：" + inSampleSize);
+            LogZSDK.INSTANCE.d("targetWidth 的缩放比：" + inSampleSize);
         } else if (targetHeight != null && targetWidth != null) {
             float h_scale = opts.outHeight / targetHeight;
             float w_scale = opts.outWidth / targetWidth;
-            LogUtil.d("横向缩放比：h_scale:" + h_scale + "\t 纵向缩放比：w_scale" + w_scale);
+            LogZSDK.INSTANCE.d("横向缩放比：h_scale:" + h_scale + "\t 纵向缩放比：w_scale" + w_scale);
             if (simpleType == FitCenter) {
                 inSampleSize = (int) ((h_scale > w_scale) ? h_scale : w_scale);
             } else if (simpleType == CenterCrop) {
                 inSampleSize = (int) ((h_scale > w_scale) ? w_scale : h_scale);
             }
-            LogUtil.d("mode:" + (simpleType == FitCenter ? "FitCenter" : "CenterCrop") + "的缩放比：simpleScale" + inSampleSize);
+            LogZSDK.INSTANCE.d("mode:" + (simpleType == FitCenter ? "FitCenter" : "CenterCrop") + "的缩放比：simpleScale" + inSampleSize);
         } else {
             return inSampleSize;
         }
@@ -236,7 +236,7 @@ public class SampleUtils {
                 }
             }
         }
-        LogUtil.d("最终缩放比：" + inSampleSize);
+        LogZSDK.INSTANCE.d("最终缩放比：" + inSampleSize);
         return inSampleSize;
     }
 }

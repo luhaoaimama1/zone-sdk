@@ -5,8 +5,8 @@ import android.os.Build;
 import java.io.*;
 import java.util.regex.Pattern;
 
+import com.zone.lib.LogZSDK;
 import com.zone.lib.utils.data.check.EmptyCheck;
-import com.zone.lib.LogUtil;
 
 /**
  * Get CPU info.
@@ -95,7 +95,6 @@ public class CpuUtil {
     }
 
 
-
     /**
      * @return
      * @hide
@@ -122,6 +121,7 @@ public class CpuUtil {
             return info;
         }
     }
+
     /**
      * 获取设备内存大小值
      *
@@ -152,9 +152,7 @@ public class CpuUtil {
      */
     public static String printCpuInfo() {
         String info = getCpuString();
-        if (LogUtil.writeLog) {
-            LogUtil.i( "_______  CPU :   \n" + info);
-        }
+        LogZSDK.INSTANCE.i("_______  CPU :   \n" + info);
         return info;
     }
 
@@ -164,6 +162,7 @@ public class CpuUtil {
     public static int getProcessorsCount() {
         return Runtime.getRuntime().availableProcessors();
     }
+
     /**
      * Gets the number of cores available in this device, across all processors.
      * Requires: Ability to peruse the filesystem at "/sys/devices/system/cpu"
@@ -218,9 +217,7 @@ public class CpuUtil {
             bufferedReader.close();
             String[] array = line.split(":\\s+", 2);
             if (array.length > 1) {
-                if (LogUtil.writeLog) {
-                    LogUtil.i( array[1]);
-                }
+                LogZSDK.INSTANCE.i(array[1]);
                 CPU_NAME = array[1];
             }
         } catch (IOException e) {
@@ -287,7 +284,7 @@ public class CpuUtil {
             }
             in.close();
             process.destroy();
-            LogUtil.i("CMD: " + sb.toString());
+            LogZSDK.INSTANCE.i("CMD: " + sb.toString());
             return sb.toString();
         } catch (IOException ex) {
             ex.printStackTrace();

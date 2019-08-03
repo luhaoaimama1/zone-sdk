@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="test" >16dp</dimen>
+
+    <item name="card_warning_text_extra_space" format="float" type="dimen">7.1</item>
 </resources>

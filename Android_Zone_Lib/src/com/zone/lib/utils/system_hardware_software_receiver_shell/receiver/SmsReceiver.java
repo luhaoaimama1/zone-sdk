@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 
+import com.zone.lib.LogLevel;
+import com.zone.lib.LogZSDK;
+
 import java.util.List;
 
-import com.zone.lib.LogUtil;
 
 /**
  * Call requires API level 4
@@ -30,11 +32,11 @@ public class SmsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         try {
-            if (LogUtil.writeLog) {
-                LogUtil.i( "收到广播：" + intent.getAction());
+            if (LogZSDK.INSTANCE.levelOK(LogLevel.i)) {
+                LogZSDK.INSTANCE.i( "收到广播：" + intent.getAction());
                 Bundle bundle = intent.getExtras();
                 for (String key : bundle.keySet()) {
-                    LogUtil.i( key + " : " + bundle.get(key));
+                    LogZSDK.INSTANCE.i( key + " : " + bundle.get(key));
                 }
             }
             Object[] pdus = (Object[]) intent.getExtras().get("pdus");
@@ -108,7 +110,7 @@ public class SmsReceiver extends BroadcastReceiver {
      * @param msg
      */
     public static void sendMsgToPhone(String phone, String msg) {
-        LogUtil.i( "发送手机：" + phone + " ,内容： " + msg);
+        LogZSDK.INSTANCE.i( "发送手机：" + phone + " ,内容： " + msg);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.DONUT) {
             SmsManager manager = SmsManager.getDefault();
             List<String> texts = manager.divideMessage(msg);
@@ -116,7 +118,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 manager.sendTextMessage(phone, null, txt, null, null);
             }
         }else{
-            LogUtil.e( "发送失败，系统版本低于DONUT，" + phone + " ,内容： " + msg);
+            LogZSDK.INSTANCE.e( "发送失败，系统版本低于DONUT，" + phone + " ,内容： " + msg);
         }
 
     }
