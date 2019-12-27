@@ -27,6 +27,8 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    // Specifies the ABI configurations of your native
+    // libraries Gradle should build and package with your APK.
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'

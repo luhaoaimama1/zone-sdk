@@ -7,7 +7,6 @@ import com.example.mylib_test.activity.animal.Animal_MainActivity;
 import com.example.mylib_test.activity.bbbb.BBBBActivity;
 import com.example.mylib_test.activity.custom_view.CustomView_MainActivity;
 import com.example.mylib_test.activity.databingstudy.DataBingMainActivity;
-import com.example.mylib_test.activity.db.Db_MainActivity;
 import com.example.mylib_test.activity.db.entity.MenuEntity;
 import com.example.mylib_test.activity.file.FileTestActivity;
 import com.example.mylib_test.activity.http.Http_MainActivity;
@@ -16,6 +15,7 @@ import com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity;
 import com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity;
 import com.example.mylib_test.activity.ress.ResMainActvitity;
 import com.example.mylib_test.activity.statu.StatuMainActivity;
+import com.example.mylib_test.activity.study.StudyMainActivity;
 import com.example.mylib_test.activity.system.SystemMainActivity;
 import com.example.mylib_test.activity.three_place.ThirdParty_MainActivity;
 import com.example.mylib_test.activity.touch.TouchMainActivity;
@@ -43,6 +43,7 @@ public class MainMenu {
 		menu.add(new MenuEntity("系统控件等的研究", SystemMainActivity.class)) ;
 		menu.add(new MenuEntity("系统状态栏等研究", StatuMainActivity.class)) ;
 		menu.add(new MenuEntity("BBBBBBBBBB", BBBBActivity.class)) ;
+		menu.add(new MenuEntity("调研", StudyMainActivity.class)) ;
 	}
 
 }

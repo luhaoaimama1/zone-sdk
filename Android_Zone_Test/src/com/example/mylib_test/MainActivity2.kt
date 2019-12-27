@@ -11,6 +11,7 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zone.lib.LogZSDK
 import com.zone.lib.ZLogger
 import java.util.ArrayList
 
@@ -20,16 +21,17 @@ class MainActivity2 : Activity() {
     private var alert: AlertDialog? = null
     private var adapter2: IAdapter<MenuEntity>? = null
 
-    companion object{
+    companion object {
 
         //还原最开始的log配置  如果某次配置一次特殊的 打印完后的记得还原配置
         @JvmStatic
-        fun initLogger(){
+        fun initLogger() {
             ZLogger.logLevelList.clear()
-            ZLogger.mayLoggerList .clear()
-            ZLogger.mayLoggerList .addAll(listOf<ZLogger>(LogApp))
+            ZLogger.mayLoggerList.clear()
+            ZLogger.mayLoggerList.addAll(listOf<ZLogger>(LogApp,LogZSDK))
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a_menu)
@@ -41,37 +43,37 @@ class MainActivity2 : Activity() {
         listView1!!.layoutManager = LinearLayoutManager(this)
         val colorArry = intArrayOf(Color.WHITE, Color.GREEN, Color.YELLOW, Color.CYAN)
         adapter2 = QuickRcvAdapter<MenuEntity>(this, MainMenu.menu)
-            .addViewHolder(MenuEntityDeletates(this, colorArry, MainMenu.menu))
-            .addHeaderHolder(R.layout.header_simple)
-            .addFooterHolder(R.layout.footer_simple)
-            .relatedList(listView1)
-            .setOnItemLongClickListener { viewGroup, view, i ->
-                positonId = i
-                alert!!.show()
-                false
-            }
-            .addOnScrollListener(object : OnScrollRcvListener() {
-
-                var refesh = true
-
-                override fun loadMore(recyclerView: RecyclerView) {
-                    super.loadMore(recyclerView)
-                    val mDatasa = ArrayList<MenuEntity>()
-                    for (i in 0..4) {
-                        mDatasa.add(MenuEntity("insert $i", null))
-                    }
-                    listView1!!.postDelayed({
-                        if (refesh) {
-                            adapter2!!.loadMoreComplete()
-                            adapter2!!.data.addAll(mDatasa)
-                            adapter2!!.notifyDataSetChanged()
-                        } else {
-                            adapter2!!.loadMoreFail()
-                        }
-                        refesh = !refesh
-                    }, 1000)
+                .addViewHolder(MenuEntityDeletates(this, colorArry, MainMenu.menu))
+                .addHeaderHolder(R.layout.header_simple)
+                .addFooterHolder(R.layout.footer_simple)
+                .relatedList(listView1)
+                .setOnItemLongClickListener { viewGroup, view, i ->
+                    positonId = i
+                    alert!!.show()
+                    false
                 }
-            }) as IAdapter<MenuEntity>?
+                .addOnScrollListener(object : OnScrollRcvListener() {
+
+                    var refesh = true
+
+                    override fun loadMore(recyclerView: RecyclerView) {
+                        super.loadMore(recyclerView)
+                        val mDatasa = ArrayList<MenuEntity>()
+                        for (i in 0..4) {
+                            mDatasa.add(MenuEntity("insert $i", null))
+                        }
+                        listView1!!.postDelayed({
+                            if (refesh) {
+                                adapter2!!.loadMoreComplete()
+                                adapter2!!.data.addAll(mDatasa)
+                                adapter2!!.notifyDataSetChanged()
+                            } else {
+                                adapter2!!.loadMoreFail()
+                            }
+                            refesh = !refesh
+                        }, 1000)
+                    }
+                }) as IAdapter<MenuEntity>?
 
 
         //通过加载XML动画设置文件来创建一个Animation对象；
@@ -91,8 +93,24 @@ class MainActivity2 : Activity() {
     }
 
     private fun sptest() {
-        SP2.put("like","嗯")
-        print("取值："+SP2.get("like","null"))
+
+        LogApp.d(
+                "不从缓存from cache：int:${SP2.get("int", -1)} "
+        )
+        SP2.put("int", 1)
+        SP2.put("long", 10L)
+        SP2.put("float", 1.0F)
+        SP2.put("string", "happy?")
+        SP2.put("boolean", true)
+
+        LogApp.d(
+                "from cache：int${SP2.get("int", -1)} \n" +
+                        "from cache：long${SP2.get("long", -1L)} \n" +
+                        "from cache：float${SP2.get("float", -1.0)} \n" +
+                        "from cache：string${SP2.get("string", "empty")} \n" +
+                        "from cache：boolean${SP2.get("boolean", false)} \n" +
+                        ""
+        )
     }
 
     private fun createDialog() {

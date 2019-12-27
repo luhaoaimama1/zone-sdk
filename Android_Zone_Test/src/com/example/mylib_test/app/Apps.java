@@ -21,8 +21,12 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
+import android.util.Log;
+
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.tencent.smtt.sdk.QbSdk;
+import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 import com.zone.lib.Configure;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
@@ -55,6 +59,9 @@ public class Apps extends Application {
     public void onCreate() {
         super.onCreate();
         Configure.init(this);
+        init(this);
+        PDFBoxResourceLoader.init(getApplicationContext());
+
         if (false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
@@ -100,5 +107,32 @@ public class Apps extends Application {
         Apps application = (Apps) context.getApplicationContext();
         return application.refWatcher;
     }
+
+
+
+
+    public static void init(Context context){
+        if(context instanceof Application){
+            //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
+            QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+                @Override
+                public void onViewInitFinished(boolean arg0) {
+                    //x5內核初始化完成的回调，为true表示x5内核加载成功
+                    //否则表示x5内核加载失败，会自动切换到系统内核。
+                    Log.d("app", " onViewInitFinished is " + arg0);
+                }
+
+                @Override
+                public void onCoreInitFinished() {
+                    Log.d("app", " onCoreInitFinished ");
+                }
+            };
+            //x5内核初始化接口
+            QbSdk.initX5Environment(context,  cb);
+        }else {
+            throw new UnsupportedOperationException("context must be application...");
+        }
+    }
+
 
 }
