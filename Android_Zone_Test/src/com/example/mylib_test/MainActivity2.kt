@@ -1,21 +1,22 @@
 package com.example.mylib_test
 
+import android.app.Activity
 import com.example.mylib_test.activity.db.entity.MenuEntity
 import com.example.mylib_test.delegates.MenuEntityDeletates
 import com.zone.adapter3.QuickRcvAdapter
 import com.zone.adapter3.base.IAdapter
 import com.zone.adapter3.loadmore.OnScrollRcvListener
-import android.app.Activity
 import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zone.lib.LogZSDK
 import com.zone.lib.ZLogger
 import java.util.ArrayList
 
-class MainActivity2 : Activity() {
+class MainActivity2 : AppCompatActivity() {
     private var listView1: RecyclerView? = null
     private var positonId = -1
     private var alert: AlertDialog? = null
@@ -28,14 +29,14 @@ class MainActivity2 : Activity() {
         fun initLogger() {
             ZLogger.logLevelList.clear()
             ZLogger.mayLoggerList.clear()
-            ZLogger.mayLoggerList.addAll(listOf<ZLogger>(LogApp,LogZSDK))
+            ZLogger.mayLoggerList.addAll(listOf<ZLogger>(LogApp, LogZSDK))
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a_menu)
-        MainActivity2.initLogger()
+        initLogger()
 
         sptest()
         createDialog()
@@ -127,6 +128,7 @@ class MainActivity2 : Activity() {
                 .setNegativeButton("No") { dialog, id -> dialog.cancel() }
         alert = builder.create()
     }
+
 
     override fun onStop() {
         super.onStop()

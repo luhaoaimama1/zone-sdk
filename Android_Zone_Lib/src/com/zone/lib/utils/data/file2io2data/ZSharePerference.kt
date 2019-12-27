@@ -118,12 +118,14 @@ open class ZSharePerference protected constructor(val shareName: String) {
     }
 
     fun remove(key: String) {
+        weakHashMap.remove(key)
         val editor = sharedPreferences.edit()
         editor.remove(key)
         SharedPreferencesCompat.apply(editor)
     }
 
     fun clear() {
+        weakHashMap.clear()
         val editor = sharedPreferences.edit()
         editor.clear()
         SharedPreferencesCompat.apply(editor)

@@ -1,2 +1,5 @@
-* LazyFragment 可见隐藏区分 是谁导致的  viewpager还是
-* 自定义view的那个终极view重新弄下
+
+* fragemnt 与 activity 基类 从组
+* 去除无用的类 与 demo
+* adapter 应用adapter3KT  
+* readme 更新

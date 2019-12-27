@@ -38,7 +38,7 @@ class StudyMainActivity : BaseActivity() {
             R.id.google_office -> startActivity(Intent(this, GoogleOfficeActivity::class.java))
             R.id.tips -> startActivity(Intent(this, TipsActivity::class.java))
             R.id.dynamicLogo -> startActivity(Intent(this, DynamicLogoActivity::class.java))
-            R.id.bt_data_crash -> startActivity(Intent(this, DynamicLogoActivity::class.java))
+            R.id.bt_data_crash -> startActivity(Intent(this, CrashDataActivity::class.java))
             else -> {}
         }
     }
