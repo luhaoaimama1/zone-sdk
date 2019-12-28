@@ -13,6 +13,10 @@ import com.zone.lib.utils.view.graphics.MatteUtils;
 
 /**
  * Created by fuzhipeng on 2016/12/23.
+ *
+ *  通过多图层layer绘制最终
+ *  每层layer内部的图像可以独立进行xfermode。 暂时只能有一个mask
+ *  只要注意：叠加模式的paint和绘制的paint不要用一个 就好了
  */
 
 public class BitmapComposer {

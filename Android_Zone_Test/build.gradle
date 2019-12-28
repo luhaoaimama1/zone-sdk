@@ -66,7 +66,7 @@ dependencies {
     implementation 'com.github.luhaoaimama1:ZRefreshLayout:1.0.15'
     implementation project(':Android_Zone_Lib')
 //    implementation 'com.github.luhaoaimama1:zone-sdk:1.1.10'
-    implementation 'com.github.luhaoaimama1:ZView:1.0.35'
+    implementation 'com.github.luhaoaimama1:ZView:1.0.36'
     implementation'com.github.luhaoaimama1:ZAdapter3:1.0.94'
 
     //图像处理相关

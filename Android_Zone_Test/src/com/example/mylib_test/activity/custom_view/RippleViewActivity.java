@@ -36,12 +36,12 @@ public class RippleViewActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()) {
-            case R.id.switch_no:
-                break;
-            case R.id.switch_on:
-                break;
-        }
+//        switch (v.getId()) {
+//            case R.id.switch_no:
+//                break;
+//            case R.id.switch_on:
+//                break;
+//        }
     }
 
 }

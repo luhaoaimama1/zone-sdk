@@ -98,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:backgroundTint="@color/font_focus"
             android:onClick="onClick"
             android:text="波浪" />
         <Button
@@ -167,6 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:backgroundTint="@color/font_focus"
             android:onClick="onClick"
             android:text="Xfermode" />
         <Button
@@ -182,6 +184,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:backgroundTint="@color/font_focus"
             android:onClick="onClick"
             android:text="图片show的大小" />
         <Button
@@ -204,6 +207,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:backgroundTint="@color/font_focus"
             android:onClick="onClick"
             android:text="drawtext工具测试" />
 
@@ -251,6 +255,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:onClick="onClick"
+            android:backgroundTint="@color/font_focus"
             android:text="FlexibleBall" />
         <Button
             android:id="@+id/bt_damping"
@@ -258,6 +263,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:onClick="onClick"
+            android:backgroundTint="@color/font_focus"
             android:text="阻尼公式" />
         <Button
             android:id="@+id/bt_PathMeasure"
@@ -354,6 +360,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:onClick="onClick"
+            android:backgroundTint="@color/font_focus"
             android:text="spannable学习" />
 
     </com.zone.view.FlowLayout>

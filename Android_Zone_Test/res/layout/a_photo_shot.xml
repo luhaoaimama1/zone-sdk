@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:onClick="onClick"
+        android:backgroundTint="@color/font_focus"
         android:text="拍摄" />
 
     <Button
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:onClick="onClick"
+        android:backgroundTint="@color/font_focus"
         android:text="照片" />
 
     <TextView

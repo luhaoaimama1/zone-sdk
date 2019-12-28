@@ -7,8 +7,10 @@ import com.zone.adapter3.base.IAdapter
 import com.zone.adapter3.loadmore.OnScrollRcvListener
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zone.lib.ZLogger
@@ -30,11 +32,21 @@ class MainActivity2 : Activity() {
             ZLogger.mayLoggerList .addAll(listOf<ZLogger>(LogApp))
         }
     }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        val isGranted = requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+        if (!isGranted) {
+            finish()
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a_menu)
         MainActivity2.initLogger()
 
+        ActivityCompat.requestPermissions(this@MainActivity2, arrayOf(android
+                .Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         sptest()
         createDialog()
         listView1 = findViewById(R.id.listView1) as RecyclerView

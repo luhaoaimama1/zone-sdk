@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:onClick="onClick"
+        android:backgroundTint="@color/font_focus"
         android:text="轮播的滑动禁止和允许" />
     <Button
         android:id="@+id/frg_scroll_"
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:onClick="onClick"
+        android:backgroundTint="@color/font_focus"
         android:text="盖凤瑞" />
     <Button
         android:id="@+id/frammentSwitch"
@@ -126,18 +128,19 @@
         android:layout_margin="4dp"
         android:onClick="onClick"
         android:text="最终理解父布局绘制" />
-    <Button
-        android:id="@+id/bt_fold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="折叠View" />
+<!--    <Button-->
+<!--        android:id="@+id/bt_fold"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="4dp"-->
+<!--        android:onClick="onClick"-->
+<!--        android:text="折叠View" />-->
     <Button
         android:id="@+id/bt_foldViewGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:backgroundTint="@color/font_focus"
         android:onClick="onClick"
         android:text="折叠布局" />
     <Button

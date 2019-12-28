@@ -13,10 +13,14 @@ import com.zone.lib.utils.data.file2io2data.SDCardUtils;
 import com.zone.lib.utils.data.file2io2data.IOUtils;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 public class FileTestActivity extends Activity implements OnClickListener{
 //	static{
@@ -28,6 +32,8 @@ public class FileTestActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.a_filetest);
 	}
+
+
 
 	@Override
 	public void onClick(View v) {
