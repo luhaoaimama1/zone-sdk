@@ -2,9 +2,13 @@ package com.example.mylib_test.activity.animal;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.drawable.ClipDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,13 +20,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 
+import com.example.mylib_test.LogApp;
 import com.example.mylib_test.R;
 
 import com.zone.lib.utils.activity_fragment_ui.ActivityTopViewUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import com.zone.lib.utils.data.file2io2data.FileUtils;
+import com.zone.lib.utils.data.file2io2data.SDCardUtils;
+import com.zone.lib.utils.image.BitmapUtils;
+import com.zone.lib.utils.image.compress2sample.CompressUtils;
+import com.zone.lib.utils.image.compress2sample.SampleUtils;
 import com.zone.view.FlowLayout;
+
+import java.io.File;
+import java.util.Observable;
 
 public class Animal_MainActivity extends Activity implements OnClickListener {
     @BindView(R.id.bt_clip_drawable)
@@ -56,13 +69,15 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.bt_big_save:
+                saveBigBitmap();
+                break;
             case R.id.tv:
                 int[] loWindow =new int[2];
                 int[] loScreen =new int[2];
                 flowLayoutZone1.getLocationInWindow(loWindow);
                 flowLayoutZone1.getLocationOnScreen(loScreen);
                 ActivityTopViewUtils.getActivityRootView(this);
-
                 break;
             case R.id.animal:
                 startActivity(new Intent(this, AniPro.class));
@@ -87,6 +102,9 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
                 break;
             case R.id.bt_imageBigTest:
                 startActivity(new Intent(this, ImageShowBigActivity.class));
+                break;
+            case R.id.bt_imageCenter:
+                startActivity(new Intent(this, ImageCenterActivity.class));
                 break;
             case R.id.bt_shader:
                 startActivity(new Intent(this, CanvasTest.class).putExtra("type", "shader"));
@@ -172,6 +190,44 @@ public class Animal_MainActivity extends Activity implements OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void saveBigBitmap() {
+        Bitmap bt = SampleUtils.load(this, R.drawable.abcd).bitmap();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ActivityManager mActivityManager = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
+                //获得MemoryInfo对象
+                ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo() ;
+                //获得系统可用内存，保存在MemoryInfo对象上
+                mActivityManager.getMemoryInfo(memoryInfo) ;
+                long memSize = memoryInfo.availMem;
+//                int width = (int) (Math.sqrt(memSize / 4)) - 8000;
+                //x的平方*4(rgb888 每个像素 4byte) =可用像素
+                int width = (int) (Math.sqrt(memSize / 4))-90000 ;
+
+                //经过测试  在创建的时候就已经是申请很多内存了
+                Bitmap bitmap=Bitmap.createBitmap(width, width, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                float scaleWidth = width * 1F / bt.getWidth();
+                float scaleHeight = width * 1F / bt.getHeight();
+                //用最小的缩放
+                float realScale = scaleWidth <= scaleHeight ? scaleWidth : scaleHeight;
+                Matrix mar = new Matrix();
+                canvas.save();
+                mar.postTranslate((width - bt.getWidth()) * 1f / 2, (width - bt.getHeight()) * 1f / 2);
+                mar.postScale(realScale, realScale, width * 1f / 2, width * 1f / 2);
+                canvas.drawBitmap(bt, mar, null);
+                canvas.restore();
+
+                LogApp.INSTANCE.d("bitmap 实例:"+bitmap);
+                File file =FileUtils.getFile(SDCardUtils.getSDCardDir(),"Zone", "abc.png");
+
+                CompressUtils.saveBitmap(file.getPath(), bitmap);
+
+            }
+        }).start();
     }
 
     private void bitmapRecyleTest() {

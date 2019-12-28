@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zone.view.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flowLayoutZone1"
+    android:layout_width="match_parent"
+    android:background="@color/background"
+    android:layout_height="match_parent">
+
+    <com.example.mylib_test.activity.study.FileReaderView
+        android:id="@+id/documentReaderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.zone.view.FlowLayout>

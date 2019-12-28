@@ -15,6 +15,7 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['jniLibs']
         }
 
         // Move the tests to tests/java, tests/res, etc...
@@ -25,10 +26,16 @@ android {
 
     }
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 17
         // dex突破65535的限制
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a' ,"x86","mips"
+//            abiFilters  "x86_64"
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a'
+        }
     }
 
     compileOptions {
@@ -45,6 +52,7 @@ android {
 }
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation fileTree(include: '*.aar', dir: 'libs')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.11"
     //官方库
@@ -88,11 +96,38 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.0.0'
     kapt 'com.jakewharton:butterknife-compiler:10.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.tom_roush:pdfbox-android:1.8.10.1'
+
+    api "io.reactivex.rxjava2:rxjava:2.2.8"
+    api "io.reactivex.rxjava2:rxandroid:2.1.1"
+
+//    api 'com.tencent.tbs.tbssdk:sdk:43697'
 }
 
 
 //Kotlin gradle.build ZipException because of duplicates
 //https://discuss.kotlinlang.org/t/kotlin-gradle-build-zipexception-because-of-duplicates/2133/8
 configurations {
-    compile.exclude group : 'org.jetbrains' , module : 'annotations'
+    //排除module
+    compile.exclude group: 'org.jetbrains', module: 'annotations'
+    all {
+        resolutionStrategy {
+            eachDependency { DependencyResolveDetails details ->
+                println "zone=>${details.requested}"
+                //把所有的zview 为1.0.36
+                if (details.requested.name == 'ZView') {
+                    details.useVersion '1.0.36'
+                }
+            }
+        }
+        resolutionStrategy.dependencySubstitution {
+            // 替换module为他的 换成依赖项目
+            substitute module('com.github.luhaoaimama1:zone-sdk:1.1.10') with project(':Android_Zone_Lib')
+            //依赖项目换成  module依赖
+//            substitute project(':Android_Zone_Lib') with module('com.github.luhaoaimama1:zone-sdk:2.1.02')
+            // 指定某一个版本替换成 另一个版本 ，原来没有的话就不支持 因为走的循环并不是这里改过的 而是之前的 所以这里无法生效
+//            substitute module('com.github.luhaoaimama1:zone-sdk:2.1.02') with module('com.github.luhaoaimama1:zone-sdk:1.1.10')
+        }
+
+    }
 }

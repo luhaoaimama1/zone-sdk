@@ -41,6 +41,22 @@
             android:hint="关闭键盘"
             android:onClick="onClick" />
 
+        <Button
+            android:id="@+id/getClipboardContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="获取剪切板"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/setClipboardContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="设置剪切板123"
+            android:onClick="onClick" />
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="50dp"
@@ -99,6 +115,27 @@
             android:text="log1,2->i,e"
             android:onClick="onClick" />
 
+
+        <Button
+            android:id="@+id/testHide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="hide?"
+            android:onClick="onClick" />
+
+        <view.testing.TestViewGroup
+            android:layout_width="wrap_content"
+            android:background="#00ff00"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/testHide2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="hide?"
+                android:onClick="onClick" />
+        </view.testing.TestViewGroup>
     </com.zone.view.FlowLayout>
 
 </RelativeLayout>

@@ -6,13 +6,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.EditText
 import com.example.mylib_test.*
 import com.zone.lib.LogLevel
 import com.zone.lib.ZLogger
+import com.zone.lib.utils.data.file2io2data.ClipboardManagerUtils
+import kotlinx.android.synthetic.main.a_utils_test.*
 
 class Utils_MainActivity : Activity(), OnClickListener {
     private var keyboard: EditText? = null
@@ -59,6 +60,16 @@ class Utils_MainActivity : Activity(), OnClickListener {
             R.id.bt_log1_i -> bt_log1_i()
             R.id.bt_log12_i -> bt_log12_i()
             R.id.bt_log12_ie -> bt_log12_ie()
+            R.id.getClipboardContent -> LogApp.i(ClipboardManagerUtils.getClipBoardText(this))
+            R.id.setClipboardContent -> ClipboardManagerUtils.setClipeBoardContent(this,"123")
+            R.id.testHide ->{
+                when (testHide2.visibility) {
+                    View.VISIBLE-> testHide2.visibility=View.GONE
+                    View.GONE-> testHide2.visibility=View.VISIBLE
+                    else -> {
+                    }
+                }
+            }
             else -> {
             }
         }
