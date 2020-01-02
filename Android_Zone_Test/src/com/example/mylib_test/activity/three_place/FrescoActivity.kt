@@ -3,21 +3,20 @@ package com.example.mylib_test.activity.three_place
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.ButterKnife
 import com.example.mylib_test.R
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.example.mylib_test.delegates.FrescoDeletates
 import com.example.mylib_test.delegates.FrescoProcessorDealDeletates
 import com.example.mylib_test.delegates.FrescoProcessorDeletates
 import com.example.mylib_test.delegates.FrescoSuperscriptDeletates
 import com.zone.adapter3.QuickRcvAdapter
 import com.zone.adapter3.base.IAdapter
-import com.zone.lib.base.activity.BaseActivity
 import kotlinx.android.synthetic.main.a_fresco.*
 
 /**
  *[2018/7/8] by Zone
  */
-class FrescoActivity : BaseActivity() {
+class FrescoActivity : BaseFeatureActivity() {
 
     inner class Entity(var introduce: String, var uri: String);
 
@@ -39,11 +38,8 @@ class FrescoActivity : BaseActivity() {
 
     override fun setContentView() {
         setContentView(R.layout.a_fresco)
-        ButterKnife.bind(this)
     }
 
-    override fun findIDs() {
-    }
 
     override fun initData() {
         rv!!.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)

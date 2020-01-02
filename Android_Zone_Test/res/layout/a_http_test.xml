@@ -8,56 +8,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <TextView
             android:id="@+id/handle"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
-            android:layout_margin="4dp"
             android:layout_height="wrap_content"
-            android:onClick="onClick"
             android:text="handler测试" />
-
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#00ff00"
-            android:gravity="center"
-            android:text="Thread测试" />
-
-        <Button
-            android:id="@+id/asyncTask"
+            android:id="@+id/handlerThread"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
-            android:text="AsyncTask测试" />
+            android:text="线程中使用handler" />
 
         <TextView
+            style="@style/TvHint"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#00ff00"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text=" EventBus and Retrofit2.0Sample 在类里 不是android代码" />
 
-        <Button
+        <TextView
             android:id="@+id/eventBus"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
             android:text="eventBus" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="#00ff00"
-            android:gravity="center"
-            android:text="IPC" />
-        <Button
-            android:id="@+id/bt_aidl"
+            android:id="@+id/zeventBus"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:onClick="onClick"
+            android:text="ZeventBus" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="IPC" />
+
+        <TextView
+            android:id="@+id/bt_aidl"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="AIDL" />
 
     </com.zone.view.FlowLayout>

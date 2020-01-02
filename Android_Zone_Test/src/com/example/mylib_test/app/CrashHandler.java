@@ -38,10 +38,8 @@ public class CrashHandler implements UncaughtExceptionHandler {
 	private Context mContext;// 程序的Context对象
 	private String CRASH_REPORTER_EXTENSION = ".log";
 	private Map<String, String> info = new HashMap<String, String>();// 用来存储设备信息和异常信息
-	private SimpleDateFormat format = new SimpleDateFormat(
-			"yyyy-MM-dd-HH-mm-ss");// 用于格式化日期,作为日志文件名的一部分
-	private SimpleDateFormat format2 = new SimpleDateFormat(
-			"yyyy-MM-dd HH-mm-ss");// 用于格式化日期,作为日志文件名的一部分
+	private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");// 用于格式化日期,作为日志文件名的一部分
+	private SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");// 用于格式化日期,作为日志文件名的一部分
 
 	/** 保证只有一个CrashHandler2实例 */
 	private CrashHandler() {
@@ -77,9 +75,12 @@ public class CrashHandler implements UncaughtExceptionHandler {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			// 退出程序
+			mDefaultHandler.uncaughtException(thread,ex);
 			 // 退出程序
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(1);
+//            android.os.Process.killProcess(android.os.Process.myPid());
+//            System.exit(1);
 		}
 	}
 

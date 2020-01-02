@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.zone.view.FlowLayout
+        android:id="@+id/flowLayoutZone1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ActionBarController" />
+
+        <TextView
+            android:id="@+id/bt_ActionBarController_FullScreen_HasTitle"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FullScreen_HasTitle" />
+
+        <TextView
+            android:id="@+id/bt_ActionBarController_FullScreen_NoTitle"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FullScreen_NoTitle" />
+
+        <TextView
+            android:id="@+id/bt_ActionBarController_HasTitle"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HasTitle" />
+
+
+        <TextView
+            android:id="@+id/bt_ActionBarController_NoTitle"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NoTitle" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="CollectionActivity" />
+
+        <TextView
+            android:id="@+id/bt_CollectionActivityController"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CollectionActivityController" />
+
+
+        <TextView
+            android:id="@+id/bt_SwipeBackController"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SwipeBackController" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ActivityResult" />
+
+        <TextView
+            android:id="@+id/shot"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拍摄" />
+
+        <TextView
+            android:id="@+id/photo"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="照片" />
+
+        <TextView
+            android:id="@+id/pick"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pick文件" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="图片辅助测试" />
+
+        <TextView
+            android:id="@+id/clip"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="裁剪保存" />
+
+        <TextView
+            android:id="@+id/Touchclip"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Touch裁剪" />
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="权限测试" />
+
+        <TextView
+            android:id="@+id/tv_permission_file"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="文件" />
+
+        <TextView
+            android:id="@+id/tv_permission_camera"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="相机" />
+        <TextView
+            android:id="@+id/tv_permission_record_audio"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="录音" />
+
+        <TextView
+            android:id="@+id/tv_permission_notification"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通知权限" />
+
+        <TextView
+            android:id="@+id/tv_permission_floatwindow"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="悬浮权限" />
+
+    </com.zone.view.FlowLayout>
+</ScrollView>

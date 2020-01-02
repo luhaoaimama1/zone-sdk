@@ -9,6 +9,6 @@
         android:title="@string/action_settings"/>
     <item
         android:id="@+id/sb"
-        android:title="胖子是sb!"/>
+        android:title="胖子是逗比!"/>
 
 </menu>

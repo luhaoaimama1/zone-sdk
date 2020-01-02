@@ -10,6 +10,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -124,7 +125,8 @@ public abstract class KeyBoardUtils {
 					public void measureResult(View v, int viewWidth,
 											  int viewHeight) {
 						View rootView = activity.getWindow().getDecorView();
-						int heightDiffTemp =rootView.getHeight() -((ViewGroup)((ViewGroup)rootView).getChildAt(0)).getChildAt(1).getHeight();
+						View contentParent = (View)rootView.findViewById(android.R.id.content).getParent() ;
+						int heightDiffTemp = rootView.getHeight() - contentParent.getHeight();
 						//也可以用这个activity.getWindow().getDecorView().findViewById(R.id.content).getParent().getParent()
 						if (heightDiffTemp > 100) {
 							// 说明键盘是弹出状态

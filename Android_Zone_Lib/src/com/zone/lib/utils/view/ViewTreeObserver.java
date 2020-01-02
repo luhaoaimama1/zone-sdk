@@ -53,12 +53,12 @@ public class ViewTreeObserver {
         view.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                listener.onGlobalLayout();
                 if (Build.VERSION.SDK_INT < JELLY_BEAN) {
                     view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 } else {
                     view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
+                listener.onGlobalLayout();
             }
         });
     }

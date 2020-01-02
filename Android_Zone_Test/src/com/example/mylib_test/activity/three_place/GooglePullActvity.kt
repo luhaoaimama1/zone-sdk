@@ -1,15 +1,13 @@
 package com.example.mylib_test.activity.three_place
 
-import android.app.Activity
 import android.os.AsyncTask
-import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import butterknife.ButterKnife
 import com.example.mylib_test.R
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.example.mylib_test.delegates.TextDelegates
 import com.zone.adapter3.QuickRcvAdapter
 import com.zone.adapter3.base.IAdapter
@@ -21,7 +19,7 @@ import java.util.*
 /**
  *[2018/7/10] by Zone
  */
-class GooglePullActvity : Activity(), SwipeRefreshLayout.OnRefreshListener, Handler.Callback {
+class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshListener, Handler.Callback {
     companion object {
         val data = LinkedList<String>()
 
@@ -32,12 +30,11 @@ class GooglePullActvity : Activity(), SwipeRefreshLayout.OnRefreshListener, Hand
     }
 
     var adapter: IAdapter<*>? = null
-    var handler = Handler(this)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun setContentView() {
         setContentView(R.layout.a_threeplace_google)
-        ButterKnife.bind(this)
+    }
+
+    override fun initData() {
         swipe_container.setOnRefreshListener(this)
 //		swipe_container.setColorScheme(android.R.color.holo_blue_bright,  android.R.color.holo_green_light,
 //	    android.R.color.holo_orange_light, android.R.color.holo_red_light);
@@ -58,6 +55,10 @@ class GooglePullActvity : Activity(), SwipeRefreshLayout.OnRefreshListener, Hand
                     }
                 })
     }
+
+    override fun setListener() {
+    }
+
 
     override fun handleMessage(msg: Message?): Boolean {
         data.addFirst("当前没有网络呢")
@@ -101,5 +102,4 @@ class GooglePullActvity : Activity(), SwipeRefreshLayout.OnRefreshListener, Hand
         }
 
     }
-
 }

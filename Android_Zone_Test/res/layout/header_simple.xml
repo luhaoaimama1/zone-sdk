@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="---------------headerView---------------"
+        android:text="---headerView---"
         android:id="@+id/textView4"
         android:gravity="center"/>
 </LinearLayout>

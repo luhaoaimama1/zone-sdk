@@ -44,13 +44,13 @@
 
     </com.zone.view.FlowLayout>
 
-    <Button
-        android:id="@+id/bt_swtichButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="水波纹测试" />
+<!--    <Button-->
+<!--        android:id="@+id/bt_swtichButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="4dp"-->
+<!--        android:onClick="onClick"-->
+<!--        android:text="水波纹测试" />-->
 
     <Button
         android:id="@+id/bt_blur"
@@ -60,13 +60,6 @@
         android:onClick="onClick"
         android:text="blur" />
 
-    <Button
-        android:id="@+id/textBug"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="textBug" />
 
     <Button
         android:id="@+id/lifeCycle"
@@ -76,5 +69,22 @@
         android:onClick="onClick"
         android:text="lifeCycle" />
 
+
+<!--    https://blog.csdn.net/csdnzouqi/article/details/82592064 -->
+<!--    解决水波纹圆角问题 -->
+    <view.testing.WaterViewGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:foreground="@drawable/water_ripple"
+            android:id="@+id/waterSystem"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="waterSystem" />
+    </view.testing.WaterViewGroup>
 
 </com.zone.view.FlowLayout>

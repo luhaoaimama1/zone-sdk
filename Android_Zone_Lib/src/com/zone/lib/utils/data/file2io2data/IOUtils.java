@@ -176,8 +176,8 @@ public class IOUtils {
 		} catch (IOException e) {
 		} finally {
 			try {
-				in.close();
-				fos.close();
+				if(in!=null) in.close();
+				if(fos!=null) fos.close();
 			} catch (IOException e) {
 			}
 		}

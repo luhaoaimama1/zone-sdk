@@ -1,23 +1,22 @@
 package com.zone.lib.utils.activity_fragment_ui.handler
 
-import android.app.Activity
 import android.os.Handler
 import android.os.Message
-
 import java.lang.ref.WeakReference
 
 /**
  * 主要是防止空缓存
  */
-class WeakRefHandler(activity: Activity) : Handler() {
-    private val mCallback: WeakReference<Activity> = WeakReference(activity)
+open class WeakRefHandler(callback: Callback) : Handler() {
 
-    override fun handleMessage(msg: Message) {
-        if (mCallback.get() == null) return
-        handleMessageSafe(msg)
+    interface Callback {
+        fun handleMessageSafe(msg: Message)
     }
 
-    fun handleMessageSafe(msg: Message) {
+    private val mCallback: WeakReference<Callback> = WeakReference(callback)
+
+    override fun handleMessage(msg: Message) {
+        mCallback.get()?.handleMessageSafe(msg)
     }
 
     //Tips：在生命周期结束的时候调用

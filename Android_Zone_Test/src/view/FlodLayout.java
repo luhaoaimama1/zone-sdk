@@ -50,6 +50,7 @@ public class FlodLayout extends LinearLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.save();
         canvas.translate(100, 100);
         if (foldProgress != 0) {
             drawFold(canvas);

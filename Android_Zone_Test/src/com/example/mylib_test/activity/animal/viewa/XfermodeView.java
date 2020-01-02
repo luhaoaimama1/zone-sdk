@@ -87,50 +87,48 @@ public class XfermodeView extends View {
         paint.setColor(Color.BLUE);
         canvas2.drawCircle(getWidth() / 2 + 200, getHeight() / 2 + 200, 200, paint);
 
+//        叠加模式的paint和绘制的paint不要用一个, 因为会混乱
+
 //--------可用1 bitmap叠加 最简单的------------------------------------------------------------------------------------------------
-//        canvas2.setBitmap(bt);
-//        paint.setXfermode(new PorterDuffXfermode(mode));
-//        canvas2.drawBitmap(bt2, 0, 0, paint);
+        Paint paint2 = new Paint();
+        paint2.setXfermode(null);
+
+        canvas2.setBitmap(bt);
+        paint2.setXfermode(new PorterDuffXfermode(mode));
+        canvas2.drawBitmap(bt2, 0, 0, paint2);
 //        //如果canvas.draw的时候 这句话是必须的 因为系统super.draw会绘制一个图层如果不制空叠加模式 会导致混乱的
 //        paint.setXfermode(null);
-//        //最后用画布展现出那个最终合成的bitmap
-//        canvas.drawBitmap(bt, 0, 0, paint);
+        //最后用画布展现出那个最终合成的bitmap
+        canvas.drawBitmap(bt, 0, 0, paint);
 //--------可用1 结束------------------------------------------------------------------------------------------------
 
 
-//--------可用2  bitmap叠加   最後发现模式和 setBitmap和此相当  并且 叠加模式可以在draw上用而且可以的不是一次
-//        Bitmap bt3 = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_4444);
-//        canvas2=new Canvas(bt3);
-//        canvas2.drawBitmap(bt, 0, 0, paint);
-//        paint.setXfermode(new PorterDuffXfermode(mode));
-//        canvas2.drawBitmap(bt2, 0, 0, paint);
-//        paint.setXfermode(null);
-//        canvas.drawBitmap(bt3, 0, 0, paint);
-//--------可用2 结束------------------------------------------------------------------------------------------------
-
-//--------可用3  第二图层layer 叠加
-//        paint.setXfermode(null);//此行要注意 super.draw也会话的 如果用叠加模式 会混乱的 当然默认模式是null 如果没写过 可以不写此行
-//        canvas.saveLayer(0, 0, getWidth(), getHeight(), paint,
-//                Canvas.ALL_SAVE_FLAG);
+//--------可用3  第二图层layer 叠加方式 为 在layer内部的bitmap 而不是图层叠加
+//        Paint paint2 = new Paint();
+//        paint2.setXfermode(null);
+//        canvas.saveLayer(0, 0, getWidth(), getHeight(), paint2,Canvas.ALL_SAVE_FLAG);
 //        canvas.drawBitmap(bt, 0, 0, paint);
 //        paint.setXfermode(new PorterDuffXfermode(mode));
 //        canvas.drawBitmap(bt2, 0, 0, paint);
 //        canvas.restoreToCount(1);//可以不用  按道理多图层应该是会用到！！！但是不知道为啥不用也好使!!!
 //--------可用3 结束------------------------------------------------------------------------------------------------
 
-//--------可用4  多图层layer 叠加
-//        paint.setXfermode(null);//此行要注意 super.draw也会话的 如果用叠加模式 会混乱的 当然默认模式是null 如果没写过 可以不写此行
-        canvas.saveLayer(0, 0, getWidth(), getHeight(), paint,
-                Canvas.ALL_SAVE_FLAG);
-        canvas.drawBitmap(bt, 0, 0, paint);
-        paint.setXfermode(new PorterDuffXfermode(mode));
-
-        //注意这里savelayer的paint 是有叠加模式的！！！！！！！！！！！！！！！！！
-        canvas.saveLayer(0, 0, getWidth(), getHeight(), paint,
-                Canvas.ALL_SAVE_FLAG);
-        paint.setXfermode(null);//注意这里需要吧叠加模式制空 不然会与layer的空位图 进行叠加
-        canvas.drawBitmap(bt2, 0, 0, paint);
+//--------可用4  多图层layer 叠加 叠加方式为layer
+//Tips: 如果用到 canvas.saveLayer（，，，paint，） 图层的方式进行xfermode 最好给图层一个单独的paint。不要和 图层内部draw的paint的xfermode混淆
+//        Paint paint2 = new Paint();
+//        paint2.setXfermode(null);
+//        canvas.saveLayer(0, 0, getWidth(), getHeight(), paint2,
+//                Canvas.ALL_SAVE_FLAG);
+//        canvas.drawBitmap(bt, 0, 0, paint);
+//
+//
+//        paint2.setXfermode(new PorterDuffXfermode(mode));  //这个是给 layer用的
+//        canvas.saveLayer(0, 0, getWidth(), getHeight(), paint2,
+//                Canvas.ALL_SAVE_FLAG);
+//        canvas.drawBitmap(bt2, 0, 0, paint);
 //        canvas.restoreToCount(1);//可以不用  按道理多图层应该是会用到！！！但是不知道为啥不用也好使!!!
 //--------可用4 结束------------------------------------------------------------------------------------------------
+
+
     }
 }

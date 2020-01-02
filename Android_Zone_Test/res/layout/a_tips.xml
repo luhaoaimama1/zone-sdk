@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.zone.view.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:background="@color/font_focus"
+            android:padding="20dp"
+            android:text="asb" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="40dp"
+            android:text="自在飞花轻似梦" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/font_focus"
+            android:padding="30dp"
+            android:text="哇咔咔" />
+
+    </com.zone.view.FlowLayout>
+
+    <TextView
+        android:id="@+id/center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:text="哈哈哈哈哈哈哈哈\n哈哈 " />
+
+    <view.TipConstraintLayout
+        android:id="@+id/tipsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="700dp">
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/achor2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:background="@color/white"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="哈哈哈哈哈哈哈哈\n哈哈 "-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="11111"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/achor2"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/achor2"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/achor2" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView9"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:background="@color/white"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="22222"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/achor2"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/achor2"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/achor2" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="33333"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/achor2"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/achor2"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/achor2" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textView10"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="44444"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/achor2"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/achor2"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/achor2" />-->
+
+        <!--        <ImageView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginLeft="100dp"-->
+        <!--            android:layout_marginTop="400dp"-->
+        <!--            android:src="@drawable/abcd" />-->
+    </view.TipConstraintLayout>
+</RelativeLayout>

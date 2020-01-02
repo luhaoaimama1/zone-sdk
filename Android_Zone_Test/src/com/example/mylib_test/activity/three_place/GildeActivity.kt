@@ -3,11 +3,10 @@ package com.example.mylib_test.activity.three_place
 import android.content.Context
 import android.net.Uri
 import android.view.View
-import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.mylib_test.R
-import com.zone.lib.base.activity.BaseActivity
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.zone.lib.utils.data.file2io2data.FileUtils
 import com.zone.lib.utils.data.file2io2data.SDCardUtils
 import kotlinx.android.synthetic.main.a_glide.*
@@ -15,16 +14,12 @@ import kotlinx.android.synthetic.main.a_glide.*
 /**
  *[2018/7/10] by Zone
  */
-class GildeActivity : BaseActivity() {
+class GildeActivity : BaseFeatureActivity() {
     enum class Type { HTTP, File, Resource, Uri, Gif, Mp4, Error; }
     var type = Type.HTTP
 
     override fun setContentView() {
         setContentView(R.layout.a_glide)
-        ButterKnife.bind(this)
-    }
-
-    override fun findIDs() {
     }
 
     override fun initData() {
