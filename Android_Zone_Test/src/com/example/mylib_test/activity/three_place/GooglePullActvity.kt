@@ -1,8 +1,10 @@
 package com.example.mylib_test.activity.three_place
 
+import android.graphics.Rect
 import android.os.AsyncTask
 import android.os.Handler
 import android.os.Message
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -10,6 +12,9 @@ import com.example.mylib_test.R
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.example.mylib_test.adapter.delegates.TextDelegates
 import com.zone.adapter3kt.QuickAdapter
+import com.zone.adapter3kt.ViewStyleDefault
+import com.zone.adapter3kt.ViewStyleOBJ
+import com.zone.adapter3kt.divder.StandardDivder
 import com.zone.lib.utils.system_hardware_software_receiver_shell.software.wifi.NetManager
 import kotlinx.android.synthetic.main.a_threeplace_google.*
 import java.util.*
@@ -31,16 +36,25 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
         setContentView(R.layout.a_threeplace_google)
     }
 
+    private val quickAdapter = QuickAdapter<String>(this).apply {
+        registerDelegate(TextDelegates())
+        add(data)
+    }
+
     override fun initData() {
         swipe_container.setOnRefreshListener(this)
 //		swipe_container.setColorScheme(android.R.color.holo_blue_bright,  android.R.color.holo_green_light,
 //	    android.R.color.holo_orange_light, android.R.color.holo_red_light);
         swipe_container.setColorScheme(android.R.color.holo_red_light)
         lv.layoutManager = LinearLayoutManager(this)
-        lv.adapter = QuickAdapter<String>(this).apply {
-            registerDelegate(TextDelegates())
-            add(data)
-        }
+        lv.adapter = quickAdapter
+        lv.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+                super.getItemOffsets(outRect, view, parent, state)
+                outRect.bottom = 10
+            }
+
+        })
         ////todo zone 加载更多
 //        adapter = QuickRcvAdapter(this, data)
 //                .addViewHolder(TextDelegates())
@@ -63,8 +77,8 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
 
 
     override fun handleMessage(msg: Message?): Boolean {
-        data.addFirst("当前没有网络呢")
-        lv.adapter?.notifyDataSetChanged()
+        quickAdapter.add(0,"当前没有网络呢")
+        lv.scrollToPosition(0)
         swipe_container.isRefreshing = false
         return false
     }
@@ -95,10 +109,10 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
         //根据AsyncTask的原理，onPostExecute里的result的值就是doInBackground()的返回值
         override fun onPostExecute(result: String?) {
             //在头部增加新添内容
-            data.addFirst(result)
-            ////todo zone 网上添加数据
+            quickAdapter.add(0,result!!)
+            lv.scrollToPosition(0)
+
             //通知程序数据集已经改变，如果不做通知，那么将不会刷新mListItems的集合
-            lv.adapter?.notifyDataSetChanged()
             // Call onRefreshComplete when the list has been refreshed.
             swipe_container.isRefreshing = false
             super.onPostExecute(result)//这句是必有的，AsyncTask规定的格式

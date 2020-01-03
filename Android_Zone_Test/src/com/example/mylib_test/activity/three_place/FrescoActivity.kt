@@ -14,6 +14,7 @@ import com.example.mylib_test.adapter.delegates.FrescoSuperscriptDeletates
 import com.zone.adapter3kt.QuickAdapter
 import com.zone.adapter3kt.ViewStyleDefault
 import com.zone.adapter3kt.ViewStyleOBJ
+import com.zone.adapter3kt.divder.StandardDivder
 import kotlinx.android.synthetic.main.a_fresco.*
 
 /**
@@ -47,6 +48,8 @@ class FrescoActivity : BaseFeatureActivity() {
         rv!!.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rv!!.itemAnimator = DefaultItemAnimator()
         rv.adapter =   QuickAdapter<Entity>(this@FrescoActivity).apply {
+
+            divderManager = StandardDivder(this)
             registerDelegate(FrescoDeletates())
             registerDelegate(1, FrescoSuperscriptDeletates())
             registerDelegate(2, FrescoProcessorDeletates())
@@ -73,6 +76,7 @@ class FrescoActivity : BaseFeatureActivity() {
                 override fun getItemViewType(position: Int, itemConfig: ViewStyleOBJ) {
                 }
             })
+
             add(mDatas)
         }
 

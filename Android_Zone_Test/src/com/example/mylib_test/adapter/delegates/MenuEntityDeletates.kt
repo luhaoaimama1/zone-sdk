@@ -22,12 +22,12 @@ class MenuEntityDeletates(val activity: Activity, val colorArry: IntArray, val m
         item.data?.let { entity ->
             baseHolder.setText(R.id.tv, entity.info)
                     .setBackgroundColor(R.id.tv, colorArry[baseHolder.adapterPosition % colorArry.size])
-                    .setOnClickListener(View.OnClickListener() {
+                    .setOnClickListener(View.OnClickListener{
                         val posi = menu.indexOf(entity)
                         if (posi != -1) {
-                            val goClass = menu[position].goClass;
+                            val goClass = menu[posi].goClass
                             if (goClass != null) {
-                                activity.startActivity(Intent(activity, goClass));
+                                activity.startActivity(Intent(activity, goClass))
                             }
                         }
                     }, R.id.tv);
