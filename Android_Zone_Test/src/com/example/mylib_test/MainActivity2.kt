@@ -7,16 +7,21 @@ import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.zone.adapter3kt.QuickAdapter
+import com.zone.adapter3kt.QuickConfig
 import com.zone.adapter3kt.ViewStyleDefault
 import com.zone.adapter3kt.ViewStyleOBJ
 import com.zone.adapter3kt.adapter.OnItemClickListener
 import com.zone.adapter3kt.data.HFMode
+import com.zone.adapter3kt.loadmore.LoadingSetting
+import com.zone.adapter3kt.loadmore.OnScrollRcvListener
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.zone.lib.LogZSDK
 import com.zone.lib.ZLogger
 import com.zone.lib.base.controller.activity.controller.SwipeBackActivityController
 import kotlinx.android.synthetic.main.a_menu.*
+import java.util.ArrayList
 
 class MainActivity2 : BaseFeatureActivity() {
 
@@ -53,13 +58,14 @@ class MainActivity2 : BaseFeatureActivity() {
     }
 
     override fun initData() {
+        initFirst()
+
         permissionCheckStorageMustPermit()
         initLogger()
         createDialog()
         listView1.layoutManager = LinearLayoutManager(this)
         val colorArry = intArrayOf(Color.WHITE, Color.GREEN, Color.YELLOW, Color.CYAN)
         adapter2 = QuickAdapter<MenuEntity>(this).apply {
-            enableLoadMore = true
             registerDelegate(MenuEntityDeletates(this@MainActivity2, colorArry, MainMenu.menu))
             registerDelegate(1, R.layout.header_simple)
             registerDelegate(10, R.layout.footer_simple)
@@ -88,7 +94,31 @@ class MainActivity2 : BaseFeatureActivity() {
 
             add(MenuEntity("header", String::class.java))
             add(MainMenu.menu)
-            add(MenuEntity("footer", String::class.java))
+//            add(MenuEntity("footer", String::class.java))
+
+            loadOnScrollListener=object : OnScrollRcvListener(){
+
+                var refesh = true
+                override fun onLoading() {
+                    super.onLoading()
+
+                    val mDatasa = ArrayList<MenuEntity>()
+                    for (i in 0..4) {
+                        mDatasa.add(MenuEntity("insert $i", null))
+                    }
+                    listView1!!.postDelayed({
+                        if (refesh) {
+                            adapter2!!.add(mDatasa)
+                            adapter2!!.scrollTo(mDatasa[0])
+                            adapter2!!.loadMoreComplete()
+                        } else {
+                            adapter2!!.loadMoreFail()
+                        }
+                        refesh = !refesh
+                    }, 1000)
+
+                }
+            }
         }
         listView1.adapter=adapter2
 
@@ -106,6 +136,16 @@ class MainActivity2 : BaseFeatureActivity() {
         //		controller2.setDelay(2F);   //为ListView设置LayoutAnimationController属性；
         //		listView1.setLayoutAnimation(controller2);
         //		listView1.startLayoutAnimation();
+    }
+
+    private fun initFirst() {
+        QuickConfig.build().apply {
+            loadingSetting = LoadingSetting().apply {
+                threshold = 0
+                isScrollToLoadData = true
+            }
+            perform()
+        }
     }
 
     override fun setListener() {

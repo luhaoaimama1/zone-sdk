@@ -9,13 +9,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.mylib_test.R
+import com.example.mylib_test.activity.db.entity.MenuEntity
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.example.mylib_test.adapter.delegates.TextDelegates
 import com.zone.adapter3kt.QuickAdapter
 import com.zone.adapter3kt.ViewStyleDefault
 import com.zone.adapter3kt.ViewStyleOBJ
 import com.zone.adapter3kt.divder.StandardDivder
+import com.zone.adapter3kt.loadmore.OnScrollRcvListener
 import com.zone.lib.utils.system_hardware_software_receiver_shell.software.wifi.NetManager
+import kotlinx.android.synthetic.main.a_menu.*
 import kotlinx.android.synthetic.main.a_threeplace_google.*
 import java.util.*
 
@@ -36,9 +39,27 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
         setContentView(R.layout.a_threeplace_google)
     }
 
+    var count = 0
     private val quickAdapter = QuickAdapter<String>(this).apply {
         registerDelegate(TextDelegates())
         add(data)
+        loadOnScrollListener=object : OnScrollRcvListener(){
+
+            override fun onLoading() {
+                super.onLoading()
+                //相当于告诉他加载完成了
+                handler.postDelayed({
+                    val s = "上啦加载的数据~${++count}"
+                    add(s)
+                    scrollTo(s)
+                    //todo zone 做成快捷方法
+                    handler.postDelayed({
+                        loadMoreComplete()
+                    },50)
+
+                }, 1500)
+            }
+        }
     }
 
     override fun initData() {
@@ -55,21 +76,6 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
             }
 
         })
-        ////todo zone 加载更多
-//        adapter = QuickRcvAdapter(this, data)
-//                .addViewHolder(TextDelegates())
-//                .relatedList(lv)
-//                .addOnScrollListener(object : OnScrollRcvListener() {
-//                    override fun loadMore(recyclerView: RecyclerView) {
-//                        super.loadMore(recyclerView)
-//                        //相当于告诉他加载完成了
-//                        Handler().postDelayed({
-//                            data.addLast("上啦加载的数据~")
-//                            adapter?.notifyDataSetChanged()
-//                            adapter?.loadMoreComplete()
-//                        }, 3000)
-//                    }
-//                })
     }
 
     override fun setListener() {
