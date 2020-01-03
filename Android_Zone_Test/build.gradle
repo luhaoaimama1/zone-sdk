@@ -75,7 +75,8 @@ dependencies {
     implementation project(':Android_Zone_Lib')
 //    implementation 'com.github.luhaoaimama1:zone-sdk:1.1.10'
     implementation 'com.github.luhaoaimama1:ZView:1.0.36'
-    implementation'com.github.luhaoaimama1:ZAdapter3:1.0.94'
+//    implementation'com.github.luhaoaimama1:ZAdapter3:1.0.94'
+    implementation'com.github.luhaoaimama1:ZAdapter3KT:2.0.0'
 
     //图像处理相关
     implementation 'com.facebook.fresco:fresco:1.9.0'

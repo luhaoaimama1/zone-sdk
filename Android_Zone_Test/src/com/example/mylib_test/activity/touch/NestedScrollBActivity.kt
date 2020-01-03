@@ -7,9 +7,11 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mylib_test.R
+import com.example.mylib_test.activity.wifi.entity.WifiItem
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
-import com.example.mylib_test.delegates.TextDelegates
-import com.zone.adapter3.QuickRcvAdapter
+import com.example.mylib_test.adapter.delegates.TextDelegates
+import com.example.mylib_test.adapter.delegates.WifiDelegate
+import com.zone.adapter3kt.QuickAdapter
 import com.zone.lib.utils.view.graphics.MathUtils
 import kotlinx.android.synthetic.main.a_nestscrollb.*
 import java.util.*
@@ -69,9 +71,10 @@ class NestedScrollBActivity : BaseFeatureActivity() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {}
         })
         rv.layoutManager = LinearLayoutManager(this)
-        val adapter2 = QuickRcvAdapter<String>(this, data)
-            .addViewHolder(TextDelegates())
-            .relatedList(rv)
+        rv.adapter = QuickAdapter<String>(this).apply {
+            registerDelegate(TextDelegates())
+            add(data)
+        }
     }
 
     override fun setListener() {

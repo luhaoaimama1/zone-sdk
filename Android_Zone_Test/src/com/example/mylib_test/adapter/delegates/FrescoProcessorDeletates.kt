@@ -1,36 +1,38 @@
-package com.example.mylib_test.delegates
+package com.example.mylib_test.adapter.delegates
 
 import android.net.Uri
 import com.example.mylib_test.R
 import com.example.mylib_test.activity.three_place.FrescoActivity
 import com.facebook.drawee.view.SimpleDraweeView
-import com.zone.adapter3.bean.Holder
-import com.zone.adapter3.bean.ViewDelegates
-import com.zone.okhttp.utils.MainHandlerUtils.onFailure
 import android.graphics.drawable.Animatable
 import android.util.Log
 import com.facebook.drawee.controller.BaseControllerListener
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.facebook.drawee.controller.AbstractDraweeController
 import com.facebook.drawee.generic.*
 import com.facebook.imagepipeline.request.ImageRequestBuilder
-import com.facebook.imagepipeline.request.ImageRequest
 import com.facebook.imagepipeline.common.ImageDecodeOptions
 import com.facebook.imagepipeline.image.ImageInfo
+import com.zone.adapter3kt.data.DataWarp
+import zone.com.zadapter3kt.adapterimpl.HolderExDemoImpl
+import zone.com.zadapter3kt.adapterimpl.ViewDelegatesDemo
 
 
 /**
  *[2018/7/10] by Zone
  */
 
-class FrescoProcessorDeletates : ViewDelegates<FrescoActivity.Entity>() {
+class FrescoProcessorDeletates : ViewDelegatesDemo<FrescoActivity.Entity>() {
 
-    override fun getLayoutId(): Int = R.layout.a_fresco_item
 
-    override fun fillData(posi: Int, entity: FrescoActivity.Entity, holder: Holder<*>) {
-        holder.setText(R.id.tv, entity.introduce+"看log:zone=")
-        val sdv = holder.getView(R.id.sdv) as SimpleDraweeView
-        load(sdv, entity.uri, R.color.orange)
+    override val layoutId: Int=R.layout.a_fresco_item
+
+    override fun onBindViewHolder(position: Int, item: DataWarp<FrescoActivity.Entity>, baseHolder: HolderExDemoImpl, payloads: List<*>) {
+        item.data?.let {
+            baseHolder.setText(R.id.tv, it.introduce+"看log:zone=")
+            val sdv = baseHolder.getView(R.id.sdv) as SimpleDraweeView
+            load(sdv, it.uri, R.color.orange)
+        }
+
     }
 
     fun load(simpleDraweeView: SimpleDraweeView, url: String, mPlaceholder: Int) {

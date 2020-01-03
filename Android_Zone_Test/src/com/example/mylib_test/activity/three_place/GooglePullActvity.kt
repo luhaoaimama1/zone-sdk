@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.mylib_test.R
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
-import com.example.mylib_test.delegates.TextDelegates
-import com.zone.adapter3.QuickRcvAdapter
-import com.zone.adapter3.base.IAdapter
-import com.zone.adapter3.loadmore.OnScrollRcvListener
+import com.example.mylib_test.adapter.delegates.TextDelegates
+import com.zone.adapter3kt.QuickAdapter
 import com.zone.lib.utils.system_hardware_software_receiver_shell.software.wifi.NetManager
 import kotlinx.android.synthetic.main.a_threeplace_google.*
 import java.util.*
@@ -29,7 +27,6 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
         }
     }
 
-    var adapter: IAdapter<*>? = null
     override fun setContentView() {
         setContentView(R.layout.a_threeplace_google)
     }
@@ -40,20 +37,25 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
 //	    android.R.color.holo_orange_light, android.R.color.holo_red_light);
         swipe_container.setColorScheme(android.R.color.holo_red_light)
         lv.layoutManager = LinearLayoutManager(this)
-        adapter = QuickRcvAdapter(this, data)
-                .addViewHolder(TextDelegates())
-                .relatedList(lv)
-                .addOnScrollListener(object : OnScrollRcvListener() {
-                    override fun loadMore(recyclerView: RecyclerView) {
-                        super.loadMore(recyclerView)
-                        //相当于告诉他加载完成了
-                        Handler().postDelayed({
-                            data.addLast("上啦加载的数据~")
-                            adapter?.notifyDataSetChanged()
-                            adapter?.loadMoreComplete()
-                        }, 3000)
-                    }
-                })
+        lv.adapter = QuickAdapter<String>(this).apply {
+            registerDelegate(TextDelegates())
+            add(data)
+        }
+        ////todo zone 加载更多
+//        adapter = QuickRcvAdapter(this, data)
+//                .addViewHolder(TextDelegates())
+//                .relatedList(lv)
+//                .addOnScrollListener(object : OnScrollRcvListener() {
+//                    override fun loadMore(recyclerView: RecyclerView) {
+//                        super.loadMore(recyclerView)
+//                        //相当于告诉他加载完成了
+//                        Handler().postDelayed({
+//                            data.addLast("上啦加载的数据~")
+//                            adapter?.notifyDataSetChanged()
+//                            adapter?.loadMoreComplete()
+//                        }, 3000)
+//                    }
+//                })
     }
 
     override fun setListener() {
@@ -62,7 +64,7 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
 
     override fun handleMessage(msg: Message?): Boolean {
         data.addFirst("当前没有网络呢")
-        adapter?.notifyDataSetChanged()
+        lv.adapter?.notifyDataSetChanged()
         swipe_container.isRefreshing = false
         return false
     }
@@ -94,8 +96,9 @@ class GooglePullActvity : BaseFeatureActivity(), SwipeRefreshLayout.OnRefreshLis
         override fun onPostExecute(result: String?) {
             //在头部增加新添内容
             data.addFirst(result)
+            ////todo zone 网上添加数据
             //通知程序数据集已经改变，如果不做通知，那么将不会刷新mListItems的集合
-            adapter?.notifyDataSetChanged()
+            lv.adapter?.notifyDataSetChanged()
             // Call onRefreshComplete when the list has been refreshed.
             swipe_container.isRefreshing = false
             super.onPostExecute(result)//这句是必有的，AsyncTask规定的格式

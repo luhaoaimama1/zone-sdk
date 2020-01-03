@@ -1,45 +1,40 @@
-package com.example.mylib_test.activity.study
+package com.example.mylib_test.activity.animal.helper
 
 import android.app.Activity
 import android.graphics.PorterDuff
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
+import com.example.mylib_test.R
+import com.example.mylib_test.activity.animal.viewa.XfermodeView
+import java.util.ArrayList
+import com.zone.lib.base.BasePopWindow
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-import com.example.mylib_test.R
+import com.example.mylib_test.activity.wifi.entity.WifiItem
+import com.example.mylib_test.adapter.delegates.WifiDelegate
 import com.zone.adapter3kt.QuickAdapter
 import com.zone.adapter3kt.data.DataWarp
-import com.zone.lib.base.BasePopWindow
-import com.zone.lib.utils.data.info.LogcatHelperLevel
+import kotlinx.android.synthetic.main.adapter.*
 import zone.com.zadapter3kt.adapterimpl.HolderExDemoImpl
 import zone.com.zadapter3kt.adapterimpl.ViewDelegatesDemo
 
-import java.util.ArrayList
-
 /**
  * Created by Administrator on 2016/3/21.
- *
  * 仅仅调用show()即可
  * <br></br>默认颜色　　是浅黑色
  *
  * @param activity             在那个activity 弹出pop
  */
-
-
-class LogsPop(activity: Activity, val callback: Callback) : BasePopWindow(activity) {
-    interface Callback {
-        fun click(name: String)
-    }
-
+class PopXfermode(activity: Activity, private val xfermodeView: XfermodeView, private val bt_pop: Button) : BasePopWindow(activity) {
     private var lv: RecyclerView? = null
     internal var listData: MutableList<String> = ArrayList()
 
     init {
         setPopContentView(R.layout.pop_list, -1)
-        for (mode in LogcatHelperLevel.values()) {
+        setBgVisibility(false)
+        for (mode in PorterDuff.Mode.values()) {
             listData.add(mode.name)
             println("mode.name():" + mode.name)
         }
@@ -54,20 +49,22 @@ class LogsPop(activity: Activity, val callback: Callback) : BasePopWindow(activi
 
     override fun initData() {
         val delegates = object : ViewDelegatesDemo<String>() {
-            override val layoutId: Int = R.layout.item_textview_only
-
             override fun onBindViewHolder(position: Int, item: DataWarp<String>, baseHolder: HolderExDemoImpl, payloads: List<*>) {
                 item.data?.let {
                     baseHolder.setText(R.id.tv, it).setOnClickListener(View.OnClickListener { view ->
-                        callback.click(it)
+                        bt_pop.text = it
+                        xfermodeView.setXferMode(PorterDuff.Mode.valueOf(it))
+                        xfermodeView.postInvalidate()
                         dismiss()
                     }, R.id.rl_main)
                 }
             }
-        }
 
+            override val layoutId: Int = R.layout.item_textview_only
+        }
         lv!!.adapter = QuickAdapter<String>(activity).apply {
             registerDelegate(delegates)
+            add(listData)
         }
     }
 

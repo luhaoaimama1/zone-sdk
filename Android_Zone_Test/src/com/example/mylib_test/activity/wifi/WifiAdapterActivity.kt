@@ -3,11 +3,11 @@ package com.example.mylib_test.activity.wifi
 import java.util.ArrayList
 import com.example.mylib_test.R
 import com.example.mylib_test.activity.wifi.entity.WifiItem
-import com.example.mylib_test.delegates.WifiDelegate
-import com.zone.adapter3.QuickRcvAdapter
+import com.example.mylib_test.adapter.delegates.WifiDelegate
 import com.zone.lib.utils.system_hardware_software_receiver_shell.software.wifi.MyWifiAnd3G
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.zone.adapter3kt.QuickAdapter
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import kotlinx.android.synthetic.main.adapter.*
 
@@ -42,10 +42,10 @@ class WifiAdapterActivity : BaseFeatureActivity() {
                 data.add(wi)
             }
         }
-
-        QuickRcvAdapter(this, data)
-                .addViewHolder(WifiDelegate(mWifiAnd3G!!))
-                .relatedList(listView)
+        listView.adapter = QuickAdapter<WifiItem>(this).apply {
+            registerDelegate(WifiDelegate(mWifiAnd3G!!))
+            add(data)
+        }
     }
 
     override fun setListener() {
