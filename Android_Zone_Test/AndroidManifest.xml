@@ -6,9 +6,6 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <!-- WIFI权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -17,6 +14,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
@@ -24,6 +22,9 @@
 
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 
     <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
@@ -35,13 +36,14 @@
         android:normalScreens="true"
         android:smallScreens="true" />
 
+<!--    android:theme="@style/AnimalSetAppTheme"-->
     <!-- android:resizeable="true" -->
     <application
         android:name="com.example.mylib_test.app.Apps"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AnimalSetAppTheme">
+        android:theme="@style/Theme.AppCompat.Light">
         <activity
             android:name=".MainActivity2"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -90,7 +92,6 @@
             android:process="zone.com.app2" />
 
         <activity android:name="com.example.mylib_test.activity.touch.Conflict1Activity"></activity>
-        <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActvity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActivity_hongParent"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActivity_Child"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"></activity>
@@ -100,7 +101,6 @@
         <activity android:name="com.example.mylib_test.activity.touch.MyScaleActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.NestedScrollBActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ScrollerActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.http.AsyncTask_TestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.AndroidHeroActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.photo_shot.ClipTest"></activity>
@@ -108,14 +108,12 @@
         <activity android:name="com.example.mylib_test.activity.three_place.BlurActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GildeActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.FrescoActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.three_place.TextBugActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.LifecycleActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity android:name="com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity"></activity>
 
         <service android:name="com.example.mylib_test.activity.pop_dialog.FxService"></service>
         <service android:name="com.example.mylib_test.activity.pop_dialog.NoticationService"></service>
-        <service android:name="com.example.mylib_test.activity.pop_dialog.FxService2"></service>
 
         <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.TextViewLinkActivity"></activity>
@@ -143,12 +141,7 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.SquareTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GooglePullActvity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.TouchMainActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.touch.EventPassActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.EventPassLogActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.databingstudy.DataBingMainActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.databingstudy.DataBingStartActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.databingstudy.LambdaStartActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.databingstudy.RxjavaActivity"></activity>
         <activity android:name=".activity.animal.PathActivity"></activity>
         <activity android:name=".activity.animal.PathMeasureActivity"></activity>
         <activity android:name=".activity.animal.DampingActivity"></activity>
@@ -163,6 +156,11 @@
         <activity android:name=".activity.study.ui.TipsActivity"></activity>
         <activity android:name=".activity.utils.LayoutClipAcitivity"></activity>
         <activity android:name=".activity.statu.StatuMainActivity"></activity>
+
+        <activity android:name=".activity.controller.ControllerMainActivity"></activity>
+        <activity android:name=".activity.controller.CollectionActivityControllerActivity"></activity>
+        <activity android:name=".activity.controller.ActionBarControllerActivity"></activity>
+        <activity android:name=".activity.controller.SwipeBackControllerActivity"></activity>
         <activity
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>

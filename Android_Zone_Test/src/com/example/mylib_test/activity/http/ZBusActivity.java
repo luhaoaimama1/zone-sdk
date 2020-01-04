@@ -13,7 +13,9 @@ import com.example.mylib_test.activity.http.zeventbus.Mode;
 import com.example.mylib_test.activity.http.zeventbus.ThreadModeX;
 import com.example.mylib_test.activity.http.zeventbus.ZEventBus;
 
-
+/**
+ * 因为有这个finalize  所以bu 用kotlin
+ */
 public class ZBusActivity extends Activity implements OnClickListener {
 
     @Override

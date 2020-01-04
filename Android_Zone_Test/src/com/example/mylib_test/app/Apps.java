@@ -16,6 +16,7 @@ package com.example.mylib_test.app;
  *******************************************************************************/
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+
 import android.annotation.TargetApi;
 import android.app.Application;
 import android.content.Context;
@@ -30,6 +31,7 @@ import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 import com.zone.lib.Configure;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +68,6 @@ public class Apps extends Application {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyDialog().build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyDeath().build());
         }
-
 //		try {
         Map<String, String> commonParamMap = new HashMap<>();
         commonParamMap.put("commonParamMap", "param_Common");
@@ -86,14 +87,6 @@ public class Apps extends Application {
 //		}
 
         Fresco.initialize(this);
-
-//		CrashHandler.getInstance().init(this);
-
-//		每次loading页 发送bug日志  如果发送成功就删除
-//		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(
-//				this));
-
-//        loggerTest();
         refWatcher = LeakCanary.install(this);
     }
 
@@ -103,16 +96,14 @@ public class Apps extends Application {
     }
 
     private RefWatcher refWatcher;
+
     public static RefWatcher getRefWatcher(Context context) {
         Apps application = (Apps) context.getApplicationContext();
         return application.refWatcher;
     }
 
-
-
-
-    public static void init(Context context){
-        if(context instanceof Application){
+    public static void init(Context context) {
+        if (context instanceof Application) {
             //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
             QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
                 @Override
@@ -128,8 +119,8 @@ public class Apps extends Application {
                 }
             };
             //x5内核初始化接口
-            QbSdk.initX5Environment(context,  cb);
-        }else {
+            QbSdk.initX5Environment(context, cb);
+        } else {
             throw new UnsupportedOperationException("context must be application...");
         }
     }

@@ -4,53 +4,65 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <Button
+    <TextView
+        style="@style/TvHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="File相关" />
+    <TextView
+        style="@style/TvOnClick"
         android:id="@+id/create"
         android:background="#00f00f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         android:padding="5dp"
-        android:onClick="onClick"
         android:text="创建目录" />
 
-    <Button
-        android:id="@+id/readFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="独立：创建文件写入bytes读取文件" />
 
-    <Button
+    <TextView
+        style="@style/TvOnClick"
         android:id="@+id/delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="删除目录" />
-
-    <Button
-        android:id="@+id/writeFileByFile"
+    <TextView
+        style="@style/TvOnClick"
+        android:id="@+id/readFile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
-        android:text="通过文件写入文件" />
+        android:text="独立：创建文件写入bytes读取文件" />
+    <TextView
+        style="@style/TvOnClick"
+        android:id="@+id/copyFileto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="文件复制" />
 
-    <Button
+
+    <TextView
+        style="@style/TvOnClick"
         android:id="@+id/sd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="sd剩余空间" />
-    <Button
+    <TextView
+        style="@style/TvOnClick"
         android:id="@+id/self"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="声明周期测试" />
 
+    <TextView
+        style="@style/TvHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="sp相关" />
+    <TextView
+        style="@style/TvOnClick"
+        android:id="@+id/sptest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sptest" />
 </com.zone.view.FlowLayout>

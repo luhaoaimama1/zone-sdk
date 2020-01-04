@@ -1,19 +1,18 @@
 package com.example.mylib_test.activity.study.ui
 
 import android.os.Bundle
-import android.widget.TextView
 import com.example.mylib_test.LogApp
 import com.example.mylib_test.R
 import com.example.mylib_test.SP1
-import com.zone.lib.base.activity.BaseActivity
 import com.example.mylib_test.app.UncaughtExceptionHandler
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import kotlinx.android.synthetic.main.a_creash_data.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import java.lang.IllegalStateException
 import java.util.concurrent.TimeUnit
 
@@ -23,7 +22,7 @@ class CrashSave
  *   方式1：用eventbus，但是异步的,所以接收方 处理数据多久完毕。还有全部接收方 全部处理完 才能关闭 这个暂时没法弄.
  *   方式2：这个不是异步所以暂时么问题 activity 和 fragment 然后 共同实现一个接口 如果属于这个接口则收集到弱引用集合里  最后倒叙执行。最近的开始执行完毕 就结束
  */
-class CrashDataActivity : BaseActivity() {
+class CrashDataActivity : BaseFeatureActivity() {
 
     override fun onCreate(arg0: Bundle?) {
         super.onCreate(arg0)
@@ -37,7 +36,7 @@ class CrashDataActivity : BaseActivity() {
         tv_content.text = s
         EventBus.getDefault().register(this)
 
-        Observable.intervalRange(0, 1000, 0, 1000, TimeUnit.MILLISECONDS)
+        Observable.interval( 0, 1000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
@@ -85,9 +84,6 @@ class CrashDataActivity : BaseActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         LogApp.d("onRestore===>${savedInstanceState?.getString("CrashDataActivity") ?: ""}")
-    }
-
-    override fun findIDs() {
     }
 
     override fun initData() {

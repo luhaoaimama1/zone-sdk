@@ -61,7 +61,6 @@ open class ZLogger protected constructor(var tagName: String) {
     }
 
     private fun levelOrLoggerError(logLevel: LogLevel) = !levelOK(logLevel) || !loggerOK()
-    fun levelOrLoggerOK(logLevel: LogLevel) = !levelOrLoggerError(logLevel)
 
     private fun generateTag(): String = tagName
 

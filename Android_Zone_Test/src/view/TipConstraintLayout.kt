@@ -18,36 +18,36 @@ import java.lang.IllegalStateException
 /**
  *  范例：
  *  //这个代表 TipConstraintLayout展示的层级
-    TipConstraintLayout.attachToRootView(container)?.let { tipConstraintLayout ->
-        //圆角尺寸
-        val dp2px = DensityUtils.dp2px(container.context, 6F).toFloat()
+TipConstraintLayout.attachToRootView(container)?.let { tipConstraintLayout ->
+//圆角尺寸
+val dp2px = DensityUtils.dp2px(container.context, 6F).toFloat()
 
-        //用于上方展示的indicateItem
-        val topView = LayoutInflater.from(container.context).inflate(R.layout.tips_drawer_top, tipConstraintLayout, false)
-        val indicateItemTop = TipConstraintLayout.IndicateItem(topView, TipConstraintLayout.IndicateViewGravity.TopCenter)
+//用于上方展示的indicateItem
+val topView = LayoutInflater.from(container.context).inflate(R.layout.tips_drawer_top, tipConstraintLayout, false)
+val indicateItemTop = TipConstraintLayout.IndicateItem(topView, TipConstraintLayout.IndicateViewGravity.TopCenter)
 
-        //用于下方展示的indicateItem
-        val bottomView = LayoutInflater.from(container.context).inflate(R.layout.tips_drawer_bottom, tipConstraintLayout, false)
-        val indicateItemBottom = TipConstraintLayout.IndicateItem(bottomView, TipConstraintLayout.IndicateViewGravity.BottomCenter)
+//用于下方展示的indicateItem
+val bottomView = LayoutInflater.from(container.context).inflate(R.layout.tips_drawer_bottom, tipConstraintLayout, false)
+val indicateItemBottom = TipConstraintLayout.IndicateItem(bottomView, TipConstraintLayout.IndicateViewGravity.BottomCenter)
 
-        //indicateItemBottom 设置替换的indicateItemTop。indicateItem不能完全显示 则用替换的依次直到能完全显示的  就展示
-        indicateItemBottom.setReplaceIndicateItems(indicateItemTop,...)
+//indicateItemBottom 设置替换的indicateItemTop。indicateItem不能完全显示 则用替换的依次直到能完全显示的  就展示
+indicateItemBottom.setReplaceIndicateItems(indicateItemTop,...)
 
-        //表示 计算高亮view的宽高信息  通过setGlobalLayout的view去监听
-        tipConstraintLayout.setGlobalLayout(container)
+//表示 计算高亮view的宽高信息  通过setGlobalLayout的view去监听
+tipConstraintLayout.setGlobalLayout(container)
 
-        //高亮点击
-        tipConstraintLayout.setHighLightOnClickListener(View.OnClickListener {
-        if (it == highLightView) {
-            tipConstraintLayout.dismiss()
-            }
-        })
+//高亮点击
+tipConstraintLayout.setHighLightOnClickListener(View.OnClickListener {
+if (it == highLightView) {
+tipConstraintLayout.dismiss()
+}
+})
 
-        //设置indicateItem的展示区域  用于计算 indicateItem是否完全可以展示的
-        tipConstraintLayout.indicateShowArea = container.rootView.findViewById(android.R.id.content)
-        //添加高亮
-        tipConstraintLayout.addTipItem(highLightView, dp2px, indicateItemBottom)
-    }
+//设置indicateItem的展示区域  用于计算 indicateItem是否完全可以展示的
+tipConstraintLayout.indicateShowArea = container.rootView.findViewById(android.R.id.content)
+//添加高亮
+tipConstraintLayout.addTipItem(highLightView, dp2px, indicateItemBottom)
+}
  */
 class TipConstraintLayout : ConstraintLayout {
     private val contentViewRect = Rect()
@@ -110,15 +110,16 @@ class TipConstraintLayout : ConstraintLayout {
             tipsItem.rect.offset(0, -contentViewRect.top) //状态栏的问题
             tipsItem.toRectF()
 
+            //添加replaceView
+            addReplaceView(tipsItem)
+            val replaceView = tipsItem.replaceView!!
+            replaceView.isClickable = true
+            replaceView.setOnClickListener {
+                mHighLightOnClickListener?.onClick(tipsItem.view)
+            }
+
+            //添加indicateItems
             if (tipsItem.indicateItems.isNotEmpty()) {
-                addReplaceView(tipsItem)
-                val replaceView = tipsItem.replaceView!!
-                mHighLightOnClickListener?.let { listener ->
-                    replaceView.isClickable = true
-                    replaceView.setOnClickListener {
-                        listener.onClick(tipsItem.view)
-                    }
-                }
                 addIndicateView(tipsItem, replaceView, tipsItem.indicateItems)
             }
         }
@@ -132,10 +133,7 @@ class TipConstraintLayout : ConstraintLayout {
         indicateItems.forEach { indicateItem ->
             //测量下 不然没有measuredHeight
             val lp = LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            var indicateItemRealShow: IndicateItem? = null
-            indicateItem.mReplaceIndicateItems?.let {
-                indicateItemRealShow = findCanShowIndicate(indicateItem, tipsItem, it)
-            }
+            val indicateItemRealShow: IndicateItem? = findCanShowIndicate(indicateItem, tipsItem, indicateItem.mReplaceIndicateItems)
 
             indicateItemRealShow?.let {
                 realGenerateLp(it, lp, replaceView)
@@ -153,10 +151,12 @@ class TipConstraintLayout : ConstraintLayout {
      */
     private fun findCanShowIndicate(indicateItem: IndicateItem,
                                     tipsItem: TipItem,
-                                    replaceIndicateItems: Array<out IndicateItem>): IndicateItem? {
+                                    replaceIndicateItems: Array<out IndicateItem>?): IndicateItem? {
         val indicateItems = ArrayList<IndicateItem>()
         indicateItems.add(indicateItem)
-        indicateItems.addAll(replaceIndicateItems)
+        replaceIndicateItems?.let {
+            indicateItems.addAll(replaceIndicateItems)
+        }
 
         var result: IndicateItem? = null
         val indicateShowAreaRect = Rect()
@@ -306,7 +306,7 @@ class TipConstraintLayout : ConstraintLayout {
         }
         setFocusableInTouchMode(true);
         requestFocus();
-        setOnKeyListener(object :OnKeyListener{
+        setOnKeyListener(object : OnKeyListener {
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent?): Boolean {
                 return event?.run {
                     var result = false
@@ -314,7 +314,7 @@ class TipConstraintLayout : ConstraintLayout {
                         result = true
                     }
                     result
-                }?:false
+                } ?: false
             }
         });
     }

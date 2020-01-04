@@ -5,74 +5,100 @@
     android:layout_height="wrap_content">
 
     <TextView
+        style="@style/TvHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00ff00"
         android:gravity="center"
         android:text="文件打开研究" />
 
-    <Button
+    <TextView
         android:id="@+id/android_pdf"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="Android PDF" />
 
-    <Button
+    <TextView
         android:id="@+id/pdfbox"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="PDFBox" />
 
-    <Button
+    <TextView
         android:id="@+id/x5_open_office"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="X5 open Office" />
 
-    <Button
+    <TextView
         android:id="@+id/google_office"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="Google Office" />
 
     <TextView
+        style="@style/TvHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00ff00"
         android:gravity="center"
         android:text="other提示" />
 
-    <Button
+    <TextView
         android:id="@+id/tips"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="Tips测试" />
 
-    <Button
+    <TextView
         android:id="@+id/dynamicLogo"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="动态图标测试" />
 
-
-    <Button
+    <TextView
         android:id="@+id/bt_data_crash"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:onClick="onClick"
         android:text="程序杀死崩溃存储信息" />
+
+    <TextView
+        android:id="@+id/bt_start_logcat_collection"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始错误信息" />
+
+    <TextView
+        android:id="@+id/bt_start_logcat_collection_type"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择记录信息的种类" />
+
+    <TextView
+        android:id="@+id/bt_restart_logcat_collection"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始错误信息(重启模式)" />
+
+    <TextView
+        android:id="@+id/bt_stop_logcat_collection"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停止收集" />
+    <TextView
+        android:id="@+id/bt_crash"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="崩溃！" />
 
 </com.zone.view.FlowLayout>

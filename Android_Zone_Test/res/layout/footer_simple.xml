@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="---------------footerView---------------"
+        android:text="---footerView---"
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

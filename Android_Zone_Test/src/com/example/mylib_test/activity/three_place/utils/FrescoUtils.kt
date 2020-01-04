@@ -1,14 +1,11 @@
 package com.example.mylib_test.activity.three_place.utils
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.net.Uri
-import com.example.mylib_test.delegates.FrescoProcessorDealDeletates
+import com.example.mylib_test.adapter.delegates.FrescoProcessorDealDeletates
 import com.facebook.common.executors.UiThreadImmediateExecutorService
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.interfaces.DraweeHierarchy
 import com.facebook.drawee.view.DraweeView
-import com.facebook.imagepipeline.common.ImageDecodeOptions
 import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber
 import com.facebook.imagepipeline.request.ImageRequest
 import com.facebook.imagepipeline.request.ImageRequestBuilder

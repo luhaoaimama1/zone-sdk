@@ -1,7 +1,6 @@
 package com.example.mylib_test.activity.study.ui
 
 import com.example.mylib_test.R
-import com.zone.lib.base.activity.BaseActivity
 import kotlinx.android.synthetic.main.a_dynamic_logo.*
 import android.content.pm.PackageManager
 import android.content.ComponentName
@@ -13,12 +12,13 @@ import android.net.Uri
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import com.example.mylib_test.MainActivity2
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 
 
 /**
  *[2018/11/14] by Zone
  */
-class DynamicLogoActivity : BaseActivity() {
+class DynamicLogoActivity : BaseFeatureActivity() {
 
     override fun setContentView() {
         setContentView(R.layout.a_dynamic_logo)
@@ -84,9 +84,6 @@ class DynamicLogoActivity : BaseActivity() {
         // Inform launcher to create shortcut
         addIntent.action = "com.android.launcher.action.INSTALL_SHORTCUT"
         applicationContext.sendBroadcast(addIntent)
-    }
-
-    override fun findIDs() {
     }
 
     override fun initData() {

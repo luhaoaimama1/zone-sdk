@@ -2,106 +2,105 @@
 <com.zone.view.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/flowLayoutZone1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
-    <Button
+    <TextView
         android:id="@+id/veclocityTracker"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="VeclocityTracker学习" />
-    <Button
-        android:id="@+id/gestureDetectorActivity"
-        android:onClick="onClick"
         android:layout_margin="4dp"
+        android:text="VeclocityTracker学习" />
+
+    <TextView
+        android:id="@+id/gestureDetectorActivity"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GestureDetector学习" />
-    <Button
+
+    <TextView
         android:id="@+id/scaleGestureDetector"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ScaleGestureDetector学习" />
-    <Button
+
+    <TextView
         android:id="@+id/scrollerView"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ScrollerView学习" />
-    <Button
+
+    <TextView
         android:id="@+id/NestedScrolling"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NestedScrolling's demo" />
-    <Button
+
+    <TextView
+        style="@style/TvOnClick"
         android:id="@+id/NestedScrollingChild"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NestedScrolling child's demo" />
-    <Button
+
+    <TextView
         android:id="@+id/viewDrag"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/font_focus"
         android:text="ViewDrag学习" />
-    <Button
+
+    <TextView
         android:id="@+id/viewDrag2"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ViewDrag边缘侧滑" />
-    <Button
+
+    <TextView
         android:id="@+id/outConflict1"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="横竖滑动冲突(外部拦截法)" />
-    <Button
+
+    <TextView
         android:id="@+id/innerConflict1"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="横竖滑动冲突(内部拦截法)" />
 
-    <Button
+    <TextView
         android:id="@+id/eventPass"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="事件传递探究" />
 
 
     <TextView
-        android:layout_margin="4dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        style="@style/TvOnClick"
         android:text="失败测试"
-        android:gravity="center"
         android:textColor="#fc4848" />
-    <Button
+
+    <TextView
+        style="@style/TvOnClick"
         android:id="@+id/onTouchConflict1"
-        android:onClick="onClick"
-        android:layout_margin="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="横竖滑动冲突(内部onTouch false尝试)" />
-    <Button
+
+    <TextView
+        style="@style/TvOnClick"
         android:id="@+id/frameConflict1"
-        android:onClick="onClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="并列冲突解决不了 把并列冲突布局改成 嵌套冲突 在解决(点进去可看失败成果)" />

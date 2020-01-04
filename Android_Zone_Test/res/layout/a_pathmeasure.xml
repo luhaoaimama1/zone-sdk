@@ -12,38 +12,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
-            android:gravity="center"
-            android:text="默认Path Arc的绘图,log会研究Region setPath 关于clip"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="构造器测试"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bt_Constructor" />
+            style="@style/TvHint"
+            android:textColor="@color/background"
+            android:text="默认Path Arc的绘图,log会研究Region setPath 关于clip" />
 
-        <Button
-            android:text="NextContour"
+        <TextView
+            android:id="@+id/bt_Constructor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bt_NextContour" />
+            style="@style/TvOnClick"
+            android:text="构造器测试" />
 
-        <Button
-            android:text="GetSegment->startWithMoveTo:True"
+        <TextView
+            android:id="@+id/bt_NextContour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bt_GetSegmentTrue" />
-        <Button
-            android:text="GetSegment->startWithMoveTo:False"
+            style="@style/TvOnClick"
+            android:text="NextContour" />
+
+        <TextView
+            android:id="@+id/bt_GetSegmentTrue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bt_GetSegmentFalse" />
-        <Button
-            android:text="GetMatrix"
+            style="@style/TvOnClick"
+            android:text="GetSegment->startWithMoveTo:True" />
+
+        <TextView
+            android:id="@+id/bt_GetSegmentFalse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bt_GetMatrix" />
+            style="@style/TvOnClick"
+            android:text="GetSegment->startWithMoveTo:False" />
+
+        <TextView
+            android:id="@+id/bt_GetMatrix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TvOnClick"
+            android:text="GetMatrix" />
     </com.zone.view.FlowLayout>
 
 </RelativeLayout>

@@ -3,19 +3,17 @@ package com.example.mylib_test.activity.touch
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
-import android.os.Build
 import android.view.View
-import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mylib_test.R
-import com.example.mylib_test.delegates.TextDelegates
-import com.zone.adapter3.QuickRcvAdapter
-import com.zone.lib.base.activity.BaseActivity
+import com.example.mylib_test.activity.wifi.entity.WifiItem
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
+import com.example.mylib_test.adapter.delegates.TextDelegates
+import com.example.mylib_test.adapter.delegates.WifiDelegate
+import com.zone.adapter3kt.QuickAdapter
 import com.zone.lib.utils.view.graphics.MathUtils
-import view.BrilliantViewGroup
-import view.CircleProgressView
+import kotlinx.android.synthetic.main.a_nestscrollb.*
 import java.util.*
 import view.CenterProgress
 
@@ -23,7 +21,7 @@ import view.CenterProgress
 /**
  * [2018/8/24] by Zone
  */
-class NestedScrollBActivity : BaseActivity() {
+class NestedScrollBActivity : BaseFeatureActivity() {
     companion object {
         val data = LinkedList<String>()
 
@@ -32,31 +30,15 @@ class NestedScrollBActivity : BaseActivity() {
                 data.add("一直很桑心")
         }
     }
-
-    var rv: RecyclerView? = null
-    var tv: TextView? = null
-    var cpv: CircleProgressView? = null
-    private var animal: View?=null
     override fun setContentView() {
         setContentView(R.layout.a_nestscrollb)
-    }
-
-    private var briVp: BrilliantViewGroup?=null
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun findIDs() {
-        rv = findViewById(R.id.rv) as RecyclerView?
-        briVp = findViewById(R.id.briVp) as BrilliantViewGroup?
-        briVp!!.centerProgress=object : CenterProgress{
+        briVp.centerProgress=object : CenterProgress{
             override fun progress(progress: Float) {
-                cpv!!.progressInner= (progress*100).toInt()
+                cpv.progressInner= (progress*100).toInt()
             }
 
         }
-        tv = findViewById(R.id.tv) as TextView?
-        cpv = findViewById(R.id.cpv) as CircleProgressView?
-        animal = findViewById(R.id.animal)
-        animal!!.postDelayed({
+        animal.postDelayed({
             ValueAnimator.ofFloat(-251F,-242F,-119F,-35F,23F,27F,23F,9.6F,0F).apply {
                 duration=650
                 addUpdateListener {
@@ -73,7 +55,7 @@ class NestedScrollBActivity : BaseActivity() {
     }
 
     override fun initData() {
-        rv!!.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy != 0 && cpv != null) {
@@ -88,10 +70,11 @@ class NestedScrollBActivity : BaseActivity() {
             }
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {}
         })
-        rv!!.layoutManager = LinearLayoutManager(this)
-        val adapter2 = QuickRcvAdapter<String>(this, data)
-            .addViewHolder(TextDelegates())
-            .relatedList(rv)
+        rv.layoutManager = LinearLayoutManager(this)
+        rv.adapter = QuickAdapter<String>(this).apply {
+            registerDelegate(TextDelegates())
+            add(data)
+        }
     }
 
     override fun setListener() {

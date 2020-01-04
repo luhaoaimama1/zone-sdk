@@ -3,20 +3,17 @@ package com.example.mylib_test.activity.study.ui
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.zone.lib.base.activity.BaseActivity
 import android.webkit.WebSettings
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 
 
-public class GoogleOfficeActivity : BaseActivity() {
+public class GoogleOfficeActivity : BaseFeatureActivity() {
 
     lateinit var urlWebView: WebView
     override fun setContentView() {
         urlWebView = WebView(this)
         setContentView(urlWebView)
         open()
-    }
-
-    override fun findIDs() {
     }
 
     override fun initData() {

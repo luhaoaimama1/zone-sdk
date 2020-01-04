@@ -1,28 +1,30 @@
 package com.example.mylib_test.activity.three_place
 
+import android.graphics.Rect
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.ButterKnife
 import com.example.mylib_test.R
-import com.example.mylib_test.delegates.FrescoDeletates
-import com.example.mylib_test.delegates.FrescoProcessorDealDeletates
-import com.example.mylib_test.delegates.FrescoProcessorDeletates
-import com.example.mylib_test.delegates.FrescoSuperscriptDeletates
-import com.zone.adapter3.QuickRcvAdapter
-import com.zone.adapter3.base.IAdapter
-import com.zone.lib.base.activity.BaseActivity
+import com.example.mylib_test.activity.db.entity.MenuEntity
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
+import com.example.mylib_test.adapter.delegates.FrescoDeletates
+import com.example.mylib_test.adapter.delegates.FrescoProcessorDealDeletates
+import com.example.mylib_test.adapter.delegates.FrescoProcessorDeletates
+import com.example.mylib_test.adapter.delegates.FrescoSuperscriptDeletates
+import com.zone.adapter3kt.QuickAdapter
+import com.zone.adapter3kt.ViewStyleDefault
+import com.zone.adapter3kt.ViewStyleOBJ
+import com.zone.adapter3kt.divder.StandardDivder
 import kotlinx.android.synthetic.main.a_fresco.*
 
 /**
  *[2018/7/8] by Zone
  */
-class FrescoActivity : BaseActivity() {
+class FrescoActivity : BaseFeatureActivity() {
 
     inner class Entity(var introduce: String, var uri: String);
 
     private var mDatas = ArrayList<Entity>()
-    private var muliAdapter: IAdapter<Entity>? = null
 
     init {
         mDatas.add(Entity("http", "http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg"))
@@ -39,32 +41,44 @@ class FrescoActivity : BaseActivity() {
 
     override fun setContentView() {
         setContentView(R.layout.a_fresco)
-        ButterKnife.bind(this)
     }
 
-    override fun findIDs() {
-    }
 
     override fun initData() {
         rv!!.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         rv!!.itemAnimator = DefaultItemAnimator()
-        muliAdapter = object : QuickRcvAdapter<Entity>(this, mDatas), IAdapter<Entity> {
-            override fun getItemViewType2(dataPosition: Int): Int {
-                when (mDatas.get(dataPosition).introduce) {
-                    "角标" -> return 1
-                    "进度" -> return 2
-                    "处理" -> return 3
-                    else -> return 0
-                }
-            }
-        }
+        rv.adapter =   QuickAdapter<Entity>(this@FrescoActivity).apply {
 
-        muliAdapter!!.addViewHolder(FrescoDeletates())
-                .addViewHolder(1, FrescoSuperscriptDeletates())
-                .addViewHolder(2, FrescoProcessorDeletates())
-                .addViewHolder(3, FrescoProcessorDealDeletates())
-                .relatedList(rv)
-                .addItemDecoration(10)
+            divderManager = StandardDivder(this)
+            registerDelegate(FrescoDeletates())
+            registerDelegate(1, FrescoSuperscriptDeletates())
+            registerDelegate(2, FrescoProcessorDeletates())
+            registerDelegate(3, FrescoProcessorDealDeletates())
+            setStyleExtra(object : ViewStyleDefault<Entity>() {
+                override fun generateViewStyleOBJ(item: Entity): ViewStyleOBJ? {
+
+                    var bottom = 10
+                    val viewStyle = when (item.introduce) {
+                        "角标" -> 1
+                        "进度" -> 2
+                        "处理" -> {
+                            bottom = 0
+                            3
+                        }
+                        else -> -1
+                    }
+
+                    return ViewStyleOBJ().viewStyle(viewStyle)
+                            .divderRect(Rect(10, 0, 10, bottom))
+
+                }
+
+                override fun getItemViewType(position: Int, itemConfig: ViewStyleOBJ) {
+                }
+            })
+
+            add(mDatas)
+        }
 
     }
 

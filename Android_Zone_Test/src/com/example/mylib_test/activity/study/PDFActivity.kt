@@ -1,55 +1,38 @@
 package com.example.mylib_test.activity.study
 
 import android.view.View
-import com.zone.lib.base.activity.BaseActivity
 import android.graphics.pdf.PdfRenderer
 import android.os.ParcelFileDescriptor
 import android.os.Build
 import android.annotation.TargetApi
-import android.content.Intent
 import java.io.File
 import java.io.IOException
 import android.view.ViewGroup
 import android.graphics.Bitmap
-import android.net.Uri
 import android.util.Log
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import com.example.mylib_test.R
+import com.zone.lib.base.controller.activity.BasePictureFeatureActivity
+import com.zone.lib.base.controller.activity.controller.PictureActivityController
 import kotlinx.android.synthetic.main.a_study.*
 
 
 /**
  *[2018/11/14] by Zone
  */
-class PDFActivity : BaseActivity() {
+class PDFActivity : BasePictureFeatureActivity() {
 
     override fun setContentView() {
         setContentView(R.layout.a_study)
-
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.setType("*/*");//设置类型，我这里是任意类型，任意后缀的可以这样写。
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        startActivityForResult(intent, 1)
+        pickPicture()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, intent)
-        if (resultCode == RESULT_OK && requestCode == 1) {
-            data?.data?.let {
-                try {
-                    openRender(Uri2PathUtil.getRealPathFromUri(this, it))
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-
-            }
+    override fun getReturnedPicPath(path: String?, type: PictureActivityController.Type) {
+        if (path != null) {
+            openRender(path)
         }
     }
-
-    override fun findIDs() {
-    }
-
     override fun initData() {
     }
 

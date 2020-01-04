@@ -1,15 +1,13 @@
 package com.example.mylib_test.activity.three_place
 
-import android.app.Activity
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import butterknife.ButterKnife
 import com.example.mylib_test.R
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.zone.lib.utils.image.BitmapUtils
 import jp.wasabeef.blurry.Blurry
 import kotlinx.android.synthetic.main.a_fastblur.*
@@ -18,16 +16,20 @@ import kotlinx.android.synthetic.main.a_fastblur.*
  *[2018/7/10] by Zone
  */
 
-class BlurActivity : Activity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+class BlurActivity : BaseFeatureActivity() {
+    override fun setContentView() {
         setContentView(R.layout.a_fastblur)
-        ButterKnife.bind(this)
-        
+    }
+
+    override fun initData() {
+
         right_bottom.setImageBitmap(BitmapUtils
                 .fastblur(this, BitmapFactory
-                .decodeResource(resources, R.drawable.demo), 20))
+                        .decodeResource(resources, R.drawable.demo), 20))
 
+    }
+
+    override fun setListener() {
         button.setOnClickListener {
             val startMs = System.currentTimeMillis()
             Blurry.with(this@BlurActivity)
@@ -56,7 +58,8 @@ class BlurActivity : Activity() {
             Log.d(getString(R.string.app_name), "TIME${(System.currentTimeMillis() - startMs).toString()}ms")
         }
 
-        button.setOnLongClickListener( object : View.OnLongClickListener{
+
+        button.setOnLongClickListener(object : View.OnLongClickListener {
             var blurred = false
             override fun onLongClick(v: View?): Boolean {
                 if (blurred) {
@@ -70,7 +73,7 @@ class BlurActivity : Activity() {
                             .animate(500)
                             .onto(content as ViewGroup)//这个则是这个父控件里的任何控件(不仅仅是ImageView)都变模糊了
                     Log.d(getString(R.string.app_name),
-                            "TIME ${ (System.currentTimeMillis() - startMs)} ms")
+                            "TIME ${(System.currentTimeMillis() - startMs)} ms")
                 }
                 blurred = !blurred
                 return true

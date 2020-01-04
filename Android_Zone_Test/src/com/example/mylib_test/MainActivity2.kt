@@ -2,30 +2,36 @@ package com.example.mylib_test
 
 import android.app.Activity
 import com.example.mylib_test.activity.db.entity.MenuEntity
-import com.example.mylib_test.delegates.MenuEntityDeletates
-import com.zone.adapter3.QuickRcvAdapter
-import com.zone.adapter3.base.IAdapter
-import com.zone.adapter3.loadmore.OnScrollRcvListener
+import com.example.mylib_test.adapter.delegates.MenuEntityDeletates
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zone.adapter3kt.QuickAdapter
+import com.zone.adapter3kt.QuickConfig
+import com.zone.adapter3kt.ViewStyleDefault
+import com.zone.adapter3kt.ViewStyleOBJ
+import com.zone.adapter3kt.adapter.OnItemClickListener
+import com.zone.adapter3kt.data.HFMode
+import com.zone.adapter3kt.loadmore.LoadingSetting
+import com.zone.adapter3kt.loadmore.OnScrollRcvListener
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.zone.lib.LogZSDK
 import com.zone.lib.ZLogger
+import com.zone.lib.base.controller.activity.controller.SwipeBackActivityController
+import kotlinx.android.synthetic.main.a_menu.*
 import java.util.ArrayList
 
-class MainActivity2 : AppCompatActivity() {
-    private var listView1: RecyclerView? = null
+class MainActivity2 : BaseFeatureActivity() {
+
     private var positonId = -1
     private var alert: AlertDialog? = null
-    private var adapter2: IAdapter<MenuEntity>? = null
+    private var adapter2: QuickAdapter<MenuEntity>? = null
 
     companion object {
-
         //还原最开始的log配置  如果某次配置一次特殊的 打印完后的记得还原配置
         @JvmStatic
         fun initLogger() {
@@ -35,58 +41,88 @@ class MainActivity2 : AppCompatActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val isGranted = requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-        if (!isGranted) {
-            finish()
-        }
+    override fun initDefaultConifg() {
+        unRegisterPrestener(SwipeBackActivityController::class.java)
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun setContentView() {
         setContentView(R.layout.a_menu)
+    }
+
+    override fun onStoragePermit() {
+        super.onStoragePermit()
+        FileManager.firstInit(this)
+    }
+
+    override fun onStorageDeniedMustPermit() {
+        super.onStorageDeniedMustPermit()
+        finish()
+    }
+
+    override fun initData() {
+        initFirst()
+
+        permissionCheckStorageMustPermit()
         initLogger()
-
-        ActivityCompat.requestPermissions(this@MainActivity2, arrayOf(android
-                .Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
-        sptest()
         createDialog()
-        listView1 = findViewById(R.id.listView1) as RecyclerView
-        listView1!!.layoutManager = LinearLayoutManager(this)
+        listView1.layoutManager = LinearLayoutManager(this)
         val colorArry = intArrayOf(Color.WHITE, Color.GREEN, Color.YELLOW, Color.CYAN)
-        adapter2 = QuickRcvAdapter<MenuEntity>(this, MainMenu.menu)
-                .addViewHolder(MenuEntityDeletates(this, colorArry, MainMenu.menu))
-                .addHeaderHolder(R.layout.header_simple)
-                .addFooterHolder(R.layout.footer_simple)
-                .relatedList(listView1)
-                .setOnItemLongClickListener { viewGroup, view, i ->
-                    positonId = i
+        adapter2 = QuickAdapter<MenuEntity>(this).apply {
+            registerDelegate(MenuEntityDeletates(this@MainActivity2, colorArry, MainMenu.menu))
+            registerDelegate(1, R.layout.header_simple)
+            registerDelegate(10, R.layout.footer_simple)
+            defineHeaderOrder(HFMode.ADD, 1)
+            defineFooterOrder(HFMode.ADD, 10)
+
+            onItemClickListener = object : OnItemClickListener {
+                override fun onItemClick(parent: ViewGroup, view: View, position: Int) {
+                    positonId = position
                     alert!!.show()
-                    false
                 }
-                .addOnScrollListener(object : OnScrollRcvListener() {
-
-                    var refesh = true
-
-                    override fun loadMore(recyclerView: RecyclerView) {
-                        super.loadMore(recyclerView)
-                        val mDatasa = ArrayList<MenuEntity>()
-                        for (i in 0..4) {
-                            mDatasa.add(MenuEntity("insert $i", null))
-                        }
-                        listView1!!.postDelayed({
-                            if (refesh) {
-                                adapter2!!.loadMoreComplete()
-                                adapter2!!.data.addAll(mDatasa)
-                                adapter2!!.notifyDataSetChanged()
-                            } else {
-                                adapter2!!.loadMoreFail()
-                            }
-                            refesh = !refesh
-                        }, 1000)
+            }
+            setStyleExtra(object : ViewStyleDefault<MenuEntity>() {
+                override fun generateViewStyleOBJ(item: MenuEntity): ViewStyleOBJ? {
+                    val viewStyle = when {
+                        item.info.contains("header") -> 1
+                        item.info.contains("footer") -> 10
+                        else -> -1
                     }
-                }) as IAdapter<MenuEntity>?
+                    return ViewStyleOBJ().viewStyle(viewStyle)
+                }
 
+                override fun getItemViewType(position: Int, itemConfig: ViewStyleOBJ) {
+                }
+            })
+
+            add(MenuEntity("header", String::class.java))
+            add(MainMenu.menu)
+//            add(MenuEntity("footer", String::class.java))
+
+            loadOnScrollListener=object : OnScrollRcvListener(){
+
+                var refesh = true
+                override fun onLoading() {
+                    super.onLoading()
+
+                    val mDatasa = ArrayList<MenuEntity>()
+                    for (i in 0..4) {
+                        mDatasa.add(MenuEntity("insert $i", null))
+                    }
+                    listView1!!.postDelayed({
+                        if (refesh) {
+                            adapter2!!.add(mDatasa)
+                            adapter2!!.scrollTo(mDatasa[0])
+                            adapter2!!.loadMoreComplete()
+                        } else {
+                            adapter2!!.loadMoreFail()
+                        }
+                        refesh = !refesh
+                    }, 1000)
+
+                }
+            }
+        }
+        listView1.adapter=adapter2
 
         //通过加载XML动画设置文件来创建一个Animation对象；
         //		Animation animation= AnimationUtils.loadAnimation(this, R.anim.scale_in);   //得到一个LayoutAnimationController对象；
@@ -104,25 +140,17 @@ class MainActivity2 : AppCompatActivity() {
         //		listView1.startLayoutAnimation();
     }
 
-    private fun sptest() {
+    private fun initFirst() {
+        QuickConfig.build().apply {
+            loadingSetting = LoadingSetting().apply {
+                threshold = 0
+                isScrollToLoadData = true
+            }
+            perform()
+        }
+    }
 
-        LogApp.d(
-                "不从缓存from cache：int:${SP2.get("int", -1)} "
-        )
-        SP2.put("int", 1)
-        SP2.put("long", 10L)
-        SP2.put("float", 1.0F)
-        SP2.put("string", "happy?")
-        SP2.put("boolean", true)
-
-        LogApp.d(
-                "from cache：int${SP2.get("int", -1)} \n" +
-                        "from cache：long${SP2.get("long", -1L)} \n" +
-                        "from cache：float${SP2.get("float", -1.0)} \n" +
-                        "from cache：string${SP2.get("string", "empty")} \n" +
-                        "from cache：boolean${SP2.get("boolean", false)} \n" +
-                        ""
-        )
+    override fun setListener() {
     }
 
     private fun createDialog() {
@@ -139,14 +167,4 @@ class MainActivity2 : AppCompatActivity() {
                 .setNegativeButton("No") { dialog, id -> dialog.cancel() }
         alert = builder.create()
     }
-
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
 }

@@ -17,6 +17,9 @@
     <color name="semitransparent">#90000000</color>
     <color name="nearly_hard">#97000000</color>
     <color name="font_focus">#D7F679</color>
+    <color name="tv_hint">#00ff00</color>
+    <color name="tv_hint2">#b898ff</color>
+    <color name="tv_click">#e2e2e2</color>
     <color name="gold_player">#F7F466</color>
     <color name="whitetran">#87FFFFFF</color>
     <color name="divider_line">#FF575757</color>
