@@ -49,11 +49,11 @@ public class ZDialog extends BaseDialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.dialog_cancel:
-                ToastUtils.showShort(activity, "Cancel");
+                ToastUtils.INSTANCE.showShort(activity, "Cancel");
                 System.out.println("Dialog->Cancel");
                 break;
             case R.id.dialog_sure:
-                ToastUtils.showShort(activity, "Sure");
+                ToastUtils.INSTANCE.showShort(activity, "Sure");
                 System.out.println("Dialog->Sure");
                 break;
         }
@@ -62,7 +62,7 @@ public class ZDialog extends BaseDialog implements View.OnClickListener {
 
     @Override
     public void dismiss() {
-        ToastUtils.showShort(activity, "dismiss");
+        ToastUtils.INSTANCE.showShort(activity, "dismiss");
         System.out.println("Dialog->dismiss");
         super.dismiss();
     }

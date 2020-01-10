@@ -29,6 +29,7 @@ import com.squareup.leakcanary.RefWatcher;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 import com.zone.lib.Configure;
+import com.zone.lib.utils.data.info.PrintLog;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 
@@ -61,6 +62,8 @@ public class Apps extends Application {
     public void onCreate() {
         super.onCreate();
         Configure.init(this);
+        CrashDefaultHandler.init2();
+        PrintLog.restart();
         init(this);
         PDFBoxResourceLoader.init(getApplicationContext());
 

@@ -5,4 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="test_clickable">测试<a
+        href="http://www.baidu.com">百度</a>and the<a
+        href="https://luhaoaimama1.github.io/">My Log</a>。
+    </string>
 </resources>
