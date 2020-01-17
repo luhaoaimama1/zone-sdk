@@ -15,11 +15,18 @@
     </style>
 
     <style name="AppBaseTheme2" parent="Theme.AppCompat.Light">
+
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
+    </style>
+    <style name="AppBaseThemeFullscreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
     </style>
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">

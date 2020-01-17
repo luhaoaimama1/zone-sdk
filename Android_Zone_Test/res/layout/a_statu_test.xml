@@ -1,45 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-    <com.zone.view.FlowLayout
-        android:id="@+id/flowLayoutZone1"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/btLow"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
+        <View
+            android:id="@+id/status_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.zone.view.FlowLayout
+            android:id="@+id/flowLayoutZone1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="低电量淡化" />
+            android:background="@drawable/abcd">
 
-        <TextView
-            android:id="@+id/bt4FullScreen"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/bt4FullScreen"
+                style="@style/TvOnClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            android:text="4.0以后全屏" />
+                android:text="4.0以后全屏" />
 
-        <TextView
-            android:id="@+id/btClear"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="清除所有" />
+            <TextView
+                android:id="@+id/bt4NotFullScreen"
+                style="@style/TvOnClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        <TextView
-            android:id="@+id/btBg"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置背景" />
+                android:text="4.0以后非全屏" />
 
-    </com.zone.view.FlowLayout>
 
+            <TextView
+                android:id="@+id/btBg"
+                style="@style/TvOnClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更改window宽高" />
+
+            <TextView
+                android:id="@+id/demo"
+                style="@style/TvOnClick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="demo" />
+
+        </com.zone.view.FlowLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </ScrollView>
 

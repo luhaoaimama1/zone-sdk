@@ -32,6 +32,16 @@ public class ViewUtils {
     }
 
 
+    public static void recurrenceFitsystem(View view, boolean isFitsystem) {
+        ViewGroup parentView = (ViewGroup) view.getParent();
+        ViewGroup rootView = (ViewGroup) view.getRootView();
+        while (!parentView.equals(rootView)) {
+            parentView.setFitsSystemWindows(isFitsystem);
+            parentView = (ViewGroup) parentView.getParent();
+        }
+        rootView.setClipChildren(isFitsystem);
+    }
+
     /**
      * @param view
      * @param flowLayout 因为我的flowLayout 用lib库 lib库要在用flowlayout就循环了 坑爹 所以 加了这个参数;传一个flowLayout即可
