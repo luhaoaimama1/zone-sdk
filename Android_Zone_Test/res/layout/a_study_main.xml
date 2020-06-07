@@ -67,33 +67,7 @@
         android:layout_height="wrap_content"
         android:text="程序杀死崩溃存储信息" />
 
-    <TextView
-        android:id="@+id/bt_start_logcat_collection"
-        style="@style/TvOnClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="开始错误信息" />
 
-    <TextView
-        android:id="@+id/bt_start_logcat_collection_type"
-        style="@style/TvOnClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="选择记录信息的种类" />
-
-    <TextView
-        android:id="@+id/bt_restart_logcat_collection"
-        style="@style/TvOnClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="开始错误信息(重启模式)" />
-
-    <TextView
-        android:id="@+id/bt_stop_logcat_collection"
-        style="@style/TvOnClick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="停止收集" />
     <TextView
         android:id="@+id/bt_crash"
         style="@style/TvOnClick"

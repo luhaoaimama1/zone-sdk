@@ -24,6 +24,20 @@
             android:layout_height="wrap_content"
             android:text="BitmapUtils的测试" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#b898ff"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="把所有默认的clickable替换成自己的clickspan" />
+
+        <TextView
+            android:id="@+id/tv_custom_clickable"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_clickable" />
 
         <TextView
             android:layout_width="match_parent"
@@ -81,8 +95,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[干啥呵]我才不啊[呵呵]" />
-
-
 
         <TextView
             android:layout_width="match_parent"

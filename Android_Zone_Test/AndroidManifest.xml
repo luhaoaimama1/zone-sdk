@@ -41,9 +41,13 @@
     <application
         android:name="com.example.mylib_test.app.Apps"
         android:allowBackup="true"
+        android:resizeableActivity="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light">
+        <!-- Render on full screen up to screen aspect ratio of 2.4 -->
+        <!-- Use a letterbox on screens larger than 2.4 -->
+        <meta-data android:name="android.max_aspect" android:value="2.4" />
         <activity
             android:name=".MainActivity2"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
@@ -154,8 +158,9 @@
         <activity android:name=".activity.study.ui.GoogleOfficeActivity"></activity>
         <activity android:name=".activity.study.ui.TipsActivity"></activity>
         <activity android:name=".activity.utils.LayoutClipAcitivity"></activity>
-        <activity android:name=".activity.statu.StatuMainActivity"></activity>
-
+        <activity android:name=".activity.statu.StatuMainActivity"
+            ></activity>
+<!--        android:theme="@style/AppBaseThemeFullscreen"-->
         <activity android:name=".activity.controller.ControllerMainActivity"></activity>
         <activity android:name=".activity.controller.CollectionActivityControllerActivity"></activity>
         <activity android:name=".activity.controller.ActionBarControllerActivity"></activity>

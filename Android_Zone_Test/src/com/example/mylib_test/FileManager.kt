@@ -17,8 +17,9 @@ object FileManager {
     @JvmField
     val jpgA = FileUtils.getFile(MyFolder, "picSave", "a.jpg")
 
-
     fun firstInit(activity: Activity) {
+
+
         Observable.fromCallable {
             if (!jpgA.exists()) {
                 val bt = SampleUtils.load(activity, R.drawable.aaaaaaaaaaaab).bitmap()

@@ -22,7 +22,7 @@ public class Pop_Photo extends BasePopWindow implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_call:
-			ToastUtils.showLong(activity, "哈哈");
+			ToastUtils.INSTANCE.showLong(activity, "哈哈");
 			break;
 		case R.id.tv_cancel:
 			dismiss();

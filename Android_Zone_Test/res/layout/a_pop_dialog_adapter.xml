@@ -113,4 +113,17 @@
         android:progressDrawable="@drawable/progressbar_z_hori"
         android:secondaryProgress="70" />
 
+    <TextView
+        android:id="@+id/bt_toast"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="toast" />
+
+    <TextView
+        android:id="@+id/bt_toast_custom"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="toast" />
 </com.zone.view.FlowLayout>

@@ -67,8 +67,17 @@ open class ZLogger protected constructor(var tagName: String) {
     //https://blog.csdn.net/qq_34603736/article/details/73497360
     //这个位置只有写成固定格式 "("+fileName+":"+lineNumber+")"，才能实现定位功能
     private fun getWarpContent(content: String): String {
-        val caller = Throwable().stackTrace[2]
+        val caller = if (stack == -1) Throwable().stackTrace[2]
+        else Throwable().stackTrace[stack].apply {
+            stack = -1
+        }
         return "[ (${caller.fileName}:${caller.lineNumber})#${caller.methodName} ] $content"
+    }
+
+    private var stack = -1
+
+    fun stack(stack: Int)= apply {
+        this.stack = stack
     }
 
     fun d(content: String) {

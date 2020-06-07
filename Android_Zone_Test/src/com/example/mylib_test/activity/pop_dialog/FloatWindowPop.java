@@ -29,7 +29,7 @@ public class FloatWindowPop extends WindowPop {
         floatId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showShort(context, "onClick");
+                ToastUtils.INSTANCE.showShort(context, "onClick");
             }
         });
     }

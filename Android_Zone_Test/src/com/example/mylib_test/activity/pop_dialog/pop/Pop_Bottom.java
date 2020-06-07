@@ -44,7 +44,7 @@ public class Pop_Bottom extends BasePopWindow implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		ToastUtils.showLong(context, "嘿嘿");
+		ToastUtils.INSTANCE.showLong(context, "嘿嘿");
 		dismiss();
 	}
 

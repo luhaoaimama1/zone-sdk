@@ -29,6 +29,7 @@ android {
         minSdkVersion 17
         // dex突破65535的限制
         multiDexEnabled true
+        targetSdkVersion 27
         vectorDrawables.useSupportLibrary = true
         ndk {
             //选择要添加的对应cpu类型的.so库。
@@ -101,6 +102,7 @@ dependencies {
 
     api "io.reactivex:rxjava:1.2.5"
     api "io.reactivex:rxandroid:1.2.1"
+    api 'com.jaeger.statusbarutil:library:1.5.1'
 
 //    api 'com.tencent.tbs.tbssdk:sdk:43697'
 //    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"

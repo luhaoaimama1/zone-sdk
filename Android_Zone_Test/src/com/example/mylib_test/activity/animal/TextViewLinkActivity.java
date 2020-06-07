@@ -55,6 +55,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mylib_test.R;
+import com.example.mylib_test.activity.animal.utils.H5ClickableSpan;
 import com.zone.lib.utils.view.DrawUtils;
 import com.zone.okhttp.utils.StringUtils;
 
@@ -83,6 +84,12 @@ public class TextViewLinkActivity extends Activity {
 
         changeColor();
         deleteEdit();
+
+        //好处是都多语言的话 也能点击
+        TextView tv_custom_clickable=findViewById(R.id.tv_custom_clickable);
+        tv_custom_clickable.setVisibility(View.VISIBLE);
+        tv_custom_clickable.setMovementMethod(LinkMovementMethod.getInstance());
+        H5ClickableSpan.replaceClickSpan(tv_custom_clickable);
     }
 
     private void deleteEdit() {
