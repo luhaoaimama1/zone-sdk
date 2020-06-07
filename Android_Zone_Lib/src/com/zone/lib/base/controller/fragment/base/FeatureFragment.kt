@@ -1,4 +1,4 @@
-package com.zone.lib.base.controller.fragment
+package com.zone.lib.base.controller.fragment.base
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import java.util.*
 
-open class FeatureFragment : Fragment() {
+abstract class FeatureFragment : Fragment() {
 
     protected var kindsManagerMap: HashMap<Class<*>, FragmentController<*>> = HashMap()
     private var hasInitKindsControl = false
@@ -28,12 +28,11 @@ open class FeatureFragment : Fragment() {
         }
     }
 
-    open fun initKindsControl() {
-    }
+    abstract fun initBaseControllers()
 
     override fun onAttach(context: Context?) {
         if (!hasInitKindsControl) {
-            initKindsControl()
+            initBaseControllers()
             hasInitKindsControl = true
         }
         super.onAttach(context)

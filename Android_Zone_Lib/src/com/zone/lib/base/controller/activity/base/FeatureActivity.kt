@@ -1,4 +1,4 @@
-package com.zone.lib.base.controller.activity
+package com.zone.lib.base.controller.activity.base
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,7 +20,7 @@ import java.util.*
 abstract class FeatureActivity : AppCompatActivity(), WeakRefHandler.Callback, BaseFeatureView
         , View.OnClickListener {
 
-    lateinit var handler: WeakRefHandler
+    lateinit var mainHandler: WeakRefHandler
     protected var kindsManagerMap: HashMap<Class<*>, ActivityController<*>> = HashMap()
 
     fun registerPrestener(controller: ActivityController<*>) {
@@ -43,7 +43,7 @@ abstract class FeatureActivity : AppCompatActivity(), WeakRefHandler.Callback, B
 
     override fun onCreate(bundle: Bundle?) {
         super.onCreate(bundle)
-        handler = WeakRefHandler(this)
+        mainHandler = WeakRefHandler(this)
         initBaseControllers()
         onCreateBefore(bundle)
         setContentView()

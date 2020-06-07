@@ -1,4 +1,4 @@
-package com.zone.lib.base.controller.fragment
+package com.zone.lib.base.controller.fragment.base
 
 import android.content.Context
 import android.content.Intent
@@ -51,6 +51,6 @@ open class FragmentController<V : BaseFeatureView>(v: V) : ViewController<V>(v),
     fun onDestroy() {
     }
 
-    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {}
+    open fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {}
 
 }

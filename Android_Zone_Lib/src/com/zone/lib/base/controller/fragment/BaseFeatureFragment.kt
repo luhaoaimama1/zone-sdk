@@ -1,52 +1,40 @@
 package com.zone.lib.base.controller.fragment
 
-import com.zone.lib.base.controller.activity.controller.*
+import com.zone.lib.base.controller.common.picture.PicktureHelper
+import com.zone.lib.base.controller.common.picture.PictureContract
 import com.zone.lib.base.controller.fragment.base.FeatureFragment
-import me.imid.swipebacklayout.lib.SwipeBackLayout
-import java.lang.IllegalStateException
+import com.zone.lib.base.controller.common.picture.PictureFragmentController
 
-abstract class BaseFeatureFragment : FeatureFragment(), CollectionContract.Callback
-        , ActionBarContract.Callback, SwipeBackContract.Callback {
+open class BaseFeatureFragment : FeatureFragment(), PictureContract.Callback {
 
+    var pictureActivityController: PictureFragmentController? = null
     override fun initBaseControllers() {
-        super.initBaseControllers()
-        registerPrestener(CollectionActivityController(this))
-        registerPrestener(ActionBarActivityController(this))
-        registerPrestener(SwipeBackActivityController(this))
+        pictureActivityController = object : PictureFragmentController(this@BaseFeatureFragment) {
+            override fun getReturnedPicPath(path: String?, type: PicktureHelper.Type) {
+                this@BaseFeatureFragment.getReturnedPicPath(path, type)
+            }
+        }
+        pictureActivityController?.let {
+            registerPrestener(it)
+        }
         initDefaultConifg()
     }
 
     open fun initDefaultConifg() {
-        getController(ActionBarActivityController::class.java)?.initFirst(ShowState.HideTitle)
     }
 
-    override fun finishAll() {
-        getController(CollectionActivityController::class.java)?.finishAll()
+    override fun getReturnedPicPath(path: String?, type: PicktureHelper.Type) {
     }
 
-    override fun hideTitle() {
-        getController(ActionBarActivityController::class.java)?.hideTitle()
+    override fun openCamera() {
+        pictureActivityController?.openCamera()
     }
 
-    override fun showTitle() {
-        getController(ActionBarActivityController::class.java)?.showTitle()
+    override fun openPhotos() {
+        pictureActivityController?.openPhotos()
     }
 
-    override fun setSwipeBackFlag(swipeBack: SwipeBackActivityController.SwipeBack) {
-        getController(SwipeBackActivityController::class.java)?.setSwipeBackFlag(swipeBack)
-    }
-
-    override fun getSwipeBackLayout(): SwipeBackLayout {
-        return getController(SwipeBackActivityController::class.java)?.swipeBackLayout
-                ?: throw IllegalStateException("please set controller")
-    }
-
-
-    override fun scrollToFinishActivity() {
-        getController(SwipeBackActivityController::class.java)?.scrollToFinishActivity()
-    }
-
-    override fun setSwipeBackEnable(enable: Boolean) {
-        getController(SwipeBackActivityController::class.java)?.setSwipeBackEnable(enable)
+    override fun pickPicture() {
+        pictureActivityController?.pickPicture()
     }
 }

@@ -1,5 +1,6 @@
-package com.zone.lib.base.controller.activity.controller
+package com.zone.lib.base.controller.common.picture
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
@@ -14,85 +15,41 @@ import com.zone.lib.base.controller.activity.base.FeatureActivity
 import java.io.File
 import java.util.*
 
-abstract class PictureActivityController(activity: FeatureActivity) : ActivityController<FeatureActivity>(activity) ,
-        PictureContract.Controller{
-    companion object {
-        private var path: String? = null
+abstract class PictureActivityController(activity: FeatureActivity) : ActivityController<FeatureActivity>(activity),
+        PictureContract.Controller {
 
-        private var outFile = FileUtils.getFile(SDCardUtils.getSDCardDir(), "Zone", "picSave")
-    }
-
-    enum class Type {
-        None, Camera, Photos, PickPicture;
-    }
-
-    /**
-     * 判断文件是否存在
-     * @return
-     */
-    private val isFileExist: Boolean
-        get() {
-            val file = File(path!!)
-            return file.exists()
+    private val helper = object : PicktureHelper() {
+        override fun startActivityForResult(intent: Intent?, requestCode: Int) {
+            getActivity()?.startActivityForResult(intent, requestCode)
         }
 
+        override fun getContext(): Context? = getActivity()
+
+        override fun getReturnedPicPath(path: String?, type: Type) {
+            this@PictureActivityController.getReturnedPicPath(path, type)
+        }
+    }
+
     override fun openCamera() {
-        val picName = DateFormat.format("yyyyMMdd_hhmmss", Calendar.getInstance(Locale.CHINA)).toString() + ".jpg"
-        LogZSDK.d("照片名格式：yyyyMMdd_hhmmss.jpg")
-        outFile = File(outFile, picName)
-        path = outFile.path
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outFile))
-        getActivity()?.startActivityForResult(intent, RequestCodeConfig.getRequestCode(RequestCodeConfig.Feature_Pic_REQUESTCODE_CAMERA))
+        helper.openCamera()
     }
 
     override fun openPhotos() {
-        val intent = Intent(Intent.ACTION_PICK, null)
-        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
-        getActivity()?.startActivityForResult(intent, RequestCodeConfig.getRequestCode(RequestCodeConfig.Feature_Pic_REQUESTCODE_PHOTOS))
+        helper.openPhotos()
     }
 
     override fun pickPicture() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.setType("*/*");//设置类型，我这里是任意类型，任意后缀的可以这样写。
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        getActivity()?.startActivityForResult(intent, RequestCodeConfig.getRequestCode(RequestCodeConfig.Feature_Pic_REQUESTCODE_PICK_PHOTOS))
+        helper.pickPicture()
     }
 
     /**
      *
      * @param path 照片的路径  已经返回了 你调用就行
      */
-    protected abstract fun getReturnedPicPath(path: String?, type: Type)
+    protected abstract fun getReturnedPicPath(path: String?, type: PicktureHelper.Type)
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
-        if (resultCode == -1) {
-            when (RequestCodeConfig.getSwitchRequestCode(requestCode)) {
-                RequestCodeConfig.Feature_Pic_REQUESTCODE_CAMERA ->
-                    if (isFileExist) {
-                        getReturnedPicPath(path, Type.Camera)
-                    } else getReturnedPicPath(null, Type.Camera)
-
-                RequestCodeConfig.Feature_Pic_REQUESTCODE_PHOTOS -> {
-                    val data = intent?.data
-                    val activity = getActivity()
-                    if (activity != null && data != null) {
-                        getReturnedPicPath(Uri2PathUtil.getRealPathFromUri(activity, data), Type.Photos)
-                    } else {
-                        getReturnedPicPath(null, Type.Photos)
-                    }
-                }
-                RequestCodeConfig.Feature_Pic_REQUESTCODE_PICK_PHOTOS -> {
-                    val data = intent?.data
-                    val activity = getActivity()
-                    if (activity != null && data != null) {
-                        getReturnedPicPath(Uri2PathUtil.getRealPathFromUri(activity, data), Type.PickPicture)
-                    } else {
-                        getReturnedPicPath(null, Type.PickPicture)
-                    }
-                }
-            }
-        }
+        helper.onActivityResult(requestCode, resultCode, intent)
     }
 }
