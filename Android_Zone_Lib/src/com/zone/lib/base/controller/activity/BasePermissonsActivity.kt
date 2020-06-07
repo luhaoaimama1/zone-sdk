@@ -8,6 +8,7 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.appcompat.app.AlertDialog
 import com.zone.lib.LogZSDK
+import com.zone.lib.base.controller.activity.base.FeatureActivity
 import permissions.dispatcher.*
 
 /**

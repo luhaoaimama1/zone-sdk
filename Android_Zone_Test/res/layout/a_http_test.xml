@@ -9,6 +9,14 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/handlerTv"
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="内容" />
+
+        <TextView
             android:id="@+id/handle"
             style="@style/TvOnClick"
             android:layout_width="wrap_content"

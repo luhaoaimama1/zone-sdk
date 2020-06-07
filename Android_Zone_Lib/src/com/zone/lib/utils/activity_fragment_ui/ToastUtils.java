@@ -1,7 +1,11 @@
 package com.zone.lib.utils.activity_fragment_ui;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Toast;
+
+import com.zone.lib.Configure;
 
 /**
  * Toast统一管理类
@@ -9,6 +13,21 @@ import android.widget.Toast;
  */
 public class ToastUtils {
 	private static boolean showToast = true;
+
+	public static void showToast(final int msgId) {
+		if (Looper.getMainLooper() != Looper.myLooper()) {
+			Handler handler = new Handler(Looper.getMainLooper());
+			handler.post(new Runnable() {
+				@Override
+				public void run() {
+					showShort(Configure.getApplicationContext(), msgId);
+				}
+			});
+		} else {
+			showShort(Configure.getApplicationContext(), msgId);
+		}
+	}
+
 	/**
 	 * 短时间显示Toast
 	 * 

@@ -38,7 +38,6 @@ class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
         when (v?.id) {
             R.id.bt_big_save -> saveBigBitmap()
             R.id.animal -> startActivity(Intent(this, AniPro::class.java))
-            R.id.viewHelperTest -> startActivity(Intent(this, ViewHelperTestActivity::class.java))
             R.id.color -> startActivity(Intent(this, ColorMarixTry::class.java))
             R.id.bt_canvas -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "layer"))
             R.id.bt_Xfermode -> startActivity(Intent(this, XfermodeActivity::class.java))
@@ -53,6 +52,7 @@ class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
             R.id.bt_bitmaptoRorate -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_bitmaptoRorate"))
             R.id.bt_Pixels -> startActivity(Intent(this, PixelsAcitivity::class.java))
             R.id.bt_customAni -> startActivity(Intent(this, CustomAniActivity::class.java))
+            R.id.bt_cgr -> startActivity(Intent(this, ChoreographerStudyActivity::class.java))
             R.id.bt_bitmapRecyle -> bitmapRecyleTest()
             R.id.bt_draw -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_draw"))
             R.id.bt_LightingColorFilter -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_LightingColorFilter"))

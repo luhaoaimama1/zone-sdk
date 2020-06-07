@@ -14,7 +14,8 @@ import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 import com.example.mylib_test.R
 import com.zone.lib.base.controller.activity.BasePictureFeatureActivity
-import com.zone.lib.base.controller.activity.controller.PictureActivityController
+import com.zone.lib.base.controller.common.picture.PicktureHelper
+import com.zone.lib.base.controller.common.picture.PictureActivityController
 import kotlinx.android.synthetic.main.a_study.*
 
 
@@ -28,7 +29,7 @@ class PDFActivity : BasePictureFeatureActivity() {
         pickPicture()
     }
 
-    override fun getReturnedPicPath(path: String?, type: PictureActivityController.Type) {
+    override fun getReturnedPicPath(path: String?, type: PicktureHelper.Type) {
         if (path != null) {
             openRender(path)
         }

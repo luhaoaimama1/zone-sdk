@@ -115,6 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Touch裁剪" />
+
         <TextView
             style="@style/TvHint"
             android:layout_width="match_parent"
@@ -135,6 +136,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="相机" />
+
         <TextView
             android:id="@+id/tv_permission_record_audio"
             style="@style/TvOnClick"
@@ -156,5 +158,18 @@
             android:layout_height="wrap_content"
             android:text="悬浮权限" />
 
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="下面是FragmentController测试" />
+
+        <FrameLayout
+            android:id="@+id/fl_controller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/font_focus" />
     </com.zone.view.FlowLayout>
 </ScrollView>

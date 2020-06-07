@@ -2,8 +2,8 @@ package com.zone.lib.base.controller.activity.controller
 
 import android.app.Activity
 import android.os.Bundle
-import com.zone.lib.base.controller.activity.ActivityController
-import com.zone.lib.base.controller.activity.FeatureActivity
+import com.zone.lib.base.controller.activity.base.ActivityController
+import com.zone.lib.base.controller.activity.base.FeatureActivity
 import java.util.concurrent.CopyOnWriteArrayList
 
 class CollectionActivityController(activity: FeatureActivity) : ActivityController<FeatureActivity>(activity)

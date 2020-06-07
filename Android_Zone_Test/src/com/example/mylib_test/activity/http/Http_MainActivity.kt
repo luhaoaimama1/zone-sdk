@@ -1,17 +1,19 @@
 package com.example.mylib_test.activity.http
 
-import android.annotation.TargetApi
 import android.content.Intent
-import android.os.Build
 import android.os.Handler
+import android.os.HandlerThread
 import android.os.Looper
+import android.os.Message
 import android.view.View
 import android.view.View.OnClickListener
+import com.example.mylib_test.LogApp
 import com.example.mylib_test.R
 import com.example.mylib_test.activity.http.aidl.AIDLActivity
 import com.example.mylib_test.activity.http.zeventbus.ZEventBus
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import kotlinx.android.synthetic.main.a_http_test.*
+
 
 class Http_MainActivity : BaseFeatureActivity(), OnClickListener {
     companion object {
@@ -42,23 +44,77 @@ class Http_MainActivity : BaseFeatureActivity(), OnClickListener {
     }
 
     private fun handler() {
-        handler.post {
-            handle.text = "更改成功了!"
+        mainHandler.post {
+            handlerTv.text = "更改成功了!"
         }
+    }
+
+
+    lateinit var t2Handler: Handler
+    val handlerThread = object : HandlerThread("abc") {}.apply {
+        start()
+        t2Handler = Handler(looper) {
+            //子线程中处理问题
+            threadLog("HandlerThread 的handler处理问题：")
+
+            //子线程 与主线程通信
+            mainHandler.post {
+                threadLog("HandlerThread子线程中 使用 主线程的handler处理问题")
+            }
+            true
+        }
+    }
+
+    open class ThreadCustom : Thread() {
+        var tHandler: Handler? = null //子线程的handler
+        fun quit() {
+            Looper.myLooper()!!.quit()
+        }
+    }
+
+    val thread2 = object : ThreadCustom() {
+        override fun run() {
+            Looper.prepare()
+            tHandler = object : Handler(Looper.myLooper()) {
+                override fun handleMessage(msg: Message?) {
+                    super.handleMessage(msg)
+                    //子线程中处理问题
+                    threadLog("ThreadCustom 的handler处理问题：")
+
+                    //子线程 与主线程通信
+                    mainHandler.post {
+                        threadLog("ThreadCustom子线程中 使用主线程的handler处理问题")
+                    }
+                    true
+                }
+            }
+            Looper.loop()//这里下面的代码执行不了了已经
+        }
+    }.apply {
+        start()
     }
 
     //这段　只是学习下handler～　
     private fun handlerThread() {
-        object : Thread() {
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
-            override fun run() {
-                Looper.prepare()
-                //Handler.Callback 还必须这么写　
-                val abc = Handler(Handler.Callback { false })
-                Looper.loop()
-                Looper.myLooper()!!.quitSafely()
-            }
-        }.start()
+        //主线程与子线程通信
+        thread2.tHandler?.sendEmptyMessage(1)
+
+        //主线程与子线程通信
+        t2Handler.post {
+            threadLog("主线程使用HandlerThread的handler")
+        }
+        t2Handler.sendEmptyMessage(1)
+
+    }
+
+    fun threadLog(str: String) {
+        LogApp.d("${str} : ${if (Looper.getMainLooper() == Looper.myLooper()) "在" else "不在"} 主线程中执行任务")
+    }
+
+    override fun onDestroy() {
+        thread2.quit()
+        handlerThread.quit()
+        super.onDestroy()
     }
 
 }

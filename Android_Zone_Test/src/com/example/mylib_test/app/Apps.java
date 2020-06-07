@@ -15,6 +15,7 @@ package com.example.mylib_test.app;
  * limitations under the License.
  *******************************************************************************/
 
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import android.annotation.TargetApi;
@@ -29,6 +30,7 @@ import com.squareup.leakcanary.RefWatcher;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
 import com.zone.lib.Configure;
+import com.zone.lib.utils.executor.ExecutorUtils;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 
@@ -88,6 +90,13 @@ public class Apps extends Application {
 
         Fresco.initialize(this);
         refWatcher = LeakCanary.install(this);
+
+        ExecutorUtils.execute(new Runnable() {
+            @Override
+            public void run() {
+                Glide.get(getApplicationContext()).clearDiskCache();
+            }
+        });
     }
 
     @Override

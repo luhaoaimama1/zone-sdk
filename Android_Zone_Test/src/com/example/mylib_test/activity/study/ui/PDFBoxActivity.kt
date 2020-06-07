@@ -15,7 +15,8 @@ import com.zone.lib.base.controller.activity.BasePictureFeatureActivity
 import kotlinx.android.synthetic.main.a_study.*
 import com.tom_roush.pdfbox.rendering.PDFRenderer
 import com.tom_roush.pdfbox.pdmodel.PDDocument
-import com.zone.lib.base.controller.activity.controller.PictureActivityController
+import com.zone.lib.base.controller.common.picture.PicktureHelper
+import com.zone.lib.base.controller.common.picture.PictureActivityController
 
 
 /**
@@ -34,7 +35,7 @@ class PDFBoxActivity : BasePictureFeatureActivity() {
         pickPicture()
     }
 
-    override fun getReturnedPicPath(path: String?, type: PictureActivityController.Type) {
+    override fun getReturnedPicPath(path: String?, type: PicktureHelper.Type) {
         if (path != null) {
             openRender(path)
         }

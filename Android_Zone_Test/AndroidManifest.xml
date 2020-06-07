@@ -116,6 +116,7 @@
         <service android:name="com.example.mylib_test.activity.pop_dialog.NoticationService"></service>
 
         <activity android:name="com.example.mylib_test.activity.animal.Animal_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.ChoreographerStudyActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.TextViewLinkActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.ress.ResMainActvitity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CanvasTest"></activity>
@@ -127,8 +128,6 @@
         <activity android:name="com.example.mylib_test.activity.animal.ColorMarixTry"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.WaveActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.SVGActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.animal.AnimatorActivity"></activity>
-        <activity android:name="com.example.mylib_test.activity.animal.ViewHelperTestActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CustomAniActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.PixelsAcitivity"></activity>
         <activity android:name="com.example.mylib_test.activity.file.FileTestActivity"></activity>

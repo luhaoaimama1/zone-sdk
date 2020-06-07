@@ -20,6 +20,7 @@ class GildeActivity : BaseFeatureActivity() {
 
     override fun setContentView() {
         setContentView(R.layout.a_glide)
+
     }
 
     override fun initData() {
@@ -53,6 +54,7 @@ class GildeActivity : BaseFeatureActivity() {
             GildeActivity.Type.HTTP -> {
                 Glide.with(this).load("http://ww4.sinaimg.cn/mw1024/005PquKVgw1ezrgh5ppeyj30ku0kujvv.jpg")
                         .placeholder(R.drawable.ic_stub).dontAnimate()
+//                        .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .into(iv)
                 bt.setText("HTTP")
             }

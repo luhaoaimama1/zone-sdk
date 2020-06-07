@@ -3,8 +3,8 @@ package com.zone.lib.base.controller.activity.controller
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.WindowManager
-import com.zone.lib.base.controller.activity.ActivityController
-import com.zone.lib.base.controller.activity.FeatureActivity
+import com.zone.lib.base.controller.activity.base.ActivityController
+import com.zone.lib.base.controller.activity.base.FeatureActivity
 
 /**
  * 隐藏titlebar

@@ -8,8 +8,10 @@ import com.example.mylib_test.R
 import com.example.mylib_test.activity.photo_shot.ShowPicActivity
 import com.zone.lib.base.controller.activity.BasePictureFeatureActivity
 import com.example.mylib_test.base.controller.SystemClipActivityController
-import com.zone.lib.base.controller.activity.controller.PictureActivityController
+import com.zone.lib.base.controller.common.picture.PictureActivityController
 import com.zone.lib.base.controller.activity.controller.ShowState
+import com.zone.lib.base.controller.common.picture.PicktureHelper
+import com.zone.lib.utils.activity_fragment_ui.FragmentSwitcher
 import com.zone.lib.utils.activity_fragment_ui.ToastUtils
 import com.zone.lib.utils.permissions.FloatWindowPermissionUtils
 import com.zone.lib.utils.permissions.NotificationPermissionUtils
@@ -17,9 +19,15 @@ import com.zone.lib.utils.permissions.NotificationPermissionUtils
 class ControllerMainActivity : BasePictureFeatureActivity() {
 
     lateinit var systemClipActivityController: SystemClipActivityController
+    private var fragmentSwitcher: FragmentSwitcher? = null
 
     override fun setContentView() {
         setContentView(R.layout.a_controller_main)
+
+        fragmentSwitcher = FragmentSwitcher(this, R.id.fl_controller)
+        fragmentSwitcher!!.setPriDefaultAnimal(android.R.anim.fade_in, android.R.anim.fade_out)
+        fragmentSwitcher!!.initFragment(ControllerMainFragment())
+        fragmentSwitcher!!.switchPage(0)
     }
 
     override fun initBaseControllers() {
@@ -32,14 +40,14 @@ class ControllerMainActivity : BasePictureFeatureActivity() {
         initPrivateControllers(systemClipActivityController)
     }
 
-    private fun toImageActivity(path: String?) {
+    fun toImageActivity(path: String?) {
         val intent = Intent(this@ControllerMainActivity, ShowPicActivity::class.java)
         val uri = Uri.parse(path)
         intent.data = uri
         startActivity(intent)
     }
 
-    override fun getReturnedPicPath(path: String?, type: PictureActivityController.Type) {
+    override fun getReturnedPicPath(path: String?, type: PicktureHelper.Type) {
         toImageActivity(path)
     }
 

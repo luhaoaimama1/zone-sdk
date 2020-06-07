@@ -13,8 +13,8 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.text.format.DateFormat
 import com.zone.lib.utils.data.convert.Uri2PathUtil
-import com.zone.lib.base.controller.activity.ActivityController
-import com.zone.lib.base.controller.activity.FeatureActivity
+import com.zone.lib.base.controller.activity.base.ActivityController
+import com.zone.lib.base.controller.activity.base.FeatureActivity
 
 abstract class SystemClipActivityController(activity: FeatureActivity, val saveFolder: String) : ActivityController<FeatureActivity>(activity) {
     private var savePath: Uri? = null

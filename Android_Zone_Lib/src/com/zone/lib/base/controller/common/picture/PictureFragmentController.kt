@@ -1,4 +1,4 @@
-package com.zone.lib.base.controller.activity.controller
+package com.zone.lib.base.controller.fragment.controller
 
 import android.content.Intent
 import android.net.Uri
@@ -9,12 +9,15 @@ import com.zone.lib.base.controller.RequestCodeConfig
 import com.zone.lib.utils.data.convert.Uri2PathUtil
 import com.zone.lib.utils.data.file2io2data.FileUtils
 import com.zone.lib.utils.data.file2io2data.SDCardUtils
-import com.zone.lib.base.controller.activity.ActivityController
-import com.zone.lib.base.controller.activity.FeatureActivity
+import com.zone.lib.base.controller.activity.base.ActivityController
+import com.zone.lib.base.controller.activity.base.FeatureActivity
+import com.zone.lib.base.controller.fragment.base.FeatureFragment
+import com.zone.lib.base.controller.fragment.base.FragmentController
 import java.io.File
 import java.util.*
 
-abstract class PictureActivityController(activity: FeatureActivity) : ActivityController<FeatureActivity>(activity) ,
+abstract class PictureFragmentController(activity: FeatureFragment) :
+        FragmentController<FeatureActivity>(activity) ,
         PictureContract.Controller{
     companion object {
         private var path: String? = null

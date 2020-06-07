@@ -24,18 +24,18 @@
             android:text="Property Animation" />
 
         <TextView
-            android:id="@+id/viewHelperTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/TvOnClick"
-            android:text="viewHelperTest Animation" />
-
-        <TextView
             style="@style/TvOnClick"
             android:id="@+id/bt_customAni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="自定义动画的研究" />
+
+        <TextView
+            style="@style/TvOnClick"
+            android:id="@+id/bt_cgr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ChoreographerStudy(模仿ValueAnimator的学习)" />
 
         <TextView
             style="@style/TvHint"
