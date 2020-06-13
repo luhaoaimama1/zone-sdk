@@ -13,8 +13,13 @@ import com.example.mylib_test.activity.pop_dialog.pop.Pop_Photo
 import android.app.AlertDialog.Builder
 import android.content.Intent
 import android.graphics.Color
+import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import com.example.mylib_test.LogApp
+import com.zone.lib.ZLogger
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 
 class Dialog_Pop_Adapter_MainActivity : BaseFeatureActivity() {
@@ -78,5 +83,29 @@ class Dialog_Pop_Adapter_MainActivity : BaseFeatureActivity() {
 
     fun toToast(str: String) {
         ToastUtils.showShort(this, str)
+    }
+
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        LogApp.d("R.id.pop  onPostCreate:${findViewById<View>(R.id.pop).height}")
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onPostCreate(savedInstanceState, persistentState)
+        LogApp.d("R.id.pop  onPostCreate2:${findViewById<View>(R.id.pop).height}")
+    }
+    override fun onPostResume() {
+        super.onPostResume()
+        LogApp.d("R.id.pop  onPostResume:${findViewById<View>(R.id.pop).height}")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        LogApp.d("R.id.pop  onStart:${findViewById<View>(R.id.pop).height}")
+    }
+    override fun onResume() {
+        super.onResume()
+        LogApp.d("R.id.pop  onResume:${findViewById<View>(R.id.pop).height}")
     }
 }
