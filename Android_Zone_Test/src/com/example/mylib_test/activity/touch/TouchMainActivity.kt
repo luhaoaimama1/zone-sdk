@@ -33,6 +33,7 @@ class TouchMainActivity : BaseFeatureActivity() {
             R.id.NestedScrolling -> startActivity(Intent(this, NestedScrollingActivity_hongParent::class.java))
             R.id.NestedScrollingChild -> startActivity(Intent(this, NestedScrollingActivity_Child::class.java))
             R.id.eventPass -> startActivity(Intent(this, EventPassLogActivity::class.java))
+            R.id.intercept -> startActivity(Intent(this, OnInterceptActivity::class.java))
             else -> {
             }
         }

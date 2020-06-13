@@ -105,4 +105,11 @@
         android:layout_height="wrap_content"
         android:text="并列冲突解决不了 把并列冲突布局改成 嵌套冲突 在解决(点进去可看失败成果)" />
 
+    <TextView
+        style="@style/TvOnClick"
+        android:id="@+id/intercept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="接受时间后拦截" />
+
 </com.zone.view.FlowLayout>

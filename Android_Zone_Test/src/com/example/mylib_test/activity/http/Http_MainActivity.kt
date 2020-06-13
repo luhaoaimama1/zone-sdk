@@ -67,15 +67,18 @@ class Http_MainActivity : BaseFeatureActivity(), OnClickListener {
 
     open class ThreadCustom : Thread() {
         var tHandler: Handler? = null //子线程的handler
+        var myLooper: Looper? = null
+
         fun quit() {
-            Looper.myLooper()!!.quit()
+            myLooper?.quit()
         }
     }
 
     val thread2 = object : ThreadCustom() {
         override fun run() {
+            myLooper = Looper.myLooper()
             Looper.prepare()
-            tHandler = object : Handler(Looper.myLooper()) {
+            tHandler = object : Handler(myLooper) {
                 override fun handleMessage(msg: Message?) {
                     super.handleMessage(msg)
                     //子线程中处理问题
@@ -112,9 +115,9 @@ class Http_MainActivity : BaseFeatureActivity(), OnClickListener {
     }
 
     override fun onDestroy() {
+        super.onDestroy()
         thread2.quit()
         handlerThread.quit()
-        super.onDestroy()
     }
 
 }

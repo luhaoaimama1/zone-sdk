@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.mylib_test.activity.touch.view.OnInterceptParentVG
+        android:id="@+id/red"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ff0000"
+        android:orientation="vertical">
+
+        <com.example.mylib_test.activity.touch.view.OnInterceptParentView
+            android:id="@+id/child"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0000ff"
+            android:padding="20dp" />
+    </com.example.mylib_test.activity.touch.view.OnInterceptParentVG>
+
+
+</FrameLayout>

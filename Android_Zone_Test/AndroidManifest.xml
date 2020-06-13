@@ -97,6 +97,7 @@
 
         <activity android:name="com.example.mylib_test.activity.touch.Conflict1Activity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActivity_hongParent"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.OnInterceptActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActivity_Child"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity"></activity>

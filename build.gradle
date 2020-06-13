@@ -33,3 +33,44 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+//
+//
+//gradle.useLogger(new CustomEventLogger())
+//
+////自定义的log输出
+//class CustomEventLogger implements BuildListener, TaskExecutionListener {
+//    @Override
+//    void buildStarted(Gradle gradle) {
+//        println "buildStarted"
+//    }
+//
+//    @Override
+//    void settingsEvaluated(Settings settings) {
+//        println "settingsEvaluated"
+//    }
+//
+//    @Override
+//    void projectsLoaded(Gradle gradle) {
+//        println "projectsLoaded"
+//    }
+//
+//    @Override
+//    void projectsEvaluated(Gradle gradle) {
+//        println "projectsEvaluated"
+//    }
+//
+//    public void beforeExecute(Task task) {
+//        println "beforeExecute:[$task.name]"
+//    }
+//
+//    public void afterExecute(Task task, TaskState state) {
+//        println "afterExecute:[$task.name]"
+//    }
+//
+//    public void buildFinished(BuildResult result) {
+//        println 'buildFinished'
+//        if (result.failure != null) {
+//            result.failure.printStackTrace()
+//        }
+//    }
+//}
