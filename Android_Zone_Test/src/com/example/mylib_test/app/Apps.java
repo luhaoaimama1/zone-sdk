@@ -92,7 +92,7 @@ public class Apps extends Application {
 //		}
 
         Fresco.initialize(this);
-        refWatcher = LeakCanary.install(this);
+//        refWatcher = LeakCanary.install(this);
 
         ExecutorUtils.execute(new Runnable() {
             @Override

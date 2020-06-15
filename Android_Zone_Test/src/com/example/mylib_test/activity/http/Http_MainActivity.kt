@@ -76,8 +76,8 @@ class Http_MainActivity : BaseFeatureActivity(), OnClickListener {
 
     val thread2 = object : ThreadCustom() {
         override fun run() {
-            myLooper = Looper.myLooper()
             Looper.prepare()
+            myLooper = Looper.myLooper()
             tHandler = object : Handler(myLooper) {
                 override fun handleMessage(msg: Message?) {
                     super.handleMessage(msg)

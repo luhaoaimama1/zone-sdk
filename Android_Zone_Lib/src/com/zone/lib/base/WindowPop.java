@@ -50,7 +50,10 @@ public abstract class WindowPop {
         mWindowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
         //设置window type  可以设置 屏幕外的层级!
 //        wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-        wmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+//        wmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+//        https://blog.csdn.net/LoveDou0816/article/details/79172637 正常用第二个就行
+        wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY ;
+
         //设置图片格式，效果为背景透明
         wmParams.format = PixelFormat.RGBA_8888;
         //设置浮动窗口不可聚焦（实现操作除浮动窗口外的其他可见窗口的操作）
