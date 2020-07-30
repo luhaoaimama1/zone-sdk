@@ -107,6 +107,8 @@ dependencies {
 //    api 'com.tencent.tbs.tbssdk:sdk:43697'
 //    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
 //    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
+
+    implementation 'com.android.support:design:28.0.0'
 }
 
 

@@ -82,6 +82,7 @@
         <activity android:name="com.example.mylib_test.activity.photo_shot.ShowPicActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.utils.GetPhoneTest"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.CustomView_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.BottomSheetActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ChengChengActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ScrollerViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.RippleViewActivity"></activity>
@@ -160,6 +161,7 @@
         <activity android:name=".activity.study.ui.TipsActivity"></activity>
         <activity android:name=".activity.utils.LayoutClipAcitivity"></activity>
         <activity android:name=".activity.statu.StatuMainActivity"
+            android:theme="@style/StatusMain"
             ></activity>
 <!--        android:theme="@style/AppBaseThemeFullscreen"-->
         <activity android:name=".activity.controller.ControllerMainActivity"></activity>

@@ -26,16 +26,15 @@ class StatuMainActivity : BaseFeatureActivity() {
 
     override fun setContentView() {
         setContentView(R.layout.a_statu_test)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            // 延伸显示区域到刘海
-            val lp = window.getAttributes();
-            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-            window.setAttributes(lp);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+//            // 延伸显示区域到刘海
+//            val lp = window.getAttributes();
+//            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+//            window.setAttributes(lp);
+//        }
 
-        status_view.layoutParams.height = getStatusBarHeight(this)
-
-        setFullScreen(false)
+//        status_view.layoutParams.height = getStatusBarHeight(this)
+//        setFullScreen(false)
     }
 
     /**
@@ -51,7 +50,7 @@ class StatuMainActivity : BaseFeatureActivity() {
     }
 
     override fun initData() {
-
+        
     }
 
     override fun setListener() {
@@ -78,25 +77,30 @@ class StatuMainActivity : BaseFeatureActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
     //https://www.dengw.xyz/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/
     @TargetApi(Build.VERSION_CODES.M)
     private fun setFullScreen(isFullScreen: Boolean) {
-        if (!isFullScreen) {//设置为非全屏
-            StatusBarUtil.setColor(this, Color.TRANSPARENT, 0)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val flag = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                getWindow().getDecorView().setSystemUiVisibility(flag)
-            }
-//            StatusBarUtil.setLightMode(this | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
-        } else {//设置为全屏
-            //SYSTEM_UI_FLAG_LIGHT_STATUS_BAR这个 是为了保持黑色模式 退出状态栏
-            //SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN：Activity全屏显示，但状态栏不会被隐藏覆盖，状态栏依然可见，Activity顶端布局部分会被状态遮住。
-            //隐藏状态栏，同时Activity会伸展全屏显示。
-            val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.INVISIBLE
-            } else View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.INVISIBLE
-            getWindow().getDecorView().setSystemUiVisibility(flag)
-        }
+//        if (!isFullScreen) {//设置为非全屏
+//            StatusBarUtil.setColor(this, Color.TRANSPARENT, 0)
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                val flag = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                getWindow().getDecorView().setSystemUiVisibility(flag)
+//            }
+////            StatusBarUtil.setLightMode(this | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+//        } else {//设置为全屏
+//            //SYSTEM_UI_FLAG_LIGHT_STATUS_BAR这个 是为了保持黑色模式 退出状态栏
+//            //SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN：Activity全屏显示，但状态栏不会被隐藏覆盖，状态栏依然可见，Activity顶端布局部分会被状态遮住。
+//            //隐藏状态栏，同时Activity会伸展全屏显示。
+//            val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.INVISIBLE
+//            } else View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.INVISIBLE
+//            getWindow().getDecorView().setSystemUiVisibility(flag)
+//        }
     }
 
     fun btBg() {

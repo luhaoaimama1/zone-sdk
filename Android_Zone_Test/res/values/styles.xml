@@ -22,11 +22,16 @@
             backward-compatibility can go here.
         -->
     </style>
+
     <style name="AppBaseThemeFullscreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
-<!--        <item name="windowActionBar">false</item>-->
-<!--        <item name="windowNoTitle">true</item>-->
+        <!--        <item name="windowActionBar">false</item>-->
+        <!--        <item name="windowNoTitle">true</item>-->
+    </style>
+
+    <style name="StatusMain" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/abcd</item>
     </style>
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">

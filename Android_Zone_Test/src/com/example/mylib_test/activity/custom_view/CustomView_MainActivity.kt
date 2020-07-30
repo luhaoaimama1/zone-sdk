@@ -42,6 +42,7 @@ class CustomView_MainActivity : BaseFeatureActivity(), OnClickListener {
             R.id.bt_wheel -> startActivity(Intent(this, ChengChengActivity::class.java).putExtra("type", "bt_wheel"))
             R.id.bt_ScrollerView -> startActivity(Intent(this, ScrollerViewActivity::class.java))
             R.id.bt_FramePaddding -> startActivity(Intent(this, ChengChengActivity::class.java).putExtra("type", "FrameLayoutPadding"))
+            R.id.bt_BottomSheet -> startActivity(Intent(this, BottomSheetActivity::class.java))
             else -> {
             }
         }//			startActivity(new Intent(this,ViewpagerIndicatorActivity.class));
