@@ -158,6 +158,7 @@ public class ViewDragFrame extends FrameLayout {
         // 而在判断的过程中会去判断另外两个回调的方法：getViewHorizontalDragRange和getViewVerticalDragRange，只有这两个方法返回大于0的值才能正常的捕获。
         @Override
         public int getViewHorizontalDragRange(View child) {
+            log("getViewHorizontalDragRange");
             //TODO  他拦截的距离  是内部的 mTouchSlop
             if (isEnableMove)
                 return 1;

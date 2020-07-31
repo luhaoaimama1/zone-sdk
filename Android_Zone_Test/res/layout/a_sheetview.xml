@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.mylib_test.activity.touch.view.SheetFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/viewDragStudyFrame"
+    app:sheetMoveId="@id/tv_mMenuView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_mMenuView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="#ce4d4d"
+        android:clickable="true"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="mMenuView" />
+
+
+</com.example.mylib_test.activity.touch.view.SheetFrameLayout>

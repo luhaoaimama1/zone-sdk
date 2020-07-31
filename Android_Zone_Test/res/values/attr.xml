@@ -29,4 +29,9 @@
         <attr name="progress" format="integer" />
         <attr name="progressInner" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="SheetFrameLayout">
+        <attr name="sheetMoveId" format="reference"/>
+    </declare-styleable>
+
 </resources>

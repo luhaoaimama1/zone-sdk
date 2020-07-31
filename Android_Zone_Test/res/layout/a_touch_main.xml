@@ -63,6 +63,14 @@
         android:text="ViewDrag边缘侧滑" />
 
     <TextView
+        android:id="@+id/viewSheet"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/font_focus"
+        android:text="SheetView学习" />
+
+    <TextView
         android:id="@+id/outConflict1"
         style="@style/TvOnClick"
         android:layout_width="wrap_content"
@@ -111,5 +119,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="接受时间后拦截" />
+
 
 </com.zone.view.FlowLayout>

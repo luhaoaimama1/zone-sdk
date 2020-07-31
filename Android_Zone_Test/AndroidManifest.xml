@@ -102,6 +102,7 @@
         <activity android:name="com.example.mylib_test.activity.touch.NestedScrollingActivity_Child"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.SheetViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity2"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.GestureDetectorActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.MyScaleActivity"></activity>
