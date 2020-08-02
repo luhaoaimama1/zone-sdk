@@ -41,6 +41,7 @@ class StudyMainActivity : BaseFeatureActivity() {
             R.id.tips -> startActivity(Intent(this, TipsActivity::class.java))
             R.id.dynamicLogo -> startActivity(Intent(this, DynamicLogoActivity::class.java))
             R.id.bt_data_crash -> startActivity(Intent(this, CrashDataActivity::class.java))
+            R.id.bt_song_scroll -> startActivity(Intent(this, SongScrollActivity::class.java))
             R.id.bt_crash -> crashPrint()
             else -> {
             }

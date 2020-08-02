@@ -4,7 +4,6 @@ import android.annotation.TargetApi
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
@@ -12,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.example.mylib_test.R
-import com.jaeger.library.StatusBarUtil
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import kotlinx.android.synthetic.main.a_statu_test.*
 
@@ -25,6 +23,13 @@ import kotlinx.android.synthetic.main.a_statu_test.*
 class StatuMainActivity : BaseFeatureActivity() {
 
     override fun setContentView() {
+
+        val flag1 = View.SYSTEM_UI_FLAG_FULLSCREEN
+//or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        val flag2 = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//        window.decorView.systemUiVisibility=flag1 or flag2
+//        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         setContentView(R.layout.a_statu_test)
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 //            // 延伸显示区域到刘海
@@ -34,6 +39,7 @@ class StatuMainActivity : BaseFeatureActivity() {
 //        }
 
 //        status_view.layoutParams.height = getStatusBarHeight(this)
+
 //        setFullScreen(false)
     }
 
@@ -79,12 +85,24 @@ class StatuMainActivity : BaseFeatureActivity() {
 
     override fun onResume() {
         super.onResume()
-
     }
-
     //https://www.dengw.xyz/2019/01/09/%E5%8E%BB%E6%8E%89%E6%A0%87%E9%A2%98%E6%A0%8F%E6%88%96%E7%8A%B6%E6%80%81%E6%A0%8F%E4%B8%8E%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%8A%B6%E6%80%81%E6%A0%8F/
     @TargetApi(Build.VERSION_CODES.M)
     private fun setFullScreen(isFullScreen: Boolean) {
+//
+//
+//        if (!isFullScreen) {//设置为非全屏
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+//                            or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
+//            );
+//            window.addFlags()
+//
+//        } else {//设置为全屏
+//        }
+    }
+
+//    @TargetApi(Build.VERSION_CODES.M)
+//    private fun setFullScreen(isFullScreen: Boolean) {
 //        if (!isFullScreen) {//设置为非全屏
 //            StatusBarUtil.setColor(this, Color.TRANSPARENT, 0)
 //            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -101,7 +119,7 @@ class StatuMainActivity : BaseFeatureActivity() {
 //            } else View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.INVISIBLE
 //            getWindow().getDecorView().setSystemUiVisibility(flag)
 //        }
-    }
+//    }
 
     fun btBg() {
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 800)

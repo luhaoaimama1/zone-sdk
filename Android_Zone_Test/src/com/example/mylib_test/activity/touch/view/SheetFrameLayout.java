@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +12,12 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.customview.widget.ViewDragHelper;
 
+import com.example.mylib_test.LogApp;
 import com.example.mylib_test.R;
+import com.zone.lib.utils.view.graphics.MathUtils;
 
 /**
  * 布局方面：
@@ -23,7 +27,7 @@ import com.example.mylib_test.R;
  * <p>
  * 1.确定某个view可以拖拽
  * 2.上下左右滑动是否拦截
- * 3.上下左右滑动的范围控制
+ * 3.上下左右滑动的范围控制 <===
  * 4.手指释放
  * <p>
  * 5.滚动兼容 computeScroll
@@ -46,68 +50,37 @@ public class SheetFrameLayout extends FrameLayout {
     }
 
     private View mMoveView = null;
+    private int mPeekLength = 300;
 
-    //    ViewDragHelper.EDGE_RIGHT:
-    private ShowMode mode = ShowMode.BOTTOM;
+    int resourceId = -1;
 
-    private int mPeekLength = 0;
+    public SheetFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
-    enum ShowMode {
-        TOP {
-            @Override
-            int getViewVerticalDragRange() {
-                return 1;
+        if (attrs != null) {
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SheetFrameLayout, 0, 0);
+            try {
+                resourceId = typedArray.getResourceId(R.styleable.SheetFrameLayout_sheetMoveId, -1);
+
+            } finally {
+                typedArray.recycle();
             }
+        }
 
-            @Override
-            public int clampViewPositionVertical(@NonNull View child, int top) {
-                return super.clampViewPositionVertical(child, top);
-            }
+        mViewDragHelper = ViewDragHelper.create(this, mCallback);
+        mViewDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_RIGHT);
+    }
 
-            @Override
-            public void layout(View mMoveView, boolean changed, Rect layoutRect, int mPeekLength) {
-                layoutRect.offset(0, -mMoveView.getMeasuredHeight() + mPeekLength);
-                layoutFinal(mMoveView, layoutRect);
-            }
 
-        },
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        if (resourceId != -1) {
+            mMoveView = findViewById(resourceId);
+        }
+    }
 
-        //zone todo: 2020/7/31 其他最后弄
-        BOTTOM {
-            @Override
-            int getViewVerticalDragRange() {
-                return 1;
-            }
-
-            @Override
-            public int clampViewPositionVertical(@NonNull View child, int top) {
-                return super.clampViewPositionVertical(child, top);
-            }
-
-        },
-        LEFT {
-            @Override
-            int getViewHorizontalDragRange() {
-                return 1;
-            }
-
-            @Override
-            public int clampViewPositionHorizontal(@NonNull View child, int left) {
-                return super.clampViewPositionHorizontal(child, left);
-            }
-        },
-        RIGHT {
-            @Override
-            int getViewHorizontalDragRange() {
-                return 1;
-            }
-
-            @Override
-            public int clampViewPositionHorizontal(@NonNull View child, int left) {
-                return super.clampViewPositionHorizontal(child, left);
-            }
-
-        };
+    static class ShowMode {
 
         int getViewHorizontalDragRange() {
             return -1;
@@ -126,35 +99,111 @@ public class SheetFrameLayout extends FrameLayout {
             return 0;
         }
 
-        public void layout(View mMoveView, boolean changed, Rect layoutRect, int mPeekLength) {
+        public void layout(View mMoveView,  Rect layoutRect) {
             //zone todo: 2020/7/31
         }
 
-        private static void layoutFinal(View mMoveView, Rect layoutRect) {
-            mMoveView.layout(layoutRect.left, layoutRect.top, layoutRect.right, layoutRect.bottom);
+        boolean isClosed() {
+            return true;
         }
 
-    }
+        void open() {
 
-
-    public SheetFrameLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-
-        if (attrs != null) {
-            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SheetFrameLayout, 0, 0);
-            try {
-                int resourceId = typedArray.getResourceId(R.styleable.SheetFrameLayout_sheetMoveId, -1);
-                if (resourceId != -1) {
-                    mMoveView = findViewById(resourceId);
-                }
-            } finally {
-                typedArray.recycle();
-            }
         }
 
-        mViewDragHelper = ViewDragHelper.create(this, mCallback);
-        mViewDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_RIGHT);
+        void close() {
+
+        }
+
+        int getInitOffset() {
+            return 0;
+        }
     }
+
+    ShowMode TOP = new ShowMode() {
+        @Override
+        int getInitOffset() {
+            return -mMoveView.getMeasuredHeight() + mPeekLength;
+        }
+
+        @Override
+        int getViewVerticalDragRange() {
+            return 1;
+        }
+
+        @Override
+        public void layout(View mMoveView, Rect layoutRect) {
+            ViewCompat.offsetTopAndBottom(mMoveView, getInitOffset());
+        }
+
+        @Override
+        public int clampViewPositionVertical(@NonNull View child, int top) {
+            int linear = MathUtils.clamp(top, getInitOffset(), 0);
+            LogApp.INSTANCE.d("top：" + top + "\t result: " + linear);
+            return linear;
+        }
+
+        @Override
+        boolean isClosed() {
+            return Math.abs(mMoveView.getTop()) >= Math.abs(getInitOffset()) / 2;
+        }
+
+        @Override
+        void open() {
+            super.open();
+            LogApp.INSTANCE.d("smoothSlideViewTo open!");
+            mViewDragHelper.smoothSlideViewTo(mMoveView, 0, 0);
+            ViewCompat.postInvalidateOnAnimation(SheetFrameLayout.this);//兼容刷新的
+        }
+
+        @Override
+        void close() {
+            super.close();
+            LogApp.INSTANCE.d("smoothSlideViewTo close!");
+            mViewDragHelper.smoothSlideViewTo(mMoveView, 0, getInitOffset());
+            ViewCompat.postInvalidateOnAnimation(SheetFrameLayout.this);//兼容刷新的
+        }
+    };
+    //zone todo: 2020/7/31 其他最后弄
+//    ShowMode BOTTOM = new ShowMode() {
+//        @Override
+//        int getViewVerticalDragRange() {
+//            return 1;
+//        }
+//
+//        @Override
+//        public int clampViewPositionVertical(@NonNull View child, int top) {
+//            return super.clampViewPositionVertical(child, top);
+//        }
+//
+//    };
+//    ShowMode LEFT = new ShowMode() {
+//        @Override
+//        int getViewHorizontalDragRange() {
+//            return 1;
+//        }
+//
+//        @Override
+//        public int clampViewPositionHorizontal(@NonNull View child, int left) {
+//            return super.clampViewPositionHorizontal(child, left);
+//        }
+//    };
+//    ShowMode RIGHT = new ShowMode() {
+//        @Override
+//        int getViewHorizontalDragRange() {
+//            return 1;
+//        }
+//
+//        @Override
+//        public int clampViewPositionHorizontal(@NonNull View child, int left) {
+//            return super.clampViewPositionHorizontal(child, left);
+//        }
+//
+//    };
+
+    // ViewDragHelper.EDGE_RIGHT:
+    private ShowMode mode = TOP;
+
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -173,7 +222,7 @@ public class SheetFrameLayout extends FrameLayout {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
         layoutRect.set(0, 0, mMoveView.getMeasuredWidth(), mMoveView.getMeasuredHeight());
-        mode.layout(mMoveView, changed, layoutRect, mPeekLength);
+        mode.layout(mMoveView, layoutRect);
     }
 
 
@@ -200,7 +249,7 @@ public class SheetFrameLayout extends FrameLayout {
 
         @Override
         public int clampViewPositionVertical(@NonNull View child, int top, int dy) {
-            return mode.clampViewPositionVertical(child, left);
+            return mode.clampViewPositionVertical(child, top);
         }
 
         @Override
@@ -221,6 +270,16 @@ public class SheetFrameLayout extends FrameLayout {
         @Override
         public void onViewReleased(@NonNull View releasedChild, float xvel, float yvel) {
             super.onViewReleased(releasedChild, xvel, yvel);
+            //手指释放后  检查mMainView的getLeft
+            if (releasedChild == mMoveView) {
+                if (mode.isClosed()) {
+                    //关闭
+                    mode.close();
+                } else {
+                    //开启
+                    mode.open();
+                }
+            }
         }
 
         @Override
@@ -242,8 +301,16 @@ public class SheetFrameLayout extends FrameLayout {
         public int getOrderedChildIndex(int index) {
             return super.getOrderedChildIndex(index);
         }
-
-
     };
+
+    @Override
+    public void computeScroll() {
+        //用到  mViewDragHelper.smoothSlideViewTo 即里面封装的scroller 即需要这样集成
+        if (mViewDragHelper.continueSettling(true)) {
+            ViewCompat.postInvalidateOnAnimation(this);//兼容刷新的
+        }else{
+            LogApp.INSTANCE.d("computeScroll stop!");
+        }
+    }
 
 }

@@ -2,18 +2,14 @@
 <com.example.mylib_test.activity.touch.view.SheetFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/viewDragStudyFrame"
-    app:sheetMoveId="@id/tv_mMenuView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:sheetMoveId="@id/rv">
 
-    <TextView
-        android:id="@+id/tv_mMenuView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:background="#ce4d4d"
-        android:clickable="true"
-        android:onClick="onClick"
-        android:text="开始？" />
-
+        android:layout_height="match_parent"
+        android:text="@string/hello_world" />
 
 </com.example.mylib_test.activity.touch.view.SheetFrameLayout>

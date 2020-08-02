@@ -33,6 +33,15 @@
     <style name="StatusMain" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/abcd</item>
     </style>
+
+    <style name="SstatuMain" parent="Theme.AppCompat.Light">
+<!--        这个表示会让状态栏小时-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/aaaaaaaaaaaab</item>
+        <!--        <item name="windowActionBar">false</item>-->
+        <!--        <item name="windowNoTitle">true</item>-->
+    </style>
+
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->

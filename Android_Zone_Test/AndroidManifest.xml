@@ -103,6 +103,7 @@
         <activity android:name="com.example.mylib_test.activity.touch.VeclocityTrackerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.SheetViewActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.touch.SheetViewRecycelrViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.ViewDragStudyActivity2"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.GestureDetectorActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.touch.MyScaleActivity"></activity>
@@ -135,6 +136,7 @@
         <activity android:name="com.example.mylib_test.activity.animal.ColorMarixTry"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.WaveActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.SVGActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.InterViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.CustomAniActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.PixelsAcitivity"></activity>
         <activity android:name="com.example.mylib_test.activity.file.FileTestActivity"></activity>
@@ -156,13 +158,14 @@
         <activity android:name=".activity.study.StudyMainActivity"></activity>
         <activity android:name=".activity.study.ui.DynamicLogoActivity"></activity>
         <activity android:name=".activity.study.ui.CrashDataActivity"></activity>
+        <activity android:name=".activity.study.ui.SongScrollActivity"></activity>
         <activity android:name=".activity.study.ui.X5Activity"></activity>
         <activity android:name=".activity.study.ui.PDFBoxActivity"></activity>
         <activity android:name=".activity.study.ui.GoogleOfficeActivity"></activity>
         <activity android:name=".activity.study.ui.TipsActivity"></activity>
         <activity android:name=".activity.utils.LayoutClipAcitivity"></activity>
         <activity android:name=".activity.statu.StatuMainActivity"
-            android:theme="@style/StatusMain"
+            android:theme="@style/SstatuMain"
             ></activity>
 <!--        android:theme="@style/AppBaseThemeFullscreen"-->
         <activity android:name=".activity.controller.ControllerMainActivity"></activity>

@@ -69,6 +69,7 @@ class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
             R.id.bt_PathMeasure -> startActivity(Intent(this, PathMeasureActivity::class.java))
             R.id.bt_wave -> startActivity(Intent(this, WaveActivity::class.java))
             R.id.bt_svg -> startActivity(Intent(this, SVGActivity::class.java))
+            R.id.bt_interview -> startActivity(Intent(this, InterViewActivity::class.java))
             R.id.bt_spannable -> startActivity(Intent(this, TextViewLinkActivity::class.java))
             else -> {
             }

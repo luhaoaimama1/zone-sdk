@@ -1,57 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/orange"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <View
-            android:id="@+id/status_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <com.zone.view.FlowLayout
-            android:id="@+id/flowLayoutZone1"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/abcd">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/bt4FullScreen"
-                style="@style/TvOnClick"
-                android:layout_width="wrap_content"
+            <View
+                android:id="@+id/status_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.zone.view.FlowLayout
+                android:id="@+id/flowLayoutZone1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/abcd">
 
-                android:text="4.0以后全屏" />
+                <TextView
+                    android:id="@+id/bt4FullScreen"
+                    style="@style/TvOnClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-            <TextView
-                android:id="@+id/bt4NotFullScreen"
-                style="@style/TvOnClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                    android:text="4.0以后全屏" />
 
-                android:text="4.0以后非全屏" />
+                <TextView
+                    android:id="@+id/bt4NotFullScreen"
+                    style="@style/TvOnClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="4.0以后非全屏" />
 
 
-            <TextView
-                android:id="@+id/btBg"
-                style="@style/TvOnClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="更改window宽高" />
+                <TextView
+                    android:id="@+id/btBg"
+                    style="@style/TvOnClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="更改window宽高" />
 
-            <TextView
-                android:id="@+id/demo"
-                style="@style/TvOnClick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="demo" />
+                <TextView
+                    android:id="@+id/demo"
+                    style="@style/TvOnClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="demo" />
 
-        </com.zone.view.FlowLayout>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</ScrollView>
+            </com.zone.view.FlowLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 
+    <TextView
+        android:background="#ff00ff"
+        android:layout_width="100dp"
+        android:gravity="center"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:text="底部" />
+</RelativeLayout>

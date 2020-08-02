@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_world"
+        tools:background="#00ff00"
+        tools:itemCount="4" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="1"
+        android:singleLine="true"
+        android:text="啦啦啦啦啦了解到福利卡积分了卡就丢失了风景啊两地分居拉萨的房间啊 " />
+
+
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
+        android:background="@color/white"
+        android:hint="这里是hint" />
+</RelativeLayout>

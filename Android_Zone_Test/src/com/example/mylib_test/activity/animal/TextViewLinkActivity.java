@@ -9,6 +9,7 @@ import android.content.res.XmlResourceParser;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -34,7 +35,9 @@ import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.LeadingMarginSpan;
+import android.text.style.MetricAffectingSpan;
 import android.text.style.RelativeSizeSpan;
+import android.text.style.ReplacementSpan;
 import android.text.style.ScaleXSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
@@ -62,10 +65,14 @@ import com.zone.okhttp.utils.StringUtils;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import view.ExpandTextView;
 
 //https://blog.csdn.net/wangyingtong/article/details/51693668
@@ -86,10 +93,39 @@ public class TextViewLinkActivity extends Activity {
         deleteEdit();
 
         //好处是都多语言的话 也能点击
-        TextView tv_custom_clickable=findViewById(R.id.tv_custom_clickable);
+        TextView tv_custom_clickable = findViewById(R.id.tv_custom_clickable);
         tv_custom_clickable.setVisibility(View.VISIBLE);
         tv_custom_clickable.setMovementMethod(LinkMovementMethod.getInstance());
         H5ClickableSpan.replaceClickSpan(tv_custom_clickable);
+
+
+        SpannableString string = new SpannableString("Text with\nBullet pointjkdakjfalkjdlkajlfd;ldskjasflkjasdlk;fjals;kdjfasdk;fjsal;kdjfla;djfs;");
+        string.setSpan(new BulletSpan(), 10, 22, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ((TextView) findViewById(R.id.tv_BulletSpan)).setText(string);
+
+
+        String song1 = "我还是从前那个少年\n";
+        String song2 = "没有一丝丝改变（我就是很长啊啊啊的骄傲哇啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦！）\n";
+        String song3 = "我还是从前那个少年3\n";
+
+        List<String> songList = new ArrayList<String>();
+        songList.add(song1);
+        songList.add(song2);
+        songList.add(song3);
+        StringBuilder last = new StringBuilder();
+        for (String s : songList) {
+            last.append(s);
+        }
+        SpannableString string2 = new SpannableString(last.toString());
+        int startIndex = 0;
+        for (String s : songList) {
+            string2.setSpan(new BgFgCustomSpan(), startIndex, startIndex + s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (s.length() > 0) {
+                string2.setSpan(new TopMagin(), startIndex, startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }
+            startIndex += s.length();
+        }
+        ((TextView) findViewById(R.id.tv_songSpan)).setText(string2);
     }
 
     private void deleteEdit() {
@@ -111,13 +147,14 @@ public class TextViewLinkActivity extends Activity {
 
             public CharSequence s;
 
-            boolean skip=false;
+            boolean skip = false;
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
                 Log.d("TextChanged", "beforeTextChanged 被执行----> s=" + s + "----start=" + start
                         + "----after=" + after + "----count" + count);
-                this.s=s;
+                this.s = s;
             }
 
             @Override
@@ -125,12 +162,12 @@ public class TextViewLinkActivity extends Activity {
                 //在这里  把自己键盘添加或者删除的操作  更换掉！
                 Log.d("TextChanged", "onTextChanged 被执行---->s=" + s + "----start=" + start
                         + "----before=" + before + "----count" + count);
-                if(!skip){//删除前提 这是一整段
-                    skip=true;//防止循环  因为setText又会走 beforeTextChanged 又会走onTextChanged
+                if (!skip) {//删除前提 这是一整段
+                    skip = true;//防止循环  因为setText又会走 beforeTextChanged 又会走onTextChanged
                     textView.setText(this.s);
-                    Selection.setSelection(textView.getText(),textView.getText().length()-3,textView.getText().length()-1);
-                }else{
-                    skip=false;
+                    Selection.setSelection(textView.getText(), textView.getText().length() - 3, textView.getText().length() - 1);
+                } else {
+                    skip = false;
                 }
             }
 
@@ -429,28 +466,88 @@ public class TextViewLinkActivity extends Activity {
             paint2.setColor(Color.RED);
 
             canvas.save();
-            canvas.translate(x, top);
-            canvas.drawLine(0, 0, 100, 0, paint2);
+            canvas.drawRect(x, top, x + b.getBounds().width(), bottom, paint2);
             canvas.restore();
 
 
             canvas.save();
             paint2.setColor(Color.GREEN);
             canvas.translate(x, y);
-            canvas.drawLine(0, 0, 100, 0, paint2);
+            canvas.drawLine(0, 0, b.getBounds().width(), 0, paint2);
             canvas.restore();
 
             canvas.save();
             paint2.setColor(Color.BLUE);
             canvas.translate(x, bottom);
-            canvas.drawLine(0, 0, 100, 0, paint2);
+            canvas.drawLine(0, 0, b.getBounds().width(), 0, paint2);
             canvas.restore();
         }
 
         @Override
         public int getSize(Paint paint, CharSequence text, int start, int end,
                            Paint.FontMetricsInt fm) {
-            return super.getSize(paint, text, start, end, fm);
+            Drawable d = getDrawable();
+            Rect rect = d.getBounds();
+// todo zone ：这里是影响行高的
+            if (fm != null) {
+                fm.ascent = -rect.bottom;
+                fm.descent = 0;
+
+                fm.top = fm.ascent;
+                fm.bottom = 0;
+            }
+
+            return rect.right;
         }
     }
+
+    class TopMagin extends ReplacementSpan {
+        public TopMagin() {
+        }
+
+        @Override
+        public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, @Nullable Paint.FontMetricsInt fm) {
+            if (fm != null) {
+                int offset = -100;
+                fm.ascent += offset;
+                fm.descent += offset;
+
+                fm.top += offset;
+                fm.bottom += offset;
+//                fm.ascent = -rect.bottom;
+//                fm.descent = 0;
+//
+//                fm.top = fm.ascent;
+//                fm.bottom = 0;
+            }
+
+            return (int) paint.measureText(text, start, end);
+        }
+
+        @Override
+        public void draw(@NonNull Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, @NonNull Paint paint) {
+            try {
+                CharSequence charSequence = text.subSequence(start, end);
+                canvas.drawText(charSequence, start, end, x, y, paint);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public class SubscriptSpanCustom extends SubscriptSpan {
+        @Override
+        public void updateDrawState(@NonNull TextPaint textPaint) {
+//            super.updateDrawState(textPaint);
+            textPaint.baselineShift -= 200;
+        }
+
+        @Override
+        public void updateMeasureState(@NonNull TextPaint textPaint) {
+//            super.updateMeasureState(textPaint);
+            textPaint.baselineShift -= 200;
+        }
+    }
+
+
 }

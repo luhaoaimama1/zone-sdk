@@ -25,6 +25,7 @@ class TouchMainActivity : BaseFeatureActivity() {
             R.id.scaleGestureDetector -> startActivity(Intent(this, MyScaleActivity::class.java))
             R.id.viewDrag -> startActivity(Intent(this, ViewDragStudyActivity::class.java))
             R.id.viewSheet -> startActivity(Intent(this, SheetViewActivity::class.java))
+            R.id.viewSheetRecyclerView -> startActivity(Intent(this, SheetViewRecycelrViewActivity::class.java))
             R.id.viewDrag2 -> startActivity(Intent(this, ViewDragStudyActivity2::class.java))
             R.id.scrollerView -> startActivity(Intent(this, ScrollerActivity::class.java))
             R.id.outConflict1 -> startActivity(Intent(this, Conflict1Activity::class.java).putExtra("type", "out"))

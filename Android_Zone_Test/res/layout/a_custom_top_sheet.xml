@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_world"
-        app:behavior_hideable="true"
-        app:behavior_peekHeight="200dp"
-        app:layout_behavior="@string/bottom_sheet_behavior"
+        app:layout_behavior="com.example.mylib_test.activity.touch.view.SheetBehavior"
         tools:background="#00ff00"
         tools:itemCount="4" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

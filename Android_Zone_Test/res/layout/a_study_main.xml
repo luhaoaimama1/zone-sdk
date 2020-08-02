@@ -88,4 +88,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="HotfixTest" />
+
+    <TextView
+        android:id="@+id/bt_song_scroll"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="歌词滚播" />
 </com.zone.view.FlowLayout>

@@ -109,6 +109,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="换颜色" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#b898ff"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="系统span" />
+
+        <TextView
+            android:id="@+id/tv_BulletSpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="段落BulletSpan" />
+
+        <TextView
+            android:id="@+id/tv_songSpan"
+            android:background="#bf9800"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:visibility="gone"
             android:layout_width="match_parent"
@@ -123,5 +145,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[干啥呵]我才不啊[呵呵]" />
+
     </com.zone.view.FlowLayout>
 </ScrollView>
