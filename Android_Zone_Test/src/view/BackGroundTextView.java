@@ -1,7 +1,9 @@
 package view;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.Editable;
@@ -15,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.mylib_test.LogApp;
+import com.zone.lib.utils.view.DrawUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,12 +30,21 @@ public class BackGroundTextView extends androidx.appcompat.widget.AppCompatEditT
     }
 
     public BackGroundTextView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, android.R.attr.editTextStyle);
+//        this(context, attrs, android.R.attr.editTextStyle);
+        super(context, attrs);
+        init();
     }
 
     public BackGroundTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
         addTextChangedListener(watcher);
+        if (getText() == null || getText().equals("")) {
+            setText("");
+        }
     }
 
     Rect rect = new Rect();
@@ -109,7 +122,25 @@ public class BackGroundTextView extends androidx.appcompat.widget.AppCompatEditT
     void resetSpan() {
         Editable text = getText();
         if (text != null) {
-            text.clearSpans();
+            //zone todo 最后一行高度的问题
+            if(text.toString().contains(END_LINESTART_SYMBOL)){
+
+            }else{
+                if (text.length() == 0) {
+                    setText(END_LINESTART_SYMBOL);
+                } else {
+                    CharSequence charSequence = text.subSequence(text.length() - 1, text.length());
+                    setText(text + END_LINESTART_SYMBOL);
+                }
+                return;
+            }
+
+            //包含END_LINESTART_SYMBOL的话就一定是结尾 或者不包含
+
+            MaginSpan[] spans = text.getSpans(0, text.length(), MaginSpan.class);
+            for (MaginSpan span : spans) {
+                text.removeSpan(span);
+            }
 
             Matcher matcher = p.matcher(text);
             int start = 0;
@@ -118,15 +149,31 @@ public class BackGroundTextView extends androidx.appcompat.widget.AppCompatEditT
                 LogApp.INSTANCE.d("matcher start:" + matcher.start() + "\t start:" + start + "\t end:" + end);
                 //substring 包括start 不包括end
                 CharSequence substring = text.subSequence(matcher.start(), end);
-                if (text.length() < start + 1) {
-                    text.setSpan(new MaginSpan(start == 0 ? 50 : 100, true),
-                            start, start + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                if (text.length() > start + 1) {
+                    int offset = start == 0 ? 50 : 100;
+                    text.setSpan(new MaginSpan(offset, true),
+                            start, start + 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+                    LogApp.INSTANCE.d("span:" + text.subSequence(start, start + 1));
                 }
                 LogApp.INSTANCE.d(substring.toString().replaceAll("\n", "!空格!"));
                 start = end;
             }
         }
     }
+
+    @Override
+    public boolean onTextContextMenuItem(int id) {
+        if (id == android.R.id.copy || id == android.R.id.cut) {
+            //调用剪贴板
+            ClipboardManager clip = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            //改变剪贴板中Content
+            if (clip != null)
+                clip.setText("改变剪贴板中Content" + clip.getText());
+        }
+        return super.onTextContextMenuItem(id);
+    }
+
+    private static final String END_LINESTART_SYMBOL = "[symbol]";
 
     @Override
     protected void onDetachedFromWindow() {
@@ -138,21 +185,21 @@ public class BackGroundTextView extends androidx.appcompat.widget.AppCompatEditT
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        layout = getLayout();
-        if (singleLineHeight == 0) {
-            singleLineHeight = (int) (offset * 2 + Layout.getDesiredWidth("h", 0, 1, getPaint()));
-        }
-
-        int lineCount = layout.getLineCount();
-        for (int i = 0; i < lineCount; i++) {
-            int lineStart = layout.getLineStart(i);
-            int lineEnd = layout.getLineEnd(i);
-            CharSequence charSequence = getText().subSequence(lineStart, lineEnd);
-            if (charSequence.toString().contains("/n")) {
-
-            }
-        }
-        layout.getLineBounds(0, rect);
+//        layout = getLayout();
+//        if (singleLineHeight == 0) {
+//            singleLineHeight = (int) (offset * 2 + Layout.getDesiredWidth("h", 0, 1, getPaint()));
+//        }
+//
+//        int lineCount = layout.getLineCount();
+//        for (int i = 0; i < lineCount; i++) {
+//            int lineStart = layout.getLineStart(i);
+//            int lineEnd = layout.getLineEnd(i);
+//            CharSequence charSequence = getText().subSequence(lineStart, lineEnd);
+//            if (charSequence.toString().contains("/n")) {
+//
+//            }
+//        }
+//        layout.getLineBounds(0, rect);
 //rect
 //        layout.getLineCount()
 //layout.getLineWidth(1)
@@ -160,10 +207,31 @@ public class BackGroundTextView extends androidx.appcompat.widget.AppCompatEditT
 
     }
 
+    Paint paint2 = DrawUtils.getStrokePaint(Paint.Style.STROKE, 10);
+    int[] colorArry = new int[]{Color.WHITE, Color.GREEN, Color.YELLOW, Color.CYAN};
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        try {
+            layout = getLayout();
+            int lineCount = layout.getLineCount();
+            for (int i = 0; i < lineCount; i++) {
+                paint2.setColor(colorArry[i % colorArry.length]);
+                layout.getLineBounds(i, rect);
+                int lineStart = layout.getLineStart(i);
+                int lineEnd = layout.getLineEnd(i);
+                MaginSpan[] spans = getText().getSpans(lineStart, lineEnd, MaginSpan.class);
+                if (spans != null && spans.length > 0) {
+                    rect.bottom = rect.top + spans[0].offset;
+                }
+                canvas.drawRect(rect, paint2);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
