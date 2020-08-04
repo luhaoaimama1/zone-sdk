@@ -104,6 +104,10 @@ public class TextViewLinkActivity extends Activity {
         ((TextView) findViewById(R.id.tv_BulletSpan)).setText(string);
 
 
+        customHeightMargin();
+    }
+
+    private void customHeightMargin() {
         String song1 = "我还是从前那个少年\n";
         String song2 = "没有一丝丝改变（我就是很长啊啊啊的骄傲哇啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦！）\n";
         String song3 = "我还是从前那个少年3\n";
@@ -117,14 +121,17 @@ public class TextViewLinkActivity extends Activity {
             last.append(s);
         }
         SpannableString string2 = new SpannableString(last.toString());
-        int startIndex = 0;
-        for (String s : songList) {
-            string2.setSpan(new BgFgCustomSpan(), startIndex, startIndex + s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            if (s.length() > 0) {
-                string2.setSpan(new TopMagin(), startIndex, startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            }
-            startIndex += s.length();
-        }
+//        int startIndex = 0;
+//        for (int i = 0; i < songList.size(); i++) {
+//
+//            String s = songList.get(i);
+////            string2.setSpan(new BgFgCustomSpan(), startIndex, startIndex + s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            if (s.length() > 0) {
+//                int offset = i * -100;
+//                string2.setSpan(new TopMagin(offset), startIndex+s.length()-1, startIndex + s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            }
+//            startIndex += s.length();
+//        }
         ((TextView) findViewById(R.id.tv_songSpan)).setText(string2);
     }
 
@@ -502,13 +509,15 @@ public class TextViewLinkActivity extends Activity {
     }
 
     class TopMagin extends ReplacementSpan {
-        public TopMagin() {
+        int offset = 0;
+
+        public TopMagin(int offset) {
+            this.offset = offset;
         }
 
         @Override
         public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, @Nullable Paint.FontMetricsInt fm) {
             if (fm != null) {
-                int offset = -100;
                 fm.ascent += offset;
                 fm.descent += offset;
 
@@ -527,8 +536,7 @@ public class TextViewLinkActivity extends Activity {
         @Override
         public void draw(@NonNull Canvas canvas, CharSequence text, int start, int end, float x, int top, int y, int bottom, @NonNull Paint paint) {
             try {
-                CharSequence charSequence = text.subSequence(start, end);
-                canvas.drawText(charSequence, start, end, x, y, paint);
+                canvas.drawText(text.toString(), start, end, x, y, paint);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -125,11 +125,11 @@
             android:layout_height="wrap_content"
             android:text="段落BulletSpan" />
 
-        <TextView
+        <view.BackGroundTextView
             android:id="@+id/tv_songSpan"
             android:background="#bf9800"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="500dp" />
 
         <TextView
             android:visibility="gone"
