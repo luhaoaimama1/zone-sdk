@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view.BGTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:background="@null"
+    android:includeFontPadding="false"
+    android:text="我的天 \n我的天2 \n我的天3 "
+    android:textSize="20sp" />

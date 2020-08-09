@@ -12,9 +12,9 @@ import com.zone.lib.base.controller.activity.BaseFeatureActivity
 /**
  *[2018/11/14] by Zone
  */
-class BBBBActivity : BaseFeatureActivity() {
+class EditTextActivity : BaseFeatureActivity() {
     override fun setContentView() {
-        setContentView(R.layout.a_bbbb_main)
+        setContentView(R.layout.a_bbb_edit)
     }
 
     override fun initData() {
@@ -24,17 +24,6 @@ class BBBBActivity : BaseFeatureActivity() {
     }
 
     override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.bt_page -> {
-                val intent = Intent(this, PageActivity::class.java)
-                intent.putExtra("page", Page.HOME)
-                startActivity(intent)
-            }
-            R.id.nestScrollB -> startActivity(Intent(this, NestedScrollBActivity::class.java))
-            R.id.editClick -> startActivity(Intent(this, EditTextActivity::class.java))
-            else -> {
-            }
-        }
         super.onClick(v)
 
     }

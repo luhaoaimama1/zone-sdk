@@ -154,6 +154,7 @@
         <activity android:name=".activity.animal.PathMeasureActivity"></activity>
         <activity android:name=".activity.animal.DampingActivity"></activity>
         <activity android:name=".activity.bbbb.BBBBActivity"></activity>
+        <activity android:name=".activity.bbbb.EditTextActivity"></activity>
         <activity android:name=".activity.study.PDFActivity"></activity>
         <activity android:name=".activity.study.StudyMainActivity"></activity>
         <activity android:name=".activity.study.ui.DynamicLogoActivity"></activity>

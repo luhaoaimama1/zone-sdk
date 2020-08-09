@@ -57,12 +57,14 @@ public class Apps extends Application {
             "og555S+C3eJAAVeNCTeMS3N/M5hzBRJAoffn3qoYdAO1Q8bTguOi+2849A==\n" +
             "-----END CERTIFICATE-----";
 
+    public static Context context;
     // SDCard路径
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @SuppressWarnings("unused")
     @Override
     public void onCreate() {
         super.onCreate();
+        context=this;
         Configure.init(this);
         CrashDefaultHandler.init2();
         PrintLog.restart();
