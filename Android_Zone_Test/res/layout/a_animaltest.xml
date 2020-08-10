@@ -196,6 +196,11 @@
             android:layout_width="100dp"
             android:layout_height="100dp" />
 
+        <view.CornerImageView
+            android:src="@drawable/aaaaaaaaaaaab"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
         <TextView
             style="@style/TvOnClick"
             android:id="@+id/bt_matrixMethod"
@@ -323,6 +328,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="spannable学习" />
+
+
 
     </com.zone.view.FlowLayout>
 
