@@ -3,7 +3,7 @@ package view;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
-
+//参考：https://stackoverflow.com/questions/1734745/how-to-create-circle-with-b%C3%A9zier-curves
 public class Circle2 {
     /**
      * 圆形偏移比例
