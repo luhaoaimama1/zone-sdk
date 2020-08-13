@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+import android.widget.Scroller;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +19,17 @@ import com.zone.lib.utils.view.DrawUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+//todo zone
 
+/**
+ *
+ qq音乐
+ 切换状态的时候
+ 先计算终结状态显示的文字。然后做缩放
+
+ 得到当前滚动值，计算到top的值
+
+ */
 public class LrcView extends FrameLayout {
     List<String> list = new ArrayList<>();
 
@@ -115,6 +126,8 @@ public class LrcView extends FrameLayout {
 
         lineInnerSpace = DensityUtils.dp2px(getContext(), 4);
         lineSpace = DensityUtils.dp2px(getContext(), 30);
+
+        mScroller = new Scroller(getContext());
 
         backAnimator.setDuration(500);
         backAnimator.addUpdateListener(animation -> {
@@ -217,5 +230,32 @@ public class LrcView extends FrameLayout {
             canvas.translate(0, lineSpace);
         }
         canvas.restoreToCount(save);
+    }
+    private Scroller mScroller;
+
+    //调用此方法滚动到目标位置
+    public void smoothScrollTo(int fx, int fy) {
+        int dx = fx - mScroller.getFinalX();
+        int dy = fy - mScroller.getFinalY();
+        smoothScrollBy(dx, dy);
+    }
+    //调用此方法设置滚动的相对偏移
+    public void smoothScrollBy(int dx, int dy) {
+
+        //设置mScroller的滚动偏移量
+        mScroller.startScroll(mScroller.getFinalX(), mScroller.getFinalY(), dx, dy);
+        invalidate();//这里必须调用invalidate()才能保证computeScroll()会被调用，否则不一定会刷新界面，看不到滚动效果
+    }
+
+    @Override
+    public void computeScroll() {
+        //先判断mScroller滚动是否完成
+        if (mScroller.computeScrollOffset()) {
+            //这里调用View的scrollTo()完成实际的滚动
+            scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+            //必须调用该方法，否则不一定能看到滚动效果
+            postInvalidate();
+        }
+        super.computeScroll();
     }
 }
