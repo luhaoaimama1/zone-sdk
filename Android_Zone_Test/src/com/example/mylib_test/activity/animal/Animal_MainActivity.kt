@@ -50,6 +50,7 @@ class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
             R.id.bt_bitmaptoRound -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_bitmaptoRound"))
             R.id.bt_bitmaptoScale -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_bitmaptoScale"))
             R.id.bt_bitmaptoRorate -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_bitmaptoRorate"))
+            R.id.btLrcView -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "LrcView"))
             R.id.bt_Pixels -> startActivity(Intent(this, PixelsAcitivity::class.java))
             R.id.bt_customAni -> startActivity(Intent(this, CustomAniActivity::class.java))
             R.id.bt_cgr -> startActivity(Intent(this, ChoreographerStudyActivity::class.java))

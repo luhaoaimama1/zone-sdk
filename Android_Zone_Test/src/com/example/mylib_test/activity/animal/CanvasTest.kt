@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.ImageView.ScaleType
 import com.example.mylib_test.activity.animal.viewa.*
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
+import view.LrcView
 
 class CanvasTest : BaseFeatureActivity() {
 
@@ -78,6 +79,10 @@ class CanvasTest : BaseFeatureActivity() {
         }
         if ("bt_glow" == type) {
             setContentView(GlowView(this))
+        }
+
+        if ("LrcView" == type) {
+            setContentView(LrcView(this))
         }
 
     }
