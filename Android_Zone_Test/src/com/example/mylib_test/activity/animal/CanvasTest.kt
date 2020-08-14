@@ -83,7 +83,7 @@ class CanvasTest : BaseFeatureActivity() {
 
         if ("LrcView" == type) {
             val lrcView = LrcView(this)
-            lrcView. setPaintDp(20f,14f,4f,10f);
+            lrcView. setPaintDp(20f,14f,6f,22f);
             setContentView(lrcView)
         }
 
