@@ -5,7 +5,6 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -34,10 +33,23 @@ import java.util.List;
  */
 public class LrcView extends FrameLayout {
     public static final int DURATION = 500;
-    List<String> list = new ArrayList<>();
+    private List<String> list = new ArrayList<>();
+    private Scroller mScroller;
+    private List<Paragraph> paragraphList = new ArrayList<>();
+    int select = -1;
+    int unSelect = -2;
 
-    int select = 0;
-    int unSelect = -1;
+    float fraction;
+    float lineSpace, lineInnerSpaceSmall, lineInnerSpaceBig;
+    Paint bigPaint = DrawUtils.getBtPaint();
+    Paint smallPaint = DrawUtils.getBtPaint();
+    float bigPaintSize, smallPaintSize;
+
+    Paint lineInnerSpacePaint = DrawUtils.getStrokePaint(Paint.Style.STROKE);
+    Paint lineSpacePaint = DrawUtils.getStrokePaint(Paint.Style.STROKE);
+    ValueAnimator backAnimator = ValueAnimator.ofFloat(0f, 1f);
+
+    float scrollTopMargin = 100;//滚动距离头部的高度
 
     public LrcView(@NonNull Context context) {
         super(context);
@@ -62,10 +74,10 @@ public class LrcView extends FrameLayout {
         String str = "Hi are you wakeHi are you wakeHi are you wakeHi are you wakeHi are you wakeHou wake\n" +
                 "\n" +
                 "Hi you wake up\n" +
-                "It's gonna light ueHi are you wakeHi are you wakeHi are \n" +
-                "En it's gonna light up\n" +
+                "It's gonna 4light ueHi are you wakeHi are you wakeHi are you wakeHi are you wakeHi you wakeHi are you wakeHi you wakeHi are you wakeHi \n" +
+                "En it's gonna 3light up you wakeHi are you wakeHi you wakeHi are you wakeHi you wakeHi are you wakeHi you wakeHi are you wakeHi you wakeHi are you wakeHi\n" +
                 "\n" +
-                "Are you wake\n" +
+                "Are you wake 2you wakeHi are you wakeHi you wakeHi are you wakeHi you wakeHi are you wakeHi you wakeHi are you wakeHi you wakeHi are you wakeHi\n" +
                 "\n" +
                 "En it's gonna light up\n" +
                 "\n" +
@@ -107,8 +119,7 @@ public class LrcView extends FrameLayout {
                 "\n" +
                 "Hi with me hi with me\n" +
                 "\n" +
-                "Hi with me hi with me"
-                ;
+                "Hi with me hi with me";
         String[] split = str.split("\n");
         for (int i = 0; i < split.length; i++) {
             if (!TextUtils.isEmpty(split[i])) {
@@ -123,7 +134,7 @@ public class LrcView extends FrameLayout {
         smallPaint.setColor(Color.parseColor("#99FFFFFF"));
         smallPaint.setFakeBoldText(false);
 
-        lineInnerSpace = DensityUtils.dp2px(getContext(), 4);
+        lineInnerSpaceSmall = DensityUtils.dp2px(getContext(), 4);
         lineSpace = DensityUtils.dp2px(getContext(), 10);
         lineSpacePaint.setColor(Color.BLUE);
         lineInnerSpacePaint.setColor(Color.GREEN);
@@ -157,23 +168,11 @@ public class LrcView extends FrameLayout {
 
             }
         });
-        post(runnable);
+        post(refreshRunnable);
     }
 
-    float fraction;
-    float lineSpace, lineInnerSpace;
-    Paint bigPaint = DrawUtils.getBtPaint();
-    Paint smallPaint = DrawUtils.getBtPaint();
-    float bigPaintSize, smallPaintSize;
-
-    Paint lineInnerSpacePaint = DrawUtils.getStrokePaint(Paint.Style.STROKE);
-    Paint lineSpacePaint = DrawUtils.getStrokePaint(Paint.Style.STROKE);
-    ValueAnimator backAnimator = ValueAnimator.ofFloat(0f, 1f);
-
-    float scrollTopMargin = 100;
-
-    public void setPaintDp(float bigDp, float smallDp, float lineInnerMargin, float lineMargin) {
-        scrollTopMargin = DensityUtils.dp2px(getContext(), 34);//todo 34dp
+    public void setPaintDp(float bigDp, float smallDp, float lineInnerSpaceSmall, float lineInnerSpaceBig, float lineMargin,float scrollTopMargin) {
+        this.scrollTopMargin = DensityUtils.dp2px(getContext(), scrollTopMargin);
         bigPaintSize = DensityUtils.dp2px(getContext(), bigDp);
         bigPaint.setTextSize(bigPaintSize);
 
@@ -181,16 +180,17 @@ public class LrcView extends FrameLayout {
         smallPaint.setTextSize(smallPaintSize);
 
         lineSpace = DensityUtils.dp2px(getContext(), lineMargin);
-        lineInnerSpace = DensityUtils.dp2px(getContext(), lineInnerMargin);
+        this.lineInnerSpaceSmall = DensityUtils.dp2px(getContext(), lineInnerSpaceSmall);
+        this.lineInnerSpaceBig = DensityUtils.dp2px(getContext(), lineInnerSpaceBig);
         postInvalidate();
     }
 
-    Runnable runnable = new Runnable() {
+    Runnable refreshRunnable = new Runnable() {
         @Override
         public void run() {
-            update();
+            updateLogic();
             postInvalidate();
-            postDelayed(runnable, 4000);
+            postDelayed(refreshRunnable, 4000);
         }
     };
 
@@ -198,33 +198,7 @@ public class LrcView extends FrameLayout {
         return paragraph.isSelect == SelectState.SELECT ? bigPaint : smallPaint;
     }
 
-    List<Paragraph> paragraphList = new ArrayList<>();
-
-    class Paragraph {
-        String str;
-        SelectState isSelect = SelectState.INIT;
-        List<Line> list = new ArrayList<>();
-    }
-
-    enum SelectState {
-        INIT, SELECT, UNSELECT;
-    }
-
-    class Line {
-        public Line() {
-        }
-
-        public Line(int begin, int end) {
-            this.begin = begin;
-            this.end = end;
-        }
-
-        int begin;
-        int end;//he ending index, exclusive.
-    }
-
-
-    private void update() {
+    private void updateLogic() {
         if (select == list.size() - 1) return;
         select++;
         unSelect++;
@@ -232,7 +206,29 @@ public class LrcView extends FrameLayout {
         if (backAnimator.isRunning()) {
             backAnimator.end();
         }
+        preDealParagraph();
+        scrollLogic();
 
+        backAnimator.start();
+    }
+
+    private void scrollLogic() {
+        caculateSelectTop(scrollValues);
+        LogApp.INSTANCE.d("selectTop:" + scrollValues[0]);
+
+        float scrollSelectBottomY = scrollValues[0] - scrollTopMargin + getHeight();
+        float shouldScrollY = scrollValues[1] - scrollSelectBottomY;
+        if (shouldScrollY > 0) {
+            smoothScrollTo(0, (int) (scrollValues[0] - scrollTopMargin));
+        } else {
+            LogApp.INSTANCE.d("无法继续滚动:");
+        }
+    }
+
+    /**
+     * 需要 预处理成 打字的格式，去确定每行的字数
+     */
+    private void preDealParagraph() {
         paragraphList.clear();
         for (int i = 0; i < list.size(); i++) {
             String lineNote = list.get(i);
@@ -250,10 +246,9 @@ public class LrcView extends FrameLayout {
 
             int beginIndex = 0;
             int endIndex = lineNote.length();
-            Paint measurePaint = getDrawPaint(paragraph);
+            Paint measurePaint = bigPaint;
 
             while (beginIndex != endIndex - 1) {
-
                 //判断剩下的是否超过一行
                 if (measurePaint.measureText(lineNote, beginIndex, endIndex) > getWidth()) {
                     do {
@@ -271,27 +266,16 @@ public class LrcView extends FrameLayout {
             }
             paragraphList.add(paragraph);
         }
-
-        caculateSelectTop(scrollValues);
-        LogApp.INSTANCE.d(
-                "selectTop:" + scrollValues[0]
-        );
-
-//        float scrollSelectBottomY = scrollValues[0] - scrollTopMargin + getHeight();
-//        float shouldScrollY = scrollValues[1] - scrollSelectBottomY;
-//        if (shouldScrollY > 0) {
-//            smoothScrollTo(0, (int) (scrollValues[0] - scrollTopMargin));
-//        }else{
-//            LogApp.INSTANCE.d("到底了不需要滚动:");
-//        }
-//        postDelayed(()->{
-            backAnimator.start();
-//        },200);
-
     }
 
     float[] scrollValues = new float[2];
 
+    /**
+     * 根据动画结束后状态,去计算
+     * <p>
+     * 【0】 计算选中的位置头部的高度
+     * 【1】 计算文字整体的高度
+     */
     private void caculateSelectTop(float[] scrollFloat) {
         scrollFloat[0] = 0;
         scrollFloat[1] = 0;
@@ -304,8 +288,12 @@ public class LrcView extends FrameLayout {
             Paint drawPaint = getDrawPaint(paragraph);
             float paragrahHeight = 0;
 
+            float lineInnerSpace;
             if (paragraph.isSelect == SelectState.SELECT) {
                 scrollFloat[0] = height;
+                lineInnerSpace = lineInnerSpaceBig;
+            } else {
+                lineInnerSpace = lineInnerSpaceSmall;
             }
 
             for (int i = 0; i < paragraph.list.size(); i++) {
@@ -323,14 +311,11 @@ public class LrcView extends FrameLayout {
         scrollFloat[1] = height;
     }
 
-
-    Matrix matrix = new Matrix();
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        getScrollY();
-        float height = 0;//50显示防止看到
+
+        float height = 0;
         for (int j = 0; j < paragraphList.size(); j++) {
             Paragraph paragraph = paragraphList.get(j);
             boolean isLastParagraph = j == paragraphList.size() - 1;
@@ -338,52 +323,43 @@ public class LrcView extends FrameLayout {
             Paint drawPaint = getDrawPaint(paragraph);
             float paragrahHeight = 0;
 
+            //绘制段落
             int saveLine = canvas.save();
             canvas.translate(0, height);
             float scale = 1F;
+            float lineInnerSpace;
+
             switch (paragraph.isSelect) {
                 case SELECT:
                     scale = MathUtils.linear(fraction, 0f, 1f, smallPaintSize * 1f / bigPaintSize, 1F, MathUtils.Linear.OverMax);
                     LogApp.INSTANCE.d(" SELECT fraction: " + fraction + "\t scale:" + scale);
+                    lineInnerSpace = lineInnerSpaceBig;
                     break;
                 case UNSELECT:
+                    lineInnerSpace = lineInnerSpaceSmall;
                     scale = MathUtils.linear(fraction, 0f, 1f, bigPaintSize / smallPaintSize, 1F, MathUtils.Linear.OverMax);
                     LogApp.INSTANCE.d(" UNSELECT fraction: " + fraction + "\t scale:" + scale);
                     break;
+                default:
+                    lineInnerSpace = lineInnerSpaceSmall;
+                    break;
             }
-            canvas.scale(scale, scale);
-//            matrix.reset();
-//            matrix.postScale(scale, scale);
-//            canvas.concat(matrix);
 
-//            switch (paragraph.isSelect) {
-//                case SELECT:
-//                    drawPaint.setFakeBoldText(true);
-//                    float linear = MathUtils.linear(fraction, 0f, 1f, smallPaintSize, bigPaintSize, MathUtils.Linear.OverMax);
-//                    drawPaint.setTextSize(linear);
-//                    LogApp.INSTANCE.d(" SELECT fraction: " + fraction + "\t linear:" + linear);
-//                    break;
-//                case UNSELECT:
-//                    drawPaint.setFakeBoldText(false);
-//                    float linear1 = MathUtils.linear(fraction, 0f, 1f, bigPaintSize, smallPaintSize, MathUtils.Linear.OverMax);
-//                    drawPaint.setTextSize(linear1);
-//                    LogApp.INSTANCE.d(" UNSELECT fraction: " + fraction + "\t linear1:" + linear1);
-//                    break;
-//                case INIT:
-//                    drawPaint.setTextSize(smallPaintSize);
-//                    break;
-//            }
+            //这里是左上角缩放
+            canvas.scale(scale, scale, 0, 0);
 
             for (int i = 0; i < paragraph.list.size(); i++) {
 
+                //绘制行
                 Line line = paragraph.list.get(i);
 
                 float top = drawPaint.getFontMetrics().top;
+                float lineHeightReal = drawPaint.getFontMetrics().bottom - top;
+
                 canvas.drawLine(0, 0, getWidth(), 0, lineInnerSpacePaint);
                 canvas.translate(0, top * -1);//top 是负的值
                 //绘制开始的点事底部
                 canvas.drawText(paragraph.str, line.begin, line.end, 0, 0, drawPaint);
-                float lineHeightReal = drawPaint.getFontMetrics().bottom - top;
 
                 boolean isLastLine = i == paragraph.list.size() - 1;
                 float lineHeightWithMargin = lineHeightReal + (isLastLine ? 0F : lineInnerSpace);
@@ -394,16 +370,12 @@ public class LrcView extends FrameLayout {
                 paragrahHeight += lineHeightWithMargin * scale;
             }
 
-            float paragrahHeightFinal = paragrahHeight + (isLastParagraph ? 0F : lineSpace) * scale;
+            float paragrahHeightFinal = paragrahHeight + (isLastParagraph ? 0F : lineSpace);
             canvas.translate(0, paragrahHeightFinal);
             canvas.restoreToCount(saveLine);
             height += paragrahHeightFinal;
         }
-
-
     }
-
-    private Scroller mScroller;
 
     //调用此方法滚动到目标位置
     public void smoothScrollTo(int fx, int fy) {
@@ -430,5 +402,29 @@ public class LrcView extends FrameLayout {
             postInvalidate();
         }
         super.computeScroll();
+    }
+
+
+    static class Paragraph {
+        String str;
+        SelectState isSelect = SelectState.INIT;
+        List<Line> list = new ArrayList<>();
+    }
+
+    enum SelectState {
+        INIT, SELECT, UNSELECT;
+    }
+
+    static class Line {
+        public Line() {
+        }
+
+        public Line(int begin, int end) {
+            this.begin = begin;
+            this.end = end;
+        }
+
+        int begin;
+        int end;//he ending index, exclusive.
     }
 }
