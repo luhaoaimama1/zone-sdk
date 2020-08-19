@@ -5,10 +5,10 @@ import android.net.Uri
 import android.view.View
 import com.example.mylib_test.FileManager
 import com.example.mylib_test.R
+import com.example.mylib_test.activity.controller.permission.PermissnActivity
 import com.example.mylib_test.activity.photo_shot.ShowPicActivity
 import com.zone.lib.base.controller.activity.BasePictureFeatureActivity
 import com.example.mylib_test.base.controller.SystemClipActivityController
-import com.zone.lib.base.controller.common.picture.PictureActivityController
 import com.zone.lib.base.controller.activity.controller.ShowState
 import com.zone.lib.base.controller.common.picture.PicktureHelper
 import com.zone.lib.utils.activity_fragment_ui.FragmentSwitcher
@@ -84,7 +84,7 @@ class ControllerMainActivity : BasePictureFeatureActivity() {
             R.id.tv_permission_file -> permissionCheckStorage()
             R.id.tv_permission_camera -> permissionCheckCamera()
             R.id.tv_permission_record_audio -> permissionCheckRecordAudio()
-            R.id.tv_permission_activity -> PermissnActivity.start(this,PermissnActivity.permissions);
+            R.id.tv_permission_activity -> PermissnActivity.start(this, PermissnActivity.permissions);
             R.id.tv_permission_floatwindow -> {
                 if (!FloatWindowPermissionUtils.isEnable(this)) {
                     FloatWindowPermissionUtils.guideToPermissionWindow(this)

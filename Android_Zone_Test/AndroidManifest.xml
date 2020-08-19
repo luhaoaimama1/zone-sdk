@@ -177,7 +177,7 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".activity.controller.PermissnActivity"
+        <activity android:name=".activity.controller.permission.PermissnActivity"
             android:theme="@style/Theme.AppCompat.Dialog"></activity>
         <activity android:name=".activity.controller.CollectionActivityControllerActivity"></activity>
         <activity android:name=".activity.controller.ActionBarControllerActivity"></activity>
