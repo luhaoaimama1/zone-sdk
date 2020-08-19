@@ -67,13 +67,15 @@ public class PermissnActivity extends Activity {
             LogApp.INSTANCE.d("请求权限ok!");
             permit();
         } else {
-            if (shouldShowRequestPermissionRationale(this, permissions)) {
-                LogApp.INSTANCE.d("需要引导！");
-                showGuideDialog();
-            } else {
-                LogApp.INSTANCE.d("请求权限");
-                ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
-            }
+//            if (!shouldShowRequestPermissionRationale(this, permissions)) {
+//                LogApp.INSTANCE.d("需要引导！");
+////                ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
+//                showGuideDialog();
+//            } else {
+//                LogApp.INSTANCE.d("请求权限");
+//                ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
+//            }
+            ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
         }
 
     }
