@@ -86,14 +86,12 @@ public abstract class BasePopWindow extends PopupWindow {
         mMenuView = inflater.inflate(layout, new FrameLayout(activity), false);
         // 设置SelectPicPopupWindow的View
         this.setContentView(mMenuView);
+
         LayoutParams lp = mMenuView.getLayoutParams();
-        // 设置SelectPicPopupWindow弹出窗体的宽
-        //this.setWidth(LayoutParams.FILL_PARENT);
-        this.setWidth(lp.width);
-        // 设置SelectPicPopupWindow弹出窗体的高
-        //this.setHeight(LayoutParams.FILL_PARENT);
-        this.setHeight(lp.height);
-        // 设置SelectPicPopupWindow弹出窗体可点击
+        int width = lp.width;
+        int height = lp.height;
+        setWH(width, height);
+
         this.setTouchable(true);
         this.setFocusable(true);
         this.setOutsideTouchable(true);
@@ -149,6 +147,15 @@ public abstract class BasePopWindow extends PopupWindow {
 
     }
 
+    protected void setWH(int width, int height) {
+        // 设置SelectPicPopupWindow弹出窗体的宽
+        //this.setWidth(LayoutParams.FILL_PARENT);
+        this.setWidth(width);
+        // 设置SelectPicPopupWindow弹出窗体的高
+        //this.setHeight(LayoutParams.FILL_PARENT);
+        this.setHeight(height);
+    }
+
     View locationView;
     boolean skipOnCreate;
 
@@ -188,10 +195,15 @@ public abstract class BasePopWindow extends PopupWindow {
     protected abstract void setListener();
 
     /**
-     * <br>也可以加动画 this.setAnimationStyle(R.style.PopSelectPicAnimation);
+     *
+     *      <style name="bottom_menu_animation" parent="android:Animation">
+                <item name="android:windowEnterAnimation">@android:anim/slide_in_up</item>
+                <item name="android:windowExitAnimation">@android:anim/slide_out_down</item>
+     *      </style>
+     *
+     * <br>也可以加动画 this.setAnimationStyle(R.style.bottom_menu_animation);
      * <br>例子：this.showAtLocation(activity.findViewById(R.id.main), Gravity.BOTTOM	| Gravity.CENTER_HORIZONTAL, 0, 0);
      * <br>并可以更改pop的其他设置
-     *
      * @param view
      */
     protected abstract void setLocation(View view);

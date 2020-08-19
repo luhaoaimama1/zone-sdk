@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:background="#ff00"
+    android:layout_height="fill_parent" >
+    <View
+        android:id="@+id/view"
+        android:layout_width="100dp"
+        android:background="#00ff00"
+        android:layout_height="200dp"/>
+
+</RelativeLayout>

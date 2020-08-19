@@ -190,8 +190,8 @@ abstract class BasePermissonsActivity : FeatureActivity() {
 
     //----------------------------------- STORAGE --------------------------------------------------
     open fun permissionCheckStorageMustPermit() {
-        permissMustPermitList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        onStoragePermitWithPermissionCheck()
+//        permissMustPermitList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//        onStoragePermitWithPermissionCheck()
     }
 
     open fun onStorageDeniedMustPermit() {

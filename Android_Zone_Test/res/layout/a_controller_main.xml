@@ -171,5 +171,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/font_focus" />
+
+        <TextView
+            android:id="@+id/tv_permission_activity"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="权限页面统一处理" />
     </com.zone.view.FlowLayout>
 </ScrollView>

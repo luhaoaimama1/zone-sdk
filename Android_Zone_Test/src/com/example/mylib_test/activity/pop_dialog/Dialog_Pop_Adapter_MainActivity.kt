@@ -19,6 +19,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.example.mylib_test.LogApp
+import com.example.mylib_test.activity.pop_dialog.pop.PopFullScrenn
 import com.zone.lib.ZLogger
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 
@@ -37,6 +38,7 @@ class Dialog_Pop_Adapter_MainActivity : BaseFeatureActivity() {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.pop -> Pop_Photo(this, R.id.flowLayoutZone1, R.id.pop).show()
+            R.id.popFull -> PopFullScrenn(this).show()
             R.id.pop_bottom -> Pop_Bottom(this, R.id.pop_bottom).show()
             R.id.tag -> tabBlue()
             //启动FxService

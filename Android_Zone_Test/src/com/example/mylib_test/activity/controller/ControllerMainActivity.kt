@@ -31,13 +31,13 @@ class ControllerMainActivity : BasePictureFeatureActivity() {
     }
 
     override fun initBaseControllers() {
-        super.initBaseControllers()
-        systemClipActivityController = object : SystemClipActivityController(this@ControllerMainActivity, FileManager.PicFolder.path) {
-            override fun getReturnedClipPath(savePath: String?) {
-                toImageActivity(savePath)
-            }
-        }
-        initPrivateControllers(systemClipActivityController)
+//        super.initBaseControllers()
+//        systemClipActivityController = object : SystemClipActivityController(this@ControllerMainActivity, FileManager.PicFolder.path) {
+//            override fun getReturnedClipPath(savePath: String?) {
+//                toImageActivity(savePath)
+//            }
+//        }
+//        initPrivateControllers(systemClipActivityController)
     }
 
     fun toImageActivity(path: String?) {
@@ -84,6 +84,7 @@ class ControllerMainActivity : BasePictureFeatureActivity() {
             R.id.tv_permission_file -> permissionCheckStorage()
             R.id.tv_permission_camera -> permissionCheckCamera()
             R.id.tv_permission_record_audio -> permissionCheckRecordAudio()
+            R.id.tv_permission_activity -> PermissnActivity.start(this,PermissnActivity.permissions);
             R.id.tv_permission_floatwindow -> {
                 if (!FloatWindowPermissionUtils.isEnable(this)) {
                     FloatWindowPermissionUtils.guideToPermissionWindow(this)
