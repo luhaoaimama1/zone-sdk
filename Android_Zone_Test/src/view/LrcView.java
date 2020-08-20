@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.FrameLayout;
 import android.widget.Scroller;
 
 import androidx.annotation.NonNull;
@@ -56,7 +55,7 @@ public class LrcView extends View {
     Paint lineSpacePaint = DrawUtils.getStrokePaint(Paint.Style.STROKE);
     ValueAnimator backAnimator = ValueAnimator.ofFloat(0f, 1f);
 
-    float scrollTopMargin = 100;//滚动距离头部的高度
+    float scrolllOffsetTop = 500;//滚动距离头部的高度
 
     public LrcView(@NonNull Context context) {
         super(context);
@@ -77,55 +76,56 @@ public class LrcView extends View {
         setBackgroundColor(Color.parseColor("#EB000000"));
         setWillNotDraw(false);
 
-        String str = "Hi are you wakeHi are you wakeHi are you wakeHi are you wakeHi are you wakeHou wakere you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHou\n" +
+        String str =
+//                "Hi are you wakeHi are you wakeHi are you wakeHi are you wakeHi are you wakeHou wakere you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHou\n" +
+//                        "\n" +
+//                        "Hi you wake up\n" +
+//                        "It's gonna light ueHi arere you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHou you wakeHi are you wakeHi are \n" +
+//                        "En it's gonna light up\n" +
+//                        "\n" +
+//                        "Are you wake\n" +
+//                        "\n" +
+//                        "En it's gonna light up\n" +
+//                        "\n" +
+//                        "Hi are you wake hi are you wake hi are you wake\n" +
+//                        "\n" +
+//                        "Hi are you wake hi hi are you wa are you wa are you wa are you wa are you wake\n" +
+//                        "wa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are you wake\n" +
+//                        "\n" +
+//                        "Hi it's gonna light up\n" +
+//                        "It's gonna light up\n" +
                 "\n" +
-                "Hi you wake up\n" +
-                "It's gonna light ueHi arere you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHou you wakeHi are you wakeHi are \n" +
-                "En it's gonna light up\n" +
-                "\n" +
-                "Are you wake\n" +
-                "\n" +
-                "En it's gonna light up\n" +
-                "\n" +
-                "Hi are you wake hi are you wake hi are you wake\n" +
-                "\n" +
-                "Hi are you wake hi hi are you wa are you wa are you wa are you wa are you wake\n" +
-                "wa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are you wake\n" +
-                "\n" +
-                "Hi it's gonna light up\n" +
-                "It's gonna light up\n" +
-                "\n" +
-                "It's gonna light up\n" +
-                "\n" +
-                "Hi are you wake\n" +
-                "\n" +
-                "Hi are you wake\n" +
-                "\n" +
-                "Hi with me\n" +
-                "\n" +
-                "Hi come through\n" +
-                "\n" +
-                "Hi with me hi come through\n" +
-                "\n" +
-                "Just hold my hand go through the dark\n" +
-                "\n" +
-                "Just hold my hand go through the dark\n" +
-                "\n" +
-                "Hi are you hi\n" +
-                "\n" +
-                "Hi are you hi\n" +
-                "\n" +
-                "It's gonna light up\n" +
-                "\n" +
-                "Hi are you wake hi\n" +
-                "\n" +
-                "Hi are you wake\n" +
-                "\n" +
-                "Hi you wake up\n" +
-                "\n" +
-                "Hi with me hi with me\n" +
-                "\n" +
-                "Hi with me hi with me";
+//                        "It's gonna light up\n" +
+//                        "\n" +
+//                        "Hi are you wake\n" +
+//                        "\n" +
+//                        "Hi are you wake\n" +
+//                        "\n" +
+//                        "Hi with me\n" +
+//                        "\n" +
+//                        "Hi come through\n" +
+//                "\n" +
+//                        "Hi with me hi come through\n" +
+//                        "\n" +
+//                        "Just hold my hand go through the dark\n" +
+//                        "\n" +
+                        "Just hold my hand go through the dark\n" +
+                        "\n" +
+                        "Hi are you hi\n" +
+                        "\n" +
+                        "Hi are you hi\n" +
+                        "\n" +
+                        "It's gonna light up\n" +
+                        "\n" +
+                        "Hi are you wake hi\n" +
+                        "\n" +
+                        "Hi are you wake\n" +
+                        "\n" +
+                        "Hi you wake up\n" +
+                        "\n" +
+//                        "Hi with me hi with me\n" +
+//                "\n" +
+                        "Hi with me hi with medafkjdlksajflajfdja;jfaljdkdaasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfa";
         String[] split = str.split("\n");
         for (int i = 0; i < split.length; i++) {
             if (!TextUtils.isEmpty(split[i])) {
@@ -167,7 +167,7 @@ public class LrcView extends View {
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            if (selectIndex == datas.size() - 1) return;
+            if (selectIndex == datas.size()) return;
             selectIndex++;
             unSelectIndex++;
             refreshLogic(selectIndex, unSelectIndex);
@@ -184,8 +184,8 @@ public class LrcView extends View {
     public void reset() {
         datas.clear();
         paragraphList.clear();
-        selectIndex = 0;
-        unSelectIndex = 0;
+        selectIndex = -1;
+        unSelectIndex = -2;
         postInvalidate();
     }
 
@@ -199,7 +199,7 @@ public class LrcView extends View {
     }
 
     public void setPaintDp(float bigDp, float smallDp, float lineInnerSpaceSmall, float lineInnerSpaceBig, float paragraphSpace, float scrollTopMargin) {
-        this.scrollTopMargin = DensityUtils.dp2px(getContext(), scrollTopMargin);
+        this.scrolllOffsetTop = DensityUtils.dp2px(getContext(), scrollTopMargin);
         bigPaintSize = DensityUtils.dp2px(getContext(), bigDp);
         bigPaint.setTextSize(bigPaintSize);
         bigPaint.setColor(bigPaintColor);
@@ -220,7 +220,7 @@ public class LrcView extends View {
         postInvalidate();
     }
 
-    int selectIndex = 0, unSelectIndex = -1;
+    int selectIndex = -1, unSelectIndex = -2;
 
     public void refreshLogic(int selectIndex, int unSelectIndex) {
         this.unSelectIndex = unSelectIndex;
@@ -231,6 +231,10 @@ public class LrcView extends View {
             backAnimator.end();
         }
         preDealParagraph();
+        LogApp.INSTANCE.d(
+                "selectIndex:" + selectIndex +
+                        "\t unSelectIndex:" + unSelectIndex
+        );
         scrollLogic();
 
         backAnimator.start();
@@ -247,15 +251,27 @@ public class LrcView extends View {
 
     private void scrollLogic() {
         caculateSelectTop(scrollValues);
-        float scrollSelectBottomY = scrollValues[0] - scrollTopMargin + getHeight();
-        if (scrollSelectBottomY < scrollValues[1]) { //滚动后底部的Y小于内容的底部 就可以滚动
-            smoothScrollTo(0, (int) (scrollValues[0] - scrollTopMargin));
-        } else {
-            //超出屏幕的时候滚动到 view与内容底对齐
-            int fy = (int) (scrollValues[1] - getHeight());
-            if (fy != getScrollY()) {
-                smoothScrollTo(0, fy);
+        int sy = 0;
+        //logic 只会在不满 或者满屏幕的两个逻辑走不回交叉变换 所以动画不会有问题
+        if (scrollValues[1] + scrolllOffsetTop < getHeight()) {
+            LogApp.INSTANCE.d("内容不满屏幕，可以滚动到 头部偏移值");
+            sy = (int) (-scrolllOffsetTop);
+        } else { //内容满一屏幕的话
+            float shouldScrollY = scrollValues[0] - scrolllOffsetTop;
+            float screenBottom = shouldScrollY + getHeight();
+            if (screenBottom < scrollValues[1]) {
+                //滚动后的屏幕底部未超出内容底部， 可以继续滚动
+                sy = (int) shouldScrollY;
+                LogApp.INSTANCE.d("滚动后的屏幕底部 未超出内容底部， 可以继续滚动");
+            } else {
+                //滚动后的屏幕底部 超出内容底部， view与内容底对齐
+                sy = (int) (scrollValues[1] - getHeight());
+                LogApp.INSTANCE.d("滚动后的屏幕底部 超出内容底部， view与内容底对齐");
             }
+        }
+
+        if (sy != getScrollY()) {
+            smoothScrollTo(0, sy);
         }
     }
 
@@ -316,6 +332,7 @@ public class LrcView extends View {
         }
     }
 
+    //scrollValues[0]选中歌词的 top, scrollValues[1] 歌词底部
     float[] scrollValues = new float[2];
 
     /**
@@ -413,14 +430,14 @@ public class LrcView extends View {
                 }
                 canvas.translate(0, top * -1);//top 是负的值
                 //绘制开始的点事底部
-                if(line.hasEndPrefix){
+                if (line.hasEndPrefix) {
                     canvas.drawText(paragraph.str, line.begin, line.end, 0, 0, drawPaint);
                     float measureWidth = drawPaint.measureText(paragraph.str, line.begin, line.end);
                     canvas.drawText(END_PREFIX, 0, END_PREFIX.length(), measureWidth, 0, drawPaint);
 
 //                    String text = paragraph.str.substring(line.begin, line.end) + END_PREFIX;
 //                    canvas.drawText(text, 0, text.length(), 0, 0, drawPaint);
-                }else{
+                } else {
                     canvas.drawText(paragraph.str, line.begin, line.end, 0, 0, drawPaint);
                 }
 
@@ -442,7 +459,7 @@ public class LrcView extends View {
         }
 
         if (debugDrawScrollGuide) {
-            canvas.drawLine(0, scrollValues[0] - scrollTopMargin, getWidth(), scrollValues[0] - scrollTopMargin, lineInnerSpacePaint);
+            canvas.drawLine(0, scrollValues[0] - scrolllOffsetTop, getWidth(), scrollValues[0] - scrolllOffsetTop, lineInnerSpacePaint);
             canvas.drawLine(0, scrollValues[1], getWidth(), scrollValues[1], lineSpacePaint);
         }
     }
@@ -493,13 +510,14 @@ public class LrcView extends View {
         int begin;
         int end;//he ending index, exclusive.
         boolean hasEndPrefix;
+
         public boolean isHasEndPrefix() {
             return hasEndPrefix;
         }
 
         public Line setHasEndPrefix(boolean hasEndPrefix) {
             this.hasEndPrefix = hasEndPrefix;
-            return  this;
+            return this;
         }
     }
 
