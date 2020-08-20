@@ -67,7 +67,7 @@ public class NBViewGroup extends LinearLayout {
             canvas.drawRect(0, 0, getWidth(), getHeight(), paint);
             paint.setXfermode(null);
             canvas.restore();
-        }else{
+        } else {
             super.dispatchDraw(canvas);
         }
     }
