@@ -47,6 +47,12 @@ class Dialog_Pop_Adapter_MainActivity : BaseFeatureActivity() {
             R.id.custom_dialog -> customDialog()
             R.id.dialogFullScreen -> ZDialog(this).show()
             R.id.bt_floatNotification -> startService(Intent(this, NoticationService::class.java))
+            R.id.bt_pop_andpage -> {
+                toToast("toast试试")
+                Pop_Bottom(this, R.id.pop_bottom).show()
+                customDialog()
+                startActivity(Intent(this,Dialog_Pop_Adapter_MainActivity::class.java));
+            }
             else -> {
             }
         }

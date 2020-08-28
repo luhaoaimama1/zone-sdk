@@ -4,27 +4,25 @@ import android.app.Activity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.TextView;
 
+import com.example.mylib_test.LogApp;
 import com.example.mylib_test.R;
-import com.zone.lib.base.BasePopWindow;
-import com.zone.lib.utils.activity_fragment_ui.ToastUtils;
+import com.zone.lib.base.BaseAnimatePopWindow;
 
-public class PopFullScrenn extends BasePopWindow implements OnClickListener {
+public class PopFullScrenn extends BaseAnimatePopWindow implements OnClickListener {
     public PopFullScrenn(Activity activity) {
         super(activity);
         setPopContentView(R.layout.popwindow_fill, -1);
     }
 
-	@Override
-	protected void setWH(int width, int height) {
-		super.setWH(width, height);
-		setClippingEnabled(false);
-	}
+    @Override
+    protected void setWH(int width, int height) {
+        super.setWH(width, height);
+        setClippingEnabled(false);
+    }
 
-	@Override
+    @Override
     protected void findView(View mMenuView) {
-//		mMenuView.findViewById(R.id.view).setTranslationY(-200);
     }
 
     @Override
@@ -37,6 +35,10 @@ public class PopFullScrenn extends BasePopWindow implements OnClickListener {
 
     @Override
     protected void setLocation(View view) {
+        setAnimationStyle(R.anim.anim_enter, R.anim.anim_exit);
+        setAnimationListener((interpolatedTime, isEnter) -> {
+            LogApp.INSTANCE.d("interpolatedTime:"+interpolatedTime +"\t isEnter："+isEnter);
+        });
         this.showAtLocation(view, Gravity.NO_GRAVITY, 0, 0);
     }
 

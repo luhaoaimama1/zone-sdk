@@ -8,12 +8,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Scroller;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.VelocityTrackerCompat;
 
 import com.example.mylib_test.LogApp;
 import com.zone.lib.utils.data.convert.DensityUtils;
@@ -241,6 +246,64 @@ public class LrcView extends View {
         postInvalidate();
     }
 
+
+    public void pauseScroll(){
+
+    }
+    public void resumeScroll(){
+
+    }
+
+    VelocityTracker mVelocityTracker;
+    private float mMaxVelocity ,  mMinVelocity;
+
+    private void initConfig() {
+        final ViewConfiguration vc = ViewConfiguration.get(getContext());
+        mMaxVelocity = vc.getScaledMaximumFlingVelocity();
+        mMinVelocity = vc.getScaledMinimumFlingVelocity();
+    }
+
+    private float  downY,downSrcollY;
+    private int  pointerId;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mVelocityTracker == null) {
+            mVelocityTracker = VelocityTracker.obtain();
+        }
+        mVelocityTracker.addMovement(event);// 将事件加入到VelocityTracker类实例中
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                pointerId = MotionEventCompat.getPointerId(event, 0);
+                downY = event.getY();
+                downSrcollY = getScrollY();
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                float offsetY = event.getY() - downY;
+                scrollTo(getScrollX(), (int) (downSrcollY - offsetY));
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                float lastUpY = event.getY();
+                mVelocityTracker.computeCurrentVelocity(1000, mMaxVelocity); // 设置maxVelocity值为0.1时，速率大于4.01时，
+                float yVelocity = mVelocityTracker.getYVelocity(pointerId);
+                if (mVelocityTracker != null) {//用完记得回收
+                    mVelocityTracker.clear();
+                    mVelocityTracker.recycle();
+                    mVelocityTracker = null;
+                }
+
+                Float yVelocityShould = MathUtils.clamp(yVelocity, mMinVelocity, mMaxVelocity);
+                break;
+            default:
+        }
+        return true;
+    }
+
+
+
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
@@ -253,22 +316,26 @@ public class LrcView extends View {
         caculateSelectTop(scrollValues);
         int sy = 0;
         //logic 只会在不满 或者满屏幕的两个逻辑走不回交叉变换 所以动画不会有问题
-        if (scrollValues[1] + scrolllOffsetTop < getHeight()) {
-            LogApp.INSTANCE.d("内容不满屏幕，可以滚动到 头部偏移值");
-            sy = (int) (-scrolllOffsetTop);
-        } else { //内容满一屏幕的话
-            float shouldScrollY = scrollValues[0] - scrolllOffsetTop;
-            float screenBottom = shouldScrollY + getHeight();
-            if (screenBottom < scrollValues[1]) {
-                //滚动后的屏幕底部未超出内容底部， 可以继续滚动
-                sy = (int) shouldScrollY;
-                LogApp.INSTANCE.d("滚动后的屏幕底部 未超出内容底部， 可以继续滚动");
-            } else {
-                //滚动后的屏幕底部 超出内容底部， view与内容底对齐
-                sy = (int) (scrollValues[1] - getHeight());
-                LogApp.INSTANCE.d("滚动后的屏幕底部 超出内容底部， view与内容底对齐");
-            }
-        }
+//        if (scrollValues[1] + scrolllOffsetTop < getHeight()) {
+//            LogApp.INSTANCE.d("内容不满屏幕，可以滚动到 头部偏移值");
+//            sy = (int) (-scrolllOffsetTop);
+//        } else { //内容满一屏幕的话
+//            float shouldScrollY = scrollValues[0] - scrolllOffsetTop;
+//            float screenBottom = shouldScrollY + getHeight();
+//            if (screenBottom < scrollValues[1]) {
+//                //滚动后的屏幕底部未超出内容底部， 可以继续滚动
+//                sy = (int) shouldScrollY;
+//                LogApp.INSTANCE.d("滚动后的屏幕底部 未超出内容底部， 可以继续滚动");
+//            } else {
+//                //滚动后的屏幕底部 超出内容底部， view与内容底对齐
+//                sy = (int) (scrollValues[1] - getHeight());
+//                LogApp.INSTANCE.d("滚动后的屏幕底部 超出内容底部， view与内容底对齐");
+//            }
+//        }
+
+        //无视底部界限 继续滚动的逻辑
+        float shouldScrollY = scrollValues[0] - scrolllOffsetTop;
+        sy = (int) shouldScrollY;
 
         if (sy != getScrollY()) {
             smoothScrollTo(0, sy);

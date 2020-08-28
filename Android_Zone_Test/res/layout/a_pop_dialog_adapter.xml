@@ -133,4 +133,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="toast" />
+
+    <TextView
+        android:id="@+id/bt_pop_andpage"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bt_pop_andpage" />
 </com.zone.view.FlowLayout>
