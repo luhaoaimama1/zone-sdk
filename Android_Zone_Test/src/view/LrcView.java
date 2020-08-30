@@ -13,21 +13,22 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.Scroller;
+import android.widget.OverScroller;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.MotionEventCompat;
-import androidx.core.view.VelocityTrackerCompat;
 
 import com.example.mylib_test.LogApp;
 import com.zone.lib.utils.data.convert.DensityUtils;
 import com.zone.lib.utils.view.DrawUtils;
 import com.zone.lib.utils.view.graphics.MathUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
-//todo zone
+//todo zone  歌词恢复的时候，歌词瞬间又变化了 可能滚动会有问题
 
 /**
  * qq音乐
@@ -47,7 +48,7 @@ public class LrcView extends View {
 
     public static final int DURATION = 500;
     private List<String> datas = new ArrayList<>();
-    private Scroller mScroller;
+    private OverScroller mScroller;
     private List<Paragraph> paragraphList = new ArrayList<>();
 
     float fraction;
@@ -80,66 +81,12 @@ public class LrcView extends View {
     private void init() {
         setBackgroundColor(Color.parseColor("#EB000000"));
         setWillNotDraw(false);
-
-        String str =
-//                "Hi are you wakeHi are you wakeHi are you wakeHi are you wakeHi are you wakeHou wakere you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHou\n" +
-//                        "\n" +
-//                        "Hi you wake up\n" +
-//                        "It's gonna light ueHi arere you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHou you wakeHi are you wakeHi are \n" +
-//                        "En it's gonna light up\n" +
-//                        "\n" +
-//                        "Are you wake\n" +
-//                        "\n" +
-//                        "En it's gonna light up\n" +
-//                        "\n" +
-//                        "Hi are you wake hi are you wake hi are you wake\n" +
-//                        "\n" +
-//                        "Hi are you wake hi hi are you wa are you wa are you wa are you wa are you wake\n" +
-//                        "wa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are you wake\n" +
-//                        "\n" +
-//                        "Hi it's gonna light up\n" +
-//                        "It's gonna light up\n" +
-                "\n" +
-//                        "It's gonna light up\n" +
-//                        "\n" +
-//                        "Hi are you wake\n" +
-//                        "\n" +
-//                        "Hi are you wake\n" +
-//                        "\n" +
-//                        "Hi with me\n" +
-//                        "\n" +
-//                        "Hi come through\n" +
-//                "\n" +
-//                        "Hi with me hi come through\n" +
-//                        "\n" +
-//                        "Just hold my hand go through the dark\n" +
-//                        "\n" +
-                        "Just hold my hand go through the dark\n" +
-                        "\n" +
-                        "Hi are you hi\n" +
-                        "\n" +
-                        "Hi are you hi\n" +
-                        "\n" +
-                        "It's gonna light up\n" +
-                        "\n" +
-                        "Hi are you wake hi\n" +
-                        "\n" +
-                        "Hi are you wake\n" +
-                        "\n" +
-                        "Hi you wake up\n" +
-                        "\n" +
-//                        "Hi with me hi with me\n" +
-//                "\n" +
-                        "Hi with me hi with medafkjdlksajflajfdja;jfaljdkdaasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfa";
-        String[] split = str.split("\n");
-        for (int i = 0; i < split.length; i++) {
-            if (!TextUtils.isEmpty(split[i])) {
-                datas.add(split[i]);
-            }
-        }
+        initConfig();
+        setLrcContent();
 
 
-        mScroller = new Scroller(getContext(), new AccelerateDecelerateInterpolator());
+//        mScroller = new Scroller(getContext(), new AccelerateDecelerateInterpolator());
+        mScroller = new OverScroller(getContext(), new AccelerateDecelerateInterpolator());
         backAnimator.setDuration(DURATION);
         backAnimator.addUpdateListener(animation -> {
             fraction = (float) animation.getAnimatedValue();
@@ -169,13 +116,76 @@ public class LrcView extends View {
         post(runnable);
     }
 
+    private void setLrcContent() {
+        String str =
+                "Hi are you wakeHi are you wakeHi are you wakeHi are you wakeHi are you wakeHou wakere you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHou\n" +
+                        "\n" +
+                        "Hi you wake up\n" +
+                        "It's gonna light ueHi arere you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHoure you wakeHi are you wakeHi are you wakeHou you wakeHi are you wakeHi are \n" +
+                        "En it's gonna light up\n" +
+                        "\n" +
+                        "Are you wake\n" +
+                        "\n" +
+                        "En it's gonna light up\n" +
+                        "\n" +
+                        "Hi are you wake hi are you wake hi are you wake\n" +
+                        "\n" +
+                        "Hi are you wake hi hi are you wa are you wa are you wa are you wa are you wake\n" +
+                        "wa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are yowa are you wa are you wake\n" +
+                        "\n" +
+                        "Hi it's gonna light up\n" +
+                        "It's gonna light up\n" +
+                "\n" +
+                        "It's gonna light up\n" +
+                        "\n" +
+                        "Hi are you wake\n" +
+                        "\n" +
+                        "Hi are you wake\n" +
+                        "\n" +
+                        "Hi with me\n" +
+                        "\n" +
+                        "Hi come through\n" +
+                "\n" +
+                        "Hi with me hi come through\n" +
+                        "\n" +
+                        "Just hold my hand go through the dark\n" +
+                        "\n" +
+                        "Just hold my hand go through the dark\n" +
+                        "\n" +
+                        "Hi are you hi\n" +
+                        "\n" +
+                        "Hi are you hi\n" +
+                        "\n" +
+                        "It's gonna light up\n" +
+                        "\n" +
+                        "Hi are you wake hi\n" +
+                        "\n" +
+                        "Hi are you wake\n" +
+                        "\n" +
+                        "Hi you wake up\n" +
+                        "\n" +
+                        "Hi with me hi with me\n" +
+//                "\n" +
+                        "Hi with me hi with medafkjdlksajflajfdja;jfaljdkdaasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfasajflajfdja;jfa";
+        String[] split = str.split("\n");
+        for (int i = 0; i < split.length; i++) {
+            if (!TextUtils.isEmpty(split[i])) {
+                datas.add(split[i]);
+            }
+        }
+    }
+
+    float bottomPadding = 0f;
+    float totalHeightWithBottomPadding = 0f;
+
     Runnable runnable = new Runnable() {
+        int selectIndexInner = -1, unSelectIndexInner = -2;
         @Override
         public void run() {
-            if (selectIndex == datas.size()) return;
-            selectIndex++;
-            unSelectIndex++;
-            refreshLogic(selectIndex, unSelectIndex);
+            if (selectIndexInner == datas.size()) return;
+            selectIndexInner++;
+            unSelectIndexInner++;
+            refreshLogic(selectIndexInner, unSelectIndexInner);
             postInvalidate();
             postDelayed(runnable, 4000);
         }
@@ -184,7 +194,6 @@ public class LrcView extends View {
     private Paint getDrawPaint(Paragraph paragraph) {
         return paragraph.selectState == SelectState.SELECT ? bigPaint : smallPaint;
     }
-
 
     public void reset() {
         datas.clear();
@@ -226,18 +235,32 @@ public class LrcView extends View {
     }
 
     int selectIndex = -1, unSelectIndex = -2;
+    int pauseUnSelectIndex=-1;
 
     public void refreshLogic(int selectIndex, int unSelectIndex) {
+        //在布局之后去算一下滚动到最后的状态
+        if (totalHeightWithBottomPadding == 0f) {
+            caculateLastState();
+            //要恢复回去不然的话 最后一行会高亮
+            preDealParagraph(this.selectIndex, this.unSelectIndex);
+        }
+
         this.unSelectIndex = unSelectIndex;
         this.selectIndex = selectIndex;
-
+        LogApp.INSTANCE.d(
+                "pause before -------->selectIndex:" + selectIndex +
+                        "\t unSelectIndex:" + unSelectIndex
+        );
+        if (isPauseScroll) {
+            return;
+        }
 
         if (backAnimator.isRunning()) {
             backAnimator.end();
         }
-        preDealParagraph();
+        preDealParagraph(this.selectIndex, this.unSelectIndex);
         LogApp.INSTANCE.d(
-                "selectIndex:" + selectIndex +
+                "scrollLogic----->selectIndex:" + selectIndex +
                         "\t unSelectIndex:" + unSelectIndex
         );
         scrollLogic();
@@ -246,16 +269,47 @@ public class LrcView extends View {
         postInvalidate();
     }
 
-
-    public void pauseScroll(){
-
+    private void caculateLastState() {
+        preDealParagraph(datas.size() - 1, this.unSelectIndex);
+        caculateSelectTop(scrollValuesLastState);
+        float lineHeightReal = bigPaint.getFontMetrics().bottom - bigPaint.getFontMetrics().top;
+        bottomPadding = getHeight() - scrolllOffsetTop - lineHeightReal;
+        totalHeightWithBottomPadding = bottomPadding + scrollValuesLastState[1];
     }
-    public void resumeScroll(){
 
+    boolean isPauseScroll;
+
+    public void pauseScroll() {
+        LogApp.INSTANCE.d(
+                "pauseScroll  --------selectIndex:" + selectIndex +
+                        "\t unSelectIndex:" + unSelectIndex
+        );
+        scrollFinish();
+        pauseUnSelectIndex=this.unSelectIndex;
+        isPauseScroll = true;
+        getHandler().removeCallbacks(resumeScrollRunnable);
     }
+
+    public void resumeScroll() {
+        getHandler().postDelayed(resumeScrollRunnable, 2000);
+    }
+
+    private Runnable resumeScrollRunnable = () -> {
+        scrollFinish();
+        isPauseScroll = false;
+        if (pauseUnSelectIndex != -1) {
+            int pauseUnSelectIndex1 = pauseUnSelectIndex;
+            LogApp.INSTANCE.d(
+                    "resumeScrollRunnable  --------selectIndex:" + selectIndex +
+                            "\t unSelectIndex:" + pauseUnSelectIndex
+            );
+            refreshLogic(this.selectIndex, pauseUnSelectIndex1);
+            pauseUnSelectIndex = -1;
+        }
+    };
 
     VelocityTracker mVelocityTracker;
-    private float mMaxVelocity ,  mMinVelocity;
+    private float mMaxVelocity, mMinVelocity;
 
     private void initConfig() {
         final ViewConfiguration vc = ViewConfiguration.get(getContext());
@@ -263,8 +317,8 @@ public class LrcView extends View {
         mMinVelocity = vc.getScaledMinimumFlingVelocity();
     }
 
-    private float  downY,downSrcollY;
-    private int  pointerId;
+    private float downY, downSrcollY;
+    private int pointerId;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -273,20 +327,22 @@ public class LrcView extends View {
         }
         mVelocityTracker.addMovement(event);// 将事件加入到VelocityTracker类实例中
 
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 pointerId = MotionEventCompat.getPointerId(event, 0);
                 downY = event.getY();
                 downSrcollY = getScrollY();
+                pauseScroll();
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 float offsetY = event.getY() - downY;
-                scrollTo(getScrollX(), (int) (downSrcollY - offsetY));
+                int y = (int) (downSrcollY - offsetY);
+                scrollTo(getScrollX(), getScrollClamp(y));
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                float lastUpY = event.getY();
                 mVelocityTracker.computeCurrentVelocity(1000, mMaxVelocity); // 设置maxVelocity值为0.1时，速率大于4.01时，
                 float yVelocity = mVelocityTracker.getYVelocity(pointerId);
                 if (mVelocityTracker != null) {//用完记得回收
@@ -295,13 +351,42 @@ public class LrcView extends View {
                     mVelocityTracker = null;
                 }
 
-                Float yVelocityShould = MathUtils.clamp(yVelocity, mMinVelocity, mMaxVelocity);
+                float yVelocityShould;
+                if (yVelocity < 0) {
+                    yVelocityShould = MathUtils.clamp(Math.abs(yVelocity), mMinVelocity, mMaxVelocity);
+                } else {
+                    yVelocityShould = -MathUtils.clamp(Math.abs(yVelocity), mMinVelocity, mMaxVelocity);
+                }
+
+                mScroller.fling(0, getScrollY(), 0, (int) yVelocityShould, 0, 0, (int) getScrolllMinY(), (int) getScrollMaxY());
+                //400是超过的距离
+//                mScroller.fling(0, getScrollY(), 0, (int) yVelocityShould, 0, 0, (int) getScorllMinY(), (int) getScorllMaxY(),0,400);
+                resumeScroll();
                 break;
             default:
         }
         return true;
     }
 
+    private void scrollFinish() {
+        if (!mScroller.isFinished()) {
+            mScroller.abortAnimation();
+        }
+    }
+
+    @NotNull
+    private int getScrollClamp(int y) {
+        float clamp = MathUtils.clamp(y * 1f, getScrolllMinY(), getScrollMaxY());
+        return (int) clamp;
+    }
+
+    private float getScrolllMinY() {
+        return -scrolllOffsetTop;
+    }
+
+    private float getScrollMaxY() {
+        return scrollValuesLastState[0] - scrolllOffsetTop;
+    }
 
 
     @Override
@@ -314,29 +399,8 @@ public class LrcView extends View {
 
     private void scrollLogic() {
         caculateSelectTop(scrollValues);
-        int sy = 0;
-        //logic 只会在不满 或者满屏幕的两个逻辑走不回交叉变换 所以动画不会有问题
-//        if (scrollValues[1] + scrolllOffsetTop < getHeight()) {
-//            LogApp.INSTANCE.d("内容不满屏幕，可以滚动到 头部偏移值");
-//            sy = (int) (-scrolllOffsetTop);
-//        } else { //内容满一屏幕的话
-//            float shouldScrollY = scrollValues[0] - scrolllOffsetTop;
-//            float screenBottom = shouldScrollY + getHeight();
-//            if (screenBottom < scrollValues[1]) {
-//                //滚动后的屏幕底部未超出内容底部， 可以继续滚动
-//                sy = (int) shouldScrollY;
-//                LogApp.INSTANCE.d("滚动后的屏幕底部 未超出内容底部， 可以继续滚动");
-//            } else {
-//                //滚动后的屏幕底部 超出内容底部， view与内容底对齐
-//                sy = (int) (scrollValues[1] - getHeight());
-//                LogApp.INSTANCE.d("滚动后的屏幕底部 超出内容底部， view与内容底对齐");
-//            }
-//        }
-
-        //无视底部界限 继续滚动的逻辑
         float shouldScrollY = scrollValues[0] - scrolllOffsetTop;
-        sy = (int) shouldScrollY;
-
+        int sy = getScrollClamp((int) shouldScrollY);
         if (sy != getScrollY()) {
             smoothScrollTo(0, sy);
         }
@@ -345,7 +409,7 @@ public class LrcView extends View {
     /**
      * 需要 预处理成 打字的格式，去确定每行的字数
      */
-    private void preDealParagraph() {
+    private void preDealParagraph(int selectIndex, int unSelectIndex) {
         paragraphList.clear();
         for (int i = 0; i < datas.size(); i++) {
             String lineStr = datas.get(i);
@@ -401,6 +465,7 @@ public class LrcView extends View {
 
     //scrollValues[0]选中歌词的 top, scrollValues[1] 歌词底部
     float[] scrollValues = new float[2];
+    float[] scrollValuesLastState = new float[2];
 
     /**
      * 根据动画结束后状态,去计算
@@ -533,8 +598,8 @@ public class LrcView extends View {
 
     //调用此方法滚动到目标位置
     public void smoothScrollTo(int fx, int fy) {
-        int dx = fx - mScroller.getFinalX();
-        int dy = fy - mScroller.getFinalY();
+        int dx = fx -getScrollX();
+        int dy = fy - getScrollY();
         smoothScrollBy(dx, dy);
     }
 
@@ -542,7 +607,7 @@ public class LrcView extends View {
     public void smoothScrollBy(int dx, int dy) {
 
         //设置mScroller的滚动偏移量
-        mScroller.startScroll(mScroller.getFinalX(), mScroller.getFinalY(), dx, dy, DURATION);
+        mScroller.startScroll(getScrollX(), getScrollY(), dx, dy, DURATION);
         postInvalidate();//这里必须调用invalidate()才能保证computeScroll()会被调用，否则不一定会刷新界面，看不到滚动效果
     }
 
