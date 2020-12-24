@@ -58,6 +58,15 @@ class ViewPagerDisableScrollActivity2 : BaseFeatureActivity() {
 
             override fun onPageScrollStateChanged(arg0: Int) {}
         })
+
+
+        image_1!!.fixedWithCallback={
+            val width = 100
+            val halfWidth = width / 2
+            val start = it.centerX() - halfWidth
+            val end = it.centerX() + halfWidth
+            it.set(start,it.top,end,it.bottom)
+        }
         image_1!!.setViewPagerWithItemView(viewpager, tv1, tv2, tv3, tv4)
         image_1!!.setDrawRes(R.drawable.search_line_back)
     }

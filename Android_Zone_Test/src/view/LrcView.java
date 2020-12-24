@@ -60,6 +60,7 @@ public class LrcView extends View {
     Paint lineInnerSpacePaint = DrawUtils.getStrokePaint(Paint.Style.STROKE);
     Paint lineSpacePaint = DrawUtils.getStrokePaint(Paint.Style.STROKE);
     ValueAnimator backAnimator = ValueAnimator.ofFloat(0f, 1f);
+    int shadowColor = Color.parseColor("#4D000000");
 
     float scrolllOffsetTop = 500;//滚动距离头部的高度
 
@@ -218,11 +219,13 @@ public class LrcView extends View {
         bigPaint.setTextSize(bigPaintSize);
         bigPaint.setColor(bigPaintColor);
         bigPaint.setFakeBoldText(true);
+        bigPaint.setShadowLayer(DensityUtils.dp2px(getContext(),2F), 0, DensityUtils.dp2px(getContext(),1F), shadowColor);
 
         smallPaintSize = DensityUtils.dp2px(getContext(), smallDp);
         smallPaint.setTextSize(smallPaintSize);
         smallPaint.setColor(smallPaintColor);
         smallPaint.setFakeBoldText(false);
+        smallPaint.setShadowLayer(DensityUtils.dp2px(getContext(),2F), 0, DensityUtils.dp2px(getContext(),1F), shadowColor);
 
         this.paragraphSpace = DensityUtils.dp2px(getContext(), paragraphSpace);
         this.lineInnerSpaceSmall = DensityUtils.dp2px(getContext(), lineInnerSpaceSmall);
@@ -430,7 +433,7 @@ public class LrcView extends View {
             Paint measurePaint = bigPaint;
 
             int lineNumber = 0;
-            while (beginIndex != endIndex - 1) {
+            while (beginIndex >= 0 && beginIndex <= endIndex) {
                 //判断剩下的是否超过一行
                 if (measurePaint.measureText(lineStr, beginIndex, endIndex) > getWidth()) {
                     do {

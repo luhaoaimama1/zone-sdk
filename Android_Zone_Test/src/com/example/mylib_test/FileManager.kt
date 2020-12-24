@@ -1,6 +1,7 @@
 package com.example.mylib_test
 
 import android.app.Activity
+import com.example.mylib_test.app.Apps
 import com.zone.lib.utils.data.file2io2data.FileUtils
 import com.zone.lib.utils.data.file2io2data.SDCardUtils
 import com.zone.lib.utils.image.compress2sample.CompressUtils

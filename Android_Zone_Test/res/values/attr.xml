@@ -31,7 +31,64 @@
     </declare-styleable>
 
     <declare-styleable name="SheetFrameLayout">
-        <attr name="sheetMoveId" format="reference"/>
+        <attr name="sheetMoveId" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CornerImageView">
+        <attr name="civ_type">
+            <enum name="none" value="0" />
+            <enum name="circle" value="1" />
+            <enum name="rounder" value="2" />
+        </attr>
+
+        <attr name="round_corner" format="dimension"/>
+
+        <attr name="round_corner_top_left" format="dimension" />
+        <attr name="round_corner_top_right" format="dimension" />
+        <attr name="round_corner_bottom_left" format="dimension" />
+        <attr name="round_corner_bottom_right" format="dimension" />
+
+        <!--   {@link Path#addRoundRect  (RectF rect, float[] radii, Direction dir)}  -->
+        <attr name="round_corner_top_left_x" format="dimension" />
+        <attr name="round_corner_top_left_y" format="dimension" />
+        <attr name="round_corner_top_right_x" format="dimension" />
+        <attr name="round_corner_top_right_y" format="dimension" />
+        <attr name="round_corner_bottom_left_x" format="dimension" />
+        <attr name="round_corner_bottom_left_y" format="dimension" />
+        <attr name="round_corner_bottom_right_x" format="dimension" />
+        <attr name="round_corner_bottom_right_y" format="dimension" />
+
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+
+        <attr name="border_type">
+            <!--     content的path =view-padding-border.width/2       -->
+            <enum name="half_content_edge" value="0" />
+            <!--     content的path =view-padding-border.width       -->
+            <enum name="exclude_content" value="1" />
+            <!--     content的path =view-padding       -->
+            <enum name="include_content" value="2" />
+        </attr>
+
+    </declare-styleable>
+
+
+    <declare-styleable name="ImageTextView">
+        <attr name="leftDrawableWidth" format="dimension" />
+        <attr name="leftDrawableHeight" format="dimension" />
+        <attr name="leftDrawableMargin" format="dimension" />
+
+        <attr name="topDrawableWidth" format="dimension" />
+        <attr name="topDrawableHeight" format="dimension" />
+        <attr name="topDrawableMargin" format="dimension" />
+
+        <attr name="rightDrawableWidth" format="dimension" />
+        <attr name="rightDrawableHeight" format="dimension" />
+        <attr name="rightDrawableMargin" format="dimension" />
+
+        <attr name="bottomDrawableWidth" format="dimension" />
+        <attr name="bottomDrawableHeight" format="dimension" />
+        <attr name="bottomDrawableMargin" format="dimension" />
     </declare-styleable>
 
 </resources>

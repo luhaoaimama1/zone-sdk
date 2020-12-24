@@ -42,6 +42,7 @@ class StudyMainActivity : BaseFeatureActivity() {
             R.id.dynamicLogo -> startActivity(Intent(this, DynamicLogoActivity::class.java))
             R.id.bt_data_crash -> startActivity(Intent(this, CrashDataActivity::class.java))
             R.id.bt_song_scroll -> startActivity(Intent(this, SongScrollActivity::class.java))
+            R.id.bt_drag_view -> startActivity(Intent(this, DragActivity::class.java))
             R.id.bt_crash -> crashPrint()
             else -> {
             }

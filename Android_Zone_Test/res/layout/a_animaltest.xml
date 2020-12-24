@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -18,21 +19,21 @@
 
         <TextView
             android:id="@+id/animal"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TvOnClick"
             android:text="Property Animation" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_customAni"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="自定义动画的研究" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_cgr"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ChoreographerStudy(模仿ValueAnimator的学习)" />
@@ -46,8 +47,8 @@
 
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_surface"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SurfaceView_绘图版" />
@@ -60,120 +61,120 @@
             android:text="绘图技巧研究" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_big_save"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="超级大图保存1万" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_glow"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="发光" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_svg"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="svg" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_interview"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="interview" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_wave"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="波浪" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/color"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ColorMarix" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_Pixels"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pixels" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_LightingColorFilter"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LightingColorFilter" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_MatrixPre"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Matrix(MapPoint 、逆向矩阵invert  getMatrix Camera getMatrix )" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_MatrixStudy"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Matrix 矩阵研究" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_canvas"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="图层" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_Xfermode"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Xfermode" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_imageBigTest"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="图片show的大小" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_imageCenter"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="图片 居中" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_draw"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="各种基本图形" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_drawText"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="draw text" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_drawTextUtils"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="drawtext工具测试" />
@@ -203,26 +204,101 @@
 
             <view.GradientView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
         </RelativeLayout>
+
         <view.testing.DrawView
             android:layout_width="100dp"
             android:layout_height="100dp" />
 
-        <view.CornerImageView
-            android:src="@drawable/aaaaaaaaaaaab"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
 
         <TextView
-            style="@style/TvOnClick"
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="CornerImageView" />
+
+        <view.corn.CornerImageView
+            app:civ_type="circle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/aaaaaaaaaaaab" />
+
+
+        <view.corn.CornerImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:civ_type="rounder"
+            app:round_corner="20dp"
+            app:round_corner_top_right="5dp"
+            app:round_corner_bottom_right_x="50dp"
+            app:round_corner_bottom_right_y="20dp"
+            android:src="@drawable/aaaaaaaaaaaab" />
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="CornerImageView border" />
+
+        <view.corn.CornerImageView
+            android:background="@color/colorAccent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:civ_type="rounder"
+            app:border_width="10dp"
+            app:border_color="#44FFaabb"
+            app:round_corner="20dp"
+            app:round_corner_top_right="5dp"
+            android:src="@drawable/aaaaaaaaaaaab" />
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="CornerImageView circle border" />
+
+        <view.corn.CornerImageView
+            android:background="@color/colorAccent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:civ_type="circle"
+            app:border_type="half_content_edge"
+            app:border_width="20dp"
+            app:border_color="#44FFaabb"
+            android:src="@drawable/aaaaaaaaaaaab" />
+
+        <view.corn.CornerImageView
+            android:background="@color/colorAccent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:civ_type="circle"
+            app:border_type="include_content"
+            app:border_width="20dp"
+            app:border_color="#44FFaabb"
+            android:src="@drawable/aaaaaaaaaaaab" />
+
+        <view.corn.CornerImageView
+            android:background="@color/colorAccent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:civ_type="circle"
+            app:border_type="exclude_content"
+            app:border_width="20dp"
+            app:border_color="#44FFaabb"
+            android:src="@drawable/aaaaaaaaaaaab" />
+
+        <TextView
             android:id="@+id/bt_matrixMethod"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Matrix各种特殊方法" />
+
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/btLrcView"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LrcView" />
@@ -235,29 +311,29 @@
             android:text="Path的学习" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_bezier"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="path bezier(qq小红点)" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_FlexibleBall"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="FlexibleBall" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_damping"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="阻尼公式" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_PathMeasure"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PathMeasure" />
@@ -277,8 +353,8 @@
             android:text="Canvas's clipRect " />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_clip_shader"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="shader" />
@@ -300,36 +376,36 @@
             android:text="BitmapUtils的测试" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_bitmap"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="位图深拷贝" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_bitmaptoRound"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="位图toRound" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_bitmaptoScale"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="位图toScale" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_bitmaptoRorate"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="位图toRorate" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_bitmapRecyle"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="回收使用的位图测试(点击崩溃)" />
@@ -342,12 +418,11 @@
             android:background="#00ff00" />
 
         <TextView
-            style="@style/TvOnClick"
             android:id="@+id/bt_spannable"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="spannable学习" />
-
 
 
     </com.zone.view.FlowLayout>

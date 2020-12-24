@@ -43,6 +43,9 @@ class CustomView_MainActivity : BaseFeatureActivity(), OnClickListener {
             R.id.bt_ScrollerView -> startActivity(Intent(this, ScrollerViewActivity::class.java))
             R.id.bt_FramePaddding -> startActivity(Intent(this, ChengChengActivity::class.java).putExtra("type", "FrameLayoutPadding"))
             R.id.bt_BottomSheet -> startActivity(Intent(this, BottomSheetActivity::class.java))
+            //zone todo: 2020/11/10 全局至灰
+            R.id.bt_all_gray -> startActivity(Intent(this, GrayViewActivity::class.java))
+            R.id.bt_marquee -> startActivity(Intent(this, MaqueeViewActivity::class.java))
             else -> {
             }
         }//			startActivity(new Intent(this,ViewpagerIndicatorActivity.class));

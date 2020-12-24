@@ -61,8 +61,8 @@ class MainActivity2 : BaseFeatureActivity() {
 
     override fun initData() {
         initFirst()
-
         permissionCheckStorageMustPermit()
+
         initLogger()
         createDialog()
         listView1.layoutManager = LinearLayoutManager(this)

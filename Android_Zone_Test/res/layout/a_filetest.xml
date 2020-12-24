@@ -2,7 +2,21 @@
 <com.zone.view.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/flowLayoutZone1"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
+
+    <TextView
+        style="@style/TvHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="外部app存储目录的数据是不需要权限就可以存储的" />
+
+    <TextView
+        android:id="@+id/exAppFolder"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="外部存储app的数据" />
 
     <TextView
         style="@style/TvHint"
@@ -10,45 +24,49 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="File相关" />
+
     <TextView
-        style="@style/TvOnClick"
         android:id="@+id/create"
-        android:background="#00f00f"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#00f00f"
         android:padding="5dp"
         android:text="创建目录" />
 
 
     <TextView
-        style="@style/TvOnClick"
         android:id="@+id/delete"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="删除目录" />
+
     <TextView
-        style="@style/TvOnClick"
         android:id="@+id/readFile"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="独立：创建文件写入bytes读取文件" />
+
     <TextView
-        style="@style/TvOnClick"
         android:id="@+id/copyFileto"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="文件复制" />
 
 
     <TextView
-        style="@style/TvOnClick"
         android:id="@+id/sd"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sd剩余空间" />
+
     <TextView
-        style="@style/TvOnClick"
         android:id="@+id/self"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="声明周期测试" />
@@ -59,9 +77,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="sp相关" />
+
     <TextView
-        style="@style/TvOnClick"
         android:id="@+id/sptest"
+        style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sptest" />

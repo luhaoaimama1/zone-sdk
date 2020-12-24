@@ -95,4 +95,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="歌词滚播" />
+
+    <TextView
+        android:id="@+id/bt_drag_view"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="锁定框内拖拽view" />
 </com.zone.view.FlowLayout>

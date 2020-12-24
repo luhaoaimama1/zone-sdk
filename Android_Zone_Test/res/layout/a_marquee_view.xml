@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zone.view.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flowLayoutZone1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+
+    <view.MarqueeView
+        android:id="@+id/frg_disable_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:paddingStart="50dp"
+        android:background="@drawable/arraw"
+        android:textSize="20sp"
+        android:text="小学生作文网提供:一年级,二年级,三年级,四年级,五年级,六年级,小学生作文精选,欢迎同学们来小学作文网投稿" />
+    <android.widget.MarqueeZoneView
+        android:id="@+id/frg_scroll_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:paddingStart="50dp"
+        android:textSize="20sp"
+        android:background="@drawable/arraw"
+        android:text="小学生作文网提供:一年级,二年级,三年级,四年级,五年级,六年级,小学生作文精选,欢迎同学们来小学作文网投稿" />
+
+</com.zone.view.FlowLayout>

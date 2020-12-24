@@ -2,72 +2,100 @@ package com.example.mylib_test.activity.frag_viewpager_expand
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import androidx.viewpager.widget.ViewPager
-
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.ImageView
+import androidx.viewpager.widget.ViewPager
 
 class ViewPagerIndicator @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) : ImageView(context, attrs, defStyle) {
 
     private var chatDrawable: Drawable? = null
 
     private var rects: Array<IntArray>? = null
-    private var state = -1
     private var startpoint = 0
     private var kuand = 0
+    private val bounds: Rect by lazy {
+        Rect()
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (chatDrawable != null) {
-            chatDrawable!!.setBounds(startpoint, 0, startpoint + kuand, height)
-            chatDrawable!!.draw(canvas)
+        chatDrawable?.let {
+            bounds.set(startpoint, 0, startpoint + kuand, height)
+            fixedWithCallback?.invoke(bounds)
+            it.bounds = bounds
+            it.draw(canvas)
         }
     }
 
+    var fixedWithCallback: ((bounds: Rect) -> Unit)? = null
+
+    var initComplete = false
+
+    private fun init(position: Int) {
+        val viewsTemp = views ?: return
+        //绘制 rects[position] 第一此的setposition
+        val rectsTemp = Array(viewsTemp.size) { IntArray(2) }.apply {
+            rects = this
+        }
+        for (i in rectsTemp.indices)
+            viewsTemp[i].getLocationOnScreen(rectsTemp[i])
+        startpoint = rectsTemp[position][0]
+        kuand = viewsTemp[position].width
+        invalidate()
+        initComplete = true
+
+    }
+
+    var vp: ViewPager? = null
+    var views: List<View>? = null
 
     fun setViewPagerWithItemView(vp: ViewPager, vararg views: View) {
-        if (vp.adapter!!.count != views.size)
+        initComplete = false
+        this.vp = vp
+        this.views = views.toList()
+        if (vp.adapter?.count ?: 0 != views.size)
             throw IllegalStateException("长度不一样!")
 
-
-        vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                if (state == -1) {
-                    //绘制 rects[position]
-                    //第一此的setposition
-                    vp.postDelayed({
-                        rects = Array(views.size) { IntArray(2) }
-                        for (i in rects!!.indices)
-                        //postDelay 因为有些机器需要延时才能得到正确的值 不然值特别奇怪
-                        //而且延时200都不一定获得正确的值... 如果有人知道更好的办法请告诉我~
-                            views[i].getLocationOnScreen(rects!![i])
-                        startpoint = rects!![position][0]
-                        kuand = views[position].width
-                        invalidate()
-                    }, 500)
-                } else {
-                    if (position + 1 < views.size) {//防止数组越界
-                        startpoint = (rects!![position][0] + (rects!![position + 1][0] - rects!![position][0]) * positionOffset).toInt()
-                        kuand = (views[position].width + (views[position + 1].width - views[position].width) * positionOffset).toInt()
-                        invalidate()
-                    }
+        if (views.isNotEmpty()) {
+            this.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    this@ViewPagerIndicator.viewTreeObserver.removeOnPreDrawListener(this)
+                    return this@ViewPagerIndicator.vp?.let {
+                        init(it.currentItem)
+                        false
+                    } ?: true
                 }
-                log("onPageScrolled:" + position +
-                        "\t positionOffset:" + positionOffset + "\t positionOffsetPixels:" + positionOffsetPixels)
-            }
+            })
 
-            override fun onPageSelected(position: Int) {
-                log("onPageSelected:$position")
-            }
+            vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                    if (initComplete) {
+                        val rectsTemp = rects ?: return
+                        if (position + 1 < views.size) {//防止数组越界
+                            startpoint = (rectsTemp[position][0] + (rectsTemp[position + 1][0] - rectsTemp[position][0]) * positionOffset).toInt()
+                            kuand = (views[position].width + (views[position + 1].width - views[position].width) * positionOffset).toInt()
+                            invalidate()
+                        }
+                    }
+                    log("onPageScrolled:" + position +
+                            "\t positionOffset:" + positionOffset + "\t positionOffsetPixels:" + positionOffsetPixels)
+                }
 
-            override fun onPageScrollStateChanged(state: Int) {
-                log("state:$state")
-                this@ViewPagerIndicator.state = state
-            }
-        })
+                override fun onPageSelected(position: Int) {
+                    log("onPageSelected:$position")
+                }
+
+                override fun onPageScrollStateChanged(state: Int) {
+                    log("state:$state")
+                }
+            })
+        }
     }
 
     fun setDrawRes(resId: Int) {

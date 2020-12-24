@@ -25,7 +25,7 @@ public class GlowView extends View {
 
         paintOutter.setStrokeWidth(3F);
         paintOutter.setColor(Color.RED);
-//        paint.setShadowLayer(50,70,70,Color.BLUE);
+//        paint.setShadowLayer(4,70,70,Color.BLUE);
     }
 
     @Override

@@ -1,24 +1,24 @@
 package com.example.mylib_test.activity.file
 
-import java.io.ByteArrayInputStream
-import java.io.File
-import java.io.InputStream
-import java.io.UnsupportedEncodingException
-
-import com.example.mylib_test.R
-
-import com.zone.lib.utils.activity_fragment_ui.ToastUtils
-import com.zone.lib.utils.data.file2io2data.FileUtils
-import com.zone.lib.utils.data.file2io2data.SDCardUtils
-import com.zone.lib.utils.data.file2io2data.IOUtils
 import android.content.Intent
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import com.example.mylib_test.FileManager
 import com.example.mylib_test.LogApp
+import com.example.mylib_test.R
 import com.example.mylib_test.SP2
+import com.example.mylib_test.app.Apps
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
+import com.zone.lib.utils.activity_fragment_ui.ToastUtils
+import com.zone.lib.utils.data.file2io2data.FileUtils
+import com.zone.lib.utils.data.file2io2data.IOUtils
+import com.zone.lib.utils.data.file2io2data.SDCardUtils
+import java.io.ByteArrayInputStream
+import java.io.File
+import java.io.InputStream
+import java.io.UnsupportedEncodingException
 
 class FileTestActivity : BaseFeatureActivity(), OnClickListener {
     override fun setContentView() {
@@ -34,6 +34,7 @@ class FileTestActivity : BaseFeatureActivity(), OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            R.id.exAppFolder -> exAppFolderCreate()
             R.id.create -> createFile()
             R.id.delete -> deleteFile()
             R.id.readFile -> readFile()
@@ -45,6 +46,21 @@ class FileTestActivity : BaseFeatureActivity(), OnClickListener {
             else -> {
             }
         }
+    }
+
+    private fun exAppFolderCreate() {
+        //得到bbcc.txt这个文件 读取文件
+        val file = File(Apps.context.getExternalFilesDir("testabc"), "bbcc.txt")
+        val text = "我非常好,你说呢！"
+        var ins: InputStream? = null
+        try {
+            ins = ByteArrayInputStream(text.toByteArray(charset("GBK")))
+        } catch (e: UnsupportedEncodingException) {
+            e.printStackTrace()
+        }
+
+        IOUtils.write(file, ins)
+        Log.e("xihuan", IOUtils.read(file, "GBK"))
     }
 
     private fun copyFile() {
@@ -71,8 +87,10 @@ class FileTestActivity : BaseFeatureActivity(), OnClickListener {
 
     private fun createFile() {
         //创建目录测试
-        val file2 = FileUtils.getFile(FileManager.MyFolder,  "mma", "heihei", "bbcc.txt")
-        Log.e("xihuan", file2.absolutePath)
+//        val file2 = FileUtils.getFile(FileManager.MyFolder,  "mma", "heihei", "bbcc.txt")
+//        Log.e("xihuan", file2.absolutePath)
+        val file= File(Environment.getExternalStorageDirectory(),"Zone");
+        file.mkdirs()
     }
 
     private fun deleteFile() {

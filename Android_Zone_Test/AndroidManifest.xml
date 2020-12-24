@@ -86,6 +86,8 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.ChengChengActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.ScrollerViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.RippleViewActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.GrayViewActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.MaqueeViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.db.Db_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.Http_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.ZBusActivity"></activity>
@@ -160,6 +162,7 @@
         <activity android:name=".activity.study.ui.DynamicLogoActivity"></activity>
         <activity android:name=".activity.study.ui.CrashDataActivity"></activity>
         <activity android:name=".activity.study.ui.SongScrollActivity"></activity>
+        <activity android:name=".activity.study.ui.DragActivity"></activity>
         <activity android:name=".activity.study.ui.X5Activity"></activity>
         <activity android:name=".activity.study.ui.PDFBoxActivity"></activity>
         <activity android:name=".activity.study.ui.GoogleOfficeActivity"></activity>
