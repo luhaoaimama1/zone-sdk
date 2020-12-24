@@ -1,15 +1,20 @@
 package view
 
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.PixelFormat
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.InsetDrawable
-import android.os.Build
 import android.util.AttributeSet
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntDef
-import androidx.annotation.RequiresApi
+import com.example.mylib_test.LogApp
 import com.example.mylib_test.R
+import com.zone.lib.utils.view.DrawUtils
 
 class ImageTextView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -28,33 +33,93 @@ class ImageTextView @JvmOverloads constructor(
     annotation class DrawableIndex
 
     class InsetDrawableInner : InsetDrawable {
-        var mDrawableInner: Drawable? = null
+        private val mTmpRect = Rect()
+        var insetLeft = 0
+        var insetTop = 0
+        var insetRight = 0
+        var insetBottom = 0
+        val mPaint = DrawUtils.getBtPaint()
+        var drawableBackgroudColor = 0
+            set(value) {
+                mPaint.color = value
+                field = value
+            }
 
-        constructor(drawable: Drawable?, inset: Int) : super(drawable, inset) {
-            mDrawableInner = drawable
-        }
+        var mDrawableInner: Drawable
 
-        @RequiresApi(Build.VERSION_CODES.O)
-        constructor(drawable: Drawable?, inset: Float) : super(drawable, inset)
+        constructor(drawable: Drawable, inset: Int) : this(drawable, inset, inset, inset, inset)
+
         constructor(
-                drawable: Drawable?,
+                drawable: Drawable,
                 insetLeft: Int,
                 insetTop: Int,
                 insetRight: Int,
                 insetBottom: Int
-        ) : super(drawable, insetLeft, insetTop, insetRight, insetBottom) {
+        ) : super(drawable, 0) {
             mDrawableInner = drawable
+            this.insetLeft = insetLeft
+            this.insetTop = insetTop
+            this.insetRight = insetRight
+            this.insetBottom = insetBottom
         }
 
-        @RequiresApi(Build.VERSION_CODES.O)
-        constructor(
-                drawable: Drawable?,
-                insetLeftFraction: Float,
-                insetTopFraction: Float,
-                insetRightFraction: Float,
-                insetBottomFraction: Float
-        ) : super(drawable, insetLeftFraction, insetTopFraction, insetRightFraction, insetBottomFraction) {
-            mDrawableInner = drawable
+        override fun getPadding(padding: Rect): Boolean {
+            val superPadding = super.getPadding(padding)
+            return superPadding || (insetLeft or insetTop or insetRight or insetBottom) != 0
+        }
+
+        override fun getIntrinsicWidth(): Int {
+            val childWidth = mDrawableInner.intrinsicWidth
+            return if (childWidth < 0) {
+                -1
+            } else {
+                childWidth + insetLeft + insetRight
+            }
+        }
+
+        override fun getIntrinsicHeight(): Int {
+            val childHeight = mDrawableInner.intrinsicHeight
+            return if (childHeight < 0) {
+                -1
+            } else {
+                childHeight + insetTop + insetBottom
+            }
+        }
+
+        override fun getOpacity(): Int {
+            val opacity = mDrawableInner.opacity
+            return if (opacity == PixelFormat.OPAQUE && (insetLeft or insetTop or insetRight or insetBottom) > 0) {
+                PixelFormat.TRANSLUCENT
+            } else opacity
+        }
+
+        override fun onBoundsChange(bounds: Rect) {
+            mTmpRect.set(bounds)
+            mTmpRect.right = bounds.width() - insetLeft - insetRight
+            mTmpRect.bottom = bounds.height() - insetTop - insetBottom
+            mTmpRect.offset(insetLeft, insetTop)
+            LogApp.d("bounds before:${bounds.toString()} \tmTmpRect:${mTmpRect}" +
+                    "\t [insetLeft:$insetLeft,insetTop:$insetTop,insetRight:$insetRight,insetBottom:$insetBottom]")
+            super.onBoundsChange(mTmpRect)
+            LogApp.d("bounds after:${mDrawableInner.bounds.toString()}" +
+                    "\t [insetLeft:$insetLeft,insetTop:$insetTop,insetRight:$insetRight,insetBottom:$insetBottom]")
+        }
+
+
+        override fun draw(canvas: Canvas) {
+            if (mPaint.color != Color.TRANSPARENT) {
+                canvas.drawRect(bounds, mPaint)
+            }
+            super.draw(canvas)
+        }
+
+        override fun setDrawable(dr: Drawable) {
+            mDrawableInner = dr
+            super.setDrawable(dr)
+        }
+
+        override fun getDrawable(): Drawable {
+            return mDrawableInner
         }
     }
 
@@ -62,6 +127,10 @@ class ImageTextView @JvmOverloads constructor(
     var drawableHeight = arrayOf(0f, 0f, 0f, 0f)
     var drawableWidth = arrayOf(0f, 0f, 0f, 0f)
     var arrays = arrayOf(0, 0, 0, 0)
+
+    //如果生成了就存在缓存中 下次就不会生成了
+    var insetDrawableInnerArrays = arrayOfNulls<InsetDrawableInner>(4)
+    var drawableBackgroudColor: Int = Color.TRANSPARENT
 
     init {
         if (attrs != null) {
@@ -85,6 +154,8 @@ class ImageTextView @JvmOverloads constructor(
                     drawableMargins[3] = typedArray.getDimension(R.styleable.ImageTextView_bottomDrawableMargin, 0f)
                     drawableHeight[3] = typedArray.getDimension(R.styleable.ImageTextView_bottomDrawableHeight, 0f)
                     drawableWidth[3] = typedArray.getDimension(R.styleable.ImageTextView_bottomDrawableWidth, 0f)
+
+                    drawableBackgroudColor = typedArray.getColor(R.styleable.ImageTextView_drawableBackgroudColor, Color.TRANSPARENT)
                 } finally {
                     typedArray.recycle()
                 }
@@ -94,9 +165,9 @@ class ImageTextView @JvmOverloads constructor(
         updateCompoundDrawables(compoundDrawables)
     }
 
-    //用户？setCompoundDrawables
-
-    //zone todo: 2020/12/24  从新set 怎么保证不嵌套inset？ 生成的存起来 判断是否是同一个？
+    /**
+     * @param drawable 等于-1 的时候代表置空
+     */
     fun setDrawable(
             @DrawableIndex index: Int,
             @DrawableRes drawable: Int,
@@ -109,8 +180,12 @@ class ImageTextView @JvmOverloads constructor(
         drawableWidth[index] = width
 
         val drawables = compoundDrawables
-        drawables[index] = resources.getDrawable(drawable)
-        //这里需要全部更新一遍不能单独更新,单独更新会导致另一边宽度不准确
+        if (drawable == -1) {
+            drawables[index] = null
+        } else {
+            drawables[index] = resources.getDrawable(drawable).mutate()
+        }
+        //tips:这里需要全部更新一遍不能单独更新,单独更新会导致另一边宽度不准确
         updateCompoundDrawables(drawables)
     }
 
@@ -119,14 +194,14 @@ class ImageTextView @JvmOverloads constructor(
         for (index in compoundDrawables.indices) {
             val drawable = compoundDrawables[index]
             //确保不是自己生成的壳子 因为没有set去更改inset所以需要重新生成
-            if(drawable is InsetDrawableInner){
+            if (drawable is InsetDrawableInner) {
                 compoundDrawables[index] = drawable.mDrawableInner
             }
         }
         return compoundDrawables
     }
 
-    private fun updateCompoundDrawables(drawables:Array<Drawable?>) {
+    private fun updateCompoundDrawables(drawables: Array<Drawable?>) {
         for (index in drawables.indices) {
             updateCompoundDrawableIndex(drawables, index)
         }
@@ -135,28 +210,45 @@ class ImageTextView @JvmOverloads constructor(
     }
 
     private fun updateCompoundDrawableIndex(drawables: Array<Drawable?>, index: Int) {
-        val drawable =  drawables[index]
+        val drawable = drawables[index]
         if (drawable != null) {
-            val rightDrawableMarginTemp = drawableMargins[index]
-            val rightDrawableWidthTemp = if (drawableWidth[index] == 0f) drawable.intrinsicWidth else drawableWidth[index].toInt()
-            val rightDrawableHeightTemp = if (drawableHeight[index] == 0f) drawable.intrinsicHeight else drawableHeight[index].toInt()
+            val drawableMarginTemp = drawableMargins[index]
+            val drawableWidthTemp = if (drawableWidth[index] == 0f) drawable.intrinsicWidth else drawableWidth[index].toInt()
+            val drawableHeightTemp = if (drawableHeight[index] == 0f) drawable.intrinsicHeight else drawableHeight[index].toInt()
 
             for (i in 0 until 4) {
                 arrays[i] = 0
             }
 
             val oppositeIndex = (index + 2) % 4
-            arrays[oppositeIndex] = rightDrawableMarginTemp.toInt()
+            arrays[oppositeIndex] = drawableMarginTemp.toInt()
 
-            val insetDrawableInner = InsetDrawableInner(drawable, arrays[0], arrays[1], arrays[2], arrays[3])
-            var widthReal = rightDrawableWidthTemp
-            var heightReal = rightDrawableHeightTemp
+            val insetDrawableInnerTemp = insetDrawableInnerArrays[index]
+            val insetDrawableInner = if (insetDrawableInnerTemp != null &&
+                    insetDrawableInnerTemp.drawable == drawable) {
+                LogApp.d("复用index：${index}")
+                //如果drawable 重复的话 可以复用 不然就重新创建
+                insetDrawableInnerTemp.insetLeft = arrays[0]
+                insetDrawableInnerTemp.insetTop = arrays[1]
+                insetDrawableInnerTemp.insetRight = arrays[2]
+                insetDrawableInnerTemp.insetBottom = arrays[3]
+                insetDrawableInnerTemp
+            } else {
+                val insetDrawableInner = InsetDrawableInner(drawable, arrays[0], arrays[1], arrays[2], arrays[3])
+                insetDrawableInner.drawableBackgroudColor = drawableBackgroudColor
+                LogApp.d("创建index：${index}")
+                insetDrawableInnerArrays[index] = insetDrawableInner
+                insetDrawableInner
+            }
+
+            var widthReal = drawableWidthTemp
+            var heightReal = drawableHeightTemp
             when (index) {
                 LEFT, RIGHT -> {
-                    widthReal += rightDrawableMarginTemp.toInt()
+                    widthReal += drawableMarginTemp.toInt()
                 }
                 TOP, Bottom -> {
-                    heightReal += rightDrawableMarginTemp.toInt()
+                    heightReal += drawableMarginTemp.toInt()
                 }
                 else -> {
                 }

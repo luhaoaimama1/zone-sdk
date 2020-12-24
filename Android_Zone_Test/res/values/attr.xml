@@ -89,6 +89,8 @@
         <attr name="bottomDrawableWidth" format="dimension" />
         <attr name="bottomDrawableHeight" format="dimension" />
         <attr name="bottomDrawableMargin" format="dimension" />
+
+        <attr name="drawableBackgroudColor" format="color" />
     </declare-styleable>
 
 </resources>
