@@ -20,6 +20,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 //            if(context.getApplicationContext() instanceof Application){
 //                KeepLives.keepLive((Application)context.getApplicationContext());
 //            }
+        }else{
+            KeepLiveBroadcasts.logE("MyBroadcastReceiver", "intent is null");
         }
     }
 }

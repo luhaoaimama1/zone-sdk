@@ -11,8 +11,7 @@
         <receiver
             android:name=".receiver.BootReceiver"
             android:exported="false"
-            android:process="@string/mainfest_service_process">
-
+            android:process=":service">
 
             <intent-filter android:priority="2147483647">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -40,7 +39,6 @@
                 <data android:scheme="file" />
             </intent-filter>
         </receiver>
-
 
     </application>
 
