@@ -1,15 +1,13 @@
 package com.example.mylib_test
 
-import android.app.Activity
-import com.example.mylib_test.activity.db.entity.MenuEntity
-import com.example.mylib_test.adapter.delegates.MenuEntityDeletates
 import android.app.AlertDialog
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.mylib_test.activity.db.entity.MenuEntity
+import com.example.mylib_test.adapter.delegates.MenuEntityDeletates
+import com.example.mylib_test.app.Apps
 import com.zone.adapter3kt.QuickAdapter
 import com.zone.adapter3kt.QuickConfig
 import com.zone.adapter3kt.ViewStyleDefault
@@ -18,12 +16,14 @@ import com.zone.adapter3kt.adapter.OnItemClickListener
 import com.zone.adapter3kt.data.HFMode
 import com.zone.adapter3kt.loadmore.LoadingSetting
 import com.zone.adapter3kt.loadmore.OnScrollRcvListener
-import com.zone.lib.base.controller.activity.BaseFeatureActivity
+import com.zone.keeplives.KeepLives
 import com.zone.lib.LogZSDK
 import com.zone.lib.ZLogger
+import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.zone.lib.base.controller.activity.controller.SwipeBackActivityController
+import com.zone.lib.utils.activity_fragment_ui.handler.HandlerUiUtil.postDelayed
 import kotlinx.android.synthetic.main.a_menu.*
-import java.util.ArrayList
+import java.util.*
 
 class MainActivity2 : BaseFeatureActivity() {
 
@@ -60,6 +60,8 @@ class MainActivity2 : BaseFeatureActivity() {
     }
 
     override fun initData() {
+        KeepLives.start(this)
+
         initFirst()
         permissionCheckStorageMustPermit()
 

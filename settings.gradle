@@ -1,2 +1,7 @@
+include ':keeplive:base_keeplive'
+include ':keeplive:funjun_keeplive'
+include ':keeplive:keeplives'
+include 'keeplive:lib_keeplive'
+include 'keeplive:LibMarsdaemon'
 include ':Android_Zone_Lib'
 include ':Android_Zone_Test'

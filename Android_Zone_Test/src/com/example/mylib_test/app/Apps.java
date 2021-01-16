@@ -16,11 +16,14 @@ package com.example.mylib_test.app;
  *******************************************************************************/
 
 import com.bumptech.glide.Glide;
+import com.example.mylib_test.R;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
@@ -29,14 +32,19 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
+import com.zone.keeplives.KeepLives;
 import com.zone.lib.Configure;
+import com.zone.lib.utils.activity_fragment_ui.handler.HandlerUiUtil;
 import com.zone.lib.utils.executor.ExecutorUtils;
 import com.zone.lib.utils.data.info.PrintLog;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import zone.com.zrefreshlayout.Config;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
@@ -57,7 +65,8 @@ public class Apps extends Application {
             "og555S+C3eJAAVeNCTeMS3N/M5hzBRJAoffn3qoYdAO1Q8bTguOi+2849A==\n" +
             "-----END CERTIFICATE-----";
 
-    public static Context context;
+    public static Application context;
+
     // SDCard路径
     @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @SuppressWarnings("unused")
@@ -65,6 +74,18 @@ public class Apps extends Application {
     public void onCreate() {
         super.onCreate();
         context=this;
+        //定义前台服务的默认样式。即标题、描述和图标
+        KeepLives.keepRelife(Apps.context, KeepLives.Config.builder()
+                .notificationTitle("haha")
+                .notificationIconRes(R.drawable.aaaaaaaaaaaab)
+                .notificationDescription("description")
+                .notificationClickListener(new KeepLives.NotificationClickListener(){
+                    @Override
+                    public void onForegroundNotificationClick(Context context, Intent intent) {
+
+                    }
+                })
+        );
         Configure.init(this);
         CrashDefaultHandler.init2();
         PrintLog.restart();

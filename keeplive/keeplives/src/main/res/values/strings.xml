@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KeepProcLive</string>
+
+    <string name="account_type">com.example.mylib_test</string>
+    <string name="account_name">fuzhipeng</string>
+    <string name="mainfest_service_process">:service</string>
+</resources>

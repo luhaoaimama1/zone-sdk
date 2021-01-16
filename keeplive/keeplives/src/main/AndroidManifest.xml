@@ -1,0 +1,60 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zone.keeplives">
+
+    <application>
+
+        <receiver
+            android:name="com.zone.keeplives.utils.Receiver1"
+            android:process=":service" />
+
+        <service
+            android:name="com.zone.keeplives.utils.Service1"
+            android:process=":service" />
+
+        <receiver
+            android:name="com.zone.keeplives.utils.DemonReceiver"
+            android:process=":deamonService" />
+
+        <service
+            android:name="com.zone.keeplives.utils.DemonService"
+            android:process=":deamonService" />
+
+
+        <receiver android:name=".MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.zone.keeplive" />
+            </intent-filter>
+        </receiver>
+
+        <!--Android帐号同步相关用来保活-->
+        <service
+            android:name="com.henrik.keeplive.accountsync.AccountAuthenticatorService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+        <service
+            android:name="com.henrik.keeplive.accountsync.SyncService"
+            android:exported="true"
+            android:process="@string/mainfest_service_process">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync" />
+        </service>
+
+        <provider
+            android:name="com.henrik.keeplive.accountsync.EmptyProviderForSync"
+            android:authorities="${applicationId}"
+            android:process="@string/mainfest_service_process"
+            />
+    </application>
+</manifest>

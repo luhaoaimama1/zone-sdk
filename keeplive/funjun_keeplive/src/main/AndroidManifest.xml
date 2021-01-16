@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fanjun.keeplive">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> //TODD兼容Android9.0权限
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+    <application>
+        <receiver android:name="com.fanjun.keeplive.receiver.NotificationClickReceiver"/>
+        <activity android:name="com.fanjun.keeplive.activity.OnePixelActivity" android:theme="@style/onePixelActivity" android:launchMode="singleInstance" android:excludeFromRecents="true"/>
+        <service android:name="com.fanjun.keeplive.service.LocalService"/>
+        <service android:name="com.fanjun.keeplive.service.HideForegroundService"/>
+        <service android:name="com.fanjun.keeplive.service.JobHandlerService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.fanjun.keeplive.service.RemoteService" android:process=":remote"/>
+    </application>
+</manifest>
