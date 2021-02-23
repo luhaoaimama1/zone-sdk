@@ -44,6 +44,9 @@ class StudyMainActivity : BaseFeatureActivity() {
             R.id.bt_song_scroll -> startActivity(Intent(this, SongScrollActivity::class.java))
             R.id.bt_drag_view -> startActivity(Intent(this, DragActivity::class.java))
             R.id.bt_crash -> crashPrint()
+            R.id.bt_service -> ForegroudService.startService(this)
+            R.id.bt_NotifiBindservice -> ForegroudService.startServiceShowNotification(this)
+            R.id.bt_NotifiHideservice ->  ForegroudService.startServiceHideNotification(this)
             else -> {
             }
         }

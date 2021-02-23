@@ -53,7 +53,7 @@
 
         <provider
             android:name="com.henrik.keeplive.accountsync.EmptyProviderForSync"
-            android:authorities="${applicationId}"
+            android:authorities="@string/account_authorities"
             android:process=":service"
             />
     </application>

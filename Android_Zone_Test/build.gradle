@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -78,7 +78,8 @@ dependencies {
 //    implementation'com.github.luhaoaimama1:ZAdapter3:1.0.94'
     implementation'com.github.luhaoaimama1:ZAdapter3KT:2.0.2'
 
-    implementation project(path: ':keeplive:keeplives')
+//    implementation project(path: ':keeplive:keeplives')
+    implementation project(path: ':lib_keeplive')
 
     //图像处理相关
     implementation 'com.facebook.fresco:fresco:1.9.0'

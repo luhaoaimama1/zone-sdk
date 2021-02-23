@@ -27,6 +27,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -191,6 +192,12 @@
             android:name="com.example.mylib_test.activity.utils.Utils_MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"></activity>
 
+        <service android:name="com.example.mylib_test.activity.study.ForegroudService" android:process=":fservice"/>
+        <receiver android:name="com.example.mylib_test.activity.study.ClickBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.zone.MyBroadcastReceiver" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -4,6 +4,11 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
+//        resValue "string", "account_authorities_gan", applicationId + ''
+        println applicationId + '====？'
+        println rootProject.ext.applicationId+ '==>aaalalal'
+        println rootProject.ext.applicationId2.a+ '==>aalalal'
+        println "token=>${TOKEN}"
         minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
@@ -11,6 +16,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
     }
 
     buildTypes {

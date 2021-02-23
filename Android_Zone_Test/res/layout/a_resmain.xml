@@ -121,23 +121,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:drawableRight="@drawable/a1"
-            android:drawableLeft="@drawable/a1"
-            android:drawableBottom="@drawable/a1"
+            android:drawableTop="@drawable/a1"
             android:text="abcc"
             android:textColor="@color/red"
-            app:rightDrawableMargin="20dp"
-            app:rightDrawableHeight="50dp"
-            app:rightDrawableWidth="50dp"
-
-
-            app:leftDrawableMargin="0dp"
-            app:leftDrawableHeight="20dp"
-            app:leftDrawableWidth="20dp"
-
-            app:bottomDrawableMargin="1dp"
-            app:bottomDrawableHeight="20dp"
-            app:bottomDrawableWidth="20dp"
+            app:topDrawableHeight="20dp"
+            app:topDrawableWidth="20dp"
             tools:drawableBackgroudColor="@color/white"
             />
 

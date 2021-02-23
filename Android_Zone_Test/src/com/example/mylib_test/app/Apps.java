@@ -27,12 +27,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
-
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
-import com.zone.keeplives.KeepLives;
+import com.zone.KeepLives;
 import com.zone.lib.Configure;
 import com.zone.lib.utils.activity_fragment_ui.handler.HandlerUiUtil;
 import com.zone.lib.utils.executor.ExecutorUtils;
@@ -74,18 +73,6 @@ public class Apps extends Application {
     public void onCreate() {
         super.onCreate();
         context=this;
-        //定义前台服务的默认样式。即标题、描述和图标
-        KeepLives.keepRelife(Apps.context, KeepLives.Config.builder()
-                .notificationTitle("haha")
-                .notificationIconRes(R.drawable.aaaaaaaaaaaab)
-                .notificationDescription("description")
-                .notificationClickListener(new KeepLives.NotificationClickListener(){
-                    @Override
-                    public void onForegroundNotificationClick(Context context, Intent intent) {
-
-                    }
-                })
-        );
         Configure.init(this);
         CrashDefaultHandler.init2();
         PrintLog.restart();
@@ -123,6 +110,13 @@ public class Apps extends Application {
                 Glide.get(getApplicationContext()).clearDiskCache();
             }
         });
+//        KeepLives.keepRelife(this,new KeepLives.Config()
+//                .notificationDescription("嘎嘎")
+//                .notificationIconRes(R.drawable.aaaaaaaaaaaab)
+//                .notificationTitle("嘎嘎Title")
+//                .builder()
+//        );
+        KeepLives.config(this);
     }
 
     @Override

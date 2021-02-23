@@ -1,0 +1,6 @@
+ext {
+    applicationId ='我哭了'
+    applicationId2 =[
+            a:"我真的可以吗"
+    ]
+}

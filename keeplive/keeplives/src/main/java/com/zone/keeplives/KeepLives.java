@@ -18,7 +18,7 @@ public class KeepLives {
     public static void keepRelife(@NonNull Application application, @NonNull Config config) {
         KeepLiveBroadcasts.log("调用keepRelife 进程名字:" + Helper.returnProcessName(application));
         keepRelifeFromAccountSync(application);
-        keepRelifeFromMars(application);
+//        keepRelifeFromMars(application);
 
         //主进程活着的时候仅仅触发一次
         keepLive(application, config);

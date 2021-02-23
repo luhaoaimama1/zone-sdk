@@ -102,4 +102,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="锁定框内拖拽view" />
+
+    <TextView
+        style="@style/TvHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="service" />
+
+
+    <TextView
+        android:id="@+id/bt_service"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="startservice" />
+
+
+    <TextView
+        android:id="@+id/bt_NotifiBindservice"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NotifiBindservice" />
+
+
+    <TextView
+        android:id="@+id/bt_NotifiHideservice"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NotifiHideservice" />
 </com.zone.view.FlowLayout>

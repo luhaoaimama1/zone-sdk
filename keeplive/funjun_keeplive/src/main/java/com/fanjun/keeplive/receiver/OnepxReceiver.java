@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Looper;
 
 import com.fanjun.keeplive.activity.OnePixelActivity;
+import com.zone.base_keeplive.KeepLiveBroadcasts;
 
 public final class OnepxReceiver extends BroadcastReceiver {
     android.os.Handler mHander;
@@ -18,6 +19,7 @@ public final class OnepxReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
+        KeepLiveBroadcasts.log("OnepxReceiver_intent:"+intent.getAction());
         if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {    //屏幕关闭的时候接受到广播
             screenOn = false;
             mHander.postDelayed(new Runnable() {

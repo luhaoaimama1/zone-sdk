@@ -59,14 +59,14 @@ public final class JobHandlerService extends JobService {
 
     public boolean onStartJob(JobParameters jobParameters) {
         KeepLiveBroadcasts.log("onStartJob");
-        keepServiceLife();
+//        keepServiceLife();
         timerDoTask();
         return false;
     }
 
     public boolean onStopJob(JobParameters jobParameters) {
         KeepLiveBroadcasts.log("onStopJob");
-        keepServiceLife();
+//        keepServiceLife();
         return false;
     }
 

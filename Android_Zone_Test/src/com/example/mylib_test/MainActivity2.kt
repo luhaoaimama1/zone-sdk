@@ -16,12 +16,10 @@ import com.zone.adapter3kt.adapter.OnItemClickListener
 import com.zone.adapter3kt.data.HFMode
 import com.zone.adapter3kt.loadmore.LoadingSetting
 import com.zone.adapter3kt.loadmore.OnScrollRcvListener
-import com.zone.keeplives.KeepLives
 import com.zone.lib.LogZSDK
 import com.zone.lib.ZLogger
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.zone.lib.base.controller.activity.controller.SwipeBackActivityController
-import com.zone.lib.utils.activity_fragment_ui.handler.HandlerUiUtil.postDelayed
 import kotlinx.android.synthetic.main.a_menu.*
 import java.util.*
 
@@ -60,8 +58,6 @@ class MainActivity2 : BaseFeatureActivity() {
     }
 
     override fun initData() {
-        KeepLives.start(this)
-
         initFirst()
         permissionCheckStorageMustPermit()
 
