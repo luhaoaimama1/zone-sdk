@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.zone.KeepLives;
 import com.zone.R;
-import com.zone.keeplive.receiver.ScreenOffOnBroadcastReceiver;
+import com.zone.keeplive.receiver.ScreenOffOnObserver;
 import com.zone.utils.NotificationUtils;
 import com.zone.utils.PowerManagers;
 
@@ -38,13 +38,12 @@ public class KeepLiveService extends Service {
     };
 
     private Handler handler = new Handler();
-    private ScreenOffOnBroadcastReceiver mScreenOffOnBroadcastReceiver = new ScreenOffOnBroadcastReceiver();
+    private ScreenOffOnObserver mScreenOffOnBroadcastReceiver = new ScreenOffOnObserver();
     private boolean bindDemonServiceSuccess;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        registerScreenOffOnReceiver();
         screenOffOnCheck();
         //zone todo: 2021/2/22  前台消息制造工厂
     }
@@ -55,8 +54,7 @@ public class KeepLiveService extends Service {
             public void run() {
                 boolean screenOn = PowerManagers.isScreenOn(KeepLiveService.this);
                 KeepLives.log("KeepLiveService: \t 定时 检查屏幕："+ screenOn);
-//                mScreenOffOnObserver.onReceive(screenOn);
-                ScreenOffOnBroadcastReceiver.sendBroad(KeepLiveService.this, screenOn);
+                mScreenOffOnBroadcastReceiver.onReceive(KeepLiveService.this,screenOn);
                 screenOffOnCheck();
             }
         }, 1000);
@@ -66,7 +64,6 @@ public class KeepLiveService extends Service {
     public void onDestroy() {
         super.onDestroy();
         KeepLives.log("KeepLiveService: \t onDestroy");
-        unregisterScreenOffOnReceiver();
     }
 
     private boolean isStopKeepLiveService;
@@ -95,11 +92,8 @@ public class KeepLiveService extends Service {
         Intent broadcastIntent = new Intent("CLICK_NOTIFICATION");
         //针对8.0以上发广播
         broadcastIntent.setComponent(new ComponentName("com.example.mylib_test", "com.zone.utils.ClickBroadcastReceiver"));
-
-
         Notification notification = NotificationUtils.createNotification(context, title, content, R.mipmap.account_launcher, broadcastIntent);
         startForeground(13691, notification);
-
 //        stopForeground(13691);
     }
 
@@ -107,29 +101,6 @@ public class KeepLiveService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    private void registerScreenOffOnReceiver() {
-        try {
-            KeepLives.log("KeepLiveService \t registerScreenOffOnReceiver 进程名字：" + returnName());
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(ScreenOffOnBroadcastReceiver.ACTION_SCREEN_OFF);
-            intentFilter.addAction(ScreenOffOnBroadcastReceiver.ACTION_SCREEN_ON);
-            registerReceiver(mScreenOffOnBroadcastReceiver, intentFilter);
-        } catch (Exception e) {
-            KeepLives.logE("KeepLiveService", "registerScreenOffOnReceiver error:" + e.getMessage());
-        }
-    }
-
-    private void unregisterScreenOffOnReceiver() {
-        if (mScreenOffOnBroadcastReceiver == null) return;
-        try {
-            unregisterReceiver(mScreenOffOnBroadcastReceiver);
-            mScreenOffOnBroadcastReceiver = null;
-            KeepLives.log("KeepLiveService \t unregisterScreenOffOnReceiver");
-        } catch (Exception e) {
-            KeepLives.logE("KeepLiveService", "unregisterReceiver error:" + e.getMessage());
-        }
     }
 
     //绑定守护进程

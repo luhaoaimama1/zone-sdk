@@ -78,16 +78,6 @@
             android:authorities="@string/account_authority"
             android:process=":accountSyncService" />
 
-        <activity
-            android:name="com.zone.keeplive.activity.OnePixelActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:theme="@style/onePixelActivity">
-            <intent-filter>
-                <action android:name="com.zone.OnePixelActivity" />
-            </intent-filter>
-        </activity>
-
         <service android:name="com.zone.keeplive.service.KeepLiveService" />
 
         <service

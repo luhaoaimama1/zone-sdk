@@ -32,7 +32,6 @@ public class KeepLives {
         }
     }
 
-
     public static void config(@NonNull Application application) {
         if (isMain(application)) {
             log("config :isMain");

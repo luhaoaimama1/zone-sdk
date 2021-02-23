@@ -1,4 +1,4 @@
-package com.zone.keeplive.activity.utils;
+package com.zone.keeplive.receiver;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -12,22 +12,20 @@ public class NoVolumePlayer {
         //播放无声音乐
         if (mediaPlayer == null) {
             mediaPlayer = MediaPlayer.create(context, R.raw.novioce);
-            if (mediaPlayer != null) {
-                mediaPlayer.setVolume(0f, 0f);
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        play();
-                    }
-                });
-                mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                    @Override
-                    public boolean onError(MediaPlayer mp, int what, int extra) {
-                        return false;
-                    }
-                });
-                play();
-            }
+            mediaPlayer.setVolume(0f, 0f);
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    play();
+                }
+            });
+            mediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mp, int what, int extra) {
+                    return false;
+                }
+            });
+            play();
         }
     }
 
