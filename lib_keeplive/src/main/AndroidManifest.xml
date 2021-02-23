@@ -84,7 +84,7 @@
             android:name="com.zone.keeplive.service.DemonService"
             android:process=":klDemon" />
 
-        <receiver android:name="com.zone.utils.ClickBroadcastReceiver">
+        <receiver android:name="com.zone.recevier.ClickBroadcastReceiver">
             <intent-filter>
                 <action android:name="com.zone.MyBroadcastReceiver" />
             </intent-filter>

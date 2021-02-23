@@ -6,24 +6,18 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.zone.KeepLives;
-import com.zone.R;
+import com.zone.NotificationFactory;
 import com.zone.keeplive.receiver.ScreenOffOnObserver;
-import com.zone.utils.NotificationUtils;
 import com.zone.utils.PowerManagers;
 
 import java.util.List;
 
 public class KeepLiveService extends Service {
-    //zone todo: 2021/2/22  绑定 失联后重复绑定并启动
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -44,8 +38,23 @@ public class KeepLiveService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        bindForgroundNotification();
         screenOffOnCheck();
-        //zone todo: 2021/2/22  前台消息制造工厂
+    }
+
+    //zone todo: 2021/2/22  前台消息制造工厂
+    private void bindForgroundNotification() {
+        Intent broadcastIntent = new Intent("CLICK_NOTIFICATION");
+        //针对8.0以上发广播
+        broadcastIntent.setComponent(new ComponentName(getPackageName(), "com.zone.recevier.ClickBroadcastReceiver"));
+        KeepLives.notifitionFactory.getNotification(this, broadcastIntent, new NotificationFactory.Callback() {
+            @Override
+            public void onNotification(@Nullable final Notification notification) {
+                if (notification != null) {
+                    startForeground(13691, notification);
+                }
+            }
+        });
     }
 
     private void screenOffOnCheck() {
@@ -70,8 +79,6 @@ public class KeepLiveService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //zone todo: 2021/2/22  前台服务
-        createForegroudNotification(this);
         KeepLives.log("KeepLiveService: \t onStartCommand");
         if (intent != null && intent.getIntExtra("INTENT_SERVICE_STATE", 0) == Contants.INTENT_SERVICE_STATE_STOP) {
             isStopKeepLiveService = true;
@@ -82,19 +89,8 @@ public class KeepLiveService extends Service {
             stopSelf();
         } else {
             bindDemonService();
-
         }
         return START_STICKY;
-    }
-    private void createForegroudNotification(@NonNull Context context) {
-        String title = "title";
-        String content = "content_test";
-        Intent broadcastIntent = new Intent("CLICK_NOTIFICATION");
-        //针对8.0以上发广播
-        broadcastIntent.setComponent(new ComponentName("com.example.mylib_test", "com.zone.utils.ClickBroadcastReceiver"));
-        Notification notification = NotificationUtils.createNotification(context, title, content, R.mipmap.account_launcher, broadcastIntent);
-        startForeground(13691, notification);
-//        stopForeground(13691);
     }
 
     @Nullable
@@ -117,7 +113,6 @@ public class KeepLiveService extends Service {
                 KeepLives.log("KeepLiveService: \t 无需 bind");
             }
         } catch (Exception e) {
-            //zone todo: 2021/2/22  应该会触发 防止二者无限循环调用
             KeepLives.logE("KeepLiveService", "bindDemonService error:" + e.getMessage());
         }
     }

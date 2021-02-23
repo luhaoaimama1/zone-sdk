@@ -3,8 +3,7 @@ package com.zone.pulllive.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
-import com.zone.recevier.KeepLiveBroadcasts;
+import com.zone.recevier.PullLiveReceiver;
 
 /**
  * 系统广播  用于8.0以下
@@ -42,6 +41,6 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        KeepLiveBroadcasts.sendBroadcast(context, "BootReceiver", (intent == null ? "" : intent.getAction()));
+        PullLiveReceiver.sendBroadcast(context, "BootReceiver", (intent == null ? "" : intent.getAction()));
     }
 }

@@ -9,9 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
-
 import com.zone.KeepLives;
-import com.zone.recevier.KeepLiveBroadcasts;
 
 /**
  * Created by henrikwu on 2017/5/4.

@@ -102,7 +102,7 @@ public class DemonService extends Service {
                 bindKeepLiveServiceSuccess = false;
                 KeepLives.log("DemonService: \t unbindService");
             } catch (Exception e) {
-                KeepLives.logE("KeepLiveService", "unbindDemonService error:" + e.getMessage());
+                KeepLives.logE("DemonService", "unbindDemonService error:" + e.getMessage());
             }
         }
     }

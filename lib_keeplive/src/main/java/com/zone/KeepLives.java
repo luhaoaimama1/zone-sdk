@@ -14,9 +14,6 @@ import com.zone.pulllive.accountsync.AccountSyncService;
 import java.util.List;
 
 public class KeepLives {
-    public static int INTENT_SERVICE_STATE_DEFAULT = 0;
-    public static int INTENT_SERVICE_STATE_STOP = 1;
-
     public static boolean enableLog = true;
     public static final String TAG = "KeepLives";
 
@@ -32,8 +29,12 @@ public class KeepLives {
         }
     }
 
-    public static void config(@NonNull Application application) {
+    public static NotificationFactory notifitionFactory;
+
+    public static void config(@NonNull Application application, NotificationFactory factory) {
+        log("config :包名=>"+application.getPackageName());
         if (isMain(application)) {
+            notifitionFactory = factory;
             log("config :isMain");
             //拉活
             keepRelifeFromAccountSync(application);
@@ -46,15 +47,15 @@ public class KeepLives {
         }
     }
 
-    public static void stopKeepLiveService(@NonNull Application application) {
-        Intent intent = new Intent(application, KeepLiveService.class);
+    public static void stopKeepLiveService(@NonNull Context context) {
+        Intent intent = new Intent(context, KeepLiveService.class);
         //不用静态变量是因为这个是多进程
         intent.putExtra(Contants.INTENT_SERVICE_STATE_KEY, Contants.INTENT_SERVICE_STATE_STOP);
-        application.startService(intent);
+        context.startService(intent);
 
-        Intent intent2 = new Intent(application, DemonService.class);
+        Intent intent2 = new Intent(context, DemonService.class);
         intent2.putExtra(Contants.INTENT_SERVICE_STATE_KEY, Contants.INTENT_SERVICE_STATE_STOP);
-        application.startService(intent2);
+        context.startService(intent2);
     }
 
     private static void keepRelifeFromAccountSync(@NonNull Application application) {

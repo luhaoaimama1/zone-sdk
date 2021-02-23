@@ -12,7 +12,7 @@ import android.content.SyncResult;
 import android.os.Bundle;
 import android.os.IBinder;
 import com.zone.KeepLives;
-import com.zone.recevier.KeepLiveBroadcasts;
+import com.zone.recevier.PullLiveReceiver;
 
 /**
  * Created by henrikwu on 2017/5/4.
@@ -48,7 +48,7 @@ public class AccountSyncService extends Service {
         public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
             //do sync here
             if (getContext() != null) {
-                KeepLiveBroadcasts.sendBroadcast(getContext(), "SyncService", "onPerformSync");
+                PullLiveReceiver.sendBroadcast(getContext(), "SyncService", "onPerformSync");
             } else {
                 KeepLives.logE("SyncService ", "context is null!");
             }
