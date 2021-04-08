@@ -87,4 +87,19 @@
             android:text="waterSystem" />
     </view.testing.WaterViewGroup>
 
+
+    <TextView
+        style="@style/TvHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="WorkManager研究" />
+
+    <TextView
+        android:id="@+id/animal"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Property Animation" />
+
 </com.zone.view.FlowLayout>

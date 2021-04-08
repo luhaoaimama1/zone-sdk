@@ -1,5 +1,6 @@
 package com.example.mylib_test.activity.http
 
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Handler
 import android.os.HandlerThread
@@ -44,6 +45,12 @@ class Http_MainActivity : BaseFeatureActivity(), OnClickListener {
     }
 
     private fun handler() {
+//        val broadcastIntent = Intent("com.zone.keeplive")
+//        broadcastIntent.component = ComponentName("com.zone.sample", "com.zone.recevier.PullLiveReceiver")
+//        broadcastIntent.setClassName("com.zone.sample", "com.zone.recevier.PullLiveReceiver")
+//        broadcastIntent.setPackage("com.zone.sample")
+//        application.sendBroadcast(broadcastIntent)
+
         mainHandler.post {
             handlerTv.text = "更改成功了!"
         }

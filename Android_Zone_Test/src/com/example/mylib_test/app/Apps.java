@@ -20,34 +20,20 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
 import android.annotation.TargetApi;
 import android.app.Application;
-import android.app.Notification;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 import android.util.Log;
-
 import com.squareup.leakcanary.RefWatcher;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tom_roush.pdfbox.util.PDFBoxResourceLoader;
-import com.zone.KeepLives;
-import com.zone.NotificationFactory;
 import com.zone.lib.Configure;
 import com.zone.lib.utils.executor.ExecutorUtils;
 import com.zone.lib.utils.data.info.PrintLog;
 import com.zone.okhttp.HttpConfig;
 import com.zone.okhttp.ok;
-import com.zone.utils.NotificationUtils;
-
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
@@ -114,64 +100,7 @@ public class Apps extends Application {
                 Glide.get(getApplicationContext()).clearDiskCache();
             }
         });
-//        KeepLives.keepRelife(this,new KeepLives.Config()
-//                .notificationDescription("嘎嘎")
-//                .notificationIconRes(R.drawable.aaaaaaaaaaaab)
-//                .notificationTitle("嘎嘎Title")
-//                .builder()
-//        );
-        KeepLives.config(this, new NotificationFactory() {
-            @Override
-            public boolean click(Intent intent) {
-                Intent intent2 = new Intent("android.intent.action.MAIN");
-                intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent2.setComponent(new ComponentName("com.example.mylib_test", "com.example.mylib_test.MainActivity2"));
-                context.startActivity(intent2);
-                return true;
-            }
-
-            @Override
-            public void getNotification(Context context, Intent clickIntent, Callback callback) {
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    GetExample example = new GetExample();
-                    String response = null;
-                    try {
-                        response = example.run("https://www.baidu.com");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Log.d("TIANZone", response);
-
-                    String title = "title";
-                    String content = "content_test";
-                    NotiEntity entity = null;
-                    clickIntent.putExtra("",entity);
-                    Notification notification = NotificationUtils.createNotification(context, title, content, com.zone.R.mipmap.account_launcher, clickIntent);
-                    callback.onNotification(notification);
-                }).start();
-            }
-        });
-    }
-
-    public class GetExample {
-        OkHttpClient client = new OkHttpClient();
-
-        String run(String url) throws IOException {
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-            Response response = client.newCall(request).execute();
-            return response.body().string();
-        }
-    }
-
-    class NotiEntity implements Serializable {
-
+//        com.example.mylib_test.activity.three_place.UploadWorker.dao(this);
     }
 
     @Override
@@ -208,6 +137,4 @@ public class Apps extends Application {
             throw new UnsupportedOperationException("context must be application...");
         }
     }
-
-
 }

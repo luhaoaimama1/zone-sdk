@@ -29,6 +29,8 @@ class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
         bt = BitmapFactory.decodeResource(resources, R.drawable.abcd)
         val drawable = bt_clip_drawable.background as ClipDrawable
         drawable.level = 5000//0-10000
+
+        sfl.startSwipe(R.drawable.header_time_reward_yellow,true)
     }
 
     override fun setListener() {

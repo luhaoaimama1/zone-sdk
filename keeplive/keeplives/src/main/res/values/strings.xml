@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">KeepProcLive</string>
-
-    <string name="account_type">lalpkaa</string>
-    <string name="account_name">pka</string>
-    <string name="account_authorities">zone</string>
-</resources>

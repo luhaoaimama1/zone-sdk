@@ -27,9 +27,12 @@ class ResMainActvitity : BaseFeatureActivity() {
     override fun onClick(v: View?) {
         super.onClick(v)
         when (v?.id) {
+            R.id.textView7 -> {
+                v.background.mutate().alpha = 100
+            }
             R.id.itv -> {
-                itv.setDrawable(ImageTextView.Bottom, -1,100f, 100f, 50f)
-                itv.setDrawable(ImageTextView.LEFT, R.drawable.a1,100f, 100f, 50f)
+                itv.setDrawable(ImageTextView.Bottom, -1, 100f, 100f, 50f)
+                itv.setDrawable(ImageTextView.LEFT, R.drawable.a1, 100f, 100f, 50f)
 //                itv.setDrawable(ImageTextView.RIGHT, R.drawable.a1,100f, 100f, 50f)
             }
             else -> {

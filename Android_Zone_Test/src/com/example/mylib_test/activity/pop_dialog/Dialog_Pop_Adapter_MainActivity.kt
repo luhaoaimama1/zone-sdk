@@ -22,11 +22,31 @@ import com.example.mylib_test.LogApp
 import com.example.mylib_test.activity.pop_dialog.pop.PopFullScrenn
 import com.zone.lib.ZLogger
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
+import kotlinx.android.synthetic.main.a_pop_dialog_adapter.*
 
 class Dialog_Pop_Adapter_MainActivity : BaseFeatureActivity() {
 
     override fun setContentView() {
         setContentView(R.layout.a_pop_dialog_adapter)
+//        pop.post {
+//            Pop_Photo(this, R.id.flowLayoutZone1, R.id.pop).show()
+//        }
+        pop.postDelayed(Runnable{finish()},1000);
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Pop_Photo(this, R.id.flowLayoutZone1, R.id.pop).show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Pop_Photo(this, R.id.flowLayoutZone1, R.id.pop).show()
+    }
+    override fun onStop() {
+        super.onStop()
+        Pop_Photo(this, R.id.flowLayoutZone1, R.id.pop).show()
     }
 
     override fun initData() {
