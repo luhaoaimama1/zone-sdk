@@ -16,6 +16,8 @@ package com.example.mylib_test.app;
  *******************************************************************************/
 
 import com.bumptech.glide.Glide;
+import com.example.mylib_test.activity.three_place.workmanager.OneTimeDocWorker;
+import com.example.mylib_test.activity.three_place.workmanager.OneTimeExampleWorker;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import android.annotation.TargetApi;
@@ -100,7 +102,7 @@ public class Apps extends Application {
                 Glide.get(getApplicationContext()).clearDiskCache();
             }
         });
-//        com.example.mylib_test.activity.three_place.UploadWorker.dao(this);
+        OneTimeExampleWorker.dao(this);
     }
 
     @Override

@@ -13,6 +13,7 @@ import android.graphics.Xfermode;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import com.example.mylib_test.LogApp;
 import com.zone.lib.utils.image.BitmapUtils;
 import com.zone.lib.utils.view.DrawUtils;
 
@@ -52,6 +53,7 @@ public class NBViewGroup extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
+        LogApp.INSTANCE.d("onLayout:");
         multiGradient = new LinearGradient(0, 0, 0,
                 getHeight(), colors, pos, Shader.TileMode.CLAMP);
     }
@@ -100,4 +102,28 @@ public class NBViewGroup extends LinearLayout {
 //
 //    }
 
+
+    @Override
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        LogApp.INSTANCE.d("onWindowVisibilityChanged:"+visibility);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        LogApp.INSTANCE.d("onAttachedToWindow:");
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        LogApp.INSTANCE.d("onDetachedFromWindow:");
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        LogApp.INSTANCE.d("onMeasure:");
+    }
 }

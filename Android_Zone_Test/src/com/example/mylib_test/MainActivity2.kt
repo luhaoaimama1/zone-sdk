@@ -2,9 +2,11 @@ package com.example.mylib_test
 
 import android.app.AlertDialog
 import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mylib_test.activity.db.entity.MenuEntity
 import com.example.mylib_test.adapter.delegates.MenuEntityDeletates
@@ -58,6 +60,7 @@ class MainActivity2 : BaseFeatureActivity() {
         finish()
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun initData() {
         initFirst()
         permissionCheckStorageMustPermit()
@@ -137,6 +140,8 @@ class MainActivity2 : BaseFeatureActivity() {
         //		controller2.setDelay(2F);   //为ListView设置LayoutAnimationController属性；
         //		listView1.setLayoutAnimation(controller2);
         //		listView1.startLayoutAnimation();
+
+        reportFullyDrawn();
     }
 
     private fun initFirst() {

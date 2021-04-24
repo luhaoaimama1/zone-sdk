@@ -43,8 +43,8 @@ public class LrcView extends View {
     public int maxLineNumber = 3;
     public static final String END_PREFIX = "...";
 
-    boolean debugDrawLineGuide = false;
-    boolean debugDrawScrollGuide = false;
+    boolean debugDrawLineGuide = true;
+    boolean debugDrawScrollGuide = true;
 
     public static final int DURATION = 500;
     private List<String> datas = new ArrayList<>();

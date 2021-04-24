@@ -109,13 +109,12 @@ dependencies {
 //    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
 
     implementation 'com.android.support:design:28.0.0'
-//    def work_version = "2.5.0"
-//
-//    // (Java only)
-//    implementation "androidx.work:work-runtime:$work_version"
-//    // optional - Test helpers
-//    androidTestImplementation "androidx.work:work-testing:$work_version"
-//    // optional - Multiprocess support
+    def work_version = "2.1.0"
+    // (Java only)
+    implementation "androidx.work:work-runtime:$work_version"
+    // optional - Test helpers
+    androidTestImplementation "androidx.work:work-testing:$work_version"
+    // optional - Multiprocess support
 //    implementation "androidx.work:work-multiprocess:$work_version"
 }
 
@@ -133,16 +132,6 @@ configurations {
                 if (details.requested.name == 'ZView') {
                     details.useVersion '1.0.36'
                 }
-
-//                if (details.requested.name == 'core' && details.requested.getGroup() == 'androidx.core') {
-//                    println "group=>${details.requested.getGroup()}"
-//                    details.useVersion '1.1.0'
-//                }
-//
-//                if (details.requested.name == 'lifecycle-service' && details.requested.getGroup() == 'androidx.lifecycle') {
-//                    println "group=>${details.requested.getGroup()}"
-//                    details.useVersion '2.1.0'
-//                }
             }
         }
         resolutionStrategy.dependencySubstitution {

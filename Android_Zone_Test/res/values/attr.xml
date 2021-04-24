@@ -30,6 +30,10 @@
         <attr name="progressInner" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="GradientTextView">
+        <attr name="gradientSrc" format="reference" />
+    </declare-styleable>
+
     <declare-styleable name="SheetFrameLayout">
         <attr name="sheetMoveId" format="reference" />
     </declare-styleable>
