@@ -171,6 +171,8 @@
         <activity android:name=".activity.study.ui.GoogleOfficeActivity"></activity>
         <activity android:name=".activity.study.ui.TipsActivity"></activity>
         <activity android:name=".activity.utils.LayoutClipAcitivity"></activity>
+        <activity android:name=".activity.lifecircle.LifeCircleActivity"></activity>
+        <activity android:name=".activity.lifecircle.FragmentStudyActivity"></activity>
         <activity android:name=".activity.statu.StatuMainActivity"
             android:theme="@style/SstatuMain"
             ></activity>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.zone.view.FlowLayout
+        android:id="@+id/flowLayoutZone1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ActivityVisible" />
+
+        <Button
+            android:id="@+id/btActivityVisibleIsViewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="isViewPagerAV" />
+        <Button
+            android:id="@+id/btActivityVisibleNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="normalAV" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ParentFragmentVisibleP:Viewpager" />
+
+        <Button
+            android:id="@+id/btParentFragmentVisibleIsViewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="isViewPagerPFV_VP" />
+        <Button
+            android:id="@+id/btParentFragmentVisibleNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="normalPFV_VP" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ParentFragmentVisibleP:Normal" />
+
+        <Button
+            android:id="@+id/btParentFragmentVisibleIsViewPager_N"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="isViewPagerPFV_N" />
+        <Button
+            android:id="@+id/btParentFragmentVisibleNormal_N"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="normalPFV_N" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="NowFragmentVisible" />
+
+        <Button
+            android:id="@+id/btNowFragmentVisibleIsViewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="isViewPagerNFV" />
+        <Button
+            android:id="@+id/btNowFragmentVisibleNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="normalNFV" />
+
+
+
+    </com.zone.view.FlowLayout>
+</ScrollView>

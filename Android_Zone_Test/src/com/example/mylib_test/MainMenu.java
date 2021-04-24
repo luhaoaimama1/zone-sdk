@@ -11,6 +11,7 @@ import com.example.mylib_test.activity.db.entity.MenuEntity;
 import com.example.mylib_test.activity.file.FileTestActivity;
 import com.example.mylib_test.activity.http.Http_MainActivity;
 import com.example.mylib_test.activity.http.ZBusActivity;
+import com.example.mylib_test.activity.lifecircle.LifeCircleActivity;
 import com.example.mylib_test.activity.pop_dialog.Dialog_Pop_Adapter_MainActivity;
 import com.example.mylib_test.activity.ress.ResMainActvitity;
 import com.example.mylib_test.activity.statu.StatuMainActivity;
@@ -39,6 +40,7 @@ public class MainMenu {
 		menu.add(new MenuEntity("wifi 3g 监听网络情况测试", Wifi3g_MainActivity.class)) ;
 		menu.add(new MenuEntity("系统控件等的研究", SystemMainActivity.class)) ;
 		menu.add(new MenuEntity("系统状态栏等研究", StatuMainActivity.class)) ;
+		menu.add(new MenuEntity("生命周期", LifeCircleActivity.class)) ;
 		menu.add(new MenuEntity("BBBBBBBBBB", BBBBActivity.class)) ;
 		menu.add(new MenuEntity("调研", StudyMainActivity.class)) ;
 	}
