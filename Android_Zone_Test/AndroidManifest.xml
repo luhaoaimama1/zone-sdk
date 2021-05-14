@@ -166,6 +166,7 @@
         <activity android:name=".activity.study.ui.CrashDataActivity"></activity>
         <activity android:name=".activity.study.ui.SongScrollActivity"></activity>
         <activity android:name=".activity.study.ui.DragActivity"></activity>
+        <activity android:name=".activity.study.RecyclerViewDatasActivity"></activity>
         <activity android:name=".activity.study.ui.X5Activity"></activity>
         <activity android:name=".activity.study.ui.PDFBoxActivity"></activity>
         <activity android:name=".activity.study.ui.GoogleOfficeActivity"></activity>

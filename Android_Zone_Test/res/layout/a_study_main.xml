@@ -133,4 +133,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NotifiHideservice" />
+
+
+    <TextView
+        android:id="@+id/bt_list_filter"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="列表数据过滤测试" />
 </com.zone.view.FlowLayout>
