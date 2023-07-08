@@ -90,6 +90,8 @@
         <activity android:name="com.example.mylib_test.activity.custom_view.ScrollerViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.RippleViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.GrayViewActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.MainGuijiqiuActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.ScaleViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.MaqueeViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.db.Db_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.http.Http_MainActivity"></activity>
@@ -116,8 +118,12 @@
         <activity android:name="com.example.mylib_test.activity.touch.ScrollerActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.photo_shot.Photo_Shot_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.custom_view.AndroidHeroActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.AeMaskActivity"
+            android:hardwareAccelerated="true"></activity>
+        <activity android:name="com.example.mylib_test.activity.custom_view.ShadowActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.photo_shot.ClipTest"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.ThirdParty_MainActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.three_place.LiveDataSendActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.BlurActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.GildeActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.three_place.FrescoActivity"></activity>
@@ -138,6 +144,8 @@
         <activity android:name="com.example.mylib_test.activity.animal.ImageCenterActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.wifi.Wifi3g_MainActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.AniPro"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.MatteViewActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.animal.RounderViewActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.ColorMarixTry"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.WaveActivity"></activity>
         <activity android:name="com.example.mylib_test.activity.animal.SVGActivity"></activity>
@@ -161,11 +169,18 @@
         <activity android:name=".activity.bbbb.BBBBActivity"></activity>
         <activity android:name=".activity.bbbb.EditTextActivity"></activity>
         <activity android:name=".activity.study.PDFActivity"></activity>
-        <activity android:name=".activity.study.StudyMainActivity"></activity>
+        <activity android:name=".activity.study.RvHoriActivity"></activity>
+        <activity android:name=".activity.study.StudyMainActivity"
+            android:launchMode="singleTask"
+            ></activity>
+        <activity android:name=".activity.study.KYADViewActivity"></activity>
+        <activity android:name=".activity.study.KYNestScrollTopViewActivity"></activity>
+        <activity android:name=".activity.study.KYAppBarNestScrollTopViewActivity"></activity>
         <activity android:name=".activity.study.ui.DynamicLogoActivity"></activity>
         <activity android:name=".activity.study.ui.CrashDataActivity"></activity>
         <activity android:name=".activity.study.ui.SongScrollActivity"></activity>
         <activity android:name=".activity.study.ui.DragActivity"></activity>
+        <activity android:name=".activity.study.ui.DisplayCutoutActivity"></activity>
         <activity android:name=".activity.study.RecyclerViewDatasActivity"></activity>
         <activity android:name=".activity.study.ui.X5Activity"></activity>
         <activity android:name=".activity.study.ui.PDFBoxActivity"></activity>
@@ -174,6 +189,12 @@
         <activity android:name=".activity.utils.LayoutClipAcitivity"></activity>
         <activity android:name=".activity.lifecircle.LifeCircleActivity"></activity>
         <activity android:name=".activity.lifecircle.FragmentStudyActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.lifecircle.other.test.FragmentStudyActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.lifecircle.other.test.LifeCircleNewActivity"></activity>
+        <activity android:name="com.example.mylib_test.activity.lifecircle.other.test.NoContentActivity"></activity>
+        <activity
+            android:name=".activity.lifecircle.FragmentArgumentActivity"></activity>
+        <activity android:name=".activity.statu.StatueBarModeActivity"/>
         <activity android:name=".activity.statu.StatuMainActivity"
             android:theme="@style/SstatuMain"
             ></activity>

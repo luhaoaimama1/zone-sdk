@@ -43,8 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="SurfaceView" />
-
+            android:text="绘图技巧研究" />
 
         <TextView
             android:id="@+id/bt_surface"
@@ -52,21 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SurfaceView_绘图版" />
-
-        <TextView
-            style="@style/TvHint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="绘图技巧研究" />
-
-        <TextView
-            android:id="@+id/bt_big_save"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="超级大图保存1万" />
-
         <TextView
             android:id="@+id/bt_glow"
             style="@style/TvOnClick"
@@ -81,19 +65,6 @@
             android:layout_height="wrap_content"
             android:text="svg" />
 
-        <TextView
-            android:id="@+id/bt_interview"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="interview" />
-
-        <TextView
-            android:id="@+id/bt_wave"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="波浪" />
 
         <TextView
             android:id="@+id/color"
@@ -117,32 +88,11 @@
             android:text="LightingColorFilter" />
 
         <TextView
-            android:id="@+id/bt_MatrixPre"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Matrix(MapPoint 、逆向矩阵invert  getMatrix Camera getMatrix )" />
-
-        <TextView
-            android:id="@+id/bt_MatrixStudy"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Matrix 矩阵研究" />
-
-        <TextView
             android:id="@+id/bt_canvas"
             style="@style/TvOnClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="图层" />
-
-        <TextView
-            android:id="@+id/bt_Xfermode"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Xfermode" />
 
         <TextView
             android:id="@+id/bt_imageBigTest"
@@ -165,6 +115,84 @@
             android:layout_height="wrap_content"
             android:text="各种基本图形" />
 
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp">
+
+
+            <view.testing.DrawView
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
+            <view.GradientView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+
+        <view.testing.ShineFrameLayout
+            android:id="@+id/sfl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:text="扫光"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </view.testing.ShineFrameLayout>
+
+
+        <TextView
+            android:id="@+id/bt_interview"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="interview" />
+
+        <TextView
+            android:id="@+id/bt_wave"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="波浪" />
+
+        <TextView
+            android:id="@+id/btLrcView"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LrcView" />
+
+
+        <TextView
+            android:id="@+id/bt_drawRounder"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆角控件" />
+
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="textView相关" />
+
+        <TextView
+            android:id="@+id/bt_spannable"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="spannable学习" />
         <TextView
             android:id="@+id/bt_drawText"
             style="@style/TvOnClick"
@@ -184,138 +212,44 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:onClick="onClick"
-            android:text="我了擦 gaga" />
+            android:text="我的阿拉丁神灯呢" />
 
         <view.testing.ShineTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:onClick="onClick"
-            android:text="我了擦 gaga " />
+            android:text="我的阿拉丁神灯呢" />
 
         <view.testing.GradientTextView
-            app:gradientSrc="@drawable/shape_grad_linear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:onClick="onClick"
-            android:text="我了擦 gaga " />
-
-        <RelativeLayout
-            android:layout_width="100dp"
-            android:layout_height="100dp">
+            android:text="我的阿拉丁神灯呢"
+            app:gradientSrc="@drawable/shape_grad_linear" />
 
 
-            <view.testing.DrawView
-                android:layout_width="100dp"
-                android:layout_height="100dp" />
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="矩阵研究" />
 
-            <view.GradientView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
-
-        <view.testing.DrawView
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
-
-
-        <view.testing.ShineFrameLayout
-            android:id="@+id/sfl"
+        <TextView
+            android:id="@+id/bt_MatrixPre"
+            style="@style/TvOnClick"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_launcher" />
-
-            <TextView
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_width="100dp"
-                android:gravity="center"
-                android:layout_height="100dp"
-                android:text="扫光" />
-        </view.testing.ShineFrameLayout>
-
+            android:layout_height="wrap_content"
+            android:text="Matrix(MapPoint 、逆向矩阵invert  getMatrix Camera getMatrix )" />
 
         <TextView
-            style="@style/TvHint"
-            android:layout_width="match_parent"
+            android:id="@+id/bt_MatrixStudy"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="CornerImageView" />
-
-        <view.corn.CornerImageView
-            app:civ_type="circle"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/aaaaaaaaaaaab" />
-
-
-        <view.corn.CornerImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:civ_type="rounder"
-            app:round_corner="20dp"
-            app:round_corner_top_right="5dp"
-            app:round_corner_bottom_right_x="50dp"
-            app:round_corner_bottom_right_y="20dp"
-            android:src="@drawable/aaaaaaaaaaaab" />
-        <TextView
-            style="@style/TvHint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="CornerImageView border" />
-
-        <view.corn.CornerImageView
-            android:background="@color/colorAccent"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:civ_type="rounder"
-            app:border_width="10dp"
-            app:border_color="#44FFaabb"
-            app:round_corner="20dp"
-            app:round_corner_top_right="5dp"
-            android:src="@drawable/aaaaaaaaaaaab" />
-        <TextView
-            style="@style/TvHint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="CornerImageView circle border" />
-
-        <view.corn.CornerImageView
-            android:background="@color/colorAccent"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:civ_type="circle"
-            app:border_type="half_content_edge"
-            app:border_width="20dp"
-            app:border_color="#44FFaabb"
-            android:src="@drawable/aaaaaaaaaaaab" />
-
-        <view.corn.CornerImageView
-            android:background="@color/colorAccent"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:civ_type="circle"
-            app:border_type="include_content"
-            app:border_width="20dp"
-            app:border_color="#44FFaabb"
-            android:src="@drawable/aaaaaaaaaaaab" />
-
-        <view.corn.CornerImageView
-            android:background="@color/colorAccent"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:civ_type="circle"
-            app:border_type="exclude_content"
-            app:border_width="20dp"
-            app:border_color="#44FFaabb"
-            android:src="@drawable/aaaaaaaaaaaab" />
+            android:text="Matrix 矩阵研究" />
 
         <TextView
             android:id="@+id/bt_matrixMethod"
@@ -324,12 +258,6 @@
             android:layout_height="wrap_content"
             android:text="Matrix各种特殊方法" />
 
-        <TextView
-            android:id="@+id/btLrcView"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LrcView" />
 
         <TextView
             style="@style/TvHint"
@@ -371,6 +299,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="Xformode" />
+
+        <TextView
+            android:id="@+id/btMatteView"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="蒙版view" />
+
+        <TextView
+            android:id="@+id/bt_Xfermode"
+            style="@style/TvOnClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xfermode" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="关于遮罩的几种方式(Xfermode就不用说了上边有)" />
 
         <view.testing.MyClipTextView
@@ -395,6 +344,10 @@
             android:background="@drawable/clip_test"
             android:text="Drawable clip" />
 
+        <view.RegionView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="#00ff00" />
 
         <TextView
             style="@style/TvHint"
@@ -430,27 +383,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="位图toRorate" />
-
-        <TextView
-            android:id="@+id/bt_bitmapRecyle"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="回收使用的位图测试(点击崩溃)" />
-
-        <ImageView
-            android:id="@+id/iv_iv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="4dp"
-            android:background="#00ff00" />
-
-        <TextView
-            android:id="@+id/bt_spannable"
-            style="@style/TvOnClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="spannable学习" />
 
 
     </com.zone.view.FlowLayout>

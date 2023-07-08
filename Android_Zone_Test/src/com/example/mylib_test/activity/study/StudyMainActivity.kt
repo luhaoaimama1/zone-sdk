@@ -2,6 +2,7 @@ package com.example.mylib_test.activity.study
 
 import android.view.View
 import android.content.Intent
+import com.example.mylib_test.LogApp
 import com.example.mylib_test.R
 import com.example.mylib_test.activity.study.ui.*
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
@@ -48,13 +49,42 @@ class StudyMainActivity : BaseFeatureActivity() {
             R.id.bt_service -> ForegroudService.startService(this)
             R.id.bt_NotifiBindservice -> ForegroudService.startServiceShowNotification(this)
             R.id.bt_NotifiHideservice ->  ForegroudService.startServiceHideNotification(this)
+            R.id.bt_display_cutout -> startActivity(Intent(this, DisplayCutoutActivity::class.java))
+            R.id.bt_ky_ad_view -> startActivity(Intent(this, KYADViewActivity::class.java))
+            R.id.bt_ky_scrollTop -> startActivity(Intent(this, KYNestScrollTopViewActivity::class.java))
+            R.id.bt_ky_scrollTop_appbar -> startActivity(Intent(this, KYAppBarNestScrollTopViewActivity::class.java))
+            R.id.bt_go_this -> startActivity(Intent(this, StudyMainActivity::class.java))
+            R.id.bt_rv_hori -> startActivity(Intent(this, RvHoriActivity::class.java))
+            R.id.bt_a_hashcode -> {
+                entity = Entity(entity.a + 1)
+                LogApp.d("hashcode:${hashCode()}")
+            }
             else -> {
             }
         }
+    }
+    private var entity=Entity(1)
+
+    class Entity(var a: Int)
+
+    override fun equals(other: Any?): Boolean {
+        return super<BaseFeatureActivity>.equals(other)
     }
 
     private fun crashPrint() {
         PrintLog.e("test错误")
         throw IllegalStateException("崩溃了！")
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 }

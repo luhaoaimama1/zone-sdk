@@ -188,7 +188,7 @@ public class LrcView extends View {
             unSelectIndexInner++;
             refreshLogic(selectIndexInner, unSelectIndexInner);
             postInvalidate();
-            postDelayed(runnable, 4000);
+            postDelayed(runnable, 1500);
         }
     };
 
@@ -241,6 +241,10 @@ public class LrcView extends View {
     int pauseUnSelectIndex=-1;
 
     public void refreshLogic(int selectIndex, int unSelectIndex) {
+        refreshLogic(selectIndex, unSelectIndex, isPauseScroll);
+    }
+
+    public synchronized void refreshLogic(int selectIndex, int unSelectIndex,boolean isPauseScroll) {
         //在布局之后去算一下滚动到最后的状态
         if (totalHeightWithBottomPadding == 0f) {
             caculateLastState();
@@ -254,7 +258,8 @@ public class LrcView extends View {
                 "pause before -------->selectIndex:" + selectIndex +
                         "\t unSelectIndex:" + unSelectIndex
         );
-        if (isPauseScroll) {
+
+        if (isPauseScroll || !mScroller.isFinished()) {//滚动没结束那么就等待 不然会两次会导致卡顿的
             return;
         }
 
@@ -299,16 +304,17 @@ public class LrcView extends View {
 
     private Runnable resumeScrollRunnable = () -> {
         scrollFinish();
-        isPauseScroll = false;
+
         if (pauseUnSelectIndex != -1) {
             int pauseUnSelectIndex1 = pauseUnSelectIndex;
             LogApp.INSTANCE.d(
                     "resumeScrollRunnable  --------selectIndex:" + selectIndex +
                             "\t unSelectIndex:" + pauseUnSelectIndex
             );
-            refreshLogic(this.selectIndex, pauseUnSelectIndex1);
+            refreshLogic(this.selectIndex, pauseUnSelectIndex1, false);
             pauseUnSelectIndex = -1;
         }
+        isPauseScroll = false;
     };
 
     VelocityTracker mVelocityTracker;

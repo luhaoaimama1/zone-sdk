@@ -2,7 +2,9 @@ package com.zone.lib.base;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +52,14 @@ public abstract class WindowPop {
         mWindowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
         //设置window type  可以设置 屏幕外的层级!
 //        wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;
-//        wmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+//
 //        https://blog.csdn.net/LoveDou0816/article/details/79172637 正常用第二个就行
-        wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY ;
+        //https://developer.android.com/reference/android/view/WindowManager.LayoutParams#TYPE_TOAST
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            wmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            wmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+        }
 
         //设置图片格式，效果为背景透明
         wmParams.format = PixelFormat.RGBA_8888;
@@ -65,7 +72,10 @@ public abstract class WindowPop {
         wmParams.flags =
 //                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-                        WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
+                        WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
+                        WindowManager.LayoutParams.TYPE_SYSTEM_ERROR
+//                        WindowManager.LayoutParams.FLAG_FULLSCREEN
+        ;
 
         LayoutInflater inflater = LayoutInflater.from(context);
         //获取浮动窗口视图所在布局
@@ -139,7 +149,7 @@ public abstract class WindowPop {
 
         //调整悬浮窗显示的停靠位置为左侧置顶
 //        wmParams.gravity = Gravity.LEFT | Gravity.TOP;
-        wmParams.gravity = gravity;
+        wmParams.gravity = gravity| Gravity.DISPLAY_CLIP_VERTICAL;;
         // 以屏幕左上角为原点，设置x、y初始值
         wmParams.x = x;
         wmParams.y = y;

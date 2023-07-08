@@ -23,7 +23,13 @@ public class ViewTreeObserver {
                 public void onDraw() {
                     if (Build.VERSION.SDK_INT >= JELLY_BEAN) {
                         listener.onDraw();
-                        view.getViewTreeObserver().removeOnDrawListener(this);
+                        final android.view.ViewTreeObserver.OnDrawListener onDrawListener = this;
+                        view.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                view.getViewTreeObserver().removeOnDrawListener(onDrawListener);
+                            }
+                        });
                     }
                 }
             });

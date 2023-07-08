@@ -7,43 +7,53 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
 public abstract class DialogCustemZone {
-	private Context context;
-	public boolean isSure = false;
+    private Context context;
+    public boolean isSure = false;
+    AlertDialog alertDialog;
 
-	public DialogCustemZone(Context context) {
-		this.context = context;
-		this.show();
-	}
+    public DialogCustemZone(Context context) {
+        this.context = context;
+        this.show();
+    }
 
-	public void show() {
-		AlertDialog.Builder db = new Builder(context);
-		db.setTitle("你确定要进行此操作吗？");
-		addSetProperty(db);
-		db.setPositiveButton("确定", new OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				isSure();
-			}
-		});
-		db.setNegativeButton("取消", new OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				notSure();
-			}
-		});
-		db.create().show();
+    public void show() {
+        AlertDialog.Builder db = new Builder(context);
+        db.setTitle("你确定要进行此操作吗？");
+        addSetProperty(db);
+        db.setPositiveButton("确定", new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                isSure();
+            }
+        });
+        db.setNegativeButton("取消", new OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                notSure();
+            }
+        });
+        alertDialog = db.create();
+        alertDialog.show();
+    }
+
+    /**
+     * 需要额外的属性可以添加 set方法
+     *
+     * @param db
+     */
+    public abstract void addSetProperty(Builder db);
+
+    /**
+     * 确定的后走的方法
+     */
+    public abstract void isSure();
+
+    /**
+     * 取消后的后走的方法
+     */
+    public abstract void notSure();
+
+	public AlertDialog getAlertDialog() {
+		return alertDialog;
 	}
-	/**
-	 * 需要额外的属性可以添加 set方法 
-	 * @param db 
-	 */
-	public abstract void addSetProperty(Builder db);
-	/**
-	 * 确定的后走的方法
-	 */
-	public abstract void isSure();
-	/**
-	 * 取消后的后走的方法
-	 */
-	public abstract void notSure() ;
 }

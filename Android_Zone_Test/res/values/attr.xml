@@ -97,4 +97,11 @@
         <attr name="drawableBackgroudColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="FbRelativeLayout">
+        <attr name="color" format="color" />
+        <attr name="strokeWidth" format="dimension"/>
+        <attr name="strokeColor" format="color" />
+        <attr name="radius2" format="dimension" />
+        <attr name="scale" format="float" />
+    </declare-styleable>
 </resources>

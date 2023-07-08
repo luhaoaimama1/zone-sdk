@@ -60,6 +60,14 @@ class ViewPagerDisableScrollActivity2 : BaseFeatureActivity() {
         })
 
 
+//        image_1!!.setFixedWithCallback{
+//            val width = 100
+//            val halfWidth = width / 2
+//            val start = it.centerX() - halfWidth
+//            val end = it.centerX() + halfWidth
+//            it.set(start,it.top,end,it.bottom)
+//        }
+
         image_1!!.fixedWithCallback={
             val width = 100
             val halfWidth = width / 2

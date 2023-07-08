@@ -45,6 +45,7 @@ class TipsActivity : BaseFeatureActivity() {
         tipsLayout.addTipItem(R.id.center, dp2px, indicateItemTop, indicateItemBottom, indicateItemLeft, indicateItemRight)
 
         tipsLayout.isInterceptBackClick=false
+        tipsLayout.requestFocus()
         tipsLayout.setHighLightOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val textView = v as? TextView

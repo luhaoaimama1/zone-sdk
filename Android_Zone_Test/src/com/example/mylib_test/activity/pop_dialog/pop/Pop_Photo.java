@@ -1,5 +1,6 @@
 package com.example.mylib_test.activity.pop_dialog.pop;
 
+import com.example.mylib_test.LogApp;
 import com.example.mylib_test.R;
 
 import com.zone.lib.base.BasePopWindow;
@@ -49,6 +50,17 @@ public class Pop_Photo extends BasePopWindow implements OnClickListener{
 	protected void setListener() {
 		tv_call.setOnClickListener(this);
 		tv_cancel.setOnClickListener(this);
+		tv_call.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener(){
+			@Override
+			public void onViewAttachedToWindow(View v) {
+				LogApp.INSTANCE.d("pop:onViewAttachedToWindow");
+			}
+
+			@Override
+			public void onViewDetachedFromWindow(View v) {
+				LogApp.INSTANCE.d("pop:onViewDetachedFromWindow");
+			}
+		});
 	}
 
 	@Override

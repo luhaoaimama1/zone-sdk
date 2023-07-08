@@ -105,6 +105,45 @@
             android:text="normalNFV" />
 
 
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="fragment Argment调研" />
 
+        <Button
+            android:id="@+id/btFragmentArg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="btFragmentArg" />
+
+        <TextView
+            style="@style/TvHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Activity setContent调研" />
+
+        <Button
+            android:id="@+id/btNoContentActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="NoContentActivity" />
+
+        <Button
+            android:id="@+id/btExitApplication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="exitApplication" />
     </com.zone.view.FlowLayout>
 </ScrollView>

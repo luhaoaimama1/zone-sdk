@@ -115,6 +115,14 @@
             android:text="log1,2->i,e"
             android:onClick="onClick" />
 
+        <Button
+            android:id="@+id/btStartMethodTracing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="startMethodTracing"
+            android:onClick="onClick" />
+
 
         <Button
             android:id="@+id/testHide"

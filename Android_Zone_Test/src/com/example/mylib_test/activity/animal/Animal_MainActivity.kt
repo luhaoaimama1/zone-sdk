@@ -20,16 +20,13 @@ import com.zone.lib.utils.image.compress2sample.SampleUtils
 import kotlinx.android.synthetic.main.a_animaltest.*
 
 class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
-    private var bt: Bitmap? = null
     override fun setContentView() {
         setContentView(R.layout.a_animaltest)
     }
 
     override fun initData() {
-        bt = BitmapFactory.decodeResource(resources, R.drawable.abcd)
         val drawable = bt_clip_drawable.background as ClipDrawable
         drawable.level = 5000//0-10000
-
         sfl.startSwipe(R.drawable.header_time_reward_yellow,true)
     }
 
@@ -38,7 +35,8 @@ class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.bt_big_save -> saveBigBitmap()
+            R.id.bt_drawRounder -> startActivity(Intent(this, RounderViewActivity::class.java))
+            R.id.btMatteView -> startActivity(Intent(this, MatteViewActivity::class.java))
             R.id.animal -> startActivity(Intent(this, AniPro::class.java))
             R.id.color -> startActivity(Intent(this, ColorMarixTry::class.java))
             R.id.bt_canvas -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "layer"))
@@ -56,7 +54,6 @@ class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
             R.id.bt_Pixels -> startActivity(Intent(this, PixelsAcitivity::class.java))
             R.id.bt_customAni -> startActivity(Intent(this, CustomAniActivity::class.java))
             R.id.bt_cgr -> startActivity(Intent(this, ChoreographerStudyActivity::class.java))
-            R.id.bt_bitmapRecyle -> bitmapRecyleTest()
             R.id.bt_draw -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_draw"))
             R.id.bt_LightingColorFilter -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_LightingColorFilter"))
             R.id.bt_drawText -> startActivity(Intent(this, CanvasTest::class.java).putExtra("type", "bt_drawText"))
@@ -76,51 +73,6 @@ class Animal_MainActivity : BaseFeatureActivity(), OnClickListener {
             R.id.bt_spannable -> startActivity(Intent(this, TextViewLinkActivity::class.java))
             else -> {
             }
-        }
-    }
-
-    private fun saveBigBitmap() {
-        val bt = SampleUtils.load(this, R.drawable.abcd).bitmap()
-        Thread(Runnable {
-            val mActivityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-            //获得MemoryInfo对象
-            val memoryInfo = ActivityManager.MemoryInfo()
-            //获得系统可用内存，保存在MemoryInfo对象上
-            mActivityManager.getMemoryInfo(memoryInfo)
-            val memSize = memoryInfo.availMem
-            //                int width = (int) (Math.sqrt(memSize / 4)) - 8000;
-            //x的平方*4(rgb888 每个像素 4byte) =可用像素
-            val width = Math.sqrt((memSize / 4).toDouble()).toInt() - 90000
-
-            //经过测试  在创建的时候就已经是申请很多内存了
-            val bitmap = Bitmap.createBitmap(width, width, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
-            val scaleWidth = width * 1f / bt.width
-            val scaleHeight = width * 1f / bt.height
-            //用最小的缩放
-            val realScale = if (scaleWidth <= scaleHeight) scaleWidth else scaleHeight
-            val mar = Matrix()
-            canvas.save()
-            mar.postTranslate((width - bt.width) * 1f / 2, (width - bt.height) * 1f / 2)
-            mar.postScale(realScale, realScale, width * 1f / 2, width * 1f / 2)
-            canvas.drawBitmap(bt, mar, null)
-            canvas.restore()
-
-            LogApp.d("bitmap 实例:$bitmap")
-            val file = FileUtils.getFile(SDCardUtils.getSDCardDir(), "Zone", "abc.png")
-
-            CompressUtils.saveBitmap(file.path, bitmap)
-        }).start()
-    }
-
-    private fun bitmapRecyleTest() {
-        bt?.let {
-            LogApp.d("bitmapRecyleTest" + if (it.isRecycled == true) "回收成功" else "回收失败")
-            iv_iv.setImageBitmap(it)
-            it.recycle()
-            LogApp.d("bitmapRecyleTestre  recycle" + if (it.isRecycled == true) "回收成功" else "回收失败")
-            System.gc()
-            LogApp.d("bitmapRecyleTestrec gc" + if (it.isRecycled == true) "回收成功" else "回收失败")
         }
     }
 }

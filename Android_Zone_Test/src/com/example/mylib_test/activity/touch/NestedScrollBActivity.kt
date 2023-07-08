@@ -26,8 +26,8 @@ class NestedScrollBActivity : BaseFeatureActivity() {
         val data = LinkedList<String>()
 
         init {
-            for (i in 0..29)
-                data.add("一直很桑心")
+            for (i in 0..39)
+                data.add("一直很桑心"+i)
         }
     }
     override fun setContentView() {

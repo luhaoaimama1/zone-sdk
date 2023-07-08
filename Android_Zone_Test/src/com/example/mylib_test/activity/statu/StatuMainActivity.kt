@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.example.mylib_test.R
+import com.example.mylib_test.activity.touch.VeclocityTrackerActivity
+import com.jaeger.library.StatusBarUtil
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import kotlinx.android.synthetic.main.a_statu_test.*
 

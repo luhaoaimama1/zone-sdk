@@ -29,10 +29,20 @@ class ChoreographerStudyActivity : BaseFeatureActivity() {
 
         }
     }
+    //    anonymous
+    val mFrameCallback2 = object : Choreographer.FrameCallback {
+        override fun doFrame(frameTimeNanos: Long) {
+            val now = frameTimeNanos / NANOS_PER_MS //纳秒转换成毫秒
+            LogApp.d("模拟页面不重新绘制 16ms now时间:$now \t ")
+        }
+    }
 
     override fun setContentView() {
         setContentView(R.layout.a_animal_choreographer)
 
+        findViewById<View>(R.id.contentView).setOnClickListener {
+            mChoreographer.postFrameCallback(mFrameCallback2)
+        }
 
         //测试 我添加一个callback 然后在回调中使用更新text 调用重绘 对有影响么？ 没有
 

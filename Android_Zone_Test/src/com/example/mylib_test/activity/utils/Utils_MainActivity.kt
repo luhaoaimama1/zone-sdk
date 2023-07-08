@@ -3,6 +3,7 @@ package com.example.mylib_test.activity.utils
 import com.zone.lib.utils.system_hardware_software_receiver_shell.software.KeyBoardUtils
 
 import android.content.Intent
+import android.os.Debug
 import android.util.DisplayMetrics
 import android.view.View
 import com.example.mylib_test.*
@@ -13,6 +14,8 @@ import com.zone.lib.utils.data.file2io2data.ClipboardManagerUtils
 import kotlinx.android.synthetic.main.a_utils_test.*
 import com.zone.lib.base.controller.activity.controller.ActionBarActivityController
 import com.zone.lib.base.controller.activity.controller.ShowState
+import com.zone.lib.utils.data.file2io2data.FileUtils
+import com.zone.lib.utils.data.file2io2data.SDCardUtils
 
 
 class Utils_MainActivity : BaseFeatureActivity() {
@@ -56,6 +59,12 @@ class Utils_MainActivity : BaseFeatureActivity() {
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            R.id.btStartMethodTracing -> {
+                val file = FileUtils.getFile(SDCardUtils.getSDCardDir(), "Zone", "rotation90.trace")
+                Debug.startMethodTracing(file.absolutePath);
+                v.rotation = v.rotation + 90
+                Debug.stopMethodTracing();
+            }
             R.id.openKeyboard -> KeyBoardUtils.openKeybord(keyboard, this)
             R.id.closeKeyboard -> KeyBoardUtils.closeKeybord(keyboard, this)
             R.id.getPhone -> startActivity(Intent(this, GetPhoneTest::class.java))

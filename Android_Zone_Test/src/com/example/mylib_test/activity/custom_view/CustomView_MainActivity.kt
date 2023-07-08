@@ -45,7 +45,10 @@ class CustomView_MainActivity : BaseFeatureActivity(), OnClickListener {
             R.id.bt_BottomSheet -> startActivity(Intent(this, BottomSheetActivity::class.java))
             //zone todo: 2020/11/10 全局至灰
             R.id.bt_all_gray -> startActivity(Intent(this, GrayViewActivity::class.java))
+            R.id.bt_xiaoxiong -> startActivity(Intent(this, ScaleViewActivity::class.java))
             R.id.bt_marquee -> startActivity(Intent(this, MaqueeViewActivity::class.java))
+            R.id.bt_shadow -> startActivity(Intent(this, ShadowActivity::class.java))
+            R.id.bt_ae_mask -> startActivity(Intent(this, AeMaskActivity::class.java))
             else -> {
             }
         }//			startActivity(new Intent(this,ViewpagerIndicatorActivity.class));

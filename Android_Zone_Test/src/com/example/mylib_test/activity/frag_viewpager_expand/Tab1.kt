@@ -15,4 +15,14 @@ class Tab1 : Fragment() {
         return inflater.inflate(R.layout.tab1, null)
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+    }
+    override fun getUserVisibleHint(): Boolean {
+        return super.getUserVisibleHint()
+    }
 }

@@ -43,6 +43,22 @@
             android:padding="10dp"
             android:text="LayoutInflater's setFactory研究" />
 
+        <Button
+            android:id="@+id/bt_system_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="系统状态栏等研究" />
+     <Button
+            android:id="@+id/bt_statuBarMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:padding="10dp"
+            android:text="statuBarMode调研" />
 
     </com.zone.view.FlowLayout>
 </ScrollView>

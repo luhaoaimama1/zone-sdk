@@ -8,6 +8,9 @@ import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.example.mylib_test.activity.animal.PixelsAcitivity
+import com.example.mylib_test.activity.statu.StatuMainActivity
+import com.example.mylib_test.activity.statu.StatueBarModeActivity
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.zone.lib.base.controller.activity.controller.ActionBarActivityController
 import com.zone.lib.base.controller.activity.controller.ShowState
@@ -56,6 +59,8 @@ class SystemMainActivity : BaseFeatureActivity() {
             R.id.bt_activityResult -> startActivityForResult(Intent(this, ResultActivity2::class.java), SystemMainActivity.RequestCode)
             R.id.bt_layoutInflater -> startActivityForResult(Intent(this, LayoutInflaterActivity::class.java), SystemMainActivity.RequestCode)
             R.id.crash -> throw NullPointerException("crash test")
+            R.id.bt_system_status ->  startActivity(Intent(this, StatuMainActivity::class.java))
+            R.id.bt_statuBarMode ->  startActivity(Intent(this, StatueBarModeActivity::class.java))
             else -> {
             }
         }

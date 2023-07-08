@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fbLayout="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fbLayout="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <com.example.mylib_test.activity.custom_view.gui.feedback.FbRelativeLayout
+            android:id="@+id/rl_test_card"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginTop="30dp"
+            android:padding="2dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            fbLayout:color="@color/purple_700"
+            fbLayout:radius2="10dp"
+            fbLayout:scale="1.2"
+            fbLayout:strokeColor="@color/purple_700"
+            fbLayout:strokeWidth="3dp">
+
+            <FrameLayout
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:background="@color/purple_200"
+                app:cardBackgroundColor="@color/purple_200"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="false">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="测试"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+
+            </FrameLayout>
+
+            <com.example.mylib_test.activity.custom_view.gui.feedback.FbRelativeLayout
+                android:id="@+id/rl_test_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:padding="2dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                fbLayout:color="@color/purple_700"
+                fbLayout:radius2="10dp"
+                fbLayout:scale="1.2"
+                fbLayout:strokeColor="@color/purple_700"
+                fbLayout:strokeWidth="3dp">
+
+                <FrameLayout
+                    android:layout_width="100dp"
+                    android:layout_height="150dp"
+                    android:background="@color/gold"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="false">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="测试"
+                        android:textColor="@color/white"
+                        android:textSize="28sp" />
+
+                </FrameLayout>
+
+            </com.example.mylib_test.activity.custom_view.gui.feedback.FbRelativeLayout>
+
+
+        </com.example.mylib_test.activity.custom_view.gui.feedback.FbRelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <com.example.mylib_test.activity.custom_view.gui.feedback.FbRelativeLayout2
+                android:id="@+id/rl_test_card"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="30dp"
+                android:padding="2dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                fbLayout:color="@color/purple_700"
+                fbLayout:radius2="10dp"
+                fbLayout:scale="1.2"
+                fbLayout:strokeColor="@color/purple_700"
+                fbLayout:strokeWidth="10px">
+
+                <FrameLayout
+                    android:scaleY="3.0"
+                    android:scaleX="3.0"
+                    android:layout_width="250dp"
+                    android:layout_height="150dp"
+                    android:background="@color/purple_200"
+                    app:cardBackgroundColor="@color/purple_200"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="false">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="测试"
+                        android:textColor="@color/white"
+                        android:textSize="28sp" />
+
+                </FrameLayout>
+
+            </com.example.mylib_test.activity.custom_view.gui.feedback.FbRelativeLayout2>
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_focus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获得焦点"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="失去焦点"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_focus" />
+
+    </LinearLayout>
+</LinearLayout>

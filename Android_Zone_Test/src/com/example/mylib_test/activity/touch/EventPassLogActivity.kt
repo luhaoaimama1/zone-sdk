@@ -49,6 +49,16 @@ class EventPassLogActivity : BaseFeatureActivity() {
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         log(null, "dispatchTouchEvent")
+        when (ev.action) {
+            MotionEvent.ACTION_CANCEL -> {
+                log(null, "dispatchTouchEvent 结果->:ACTION_CANCEL")
+            }
+            MotionEvent.ACTION_UP -> {
+                log(null, "dispatchTouchEvent 结果->:ACTION_UP")
+            }
+            else -> {
+            }
+        }
         val result = super.dispatchTouchEvent(ev)
         log(null, "dispatchTouchEvent 结果->:$result")
         return result

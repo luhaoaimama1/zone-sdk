@@ -23,6 +23,7 @@ import com.zone.lib.LogZSDK
 import com.zone.lib.ZLogger
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 import com.zone.lib.base.controller.activity.controller.SwipeBackActivityController
+import com.zone.lib.utils.view.ViewTreeObserver
 import kotlinx.android.synthetic.main.a_menu.*
 import java.util.*
 
@@ -140,8 +141,10 @@ class MainActivity2 : BaseFeatureActivity() {
         //		controller2.setDelay(2F);   //为ListView设置LayoutAnimationController属性；
         //		listView1.setLayoutAnimation(controller2);
         //		listView1.startLayoutAnimation();
+        ViewTreeObserver.addOnDrawListenerDelete(listView1,{
+            reportFullyDrawn();
+        })
 
-        reportFullyDrawn();
     }
 
     private fun initFirst() {

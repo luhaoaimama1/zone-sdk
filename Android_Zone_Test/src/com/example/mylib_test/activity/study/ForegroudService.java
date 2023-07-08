@@ -26,16 +26,17 @@ public class ForegroudService extends Service {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void startService(@NonNull Context context) {
-//        Intent intentService = new Intent(context, ForegroudService.class);
-//        context.startService(intentService);
-        startServiceShowNotification(context);
+        Intent intentService = new Intent(context, ForegroudService.class);
+        context.startService(intentService);
+//        startServiceShowNotification(context);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void startServiceShowNotification(@NonNull Context context) {
         Intent intentService = new Intent(context, ForegroudService.class);
         intentService.putExtra(NOTIFI, NOTIFI_START);//0
-        context.startForegroundService(intentService);
+//        context.startForegroundService(intentService);
+        context.startService(intentService);
     }
 
     public static void startServiceHideNotification(@NonNull Context context) {
@@ -79,14 +80,17 @@ public class ForegroudService extends Service {
                 }
             }
         }
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
+//        return super.onStartCommand(intent, flags, startId);
     }
 
     private void auto() {
         handler.postDelayed(()->{
             try {
-                String s = ForegroudService.this.getForegroundServiceType() == 0 ? "后台" : "前台";
-                log("服务类型：" + s);
+
+                //zone todo: 2021/12/9  29有  降到了28 为了 编译debug
+//                String s = ForegroudService.this.getForegroundServiceType() == 0 ? "后台" : "前台";
+//                log("服务类型：" + s);
                 auto();
             } catch (Exception e) {
                 log("auto___Exception:"+e.getMessage());

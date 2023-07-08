@@ -76,6 +76,12 @@
         android:text="崩溃！" />
 
     <TextView
+        android:id="@+id/bt_display_cutout"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="刘海屏适配研究！" />
+    <TextView
         style="@style/TvHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,9 +142,54 @@
 
 
     <TextView
+        android:id="@+id/bt_ky_ad_view"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ky广告动态布局" />
+
+
+    <TextView
         android:id="@+id/bt_list_filter"
         style="@style/TvOnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="列表数据过滤测试" />
+        android:text="RV过滤吸附列表" />
+
+    <TextView
+        android:id="@+id/bt_ky_scrollTop"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ky嵌套滚动到顶部" />
+
+
+    <TextView
+        android:id="@+id/bt_ky_scrollTop_appbar"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kyAppbar嵌套滚动到顶部" />
+
+
+    <TextView
+        android:id="@+id/bt_a_hashcode"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity的hashcode" />
+
+    <TextView
+        android:id="@+id/bt_go_this"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转当前页面" />
+
+    <TextView
+        android:id="@+id/bt_rv_hori"
+        style="@style/TvOnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="横向滚动RV" />
 </com.zone.view.FlowLayout>

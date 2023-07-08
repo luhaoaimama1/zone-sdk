@@ -12,10 +12,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcel;
 import android.os.SystemClock;
+import android.os.Trace;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.ParcelableSpan;
@@ -82,6 +84,9 @@ public class TextViewLinkActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            Trace.beginSection("zoneTest");
+        }
         setContentView(R.layout.a_textview_span);
 
         anySpan();
@@ -105,6 +110,9 @@ public class TextViewLinkActivity extends Activity {
 
 
         customHeightMargin();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            Trace.endSection();
+        }
     }
 
     private void customHeightMargin() {

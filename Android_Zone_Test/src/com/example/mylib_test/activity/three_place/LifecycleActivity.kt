@@ -29,17 +29,52 @@ interface IPresenter : LifecycleObserver {
 class LifecycleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        lifecycle.addObserver(object : IPresenter {
+//            override fun onCreate(owner: LifecycleOwner) {
+//                Log.e("LifecycleActivity", "onCreate")
+//            }
+//
+//            override fun onDestroy() {
+//                Log.e("LifecycleActivity", "onDestroy")
+//            }
+//
+//            override fun onLifecycleChanged(owner: LifecycleOwner, event: Lifecycle.Event) {
+//                Log.e("LifecycleActivity", " onLifecycleChanged event name:" + event.name)
+//            }
+//        })
+    }
+
+    override fun onResume() {
+        super.onResume()
         lifecycle.addObserver(object : IPresenter {
             override fun onCreate(owner: LifecycleOwner) {
-                Log.e("LifecycleActivity", "onCreate")
+                Log.e("LifecycleActivity", "onResume_onCreate")
             }
 
             override fun onDestroy() {
-                Log.e("LifecycleActivity", "onDestroy")
+                Log.e("LifecycleActivity","onResume_onDestroy")
             }
 
             override fun onLifecycleChanged(owner: LifecycleOwner, event: Lifecycle.Event) {
-                Log.e("LifecycleActivity", " onLifecycleChanged event name:" + event.name)
+                Log.e("LifecycleActivity", "onResume_ event name:" + event.name)
+            }
+        })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        lifecycle.addObserver(object : IPresenter {
+            override fun onCreate(owner: LifecycleOwner) {
+                Log.e("LifecycleActivity", "onDestroyListener_onCreate")
+            }
+
+            override fun onDestroy() {
+                Log.e("LifecycleActivity", "onDestroyListener_onDestroy")
+            }
+
+            override fun onLifecycleChanged(owner: LifecycleOwner, event: Lifecycle.Event) {
+                Log.e("LifecycleActivity", "onDestroyListener_ event name:" + event.name)
             }
         })
     }

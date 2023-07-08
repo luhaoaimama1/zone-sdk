@@ -4,14 +4,12 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.mylib_test.R
-import com.example.mylib_test.activity.touch.view.ViewDragStudyFrame
-import com.example.mylib_test.adapter.delegates.TextDelegates
-import com.zone.adapter3kt.QuickAdapter
+import com.example.mylib_test.activity.touch.view.utils.SheetBehavior
+import com.example.mylib_test.activity.touch.view.utils.ShowModeTop
 import com.zone.lib.base.controller.activity.BaseFeatureActivity
 
 import com.zone.lib.base.controller.activity.controller.SwipeBackActivityController
-import com.zone.lib.utils.activity_fragment_ui.ToastUtils
-import kotlinx.android.synthetic.main.a_nestscrollb.*
+import kotlinx.android.synthetic.main.a_custom_top_sheet.*
 
 /**
  * Created by Zone on 2016/1/29.
@@ -26,12 +24,43 @@ class SheetViewRecycelrViewActivity : BaseFeatureActivity() {
         setContentView(R.layout.a_custom_top_sheet)
     }
 
+    lateinit var showModeTop: ShowModeTop
     override fun initData() {
-        rv.layoutManager = LinearLayoutManager(this)
-        rv.adapter = QuickAdapter<String>(this).apply {
-            registerDelegate(TextDelegates())
-            add(NestedScrollBActivity.data)
+        mainView.setOnClickListener {
+            showModeTop.open()
         }
+//        rv.layoutManager = LinearLayoutManager(this)
+//        rv.adapter = QuickAdapter<String>(this).apply {
+//            registerDelegate(TextDelegates())
+//            add(NestedScrollBActivity.data)
+//        }
+        val from = SheetBehavior.from(nsv)
+        showModeTop = ShowModeTop(from, object : ShowModeTop.Callback {
+            override fun onOpen() {
+            }
+
+            override fun onClose() {
+            }
+
+            override fun onLayout() {
+                showModeTop.open()
+            }
+
+            override fun onDrag() {
+            }
+
+            override fun onDragReleased() {
+            }
+
+            override fun onAutoScroll() {
+            }
+
+            override fun onAutoScrollStop() {
+            }
+        })
+        showModeTop.peekLength = 0
+        from.showStyle = showModeTop
+
     }
 
     override fun setListener() {

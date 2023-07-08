@@ -65,6 +65,7 @@ public class Apps extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
+        UIDebug.debug(this);
         Configure.init(this);
         CrashDefaultHandler.init2();
         PrintLog.restart();
@@ -102,7 +103,7 @@ public class Apps extends Application {
                 Glide.get(getApplicationContext()).clearDiskCache();
             }
         });
-        OneTimeExampleWorker.dao(this);
+//        OneTimeExampleWorker.dao(this);
     }
 
     @Override

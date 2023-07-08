@@ -43,7 +43,12 @@ open class ZLogger protected constructor(var tagName: String) {
         //空： 全部的都不会打印
         // 例如 我写一个B库用到A库 连个库都用到此log库。正常引用A库是A库不会打印的 。
         // 如果我想开启A库的打印。把A的打印实体类 填入即可
-        var mayLoggerList: HashSet<ZLogger> = HashSet<ZLogger>()
+        var mayLoggerList: HashSet<ZLogger> =object :HashSet<ZLogger>(){
+            override fun clear() {
+                super.clear()
+                Log.d("mayLoggerList","clear")
+            }
+        }
     }
 
     //空： 全部的都不会打印
