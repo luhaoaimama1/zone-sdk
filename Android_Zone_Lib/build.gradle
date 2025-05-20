@@ -26,6 +26,7 @@ dependencies {
 
     api "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
     kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
+    api 'com.github.luhaoaimama1:Zbanner:1.0.1'
 }
 
 android {

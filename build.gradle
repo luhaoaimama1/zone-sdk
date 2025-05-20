@@ -4,6 +4,9 @@ buildscript {
     ext.kotlin_version = '1.2.71'
 //    ext.kotlin_version = '1.2.51'
     repositories {
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
         jcenter()
         mavenCentral()
         google()
@@ -23,6 +26,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
         maven { url "https://jitpack.io" }
         maven { url "https://dl.google.com/dl/android/maven2" }
         jcenter()
